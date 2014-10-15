@@ -1,0 +1,41 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.WebApp", "WebApp\Atomia.OrderPage.WebApp.csproj", "{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Common", "Sdk\Common\Atomia.OrderPage.Sdk.Common.csproj", "{D178849A-FF2E-4E63-8522-9371E9EC7D51}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Checkout", "Sdk\Checkout\Atomia.OrderPage.Sdk.Checkout.csproj", "{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Themes.Default", "Themes\Default\Atomia.OrderPage.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D178849A-FF2E-4E63-8522-9371E9EC7D51}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D178849A-FF2E-4E63-8522-9371E9EC7D51}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D178849A-FF2E-4E63-8522-9371E9EC7D51}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D178849A-FF2E-4E63-8522-9371E9EC7D51}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}.Release|Any CPU.Build.0 = Release|Any CPU
+		{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35
+	EndGlobalSection
+EndGlobal
