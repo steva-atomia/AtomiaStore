@@ -15,6 +15,8 @@ namespace Atomia.OrderPage.Themes.Default
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            Bootstrapper.Initialise();
         }
     }
 }
