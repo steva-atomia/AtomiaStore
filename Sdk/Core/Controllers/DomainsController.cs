@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using Atomia.OrderPage.Sdk.Core.Models;
 
 namespace Atomia.OrderPage.Sdk.Core.Controllers
 {
-    public sealed class CartController : Controller
+    public sealed class DomainsController : Controller
     {
         [HttpGet]
         public ActionResult Index()
@@ -14,19 +15,16 @@ namespace Atomia.OrderPage.Sdk.Core.Controllers
             return View();
         }
 
-        public ActionResult Partial()
+        [HttpPost]
+        public ActionResult Index(DomainsModel model)
+        {
+            return View();
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Partial()
         {
             return PartialView();
-        }
-
-        public JsonResult AddItem()
-        {
-            return new JsonResult();
-        }
-
-        public JsonResult RemoveItem()
-        {
-            return new JsonResult();
         }
     }
 }

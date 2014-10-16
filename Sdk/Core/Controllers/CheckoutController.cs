@@ -21,7 +21,7 @@ namespace Atomia.OrderPage.Sdk.Core.Controllers
         {
             var model = modelProvider.Create<CheckoutModel>();
 
-            return View(model);
+            return View("Index", model);
         }
 
         [HttpPost]
@@ -34,7 +34,15 @@ namespace Atomia.OrderPage.Sdk.Core.Controllers
                 return redirectResult;
             }
 
-            return View(model);
+            return View("Index", model);
+        }
+
+        [ChildActionOnly]
+        public PartialViewResult Partial()
+        {
+            var model = modelProvider.Create<CheckoutModel>();
+
+            return PartialView("_CheckoutPartial", model);
         }
     }
 }
