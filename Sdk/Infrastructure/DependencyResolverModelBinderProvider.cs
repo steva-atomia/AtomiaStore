@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Atomia.OrderPage.Sdk.Infrastructure
 {
-    public class DependencyResolverModelBinder : DefaultModelBinder
+    public sealed class DependencyResolverModelBinder : DefaultModelBinder
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
@@ -22,7 +22,7 @@ namespace Atomia.OrderPage.Sdk.Infrastructure
         }
     }
 
-    public class DependencyResolverModelBinderProvider : IModelBinderProvider
+    public sealed class DependencyResolverModelBinderProvider : IModelBinderProvider
     {
         public IModelBinder GetBinder(Type modelType)
         {

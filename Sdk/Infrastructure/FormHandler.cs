@@ -10,7 +10,7 @@ namespace Atomia.OrderPage.Sdk.Infrastructure
         TDataObject Translate(TInput input, TDataObject dataObject);
     }
 
-    public class FormHandler<TInput, TDataObject> where TDataObject : new()
+    public sealed class FormHandler<TInput, TDataObject> where TDataObject : new()
     {
         private List<IInputHandler<TInput, TDataObject>> inputHandlers = new List<IInputHandler<TInput, TDataObject>>();
 

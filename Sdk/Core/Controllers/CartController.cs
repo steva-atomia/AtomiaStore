@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Atomia.OrderPage.Sdk.Core.Controllers
 {
-    public class CartController : Controller
+    public sealed class CartController : Controller
     {
         //
         // GET: /Cart/

@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Atomia.OrderPage.Sdk.Infrastructure
 {
-    public class DependencyResolverModelProvider : IModelProvider
+    public sealed class DependencyResolverModelProvider : IModelProvider
     {
         public TViewModel Create<TViewModel>()
         {

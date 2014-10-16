@@ -5,7 +5,7 @@ using Atomia.OrderPage.Sdk.Infrastructure;
 
 namespace Atomia.OrderPage.Sdk.Core.Controllers
 {
-    public class CheckoutController : Controller
+    public sealed class CheckoutController : Controller
     {
         private readonly IModelProvider modelProvider;
         private readonly IOrderPlacementService orderPlacementService;
