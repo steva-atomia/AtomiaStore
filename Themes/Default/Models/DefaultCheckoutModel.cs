@@ -6,7 +6,7 @@ using Atomia.OrderPage.Sdk.Core.Models;
 
 namespace Atomia.OrderPage.Themes.Default.Models
 {
-    public class DefaultCheckoutModel
+    public class DefaultCheckoutModel : CheckoutModel
     {
     }
 }
