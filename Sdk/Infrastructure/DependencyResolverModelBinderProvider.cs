@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Atomia.OrderPage.Sdk.Common.Models
+namespace Atomia.OrderPage.Sdk.Infrastructure
 {
     public class DependencyResolverModelBinder : DefaultModelBinder
     {

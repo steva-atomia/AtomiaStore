@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
-using Atomia.OrderPage.Sdk.Checkout.Models;
-using Atomia.OrderPage.Sdk.Checkout.Services;
-using Atomia.OrderPage.Sdk.Common.Models;
+using Atomia.OrderPage.Sdk.Core.Models;
+using Atomia.OrderPage.Sdk.Core.Services;
+using Atomia.OrderPage.Sdk.Infrastructure;
 
-namespace Atomia.OrderPage.Sdk.Checkout.Controllers
+namespace Atomia.OrderPage.Sdk.Core.Controllers
 {
     public class CheckoutController : Controller
     {

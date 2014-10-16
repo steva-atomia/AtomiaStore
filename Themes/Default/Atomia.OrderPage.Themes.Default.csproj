@@ -146,13 +146,13 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Sdk\Checkout\Atomia.OrderPage.Sdk.Checkout.csproj">
+    <ProjectReference Include="..\..\Sdk\Core\Atomia.OrderPage.Sdk.Core.csproj">
       <Project>{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}</Project>
-      <Name>Atomia.OrderPage3.Checkout</Name>
+      <Name>Atomia.OrderPage.Sdk.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Sdk\Common\Atomia.OrderPage.Sdk.Common.csproj">
+    <ProjectReference Include="..\..\Sdk\Infrastructure\Atomia.OrderPage.Sdk.Infrastructure.csproj">
       <Project>{D178849A-FF2E-4E63-8522-9371E9EC7D51}</Project>
-      <Name>Atomia.OrderPage3.Sdk.Common</Name>
+      <Name>Atomia.OrderPage.Sdk.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

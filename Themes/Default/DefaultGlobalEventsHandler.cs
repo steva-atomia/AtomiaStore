@@ -2,7 +2,7 @@
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Atomia.OrderPage.Sdk.Common;
+using Atomia.OrderPage.Sdk.Infrastructure;
 
 namespace Atomia.OrderPage.Themes.Default
 {

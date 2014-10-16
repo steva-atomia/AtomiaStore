@@ -124,9 +124,9 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sdk\Common\Atomia.OrderPage.Sdk.Common.csproj">
+    <ProjectReference Include="..\Sdk\Infrastructure\Atomia.OrderPage.Sdk.Infrastructure.csproj">
       <Project>{D178849A-FF2E-4E63-8522-9371E9EC7D51}</Project>
-      <Name>Atomia.OrderPage.Sdk.Common</Name>
+      <Name>Atomia.OrderPage.Sdk.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

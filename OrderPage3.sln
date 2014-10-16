@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.WebApp", "WebApp\Atomia.OrderPage.WebApp.csproj", "{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Common", "Sdk\Common\Atomia.OrderPage.Sdk.Common.csproj", "{D178849A-FF2E-4E63-8522-9371E9EC7D51}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Infrastructure", "Sdk\Infrastructure\Atomia.OrderPage.Sdk.Infrastructure.csproj", "{D178849A-FF2E-4E63-8522-9371E9EC7D51}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Checkout", "Sdk\Checkout\Atomia.OrderPage.Sdk.Checkout.csproj", "{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Sdk.Core", "Sdk\Core\Atomia.OrderPage.Sdk.Core.csproj", "{2CB78339-5163-4C02-8AFB-EF8F6BA1EA63}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Themes.Default", "Themes\Default\Atomia.OrderPage.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
 EndProject

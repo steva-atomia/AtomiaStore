@@ -8,8 +8,8 @@
     <ProjectGuid>{D178849A-FF2E-4E63-8522-9371E9EC7D51}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.OrderPage.Sdk.Common</RootNamespace>
-    <AssemblyName>Atomia.OrderPage.Sdk.Common</AssemblyName>
+    <RootNamespace>Atomia.OrderPage.Sdk.Infrastructure</RootNamespace>
+    <AssemblyName>Atomia.OrderPage.Sdk.Infrastructure</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -33,7 +33,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
+    <Reference Include="System.Web.Mvc, Version=4.0.0.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,9 +42,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="GlobalEventsHandler.cs" />
-    <Compile Include="Models\DependencyResolverModelBinderProvider.cs" />
-    <Compile Include="Models\DependencyResolverModelProvider.cs" />
-    <Compile Include="Models\IModelProvider.cs" />
+    <Compile Include="DependencyResolverModelBinderProvider.cs" />
+    <Compile Include="DependencyResolverModelProvider.cs" />
+    <Compile Include="IModelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
