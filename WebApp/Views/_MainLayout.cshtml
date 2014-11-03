@@ -7,15 +7,19 @@
 
 <html>
 <head>
-    <link href="../../Content/css/skeleton/base.css" rel="stylesheet" type="text/css" />
-    <link href="../../Content/css/skeleton/skeleton.css" rel="stylesheet" type="text/css" />
-    <link href="../../Content/css/skeleton/layout.css" rel="stylesheet" type="text/css" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
+    
+    @Styles.Render("~/Content/css/skeleton")
+    @Styles.Render("~/Content/css")
 </head>
 <body>
     <div class="container">
         @RenderBody()
     </div>
+
+    @Scripts.Render("~/bundles/shared")
+
+    @RenderSection("scripts", required: false)
 </body>
 </html>
