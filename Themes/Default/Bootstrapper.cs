@@ -1,6 +1,9 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
+using Atomia.OrderPage.Core.Models;
+using Atomia.OrderPage.Core.Infrastructure;
+using Atomia.OrderPage.Themes.Default.Models;
 
 namespace Atomia.OrderPage.Themes.Default
 {
@@ -30,7 +33,10 @@ namespace Atomia.OrderPage.Themes.Default
 
     public static void RegisterTypes(IUnityContainer container)
     {
-    
+        container.RegisterType<IModelProvider, ModelProvider>();
+        container.RegisterType<IModelBinderProvider, ModelBinderProvider>();
+
+        container.RegisterType<DomainsModel, DefaultDomainsModel>();
     }
   }
 }
