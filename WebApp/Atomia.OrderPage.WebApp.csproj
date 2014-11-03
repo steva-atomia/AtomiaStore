@@ -110,6 +110,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\style.css" />
+    <Content Include="Content\css\skeleton\base.css" />
+    <Content Include="Content\css\skeleton\layout.css" />
+    <Content Include="Content\css\skeleton\skeleton.css" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -128,7 +132,9 @@
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="Views\_MainLayout.cshtml" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Domains\Index.cshtml" />
   </ItemGroup>

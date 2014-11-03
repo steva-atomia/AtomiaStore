@@ -1,19 +1,37 @@
 ﻿@model Atomia.OrderPage.Themes.Default.Models.DefaultDomainsModel
 
 @{
-    Layout = null;
+    Layout = "~/Views/_MainLayout.cshtml";
+    ViewBag.Title = "Domains";
 }
 
-<!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    <div>
-        Hello? Yes, this is dog. @Model.Foo
-    </div>
-</body>
-</html>
+<h2>Domain registration</h2>
+<p>
+    Fill in the form below to register one or more new domain names or to transfer an existing domain name.
+</p>
+
+<form action="/" method="post">
+    <fieldset>
+        <legend>Domain type</legend>
+        <label for="register_type">
+            <input id="register_type" name="domain_type" type="radio" value="register" checked="checked" />
+            Register new domain name
+        </label>
+
+        <label for="transfer_type">
+            <input id="transfer_type" name="domain_type" type="radio" value="transfer" />
+            Transfer existing domain name
+        </label>
+    </fieldset>
+            
+    <label for="register_query">Find domain names:
+        <textarea name="register_query" id="register_query" rows="5" cols="40"></textarea>
+    </label>
+            
+    <label for="transfer_query">Transfer domain:
+        <input name="transfer_query" id="transfer_query" type="text" value="" />
+    </label>
+
+    <button type="submit">Submit Form</button>
+</form>
