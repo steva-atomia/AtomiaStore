@@ -124,6 +124,10 @@
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
       <Name>Atomia.OrderPage.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Themes\Default\Atomia.OrderPage.Themes.Default.csproj">
+      <Project>{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}</Project>
+      <Name>Atomia.OrderPage.Themes.Default</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

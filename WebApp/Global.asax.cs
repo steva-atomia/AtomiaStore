@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Web;
+using System.Configuration;
 using Atomia.OrderPage.Core.Infrastructure;
 
 namespace Atomia.OrderPage.WebApp
@@ -23,7 +24,21 @@ namespace Atomia.OrderPage.WebApp
         /// </summary>
         public MvcApplication()
         {
-            // TODO: Load eventhandler assembly
+            this.HandlerClass = null;
+
+            // TODO: Error handling, logging, etc.
+
+            var globalEventsHandlerType = ConfigurationManager.AppSettings["GlobalEventsHandler"];
+
+            Type t = Type.GetType(globalEventsHandlerType);
+            if (t != null)
+            {
+                this.HandlerClass = (GlobalEventsHandler)Activator.CreateInstance(t);
+            }
+            else
+            {
+                throw new Exception("Could not instantiate GlobalEventsHandler");
+            }
         }
 
         /// <summary>
@@ -39,10 +54,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Session_Start(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Session_Start(sender, e);
-            }
+            this.HandlerClass.Session_Start(sender, e);
         }
 
         /// <summary>
@@ -52,11 +64,6 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_Start(object sender, EventArgs e)
         {
-            if (this.HandlerClass == null)
-            {
-                return;
-            }
-
             this.HandlerClass.Application_Start(sender, e);
         }
 
@@ -67,10 +74,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_PreRequestHandlerExecute(sender, e);
-            }
+            this.HandlerClass.Application_PreRequestHandlerExecute(sender, e);
         }
 
         /// <summary>
@@ -80,10 +84,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_BeginRequest(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_BeginRequest(sender, e);
-            }
+            this.HandlerClass.Application_BeginRequest(sender, e);
         }
 
         /// <summary>
@@ -93,10 +94,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_Error(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_Error(sender, e);
-            }
+            this.HandlerClass.Application_Error(sender, e);
         }
 
         /// <summary>
@@ -106,10 +104,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_Init(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_Init(sender, e);
-            }
+            this.HandlerClass.Application_Init(sender, e);
         }
 
         /// <summary>
@@ -119,10 +114,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_Disposed(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_Disposed(sender, e);
-            }
+            this.HandlerClass.Application_Disposed(sender, e);
         }
 
         /// <summary>
@@ -132,10 +124,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_End(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_End(sender, e);
-            }
+            this.HandlerClass.Application_End(sender, e);
         }
 
         /// <summary>
@@ -145,10 +134,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_EndRequest(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_EndRequest(sender, e);
-            }
+            this.HandlerClass.Application_EndRequest(sender, e);
         }
 
         /// <summary>
@@ -158,10 +144,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_PostRequestHandlerExecute(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_PostRequestHandlerExecute(sender, e);
-            }
+            this.HandlerClass.Application_PostRequestHandlerExecute(sender, e);
         }
 
         /// <summary>
@@ -171,10 +154,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_PreSendRequestHeaders(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_PreSendRequestHeaders(sender, e);
-            }
+            this.HandlerClass.Application_PreSendRequestHeaders(sender, e);
         }
 
         /// <summary>
@@ -184,10 +164,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_PreSendContent(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_PreSendContent(sender, e);
-            }
+            this.HandlerClass.Application_PreSendContent(sender, e);
         }
 
         /// <summary>
@@ -197,10 +174,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_AcquireRequestState(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_AcquireRequestState(sender, e);
-            }
+            this.HandlerClass.Application_AcquireRequestState(sender, e);
         }
 
         /// <summary>
@@ -210,10 +184,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_ReleaseRequestState(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_ReleaseRequestState(sender, e);
-            }
+            this.HandlerClass.Application_ReleaseRequestState(sender, e);
         }
 
         /// <summary>
@@ -223,10 +194,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_ResolveRequestCache(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_ResolveRequestCache(sender, e);
-            }
+            this.HandlerClass.Application_ResolveRequestCache(sender, e);
         }
 
         /// <summary>
@@ -236,10 +204,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_UpdateRequestCache(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_UpdateRequestCache(sender, e);
-            }
+            this.HandlerClass.Application_UpdateRequestCache(sender, e);
         }
 
         /// <summary>
@@ -249,10 +214,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_AuthenticateRequest(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_AuthenticateRequest(sender, e);
-            }
+            this.HandlerClass.Application_AuthenticateRequest(sender, e);
         }
 
         /// <summary>
@@ -262,10 +224,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Application_AuthorizeRequest(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Application_AuthorizeRequest(sender, e);
-            }
+            this.HandlerClass.Application_AuthorizeRequest(sender, e);
         }
 
         /// <summary>
@@ -275,10 +234,7 @@ namespace Atomia.OrderPage.WebApp
         /// <param name="e">The <see cref="System.EventArgs"/> instance containing the event data.</param>
         protected void Session_End(object sender, EventArgs e)
         {
-            if (this.HandlerClass != null)
-            {
-                this.HandlerClass.Session_End(sender, e);
-            }
+            this.HandlerClass.Session_End(sender, e);
         }
     }
 }
