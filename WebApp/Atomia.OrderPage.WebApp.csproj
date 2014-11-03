@@ -119,15 +119,14 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="packages.config" />
+    <ProjectReference Include="..\Core\Atomia.OrderPage.Core.csproj">
+      <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
+      <Name>Atomia.OrderPage.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Sdk\Infrastructure\Atomia.OrderPage.Sdk.Infrastructure.csproj">
-      <Project>{D178849A-FF2E-4E63-8522-9371E9EC7D51}</Project>
-      <Name>Atomia.OrderPage.Sdk.Infrastructure</Name>
-    </ProjectReference>
+    <Content Include="packages.config" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

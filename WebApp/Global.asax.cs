@@ -9,7 +9,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using Atomia.OrderPage.Sdk.Infrastructure;
+using Atomia.OrderPage.Core.Infrastructure;
 
 namespace Atomia.OrderPage.WebApp
 {
