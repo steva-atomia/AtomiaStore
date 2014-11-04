@@ -8,6 +8,13 @@ namespace Atomia.OrderPage.Themes.Default.Models
 {
     public class DefaultDomainsModel : DomainsModel
     {
-        public string Foo { get { return "Bar"; } set{} }
+        public DefaultDomainsModel()
+        {
+            AllowedNumberOfDomains = 5;
+            AllowedDomainLength = 61;
+        }
+
+        public int AllowedNumberOfDomains { get; set; }
+        public int AllowedDomainLength { get; set; }
     }
 }

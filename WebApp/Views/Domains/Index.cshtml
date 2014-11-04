@@ -12,33 +12,39 @@
 
 <form action="/" method="post">
     <fieldset>
-        <legend>Domain type</legend>
+        <legend>Alternatives</legend>
         <label for="register_type">
-            <input id="register_type" name="domain_type" type="radio" value="register" data-bind="checked: DomainsViewModel.domainQueryType" />
+            <input id="register_type" name="domain_type" type="radio" value="register" data-bind="checked: Domains.domainQueryType" />
             Register new domain name
         </label>
 
         <label for="transfer_type">
-            <input id="transfer_type" name="domain_type" type="radio" value="transfer" data-bind="checked: DomainsViewModel.domainQueryType" />
+            <input id="transfer_type" name="domain_type" type="radio" value="transfer" data-bind="checked: Domains.domainQueryType" />
             Transfer existing domain name
         </label>
     </fieldset>
     
-    <div data-bind="visible: DomainsViewModel.isRegisterQuery">
+    <div data-bind="visible: Domains.isRegisterQuery">
         <label for="register_query">Find domain names:
-            <textarea name="register_query" id="register_query" rows="5" cols="40"></textarea>
+            <textarea name="register_query" id="register_query" rows="5" cols="40" data-bind="value: Domains.registerDomainQuery"></textarea>
         </label>
     </div>
     
-    <div data-bind="visible: DomainsViewModel.isTransferQuery">
+    <div data-bind="visible: Domains.isTransferQuery">
         <label for="transfer_query">Transfer domain:
-            <input name="transfer_query" id="transfer_query" type="text" value="" />
+            <input name="transfer_query" id="transfer_query" type="text" data-bind="value: Domains.transferDomainQuery"/>
         </label>
     </div>
 
-    <button type="submit">Submit Form</button>
+    <button type="submit" data-bind="click: Domains.submit">Submit Form</button>
 </form>
 
 @section scripts {
     <script src="../../Scripts/domains/index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        Atomia.ViewModel.Domains.init({
+            allowedNumberOfDomains: @Model.AllowedNumberOfDomains,
+            allowedDomainLength: @Model.AllowedDomainLength
+        });
+    </script>
 }

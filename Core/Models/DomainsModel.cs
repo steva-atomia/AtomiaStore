@@ -7,6 +7,6 @@ namespace Atomia.OrderPage.Core.Models
 {
     public abstract class DomainsModel
     {
-        IEnumerable<CartItem> SelectedDomains { get; set; }
+        
     }
 }

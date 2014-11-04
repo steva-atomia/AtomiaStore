@@ -1,17 +1,29 @@
-﻿PageViewModel.DomainsViewModel = (function (ko) {
-    var domainQueryType = ko.observable('register');
+﻿Atomia.ViewModel.Domains = (function (ko) {
+    var domainQueryType = ko.observable('register'),
+        registerDomainQuery = ko.observable(),
+        transferDomainQuery = ko.observable(),
+        isRegisterQuery = ko.pureComputed(function () {
+            return domainQueryType() === 'register';
+        }),
+        isTransferQuery = ko.pureComputed(function () {
+            return domainQueryType() === 'transfer';
+        });
 
-    var isRegisterQuery = ko.pureComputed(function() {
-        return domainQueryType() === 'register';
-    });
+    function submit() {
 
-    var isTransferQuery = ko.pureComputed(function() {
-        return domainQueryType() === 'transfer';
-    });
+    }
+
+    function init(options) {
+        console.log(options.allowedNumberOfDomains);
+    }
 
     return {
+        init: init,
+        submit: submit,
         domainQueryType: domainQueryType,
+        registerDomainQuery: registerDomainQuery,
+        transferDomainQuery: transferDomainQuery,
         isRegisterQuery: isRegisterQuery,
         isTransferQuery: isTransferQuery
     }
-}(ko));
+} (ko));
