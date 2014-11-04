@@ -19,7 +19,12 @@
     </div>
 
     @Scripts.Render("~/bundles/shared")
-
     @RenderSection("scripts", required: false)
+
+    <script type="text/javascript">
+        $(function () {
+            ko.applyBindings(PageViewModel);
+        });
+    </script>
 </body>
 </html>

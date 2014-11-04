@@ -5,7 +5,6 @@
     ViewBag.Title = "Domains";
 }
 
-
 <h2>Domain registration</h2>
 <p>
     Fill in the form below to register one or more new domain names or to transfer an existing domain name.
@@ -15,23 +14,31 @@
     <fieldset>
         <legend>Domain type</legend>
         <label for="register_type">
-            <input id="register_type" name="domain_type" type="radio" value="register" checked="checked" />
+            <input id="register_type" name="domain_type" type="radio" value="register" data-bind="checked: DomainsViewModel.domainQueryType" />
             Register new domain name
         </label>
 
         <label for="transfer_type">
-            <input id="transfer_type" name="domain_type" type="radio" value="transfer" />
+            <input id="transfer_type" name="domain_type" type="radio" value="transfer" data-bind="checked: DomainsViewModel.domainQueryType" />
             Transfer existing domain name
         </label>
     </fieldset>
-            
-    <label for="register_query">Find domain names:
-        <textarea name="register_query" id="register_query" rows="5" cols="40"></textarea>
-    </label>
-            
-    <label for="transfer_query">Transfer domain:
-        <input name="transfer_query" id="transfer_query" type="text" value="" />
-    </label>
+    
+    <div data-bind="visible: DomainsViewModel.isRegisterQuery">
+        <label for="register_query">Find domain names:
+            <textarea name="register_query" id="register_query" rows="5" cols="40"></textarea>
+        </label>
+    </div>
+    
+    <div data-bind="visible: DomainsViewModel.isTransferQuery">
+        <label for="transfer_query">Transfer domain:
+            <input name="transfer_query" id="transfer_query" type="text" value="" />
+        </label>
+    </div>
 
     <button type="submit">Submit Form</button>
 </form>
+
+@section scripts {
+    <script src="../../Scripts/domains/index.js" type="text/javascript"></script>
+}

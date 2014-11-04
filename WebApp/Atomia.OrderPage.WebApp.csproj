@@ -125,8 +125,13 @@
     <Content Include="Content\css\skeleton\layout.css" />
     <Content Include="Content\css\skeleton\skeleton.css" />
     <Content Include="Global.asax" />
-    <Content Include="Scripts\knockout-3.2.0.debug.js" />
-    <Content Include="Scripts\knockout-3.2.0.js" />
+    <Content Include="Scripts\vendor\jquery-1.11.1-vsdoc.js" />
+    <Content Include="Scripts\vendor\jquery-1.11.1.js" />
+    <Content Include="Scripts\vendor\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\pageviewmodel.js" />
+    <Content Include="Scripts\domains\index.js" />
+    <Content Include="Scripts\vendor\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\vendor\knockout-3.2.0.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -152,6 +157,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Scripts\vendor\jquery-1.11.1.min.map" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
