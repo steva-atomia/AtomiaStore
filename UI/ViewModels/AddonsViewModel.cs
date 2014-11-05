@@ -3,10 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Atomia.OrderPage.Core.Services
+namespace Atomia.OrderPage.UI.ViewModels
 {
-    public interface IOrderPlacementService
+    public abstract class AddonsViewModel
     {
-        
     }
 }

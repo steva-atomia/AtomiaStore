@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Atomia.OrderPage.Core.Models
 {
-    public class CartItem
+    public class DomainStatusQuery
     {
     }
 }

@@ -22,7 +22,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -125,6 +125,7 @@
     <Content Include="Content\css\skeleton\layout.css" />
     <Content Include="Content\css\skeleton\skeleton.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\domainsapi.js" />
     <Content Include="Scripts\vendor\amplify\amplify-vsdoc.js" />
     <Content Include="Scripts\vendor\amplify\amplify.js" />
     <Content Include="Scripts\vendor\amplify\amplify.min.js" />
@@ -153,12 +154,6 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Atomia.OrderPage.Core.csproj">
-      <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
-      <Name>Atomia.OrderPage.Core</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -172,6 +167,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\vendor\jquery\jquery-1.11.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UI\Atomia.OrderPage.UI.csproj">
+      <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
+      <Name>Atomia.OrderPage.UI</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

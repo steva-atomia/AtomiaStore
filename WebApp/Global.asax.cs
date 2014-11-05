@@ -1,16 +1,9 @@
-﻿//-----------------------------------------------------------------------
-// <copyright file="Global.asax.cs" company="Atomia AB">
-//     Copyright (c) Atomia AB. All rights reserved.
-// </copyright>
-// <author> Dusan Milenkovic </author>
-//-----------------------------------------------------------------------
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Configuration;
-using Atomia.OrderPage.Core.Infrastructure;
+using Atomia.OrderPage.UI.Infrastructure;
 
 namespace Atomia.OrderPage.WebApp
 {

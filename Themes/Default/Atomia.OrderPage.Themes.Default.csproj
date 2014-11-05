@@ -125,29 +125,33 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="DefaultGlobalEventsHandler.cs" />
-    <Compile Include="Models\DefaultCheckoutModel.cs" />
-    <Compile Include="Models\DefaultDomainsModel.cs" />
+    <Compile Include="ViewModels\DefaultCheckoutViewModel.cs" />
+    <Compile Include="ViewModels\DefaultDomainsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Content Include="Unity.Mvc4.README.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="App_Data\" />
-    <Folder Include="InputHandlers\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Services\WebPluginDomainSearch\Atomia.OrderPage.Services.WebPluginDomainSearch.csproj">
+      <Project>{899A798A-E1E5-4C85-B5E7-2C715866D807}</Project>
+      <Name>Atomia.OrderPage.Services.WebPluginDomainSearch</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Core\Atomia.OrderPage.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
       <Name>Atomia.OrderPage.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\UI\Atomia.OrderPage.UI.csproj">
+      <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
+      <Name>Atomia.OrderPage.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

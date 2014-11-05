@@ -1,9 +1,11 @@
 using System.Web.Mvc;
 using Microsoft.Practices.Unity;
 using Unity.Mvc4;
-using Atomia.OrderPage.Core.Models;
-using Atomia.OrderPage.Core.Infrastructure;
-using Atomia.OrderPage.Themes.Default.Models;
+using Atomia.OrderPage.Core.Services;
+using Atomia.OrderPage.Services.WebPluginDomainSearch;
+using Atomia.OrderPage.UI.Infrastructure;
+using Atomia.OrderPage.UI.ViewModels;
+using Atomia.OrderPage.Themes.Default.ViewModels;
 
 namespace Atomia.OrderPage.Themes.Default
 {
@@ -36,7 +38,9 @@ namespace Atomia.OrderPage.Themes.Default
         container.RegisterType<IModelProvider, ModelProvider>();
         container.RegisterType<IModelBinderProvider, ModelBinderProvider>();
 
-        container.RegisterType<DomainsModel, DefaultDomainsModel>();
+        container.RegisterType<DomainsViewModel, DefaultDomainsViewModel>();
+
+        container.RegisterType<IDomainSearchService, DomainSearchService>();
     }
   }
 }
