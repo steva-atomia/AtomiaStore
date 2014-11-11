@@ -1,4 +1,5 @@
 ﻿@model Atomia.OrderPage.Themes.Default.ViewModels.DefaultDomainsViewModel
+@using Atomia.OrderPage.Core.Models;
 
 @{
     Layout = "~/Views/_MainLayout.cshtml";
@@ -10,41 +11,64 @@
     Fill in the form below to register one or more new domain names or to transfer an existing domain name.
 </p>
 
-<form action="/" method="post">
+<form action="." method="post">
+
     <fieldset>
         <legend>Alternatives</legend>
-        <label for="register_type">
-            <input id="register_type" name="domain_type" type="radio" value="register" data-bind="checked: Domains.domainQueryType" />
+        <label for="queryType-find">
+            <input id="queryType-find" name="queryType" type="radio" value="find" data-bind="checked: Domains.queryType" />
             Register new domain name
         </label>
 
-        <label for="transfer_type">
-            <input id="transfer_type" name="domain_type" type="radio" value="transfer" data-bind="checked: Domains.domainQueryType" />
+        <label for="queryType-transfer">
+            <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
             Transfer existing domain name
         </label>
     </fieldset>
     
-    <div data-bind="visible: Domains.isRegisterQuery">
-        <label for="register_query">Find domain names:
-            <textarea name="register_query" id="register_query" rows="5" cols="40" data-bind="value: Domains.registerDomainQuery"></textarea>
+
+    <div data-bind="visible: Domains.find.active">
+        <label for="find-query">
+            Find domain names:
+            <textarea name="find-query" id="find-query" rows="5" cols="40" data-bind="value: Domains.find.query"></textarea>
         </label>
+        <button data-bind="click: Domains.find.submit">Find</button>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Domain name</th>
+                    <th>Status</th>
+                    <th>Annual fee</th>
+                    <th>Buy</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>example.com</td>
+                    <td>1</td>
+                    <td>USD 11.41</td>
+                    <td><button>Add to cart</button></td>
+                </tr>
+            </tbody>
+        </table>
     </div>
     
-    <div data-bind="visible: Domains.isTransferQuery">
-        <label for="transfer_query">Transfer domain:
-            <input name="transfer_query" id="transfer_query" type="text" data-bind="value: Domains.transferDomainQuery"/>
+
+    <div data-bind="visible: Domains.transfer.active">
+        <label for="transfer-query">
+            Transfer domain:
+            <input name="transfer-query" id="transfer-query" type="text" data-bind="value: Domains.transfer.query"/>
         </label>
+        <button data-bind="click: Domains.transfer.submit">Add to cart</button>
     </div>
 
-    <button type="submit" data-bind="click: Domains.submit">Submit Form</button>
 </form>
+
 
 @section scripts {
     <script src="../../Scripts/viewmodels/domains.js" type="text/javascript"></script>
     <script type="text/javascript">
-        Atomia.ViewModel.Domains.init({
-            allowedNumberOfDomains: @Model.AllowedNumberOfDomains,
-            allowedDomainLength: @Model.AllowedDomainLength
-        });
+        Atomia.ViewModel.Domains.init();
     </script>
 }

@@ -1,40 +1,31 @@
 ﻿Atomia.ViewModel.Domains = (function (ko, domainsApi) {
-    var domainQueryType = ko.observable('register'),
+    var queryType = ko.observable('find'),
 
-        registerDomainQuery = ko.observable(),
-        isRegisterQuery = ko.pureComputed(function () {
-            return domainQueryType() === 'register';
-        }),
-        domainSearchResults = ko.observableArray(),
-        searchingForDomains = ko.observable(false),
+        find = {
+            query: ko.observable(),
+            results: ko.observableArray(),
+            active: ko.pureComputed(function () { return queryType() === 'find'; }),
+            submit: function () {
+                console.log("Bloop from find!");
+            }
+        },
 
-        transferDomainQuery = ko.observable(),
-        isTransferQuery = ko.pureComputed(function () {
-            return domainQueryType() === 'transfer';
-        });
-
-    function submit() {
-        var data = parseDomainQuery(registerDomainQuery());
-
-        domainsApi.findDomains(data, function (result) {
-            // TODO: set results as registerDomainList
-            // TODO: call domainsApi.checkStatus for each domain in list.
-        });
-
-        searchingForDomains = true;
-    }
+        transfer = {
+            query: ko.observable(),
+            active: ko.pureComputed(function () { return queryType() === 'transfer'; }),
+            submit: function () {
+                console.log("Bloop from transfer!");
+            }
+        };
 
     function init(options) {
-        console.log(options.allowedNumberOfDomains);
+
     }
 
     return {
         init: init,
-        submit: submit,
-        domainQueryType: domainQueryType,
-        registerDomainQuery: registerDomainQuery,
-        transferDomainQuery: transferDomainQuery,
-        isRegisterQuery: isRegisterQuery,
-        isTransferQuery: isTransferQuery
-    }
+        queryType: queryType,
+        find: find,
+        transfer: transfer
+    };
 } (ko, Atomia.DomainsApi));
