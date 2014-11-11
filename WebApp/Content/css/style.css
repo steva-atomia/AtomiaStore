@@ -1,1 +1,17 @@
-﻿/* File Created: november 3, 2014 */
+﻿td, th 
+{
+    padding: 0.5em 1em;
+    border: 1px solid gray;
+}
+
+table 
+{
+    margin: 2em 0 0 0;
+    border: 1px solid gray;
+}
+
+thead 
+{
+    background: lightgray;
+    font-weight: bold;
+}
