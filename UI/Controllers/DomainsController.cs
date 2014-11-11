@@ -25,19 +25,20 @@ namespace Atomia.OrderPage.UI.Controllers
         public ActionResult Index()
         {
             var model = modelProvider.Create<DomainsViewModel>();
-
+            
             return View(model);
         }
 
-        [HttpPost]
-        public ActionResult Index(DomainsViewModel model)
+        [HttpGet]
+        public ActionResult FindDomains(DomainSearchQuery searchQuery)
         {
             if (ModelState.IsValid)
             {
-                model.SearchResults = domainSearchService.FindDomains(model.SearchQuery);
+                var searchResults = domainSearchService.FindDomains(searchQuery);
+                return Json(searchResults, JsonRequestBehavior.AllowGet);
             }
 
-            return View(model);
+            return Json(new { Error = "An error!"}, JsonRequestBehavior.AllowGet);
         }
     }
 }
