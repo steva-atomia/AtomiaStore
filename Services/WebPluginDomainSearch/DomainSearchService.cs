@@ -11,9 +11,9 @@ namespace Atomia.OrderPage.Services.WebPluginDomainSearch
     {
         public DomainSearchResult FindDomains(DomainSearchQuery searchQuery) 
         {
-            return new DomainSearchResult()
+            return new DomainSearchResult
             {
-
+                DomainNames = new List<string> { "example.com", "example.net", "example.org" }
             };
         }
     }

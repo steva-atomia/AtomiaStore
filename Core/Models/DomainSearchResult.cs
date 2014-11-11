@@ -7,5 +7,6 @@ namespace Atomia.OrderPage.Core.Models
 {
     public class DomainSearchResult
     {
+        public List<string> DomainNames { get; set; }
     }
 }
