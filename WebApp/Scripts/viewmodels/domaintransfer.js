@@ -4,7 +4,7 @@
     var query = ko.observable();
 
     function submit() {
-        console.log("Transfer!");
+        console.log('Transfer!');
     }
 
     return {

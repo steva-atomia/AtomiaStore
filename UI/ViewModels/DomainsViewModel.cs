@@ -9,6 +9,6 @@ namespace Atomia.OrderPage.UI.ViewModels
     public abstract class DomainsViewModel
     {
         public virtual DomainSearchQuery SearchQuery { get; set; }
-        public virtual DomainSearchResult SearchResults { get; set; }
+        public virtual IList<DomainSearchResult> SearchResults { get; set; }
     }
 }

@@ -26,7 +26,7 @@ Atomia.Domains = (function (_, request) {
         });
 
         request({
-            resourceId: "Domains.FindDomains",
+            resourceId: 'Domains.FindDomains',
             data: data,
             success: function (data) {
                 if (callback) {
