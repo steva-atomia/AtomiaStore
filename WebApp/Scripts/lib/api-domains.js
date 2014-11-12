@@ -6,8 +6,8 @@ Atomia.Domains = (function (_, request) {
     function findDomains(searchTerms, callback) {
         var data = {};
 
-        _.each(searchTerms, function (i, searchTerm) {
-            data["SearchTerms[" + i + "]"] = searchTerm;
+        _.each(searchTerms, function (searchTerm, index) {
+            data["SearchTerms[" + index + "]"] = searchTerm;
         });
 
         request({
@@ -15,7 +15,7 @@ Atomia.Domains = (function (_, request) {
             data: data,
             success: function (data) {
                 if (callback) {
-                    var allValidAttribs = _.all(results, function (r) {
+                    var allValidAttribs = _.all(data, function (r) {
                         return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
                     });
 
