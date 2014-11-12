@@ -1,12 +1,12 @@
 ﻿var Atomia = Atomia || {};
 
-Atomia.Domains = (function ($, request) {
+Atomia.Domains = (function (_, request) {
     'use strict'
-    
+
     function findDomains(searchTerms, callback) {
         var data = {};
 
-        $.each(searchTerms, function (i, searchTerm) {
+        _.each(searchTerms, function (i, searchTerm) {
             data["SearchTerms[" + i + "]"] = searchTerm;
         });
 
@@ -15,7 +15,16 @@ Atomia.Domains = (function ($, request) {
             data: data,
             success: function (data) {
                 if (callback) {
-                    callback(data);
+                    var allValidAttribs = _.all(results, function (r) {
+                        return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
+                    });
+
+                    if (allValidAttribs) {
+                        callback(data);
+                    }
+                    else {
+                        throw 'Missing field in results: expected DomainName, CurrencyCode and Price';
+                    }
                 }
             },
             error: function (data, status) {
@@ -23,9 +32,9 @@ Atomia.Domains = (function ($, request) {
             }
         });
     }
-    
+
     return {
         findDomains: findDomains
     };
 
-} (jQuery, amplify.request));
+} (_, amplify.request));

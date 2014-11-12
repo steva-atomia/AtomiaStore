@@ -13,6 +13,7 @@ namespace Atomia.OrderPage.Themes.Default
             bundles.Add(new ScriptBundle("~/bundles/shared").Include(
                 "~/Scripts/vendor/jquery/jquery-{version}.js",
                 "~/Scripts/vendor/knockout/knockout-{version}.js",
+                "~/Scripts/vendor/underscore/underscore.js",
                 "~/Scripts/vendor/amplify/amplify.js",
                 "~/Scripts/lib/api-definitions.js",
                 "~/Scripts/viewmodels/root.js"));
