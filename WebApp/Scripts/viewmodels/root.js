@@ -4,6 +4,8 @@ Atomia.ViewModel = {
     
 };
 
-$(function () {
+jQuery(function () {
+    'use strict';
+
     ko.applyBindings(Atomia.ViewModel);
 });

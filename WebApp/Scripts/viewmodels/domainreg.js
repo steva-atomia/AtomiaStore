@@ -1,5 +1,5 @@
 ﻿Atomia.ViewModel.DomainReg = (function (_, ko, domainsApi) {
-    'use strict'
+    'use strict';
 
     var query = ko.observable(),
         results = ko.observableArray(),

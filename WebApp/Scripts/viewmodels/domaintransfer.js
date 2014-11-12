@@ -1,5 +1,5 @@
 ﻿Atomia.ViewModel.DomainTransfer = (function (ko) {
-    'use strict'
+    'use strict';
 
     var query = ko.observable();
 

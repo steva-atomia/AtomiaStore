@@ -1,12 +1,12 @@
 ﻿Atomia.ViewModel.Domains = (function (ko) {
-    'use strict'
+    'use strict';
 
     var queryType = ko.observable('domainreg'),
         domainRegActive = ko.pureComputed(function () {
             return queryType() === 'domainreg';
         }),
         domainTransferActive = ko.pureComputed(function () {
-            return queryType() === 'transfer'; 
+            return queryType() === 'transfer';
         });
 
     return {

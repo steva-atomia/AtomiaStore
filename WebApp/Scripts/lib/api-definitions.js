@@ -1,4 +1,6 @@
 ﻿(function () {
+    'use strict';
+
     amplify.request.define("Domains.FindDomains", "ajax", {
         url: "/Domains/FindDomains/",
         dataType: "json",

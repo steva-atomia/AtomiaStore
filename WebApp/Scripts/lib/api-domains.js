@@ -1,11 +1,13 @@
 ﻿var Atomia = Atomia || {};
 
 Atomia.Domains = (function (_, request) {
-    'use strict'
+    'use strict';
 
     function validateSearchResults(data, success) {
         var allValidAttribs = _.all(data, function (r) {
-            return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
+            return r.hasOwnProperty('DomainName') &&
+                    r.hasOwnProperty('CurrencyCode') && 
+                    r.hasOwnProperty('Price');
         });
 
         if (allValidAttribs) {
@@ -31,7 +33,7 @@ Atomia.Domains = (function (_, request) {
                     validateSearchResults(data, callback);
                 }
             },
-            error: function (data, status) {
+            error: function (data) {
                 console.log(data.message);
             }
         });
