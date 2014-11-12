@@ -1,0 +1,26 @@
+﻿<div data-bind="visible: Domains.find.active">
+    <label for="find-query">
+        Find domain names:
+        <textarea name="find-query" id="find-query" rows="5" cols="40" data-bind="value: Domains.find.query"></textarea>
+    </label>
+    <button data-bind="click: Domains.find.submit">Find</button>
+        
+    <table data-bind="visible: Domains.find.hasResults">
+        <thead>
+            <tr>
+                <th>Domain name</th>
+                <th>Status</th>
+                <th>Annual fee</th>
+                <th>Buy</th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: Domains.find.results()">
+            <tr>
+                <td data-bind="text: DomainName"></td>
+                <td>1</td>
+                <td data-bind="text: CurrencyCode + ' ' + Price"></td>
+                <td><button>Add to cart</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

@@ -34,7 +34,7 @@
         </label>
         <button data-bind="click: Domains.find.submit">Find</button>
         
-        <table>
+        <table data-bind="visible: Domains.find.hasResults">
             <thead>
                 <tr>
                     <th>Domain name</th>
@@ -43,11 +43,11 @@
                     <th>Buy</th>
                 </tr>
             </thead>
-            <tbody>
+            <tbody data-bind="foreach: Domains.find.results()">
                 <tr>
-                    <td>example.com</td>
+                    <td data-bind="text: DomainName"></td>
                     <td>1</td>
-                    <td>USD 11.41</td>
+                    <td data-bind="text: CurrencyCode + ' ' + Price"></td>
                     <td><button>Add to cart</button></td>
                 </tr>
             </tbody>
@@ -67,7 +67,8 @@
 
 
 @section scripts {
-    <script src="../../Scripts/viewmodels/domains.js" type="text/javascript"></script>
+    <script src="../../Scripts/lib/api-domains.js" type="text/javascript"></script>
+    <script src="../../Scripts/viewmodels/viewmodel-domains.js" type="text/javascript"></script>
     <script type="text/javascript">
         Atomia.ViewModel.Domains.init();
     </script>

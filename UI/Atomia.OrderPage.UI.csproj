@@ -47,7 +47,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\PackageController.cs" />
-    <Compile Include="Helpers\InlineJsonAction.cs" />
+    <Compile Include="HtmlHelpers\JsonActionHelper.cs" />
     <Compile Include="Infrastructure\FormHandler.cs" />
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
     <Compile Include="Infrastructure\IInputHandler.cs" />
