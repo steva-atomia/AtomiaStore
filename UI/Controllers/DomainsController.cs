@@ -30,7 +30,7 @@ namespace Atomia.OrderPage.UI.Controllers
         }
 
         [HttpGet]
-        public ActionResult FindDomains(DomainSearchQuery searchQuery)
+        public JsonResult FindDomains(DomainSearchQuery searchQuery)
         {
             if (ModelState.IsValid)
             {
