@@ -8,8 +8,8 @@
         });
 
     function submit() {
+        results.removeAll();
         domainsApi.findDomains(query().split('\n'), function (data) {
-            results.removeAll();
             _.each(data, function (result) {
                 results.push(result);
             });
