@@ -3,7 +3,7 @@
 Atomia.Domains = (function (_, request) {
     'use strict'
 
-    function validateSearchResults(success) {
+    function validateSearchResults(data, success) {
         var allValidAttribs = _.all(data, function (r) {
             return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
         });
@@ -28,7 +28,7 @@ Atomia.Domains = (function (_, request) {
             data: data,
             success: function (data) {
                 if (callback) {
-                    validateSearchResults(callback);
+                    validateSearchResults(data, callback);
                 }
             },
             error: function (data, status) {
