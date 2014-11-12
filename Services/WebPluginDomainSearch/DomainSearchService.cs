@@ -9,12 +9,19 @@ namespace Atomia.OrderPage.Services.WebPluginDomainSearch
 {
     public class DomainSearchService : IDomainSearchService
     {
-        public DomainSearchResult FindDomains(DomainSearchQuery searchQuery) 
+        public IList<DomainSearchResult> FindDomains(DomainSearchQuery searchQuery) 
         {
-            return new DomainSearchResult
+            var results = new List<DomainSearchResult>();
+            
+            foreach (var term in searchQuery.SearchTerms)
             {
-                DomainNames = new List<string> { "example.com", "example.net", "example.org" }
-            };
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".com", Price = 11.41m });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".net", Price = 11.41m });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".org", Price = 11.41m });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".info", Price = 11.41m });
+            }
+
+            return results;
         }
     }
 }

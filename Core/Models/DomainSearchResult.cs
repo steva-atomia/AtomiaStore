@@ -7,6 +7,10 @@ namespace Atomia.OrderPage.Core.Models
 {
     public class DomainSearchResult
     {
-        public List<string> DomainNames { get; set; }
+        public string DomainName { get; set; }
+
+        public decimal Price { get; set; }
+
+        public string CurrencyCode { get; set; }
     }
 }

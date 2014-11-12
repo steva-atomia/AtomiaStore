@@ -8,6 +8,6 @@ namespace Atomia.OrderPage.Core.Services
 {
     public interface IDomainSearchService
     {
-        DomainSearchResult FindDomains(DomainSearchQuery query);
+        IList<DomainSearchResult> FindDomains(DomainSearchQuery query);
     }
 }
