@@ -1,11 +1,11 @@
 ﻿
 <label for="find-query">
     Find domain names:
-    <textarea name="find-query" id="find-query" rows="5" cols="40" data-bind="value: query"></textarea>
+    <textarea name="find-query" id="find-query" rows="5" cols="40" data-bind="value: DomainReg.query"></textarea>
 </label>
-<button data-bind="click: submit">Find</button>
+<button data-bind="click: DomainReg.submit">Find</button>
         
-<table data-bind="visible: hasResults">
+<table data-bind="visible: DomainReg.hasResults">
     <thead>
         <tr>
             <th>Domain name</th>
@@ -14,7 +14,7 @@
             <th>Buy</th>
         </tr>
     </thead>
-    <tbody data-bind="foreach: results()">
+    <tbody data-bind="foreach: DomainReg.results()">
         <tr>
             <td data-bind="text: DomainName"></td>
             <td>1</td>

@@ -16,22 +16,21 @@
     <fieldset>
         <legend>Alternatives</legend>
         <label for="queryType-domainreg">
-            <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: DomainsPage.queryType" />
+            <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.queryType" />
             Register new domain name
         </label>
 
         <label for="queryType-transfer">
-            <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: DomainsPage.queryType" />
+            <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
             Transfer existing domain name
         </label>
     </fieldset>
-    
 
-    <div data-bind="visible: DomainsPage.domainRegActive, with: DomainsPage.DomainReg">
+    <div data-bind="visible: Domains.domainRegActive">
         @Html.Partial("_DomainRegistration")
     </div>
 
-    <div data-bind="visible: DomainsPage.domainTransferActive, with: DomainsPage.DomainTransfer">
+    <div data-bind="visible: Domains.domainTransferActive">
         @Html.Partial("_DomainTransfer")
     </div>
 
@@ -39,11 +38,5 @@
 
 
 @section scripts {
-    <script src="../../Scripts/lib/api-domains.js" type="text/javascript"></script>
-    <script src="../../Scripts/viewmodels/domains.js" type="text/javascript"></script>
-    <script type="text/javascript">
-        Atomia.ViewModels.DomainsPage.init(Atomia.ViewModels.Root);
-        Atomia.ViewModels.DomainReg.init(Atomia.ViewModels.DomainsPage);
-        Atomia.ViewModels.DomainTransfer.init(Atomia.ViewModels.DomainsPage);
-    </script>
+    @Scripts.Render("~/bundles/domains")
 }

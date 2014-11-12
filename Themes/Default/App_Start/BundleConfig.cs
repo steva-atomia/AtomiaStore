@@ -17,6 +17,12 @@ namespace Atomia.OrderPage.Themes.Default
                 "~/Scripts/lib/api-definitions.js",
                 "~/Scripts/viewmodels/root.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/domains").Include(
+                "~/Scripts/lib/api-domains.js",
+                "~/Scripts/viewmodels/domains.js",
+                "~/Scripts/viewmodels/domainreg.js",
+                "~/Scripts/viewmodels/domaintransfer.js"));
+
             bundles.Add(new StyleBundle("~/Content/css/skeleton").Include(
                 "~/Content/css/skeleton/base.css",
                 "~/Content/css/skeleton/layout.css",

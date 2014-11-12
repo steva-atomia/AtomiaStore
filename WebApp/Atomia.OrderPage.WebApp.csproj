@@ -142,6 +142,8 @@
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1-vsdoc.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1.min.js" />
+    <Content Include="Scripts\viewmodels\domaintransfer.js" />
+    <Content Include="Scripts\viewmodels\domainreg.js" />
     <Content Include="Scripts\viewmodels\root.js" />
     <Content Include="Scripts\viewmodels\domains.js" />
     <Content Include="Scripts\vendor\knockout\knockout-3.2.0.debug.js" />
