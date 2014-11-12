@@ -3,6 +3,19 @@
 Atomia.Domains = (function (_, request) {
     'use strict'
 
+    function validateSearchResults(success) {
+        var allValidAttribs = _.all(data, function (r) {
+            return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
+        });
+
+        if (allValidAttribs) {
+            success(data);
+        }
+        else {
+            throw 'Missing field in results: expected DomainName, CurrencyCode and Price';
+        }
+    }
+
     function findDomains(searchTerms, callback) {
         var data = {};
 
@@ -15,16 +28,7 @@ Atomia.Domains = (function (_, request) {
             data: data,
             success: function (data) {
                 if (callback) {
-                    var allValidAttribs = _.all(data, function (r) {
-                        return r.hasOwnProperty('DomainName') && r.hasOwnProperty('CurrencyCode') && r.hasOwnProperty('Price');
-                    });
-
-                    if (allValidAttribs) {
-                        callback(data);
-                    }
-                    else {
-                        throw 'Missing field in results: expected DomainName, CurrencyCode and Price';
-                    }
+                    validateSearchResults(callback);
                 }
             },
             error: function (data, status) {
