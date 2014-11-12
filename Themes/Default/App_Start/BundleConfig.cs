@@ -15,7 +15,7 @@ namespace Atomia.OrderPage.Themes.Default
                 "~/Scripts/vendor/knockout/knockout-{version}.js",
                 "~/Scripts/vendor/amplify/amplify.js",
                 "~/Scripts/lib/api-definitions.js",
-                "~/Scripts/viewmodels/root-viewmodel.js"));
+                "~/Scripts/viewmodels/root.js"));
 
             bundles.Add(new StyleBundle("~/Content/css/skeleton").Include(
                 "~/Content/css/skeleton/base.css",

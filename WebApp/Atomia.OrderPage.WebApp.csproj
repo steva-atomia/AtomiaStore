@@ -125,6 +125,7 @@
     <Content Include="Content\css\skeleton\layout.css" />
     <Content Include="Content\css\skeleton\skeleton.css" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\lib\api-definitions.js" />
     <Content Include="Scripts\vendor\amplify\amplify-vsdoc.js" />
     <Content Include="Scripts\vendor\amplify\amplify.js" />
     <Content Include="Scripts\vendor\amplify\amplify.min.js" />
@@ -135,14 +136,14 @@
     <Content Include="Scripts\vendor\amplify\amplify\amplify.store.js" />
     <Content Include="Scripts\vendor\amplify\amplify\amplify.store.min.js" />
     <Content Include="Scripts\vendor\amplify\GPL-LICENSE.txt" />
-    <Content Include="Scripts\lib\domains.js" />
+    <Content Include="Scripts\lib\api-domains.js" />
     <Content Include="Scripts\vendor\amplify\MIT-LICENSE.txt" />
     <Content Include="Scripts\vendor\amplify\README.txt" />
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1-vsdoc.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1.js" />
     <Content Include="Scripts\vendor\jquery\jquery-1.11.1.min.js" />
-    <Content Include="Scripts\viewmodels\root-viewmodel.js" />
-    <Content Include="Scripts\viewmodels\domains-viewmodel.js" />
+    <Content Include="Scripts\viewmodels\root.js" />
+    <Content Include="Scripts\viewmodels\domains.js" />
     <Content Include="Scripts\vendor\knockout\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\vendor\knockout\knockout-3.2.0.js" />
     <Content Include="Web.config" />
@@ -167,6 +168,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\vendor\jquery\jquery-1.11.1.min.map" />
+    <Content Include="Views\Domains\_DomainRegistration.cshtml" />
+    <Content Include="Views\Domains\_DomainTransfer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UI\Atomia.OrderPage.UI.csproj">
