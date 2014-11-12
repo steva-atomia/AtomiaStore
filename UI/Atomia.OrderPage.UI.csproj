@@ -52,6 +52,7 @@
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
     <Compile Include="Infrastructure\IInputHandler.cs" />
     <Compile Include="Infrastructure\IModelProvider.cs" />
+    <Compile Include="Infrastructure\JsonEnvelope.cs" />
     <Compile Include="Infrastructure\ModelBinder.cs" />
     <Compile Include="Infrastructure\ModelBinderProvider.cs" />
     <Compile Include="Infrastructure\ModelProvider.cs" />

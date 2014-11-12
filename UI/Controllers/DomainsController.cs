@@ -35,10 +35,11 @@ namespace Atomia.OrderPage.UI.Controllers
             if (ModelState.IsValid)
             {
                 var searchResults = domainSearchService.FindDomains(searchQuery);
-                return Json(new { status = "success", data = searchResults }, JsonRequestBehavior.AllowGet);
+
+                return JsonEnvelope.Success(searchResults);
             }
 
-            return Json(new { status = "error", message = "An error!"}, JsonRequestBehavior.AllowGet);
+            return JsonEnvelope.Error("An error");
         }
     }
 }
