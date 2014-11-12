@@ -12,5 +12,7 @@ namespace Atomia.OrderPage.Core.Models
         public decimal Price { get; set; }
 
         public string CurrencyCode { get; set; }
+
+        public string Status { get; set; }
     }
 }

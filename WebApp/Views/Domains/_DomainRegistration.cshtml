@@ -23,7 +23,7 @@
         <tbody data-bind="foreach: DomainReg.results()">
             <tr>
                 <td data-bind="text: DomainName"></td>
-                <td>1</td>
+                <td data-bind="text: Status"></td>
                 <td data-bind="text: CurrencyCode + ' ' + Price"></td>
                 <td><button>Add to cart</button></td>
             </tr>

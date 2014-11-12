@@ -15,10 +15,10 @@ namespace Atomia.OrderPage.Services.WebPluginDomainSearch
             
             foreach (var term in searchQuery.SearchTerms)
             {
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".com", Price = 11.41m });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".net", Price = 11.41m });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".org", Price = 11.41m });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".info", Price = 11.41m });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".com", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".net", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".org", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".info", Price = 11.41m, Status = "Available" });
             }
 
             return results;
