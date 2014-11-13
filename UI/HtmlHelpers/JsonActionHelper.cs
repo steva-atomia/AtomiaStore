@@ -8,7 +8,7 @@ using System.Web.Mvc.Html;
 
 namespace Atomia.OrderPage.UI.HtmlHelpers
 {
-    public static sealed class JsonActionHelper
+    public static class JsonActionHelper
     {
         public static MvcHtmlString JsonAction(this HtmlHelper htmlHelper, string action, object routeValueDict)
         {
