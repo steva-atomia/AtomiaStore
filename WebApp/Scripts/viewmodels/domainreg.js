@@ -1,4 +1,4 @@
-﻿Atomia.ViewModel.DomainReg = (function (_, $, ko, domainsApi) {
+﻿Atomia.ViewModel.DomainReg = (function (_, ko, domainsApi) {
     'use strict';
 
     var query = ko.observable(),
@@ -22,4 +22,4 @@
         hasResults: hasResults,
         submit: submit
     };
-} (_, jQuery, ko, Atomia.Domains));
+} (_, ko, Atomia.Domains));

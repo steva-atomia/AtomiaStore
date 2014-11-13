@@ -1,9 +1,5 @@
 ﻿@model Atomia.OrderPage.Core.Models.DomainSearchQuery
 
-@*
-    Knockout ViewModel: Atomia.ViewModel.DomainReg from Scripts/viewmodels/domainreg.js
-*@
-
 <div class="domainreg-query">
 @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
 {
