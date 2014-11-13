@@ -8,7 +8,7 @@ namespace Atomia.OrderPage.Core.Models
 {
     public class DomainSearchQuery
     {
-        [Required]
+        [Required(ErrorMessage="Required yo!")]
         public string SearchTerm { get; set; }
     }
 }

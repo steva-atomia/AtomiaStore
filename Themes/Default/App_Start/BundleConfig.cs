@@ -19,6 +19,7 @@ namespace Atomia.OrderPage.Themes.Default
                 "~/Scripts/underscore.js",
                 "~/Scripts/amplify.js",
                 "~/Scripts/lib/api-definitions.js",
+                "~/Scripts/lib/ko-binding-submitvalid.js",
                 "~/Scripts/viewmodels/root.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(

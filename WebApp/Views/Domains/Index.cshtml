@@ -1,4 +1,7 @@
-﻿@*
+﻿@model Atomia.OrderPage.Themes.Default.ViewModels.DefaultDomainsViewModel
+@using Atomia.OrderPage.Core.Models
+
+@*
     Knockout ViewModel: Atomia.ViewModel.Domains from Scripts/viewmodels/domains.js
 *@
 
@@ -12,7 +15,8 @@
     Fill in the form below to register one or more new domain names or to transfer an existing domain name.
 </p>
 
-<form action="." method="post">
+@using (Html.BeginForm())
+{
 
     <fieldset>
         <legend>Alternatives</legend>
@@ -26,16 +30,15 @@
             Transfer existing domain name
         </label>
     </fieldset>
+}
 
     <div data-bind="visible: Domains.domainRegActive">
-        @Html.Partial("_DomainRegistration")
+        @Html.Partial("_DomainRegistration", new DomainSearchQuery())
     </div>
 
     <div data-bind="visible: Domains.domainTransferActive">
         @Html.Partial("_DomainTransfer")
     </div>
-
-</form>
 
 
 @section scripts {
