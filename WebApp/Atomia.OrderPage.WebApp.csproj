@@ -175,6 +175,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
+    <Content Include="Scripts\tests\test.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="Scripts\viewmodels\domaintransfer.js" />
@@ -215,6 +216,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Scripts\jquery-1.11.1.min.map" />
+    <None Include="Scripts\tests\chutzpah.json" />
     <None Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <PropertyGroup>
