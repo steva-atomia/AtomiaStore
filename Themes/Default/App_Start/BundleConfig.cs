@@ -11,10 +11,13 @@ namespace Atomia.OrderPage.Themes.Default
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/shared").Include(
-                "~/Scripts/vendor/jquery/jquery-{version}.js",
-                "~/Scripts/vendor/knockout/knockout-{version}.js",
-                "~/Scripts/vendor/underscore/underscore.js",
-                "~/Scripts/vendor/amplify/amplify.js",
+                "~/Scripts/jquery-{version}.js",
+                "~/Scripts/jquery.validate.js",
+                "~/Scripts/jquery.validate.unobtrusive.js",
+                "~/Scripts/jquery.unobtrusive-ajax.js",
+                "~/Scripts/knockout-{version}.js",
+                "~/Scripts/underscore.js",
+                "~/Scripts/amplify.js",
                 "~/Scripts/lib/api-definitions.js",
                 "~/Scripts/viewmodels/root.js"));
 

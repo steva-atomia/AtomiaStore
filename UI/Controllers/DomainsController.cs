@@ -38,6 +38,8 @@ namespace Atomia.OrderPage.UI.Controllers
 
                 return JsonEnvelope.Success(searchResults);
             }
+
+            return JsonEnvelope.Error("An error occured");
         }
     }
 }
