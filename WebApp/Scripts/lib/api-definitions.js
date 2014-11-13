@@ -1,7 +1,7 @@
-﻿(function () {
+﻿(function (request) {
     'use strict';
 
-    amplify.request.define('Domains.FindDomains', 'ajax', {
+    request.define('Domains.FindDomains', 'ajax', {
         url: '/Domains/FindDomains/',
         dataType: 'json',
         type: 'GET',
@@ -9,4 +9,4 @@
     });
 
 
-} ());
+} (amplify.request));

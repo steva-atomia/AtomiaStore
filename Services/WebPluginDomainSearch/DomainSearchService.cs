@@ -13,12 +13,12 @@ namespace Atomia.OrderPage.Services.WebPluginDomainSearch
         {
             var results = new List<DomainSearchResult>();
             
-            foreach (var term in searchQuery.SearchTerms)
+            if (!string.IsNullOrEmpty(searchQuery.SearchTerm))
             {
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".com", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".net", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".org", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = term + ".info", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".com", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".net", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".org", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".info", Price = 11.41m, Status = "Available" });
             }
 
             return results;

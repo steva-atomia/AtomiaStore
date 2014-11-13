@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.ComponentModel.DataAnnotations;
 
 namespace Atomia.OrderPage.Core.Models
 {
     public class DomainSearchQuery
     {
-        public List<string> SearchTerms { get; set; }
+        [Required]
+        public string SearchTerm { get; set; }
     }
 }

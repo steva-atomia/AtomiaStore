@@ -9,7 +9,7 @@
 
     function submit() {
         results.removeAll();
-        domainsApi.findDomains(query().split('\n'), function (data) {
+        domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result) {
                 results.push(result);
             });

@@ -18,12 +18,10 @@ Atomia.Domains = (function (_, request) {
         }
     }
 
-    function findDomains(searchTerms, callback) {
-        var data = {};
-
-        _.each(searchTerms, function (searchTerm, index) {
-            data["SearchTerms[" + index + "]"] = searchTerm;
-        });
+    function findDomains(searchTerm, callback) {
+        var data = {
+            "SearchTerm": searchTerm
+        };
 
         request({
             resourceId: 'Domains.FindDomains',
