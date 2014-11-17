@@ -28,6 +28,6 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
 };
 
 
-if (Atomia.RootVM != undefined) {
+if (Atomia.RootVM !== undefined) {
     Atomia.RootVM.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains);
 }

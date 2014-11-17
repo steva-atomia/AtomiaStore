@@ -2,23 +2,29 @@
 
 var FakeDomainsApi = {
     findDomainsWasCalled: false,
-    findDomains: function(searchTerm, callback) {
-        FakeDomainsApi.findDomainsWasCalled = true;      
+    findDomains: function () {
+        'use strict';
+
+        FakeDomainsApi.findDomainsWasCalled = true;
     }
 };
 
-QUnit.test("basic", function (assert) {
+QUnit.test('basic', function (assert) {
+    'use strict';
+
     var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
 
-    domainReg.results.push("bloop");
+    domainReg.results.push('bloop');
 
-    assert.ok(domainReg.hasResults(), "Yay!");
+    assert.ok(domainReg.hasResults(), 'Yay!');
 });
 
-QUnit.test("test2", function (assert) {
+QUnit.test('test2', function (assert) {
+    'use strict';
+
     var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
 
     domainReg.submit();
 
-    assert.ok(FakeDomainsApi.findDomainsWasCalled, "Yay!");
+    assert.ok(FakeDomainsApi.findDomainsWasCalled, 'Yay!');
 });

@@ -21,7 +21,7 @@ Atomia._unbound.Domains = function (_, request) {
 
     function findDomains(searchTerm, callback) {
         var data = {
-            "SearchTerm": searchTerm
+            'SearchTerm': searchTerm
         };
 
         request({
