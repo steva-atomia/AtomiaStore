@@ -1,9 +1,24 @@
 ﻿/// <reference path="../viewmodels/domainreg.js" />
 
+var FakeDomainsApi = {
+    findDomainsWasCalled: false,
+    findDomains: function(searchTerm, callback) {
+        FakeDomainsApi.findDomainsWasCalled = true;      
+    }
+};
+
 QUnit.test("basic", function (assert) {
-    ko.applyBindings(Atomia.ViewModel.DomainReg);
+    var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
 
-    Atomia.ViewModel.DomainReg.results.push("bloop");
+    domainReg.results.push("bloop");
 
-    assert.ok(Atomia.ViewModel.DomainReg.hasResults(), "Yay!");
+    assert.ok(domainReg.hasResults(), "Yay!");
+});
+
+QUnit.test("test2", function (assert) {
+    var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
+
+    domainReg.submit();
+
+    assert.ok(FakeDomainsApi.findDomainsWasCalled, "Yay!");
 });

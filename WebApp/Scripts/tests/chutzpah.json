@@ -5,7 +5,6 @@
 		{ "Path": "../knockout-3.2.0.js" },
 		{ "Path": "../amplify.js" },
 		{ "Path": "../lib/api-definitions.js" },
-		{ "Path": "../lib/api-domains.js" },
-		{ "Path": "../viewmodels/root.js" }
+		{ "Path": "../lib/api-domains.js" }
 	]
 }
