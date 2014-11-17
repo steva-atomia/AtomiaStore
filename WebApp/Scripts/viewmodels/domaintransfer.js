@@ -1,4 +1,7 @@
-﻿Atomia.ViewModel.DomainTransfer = (function (ko) {
+﻿var Atomia = Atomia || {};
+Atomia.ViewModels = Atomia.ViewModels || {};
+
+Atomia.ViewModels.DomainTransfer = function (ko) {
     'use strict';
 
     var query = ko.observable();
@@ -11,4 +14,8 @@
         query: query,
         submit: submit
     };
-} (ko));
+};
+
+if (Atomia.RootVM != undefined) {
+    Atomia.RootVM.DomainTransfer = Atomia.ViewModels.DomainTransfer(ko);
+}

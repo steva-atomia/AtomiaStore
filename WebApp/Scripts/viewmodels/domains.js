@@ -1,4 +1,7 @@
-﻿Atomia.ViewModel.Domains = (function (ko) {
+﻿var Atomia = Atomia || {};
+Atomia.ViewModels = Atomia.ViewModels || {};
+
+Atomia.ViewModels.Domains = function (ko) {
     'use strict';
 
     var queryType = ko.observable('domainreg'),
@@ -14,4 +17,8 @@
         domainRegActive: domainRegActive,
         domainTransferActive: domainTransferActive
     };
-} (ko));
+};
+
+if (Atomia.RootVM != undefined) {
+    Atomia.RootVM.Domains = Atomia.ViewModels.Domains(ko);
+}

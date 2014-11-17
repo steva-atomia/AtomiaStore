@@ -1,13 +1,14 @@
 ﻿var Atomia = Atomia || {};
+Atomia._unbound = Atomia._unbound || {};
 
-Atomia.Domains = (function (_, request) {
+Atomia._unbound.Domains = function (_, request) {
     'use strict';
 
-    function validateSearchResults(data, success) {
+    function _validateSearchResults(data, success) {
         var allValidAttribs = _.all(data, function (r) {
             return r.hasOwnProperty('DomainName') &&
-                    r.hasOwnProperty('CurrencyCode') && 
-                    r.hasOwnProperty('Price');
+                   r.hasOwnProperty('CurrencyCode') &&
+                   r.hasOwnProperty('Price');
         });
 
         if (allValidAttribs) {
@@ -28,7 +29,7 @@ Atomia.Domains = (function (_, request) {
             data: data,
             success: function (data) {
                 if (callback) {
-                    validateSearchResults(data, callback);
+                    _validateSearchResults(data, callback);
                 }
             },
             error: function (data) {
@@ -40,5 +41,6 @@ Atomia.Domains = (function (_, request) {
     return {
         findDomains: findDomains
     };
+};
 
-} (_, amplify.request));
+Atomia.Domains = Atomia._unbound.Domains(_, amplify.request);

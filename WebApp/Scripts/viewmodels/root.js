@@ -1,11 +1,9 @@
 ﻿var Atomia = Atomia || {};
 
-Atomia.ViewModel = {
-    
-};
+Atomia.RootVM = {};
 
 jQuery(function () {
     'use strict';
 
-    ko.applyBindings(Atomia.ViewModel);
+    ko.applyBindings(Atomia.RootVM);
 });
