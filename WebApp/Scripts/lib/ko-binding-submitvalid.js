@@ -1,4 +1,5 @@
-﻿(function ($, ko) {
+﻿/* jshint unused: false */
+(function ($, ko) {
     'use strict';
 
     ko.bindingHandlers.submitValid = {
