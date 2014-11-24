@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atomia.OrderPage.WebApp</RootNamespace>
     <AssemblyName>Atomia.OrderPage.WebApp</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <JSLintSkip>\Scripts\amplify-vsdoc.js</JSLintSkip>
