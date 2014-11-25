@@ -42,11 +42,5 @@ namespace Atomia.OrderPage.Themes.Default
                 }
             }
         }
-
-        public override void Application_BeginRequest(object sender, EventArgs e)
-        {
-            Atomia.OrderPage.ActionTrail.OrderPageLogger.LogOrderPageException(new Exception("Hello? Yes, this is dog."));
-            base.Application_BeginRequest(sender, e);
-        }
     }
 }

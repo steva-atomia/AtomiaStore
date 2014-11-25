@@ -9,7 +9,7 @@ namespace Atomia.OrderPage.ActionTrail
     /// <summary>
     /// Helper class for Action Trail logging
     /// </summary>
-    public class OrderPageLogger
+    public class Logger
     {
         /// <summary>
         /// Logs the order page exception.
