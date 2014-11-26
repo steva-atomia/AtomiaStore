@@ -3,23 +3,24 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Web;
 using Atomia.Web.Base.ActionTrail;
+using Atomia.OrderPage.UI.Infrastructure;
 
 namespace Atomia.OrderPage.ActionTrail
 {
     /// <summary>
     /// Helper class for Action Trail logging
     /// </summary>
-    public class Logger
+    public class Logger : ILogger
     {
         /// <summary>
         /// Logs the order page exception.
         /// </summary>
         /// <param name="ex">The exception.</param>
-        public static void LogOrderPageException(Exception ex)
+        public void LogException(Exception ex)
         {
             var shortMessage = string.Format("Atomia Order Page v2 threw an exception.\r\n {0}", ex.Message + "\r\n" + ex.StackTrace);
 
-            LogOrderPageException(ex, shortMessage);
+            this.LogException(ex, shortMessage);
         }
 
         /// <summary>
@@ -27,7 +28,7 @@ namespace Atomia.OrderPage.ActionTrail
         /// </summary>
         /// <param name="ex">The exception.</param>
         /// <param name="shortMessage">The short message.</param>
-        public static void LogOrderPageException(Exception ex, string shortMessage)
+        public void LogException(Exception ex, string shortMessage)
         {
             if (HttpContext.Current == null)
             {

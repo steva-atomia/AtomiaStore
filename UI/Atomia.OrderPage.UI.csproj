@@ -82,6 +82,7 @@
     <Compile Include="Infrastructure\FormHandler.cs" />
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
     <Compile Include="Infrastructure\IInputHandler.cs" />
+    <Compile Include="Infrastructure\ILogger.cs" />
     <Compile Include="Infrastructure\IModelProvider.cs" />
     <Compile Include="Infrastructure\JsonEnvelope.cs" />
     <Compile Include="Infrastructure\ModelBinder.cs" />
