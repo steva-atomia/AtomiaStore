@@ -138,6 +138,7 @@
     <Content Include="Content\css\skeleton\base.css" />
     <Content Include="Content\css\skeleton\layout.css" />
     <Content Include="Content\css\skeleton\skeleton.css" />
+    <Content Include="Content\Error.html" />
     <Content Include="Global.asax" />
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
@@ -189,8 +190,8 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Error\Unknown.cshtml" />
-    <Content Include="Views\Error\NotEnoughPrivileges.cshtml" />
+    <Content Include="Views\Error\InternalServerError.cshtml" />
+    <Content Include="Views\Error\Forbidden.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>

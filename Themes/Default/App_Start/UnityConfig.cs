@@ -22,6 +22,7 @@ namespace Atomia.OrderPage.Themes.Default
             container.RegisterType<DomainsViewModel, DefaultDomainsViewModel>();
 
             container.RegisterType<IDomainSearchService, DomainSearchService>();
+            container.RegisterType<ILogger, Atomia.OrderPage.ActionTrail.Logger>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

@@ -9,7 +9,6 @@ namespace Atomia.OrderPage.Themes.Default
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new LogErrorAttribute());
             filters.Add(new InternationalizationAttribute());
         }
     }
