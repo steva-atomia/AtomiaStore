@@ -15,7 +15,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Services.W
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96F5FCEF-73A7-4B7A-BD33-9C3BFCA36654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.ActionTrail", "ActionTrail\Atomia.OrderPage.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Services.ActionTrail", "Services\ActionTrail\Atomia.OrderPage.Services.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

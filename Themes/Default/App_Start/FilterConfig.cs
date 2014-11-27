@@ -1,7 +1,6 @@
 ﻿using System.Web;
 using System.Web.Mvc;
 using Atomia.Web.Base.ActionFilters;
-using Atomia.OrderPage.ActionTrail;
 
 namespace Atomia.OrderPage.Themes.Default
 {

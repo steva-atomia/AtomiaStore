@@ -145,9 +145,9 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\ActionTrail\Atomia.OrderPage.ActionTrail.csproj">
+    <ProjectReference Include="..\..\Services\ActionTrail\Atomia.OrderPage.Services.ActionTrail.csproj">
       <Project>{6f81b202-21af-49bb-8606-518149972eed}</Project>
-      <Name>Atomia.OrderPage.ActionTrail</Name>
+      <Name>Atomia.OrderPage.Services.ActionTrail</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\WebPluginDomainSearch\Atomia.OrderPage.Services.WebPluginDomainSearch.csproj">
       <Project>{899A798A-E1E5-4C85-B5E7-2C715866D807}</Project>

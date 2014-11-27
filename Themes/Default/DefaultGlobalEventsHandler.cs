@@ -1,13 +1,14 @@
-﻿using System;
+﻿using Atomia.OrderPage.Core.Services;
+using Atomia.OrderPage.UI.Controllers;
+using Atomia.OrderPage.UI.Infrastructure;
+using Atomia.Web.Base.Configs;
+using System;
 using System.Net;
 using System.Web;
 using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Atomia.OrderPage.UI.Controllers;
-using Atomia.OrderPage.UI.Infrastructure;
-using Atomia.Web.Base.Configs;
 
 
 namespace Atomia.OrderPage.Themes.Default

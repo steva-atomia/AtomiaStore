@@ -57,6 +57,7 @@
     <Compile Include="Services\ICartService.cs" />
     <Compile Include="Services\IDomainSearchService.cs" />
     <Compile Include="Services\IDomainStatusService.cs" />
+    <Compile Include="Services\ILogger.cs" />
     <Compile Include="Services\IOrderPlacementService.cs" />
   </ItemGroup>
   <ItemGroup />
