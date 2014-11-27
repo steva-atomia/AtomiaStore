@@ -8,8 +8,8 @@
     <ProjectGuid>{22E89989-1534-4B38-925D-03906D0284BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.OrderPage.UI</RootNamespace>
-    <AssemblyName>Atomia.OrderPage.UI</AssemblyName>
+    <RootNamespace>Atomia.Store.UI</RootNamespace>
+    <AssemblyName>Atomia.Store.UI</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -95,9 +95,9 @@
     <Compile Include="ViewModels\PackageViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Core\Atomia.OrderPage.Core.csproj">
+    <ProjectReference Include="..\Core\Atomia.Store.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
-      <Name>Atomia.OrderPage.Core</Name>
+      <Name>Atomia.Store.Core</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,9 +3,9 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Configuration;
-using Atomia.OrderPage.UI.Infrastructure;
+using Atomia.Store.UI.Infrastructure;
 
-namespace Atomia.OrderPage.WebApp
+namespace Atomia.Store.WebApp
 {
     /// <summary>
     /// The MvcApplication class

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Atomia.OrderPage.Core.Models
+namespace Atomia.Store.Core.Models
 {
     public class DomainStatusResult
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Atomia.OrderPage.Core.Services
+namespace Atomia.Store.Core.Services
 {
     public interface ICartService
     {

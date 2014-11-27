@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Atomia.OrderPage.UI.Infrastructure
+namespace Atomia.Store.UI.Infrastructure
 {
 
     /// <summary>

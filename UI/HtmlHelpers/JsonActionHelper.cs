@@ -6,7 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
-namespace Atomia.OrderPage.UI.HtmlHelpers
+namespace Atomia.Store.UI.HtmlHelpers
 {
     public static class JsonActionHelper
     {

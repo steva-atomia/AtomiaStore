@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Atomia.OrderPage.Core.Models;
+using Atomia.Store.Core.Models;
 
-namespace Atomia.OrderPage.Core.Services
+namespace Atomia.Store.Core.Services
 {
     public interface IDomainStatusService
     {

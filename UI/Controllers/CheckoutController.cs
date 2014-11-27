@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
-using Atomia.OrderPage.Core.Services;
-using Atomia.OrderPage.UI.Infrastructure;
-using Atomia.OrderPage.UI.ViewModels;
+using Atomia.Store.Core.Services;
+using Atomia.Store.UI.Infrastructure;
+using Atomia.Store.UI.ViewModels;
 
-namespace Atomia.OrderPage.UI.Controllers
+namespace Atomia.Store.UI.Controllers
 {
     public sealed class CheckoutController : Controller
     {

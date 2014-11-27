@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Atomia.OrderPage.UI.Infrastructure
+namespace Atomia.Store.UI.Infrastructure
 {
     public sealed class ModelBinderProvider : IModelBinderProvider
     {

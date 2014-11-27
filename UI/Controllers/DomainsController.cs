@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Atomia.OrderPage.Core.Models;
-using Atomia.OrderPage.Core.Services;
-using Atomia.OrderPage.UI.Infrastructure;
-using Atomia.OrderPage.UI.ViewModels;
+using Atomia.Store.Core.Models;
+using Atomia.Store.Core.Services;
+using Atomia.Store.UI.Infrastructure;
+using Atomia.Store.UI.ViewModels;
 
-namespace Atomia.OrderPage.UI.Controllers
+namespace Atomia.Store.UI.Controllers
 {
     public sealed class DomainsController : Controller
     {

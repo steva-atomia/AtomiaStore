@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Web;
 using Atomia.Web.Base.ActionTrail;
-using Atomia.OrderPage.Core.Services;
+using Atomia.Store.Core.Services;
 
-namespace Atomia.OrderPage.Services.ActionTrail
+namespace Atomia.Store.Services.ActionTrail
 {
     /// <summary>
     /// Helper class for Action Trail logging

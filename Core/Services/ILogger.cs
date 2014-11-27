@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Atomia.OrderPage.Core.Services
+namespace Atomia.Store.Core.Services
 {
     public interface ILogger
     {

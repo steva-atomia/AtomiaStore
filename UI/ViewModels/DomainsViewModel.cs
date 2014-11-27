@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Atomia.OrderPage.Core.Models;
+using Atomia.Store.Core.Models;
 
-namespace Atomia.OrderPage.UI.ViewModels
+namespace Atomia.Store.UI.ViewModels
 {
     public abstract class DomainsViewModel
     {

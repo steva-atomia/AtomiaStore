@@ -3,19 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.WebApp", "WebApp\Atomia.OrderPage.WebApp.csproj", "{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.WebApp", "WebApp\Atomia.Store.WebApp.csproj", "{B2B3D27C-77C2-490A-BFB2-4CD649EC5B04}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Themes.Default", "Themes\Default\Atomia.OrderPage.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default", "Themes\Default\Atomia.Store.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Core", "Core\Atomia.OrderPage.Core.csproj", "{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core", "Core\Atomia.Store.Core.csproj", "{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.UI", "UI\Atomia.OrderPage.UI.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.UI", "UI\Atomia.Store.UI.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Services.WebPluginDomainSearch", "Services\WebPluginDomainSearch\Atomia.OrderPage.Services.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.WebPluginDomainSearch", "Services\WebPluginDomainSearch\Atomia.Store.Services.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96F5FCEF-73A7-4B7A-BD33-9C3BFCA36654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.OrderPage.Services.ActionTrail", "Services\ActionTrail\Atomia.OrderPage.Services.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.ActionTrail", "Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

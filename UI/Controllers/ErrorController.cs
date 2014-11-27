@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Net;
 using System.Web.Mvc;
-using Atomia.OrderPage.UI.Infrastructure;
+using Atomia.Store.UI.Infrastructure;
 
-namespace Atomia.OrderPage.UI.Controllers
+namespace Atomia.Store.UI.Controllers
 {
     public class ErrorController : Controller
     {

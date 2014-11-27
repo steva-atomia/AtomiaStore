@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Atomia.OrderPage.UI.Infrastructure
+namespace Atomia.Store.UI.Infrastructure
 {
     public sealed class FormHandler<TInput, TDataObject> where TDataObject : new()
     {

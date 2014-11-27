@@ -1,14 +1,14 @@
-using Atomia.OrderPage.Core.Services;
-using Atomia.OrderPage.Services.WebPluginDomainSearch;
-using Atomia.OrderPage.Themes.Default.ViewModels;
-using Atomia.OrderPage.UI.Infrastructure;
-using Atomia.OrderPage.UI.ViewModels;
+using Atomia.Store.Core.Services;
+using Atomia.Store.Services.WebPluginDomainSearch;
+using Atomia.Store.Themes.Default.ViewModels;
+using Atomia.Store.UI.Infrastructure;
+using Atomia.Store.UI.ViewModels;
 using Microsoft.Practices.Unity;
 using System.Web.Mvc;
 using Unity.Mvc5;
 
 
-namespace Atomia.OrderPage.Themes.Default
+namespace Atomia.Store.Themes.Default
 {
     public static class UnityConfig
     {
@@ -22,7 +22,7 @@ namespace Atomia.OrderPage.Themes.Default
             container.RegisterType<DomainsViewModel, DefaultDomainsViewModel>();
 
             container.RegisterType<IDomainSearchService, DomainSearchService>();
-            container.RegisterType<ILogger, Atomia.OrderPage.Services.ActionTrail.Logger>();
+            container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

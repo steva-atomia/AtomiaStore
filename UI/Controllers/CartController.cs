@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Atomia.OrderPage.UI.Controllers
+namespace Atomia.Store.UI.Controllers
 {
     public sealed class CartController : Controller
     {

@@ -8,8 +8,8 @@
     <ProjectGuid>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.OrderPage.Core</RootNamespace>
-    <AssemblyName>Atomia.OrderPage.Core</AssemblyName>
+    <RootNamespace>Atomia.Store.Core</RootNamespace>
+    <AssemblyName>Atomia.Store.Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />

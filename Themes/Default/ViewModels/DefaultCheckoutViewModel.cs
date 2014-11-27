@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Atomia.OrderPage.UI.ViewModels;
+using Atomia.Store.UI.ViewModels;
 
-namespace Atomia.OrderPage.Themes.Default.ViewModels
+namespace Atomia.Store.Themes.Default.ViewModels
 {
     public class DefaultCheckoutViewModel : CheckoutViewModel
     {

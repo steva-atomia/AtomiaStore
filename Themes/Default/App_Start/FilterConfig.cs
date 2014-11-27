@@ -2,7 +2,7 @@
 using System.Web.Mvc;
 using Atomia.Web.Base.ActionFilters;
 
-namespace Atomia.OrderPage.Themes.Default
+namespace Atomia.Store.Themes.Default
 {
     public class FilterConfig
     {

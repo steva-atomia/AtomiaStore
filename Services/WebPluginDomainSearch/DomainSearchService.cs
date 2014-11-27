@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Atomia.OrderPage.Core.Models;
-using Atomia.OrderPage.Core.Services;
+using Atomia.Store.Core.Models;
+using Atomia.Store.Core.Services;
 
-namespace Atomia.OrderPage.Services.WebPluginDomainSearch
+namespace Atomia.Store.Services.WebPluginDomainSearch
 {
     public class DomainSearchService : IDomainSearchService
     {

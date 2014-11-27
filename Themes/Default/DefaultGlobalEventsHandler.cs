@@ -1,6 +1,6 @@
-﻿using Atomia.OrderPage.Core.Services;
-using Atomia.OrderPage.UI.Controllers;
-using Atomia.OrderPage.UI.Infrastructure;
+﻿using Atomia.Store.Core.Services;
+using Atomia.Store.UI.Controllers;
+using Atomia.Store.UI.Infrastructure;
 using Atomia.Web.Base.Configs;
 using System;
 using System.Net;
@@ -11,7 +11,7 @@ using System.Web.Optimization;
 using System.Web.Routing;
 
 
-namespace Atomia.OrderPage.Themes.Default
+namespace Atomia.Store.Themes.Default
 {
     public class DefaultGlobalEventsHandler : GlobalEventsHandler
     {

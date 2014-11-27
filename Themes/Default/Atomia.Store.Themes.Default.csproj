@@ -9,8 +9,8 @@
     <ProjectGuid>{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.OrderPage.Themes.Default</RootNamespace>
-    <AssemblyName>Atomia.OrderPage.Themes.Default</AssemblyName>
+    <RootNamespace>Atomia.Store.Themes.Default</RootNamespace>
+    <AssemblyName>Atomia.Store.Themes.Default</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
   </PropertyGroup>
@@ -145,21 +145,21 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Services\ActionTrail\Atomia.OrderPage.Services.ActionTrail.csproj">
+    <ProjectReference Include="..\..\Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj">
       <Project>{6f81b202-21af-49bb-8606-518149972eed}</Project>
-      <Name>Atomia.OrderPage.Services.ActionTrail</Name>
+      <Name>Atomia.Store.Services.ActionTrail</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Services\WebPluginDomainSearch\Atomia.OrderPage.Services.WebPluginDomainSearch.csproj">
+    <ProjectReference Include="..\..\Services\WebPluginDomainSearch\Atomia.Store.Services.WebPluginDomainSearch.csproj">
       <Project>{899A798A-E1E5-4C85-B5E7-2C715866D807}</Project>
-      <Name>Atomia.OrderPage.Services.WebPluginDomainSearch</Name>
+      <Name>Atomia.Store.Services.WebPluginDomainSearch</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Core\Atomia.OrderPage.Core.csproj">
+    <ProjectReference Include="..\..\Core\Atomia.Store.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
-      <Name>Atomia.OrderPage.Core</Name>
+      <Name>Atomia.Store.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UI\Atomia.OrderPage.UI.csproj">
+    <ProjectReference Include="..\..\UI\Atomia.Store.UI.csproj">
       <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
-      <Name>Atomia.OrderPage.UI</Name>
+      <Name>Atomia.Store.UI</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Atomia.OrderPage.UI.ViewModels;
+using Atomia.Store.UI.ViewModels;
 
-namespace Atomia.OrderPage.UI.Controllers
+namespace Atomia.Store.UI.Controllers
 {
     public sealed class AddonsController : Controller
     {
