@@ -1,18 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.30703</ProductVersion>
-    <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</ProjectGuid>
+    <ProjectGuid>{5737FE58-757B-4F60-A480-5FD54EEED008}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.Store.Core</RootNamespace>
-    <AssemblyName>Atomia.Store.Core</AssemblyName>
+    <RootNamespace>Atomia.Store.Services.PublicOrderCart</RootNamespace>
+    <AssemblyName>Atomia.Store.Services.PublicOrderCart</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -22,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -31,48 +28,28 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart\HostingPackageCartItem.cs" />
-    <Compile Include="Cart\DomainCartItem.cs" />
-    <Compile Include="Cart\ICartService.cs" />
-    <Compile Include="Cart\TransferDomainCartItem.cs" />
-    <Compile Include="Products\IProductService.cs" />
-    <Compile Include="Products\Pricing.cs" />
-    <Compile Include="Products\RenewalPeriod.cs" />
-    <Compile Include="Cart\ICart.cs" />
-    <Compile Include="Accounts\ContactInfo.cs" />
-    <Compile Include="Domains\DomainSearchQuery.cs" />
-    <Compile Include="Cart\CartItem.cs" />
+    <Compile Include="Cart.cs" />
+    <Compile Include="CartService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domains\DomainStatusResult.cs" />
-    <Compile Include="Domains\DomainStatusQuery.cs" />
-    <Compile Include="Domains\DomainSearchResult.cs" />
-    <Compile Include="Domains\IDomainSearchService.cs" />
-    <Compile Include="Domains\IDomainStatusService.cs" />
-    <Compile Include="Services\ILogger.cs" />
-    <Compile Include="Checkout\IOrderPlacementService.cs" />
-    <Compile Include="Services\IResellerService.cs" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\Core\Atomia.Store.Core.csproj">
+      <Project>{3ba8fa31-210d-4dd6-841d-dbe457b96a8f}</Project>
+      <Name>Atomia.Store.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <PropertyGroup>
-    <PostBuildEvent>echo D|xcopy /s /e /d /y "$(ProjectDir)bin\$(Configuration)" "$(ProjectDir)..\WebApp\bin"</PostBuildEvent>
-  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

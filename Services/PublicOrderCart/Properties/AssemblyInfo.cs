@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Atomia.Store.Core")]
+[assembly: AssemblyTitle("Atomia.Store.Services.PublicOrderCart")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Atomia.Store.Core")]
+[assembly: AssemblyProduct("Atomia.Store.Services.PublicOrderCart")]
 [assembly: AssemblyCopyright("Copyright ©  2014")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("acdd6666-2367-450a-a555-fb5ed6600a84")]
+[assembly: Guid("5bd6c540-2426-4fa8-8bf1-fce6a8887d12")]
 
 // Version information for an assembly consists of the following four values:
 //
