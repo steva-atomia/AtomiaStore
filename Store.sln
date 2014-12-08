@@ -17,7 +17,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.ActionTrail", "Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.PublicOrderCart", "Services\PublicOrderCart\Atomia.Store.Services.PublicOrderCart.csproj", "{5737FE58-757B-4F60-A480-5FD54EEED008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.PublicBillingApi", "Services\PublicBillingApi\Atomia.Store.Services.PublicBillingApi.csproj", "{5737FE58-757B-4F60-A480-5FD54EEED008}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

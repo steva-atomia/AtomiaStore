@@ -4,9 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomia.Store.Core.Products
+namespace Atomia.Store.Core.Cart
 {
-    public interface IProductService
+    public interface ICartRepository
     {
+        Cart GetCart();
+
+        void SaveCart(Cart cart);
     }
 }

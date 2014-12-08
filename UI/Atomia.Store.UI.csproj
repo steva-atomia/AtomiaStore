@@ -89,6 +89,7 @@
     <Compile Include="Infrastructure\ModelBinderProvider.cs" />
     <Compile Include="Infrastructure\ModelProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Storage\CartRepository.cs" />
     <Compile Include="ViewModels\AddonsViewModel.cs" />
     <Compile Include="ViewModels\CheckoutViewModel.cs" />
     <Compile Include="ViewModels\DomainsViewModel.cs" />

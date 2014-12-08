@@ -47,14 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cart\HostingPackageCartItem.cs" />
-    <Compile Include="Cart\DomainCartItem.cs" />
-    <Compile Include="Cart\ICartService.cs" />
-    <Compile Include="Cart\TransferDomainCartItem.cs" />
+    <Compile Include="Cart\ICartPricingProvider.cs" />
+    <Compile Include="Cart\ICartRepository.cs" />
     <Compile Include="Products\IProductService.cs" />
-    <Compile Include="Products\Pricing.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Products\RenewalPeriod.cs" />
-    <Compile Include="Cart\ICart.cs" />
+    <Compile Include="Cart\Cart.cs" />
     <Compile Include="Accounts\ContactInfo.cs" />
     <Compile Include="Domains\DomainSearchQuery.cs" />
     <Compile Include="Cart\CartItem.cs" />
@@ -66,7 +64,6 @@
     <Compile Include="Domains\IDomainStatusService.cs" />
     <Compile Include="Services\ILogger.cs" />
     <Compile Include="Checkout\IOrderPlacementService.cs" />
-    <Compile Include="Services\IResellerService.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

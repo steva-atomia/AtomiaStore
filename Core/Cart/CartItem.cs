@@ -1,9 +1,5 @@
-﻿using System;
+﻿using Atomia.Store.Core.Products;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Atomia.Store.Core.Products;
-// NOTE: Need to keep it with default constructor and readwrite properties for asp.net mvc model binder to work.
 
 namespace Atomia.Store.Core.Cart
 {
@@ -13,10 +9,21 @@ namespace Atomia.Store.Core.Cart
 
         public virtual string ArticleNumber { get; set; }
 
-        public virtual int Quantity { get; set; }
+        public virtual decimal Quantity { get; set; }
+
+        public virtual decimal Price { get; set; }
+
+        public virtual decimal Discount { get; set; }
+        
+        public virtual decimal Total
+        {
+            get { return (Price - Discount) * Quantity; }
+        }
+
+        public virtual decimal TaxAmount { get; set; }
 
         public virtual RenewalPeriod RenewalPeriod { get; set; }
 
-        public virtual Pricing Pricing { get; set; }
+        public virtual Dictionary<string, string> CustomAttributes { get; set; }
     }
 }
