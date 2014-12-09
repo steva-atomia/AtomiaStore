@@ -45,6 +45,7 @@
   <ItemGroup>
     <Compile Include="CartPricingProvider.cs" />
     <Compile Include="IRenewalPeriodProvider.cs" />
+    <Compile Include="IResellerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

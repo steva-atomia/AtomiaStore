@@ -1,4 +1,5 @@
 ﻿using Atomia.Store.Core.Cart;
+using Atomia.Store.Core.Services;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
@@ -8,10 +9,12 @@ namespace Atomia.Store.Services.PublicBillingApi
 {
     public class CartPricingProvider : ICartPricingProvider
     {
+        private readonly IResellerProvider resellerProvider;
         private readonly IRenewalPeriodProvider renewalPeriodProvider;
 
-        public CartPricingProvider(IRenewalPeriodProvider renewalPeriodProvider)
+        public CartPricingProvider(IResellerProvider resellerProvider, IRenewalPeriodProvider renewalPeriodProvider)
         {
+            this.resellerProvider = resellerProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
         }
 
@@ -19,13 +22,13 @@ namespace Atomia.Store.Services.PublicBillingApi
         {
             var publicOrder = new PublicOrder
             {
-                ResellerId = Guid.Empty,
-                Country = "",
-                Currency = "",
+                ResellerId = resellerProvider.GetCurrentResellerId(),
+                Country = cart.CountryCode,
+                Currency = cart.CurrencyCode
             };
 
             var publicOrderItems = new List<PublicOrderItem>();
-            var itemNoCounter = 0;
+            var itemNo = 0;
 
             foreach(var cartItem in cart.CartItems)
             {
@@ -36,10 +39,8 @@ namespace Atomia.Store.Services.PublicBillingApi
                     ItemNumber = cartItem.ArticleNumber,
                     RenewalPeriodId = renewalPeriodId,
                     Quantity = cartItem.Quantity,
-                    ItemNo = itemNoCounter
+                    ItemNo = itemNo++
                 });
-
-                itemNoCounter += 1;
             }
 
             var publicOrderCustomData = new List<PublicOrderCustomData>();
@@ -58,19 +59,15 @@ namespace Atomia.Store.Services.PublicBillingApi
 
             var calculatedPublicOrder = publicBillingApi.CalculateOrder(publicOrder);
 
-            cart.SubTotal = calculatedPublicOrder.Subtotal;
-            cart.Total = calculatedPublicOrder.Total;
-            cart.Tax = calculatedPublicOrder.Taxes.Sum(t => t.Total);
+            cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Taxes.Sum(t => t.Total), calculatedPublicOrder.Total);
 
             foreach(var cartItem in cart.CartItems)
             {
                 var calculatedItem = calculatedPublicOrder.OrderItems
                     .First(x => x.ItemNumber == cartItem.ArticleNumber && x.RenewalPeriod == cartItem.RenewalPeriod.Period && x.RenewalPeriodUnit == cartItem.RenewalPeriod.Unit);
 
-                cartItem.Price = calculatedItem.Price;
-                cartItem.Discount = calculatedItem.Discount;
+                cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, calculatedItem.TaxAmount);
                 cartItem.Quantity = calculatedItem.Quantity;
-                cartItem.TaxAmount = calculatedItem.TaxAmount;
             }
 
             return cart;

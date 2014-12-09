@@ -49,8 +49,6 @@
   <ItemGroup>
     <Compile Include="Cart\ICartPricingProvider.cs" />
     <Compile Include="Cart\ICartRepository.cs" />
-    <Compile Include="Products\IProductService.cs" />
-    <Compile Include="Products\Product.cs" />
     <Compile Include="Products\RenewalPeriod.cs" />
     <Compile Include="Cart\Cart.cs" />
     <Compile Include="Accounts\ContactInfo.cs" />
