@@ -11,12 +11,10 @@ namespace Atomia.Store.UI.Controllers
     public sealed class CartController : Controller
     {
         private readonly Cart cart;
-        private readonly IProductNameProvider productNameProvider;
 
-        public CartController(ICartRepository cartService, IProductNameProvider productNameProvider)
+        public CartController(ICartRepository cartRepository)
         {
-            this.cart = cartService.GetCart();
-            this.productNameProvider = productNameProvider;
+            this.cart = cartRepository.GetCart();
         }
 
         [HttpGet]
@@ -30,22 +28,37 @@ namespace Atomia.Store.UI.Controllers
             return PartialView();
         }
 
-        public JsonResult AddItem(string articleNumber, RenewalPeriod renewalPeriod, decimal quantity)
+        public JsonResult AddItem(CartItem cartItem)
         {
-            cart.AddItem(new CartItem(productNameProvider, articleNumber)
+            if (ModelState.IsValid)
             {
-                RenewalPeriod = renewalPeriod,
-                Quantity = quantity
-            });
+                cart.AddItem(cartItem);
+                return JsonEnvelope.Success(new { Cart = cart });
+            }
 
-            return JsonEnvelope.Success(new { Cart = cart });
+            return JsonEnvelope.Fail(ModelState);
         }
 
         public JsonResult RemoveItem(int itemId)
         {
-            cart.RemoveItem(itemId);
+            if (ModelState.IsValid)
+            {
+                cart.RemoveItem(itemId);
+                return JsonEnvelope.Success(new { Cart = cart });
+            }
 
-            return JsonEnvelope.Success(new { Cart = cart });
+            return JsonEnvelope.Fail(ModelState);
+        }
+
+        public JsonResult ChangeQuantity(int itemId, decimal newQuantity)
+        {
+            if (ModelState.IsValid)
+            {
+                cart.ChangeQuantity(itemId, newQuantity);
+                return JsonEnvelope.Success(new { Cart = cart });
+            }
+
+            return JsonEnvelope.Fail(ModelState);
         }
     }
 }
