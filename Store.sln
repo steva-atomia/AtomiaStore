@@ -19,6 +19,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.Actio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.PublicBillingApi", "Services\PublicBillingApi\Atomia.Store.Services.PublicBillingApi.csproj", "{5737FE58-757B-4F60-A480-5FD54EEED008}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C87621C8-9CCB-443E-94C8-1ECAE4562B67}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core.Test", "Test\Atomia.Store.Core.Test\Atomia.Store.Core.Test.csproj", "{1B6F0098-F54D-4A1A-814D-03D5A440D67E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Core.Services.PublicBillingApi.Test", "Test\Atomia.Core.Services.PublicBillingApi.Test\Atomia.Core.Services.PublicBillingApi.Test.csproj", "{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,9 +59,21 @@ Global
 		{5737FE58-757B-4F60-A480-5FD54EEED008}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5737FE58-757B-4F60-A480-5FD54EEED008}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5737FE58-757B-4F60-A480-5FD54EEED008}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B6F0098-F54D-4A1A-814D-03D5A440D67E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B6F0098-F54D-4A1A-814D-03D5A440D67E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B6F0098-F54D-4A1A-814D-03D5A440D67E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B6F0098-F54D-4A1A-814D-03D5A440D67E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B6F0098-F54D-4A1A-814D-03D5A440D67E} = {C87621C8-9CCB-443E-94C8-1ECAE4562B67}
+		{A49C2F51-ACC6-46C9-974B-7BB69EB82DED} = {C87621C8-9CCB-443E-94C8-1ECAE4562B67}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35
