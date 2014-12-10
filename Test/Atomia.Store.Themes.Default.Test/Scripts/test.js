@@ -1,4 +1,4 @@
-﻿/// <reference path="../viewmodels/domainreg.js" />
+﻿/// <reference path="../../../WebApp/Scripts/viewmodels/domainreg.js" />
 
 var FakeDomainsApi = {
     findDomainsWasCalled: false,
