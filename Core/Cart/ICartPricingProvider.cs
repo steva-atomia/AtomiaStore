@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Atomia.Store.Core.Cart
+namespace Atomia.Store.Core
 {
     public interface ICartPricingProvider
     {

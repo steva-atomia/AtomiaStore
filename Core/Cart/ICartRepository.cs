@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Atomia.Store.Core.Cart
+namespace Atomia.Store.Core
 {
     public interface ICartRepository
     {

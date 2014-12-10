@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.ComponentModel.DataAnnotations;
 
-namespace Atomia.Store.Core.Domains
+namespace Atomia.Store.Core
 {
     public class DomainSearchQuery
     {

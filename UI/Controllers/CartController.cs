@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using Atomia.Store.Core.Cart;
-using Atomia.Store.Core.Products;
+using Atomia.Store.Core;
 using Atomia.Store.UI.Infrastructure;
 
 namespace Atomia.Store.UI.Controllers

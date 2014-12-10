@@ -44,8 +44,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CartPricingProvider.cs" />
-    <Compile Include="IRenewalPeriodProvider.cs" />
-    <Compile Include="IResellerProvider.cs" />
+    <Compile Include="Interfaces\IOrderCalculator.cs" />
+    <Compile Include="Interfaces\IRenewalPeriodProvider.cs" />
+    <Compile Include="Interfaces\IResellerProvider.cs" />
+    <Compile Include="PublicBillingApiProxy.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

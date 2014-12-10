@@ -1,4 +1,4 @@
-﻿using Atomia.Store.Core.Services;
+﻿using Atomia.Store.Core;
 using Atomia.Store.UI.Controllers;
 using Atomia.Store.UI.Infrastructure;
 using Atomia.Web.Base.Configs;

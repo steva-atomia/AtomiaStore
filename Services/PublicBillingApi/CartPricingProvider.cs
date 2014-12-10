@@ -1,5 +1,4 @@
-﻿using Atomia.Store.Core.Cart;
-using Atomia.Store.Core.Services;
+﻿using Atomia.Store.Core;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
@@ -10,11 +9,13 @@ namespace Atomia.Store.Services.PublicBillingApi
     public class CartPricingProvider : ICartPricingProvider
     {
         private readonly IResellerProvider resellerProvider;
+        private readonly IOrderCalculator orderCalculator;
         private readonly IRenewalPeriodProvider renewalPeriodProvider;
 
-        public CartPricingProvider(IResellerProvider resellerProvider, IRenewalPeriodProvider renewalPeriodProvider)
+        public CartPricingProvider(IResellerProvider resellerProvider, IOrderCalculator orderCalculator, IRenewalPeriodProvider renewalPeriodProvider)
         {
             this.resellerProvider = resellerProvider;
+            this.orderCalculator = orderCalculator;
             this.renewalPeriodProvider = renewalPeriodProvider;
         }
 
@@ -23,8 +24,8 @@ namespace Atomia.Store.Services.PublicBillingApi
             var publicOrder = new PublicOrder
             {
                 ResellerId = resellerProvider.GetCurrentResellerId(),
-                Country = cart.CountryCode,
-                Currency = cart.CurrencyCode
+                Country = string.Empty, // TODO
+                Currency = string.Empty // TODO
             };
 
             var publicOrderItems = new List<PublicOrderItem>();
@@ -55,9 +56,7 @@ namespace Atomia.Store.Services.PublicBillingApi
             }
             publicOrder.CustomData = publicOrderCustomData.ToArray();
 
-            var publicBillingApi = new AtomiaBillingPublicService();
-
-            var calculatedPublicOrder = publicBillingApi.CalculateOrder(publicOrder);
+            var calculatedPublicOrder = orderCalculator.CalculateOrder(publicOrder);
 
             cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Taxes.Sum(t => t.Total), calculatedPublicOrder.Total);
 

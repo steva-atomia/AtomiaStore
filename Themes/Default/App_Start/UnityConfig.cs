@@ -1,4 +1,4 @@
-using Atomia.Store.Core.Services;
+using Atomia.Store.Core;
 using Atomia.Store.Services.WebPluginDomainSearch;
 using Atomia.Store.Themes.Default.ViewModels;
 using Atomia.Store.UI.Infrastructure;

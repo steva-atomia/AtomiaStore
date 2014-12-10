@@ -1,23 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Atomia.Store.Core.Cart
+namespace Atomia.Store.Core
 {
     public class Cart
     {
         private readonly ICartRepository cartRepository;
         private readonly ICartPricingProvider cartPricingProvider;
-        private string countryCode;
-        private string currencyCode;
         
         private List<CartItem> cartItems = new List<CartItem>();
-        private string campaignCode;
+        private string campaignCode = String.Empty;
         private decimal subTotal;
         private decimal tax;
         private decimal total;
         private int itemNoCounter;
 
-        public Cart(ICartRepository cartRepository, ICartPricingProvider cartPricingProvider, string countryCode, string currencyCode)
+        public Cart(ICartRepository cartRepository, ICartPricingProvider cartPricingProvider)
         {
             if (cartRepository == null)
             {
@@ -29,23 +27,11 @@ namespace Atomia.Store.Core.Cart
                 throw new ArgumentNullException("cartPricingProvider");
             }
 
-            if (string.IsNullOrEmpty(countryCode))
-            {
-                throw new ArgumentException("countryCode");
-            }
-
-            if (string.IsNullOrEmpty(currencyCode))
-            {
-                throw new ArgumentException("currencyCode");
-            }
-
             this.cartRepository = cartRepository;
             this.cartPricingProvider = cartPricingProvider;
-            this.countryCode = countryCode;
-            this.currencyCode = currencyCode;
         }
 
-        public IEnumerable<CartItem> CartItems { get { return this.cartItems; } }
+        public ICollection<CartItem> CartItems { get { return this.cartItems; } }
 
         public string CampaignCode { get { return campaignCode; }}
 
@@ -55,12 +41,23 @@ namespace Atomia.Store.Core.Cart
 
         public decimal Total { get { return total; } }
 
-        public string CountryCode { get { return countryCode; } }
-
-        public string CurrencyCode { get { return currencyCode; } }
-
         public void SetPricing(decimal subTotal, decimal tax, decimal total)
         {
+            if (subTotal < 0)
+            {
+                throw new ArgumentOutOfRangeException("subTotal");
+            }
+
+            if (tax < 0)
+            {
+                throw new ArgumentOutOfRangeException("tax");
+            }
+
+            if (total < 0)
+            {
+                throw new ArgumentOutOfRangeException("total");
+            }
+
             this.subTotal = subTotal;
             this.tax = tax;
             this.total = total;
@@ -68,6 +65,11 @@ namespace Atomia.Store.Core.Cart
 
         public void AddItem(CartItem cartItem)
         {
+            if (cartItem == null)
+            {
+                throw new ArgumentNullException("cartItem");
+            }
+
             cartItem.Id = itemNoCounter++;
             this.cartItems.Add(cartItem);
 
@@ -90,6 +92,11 @@ namespace Atomia.Store.Core.Cart
 
         public void SetCampaignCode(string campaignCode)
         {
+            if (campaignCode == null)
+            {
+                throw new ArgumentNullException("campaignCode");
+            }
+
             this.campaignCode = campaignCode;
 
             RecalculatePricingAndSave();
@@ -128,6 +135,11 @@ namespace Atomia.Store.Core.Cart
             this.SetPricing(0m, 0m, 0m);
 
             cartRepository.SaveCart(this);
+        }
+
+        public bool IsEmpty()
+        {
+            return cartItems.Count == 0;
         }
 
         private void RecalculatePricingAndSave()

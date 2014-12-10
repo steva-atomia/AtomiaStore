@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Atomia.Store.Core.Models;
+using Atomia.Store.Core;
 
 namespace Atomia.Store.UI.ViewModels
 {

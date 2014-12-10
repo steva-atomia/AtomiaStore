@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Atomia.Store.Core.Services
+namespace Atomia.Store.Services.PublicBillingApi
 {
     public interface IResellerProvider
     {

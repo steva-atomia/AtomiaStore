@@ -1,4 +1,4 @@
-﻿using Atomia.Store.Core.Cart;
+﻿using Atomia.Store.Core;
 using System.Web;
 
 namespace Atomia.Store.UI.Storage

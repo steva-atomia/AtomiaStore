@@ -36,6 +36,9 @@
   <PropertyGroup>
     <RunPostBuildEvent>OnBuildSuccess</RunPostBuildEvent>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -49,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Cart\ICartPricingProvider.cs" />
     <Compile Include="Cart\ICartRepository.cs" />
+    <Compile Include="Products\IProductNameProvider.cs" />
     <Compile Include="Products\RenewalPeriod.cs" />
     <Compile Include="Cart\Cart.cs" />
     <Compile Include="Accounts\ContactInfo.cs" />

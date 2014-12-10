@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Atomia.Store.Core.Services
+namespace Atomia.Store.Core
 {
     public interface ILogger
     {

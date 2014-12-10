@@ -2,8 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Atomia.Store.Core.Models;
-using Atomia.Store.Core.Services;
+using Atomia.Store.Core;
 
 namespace Atomia.Store.Services.WebPluginDomainSearch
 {

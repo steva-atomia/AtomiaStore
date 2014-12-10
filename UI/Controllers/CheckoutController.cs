@@ -1,5 +1,5 @@
 ﻿using System.Web.Mvc;
-using Atomia.Store.Core.Services;
+using Atomia.Store.Core;
 using Atomia.Store.UI.Infrastructure;
 using Atomia.Store.UI.ViewModels;
 

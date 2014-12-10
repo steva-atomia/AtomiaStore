@@ -1,9 +1,8 @@
-﻿using Atomia.Store.Core.Products;
-using System;
+﻿using System;
 using System.Collections.Generic;
 
 
-namespace Atomia.Store.Core.Cart
+namespace Atomia.Store.Core
 {
     public sealed class CartItem
     {
@@ -61,15 +60,10 @@ namespace Atomia.Store.Core.Cart
 
         public RenewalPeriod RenewalPeriod { get; set; }
 
-        public int Id { 
+        public int? Id { 
             get 
-            { 
-                if (id == null)
-                {
-                    throw new InvalidOperationException("ItemId has not been set for cart item.");
-                }
-
-                return (int)id; 
+            {
+                return this.id;
             }
             set
             {
