@@ -1,5 +1,7 @@
-﻿var Atomia = Atomia || {};
+﻿/* jshint -W079 */
+var Atomia = Atomia || {};
 Atomia._unbound = Atomia._unbound || {};
+/* jshint +W079 */
 
 Atomia._unbound.Domains = function (_, request) {
     'use strict';

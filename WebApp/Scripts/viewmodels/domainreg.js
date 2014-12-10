@@ -1,5 +1,7 @@
-﻿var Atomia = Atomia || {};
+﻿/* jshint -W079 */
+var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
+/* jshint +W079 */
 
 Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
     'use strict';
@@ -14,6 +16,7 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
         results.removeAll();
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result) {
+                result.addToCart = function () { console.log('Hello'); };
                 results.push(result);
             });
         });

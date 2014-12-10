@@ -1,5 +1,7 @@
-﻿var Atomia = Atomia || {};
+﻿/* jshint -W079 */
+var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
+/* jshint +W079 */
 
 Atomia.ViewModels.DomainTransfer = function (ko) {
     'use strict';
