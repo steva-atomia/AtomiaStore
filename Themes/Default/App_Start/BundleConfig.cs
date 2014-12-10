@@ -20,7 +20,8 @@ namespace Atomia.Store.Themes.Default
                 "~/Scripts/amplify.js",
                 "~/Scripts/lib/api-definitions.js",
                 "~/Scripts/lib/ko-binding-submitvalid.js",
-                "~/Scripts/viewmodels/root.js"));
+                "~/Scripts/viewmodels/root.js",
+                "~/Scripts/lib/api-items.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(
                 "~/Scripts/lib/api-domains.js",
