@@ -13,7 +13,7 @@ namespace Atomia.Store.Core
         private decimal subTotal;
         private decimal tax;
         private decimal total;
-        private int itemNoCounter;
+        private int itemNoCounter = 1;
 
         public Cart(ICartRepository cartRepository, ICartPricingProvider cartPricingProvider)
         {

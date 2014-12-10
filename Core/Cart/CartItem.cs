@@ -1,73 +1,44 @@
 ﻿using System;
 using System.Collections.Generic;
 
-
 namespace Atomia.Store.Core
 {
     public sealed class CartItem
     {
-        private readonly IProductNameProvider productNameProvider;
-        private readonly string articleNumber;
-
-        private decimal quantity;
-        private int? id;
+        private decimal quantity = 1;
+        private int id;
         private decimal price;
         private decimal discount;
         private decimal taxAmount;
 
-        public CartItem(IProductNameProvider productProvider, string articleNumber)
+        public string ArticleNumber { get; set;}
+
+        public decimal Quantity
         {
-            if (productProvider == null)
-            {
-                throw new ArgumentNullException("productProvider");
-            }
-
-            if (string.IsNullOrEmpty(articleNumber))
-            {
-                throw new ArgumentException("articleNumber");
-            }
-
-            this.productNameProvider = productProvider;
-            this.articleNumber = articleNumber;
-        }
-
-        public string Name
-        {
-            get
-            {
-                return productNameProvider.GetProductName(this.articleNumber);
-            }
-        }
-
-        public string ArticleNumber { get { return articleNumber; } }
-
-        public decimal Quantity { 
-            get
-            {
-                return this.quantity;
-            }
-
+            get { return quantity; }
             set 
-            {
-                if (value <= 0)
+            { 
+                if (quantity < 1)
                 {
-                    throw new ArgumentException();
+                    throw new ArgumentException("Quantity must be greater than 0.");
                 }
 
-                this.quantity = value;
+                quantity = value;
             }
         }
 
         public RenewalPeriod RenewalPeriod { get; set; }
 
-        public int? Id { 
+        public Dictionary<string, string> CustomAttributes { get; set; }
+
+        public int Id { 
             get 
             {
                 return this.id;
             }
             set
             {
-                if (id == null)
+                if (id == 0)
                 {
                     id = value;
                 }
@@ -88,8 +59,6 @@ namespace Atomia.Store.Core
         {
             get { return (Price - Discount) * Quantity; }
         }
-
-        public Dictionary<string, string> CustomAttributes { get; set; }
 
         public void SetPricing(decimal price, decimal discount, decimal taxAmount)
         {

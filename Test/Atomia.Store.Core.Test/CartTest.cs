@@ -94,7 +94,7 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void IsEmptyTest()
         {
-            var cartItem = new CartItem(new FakeProductNameProvider(), "ART1");
+            var cartItem = new CartItem { ArticleNumber = "ART1" };
 
             Assert.IsTrue(cart.IsEmpty(), "Expected cart to be empty.");
         }
@@ -102,15 +102,15 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void AddItemTest()
         {
-            var cartItem = new CartItem(new FakeProductNameProvider(), "ART1");
+            var cartItem = new CartItem { ArticleNumber = "ART1" };
 
-            Assert.IsNull(cartItem.Id, "Did not expect Id to be set on new cart item.");
+            Assert.AreEqual(0, cartItem.Id, "Did not expect Id to be set on new cart item.");
 
             cart.AddItem(cartItem);
 
             Assert.IsFalse(cart.IsEmpty(), "Did not expect cart to be empty.");
             Assert.AreEqual(1, cart.CartItems.Count, "Expected 1 item in cart.");
-            Assert.IsNotNull(cartItem.Id, "Expected cart item to have Id set.");
+            Assert.AreEqual(1, cartItem.Id, "Expected cart item to have Id set.");
 
             Assert.AreEqual(1, cartRepository.SaveCartCount, "Expect cart to be saved once.");
             Assert.AreEqual(1, cartPricingProvider.CalculatePriceCount, "Expected prices to be calculated once.");
@@ -126,8 +126,8 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void RemoveItemTest()
         {
-            var cartItem1 = new CartItem(new FakeProductNameProvider(), "ART1");
-            var cartItem2 = new CartItem(new FakeProductNameProvider(), "ART2");
+            var cartItem1 = new CartItem { ArticleNumber = "ART1" };
+            var cartItem2 = new CartItem { ArticleNumber = "ART2" };
 
             cart.AddItem(cartItem1);
             cart.AddItem(cartItem2);
@@ -136,7 +136,7 @@ namespace Atomia.Store.Core.Test
             Assert.IsTrue(cart.CartItems.Contains(cartItem1), "Expected item ART1 in cart.");
             Assert.IsTrue(cart.CartItems.Contains(cartItem2), "Expected item ART1 in cart.");
 
-            cart.RemoveItem((int)cartItem1.Id);
+            cart.RemoveItem(cartItem1.Id);
 
             Assert.AreEqual(1, cart.CartItems.Count, "Expected 1 item in cart.");
             Assert.IsTrue(cart.CartItems.Contains(cartItem2), "Expected item ART1 in cart.");
@@ -187,13 +187,13 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void ChangeQuantityTest()
         {
-            var cartItem = new CartItem(new FakeProductNameProvider(), "ART1")
-            {
+            var cartItem = new CartItem { 
+                ArticleNumber = "ART1",
                 Quantity = 1
             };
 
             cart.AddItem(cartItem);
-            cart.ChangeQuantity((int)cartItem.Id, 2m);
+            cart.ChangeQuantity(cartItem.Id, 2m);
 
             Assert.AreEqual(2, cartItem.Quantity);
             Assert.AreEqual(2, cartRepository.SaveCartCount, "Expect cart to be saved twice.");
@@ -204,13 +204,13 @@ namespace Atomia.Store.Core.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative quantity.")]
         public void ChangeQuantityNegativeFailsTest()
         {
-            var cartItem = new CartItem(new FakeProductNameProvider(), "ART1")
-            {
+            var cartItem = new CartItem { 
+                ArticleNumber = "ART1",
                 Quantity = 1
             };
 
             cart.AddItem(cartItem);
-            cart.ChangeQuantity((int)cartItem.Id, -2m);
+            cart.ChangeQuantity(cartItem.Id, -2m);
         }
     }
 }
