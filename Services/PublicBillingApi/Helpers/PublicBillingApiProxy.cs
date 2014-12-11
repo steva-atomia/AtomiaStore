@@ -7,7 +7,12 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Services.PublicBillingApi
 {
-    internal class PublicBillingApiProxy : IOrderCalculator
+    public interface IOrderCalculator
+    {
+        PublicOrder CalculateOrder(PublicOrder publicOrder);
+    }
+
+    public class PublicBillingApiProxy : IOrderCalculator
     {
         public PublicOrder CalculateOrder(PublicOrder publicOrder)
         {

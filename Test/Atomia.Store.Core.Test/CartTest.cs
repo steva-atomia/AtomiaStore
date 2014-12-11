@@ -3,7 +3,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Atomia.Store.Core.Test
 {
-    public class FakeCartRepository: ICartRepository
+    public class FakeCartRepository: ICartProvider
     {
         public int SaveCartCount = 0;
 
@@ -18,7 +18,7 @@ namespace Atomia.Store.Core.Test
         }
     }
 
-    public class FakeCarPricingProvider : ICartPricingProvider
+    public class FakeCarPricingProvider : ICartPricingService
     {
         public int CalculatePriceCount = 0;
 
@@ -28,6 +28,20 @@ namespace Atomia.Store.Core.Test
             return cart;
         }
     }
+
+    public class FakeItemDisplayProvider : IItemDisplayProvider
+    {
+        public string GetName(Item item)
+        {
+            throw new NotImplementedException();
+        }
+
+        public string GetDescription(Item item)
+        {
+            throw new NotImplementedException();
+        }
+    }
+
 
 
     [TestClass]
@@ -86,7 +100,7 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void IsEmptyTest()
         {
-            var cartItem = new CartItem { ArticleNumber = "ART1" };
+            var cartItem = new CartItem("ART1", 1, new FakeItemDisplayProvider());
 
             Assert.IsTrue(cart.IsEmpty(), "Expected cart to be empty.");
         }
@@ -94,7 +108,7 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void AddItemTest()
         {
-            var cartItem = new CartItem { ArticleNumber = "ART1" };
+            var cartItem = new CartItem("ART1", 1, new FakeItemDisplayProvider());
 
             Assert.AreEqual(0, cartItem.Id, "Did not expect Id to be set on new cart item.");
 
@@ -118,8 +132,8 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void RemoveItemTest()
         {
-            var cartItem1 = new CartItem { ArticleNumber = "ART1" };
-            var cartItem2 = new CartItem { ArticleNumber = "ART2" };
+            var cartItem1 = new CartItem("ART1", 1, new FakeItemDisplayProvider());
+            var cartItem2 = new CartItem("ART2", 1, new FakeItemDisplayProvider());
 
             cart.AddItem(cartItem1);
             cart.AddItem(cartItem2);
@@ -179,10 +193,7 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void ChangeQuantityTest()
         {
-            var cartItem = new CartItem { 
-                ArticleNumber = "ART1",
-                Quantity = 1
-            };
+            var cartItem = new CartItem("ART1", 1, new FakeItemDisplayProvider());
 
             cart.AddItem(cartItem);
             cart.ChangeQuantity(cartItem.Id, 2m);
@@ -196,10 +207,7 @@ namespace Atomia.Store.Core.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative quantity.")]
         public void ChangeQuantityNegativeFailsTest()
         {
-            var cartItem = new CartItem { 
-                ArticleNumber = "ART1",
-                Quantity = 1
-            };
+            var cartItem = new CartItem("ART1", 1, new FakeItemDisplayProvider());
 
             cart.AddItem(cartItem);
             cart.ChangeQuantity(cartItem.Id, -2m);

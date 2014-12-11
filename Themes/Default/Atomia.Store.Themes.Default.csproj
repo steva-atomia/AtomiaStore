@@ -157,9 +157,9 @@
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
       <Name>Atomia.Store.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\UI\Atomia.Store.UI.csproj">
+    <ProjectReference Include="..\..\UI\Atomia.Store.AspNetMvc.csproj">
       <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
-      <Name>Atomia.Store.UI</Name>
+      <Name>Atomia.Store.AspNetMvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

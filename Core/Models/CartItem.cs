@@ -3,22 +3,43 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
-    public sealed class CartItem
+    public sealed class CartItem : Item
     {
-        private decimal quantity = 1;
         private int id;
+        private readonly string articleNumber;
+
+        private decimal quantity;
         private decimal price;
         private decimal discount;
         private decimal taxAmount;
 
-        public string ArticleNumber { get; set;}
+        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider displayProvider):
+            base(displayProvider)
+        {
+            if (string.IsNullOrEmpty(articleNumber))
+            {
+                throw new ArgumentException("articleNumber");
+            }
+
+            Quantity = quantity;
+
+            this.articleNumber = articleNumber;
+        }
+
+        public override string ArticleNumber 
+        { 
+            get 
+            {
+                return articleNumber;
+            }
+        }
 
         public decimal Quantity
         {
             get { return quantity; }
             set 
             { 
-                if (quantity < 1)
+                if (value < 1)
                 {
                     throw new ArgumentException("Quantity must be greater than 0.");
                 }
@@ -28,8 +49,6 @@ namespace Atomia.Store.Core
         }
 
         public RenewalPeriod RenewalPeriod { get; set; }
-
-        public Dictionary<string, string> CustomAttributes { get; set; }
 
         public int Id { 
             get 

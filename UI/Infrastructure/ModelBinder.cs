@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Atomia.Store.UI.Infrastructure
+namespace Atomia.Store.AspNetMvc.Infrastructure
 {
     public sealed class ModelBinder : DefaultModelBinder
     {

@@ -3,10 +3,10 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
-    public class Cart
+    public sealed class Cart
     {
-        private readonly ICartRepository cartRepository;
-        private readonly ICartPricingProvider cartPricingProvider;
+        private readonly ICartProvider cartRepository;
+        private readonly ICartPricingService cartPricingProvider;
         
         private List<CartItem> cartItems = new List<CartItem>();
         private string campaignCode = String.Empty;
@@ -15,7 +15,7 @@ namespace Atomia.Store.Core
         private decimal total;
         private int itemNoCounter = 1;
 
-        public Cart(ICartRepository cartRepository, ICartPricingProvider cartPricingProvider)
+        public Cart(ICartProvider cartRepository, ICartPricingService cartPricingProvider)
         {
             if (cartRepository == null)
             {

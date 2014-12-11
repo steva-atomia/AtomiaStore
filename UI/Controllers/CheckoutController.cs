@@ -1,9 +1,9 @@
 ﻿using System.Web.Mvc;
 using Atomia.Store.Core;
-using Atomia.Store.UI.Infrastructure;
-using Atomia.Store.UI.ViewModels;
+using Atomia.Store.AspNetMvc.Infrastructure;
+using Atomia.Store.AspNetMvc.ViewModels;
 
-namespace Atomia.Store.UI.Controllers
+namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CheckoutController : Controller
     {

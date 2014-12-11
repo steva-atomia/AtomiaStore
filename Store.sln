@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core", "Core\Atomia.Store.Core.csproj", "{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.UI", "UI\Atomia.Store.UI.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.AspNetMvc", "UI\Atomia.Store.AspNetMvc.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.WebPluginDomainSearch", "Services\WebPluginDomainSearch\Atomia.Store.Services.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
 EndProject

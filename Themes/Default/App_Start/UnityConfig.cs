@@ -1,9 +1,9 @@
 using Atomia.Store.Core;
 using Atomia.Store.Services.WebPluginDomainSearch;
 using Atomia.Store.Themes.Default.ViewModels;
-using Atomia.Store.UI.Infrastructure;
-using Atomia.Store.UI.ViewModels;
-using Atomia.Store.UI.Storage;
+using Atomia.Store.AspNetMvc.Infrastructure;
+using Atomia.Store.AspNetMvc.ViewModels;
+using Atomia.Store.AspNetMvc.Services;
 using Microsoft.Practices.Unity;
 using System.Web.Mvc;
 using Unity.Mvc5;
@@ -13,7 +13,7 @@ namespace Atomia.Store.Themes.Default
 {
     public static class UnityConfig
     {
-        public class FakePricingProvider : ICartPricingProvider
+        public class FakePricingProvider : ICartPricingService
         {
             public Cart CalculatePricing(Cart cart)
             {
@@ -34,8 +34,8 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IDomainSearchService, DomainSearchService>();
             container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();
 
-            container.RegisterType<ICartRepository, CartRepository>();
-            container.RegisterType<ICartPricingProvider, FakePricingProvider>();
+            container.RegisterType<ICartProvider, CartProvider>();
+            container.RegisterType<ICartPricingService, FakePricingProvider>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

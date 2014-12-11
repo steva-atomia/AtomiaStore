@@ -9,4 +9,6 @@ namespace Atomia.Store.Services.PublicBillingApi
     {
         Guid GetRenewalPeriodId(string articleNumber, int renewalPeriod, string renewalPeriodUnit);
     }
+
+    // TODO: Implement RenewalPeriodProvider
 }

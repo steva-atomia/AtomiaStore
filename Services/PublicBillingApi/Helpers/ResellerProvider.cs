@@ -7,6 +7,8 @@ namespace Atomia.Store.Services.PublicBillingApi
 {
     public interface IResellerProvider
     {
-        Guid GetCurrentResellerId();
+        Guid GetResellerId();
     }
+
+    // TODO: Implement IResellerProvider
 }

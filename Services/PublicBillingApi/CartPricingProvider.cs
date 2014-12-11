@@ -6,27 +6,22 @@ using System.Linq;
 
 namespace Atomia.Store.Services.PublicBillingApi
 {
-    public class CartPricingProvider : ICartPricingProvider
+    public class CartPricingProvider : ICartPricingService
     {
-        private readonly IResellerProvider resellerProvider;
+        private readonly IOrderCreator orderCreator;
         private readonly IOrderCalculator orderCalculator;
         private readonly IRenewalPeriodProvider renewalPeriodProvider;
 
-        public CartPricingProvider(IResellerProvider resellerProvider, IOrderCalculator orderCalculator, IRenewalPeriodProvider renewalPeriodProvider)
+        public CartPricingProvider(IOrderCreator orderCreator, IOrderCalculator orderCalculator, IRenewalPeriodProvider renewalPeriodProvider)
         {
-            this.resellerProvider = resellerProvider;
+            this.orderCreator = orderCreator;
             this.orderCalculator = orderCalculator;
-            this.renewalPeriodProvider = renewalPeriodProvider;
+            this.renewalPeriodProvider = renewalPeriodProvider;   
         }
 
         public Cart CalculatePricing(Cart cart)
         {
-            var publicOrder = new PublicOrder
-            {
-                ResellerId = resellerProvider.GetCurrentResellerId(),
-                Country = string.Empty, // TODO
-                Currency = string.Empty // TODO
-            };
+            var publicOrder = orderCreator.CreateBasicOrder();
 
             var publicOrderItems = new List<PublicOrderItem>();
             var itemNo = 0;

@@ -1,13 +1,13 @@
 ﻿using Atomia.Store.Core;
 using System.Web;
 
-namespace Atomia.Store.UI.Storage
+namespace Atomia.Store.AspNetMvc.Services
 {
-    public class CartRepository : ICartRepository
+    public class CartProvider : ICartProvider
     {
-        private readonly ICartPricingProvider cartPricingProvider;
+        private readonly ICartPricingService cartPricingProvider;
 
-        public CartRepository(ICartPricingProvider cartPricingProvider)
+        public CartProvider(ICartPricingService cartPricingProvider)
         {
             this.cartPricingProvider = cartPricingProvider;
         }

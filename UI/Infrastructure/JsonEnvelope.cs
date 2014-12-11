@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 
-namespace Atomia.Store.UI.Infrastructure
+namespace Atomia.Store.AspNetMvc.Infrastructure
 {
     /// <summary>
     /// Factory of JSON responses that correspond to the JSend spec.

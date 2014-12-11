@@ -8,19 +8,42 @@ namespace Atomia.Store.Services.WebPluginDomainSearch
 {
     public class DomainSearchService : IDomainSearchService
     {
+        private readonly IItemDisplayProvider itemDisplayProvider;
+
+        public DomainSearchService(IItemDisplayProvider itemDisplayProvider)
+        {
+            this.itemDisplayProvider = itemDisplayProvider;
+        }
+
         public IList<Product> FindDomains(DomainSearchQuery searchQuery) 
         {
             var results = new List<Product>();
             
-            if (!string.IsNullOrEmpty(searchQuery.SearchTerm))
+            if (searchQuery.SearchTerms.Any(term => !string.IsNullOrEmpty(term)))
             {
-                results.Add(new DomainProduct {
-                    ArticleNumber = "DMN-COM",
-                    CurrencyCode = "SEK",
-                    Price = 10m,
-                    RenewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" }},
-                    DomainName = searchQuery.SearchTerm + ".com",
-                    Status = "Available"
+                results.Add(new Product("DMN-COM", 10m, itemDisplayProvider)
+                {
+                    RenewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" } },
+                    CustomAttributes = new List<CustomAttribute>
+                    {
+                        new CustomAttribute 
+                        {
+                            Name = "DomainName",
+                            Values =
+                            {
+                                searchQuery.SearchTerms.First() + ".com"
+                            },
+                            RequiredInput = true
+                        },
+                        new CustomAttribute {
+                            Name = "Status",
+                            Values =
+                            {
+                                "Available"
+                            },
+                            RequiredInput = false
+                        }
+                    }
                 });
             }
 

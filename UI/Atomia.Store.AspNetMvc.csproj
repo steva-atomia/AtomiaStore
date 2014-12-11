@@ -8,8 +8,8 @@
     <ProjectGuid>{22E89989-1534-4B38-925D-03906D0284BF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.Store.UI</RootNamespace>
-    <AssemblyName>Atomia.Store.UI</AssemblyName>
+    <RootNamespace>Atomia.Store.AspNetMvc</RootNamespace>
+    <AssemblyName>Atomia.Store.AspNetMvc</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -73,12 +73,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AddonsController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="HtmlHelpers\CurrencyFormatter.cs" />
     <Compile Include="HtmlHelpers\JsonActionHelper.cs" />
     <Compile Include="Infrastructure\FormHandler.cs" />
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
@@ -88,12 +88,13 @@
     <Compile Include="Infrastructure\ModelBinder.cs" />
     <Compile Include="Infrastructure\ModelBinderProvider.cs" />
     <Compile Include="Infrastructure\ModelProvider.cs" />
+    <Compile Include="Models\CartItemInput.cs" />
+    <Compile Include="Models\RenewalPeriodInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Storage\CartRepository.cs" />
-    <Compile Include="ViewModels\AddonsViewModel.cs" />
-    <Compile Include="ViewModels\CheckoutViewModel.cs" />
-    <Compile Include="ViewModels\DomainsViewModel.cs" />
-    <Compile Include="ViewModels\PackageViewModel.cs" />
+    <Compile Include="Services\CartProvider.cs" />
+    <Compile Include="Models\CheckoutViewModel.cs" />
+    <Compile Include="Models\DomainsViewModel.cs" />
+    <Compile Include="Models\ProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Atomia.Store.Core.csproj">

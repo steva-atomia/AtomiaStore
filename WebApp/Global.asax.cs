@@ -3,7 +3,7 @@ using System.Linq;
 using System.Reflection;
 using System.Web;
 using System.Configuration;
-using Atomia.Store.UI.Infrastructure;
+using Atomia.Store.AspNetMvc.Infrastructure;
 
 namespace Atomia.Store.WebApp
 {

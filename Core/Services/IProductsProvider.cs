@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public interface ICartPricingProvider
+    public interface IProductsProvider
     {
-        Cart CalculatePricing(Cart cart);
+        IList<Product> GetProducts(string category);
     }
 }

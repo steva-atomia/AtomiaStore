@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using Atomia.Store.Core;
 
-namespace Atomia.Store.UI.ViewModels
+namespace Atomia.Store.AspNetMvc.ViewModels
 {
     public abstract class DomainsViewModel
     {

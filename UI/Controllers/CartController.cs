@@ -4,37 +4,42 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Atomia.Store.Core;
-using Atomia.Store.UI.Infrastructure;
+using Atomia.Store.AspNetMvc.Infrastructure;
+using Atomia.Store.AspNetMvc.Models;
 
-namespace Atomia.Store.UI.Controllers
+namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CartController : Controller
     {
         private readonly Cart cart;
+        private readonly IItemDisplayProvider displayProvider;
 
-        public CartController(ICartRepository cartRepository)
+        public CartController(ICartProvider cartRepository, IItemDisplayProvider displayProvider)
         {
             this.cart = cartRepository.GetCart();
+            this.displayProvider = displayProvider;
         }
 
         [HttpGet]
         public ActionResult Index()
         {
-            return View();
+            return View(cart);
         }
 
         [ChildActionOnly]
         public ActionResult Partial()
         {
-            return PartialView();
+            return PartialView(cart);
         }
 
         [HttpPost]
-        public JsonResult AddItem(CartItem cartItem)
+        public JsonResult AddItem(CartItemInput inputItem)
         {
             if (ModelState.IsValid)
             {
+                var cartItem = inputItem.ToCartItem(displayProvider);
                 cart.AddItem(cartItem);
+
                 return JsonEnvelope.Success(new { Cart = cart });
             }
 

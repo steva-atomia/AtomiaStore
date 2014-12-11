@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Atomia.Store.UI.ViewModels;
+using Atomia.Store.AspNetMvc.ViewModels;
 
 namespace Atomia.Store.Themes.Default.ViewModels
 {
@@ -15,6 +15,7 @@ namespace Atomia.Store.Themes.Default.ViewModels
         }
 
         public int AllowedNumberOfDomains { get; set; }
+
         public int AllowedDomainLength { get; set; }
     }
 }
