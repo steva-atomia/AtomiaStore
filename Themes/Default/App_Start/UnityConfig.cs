@@ -13,14 +13,6 @@ namespace Atomia.Store.Themes.Default
 {
     public static class UnityConfig
     {
-        public class FakeProductNameProvider : IProductNameProvider
-        {
-            public string GetProductName(string articleNumber)
-            {
-                return "Bloop";
-            }
-        }
-
         public class FakePricingProvider : ICartPricingProvider
         {
             public Cart CalculatePricing(Cart cart)
@@ -43,7 +35,6 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();
 
             container.RegisterType<ICartRepository, CartRepository>();
-            container.RegisterType<IProductNameProvider, FakeProductNameProvider>();
             container.RegisterType<ICartPricingProvider, FakePricingProvider>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));

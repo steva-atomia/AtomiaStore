@@ -38,7 +38,7 @@ namespace Atomia.Store.UI.Controllers
                 return JsonEnvelope.Success(searchResults);
             }
 
-            return JsonEnvelope.Error("An error occured");
+            return JsonEnvelope.Fail(ModelState);
         }
     }
 }

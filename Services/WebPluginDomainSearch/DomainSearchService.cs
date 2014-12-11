@@ -8,16 +8,20 @@ namespace Atomia.Store.Services.WebPluginDomainSearch
 {
     public class DomainSearchService : IDomainSearchService
     {
-        public IList<DomainSearchResult> FindDomains(DomainSearchQuery searchQuery) 
+        public IList<Product> FindDomains(DomainSearchQuery searchQuery) 
         {
-            var results = new List<DomainSearchResult>();
+            var results = new List<Product>();
             
             if (!string.IsNullOrEmpty(searchQuery.SearchTerm))
             {
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".com", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".net", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".org", Price = 11.41m, Status = "Available" });
-                results.Add(new DomainSearchResult { CurrencyCode = "USD", DomainName = searchQuery.SearchTerm + ".info", Price = 11.41m, Status = "Available" });
+                results.Add(new DomainProduct {
+                    ArticleNumber = "DMN-COM",
+                    CurrencyCode = "SEK",
+                    Price = 10m,
+                    RenewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" }},
+                    DomainName = searchQuery.SearchTerm + ".com",
+                    Status = "Available"
+                });
             }
 
             return results;

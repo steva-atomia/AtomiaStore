@@ -52,18 +52,14 @@
   <ItemGroup>
     <Compile Include="Cart\ICartPricingProvider.cs" />
     <Compile Include="Cart\ICartRepository.cs" />
-    <Compile Include="Products\IProductNameProvider.cs" />
+    <Compile Include="Products\Product.cs" />
     <Compile Include="Products\RenewalPeriod.cs" />
     <Compile Include="Cart\Cart.cs" />
     <Compile Include="Accounts\ContactInfo.cs" />
     <Compile Include="Domains\DomainSearchQuery.cs" />
     <Compile Include="Cart\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Domains\DomainStatusResult.cs" />
-    <Compile Include="Domains\DomainStatusQuery.cs" />
-    <Compile Include="Domains\DomainSearchResult.cs" />
     <Compile Include="Domains\IDomainSearchService.cs" />
-    <Compile Include="Domains\IDomainStatusService.cs" />
     <Compile Include="Services\ILogger.cs" />
     <Compile Include="Checkout\IOrderPlacementService.cs" />
   </ItemGroup>

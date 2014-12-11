@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
+Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
     'use strict';
 
     var query = ko.observable(),
@@ -16,8 +16,8 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
         results.removeAll();
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result) {
-                result.addToCart = function () { console.log('Hello'); };
-                results.push(result);
+                var item = new itemsApi.CartItem(result);
+                results.push(item);
             });
         });
     }
@@ -32,5 +32,5 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi) {
 
 
 if (Atomia.RootVM !== undefined) {
-    Atomia.RootVM.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains);
+    Atomia.RootVM.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains, Atomia.Items);
 }

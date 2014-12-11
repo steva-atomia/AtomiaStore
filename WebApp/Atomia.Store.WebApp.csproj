@@ -150,6 +150,7 @@
     <Content Include="Scripts\jquery-1.11.1.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\lib\api-items.js" />
     <Content Include="Scripts\lib\ko-binding-submitvalid.js" />
     <Content Include="Scripts\lib\api-definitions.js" />
     <Content Include="Scripts\amplify-vsdoc.js" />

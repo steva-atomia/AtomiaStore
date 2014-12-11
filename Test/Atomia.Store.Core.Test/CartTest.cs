@@ -29,14 +29,6 @@ namespace Atomia.Store.Core.Test
         }
     }
 
-    public class FakeProductNameProvider : IProductNameProvider
-    {
-        public string GetProductName(string articleNumber)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
 
     [TestClass]
     public class CartTest

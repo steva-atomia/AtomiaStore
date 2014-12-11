@@ -10,6 +10,6 @@ namespace Atomia.Store.UI.ViewModels
     {
         public virtual DomainSearchQuery SearchQuery { get; set; }
 
-        public virtual IList<DomainSearchResult> SearchResults { get; set; }
+        public virtual IList<Product> SearchResults { get; set; }
     }
 }

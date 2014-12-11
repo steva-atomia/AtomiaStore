@@ -7,6 +7,6 @@ namespace Atomia.Store.Core
 {
     public interface IDomainSearchService
     {
-        IList<DomainSearchResult> FindDomains(DomainSearchQuery query);
+        IList<Product> FindDomains(DomainSearchQuery query);
     }
 }

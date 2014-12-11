@@ -23,11 +23,13 @@ namespace Atomia.Store.UI.Controllers
             return View();
         }
 
+        [ChildActionOnly]
         public ActionResult Partial()
         {
             return PartialView();
         }
 
+        [HttpPost]
         public JsonResult AddItem(CartItem cartItem)
         {
             if (ModelState.IsValid)
@@ -39,6 +41,7 @@ namespace Atomia.Store.UI.Controllers
             return JsonEnvelope.Fail(ModelState);
         }
 
+        [HttpPost]
         public JsonResult RemoveItem(int itemId)
         {
             if (ModelState.IsValid)
@@ -50,6 +53,7 @@ namespace Atomia.Store.UI.Controllers
             return JsonEnvelope.Fail(ModelState);
         }
 
+        [HttpPost]
         public JsonResult ChangeQuantity(int itemId, decimal newQuantity)
         {
             if (ModelState.IsValid)
