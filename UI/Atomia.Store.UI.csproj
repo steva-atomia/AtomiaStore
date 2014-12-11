@@ -78,7 +78,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
-    <Compile Include="Controllers\PackageController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="HtmlHelpers\JsonActionHelper.cs" />
     <Compile Include="Infrastructure\FormHandler.cs" />
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />

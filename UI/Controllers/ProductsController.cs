@@ -9,17 +9,17 @@ using Atomia.Store.UI.ViewModels;
 
 namespace Atomia.Store.UI.Controllers
 {
-    public sealed class PackageController : Controller
+    public sealed class ProductsController : Controller
     {
         private readonly IModelProvider modelProvider;
 
-        public PackageController(IModelProvider modelProvider)
+        public ProductsController(IModelProvider modelProvider)
         {
             this.modelProvider = modelProvider;
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult ListCategory(string category)
         {
             var model = modelProvider.Create<PackageViewModel>();
 
