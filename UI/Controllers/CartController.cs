@@ -13,11 +13,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
     {
         private readonly Cart cart;
         private readonly IItemDisplayProvider displayProvider;
+        private readonly ICurrencyProvider currencyProvider;
 
-        public CartController(ICartProvider cartRepository, IItemDisplayProvider displayProvider)
+        public CartController(ICartProvider cartProvider, IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider)
         {
-            this.cart = cartRepository.GetCart();
+            this.cart = cartProvider.GetCart();
             this.displayProvider = displayProvider;
+            this.currencyProvider = currencyProvider;
         }
 
         [HttpGet]
@@ -37,7 +39,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var cartItem = inputItem.ToCartItem(displayProvider);
+                var cartItem = inputItem.ToCartItem(displayProvider, currencyProvider);
                 cart.AddItem(cartItem);
 
                 return JsonEnvelope.Success(new { Cart = cart });

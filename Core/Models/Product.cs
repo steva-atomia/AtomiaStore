@@ -11,8 +11,8 @@ namespace Atomia.Store.Core
         private readonly string articleNumber;
         private readonly decimal price;
 
-        public Product(string articleNumber, decimal price, IItemDisplayProvider displayProvider): 
-            base(displayProvider)
+        public Product(string articleNumber, decimal price, IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider):
+            base(displayProvider, currencyProvider)
         {
             if (string.IsNullOrEmpty(articleNumber))
             {
@@ -36,6 +36,8 @@ namespace Atomia.Store.Core
             }
         }
 
+        public List<RenewalPeriod> RenewalPeriods { get; set; }
+
         public decimal Price
         {
             get
@@ -44,6 +46,12 @@ namespace Atomia.Store.Core
             }
         }
 
-        public List<RenewalPeriod> RenewalPeriods { get; set; }
+        public string DisplayPrice
+        {
+            get
+            {
+                return currencyProvider.FormatAmount(Price);
+            }
+        }
     }
 }

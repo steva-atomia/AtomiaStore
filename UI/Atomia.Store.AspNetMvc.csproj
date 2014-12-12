@@ -95,6 +95,7 @@
     <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\DomainsViewModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
+    <Compile Include="Services\CurrencyProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Core\Atomia.Store.Core.csproj">

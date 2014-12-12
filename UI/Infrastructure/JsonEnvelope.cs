@@ -45,6 +45,10 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             };
         }
 
+        /// <summary>
+        /// JSend spec: "There was a problem with the data submitted, or some pre-condition of the API call wasn't satisfied"
+        /// Creates message data based on validation errors.
+        /// </summary>
         public static JsonResult Fail(ModelStateDictionary modelState)
         {
             var invalidProperties = modelState.Where(kv => kv.Value.Errors.Count > 0);

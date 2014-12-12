@@ -13,8 +13,8 @@ namespace Atomia.Store.Core
         private decimal discount;
         private decimal taxAmount;
 
-        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider displayProvider):
-            base(displayProvider)
+        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider):
+            base(displayProvider, currencyProvider)
         {
             if (string.IsNullOrEmpty(articleNumber))
             {
@@ -99,6 +99,38 @@ namespace Atomia.Store.Core
             this.price = price;
             this.discount = discount;
             this.taxAmount = taxAmount;
+        }
+
+        public string DisplayPrice
+        {
+            get
+            {
+                return currencyProvider.FormatAmount(Price);
+            }
+        }
+
+        public string DisplayDiscount
+        {
+            get
+            {
+                return currencyProvider.FormatAmount(Discount);
+            }
+        }
+
+        public string DisplayTaxAmount
+        {
+            get
+            {
+                return currencyProvider.FormatAmount(TaxAmount);
+            }
+        }
+
+        public string DisplayTotal
+        {
+            get
+            {
+                return currencyProvider.FormatAmount(Total);
+            }
         }
     }
 }

@@ -8,6 +8,6 @@ namespace Atomia.Store.AspNetMvc.ViewModels
 {
     public abstract class ProductsViewModel
     {
-        public List<Product> Products { get; set; }
+        public IList<Product> Products { get; set; }
     }
 }

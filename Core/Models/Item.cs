@@ -9,15 +9,22 @@ namespace Atomia.Store.Core
     public abstract class Item
     {
         protected readonly IItemDisplayProvider displayProvider;
+        protected readonly ICurrencyProvider currencyProvider;
 
-        public Item(IItemDisplayProvider displayProvider)
+        public Item(IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider)
         {
             if (displayProvider == null)
             {
                 throw new ArgumentNullException("displayProvider");
             }
 
+            if (currencyProvider == null)
+            {
+                throw new ArgumentNullException("currencyProvider");
+            }
+
             this.displayProvider = displayProvider;
+            this.currencyProvider = currencyProvider;
         }
 
         public virtual string ArticleNumber { get; set; }

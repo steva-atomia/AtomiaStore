@@ -7,6 +7,6 @@ namespace Atomia.Store.Core
 {
     public sealed class DomainSearchQuery
     {
-        public List<string> SearchTerms { get; set; }
+        public string SearchTerm { get; set; }
     }
 }

@@ -17,9 +17,9 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public RenewalPeriodInput RenewalPeriod { get; set; }
 
-        internal CartItem ToCartItem(IItemDisplayProvider displayProvider)
+        internal CartItem ToCartItem(IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider)
         {
-            return new CartItem(ArticleNumber, Quantity, displayProvider)
+            return new CartItem(ArticleNumber, Quantity, displayProvider, currencyProvider)
             {
                 RenewalPeriod = RenewalPeriod,
                 CustomAttributes = CustomAttributes
