@@ -129,10 +129,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="DefaultGlobalEventsHandler.cs" />
-    <Compile Include="ViewModels\DefaultCheckoutViewModel.cs" />
-    <Compile Include="ViewModels\DefaultDomainsViewModel.cs" />
+    <Compile Include="Models\DefaultDomainsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\DefaultProductsViewModel.cs" />
+    <Compile Include="Models\DefaultProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

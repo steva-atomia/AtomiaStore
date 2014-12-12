@@ -66,7 +66,6 @@
     <Compile Include="Services\ICountryProvider.cs" />
     <Compile Include="Services\ICurrencyProvider.cs" />
     <Compile Include="Services\ILogger.cs" />
-    <Compile Include="Services\IOrderPlacementService.cs" />
     <Compile Include="Services\IProductsProvider.cs" />
   </ItemGroup>
   <ItemGroup />

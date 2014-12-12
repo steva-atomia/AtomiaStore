@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Atomia.Store.Core;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using Atomia.Store.Core;
 
-namespace Atomia.Store.AspNetMvc.ViewModels
+namespace Atomia.Store.AspNetMvc.Models
 {
     public abstract class DomainsViewModel
     {

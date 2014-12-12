@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Mvc.Html;
 
 namespace Atomia.Store.AspNetMvc.HtmlHelpers
@@ -15,6 +10,7 @@ namespace Atomia.Store.AspNetMvc.HtmlHelpers
             var parentContentType = htmlHelper.ViewContext.HttpContext.Response.ContentType;
             var actionResult = htmlHelper.Action(action, routeValueDict);
             htmlHelper.ViewContext.HttpContext.Response.ContentType = parentContentType;
+
             return actionResult;
         }
 
@@ -23,6 +19,7 @@ namespace Atomia.Store.AspNetMvc.HtmlHelpers
             var parentContentType = htmlHelper.ViewContext.HttpContext.Response.ContentType;
             var actionResult = htmlHelper.Action(action, controller, routeValueDict);
             htmlHelper.ViewContext.HttpContext.Response.ContentType = parentContentType;
+
             return actionResult;
         }
     }

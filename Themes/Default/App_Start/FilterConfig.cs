@@ -1,6 +1,5 @@
-﻿using System.Web;
+﻿using Atomia.Web.Base.ActionFilters;
 using System.Web.Mvc;
-using Atomia.Web.Base.ActionFilters;
 
 namespace Atomia.Store.Themes.Default
 {

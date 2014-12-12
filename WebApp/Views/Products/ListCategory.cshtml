@@ -1,4 +1,4 @@
-﻿@model Atomia.Store.Themes.Default.ViewModels.DefaultProductsViewModel
+﻿@model Atomia.Store.Themes.Default.Models.DefaultProductsViewModel
 @using Atomia.Store.Core;
 
 @{
@@ -16,8 +16,14 @@
     @foreach (var product in Model.Products)
     {
         <li>
-            <h3>@product.Name <span>@product.DisplayPrice</span></h3>
-            <p>@product.Description</p>
+            <div>
+                <h3>@product.Name</h3>
+                <p>@product.Description</p>
+                <p>
+                    From <span>@product.DisplayPrice</span>.
+                </p>
+            </div>
+            <p><button>Add to cart</button></p>
         </li>
     }
 </ul>

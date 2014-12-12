@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Atomia.Store.Core;
+using Atomia.Web.Base.ActionTrail;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Web;
-using Atomia.Web.Base.ActionTrail;
-using Atomia.Store.Core;
 
 namespace Atomia.Store.Services.ActionTrail
 {

@@ -10,5 +10,7 @@ namespace Atomia.Store.Core
         public virtual int Period { get; set; }
 
         public virtual string Unit { get; set; }
+
+        public virtual decimal Price { get; set; }
     }
 }

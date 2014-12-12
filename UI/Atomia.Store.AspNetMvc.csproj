@@ -74,15 +74,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="HtmlHelpers\CurrencyFormatter.cs" />
     <Compile Include="HtmlHelpers\JsonActionHelper.cs" />
-    <Compile Include="Infrastructure\FormHandler.cs" />
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
-    <Compile Include="Infrastructure\IInputHandler.cs" />
     <Compile Include="Infrastructure\IModelProvider.cs" />
     <Compile Include="Infrastructure\JsonEnvelope.cs" />
     <Compile Include="Infrastructure\ModelBinder.cs" />
@@ -92,7 +88,6 @@
     <Compile Include="Models\RenewalPeriodInput.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\CartProvider.cs" />
-    <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\DomainsViewModel.cs" />
     <Compile Include="Models\ProductsViewModel.cs" />
     <Compile Include="Services\CurrencyProvider.cs" />

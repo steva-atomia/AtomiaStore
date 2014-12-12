@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
@@ -9,11 +8,10 @@ namespace Atomia.Store.Core
         private readonly string articleNumber;
 
         private decimal quantity;
-        private decimal price;
         private decimal discount;
         private decimal taxAmount;
 
-        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider):
+        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider) :
             base(itemDisplayProvider, currencyProvider)
         {
             if (string.IsNullOrEmpty(articleNumber))
@@ -26,9 +24,9 @@ namespace Atomia.Store.Core
             this.articleNumber = articleNumber;
         }
 
-        public override string ArticleNumber 
-        { 
-            get 
+        public override string ArticleNumber
+        {
+            get
             {
                 return articleNumber;
             }
@@ -36,9 +34,12 @@ namespace Atomia.Store.Core
 
         public decimal Quantity
         {
-            get { return quantity; }
-            set 
-            { 
+            get
+            {
+                return quantity;
+            }
+            set
+            {
                 if (value < 1)
                 {
                     throw new ArgumentException("Quantity must be greater than 0.");
@@ -50,8 +51,9 @@ namespace Atomia.Store.Core
 
         public RenewalPeriod RenewalPeriod { get; set; }
 
-        public int Id { 
-            get 
+        public int Id
+        {
+            get
             {
                 return this.id;
             }
@@ -68,15 +70,36 @@ namespace Atomia.Store.Core
             }
         }
 
-        public decimal Price { get { return price; } }
+        public decimal Price
+        {
+            get
+            {
+                return RenewalPeriod.Price;
+            }
+        }
 
-        public decimal Discount { get { return discount; } }
+        public decimal Discount
+        {
+            get
+            {
+                return discount;
+            }
+        }
 
-        public decimal TaxAmount { get { return taxAmount; } }
-        
+        public decimal TaxAmount
+        {
+            get 
+            { 
+                return taxAmount; 
+            }
+        }
+
         public decimal Total
         {
-            get { return (Price - Discount) * Quantity; }
+            get 
+            { 
+                return (RenewalPeriod.Price - Discount) * Quantity; 
+            }
         }
 
         public void SetPricing(decimal price, decimal discount, decimal taxAmount)
@@ -96,7 +119,7 @@ namespace Atomia.Store.Core
                 throw new ArgumentOutOfRangeException("taxAmount");
             }
 
-            this.price = price;
+            this.RenewalPeriod.Price = price;
             this.discount = discount;
             this.taxAmount = taxAmount;
         }
@@ -105,7 +128,7 @@ namespace Atomia.Store.Core
         {
             get
             {
-                return currencyProvider.FormatAmount(Price);
+                return currencyProvider.FormatAmount(RenewalPeriod.Price);
             }
         }
 

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using Atomia.Store.AspNetMvc.Infrastructure;
+using System;
 using System.Net;
 using System.Web.Mvc;
-using Atomia.Store.AspNetMvc.Infrastructure;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {

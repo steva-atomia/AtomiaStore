@@ -1,5 +1,5 @@
 using Atomia.Store.AspNetMvc.Infrastructure;
-using Atomia.Store.AspNetMvc.ViewModels;
+using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
 using Microsoft.Practices.Unity;
 using System.Web.Mvc;
@@ -16,8 +16,8 @@ namespace Atomia.Store.Themes.Default
             // ViewModels
             container.RegisterType<IModelProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelProvider>();
             container.RegisterType<IModelBinderProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelBinderProvider>();
-            container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.ViewModels.DefaultDomainsViewModel>();
-            container.RegisterType<ProductsViewModel, Atomia.Store.Themes.Default.ViewModels.DefaultProductsViewModel>();
+            container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DefaultDomainsViewModel>();
+            container.RegisterType<ProductsViewModel, Atomia.Store.Themes.Default.Models.DefaultProductsViewModel>();
 
             // Services
             container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();

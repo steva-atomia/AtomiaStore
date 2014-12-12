@@ -1,6 +1,6 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 using System.Linq;
-using System;
 using System.Web;
 
 namespace Atomia.Store.Core

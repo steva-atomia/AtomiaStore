@@ -31,15 +31,45 @@ namespace Atomia.Store.Core
             this.cartPricingProvider = cartPricingProvider;
         }
 
-        public ICollection<CartItem> CartItems { get { return this.cartItems; } }
+        public ICollection<CartItem> CartItems 
+        { 
+            get 
+            { 
+                return this.cartItems; 
+            } 
+        }
 
-        public string CampaignCode { get { return campaignCode; }}
+        public string CampaignCode 
+        { 
+            get 
+            { 
+                return campaignCode; 
+            }
+        }
 
-        public decimal SubTotal { get { return subTotal; } }
+        public decimal SubTotal 
+        { 
+            get 
+            { 
+                return subTotal; 
+            } 
+        }
 
-        public decimal Tax { get { return tax; } }
+        public decimal Tax 
+        { 
+            get 
+            { 
+                return tax; 
+            } 
+        }
 
-        public decimal Total { get { return total; } }
+        public decimal Total 
+        { 
+            get 
+            { 
+                return total; 
+            } 
+        }
 
         public void SetPricing(decimal subTotal, decimal tax, decimal total)
         {
@@ -72,7 +102,6 @@ namespace Atomia.Store.Core
 
             cartItem.Id = itemNoCounter++;
             this.cartItems.Add(cartItem);
-
             RecalculatePricingAndSave();
         }
 
@@ -98,14 +127,12 @@ namespace Atomia.Store.Core
             }
 
             this.campaignCode = campaignCode;
-
             RecalculatePricingAndSave();
         }
 
         public void RemoveCampaignCode()
         {
             this.campaignCode = string.Empty;
-
             RecalculatePricingAndSave();
         }
 
@@ -124,7 +151,6 @@ namespace Atomia.Store.Core
             }
 
             cartItem.Quantity = newQuantity;
-
             RecalculatePricingAndSave();
         }
 
@@ -133,7 +159,6 @@ namespace Atomia.Store.Core
             this.cartItems.Clear();
             this.campaignCode = string.Empty;
             this.SetPricing(0m, 0m, 0m);
-
             cartRepository.SaveCart(this);
         }
 

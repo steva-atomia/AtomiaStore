@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using Atomia.Store.Core;
 using System.Linq;
-using System.Text;
-using Atomia.Store.Core;
 
 namespace Atomia.Store.Services.Fakes
 {

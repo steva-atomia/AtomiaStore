@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Web.Optimization;
+﻿using System.Web.Optimization;
 
 namespace Atomia.Store.Themes.Default
 {
