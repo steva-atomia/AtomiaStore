@@ -4,14 +4,14 @@ using System.Linq;
 using System.Text;
 using Atomia.Store.Core;
 
-namespace Atomia.Store.Services.WebPluginDomainSearch
+namespace Atomia.Store.Services.Fakes
 {
-    public class DomainSearchService : IDomainSearchService
+    public class FakeDomainSearchService : IDomainSearchService
     {
         private readonly IItemDisplayProvider itemDisplayProvider;
         private readonly ICurrencyProvider currencyProvider;
 
-        public DomainSearchService(IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider)
+        public FakeDomainSearchService(IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider)
         {
             this.itemDisplayProvider = itemDisplayProvider;
             this.currencyProvider = currencyProvider;

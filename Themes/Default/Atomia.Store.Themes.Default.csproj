@@ -132,6 +132,7 @@
     <Compile Include="ViewModels\DefaultCheckoutViewModel.cs" />
     <Compile Include="ViewModels\DefaultDomainsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\DefaultProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -148,6 +149,10 @@
     <ProjectReference Include="..\..\Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj">
       <Project>{6f81b202-21af-49bb-8606-518149972eed}</Project>
       <Name>Atomia.Store.Services.ActionTrail</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Services\Fakes\Atomia.Store.Services.Fakes.csproj">
+      <Project>{1239517a-dc31-414c-8d3d-37dd34c2e143}</Project>
+      <Name>Atomia.Store.Services.Fakes</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Services\WebPluginDomainSearch\Atomia.Store.Services.WebPluginDomainSearch.csproj">
       <Project>{899A798A-E1E5-4C85-B5E7-2C715866D807}</Project>

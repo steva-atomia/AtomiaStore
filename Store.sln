@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Core.Services.Public
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default.Test", "Test\Atomia.Store.Themes.Default.Test\Atomia.Store.Themes.Default.Test.csproj", "{30224D9F-9022-405A-A4C1-5B1FB3966703}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.Fakes", "Services\Fakes\Atomia.Store.Services.Fakes.csproj", "{1239517A-DC31-414C-8D3D-37DD34C2E143}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -73,6 +75,10 @@ Global
 		{30224D9F-9022-405A-A4C1-5B1FB3966703}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{30224D9F-9022-405A-A4C1-5B1FB3966703}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{30224D9F-9022-405A-A4C1-5B1FB3966703}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1239517A-DC31-414C-8D3D-37DD34C2E143}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1239517A-DC31-414C-8D3D-37DD34C2E143}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1239517A-DC31-414C-8D3D-37DD34C2E143}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1239517A-DC31-414C-8D3D-37DD34C2E143}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
