@@ -21,12 +21,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult ListCategory(string category)
+        public ActionResult ListCategory(string category, string viewName="ListCategory")
         {
             var model = modelProvider.Create<ProductsViewModel>();
+            model.Category = category;
             model.Products = productsProvider.GetProducts(category);
 
-            return View(model);
+            return View(viewName, model);
         }
 
         [ChildActionOnly]

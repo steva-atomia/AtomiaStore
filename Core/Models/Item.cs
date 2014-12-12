@@ -25,6 +25,8 @@ namespace Atomia.Store.Core
 
             this.displayProvider = displayProvider;
             this.currencyProvider = currencyProvider;
+
+            CustomAttributes = new List<CustomAttribute>();
         }
 
         public virtual string ArticleNumber { get; set; }

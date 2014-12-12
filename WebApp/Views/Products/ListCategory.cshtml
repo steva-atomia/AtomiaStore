@@ -1,0 +1,23 @@
+﻿@model Atomia.Store.Themes.Default.ViewModels.DefaultProductsViewModel
+@using Atomia.Store.Core;
+
+@{
+    Layout = "~/Views/_MainLayout.cshtml";
+    ViewBag.Title = @Model.Category;
+}
+
+<!DOCTYPE html>
+
+<h2>@Model.Category</h2>
+<p>
+    This is a products listing.
+</p>
+<ul>
+    @foreach (var product in Model.Products)
+    {
+        <li>
+            <h3>@product.Name <span>@product.DisplayPrice</span></h3>
+            <p>@product.Description</p>
+        </li>
+    }
+</ul>
