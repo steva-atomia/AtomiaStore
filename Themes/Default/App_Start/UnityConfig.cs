@@ -1,18 +1,9 @@
-using Atomia.Store.Core;
-using Atomia.Store.Themes.Default.ViewModels;
 using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.ViewModels;
-using Atomia.Store.AspNetMvc.Services;
-using Atomia.Store.Services.ActionTrail;
+using Atomia.Store.Core;
 using Microsoft.Practices.Unity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web.Mvc;
 using Unity.Mvc5;
-
-// TODO: Remove this when all fake services have been switched out.
-using Atomia.Store.Services.Fakes;
 
 namespace Atomia.Store.Themes.Default
 {
@@ -22,21 +13,22 @@ namespace Atomia.Store.Themes.Default
         {
 			var container = new UnityContainer();
 
-            container.RegisterType<IModelProvider, ModelProvider>();
-            container.RegisterType<IModelBinderProvider, ModelBinderProvider>();
+            // ViewModels
+            container.RegisterType<IModelProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelProvider>();
+            container.RegisterType<IModelBinderProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelBinderProvider>();
+            container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.ViewModels.DefaultDomainsViewModel>();
+            container.RegisterType<ProductsViewModel, Atomia.Store.Themes.Default.ViewModels.DefaultProductsViewModel>();
 
-            container.RegisterType<DomainsViewModel, DefaultDomainsViewModel>();
-            container.RegisterType<ProductsViewModel, DefaultProductsViewModel>();
+            // Services
+            container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();
+            container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Services.CartProvider>();
+            container.RegisterType<ICurrencyProvider, Atomia.Store.Core.CurrencyProvider>();
 
-            container.RegisterType<IDomainSearchService, FakeDomainSearchService>();
-            container.RegisterType<ILogger, Logger>();
-
-            container.RegisterType<ICartProvider, CartProvider>();
-            container.RegisterType<ICartPricingService, FakePricingProvider>();
-            container.RegisterType<ICurrencyProvider, CurrencyProvider>();
-
-            container.RegisterType<IItemDisplayProvider, FakeItemDisplayProvider>();
-            container.RegisterType<IProductsProvider, FakeProductsProvider>();
+            // Fakes
+            container.RegisterType<IDomainSearchService, Atomia.Store.Services.Fakes.FakeDomainSearchService>();
+            container.RegisterType<ICartPricingService, Atomia.Store.Services.Fakes.FakePricingProvider>();
+            container.RegisterType<IItemDisplayProvider, Atomia.Store.Services.Fakes.FakeItemDisplayProvider>();
+            container.RegisterType<IProductsProvider, Atomia.Store.Services.Fakes.FakeProductsProvider>();
             
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
