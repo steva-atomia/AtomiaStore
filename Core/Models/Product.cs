@@ -11,8 +11,8 @@ namespace Atomia.Store.Core
         private readonly string articleNumber;
         private readonly decimal price;
 
-        public Product(string articleNumber, decimal price, IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider):
-            base(displayProvider, currencyProvider)
+        public Product(string articleNumber, decimal price, IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider):
+            base(itemDisplayProvider, currencyProvider)
         {
             if (string.IsNullOrEmpty(articleNumber))
             {

@@ -8,12 +8,12 @@ namespace Atomia.Store.Core
 {
     public abstract class Item
     {
-        protected readonly IItemDisplayProvider displayProvider;
+        protected readonly IItemDisplayProvider itemDisplayProvider;
         protected readonly ICurrencyProvider currencyProvider;
 
-        public Item(IItemDisplayProvider displayProvider, ICurrencyProvider currencyProvider)
+        public Item(IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider)
         {
-            if (displayProvider == null)
+            if (itemDisplayProvider == null)
             {
                 throw new ArgumentNullException("displayProvider");
             }
@@ -23,7 +23,7 @@ namespace Atomia.Store.Core
                 throw new ArgumentNullException("currencyProvider");
             }
 
-            this.displayProvider = displayProvider;
+            this.itemDisplayProvider = itemDisplayProvider;
             this.currencyProvider = currencyProvider;
 
             CustomAttributes = new List<CustomAttribute>();
@@ -37,7 +37,7 @@ namespace Atomia.Store.Core
         {
             get
             {
-                return this.displayProvider.GetName(this);
+                return this.itemDisplayProvider.GetName(this);
             }
         }
 
@@ -45,7 +45,7 @@ namespace Atomia.Store.Core
         {
             get
             {
-                return this.displayProvider.GetDescription(this);
+                return this.itemDisplayProvider.GetDescription(this);
             }
         }
     }
