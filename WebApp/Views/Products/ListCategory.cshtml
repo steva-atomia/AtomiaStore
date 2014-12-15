@@ -1,4 +1,4 @@
-﻿@model Atomia.Store.Themes.Default.Models.DefaultProductsViewModel
+﻿@model Atomia.Store.Themes.Default.Models.DefaultListCategoryViewModel
 @using Atomia.Store.Core;
 
 @{
@@ -7,7 +7,9 @@
 }
 
 <!DOCTYPE html>
-
+@{
+    dynamic ResourceProvider = new {};
+}
 <h2>@Model.Category</h2>
 <p>
     This is a products listing.
@@ -20,18 +22,14 @@
                 <h3>@product.Name</h3>
                 <p>@product.Description</p>
                 <ul>
-                    @foreach (var renewalPeriod in product.RenewalPeriodChoices)
+                    @foreach (var pricingVariant in product.PricingVariants)
                     {
                         <li>
-                            @renewalPeriod.ToString()
+                            @pricingVariant
                         </li>
                     }
                 </ul>
-
             </div>
-
-
-
             <p><button>Add to cart</button></p>
         </li>
     }

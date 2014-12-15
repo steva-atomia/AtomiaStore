@@ -1,10 +1,10 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class RenewalPeriod
+    public sealed class RenewalPeriod
     {
-        public virtual int Period { get; set; }
+        public int Period { get; set; }
 
-        public virtual string Unit { get; set; }
+        public string Unit { get; set; }
     }
 }

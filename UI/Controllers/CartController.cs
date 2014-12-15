@@ -17,23 +17,23 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(cart);
+            return View(new CartModel(cart));
         }
 
         [ChildActionOnly]
         public ActionResult Partial()
         {
-            return PartialView(cart);
+            return PartialView(new CartModel(cart));
         }
 
         [HttpPost]
-        public JsonResult AddItem(CartItemInput inputItem)
+        public JsonResult AddItem(CartItemModel item)
         {
             if (ModelState.IsValid)
             {
-                cart.AddItem(inputItem.ArticleNumber, inputItem.Quantity, inputItem.RenewalPeriod, inputItem.CustomAttributes);
+                cart.AddItem(item.CartItem);
 
-                return JsonEnvelope.Success(new { Cart = cart });
+                return JsonEnvelope.Success(new CartModel(cart));
             }
 
             return JsonEnvelope.Fail(ModelState);
@@ -45,19 +45,21 @@ namespace Atomia.Store.AspNetMvc.Controllers
             if (ModelState.IsValid)
             {
                 cart.RemoveItem(itemId);
-                return JsonEnvelope.Success(new { Cart = cart });
+
+                return JsonEnvelope.Success(new CartModel(cart));
             }
 
             return JsonEnvelope.Fail(ModelState);
         }
 
         [HttpPost]
-        public JsonResult ChangeQuantity(int itemId, decimal newQuantity)
+        public JsonResult ChangeQuantity(CartItemQuantityModel cartItemQuantity)
         {
             if (ModelState.IsValid)
             {
-                cart.ChangeQuantity(itemId, newQuantity);
-                return JsonEnvelope.Success(new { Cart = cart });
+                cart.ChangeQuantity(cartItemQuantity.Id, cartItemQuantity.Quantity);
+
+                return JsonEnvelope.Success(new CartModel(cart));
             }
 
             return JsonEnvelope.Fail(ModelState);

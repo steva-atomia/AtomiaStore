@@ -1,37 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
-    public sealed class CartItem : Item
+    public sealed class CartItem
     {
         private int id;
-        private readonly string articleNumber;
 
         private decimal quantity;
         private decimal price;
         private decimal discount;
         private decimal taxAmount;
 
-        public CartItem(string articleNumber, decimal quantity, IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider) :
-            base(itemDisplayProvider, currencyProvider)
-        {
-            if (string.IsNullOrEmpty(articleNumber))
-            {
-                throw new ArgumentException("articleNumber");
-            }
-
-            Quantity = quantity;
-
-            this.articleNumber = articleNumber;
-        }
-
-        public override string ArticleNumber
-        {
-            get
-            {
-                return articleNumber;
-            }
-        }
+        public string ArticleNumber { get; set; }
 
         public decimal Quantity
         {
@@ -52,13 +33,15 @@ namespace Atomia.Store.Core
 
         public RenewalPeriod RenewalPeriod { get; set; }
 
+        public List<CustomAttribute> CustomAttributes { get; set; }
+
         public int Id
         {
             get
             {
                 return this.id;
             }
-            set
+            internal set
             {
                 if (id == 0)
                 {
@@ -90,16 +73,16 @@ namespace Atomia.Store.Core
         public decimal TaxAmount
         {
             get 
-            { 
-                return taxAmount; 
+            {
+                return taxAmount;
             }
         }
 
         public decimal Total
         {
             get 
-            { 
-                return (price - Discount) * Quantity; 
+            {
+                return (price - discount) * quantity;
             }
         }
 
@@ -123,38 +106,6 @@ namespace Atomia.Store.Core
             this.price = price;
             this.discount = discount;
             this.taxAmount = taxAmount;
-        }
-
-        public string DisplayPrice
-        {
-            get
-            {
-                return currencyProvider.FormatAmount(Price);
-            }
-        }
-
-        public string DisplayDiscount
-        {
-            get
-            {
-                return currencyProvider.FormatAmount(Discount);
-            }
-        }
-
-        public string DisplayTaxAmount
-        {
-            get
-            {
-                return currencyProvider.FormatAmount(TaxAmount);
-            }
-        }
-
-        public string DisplayTotal
-        {
-            get
-            {
-                return currencyProvider.FormatAmount(Total);
-            }
         }
     }
 }

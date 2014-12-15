@@ -3,9 +3,10 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public abstract class ProductsViewModel
+    public abstract class ListCategoryViewModel
     {
-        public IList<Product> Products { get; set; }
+        public virtual IList<ProductModel> Products { get; set; }
+
         public string Category { get; set; }
     }
 }

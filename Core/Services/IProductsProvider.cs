@@ -7,3 +7,4 @@ namespace Atomia.Store.Core
         IList<Product> GetProducts(string category);
     }
 }
+

@@ -1,5 +1,6 @@
 ﻿using Atomia.Store.AspNetMvc.Controllers;
 using Atomia.Store.AspNetMvc.Infrastructure;
+using Atomia.Store.AspNetMvc.Services;
 using Atomia.Store.Core;
 using Atomia.Web.Base.Configs;
 using System;

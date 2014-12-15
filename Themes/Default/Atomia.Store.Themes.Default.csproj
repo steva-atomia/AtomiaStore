@@ -131,7 +131,7 @@
     <Compile Include="DefaultGlobalEventsHandler.cs" />
     <Compile Include="Models\DefaultDomainsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\DefaultProductsViewModel.cs" />
+    <Compile Include="Models\DefaultListCategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\FilterConfig.cs" />

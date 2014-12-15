@@ -6,7 +6,5 @@ namespace Atomia.Store.Core
         string GetCurrencyCode();
 
         void SetCurrencyCode(string currencyCode);
-
-        string FormatAmount(decimal amount);
     }
 }

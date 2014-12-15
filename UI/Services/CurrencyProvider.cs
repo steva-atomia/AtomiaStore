@@ -2,13 +2,13 @@
 using System.Globalization;
 using System.Linq;
 using System.Web;
+using Atomia.Store.Core;
 
-namespace Atomia.Store.Core
+namespace Atomia.Store.AspNetMvc.Services
 {
     public class CurrencyProvider : ICurrencyProvider
     {
         private string currencyCode;
-        private CultureInfo culture;
 
         public string GetCurrencyCode()
         {
@@ -33,26 +33,6 @@ namespace Atomia.Store.Core
             }
 
             HttpContext.Current.Session["CurrencyCode"] = currencyCodeToSet;
-        }
-
-        /// <summary>
-        /// Return default .NET currency format or fallback to simple 
-        /// </summary>
-        public string FormatAmount(decimal amount)
-        { 
-            if (culture == default(CultureInfo))
-            {
-                culture = CultureInfo.GetCultures(CultureTypes.SpecificCultures).First(c => new RegionInfo(c.LCID).ISOCurrencySymbol == GetCurrencyCode().ToUpper());
-            }
-
-            if (culture == default(CultureInfo))
-            {
-                return string.Format("{0} {1}", currencyCode, amount);
-            }
-            else
-            {
-                return amount.ToString("C2", culture);
-            }
         }
     }
 }

@@ -3,29 +3,12 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
-    public sealed class Product : Item
+    public sealed class Product
     {
-        private readonly string articleNumber;
+        public string ArticleNumber { get; set; }
 
-        public Product(string articleNumber, IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider):
-            base(itemDisplayProvider, currencyProvider)
-        {
-            if (string.IsNullOrEmpty(articleNumber))
-            {
-                throw new ArgumentException("articleNumber");
-            }
+        public List<CustomAttribute> CustomAttributes { get; set; }
 
-            this.articleNumber = articleNumber;
-        }
-
-        public override string ArticleNumber
-        {
-            get
-            {
-                return this.articleNumber;
-            }
-        }
-
-        public List<PricedRenewalPeriod> RenewalPeriodChoices { get; set; }
+        public List<PricingVariant> PricingVariants { get; set; }
     }
 }

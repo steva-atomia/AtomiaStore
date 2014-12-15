@@ -6,15 +6,6 @@ namespace Atomia.Store.Services.Fakes
 {
     public class FakeDomainSearchService : IDomainSearchService
     {
-        private readonly IItemDisplayProvider itemDisplayProvider;
-        private readonly ICurrencyProvider currencyProvider;
-
-        public FakeDomainSearchService(IItemDisplayProvider itemDisplayProvider, ICurrencyProvider currencyProvider)
-        {
-            this.itemDisplayProvider = itemDisplayProvider;
-            this.currencyProvider = currencyProvider;
-        }
-
         public IList<Product> FindDomains(DomainSearchQuery searchQuery) 
         {
             var results = new List<Product>();
@@ -43,9 +34,10 @@ namespace Atomia.Store.Services.Fakes
                     }
                 };
 
-                var product = new Product("DMN-COM", itemDisplayProvider, currencyProvider)
+                var product = new Product
                 {
-                    RenewalPeriodChoices = renewalPeriods.Select(r => new PricedRenewalPeriod(currencyProvider) { RenewalPeriod = r, Price = 10m}).ToList(),
+                    ArticleNumber = "DMN-COM",
+                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     CustomAttributes = customAttributes
                 };
                 results.Add(product);

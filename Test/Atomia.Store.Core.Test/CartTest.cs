@@ -29,36 +29,6 @@ namespace Atomia.Store.Core.Test
         }
     }
 
-    internal class FakeItemDisplayProvider : IItemDisplayProvider
-    {
-        public string GetName(Item item)
-        {
-            throw new NotImplementedException();
-        }
-
-        public string GetDescription(Item item)
-        {
-            throw new NotImplementedException();
-        }
-    }
-
-    internal class FakeCurrencyProvider : ICurrencyProvider
-    {
-        public string GetCurrencyCode()
-        {
- 	        throw new NotImplementedException();
-        }
-
-        public string FormatAmount(decimal amount)
-        {
- 	        throw new NotImplementedException();
-        }
-
-        public void SetCurrencyCode(string currencyCode)
-        {
-            throw new NotImplementedException();
-        }
-    }
 
 
     [TestClass]
@@ -66,9 +36,6 @@ namespace Atomia.Store.Core.Test
     {
         private FakeCartRepository cartRepository;
         private FakeCarPricingProvider cartPricingProvider;
-        private FakeItemDisplayProvider itemDisplayProvider;
-        private FakeCurrencyProvider currencyProvider;
-        private CartItemProvider cartItemProvider;
         private Cart cart;
 
         [TestInitialize]
@@ -76,10 +43,7 @@ namespace Atomia.Store.Core.Test
         {
             cartRepository = new FakeCartRepository(); 
             cartPricingProvider = new FakeCarPricingProvider();
-            itemDisplayProvider = new FakeItemDisplayProvider();
-            currencyProvider = new FakeCurrencyProvider();
-            cartItemProvider = new CartItemProvider(itemDisplayProvider, currencyProvider);
-            cart = new Cart(cartRepository, cartPricingProvider, cartItemProvider);
+            cart = new Cart(cartRepository, cartPricingProvider);
         }
 
         [TestMethod]
@@ -123,15 +87,23 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void IsEmptyTest()
         {
-            var cartItem = cartItemProvider.CreateCartItem("ART1", 1);
-
+            var cartItem = new CartItem
+            {
+                ArticleNumber = "ART1",
+                Quantity = 1
+            };
+    
             Assert.IsTrue(cart.IsEmpty(), "Expected cart to be empty.");
         }
 
         [TestMethod]
         public void AddItemTest()
         {
-            var cartItem = cartItemProvider.CreateCartItem("ART1", 1);
+            var cartItem = new CartItem
+            {
+                ArticleNumber = "ART1",
+                Quantity = 1
+            };
 
             Assert.AreEqual(0, cartItem.Id, "Did not expect Id to be set on new cart item.");
 
@@ -155,8 +127,16 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void RemoveItemTest()
         {
-            var cartItem1 = cartItemProvider.CreateCartItem("ART1", 1);
-            var cartItem2 = cartItemProvider.CreateCartItem("ART2", 1);
+            var cartItem1 = new CartItem
+            {
+                ArticleNumber = "ART1",
+                Quantity = 1
+            };
+            var cartItem2 = new CartItem
+            {
+                ArticleNumber = "ART2",
+                Quantity = 1
+            };
 
             cart.AddItem(cartItem1);
             cart.AddItem(cartItem2);
@@ -216,7 +196,11 @@ namespace Atomia.Store.Core.Test
         [TestMethod]
         public void ChangeQuantityTest()
         {
-            var cartItem = cartItemProvider.CreateCartItem("ART1", 1);
+            var cartItem = new CartItem
+            {
+                ArticleNumber = "ART1",
+                Quantity = 1
+            };
 
             cart.AddItem(cartItem);
             cart.ChangeQuantity(cartItem.Id, 2m);
@@ -230,7 +214,11 @@ namespace Atomia.Store.Core.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative quantity.")]
         public void ChangeQuantityNegativeFailsTest()
         {
-            var cartItem = cartItemProvider.CreateCartItem("ART1", 1);
+            var cartItem = new CartItem
+            {
+                ArticleNumber = "ART1",
+                Quantity = 1
+            };
 
             cart.AddItem(cartItem);
             cart.ChangeQuantity(cartItem.Id, -2m);

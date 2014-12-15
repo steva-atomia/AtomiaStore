@@ -6,9 +6,8 @@ namespace Atomia.Store.Core
 {
     public sealed class Cart
     {
-        private readonly ICartProvider cartRepository;
-        private readonly ICartPricingService cartPricingProvider;
-        private readonly ICartItemProvider cartItemProvider;
+        private readonly ICartProvider cartProvider;
+        private readonly ICartPricingService cartPricingService;
         
         private List<CartItem> cartItems = new List<CartItem>();
         private string campaignCode = String.Empty;
@@ -17,26 +16,20 @@ namespace Atomia.Store.Core
         private decimal total;
         private int itemNoCounter = 1;
 
-        public Cart(ICartProvider cartRepository, ICartPricingService cartPricingProvider, ICartItemProvider cartItemProvider)
+        public Cart(ICartProvider cartProvider, ICartPricingService cartPricingService)
         {
-            if (cartRepository == null)
+            if (cartProvider == null)
             {
-                throw new ArgumentNullException("cartRepository");
+                throw new ArgumentNullException("cartProvider");
             }
 
-            if (cartPricingProvider == null)
+            if (cartPricingService == null)
             {
-                throw new ArgumentNullException("cartPricingProvider");
+                throw new ArgumentNullException("cartPricingService");
             }
 
-            if (cartItemProvider == null)
-            {
-                throw new ArgumentNullException("cartItemProvider");
-            }
-
-            this.cartRepository = cartRepository;
-            this.cartPricingProvider = cartPricingProvider;
-            this.cartItemProvider = cartItemProvider;
+            this.cartProvider = cartProvider;
+            this.cartPricingService = cartPricingService;
         }
 
         public ICollection<CartItem> CartItems 
@@ -51,7 +44,7 @@ namespace Atomia.Store.Core
         { 
             get 
             { 
-                return campaignCode; 
+                return campaignCode;
             }
         }
 
@@ -99,21 +92,6 @@ namespace Atomia.Store.Core
             this.subTotal = subTotal;
             this.tax = tax;
             this.total = total;
-        }
-
-        public void AddItem(string articleNumber, decimal quantity)
-        {
-            AddItem(articleNumber, quantity, null, null);
-        }
-
-        public void AddItem(string articleNumber, decimal quantity, RenewalPeriod renewalPeriod, List<CustomAttribute> customAttributes)
-        {
-            var cartItem = cartItemProvider.CreateCartItem(articleNumber, quantity);
-
-            cartItem.RenewalPeriod = renewalPeriod;
-            cartItem.CustomAttributes = customAttributes;
-
-            AddItem(cartItem);
         }
 
         public void AddItem(CartItem cartItem)
@@ -183,7 +161,7 @@ namespace Atomia.Store.Core
             this.cartItems.Clear();
             this.campaignCode = string.Empty;
             this.SetPricing(0m, 0m, 0m);
-            cartRepository.SaveCart(this);
+            cartProvider.SaveCart(this);
         }
 
         public bool IsEmpty()
@@ -193,8 +171,8 @@ namespace Atomia.Store.Core
 
         private void RecalculatePricingAndSave()
         {
-            var updatedCart = cartPricingProvider.CalculatePricing(this);
-            cartRepository.SaveCart(updatedCart);
+            var updatedCart = cartPricingService.CalculatePricing(this);
+            cartProvider.SaveCart(updatedCart);
         }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
@@ -29,7 +30,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var searchResults = domainSearchService.FindDomains(searchQuery);
+                var searchResults = domainSearchService.FindDomains(searchQuery).Select(r => new ProductModel(r)).ToList();
 
                 return JsonEnvelope.Success(searchResults);
             }

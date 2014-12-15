@@ -1,4 +1,5 @@
 ﻿using Atomia.Store.Core;
+using Atomia.Store.AspNetMvc.Models;
 using System.Web;
 
 namespace Atomia.Store.AspNetMvc.Services
@@ -6,12 +7,10 @@ namespace Atomia.Store.AspNetMvc.Services
     public class CartProvider : ICartProvider
     {
         private readonly ICartPricingService cartPricingProvider;
-        private readonly ICartItemProvider cartItemProvider;
 
-        public CartProvider(ICartPricingService cartPricingProvider, ICartItemProvider cartItemProvider)
+        public CartProvider(ICartPricingService cartPricingProvider)
         {
             this.cartPricingProvider = cartPricingProvider;
-            this.cartItemProvider = cartItemProvider;
         }
         
         public Cart GetCart() 
@@ -20,7 +19,7 @@ namespace Atomia.Store.AspNetMvc.Services
 
             if (cart == null)
             {
-                cart = new Cart(this, cartPricingProvider, cartItemProvider);
+                cart = new Cart(this, cartPricingProvider);
             }
 
             return cart;

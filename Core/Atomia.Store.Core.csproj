@@ -50,18 +50,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Services\CartItemProvider.cs" />
-    <Compile Include="Services\ICartItemProvider.cs" />
-    <Compile Include="Models\Item.cs" />
-    <Compile Include="Models\PricedRenewalPeriod.cs" />
+    <Compile Include="Models\PricingVariant.cs" />
     <Compile Include="Services\ICartPricingService.cs" />
     <Compile Include="Services\ICartProvider.cs" />
     <Compile Include="Models\CustomAttribute.cs" />
-    <Compile Include="Services\IItemDisplayProvider.cs" />
     <Compile Include="Models\Product.cs" />
     <Compile Include="Models\RenewalPeriod.cs" />
     <Compile Include="Models\Cart.cs" />
-    <Compile Include="Models\ContactInfo.cs" />
     <Compile Include="Models\DomainSearchQuery.cs" />
     <Compile Include="Models\CartItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

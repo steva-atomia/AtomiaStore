@@ -7,6 +7,6 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         public virtual DomainSearchQuery SearchQuery { get; set; }
 
-        public virtual IList<Product> SearchResults { get; set; }
+        public virtual IList<ProductModel> SearchResults { get; set; }
     }
 }
