@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Atomia.Store.Core;
 
 namespace Atomia.Store.Core
 {
@@ -7,6 +8,7 @@ namespace Atomia.Store.Core
     {
         private readonly ICartProvider cartRepository;
         private readonly ICartPricingService cartPricingProvider;
+        private readonly ICartItemProvider cartItemProvider;
         
         private List<CartItem> cartItems = new List<CartItem>();
         private string campaignCode = String.Empty;
@@ -15,7 +17,7 @@ namespace Atomia.Store.Core
         private decimal total;
         private int itemNoCounter = 1;
 
-        public Cart(ICartProvider cartRepository, ICartPricingService cartPricingProvider)
+        public Cart(ICartProvider cartRepository, ICartPricingService cartPricingProvider, ICartItemProvider cartItemProvider)
         {
             if (cartRepository == null)
             {
@@ -27,8 +29,14 @@ namespace Atomia.Store.Core
                 throw new ArgumentNullException("cartPricingProvider");
             }
 
+            if (cartItemProvider == null)
+            {
+                throw new ArgumentNullException("cartItemProvider");
+            }
+
             this.cartRepository = cartRepository;
             this.cartPricingProvider = cartPricingProvider;
+            this.cartItemProvider = cartItemProvider;
         }
 
         public ICollection<CartItem> CartItems 
@@ -93,6 +101,21 @@ namespace Atomia.Store.Core
             this.total = total;
         }
 
+        public void AddItem(string articleNumber, decimal quantity)
+        {
+            AddItem(articleNumber, quantity, null, null);
+        }
+
+        public void AddItem(string articleNumber, decimal quantity, RenewalPeriod renewalPeriod, List<CustomAttribute> customAttributes)
+        {
+            var cartItem = cartItemProvider.CreateCartItem(articleNumber, quantity);
+
+            cartItem.RenewalPeriod = renewalPeriod;
+            cartItem.CustomAttributes = customAttributes;
+
+            AddItem(cartItem);
+        }
+
         public void AddItem(CartItem cartItem)
         {
             if (cartItem == null)
@@ -102,6 +125,7 @@ namespace Atomia.Store.Core
 
             cartItem.Id = itemNoCounter++;
             this.cartItems.Add(cartItem);
+
             RecalculatePricingAndSave();
         }
 

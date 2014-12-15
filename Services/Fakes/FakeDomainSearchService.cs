@@ -1,5 +1,6 @@
 ﻿using Atomia.Store.Core;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atomia.Store.Services.Fakes
 {
@@ -42,9 +43,9 @@ namespace Atomia.Store.Services.Fakes
                     }
                 };
 
-                var product = new Product("DMN-COM", 10m, itemDisplayProvider, currencyProvider)
+                var product = new Product("DMN-COM", itemDisplayProvider, currencyProvider)
                 {
-                    RenewalPeriods = renewalPeriods,
+                    RenewalPeriodChoices = renewalPeriods.Select(r => new PricedRenewalPeriod(currencyProvider) { RenewalPeriod = r, Price = 10m}).ToList(),
                     CustomAttributes = customAttributes
                 };
                 results.Add(product);

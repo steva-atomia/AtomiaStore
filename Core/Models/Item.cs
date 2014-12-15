@@ -28,8 +28,6 @@ namespace Atomia.Store.Core
 
         public virtual string ArticleNumber { get; set; }
 
-        public virtual List<CustomAttribute> CustomAttributes { get; set; }
-
         public virtual string Name
         {
             get
@@ -45,5 +43,7 @@ namespace Atomia.Store.Core
                 return this.itemDisplayProvider.GetDescription(this);
             }
         }
+        
+        public virtual List<CustomAttribute> CustomAttributes { get; set; }
     }
 }

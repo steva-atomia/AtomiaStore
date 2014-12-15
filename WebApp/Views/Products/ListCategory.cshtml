@@ -19,10 +19,19 @@
             <div>
                 <h3>@product.Name</h3>
                 <p>@product.Description</p>
-                <p>
-                    From <span>@product.DisplayPrice</span>.
-                </p>
+                <ul>
+                    @foreach (var renewalPeriod in product.RenewalPeriodChoices)
+                    {
+                        <li>
+                            @renewalPeriod.ToString()
+                        </li>
+                    }
+                </ul>
+
             </div>
+
+
+
             <p><button>Add to cart</button></p>
         </li>
     }

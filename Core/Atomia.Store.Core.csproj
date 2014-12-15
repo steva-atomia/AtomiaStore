@@ -50,7 +50,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Services\CartItemProvider.cs" />
+    <Compile Include="Services\ICartItemProvider.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\PricedRenewalPeriod.cs" />
     <Compile Include="Services\ICartPricingService.cs" />
     <Compile Include="Services\ICartProvider.cs" />
     <Compile Include="Models\CustomAttribute.cs" />

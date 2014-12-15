@@ -8,6 +8,7 @@ namespace Atomia.Store.Core
         private readonly string articleNumber;
 
         private decimal quantity;
+        private decimal price;
         private decimal discount;
         private decimal taxAmount;
 
@@ -74,7 +75,7 @@ namespace Atomia.Store.Core
         {
             get
             {
-                return RenewalPeriod.Price;
+                return price;
             }
         }
 
@@ -98,7 +99,7 @@ namespace Atomia.Store.Core
         {
             get 
             { 
-                return (RenewalPeriod.Price - Discount) * Quantity; 
+                return (price - Discount) * Quantity; 
             }
         }
 
@@ -119,7 +120,7 @@ namespace Atomia.Store.Core
                 throw new ArgumentOutOfRangeException("taxAmount");
             }
 
-            this.RenewalPeriod.Price = price;
+            this.price = price;
             this.discount = discount;
             this.taxAmount = taxAmount;
         }
@@ -128,7 +129,7 @@ namespace Atomia.Store.Core
         {
             get
             {
-                return currencyProvider.FormatAmount(RenewalPeriod.Price);
+                return currencyProvider.FormatAmount(Price);
             }
         }
 

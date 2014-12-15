@@ -20,18 +20,18 @@ namespace Atomia.Store.Services.Fakes
 
             if (category == "Hosting")
             {
-                products.Add(new Product("HST-GLD", 10m, displayProvider, currencyProvider)
+                products.Add(new Product("HST-GLD", displayProvider, currencyProvider)
                 {
-                    RenewalPeriods = new List<RenewalPeriod>
+                    RenewalPeriodChoices = new List<PricedRenewalPeriod>
                     {
-                        new RenewalPeriod 
+                        new PricedRenewalPeriod(currencyProvider) 
                         {
-                            Period = 1, 
-                            Unit = "YEAR"
+                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" },
+                            Price = 10m
                         },
-                        new RenewalPeriod {
-                            Period = 2, 
-                            Unit = "YEAR"
+                        new PricedRenewalPeriod(currencyProvider) {
+                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" },
+                            Price = 20m
                         },
                     },
                     CustomAttributes = new List<CustomAttribute>
@@ -53,45 +53,53 @@ namespace Atomia.Store.Services.Fakes
                         }
                     }
                 });
-                products.Add(new Product("HST-PLT", 10m, displayProvider, currencyProvider)
+                products.Add(new Product("HST-PLT", displayProvider, currencyProvider)
                 {
-                    RenewalPeriods = new List<RenewalPeriod>
+                    RenewalPeriodChoices = new List<PricedRenewalPeriod>
                     {
-                        new RenewalPeriod 
+                        new PricedRenewalPeriod(currencyProvider) 
                         {
-                            Period = 1, 
-                            Unit = "YEAR"
+                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" },
+                            Price = 10m
                         },
-                        new RenewalPeriod {
-                            Period = 2, 
-                            Unit = "YEAR"
+                        new PricedRenewalPeriod(currencyProvider) {
+                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" },
+                            Price = 20m
                         },
-                    }
+                    },
                 });
             }
             else if (category == "Extra service")
             {
-                products.Add(new Product("XSV-MYSQL", 10m, displayProvider, currencyProvider)
+                products.Add(new Product("XSV-MYSQL", displayProvider, currencyProvider)
                 {
-                    RenewalPeriods = new List<RenewalPeriod>
+                    RenewalPeriodChoices = new List<PricedRenewalPeriod>
                     {
-                        new RenewalPeriod 
+                        new PricedRenewalPeriod(currencyProvider) 
                         {
-                            Period = 1, 
-                            Unit = "YEAR"
-                        }
-                    }
+                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" },
+                            Price = 10m
+                        },
+                        new PricedRenewalPeriod(currencyProvider) {
+                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" },
+                            Price = 20m
+                        },
+                    },
                 });
-                products.Add(new Product("XSV-MSSQL", 10m, displayProvider, currencyProvider)
+                products.Add(new Product("XSV-MSSQL", displayProvider, currencyProvider)
                 {
-                    RenewalPeriods = new List<RenewalPeriod>
+                    RenewalPeriodChoices = new List<PricedRenewalPeriod>
                     {
-                        new RenewalPeriod 
+                        new PricedRenewalPeriod(currencyProvider) 
                         {
-                            Period = 1, 
-                            Unit = "YEAR"
-                        }
-                    }
+                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" },
+                            Price = 10m
+                        },
+                        new PricedRenewalPeriod(currencyProvider) {
+                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" },
+                            Price = 20m
+                        },
+                    },
                 });
             }
 
