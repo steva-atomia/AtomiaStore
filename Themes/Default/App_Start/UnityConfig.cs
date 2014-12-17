@@ -20,6 +20,9 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DefaultDomainsViewModel>();
             container.RegisterType<ListCategoryViewModel, Atomia.Store.Themes.Default.Models.DefaultListCategoryViewModel>();
 
+            // Themes
+            container.RegisterType<IViewEngine, Atomia.Store.AspNetMvc.Infrastructure.RazorThemeViewEngine>("RazorThemeViewEngine");
+
             // Services
             container.RegisterType<ILogger, Atomia.Store.Services.ActionTrail.Logger>();
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Services.CartProvider>();
@@ -32,6 +35,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICartPricingService, Atomia.Store.Services.Fakes.FakePricingProvider>();
             container.RegisterType<IProductsProvider, Atomia.Store.Services.Fakes.FakeProductsProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.Services.Fakes.FakeItemPresenter>();
+            container.RegisterType<IThemeNamesProvider, Atomia.Store.Services.Fakes.FakeThemeNamesProvider>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

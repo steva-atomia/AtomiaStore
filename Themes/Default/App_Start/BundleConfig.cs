@@ -7,31 +7,31 @@ namespace Atomia.Store.Themes.Default
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/shared").Include(
-                "~/Scripts/jquery-{version}.js",
-                "~/Scripts/jquery.validate.js",
-                "~/Scripts/jquery.validate.unobtrusive.js",
-                "~/Scripts/jquery.unobtrusive-ajax.js",
-                "~/Scripts/knockout-{version}.js",
-                "~/Scripts/underscore.js",
-                "~/Scripts/amplify.js",
-                "~/Scripts/lib/api-definitions.js",
-                "~/Scripts/lib/ko-binding-submitvalid.js",
-                "~/Scripts/viewmodels/root.js",
-                "~/Scripts/lib/api-items.js"));
+                "~/Themes/Default/Scripts/jquery-{version}.js",
+                "~/Themes/Default/Scripts/jquery.validate.js",
+                "~/Themes/Default/Scripts/jquery.validate.unobtrusive.js",
+                "~/Themes/Default/Scripts/jquery.unobtrusive-ajax.js",
+                "~/Themes/Default/Scripts/knockout-{version}.js",
+                "~/Themes/Default/Scripts/underscore.js",
+                "~/Themes/Default/Scripts/amplify.js",
+                "~/Themes/Default/Scripts/lib/api-definitions.js",
+                "~/Themes/Default/Scripts/lib/ko-binding-submitvalid.js",
+                "~/Themes/Default/Scripts/viewmodels/root.js",
+                "~/Themes/Default/Scripts/lib/api-items.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(
-                "~/Scripts/lib/api-domains.js",
-                "~/Scripts/viewmodels/domains.js",
-                "~/Scripts/viewmodels/domainreg.js",
-                "~/Scripts/viewmodels/domaintransfer.js"));
+                "~/Themes/Default/Scripts/lib/api-domains.js",
+                "~/Themes/Default/Scripts/viewmodels/domains.js",
+                "~/Themes/Default/Scripts/viewmodels/domainreg.js",
+                "~/Themes/Default/Scripts/viewmodels/domaintransfer.js"));
 
             bundles.Add(new StyleBundle("~/Content/css/skeleton").Include(
-                "~/Content/css/skeleton/base.css",
-                "~/Content/css/skeleton/layout.css",
-                "~/Content/css/skeleton/skeleton.css"));
+                "~/Themes/Default/Content/css/skeleton/base.css",
+                "~/Themes/Default/Content/css/skeleton/layout.css",
+                "~/Themes/Default/Content/css/skeleton/skeleton.css"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Content/css/style.css"));
+                "~/Themes/Default/Content/css/style.css"));
         }
     }
 }
