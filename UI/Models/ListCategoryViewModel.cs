@@ -6,6 +6,6 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         public virtual IList<ProductModel> Products { get; set; }
 
-        public string Category { get; set; }
+        public virtual string Category { get; set; }
     }
 }

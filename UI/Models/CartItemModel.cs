@@ -64,16 +64,22 @@ namespace Atomia.Store.AspNetMvc.Models
         public RenewalPeriodModel RenewalPeriod {
             get
             {
-                return new RenewalPeriodModel
+                return cartItem.RenewalPeriod != null ? new RenewalPeriodModel
                 {
                     Period = cartItem.RenewalPeriod.Period,
                     Unit = cartItem.RenewalPeriod.Unit
-                };
+                } : null;
             }
             set
             {
-                cartItem.RenewalPeriod.Period = value.Period;
-                cartItem.RenewalPeriod.Unit = value.Unit;
+                if (value != null)
+                {
+                    cartItem.RenewalPeriod = new RenewalPeriod
+                    {
+                        Period = value.Period,
+                        Unit = value.Unit
+                    };
+                }
             }
         }
 
@@ -81,6 +87,11 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
+                if (cartItem.CustomAttributes == null)
+                {
+                    cartItem.CustomAttributes = new List<CustomAttribute>();
+                }
+
                 return cartItem.CustomAttributes;
             }
             set

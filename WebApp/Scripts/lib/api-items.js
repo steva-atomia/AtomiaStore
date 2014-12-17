@@ -12,7 +12,7 @@ Atomia._unbound.Items = function (_, request) {
 
     CartItem.prototype.addToCart = function () {
         var data = _.pick(this, 'ArticleNumber', 'RenewalPeriod');
-        _.defaults(data, { RenewalPeriod: { Period: 1 } });
+        _.defaults(data, { RenewalPeriod: { Period: 1, Unit: 'YEAR' }, Quantity: 1 });
 
         request({
             resourceId: 'Cart.AddItem',
