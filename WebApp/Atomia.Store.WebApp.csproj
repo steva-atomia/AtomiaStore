@@ -118,70 +118,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_GlobalResources\Common.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Common.resx</DependentUpon>
-    </Compile>
-    <Compile Include="App_GlobalResources\Common.sv.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Common.sv.resx</DependentUpon>
-    </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\style.css" />
-    <Content Include="Content\css\skeleton\base.css" />
-    <Content Include="Content\css\skeleton\layout.css" />
-    <Content Include="Content\css\skeleton\skeleton.css" />
-    <Content Include="Content\Error.html" />
     <Content Include="Global.asax" />
-    <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Common.sv.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <None Include="Scripts\jquery-1.11.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.11.1.js" />
-    <Content Include="Scripts\jquery-1.11.1.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\lib\api-items.js" />
-    <Content Include="Scripts\lib\ko-binding-submitvalid.js" />
-    <Content Include="Scripts\lib\api-definitions.js" />
-    <Content Include="Scripts\amplify-vsdoc.js" />
-    <Content Include="Scripts\amplify.js" />
-    <Content Include="Scripts\amplify.min.js" />
-    <Content Include="Scripts\amplify\amplify.core.js" />
-    <Content Include="Scripts\amplify\amplify.core.min.js" />
-    <Content Include="Scripts\amplify\amplify.request.js" />
-    <Content Include="Scripts\amplify\amplify.request.min.js" />
-    <Content Include="Scripts\amplify\amplify.store.js" />
-    <Content Include="Scripts\amplify\amplify.store.min.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.core.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.core.min.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.request.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.request.min.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.store.js" />
-    <Content Include="Scripts\amplify\amplify\amplify.store.min.js" />
-    <Content Include="Scripts\lib\api-domains.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.2.0.debug.js" />
-    <Content Include="Scripts\knockout-3.2.0.js" />
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
-    <Content Include="Scripts\viewmodels\domaintransfer.js" />
-    <Content Include="Scripts\viewmodels\domainreg.js" />
-    <Content Include="Scripts\viewmodels\root.js" />
-    <Content Include="Scripts\viewmodels\domains.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -189,11 +132,6 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Error\InternalServerError.cshtml" />
-    <Content Include="Views\Error\Forbidden.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Products\ListCategory.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">
@@ -201,33 +139,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\_MainLayout.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Domains\Index.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Web.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Views\Domains\_DomainRegistration.cshtml" />
-    <Content Include="Views\Domains\_DomainTransfer.cshtml" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UI\Atomia.Store.AspNetMvc.csproj">
+    <ProjectReference Include="..\AspNetMvc\Atomia.Store.AspNetMvc.csproj">
       <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
       <Name>Atomia.Store.AspNetMvc</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Scripts\jquery-1.11.1.min.map" />
-    <None Include="Scripts\underscore.min.map" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Common.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.designer.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
