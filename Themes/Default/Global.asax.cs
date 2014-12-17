@@ -5,7 +5,7 @@ using System.Web;
 using System.Configuration;
 using Atomia.Store.AspNetMvc.Infrastructure;
 
-namespace Atomia.Store.WebApp
+namespace Atomia.Store.Themes.Default
 {
     /// <summary>
     /// The MvcApplication class

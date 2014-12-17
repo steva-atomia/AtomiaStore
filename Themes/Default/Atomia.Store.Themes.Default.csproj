@@ -7,18 +7,44 @@
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Atomia.Store.Themes.Default</RootNamespace>
     <AssemblyName>Atomia.Store.Themes.Default</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <TargetFrameworkProfile />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -27,7 +53,7 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release\</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -139,6 +165,9 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="DefaultGlobalEventsHandler.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
     <Compile Include="Models\DefaultDomainsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\DefaultListCategoryViewModel.cs" />
@@ -155,11 +184,12 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\skeleton\base.css" />
-    <Content Include="Content\css\skeleton\layout.css" />
-    <Content Include="Content\css\skeleton\skeleton.css" />
-    <Content Include="Content\css\style.css" />
-    <Content Include="Content\Error.html" />
+    <Content Include="Themes\Default\Content\css\skeleton\base.css" />
+    <Content Include="Themes\Default\Content\css\skeleton\layout.css" />
+    <Content Include="Themes\Default\Content\css\skeleton\skeleton.css" />
+    <Content Include="Themes\Default\Content\css\style.css" />
+    <Content Include="Themes\Default\Content\Error.html" />
+    <Content Include="Global.asax" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
@@ -191,50 +221,56 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="app.config" />
-    <Content Include="Scripts\amplify-vsdoc.js" />
-    <Content Include="Scripts\amplify.js" />
-    <Content Include="Scripts\amplify.min.js" />
-    <Content Include="Scripts\amplify\amplify.core.js" />
-    <Content Include="Scripts\amplify\amplify.core.min.js" />
-    <Content Include="Scripts\amplify\amplify.request.js" />
-    <Content Include="Scripts\amplify\amplify.request.min.js" />
-    <Content Include="Scripts\amplify\amplify.store.js" />
-    <Content Include="Scripts\amplify\amplify.store.min.js" />
-    <None Include="Scripts\jquery-1.11.1-vsdoc.js" />
-    <Content Include="Scripts\jquery-1.11.1.js" />
-    <Content Include="Scripts\jquery-1.11.1.min.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Scripts\jquery.validate-vsdoc.js" />
-    <Content Include="Scripts\jquery.validate.js" />
-    <Content Include="Scripts\jquery.validate.min.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.2.0.debug.js" />
-    <Content Include="Scripts\knockout-3.2.0.js" />
-    <Content Include="Scripts\lib\api-definitions.js" />
-    <Content Include="Scripts\lib\api-domains.js" />
-    <Content Include="Scripts\lib\api-items.js" />
-    <Content Include="Scripts\lib\ko-binding-submitvalid.js" />
-    <Content Include="Scripts\underscore.js" />
-    <Content Include="Scripts\underscore.min.js" />
-    <Content Include="Scripts\viewmodels\domainreg.js" />
-    <Content Include="Scripts\viewmodels\domains.js" />
-    <Content Include="Scripts\viewmodels\domaintransfer.js" />
-    <Content Include="Scripts\viewmodels\root.js" />
-    <Content Include="Views\_MainLayout.cshtml" />
-    <Content Include="Views\Domains\_DomainRegistration.cshtml" />
-    <Content Include="Views\Domains\_DomainTransfer.cshtml" />
-    <Content Include="Views\Domains\Index.cshtml" />
-    <Content Include="Views\Error\Forbidden.cshtml" />
-    <Content Include="Views\Error\InternalServerError.cshtml" />
-    <Content Include="Views\Error\NotFound.cshtml" />
-    <Content Include="Views\Products\ListCategory.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Web.config" />
-    <Content Include="Scripts\jquery-1.11.1.min.map" />
-    <None Include="Scripts\underscore.min.map" />
+    <Content Include="Themes\Default\Scripts\amplify-vsdoc.js" />
+    <Content Include="Themes\Default\Scripts\amplify.js" />
+    <Content Include="Themes\Default\Scripts\amplify.min.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.core.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.core.min.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.request.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.request.min.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.store.js" />
+    <Content Include="Themes\Default\Scripts\amplify\amplify.store.min.js" />
+    <None Include="Themes\Default\Scripts\jquery-1.11.1-vsdoc.js" />
+    <Content Include="Themes\Default\Scripts\jquery-1.11.1.js" />
+    <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.js" />
+    <Content Include="Themes\Default\Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Themes\Default\Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Themes\Default\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Themes\Default\Scripts\jquery.validate.js" />
+    <Content Include="Themes\Default\Scripts\jquery.validate.min.js" />
+    <Content Include="Themes\Default\Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Themes\Default\Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Themes\Default\Scripts\knockout-3.2.0.debug.js" />
+    <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
+    <Content Include="Themes\Default\Scripts\lib\api-definitions.js" />
+    <Content Include="Themes\Default\Scripts\lib\api-domains.js" />
+    <Content Include="Themes\Default\Scripts\lib\api-items.js" />
+    <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
+    <Content Include="Themes\Default\Scripts\underscore.js" />
+    <Content Include="Themes\Default\Scripts\underscore.min.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\domainreg.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\domains.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\domaintransfer.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\root.js" />
+    <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_DomainTransfer.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\Index.cshtml" />
+    <Content Include="Themes\Default\Views\Error\Forbidden.cshtml" />
+    <Content Include="Themes\Default\Views\Error\InternalServerError.cshtml" />
+    <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />
+    <Content Include="Themes\Default\Views\Products\ListCategory.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\Error.cshtml" />
+    <Content Include="Themes\Default\Views\Web.config" />
+    <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.map" />
+    <None Include="Themes\Default\Scripts\underscore.min.map" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">
@@ -244,16 +280,51 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Scripts\amplify\amplify\" />
+    <Folder Include="Themes\Default\Scripts\amplify\amplify\" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>xcopy /s /e /d /y "$(ProjectDir)bin\$(Configuration)" "$(ProjectDir)..\..\WebApp\bin"
-
-</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:51609/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
 </Project>

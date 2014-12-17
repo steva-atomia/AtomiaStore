@@ -31,7 +31,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Atomia.Web.Base">
-      <HintPath>..\Lib\Atomia.Web.Base.dll</HintPath>
+      <HintPath>..\..\Lib\Atomia.Web.Base.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
