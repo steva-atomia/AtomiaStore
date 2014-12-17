@@ -1,8 +1,8 @@
 ﻿using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -20,21 +20,27 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [HttpGet]
         public ActionResult ListCategory(string category, string viewName="ListCategory")
         {
-            var model = modelProvider.Create<ListCategoryViewModel>();
-
-            model.Category = category;
-            model.Products = productsProvider.GetProducts(category).Select(p => new ProductModel(p)).ToList();
+            var model = CreateModel(category);
 
             return View(viewName, model);
         }
 
         [ChildActionOnly]
-        public PartialViewResult ListCategoryPartial(string category)
+        public PartialViewResult ListCategoryPartial(string category, string viewName = "_ListCategory")
+        {
+            var model = CreateModel(category);
+
+            return PartialView(viewName, model);
+        }
+
+        private ListCategoryViewModel CreateModel(string category)
         {
             var model = modelProvider.Create<ListCategoryViewModel>();
+
+            model.Category = category;
             model.Products = productsProvider.GetProducts(category).Select(p => new ProductModel(p)).ToList();
 
-            return PartialView(model);
+            return model;
         }
     }
 }

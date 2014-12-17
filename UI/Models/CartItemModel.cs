@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using Atomia.Store.AspNetMvc.Services;
 using Atomia.Store.Core;
-using Atomia.Store.AspNetMvc.Services;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -19,7 +15,16 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
             currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
-            cartItem = new CartItem();
+
+            if (this.cartItem == null)
+            {
+                this.cartItem = new CartItem();
+            }
+        }
+
+        public CartItemModel(CartItem cartItem) : this()
+        {
+            this.cartItem = cartItem;
         }
 
         internal CartItem CartItem
@@ -27,10 +32,6 @@ namespace Atomia.Store.AspNetMvc.Models
             get
             {
                 return cartItem;
-            }
-            set
-            {
-                this.cartItem = value;
             }
         }
 

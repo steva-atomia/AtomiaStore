@@ -1,5 +1,4 @@
 ﻿using Atomia.Store.Core;
-using Atomia.Store.AspNetMvc.Models;
 using System.Web;
 
 namespace Atomia.Store.AspNetMvc.Services

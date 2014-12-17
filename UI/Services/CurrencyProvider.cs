@@ -1,8 +1,6 @@
-﻿using System;
-using System.Globalization;
-using System.Linq;
+﻿using Atomia.Store.Core;
+using System;
 using System.Web;
-using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Services
 {

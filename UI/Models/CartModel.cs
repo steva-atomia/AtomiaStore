@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Atomia.Store.AspNetMvc.Services;
+using Atomia.Store.Core;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Web.Mvc;
-using Atomia.Store.Core;
-using Atomia.Store.AspNetMvc.Services;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -24,7 +21,7 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
-                return cart.CartItems.Select(ci => new CartItemModel { CartItem = ci }).ToList();
+                return cart.CartItems.Select(ci => new CartItemModel(ci)).ToList();
             }
         }
 

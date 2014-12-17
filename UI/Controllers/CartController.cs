@@ -40,11 +40,11 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpPost]
-        public JsonResult RemoveItem(int itemId)
+        public JsonResult RemoveItem(CartItemRemoveModel removeItem)
         {
             if (ModelState.IsValid)
             {
-                cart.RemoveItem(itemId);
+                cart.RemoveItem(removeItem.Id);
 
                 return JsonEnvelope.Success(new CartModel(cart));
             }
@@ -53,11 +53,11 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpPost]
-        public JsonResult ChangeQuantity(CartItemQuantityModel cartItemQuantity)
+        public JsonResult ChangeQuantity(CartItemQuantityChangeModel quantityChangeItem)
         {
             if (ModelState.IsValid)
             {
-                cart.ChangeQuantity(cartItemQuantity.Id, cartItemQuantity.Quantity);
+                cart.ChangeQuantity(quantityChangeItem.Id, quantityChangeItem.Quantity);
 
                 return JsonEnvelope.Success(new CartModel(cart));
             }
