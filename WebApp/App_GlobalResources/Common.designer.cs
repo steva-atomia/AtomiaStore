@@ -68,5 +68,41 @@ namespace Resources {
                 return ResourceManager.GetString("Hello", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  per year.
+        /// </summary>
+        internal static string PerYEAR1 {
+            get {
+                return ResourceManager.GetString("PerYEAR1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to  per 2 years.
+        /// </summary>
+        internal static string PerYEAR2 {
+            get {
+                return ResourceManager.GetString("PerYEAR2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 1 Year.
+        /// </summary>
+        internal static string YEAR1 {
+            get {
+                return ResourceManager.GetString("YEAR1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2 Years.
+        /// </summary>
+        internal static string YEAR2 {
+            get {
+                return ResourceManager.GetString("YEAR2", resourceCulture);
+            }
+        }
     }
 }

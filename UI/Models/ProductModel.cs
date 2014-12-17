@@ -45,6 +45,11 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
+                if (product.CustomAttributes == null)
+                {
+                    product.CustomAttributes = new List<CustomAttribute>();
+                }
+
                 return product.CustomAttributes;
             }
         }

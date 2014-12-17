@@ -25,13 +25,13 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Services.CartProvider>();
             container.RegisterType<ICurrencyProvider, Atomia.Store.AspNetMvc.Services.CurrencyProvider>();
             container.RegisterType<ICurrencyFormatter, Atomia.Store.AspNetMvc.Services.CurrencyFormatter>();
+            container.RegisterType<IResourceProvider, Atomia.Store.Services.WebBase.ResourceProvider>();
 
             // Fakes
             container.RegisterType<IDomainSearchService, Atomia.Store.Services.Fakes.FakeDomainSearchService>();
             container.RegisterType<ICartPricingService, Atomia.Store.Services.Fakes.FakePricingProvider>();
             container.RegisterType<IProductsProvider, Atomia.Store.Services.Fakes.FakeProductsProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.Services.Fakes.FakeItemPresenter>();
-            container.RegisterType<IResourceProvider, Atomia.Store.Services.Fakes.FakeResourceProvider>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{1239517A-DC31-414C-8D3D-37DD34C2E143}</ProjectGuid>
+    <ProjectGuid>{51B7C760-9389-482A-BE5B-AB67F846A380}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.Store.Services.Fakes</RootNamespace>
-    <AssemblyName>Atomia.Store.Services.Fakes</AssemblyName>
+    <RootNamespace>Atomia.Store.Services.WebBase</RootNamespace>
+    <AssemblyName>Atomia.Store.Services.WebBase</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,29 +28,25 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Atomia.Web.Base">
+      <HintPath>..\Lib\Atomia.Web.Base.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeDomainSearchService.cs" />
-    <Compile Include="FakeItemPresenter.cs" />
-    <Compile Include="FakePricingProvider.cs" />
-    <Compile Include="FakeProductsProvider.cs" />
+    <Compile Include="ResourceProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Core\Atomia.Store.Core.csproj">
-      <Project>{3ba8fa31-210d-4dd6-841d-dbe457b96a8f}</Project>
-      <Name>Atomia.Store.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\UI\Atomia.Store.AspNetMvc.csproj">
+    <ProjectReference Include="..\UI\Atomia.Store.AspNetMvc.csproj">
       <Project>{22e89989-1534-4b38-925d-03906d0284bf}</Project>
       <Name>Atomia.Store.AspNetMvc</Name>
     </ProjectReference>

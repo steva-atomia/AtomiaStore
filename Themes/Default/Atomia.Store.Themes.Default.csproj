@@ -145,6 +145,10 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Atomia.Store.Services.AtomiaWebBase\Atomia.Store.Services.WebBase.csproj">
+      <Project>{51b7c760-9389-482a-be5b-ab67f846a380}</Project>
+      <Name>Atomia.Store.Services.WebBase</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj">
       <Project>{6f81b202-21af-49bb-8606-518149972eed}</Project>
       <Name>Atomia.Store.Services.ActionTrail</Name>

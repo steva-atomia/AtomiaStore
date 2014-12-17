@@ -28,7 +28,7 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public override string ToString()
         {
-            return resourceProvider.GetResource(Period + Unit);
+            return resourceProvider.GetResource(Unit + Period);
         }
     }
 }
