@@ -1,10 +1,10 @@
 ﻿{
     "Framework": "qunit",
 	"References": [
-		{ "Path": "../../../WebApp/Scripts/underscore.js" },
-		{ "Path": "../../../WebApp/Scripts/knockout-3.2.0.js" },
-		{ "Path": "../../../WebApp/Scripts/amplify.js" },
-		{ "Path": "../../../WebApp/Scripts/lib/api-definitions.js" },
-		{ "Path": "../../../WebApp/Scripts/lib/api-domains.js" }
+		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/underscore.js" },
+		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/knockout-3.2.0.js" },
+		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/amplify.js" },
+		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/lib/api-definitions.js" },
+		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/lib/api-domains.js" }
 	]
 }
