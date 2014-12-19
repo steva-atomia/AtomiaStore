@@ -24,20 +24,20 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IViewEngine, Atomia.Store.AspNetMvc.Infrastructure.RazorThemeViewEngine>("RazorThemeViewEngine");
 
             // Services
-            container.RegisterType<ILogger, Atomia.Store.ActionTrail.Logger>();
+            container.RegisterType<ILogger, Atomia.Store.ActionTrail.Adapters.Logger>();
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Adapters.CartProvider>();
             container.RegisterType<ICurrencyProvider, Atomia.Store.AspNetMvc.Adapters.CurrencyProvider>();
             container.RegisterType<ICurrencyFormatter, Atomia.Store.AspNetMvc.Adapters.CurrencyFormatter>();
-            container.RegisterType<IResourceProvider, Atomia.Store.WebBase.ResourceProvider>();
+            container.RegisterType<IResourceProvider, Atomia.Store.WebBase.Adapters.ResourceProvider>();
 
             // Fakes
-            container.RegisterType<ICartPricingService, Atomia.Store.Fakes.FakePricingProvider>();
-            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.FakeProductsProvider>();
-            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.AddonProductsProvider>("addons");
-            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.DomainSearchProductsProvider>("domains");
+            container.RegisterType<ICartPricingService, Atomia.Store.Fakes.Adapters.FakePricingProvider>();
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.Adapters.FakeProductsProvider>();
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.Adapters.AddonProductsProvider>("addons");
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.Adapters.DomainSearchProductsProvider>("domains");
 
-            container.RegisterType<IItemPresenter, Atomia.Store.Fakes.FakeItemPresenter>();
-            container.RegisterType<IThemeNamesProvider, Atomia.Store.Fakes.FakeThemeNamesProvider>();
+            container.RegisterType<IItemPresenter, Atomia.Store.Fakes.Adapters.FakeItemPresenter>();
+            container.RegisterType<IThemeNamesProvider, Atomia.Store.Fakes.Adapters.FakeThemeNamesProvider>();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

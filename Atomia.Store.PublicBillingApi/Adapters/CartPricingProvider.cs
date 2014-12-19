@@ -3,7 +3,7 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Atomia.Store.PublicBillingApi
+namespace Atomia.Store.PublicBillingApi.Adapters
 {
     public class CartPricingProvider : ICartPricingService
     {

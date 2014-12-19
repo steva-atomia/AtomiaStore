@@ -1,7 +1,7 @@
 ﻿using Atomia.Store.Core;
 using System.Web.Mvc;
 
-namespace Atomia.Store.WebBase
+namespace Atomia.Store.WebBase.Adapters
 {
     public class ResourceProvider : IResourceProvider
     {

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Atomia.Store.AspNetMvc.Infrastructure;
 
-namespace Atomia.Store.Fakes
+namespace Atomia.Store.Fakes.Adapters
 {
     public class FakeThemeNamesProvider : IThemeNamesProvider
     {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Web;
 
-namespace Atomia.Store.ActionTrail
+namespace Atomia.Store.ActionTrail.Adapters
 {
     /// <summary>
     /// Helper class for Action Trail logging

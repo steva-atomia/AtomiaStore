@@ -41,11 +41,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="FakeDomainSearchService.cs" />
-    <Compile Include="FakeItemPresenter.cs" />
-    <Compile Include="FakePricingProvider.cs" />
-    <Compile Include="FakeProductsProvider.cs" />
-    <Compile Include="FakeThemeNamesProvider.cs" />
+    <Compile Include="Adapters\AddonProductsProvider.cs" />
+    <Compile Include="Adapters\DomainSearchProductsProvider.cs" />
+    <Compile Include="Adapters\FakeItemPresenter.cs" />
+    <Compile Include="Adapters\FakePricingProvider.cs" />
+    <Compile Include="Adapters\FakeProductsProvider.cs" />
+    <Compile Include="Adapters\FakeThemeNamesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

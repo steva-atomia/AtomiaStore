@@ -1,7 +1,7 @@
 ﻿using Atomia.Store.Core;
 using System.Linq;
 
-namespace Atomia.Store.Fakes
+namespace Atomia.Store.Fakes.Adapters
 {
     public class FakePricingProvider : ICartPricingService
     {

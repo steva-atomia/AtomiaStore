@@ -253,9 +253,9 @@
     <Content Include="Themes\Default\Scripts\viewmodels\domaintransfer.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\root.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\_DomainTransfer.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\Index.cshtml" />
+    <Content Include="Themes\Default\Views\Products\_DomainRegistration.cshtml" />
+    <Content Include="Themes\Default\Views\Products\_DomainTransfer.cshtml" />
+    <Content Include="Themes\Default\Views\Products\Domains.cshtml" />
     <Content Include="Themes\Default\Views\Error\Forbidden.cshtml" />
     <Content Include="Themes\Default\Views\Error\InternalServerError.cshtml" />
     <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />

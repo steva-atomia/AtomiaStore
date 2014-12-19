@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Atomia.Store.Fakes
+namespace Atomia.Store.Fakes.Adapters
 {
     public class DomainSearchProductsProvider : IProductsProvider
     {

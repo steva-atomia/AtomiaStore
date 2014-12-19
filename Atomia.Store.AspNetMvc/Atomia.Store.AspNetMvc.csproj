@@ -79,7 +79,6 @@
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Infrastructure\RazorThemeViewEngine.cs" />
     <Compile Include="Models\CartItemRemoveModel.cs" />
-    <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="HtmlHelpers\JsonActionHelper.cs" />

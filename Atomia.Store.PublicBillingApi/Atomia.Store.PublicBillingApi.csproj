@@ -43,7 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CartPricingProvider.cs" />
+    <Compile Include="Adapters\CartPricingProvider.cs" />
     <Compile Include="Helpers\OrderCreator.cs" />
     <Compile Include="Helpers\RenewalPeriodProvider.cs" />
     <Compile Include="Helpers\ResellerProvider.cs" />
