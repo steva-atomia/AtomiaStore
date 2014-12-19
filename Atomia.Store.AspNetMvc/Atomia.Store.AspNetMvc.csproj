@@ -77,7 +77,6 @@
     <Compile Include="Adapters\CurrencyFormatter.cs" />
     <Compile Include="Adapters\CurrencyProvider.cs" />
     <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Infrastructure\IThemeNamesProvider.cs" />
     <Compile Include="Infrastructure\RazorThemeViewEngine.cs" />
     <Compile Include="Models\CartItemRemoveModel.cs" />
     <Compile Include="Controllers\DomainsController.cs" />

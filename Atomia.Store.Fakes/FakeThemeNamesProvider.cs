@@ -9,7 +9,7 @@ namespace Atomia.Store.Fakes
 {
     public class FakeThemeNamesProvider : IThemeNamesProvider
     {
-        public IEnumerable<string> GetThemeNames()
+        public IEnumerable<string> GetActiveThemeNames()
         {
             return new List<string> { "Bloop" };
         }

@@ -7,6 +7,6 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
 {
     public interface IThemeNamesProvider
     {
-        IEnumerable<string> GetThemeNames();
+        IEnumerable<string> GetActiveThemeNames();
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using Atomia.Store.Core;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using System.Linq;
 
@@ -8,7 +9,7 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
     {
         public RazorThemeViewEngine(IThemeNamesProvider themeNamesProvider)
         {
-            var themes = themeNamesProvider.GetThemeNames().Concat(new List<string> { "Default" });
+            var themes = themeNamesProvider.GetActiveThemeNames().Concat(new List<string> { "Default" });
 
             var areaViewLocations = new List<string>();
             var areaMasterLocations = new List<string>();
