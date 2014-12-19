@@ -1,10 +1,10 @@
 ﻿{
     "Framework": "qunit",
 	"References": [
-		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/underscore.js" },
-		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/knockout-3.2.0.js" },
-		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/amplify.js" },
-		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/lib/api-definitions.js" },
-		{ "Path": "../../../Themes/Default/Themes/Default/Scripts/lib/api-domains.js" }
+		{ "Path": "../../../Atomia.Store.Themes.Default/Themes/Default/Scripts/underscore.js" },
+		{ "Path": "../../../Atomia.Store.Themes.Default/Themes/Default/Scripts/knockout-3.2.0.js" },
+		{ "Path": "../../../Atomia.Store.Themes.Default/Themes/Default/Scripts/amplify.js" },
+		{ "Path": "../../../Atomia.Store.Themes.Default/Themes/Default/Scripts/lib/api-definitions.js" },
+		{ "Path": "../../../Atomia.Store.Themes.Default/Themes/Default/Scripts/lib/api-domains.js" }
 	]
 }

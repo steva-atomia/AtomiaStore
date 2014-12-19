@@ -3,31 +3,31 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default", "Themes\Default\Atomia.Store.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default", "Atomia.Store.Themes.Default\Atomia.Store.Themes.Default.csproj", "{93AF483F-5B99-4EE2-9A29-28B2B6AE0C63}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core", "Core\Atomia.Store.Core.csproj", "{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core", "Atomia.Store.Core\Atomia.Store.Core.csproj", "{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.AspNetMvc", "AspNetMvc\Atomia.Store.AspNetMvc.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.AspNetMvc", "Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.WebPluginDomainSearch", "Services\WebPluginDomainSearch\Atomia.Store.Services.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.WebPluginDomainSearch", "Atomia.Store.WebPluginDomainSearch\Atomia.Store.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96F5FCEF-73A7-4B7A-BD33-9C3BFCA36654}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.ActionTrail", "Services\ActionTrail\Atomia.Store.Services.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.ActionTrail", "Atomia.Store.ActionTrail\Atomia.Store.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.PublicBillingApi", "Services\PublicBillingApi\Atomia.Store.Services.PublicBillingApi.csproj", "{5737FE58-757B-4F60-A480-5FD54EEED008}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.PublicBillingApi", "Atomia.Store.PublicBillingApi\Atomia.Store.PublicBillingApi.csproj", "{5737FE58-757B-4F60-A480-5FD54EEED008}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{C87621C8-9CCB-443E-94C8-1ECAE4562B67}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core.Test", "Test\Atomia.Store.Core.Test\Atomia.Store.Core.Test.csproj", "{1B6F0098-F54D-4A1A-814D-03D5A440D67E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Core.Services.PublicBillingApi.Test", "Test\Atomia.Core.Services.PublicBillingApi.Test\Atomia.Core.Services.PublicBillingApi.Test.csproj", "{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.PublicBillingApi.Test", "Test\Atomia.Store.PublicBillingApi.Test\Atomia.Store.PublicBillingApi.Test.csproj", "{A49C2F51-ACC6-46C9-974B-7BB69EB82DED}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Themes.Default.Test", "Test\Atomia.Store.Themes.Default.Test\Atomia.Store.Themes.Default.Test.csproj", "{30224D9F-9022-405A-A4C1-5B1FB3966703}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.Fakes", "Services\Fakes\Atomia.Store.Services.Fakes.csproj", "{1239517A-DC31-414C-8D3D-37DD34C2E143}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Fakes", "Atomia.Store.Fakes\Atomia.Store.Fakes.csproj", "{1239517A-DC31-414C-8D3D-37DD34C2E143}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Services.WebBase", "Services\WebBase\Atomia.Store.Services.WebBase.csproj", "{51B7C760-9389-482A-BE5B-AB67F846A380}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.WebBase", "Atomia.Store.WebBase\Atomia.Store.WebBase.csproj", "{51B7C760-9389-482A-BE5B-AB67F846A380}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
