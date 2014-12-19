@@ -33,7 +33,8 @@ namespace Atomia.Store.Themes.Default
             // Fakes
             container.RegisterType<ICartPricingService, Atomia.Store.Fakes.FakePricingProvider>();
             container.RegisterType<IProductsProvider, Atomia.Store.Fakes.FakeProductsProvider>();
-            container.RegisterType<IProductsProvider, Atomia.Store.Core.AddonsProvider>("addons");
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.AddonProductsProvider>("addons");
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.DomainSearchProductsProvider>("domains");
 
             container.RegisterType<IItemPresenter, Atomia.Store.Fakes.FakeItemPresenter>();
             container.RegisterType<IThemeNamesProvider, Atomia.Store.Fakes.FakeThemeNamesProvider>();

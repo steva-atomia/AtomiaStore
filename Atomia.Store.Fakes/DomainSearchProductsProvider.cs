@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes
 {
-    public class FakeDomainSearchService : IProductsProvider
+    public class DomainSearchProductsProvider : IProductsProvider
     {
         public IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery) 
         {
