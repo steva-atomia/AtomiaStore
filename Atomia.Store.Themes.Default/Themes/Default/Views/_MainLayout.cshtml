@@ -8,16 +8,74 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    
-    @Styles.Render("~/Content/css/skeleton")
+
     @Styles.Render("~/Content/css")
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:300,500|Oswald:300,400,700" type="text/css" />
+    <!--[if IE]><link rel="shortcut icon" href="img/atomia_2/favicon.ico" type="image/x-icon" /><![endif]-->
+    <link rel="icon" href="img/atomia_2/favicon.png" type="image/png" />
 </head>
 <body>
-    <div class="container">
-        @RenderBody()
+    <!-- FIXME: put in partials etc. -->
+    <header>
+        <div class="margins">
+            <a id="logo" class="icn_atomia" href="http://www.atomia.com/">Atomia</a>
+
+            <nav id="top_menu">
+                <ul id="apps"></ul>
+
+            </nav>
+            <ul class="addons">
+                <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);">EN</a></li>
+                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);"><span class="empty">0</span></a></li>
+            </ul>
+        </div>
+    </header>
+    <div class="progress_block">
+        <div class="margins">
+            <ol class="progress">
+                <li class="current">
+                    <div>1</div>
+                    <h4>Domains</h4>
+                    <p>Buy new or move existing</p>
+                </li>
+                <li>
+                    <div>2</div>
+                    <h4>Hosting</h4>
+                    <p>Choose hosting package</p>
+                </li>
+                <li>
+                    <div>3</div>
+                    <h4>Account</h4>
+                    <p>Set up account info</p>
+                </li>
+                <li>
+                    <div>4</div>
+                    <h4>Checkout</h4>
+                    <p>Invoice and payment options</p>
+                </li>
+            </ol>
+        </div>
     </div>
+    <section id="main">
+        <div class="margins">
+            <div id="homecontent">
+                <div class="settingsbox">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </section>
 
     @Scripts.Render("~/bundles/shared")
     @RenderSection("scripts", required: false)
+
+    <footer>
+        <div class="margins">
+            <p id="footer_demo">This is a demo of the Atomia control panel.</p>
+            <p id="copyright_placeholder">Copyright © 2014 Atomia. All rights reserved.</p>
+            <p id="footer_version">Atomia.Account.Api v1.0.9.92 | Atomia.Billing.Api v1.0.9.985 | Atomia.Billing.Core.AdminPanel v1.0.9.985</p>
+        </div>
+    </footer>
 </body>
 </html>

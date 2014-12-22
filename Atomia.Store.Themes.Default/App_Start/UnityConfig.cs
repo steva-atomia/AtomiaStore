@@ -18,7 +18,7 @@ namespace Atomia.Store.Themes.Default
             // ViewModels
             container.RegisterType<IModelProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelProvider>();
             container.RegisterType<IModelBinderProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelBinderProvider>();
-            container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DefaultDomainsViewModel>();
+            container.RegisterType<SearchProductsViewModel, Atomia.Store.Themes.Default.Models.DefaultDomainsViewModel>();
             container.RegisterType<ListProductsViewModel, Atomia.Store.Themes.Default.Models.DefaultListProductsViewModel>();
 
             // Themes

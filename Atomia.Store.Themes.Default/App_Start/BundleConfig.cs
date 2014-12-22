@@ -25,13 +25,10 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/viewmodels/domainreg.js",
                 "~/Themes/Default/Scripts/viewmodels/domaintransfer.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css/skeleton").Include(
-                "~/Themes/Default/Content/css/skeleton/base.css",
-                "~/Themes/Default/Content/css/skeleton/layout.css",
-                "~/Themes/Default/Content/css/skeleton/skeleton.css"));
-
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Themes/Default/Content/css/style.css"));
+                "~/Themes/Default/Content/css/atomia_2/style.css",
+                "~/Themes/Default/Content/fonts/atomia_2/atomicons*"));
+
         }
     }
 }

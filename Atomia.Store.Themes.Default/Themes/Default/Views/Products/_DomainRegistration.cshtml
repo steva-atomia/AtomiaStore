@@ -1,4 +1,4 @@
-﻿@model Atomia.Store.Core.DomainSearchQuery
+﻿@model Atomia.Store.Themes.Default.Models.DefaultDomainsViewModel
 
 <div class="domainreg-query">
 @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
@@ -6,9 +6,9 @@
 
     <label for="domainreg-query">
     Find domain name:
-    @Html.TextBoxFor(m => m.SearchTerm, new { data_bind = "value: DomainReg.query" })
+    @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainReg.query" })
     </label>
-    <p>@Html.ValidationMessageFor(m => m.SearchTerm)</p>
+    <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
     <button type="submit">Find</button>
 }
 </div>

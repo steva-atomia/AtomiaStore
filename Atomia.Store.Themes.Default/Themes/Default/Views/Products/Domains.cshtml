@@ -3,39 +3,38 @@
 
 @{
     Layout = "~/Themes/Default/Views/_MainLayout.cshtml";
-    ViewBag.Title = "Domains";
+    ViewBag.Title = "Order web hosting and DNS";
 }
 
-<h2>Domains</h2>
-<p>
-    <span>@Resources.Common.Hello</span>, fill in the form below to register one or more new domain names or to transfer an existing domain name.
-</p>
+<h3>@ViewBag.Title</h3>
+<div class="settingsboxinner">
+    <p>Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (<span class="required">*</span>) are required.</p>
 
-@using (Html.BeginForm())
-{
+    @using (Html.BeginForm())
+    {
 
-    <fieldset>
-        <legend>Alternatives</legend>
-        <label for="queryType-domainreg">
-            <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.queryType" />
-            Register new domain name
-        </label>
+        <fieldset>
+            <legend>Alternatives</legend>
+            <label for="queryType-domainreg">
+                <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.queryType" />
+                Register new domain name
+            </label>
 
-        <label for="queryType-transfer">
-            <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
-            Transfer existing domain name
-        </label>
-    </fieldset>
-}
+            <label for="queryType-transfer">
+                <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
+                Transfer existing domain name
+            </label>
+        </fieldset>
+    }
 
     <div data-bind="visible: Domains.domainRegActive">
-        @Html.Partial("_DomainRegistration", new DomainSearchQuery())
+        @Html.Partial("_DomainRegistration", Model)
     </div>
 
     <div data-bind="visible: Domains.domainTransferActive">
         @Html.Partial("_DomainTransfer")
     </div>
-
+</div>
 
 @section scripts {
     @Scripts.Render("~/bundles/domains")

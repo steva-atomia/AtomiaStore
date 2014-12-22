@@ -61,11 +61,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Hello.
+        ///   Looks up a localized string similar to Order web hosting and DNS.
         /// </summary>
-        internal static string Hello {
+        internal static string DomainRegTitle {
             get {
-                return ResourceManager.GetString("Hello", resourceCulture);
+                return ResourceManager.GetString("DomainRegTitle", resourceCulture);
             }
         }
         

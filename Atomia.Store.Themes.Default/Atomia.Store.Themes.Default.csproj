@@ -184,10 +184,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Themes\Default\Content\css\skeleton\base.css" />
-    <Content Include="Themes\Default\Content\css\skeleton\layout.css" />
-    <Content Include="Themes\Default\Content\css\skeleton\skeleton.css" />
-    <Content Include="Themes\Default\Content\css\style.css" />
+    <Content Include="Themes\Default\Content\css\atomia_2\style.css" />
     <Content Include="Themes\Default\Content\Error.html" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
@@ -221,6 +218,13 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.svg" />
+    <Content Include="Themes\Default\Content\img\atomia_2\favicon.ico" />
+    <Content Include="Themes\Default\Content\img\atomia_2\favicon.png" />
+    <Content Include="Themes\Default\Content\img\atomia_2\icons\anm_processing_16.png" />
+    <Content Include="Themes\Default\Content\img\atomia_2\icons\anm_processing_28.png" />
+    <Content Include="Themes\Default\Content\img\atomia_2\icons\flags.png" />
+    <Content Include="Themes\Default\Content\img\atomia_2\icons\sys_icons.png" />
     <Content Include="Themes\Default\Scripts\amplify-vsdoc.js" />
     <Content Include="Themes\Default\Scripts\amplify.js" />
     <Content Include="Themes\Default\Scripts\amplify.min.js" />
@@ -230,6 +234,9 @@
     <Content Include="Themes\Default\Scripts\amplify\amplify.request.min.js" />
     <Content Include="Themes\Default\Scripts\amplify\amplify.store.js" />
     <Content Include="Themes\Default\Scripts\amplify\amplify.store.min.js" />
+    <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.eot" />
+    <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.ttf" />
+    <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.woff" />
     <None Include="Themes\Default\Scripts\jquery-1.11.1-vsdoc.js" />
     <Content Include="Themes\Default\Scripts\jquery-1.11.1.js" />
     <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.js" />

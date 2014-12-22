@@ -96,7 +96,6 @@
     <Compile Include="Models\RenewalPeriodModel.cs" />
     <Compile Include="Models\SearchProductsViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Models\DomainsViewModel.cs" />
     <Compile Include="Models\ListProductsViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
