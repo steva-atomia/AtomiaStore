@@ -2,7 +2,7 @@
     'use strict';
 
     request.define('Domains.FindDomains', 'ajax', {
-        url: '/Domains/FindDomains/',
+        url: '/Products/FindProducts/',
         dataType: 'json',
         type: 'GET',
         decoder: 'jsend'

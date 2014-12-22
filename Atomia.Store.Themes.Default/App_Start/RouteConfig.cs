@@ -58,7 +58,13 @@ namespace Atomia.Store.Themes.Default
             routes.MapRoute(
                 name: "Domains",
                 url: "Domains",
-                defaults: new { controller = "Products", action = "SearchForProducts", productsProviderName = "domains", viewName = "Domains" }
+                defaults: new { controller = "Products", action = "SearchForProducts", viewName = "Domains" }
+            );
+
+            routes.MapRoute(
+                name: "FindDomains",
+                url: "Domains/FindDomains",
+                defaults: new { controller = "Products", action = "FindProducts", productsProviderName = "domains" }
             );
 
             routes.MapRoute(

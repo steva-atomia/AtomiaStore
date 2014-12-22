@@ -14,25 +14,21 @@
     {
 
         <fieldset>
-            <legend>Alternatives</legend>
+            
             <label for="queryType-domainreg">
                 <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.queryType" />
-                Register new domain name
+                
             </label>
 
             <label for="queryType-transfer">
                 <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
-                Transfer existing domain name
+                
             </label>
         </fieldset>
     }
 
     <div data-bind="visible: Domains.domainRegActive">
         @Html.Partial("_DomainRegistration", Model)
-    </div>
-
-    <div data-bind="visible: Domains.domainTransferActive">
-        @Html.Partial("_DomainTransfer")
     </div>
 </div>
 

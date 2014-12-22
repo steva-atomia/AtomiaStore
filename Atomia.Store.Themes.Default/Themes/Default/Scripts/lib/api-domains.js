@@ -8,7 +8,9 @@ Atomia._unbound.Domains = function (_, request) {
 
     function findDomains(searchTerm, callback) {
         var data = {
-            'SearchTerm': searchTerm
+            'searchQuery.Terms[0].Key': 'domainQuery',
+            'searchQuery.Terms[0].Value': searchTerm,
+            'productsProviderName': 'domains'
         };
 
         request({
