@@ -11,36 +11,46 @@ namespace Atomia.Store.AspNetMvc.Controllers
     public sealed class ProductsController : Controller
     {
         private readonly IModelProvider modelProvider;
-        private readonly Func<string, IProductsProvider> productProviderFactory;
+        private readonly Func<string, IProductsProvider> productsProviderFactory;
 
-        public ProductsController(IModelProvider modelProvider, Func<string, IProductsProvider> productProviderFactory)
+        public ProductsController(IModelProvider modelProvider, Func<string, IProductsProvider> productsProviderFactory)
         {
             this.modelProvider = modelProvider;
-            this.productProviderFactory = productProviderFactory;
+            this.productsProviderFactory = productsProviderFactory;
         }
 
         [HttpGet]
-        public ActionResult ListProducts(ProductSearchQuery searchQuery, string productProvider, string viewName = "ListProducts")
+        public ActionResult ListProducts(ProductSearchQuery searchQuery, string productsProviderName, string viewName = "ListProducts")
         {
-            var model = CreateModel(searchQuery, productProvider);
+            var model = modelProvider.Create<ListProductsViewModel>();
+            model.Products = GetSearchResults(searchQuery, productsProviderName);
 
             return View(viewName, model);
         }
 
         [ChildActionOnly]
-        public PartialViewResult ListProductsPartial(ProductSearchQuery searchQuery, string productProvider, string viewName = "_ListProducts")
+        public PartialViewResult ListProductsPartial(ProductSearchQuery searchQuery, string productsProviderName, string viewName = "_ListProducts")
         {
-            var model = CreateModel(searchQuery, productProvider);
+            var model = modelProvider.Create<ListProductsViewModel>();
+            model.Products = GetSearchResults(searchQuery, productsProviderName);
 
             return PartialView(viewName, model);
         }
 
         [HttpGet]
-        public JsonResult FindProducts(ProductSearchQuery searchQuery, string productProvider)
+        public ActionResult SearchForProducts(string productsProviderName, string viewName = "SearchProducts")
+        {
+            var model = modelProvider.Create<SearchProductsViewModel>();
+
+            return View(viewName, model);
+        }
+
+        [HttpGet]
+        public JsonResult FindProducts(ProductSearchQuery searchQuery, string productsProviderName)
         {
             if (ModelState.IsValid)
             {
-                var searchResults = GetSearchResults(searchQuery, productProvider);
+                var searchResults = GetSearchResults(searchQuery, productsProviderName);
 
                 return JsonEnvelope.Success(searchResults);
             }
@@ -48,20 +58,10 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return JsonEnvelope.Fail(ModelState);
         }
 
-        private ListProductsViewModel CreateModel(ProductSearchQuery searchQuery, string productProvider)
+        private ICollection<ProductModel> GetSearchResults(ProductSearchQuery searchQuery, string productsProviderName)
         {
-            var model = modelProvider.Create<ListProductsViewModel>();
-
-            model.Category = searchQuery.Terms.FirstOrDefault(t => t.Name == "Category").Value;
-            model.Products = GetSearchResults(searchQuery, productProvider);
-
-            return model;
-        }
-
-        private ICollection<ProductModel> GetSearchResults(ProductSearchQuery searchQuery, string productProvider)
-        {
-            var provider = productProviderFactory(productProvider);
-            return provider.GetProducts(searchQuery).Select(r => new ProductModel(r)).ToList();
+            var productsProvider = productsProviderFactory(productsProviderName);
+            return productsProvider.GetProducts(searchQuery).Select(r => new ProductModel(r)).ToList();
         }
     }
 }

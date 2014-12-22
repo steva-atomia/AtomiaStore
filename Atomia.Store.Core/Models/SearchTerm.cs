@@ -8,7 +8,7 @@ namespace Atomia.Store.Core
 {
     public class SearchTerm
     {
-        public string Name { get; set; }
+        public string Key { get; set; }
 
         public string Value { get; set; }
     }

@@ -9,7 +9,7 @@ namespace Atomia.Store.Fakes.Adapters
         public IEnumerable<Product> GetProducts(ProductSearchQuery query)
         {
             var products = new List<Product>();
-            var categoryterm = query.Terms.FirstOrDefault(t => t.Name == "category");
+            var categoryterm = query.Terms.FirstOrDefault(t => t.Key == "category");
 
             if (categoryterm != null && categoryterm.Value == "Hosting")
             {
@@ -58,7 +58,7 @@ namespace Atomia.Store.Fakes.Adapters
                     },
                 });
             }
-            else if (categoryterm != null && categoryterm.Value == "Hosting")
+            else if (categoryterm != null && categoryterm.Value == "Extra service")
             {
                 products.Add(new Product
                 {

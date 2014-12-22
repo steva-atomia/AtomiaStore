@@ -21,7 +21,7 @@ namespace Atomia.Store.Fakes.Adapters
             var cart = cartProvider.GetCart();
 
             return products.Where(
-                p => p.Category == "Extra service" && p.CustomAttributes.Any(ca => ca.Name == "AddonFor" && cart.CartItems.Select(ci => ci.ArticleNumber).Contains(ca.Value)));
+                p => p.CustomAttributes.Any(ca => ca.Name == "AddonFor" && cart.CartItems.Select(ci => ci.ArticleNumber).Contains(ca.Value)));
         }
     }
 }
