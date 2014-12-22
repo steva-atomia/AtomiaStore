@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public abstract class ListProductsViewModel
+    public abstract class CategoryViewModel
     {
         public virtual ICollection<ProductModel> Products { get; set; }
 

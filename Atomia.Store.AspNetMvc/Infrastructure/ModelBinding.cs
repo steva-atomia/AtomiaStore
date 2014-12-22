@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
@@ -15,6 +16,19 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             }
 
             return base.BindModel(controllerContext, bindingContext);
+        }
+    }
+
+    public sealed class ModelBinderProvider : IModelBinderProvider
+    {
+        public IModelBinder GetBinder(Type modelType)
+        {
+            if (modelType.IsAbstract || modelType.IsInterface)
+            {
+                return new ModelBinder();
+            }
+
+            return null;
         }
     }
 }

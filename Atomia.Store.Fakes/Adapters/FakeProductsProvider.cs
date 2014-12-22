@@ -4,17 +4,15 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeProductsProvider : IProductsProvider
+    public class FakeProductsProvider : PackagesProvider
     {
-        public IEnumerable<Product> GetProducts(ProductSearchQuery query)
+        public override IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery)
         {
-            var products = new List<Product>();
-            var categoryterm = query.Terms.FirstOrDefault(t => t.Key == "category");
-
-            if (categoryterm != null && categoryterm.Value == "Hosting")
+            var products = new List<Product>
             {
-                products.Add(new Product
+                new Product
                 {
+                    Category = "Hosting",
                     ArticleNumber = "HST-GLD",
                     PricingVariants = new List<PricingVariant>
                     {
@@ -40,9 +38,10 @@ namespace Atomia.Store.Fakes.Adapters
                             Value = "Bar" 
                         }
                     }
-                });
-                products.Add(new Product
+                },
+                new Product
                 {
+                    Category = "Hosting",
                     ArticleNumber = "HST-PLT",
                     PricingVariants = new List<PricingVariant>
                     {
@@ -56,12 +55,10 @@ namespace Atomia.Store.Fakes.Adapters
                             RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
                         },
                     },
-                });
-            }
-            else if (categoryterm != null && categoryterm.Value == "Extra service")
-            {
-                products.Add(new Product
+                },
+                new Product
                 {
+                    Category = "Extra service",
                     ArticleNumber = "XSV-MYSQL",
                     PricingVariants = new List<PricingVariant>
                     {
@@ -76,9 +73,10 @@ namespace Atomia.Store.Fakes.Adapters
                             RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
                         },
                     },
-                });
-                products.Add(new Product
+                },
+                new Product
                 {
+                    Category = "Extra service",
                     ArticleNumber = "XSV-MSSQL",
                     PricingVariants = new List<PricingVariant>
                     {
@@ -93,8 +91,8 @@ namespace Atomia.Store.Fakes.Adapters
                             RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
                         },
                     },
-                });
-            }
+                }
+            };
 
             return products;
         }

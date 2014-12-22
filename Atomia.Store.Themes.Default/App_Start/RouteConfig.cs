@@ -16,20 +16,9 @@ namespace Atomia.Store.Themes.Default
                 url: "Hosting",
                 defaults: new
                 {
-                    controller = "Products",
+                    controller = "Category",
                     action = "ListProducts",
-                    productsProviderName = "category",
-                    searchQuery = new ProductSearchQuery
-                    {
-                        Terms = new List<SearchTerm>
-                        {
-                            new SearchTerm
-                            {
-                                Key = "category",
-                                Value = "Hosting"
-                            }
-                        },
-                    }
+                    category = "Hosting"
                 }
             );
 
@@ -38,33 +27,16 @@ namespace Atomia.Store.Themes.Default
                 url: "Addons",
                 defaults: new
                 {
-                    controller = "Products",
+                    controller = "Category",
                     action = "ListProducts",
-                    productsProviderName = "category",
-                    searchQuery = new ProductSearchQuery
-                    {
-                        Terms = new List<SearchTerm>
-                        {
-                            new SearchTerm
-                            {
-                                Key = "category",
-                                Value = "Extra service"
-                            }
-                        },
-                    }
+                    category = "Extra service"
                 }
             );
 
             routes.MapRoute(
                 name: "Domains",
-                url: "Domains",
-                defaults: new { controller = "Products", action = "SearchForProducts", viewName = "Domains" }
-            );
-
-            routes.MapRoute(
-                name: "FindDomains",
-                url: "Domains/FindDomains",
-                defaults: new { controller = "Products", action = "FindProducts", productsProviderName = "domains" }
+                url: "Domains/{action}",
+                defaults: new { controller = "Domains", action = "Index" }
             );
 
             routes.MapRoute(

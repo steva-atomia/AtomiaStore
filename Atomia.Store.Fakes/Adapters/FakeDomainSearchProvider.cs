@@ -4,9 +4,9 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class DomainSearchProductsProvider : IProductsProvider
+    public class FakeDomainSearchProvider : DomainSearchProvider
     {
-        public IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery) 
+        public override IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery) 
         {
             var results = new List<Product>();
             var searchTerm = searchQuery.Terms.First().Value;

@@ -54,6 +54,8 @@
     <Compile Include="Models\ProductSearchQuery.cs" />
     <Compile Include="Models\RequiredAttribute.cs" />
     <Compile Include="Models\SearchTerm.cs" />
+    <Compile Include="Ports\AllProductsProvider.cs" />
+    <Compile Include="Ports\DomainSearchProvider.cs" />
     <Compile Include="Ports\ICartPricingService.cs" />
     <Compile Include="Ports\ICartProvider.cs" />
     <Compile Include="Models\CustomAttribute.cs" />

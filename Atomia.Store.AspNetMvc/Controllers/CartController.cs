@@ -9,8 +9,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
     {
         private readonly Cart cart;
 
-        public CartController(ICartProvider cartProvider)
+        public CartController()
         {
+            var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
             this.cart = cartProvider.GetCart();
         }
 

@@ -41,8 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\AddonProductsProvider.cs" />
-    <Compile Include="Adapters\DomainSearchProductsProvider.cs" />
+    <Compile Include="Adapters\FakeDomainSearchProvider.cs" />
     <Compile Include="Adapters\FakeItemPresenter.cs" />
     <Compile Include="Adapters\FakePricingProvider.cs" />
     <Compile Include="Adapters\FakeProductsProvider.cs" />
