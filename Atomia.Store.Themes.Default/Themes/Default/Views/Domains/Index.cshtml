@@ -1,14 +1,15 @@
 ﻿@model Atomia.Store.Themes.Default.Models.DomainsViewModel
 @using Atomia.Store.Core;
+@using Atomia.Store.WebBase.HtmlHelpers;
 
 @{
     Layout = "~/Themes/Default/Views/_MainLayout.cshtml";
-    ViewBag.Title = "Order web hosting and DNS";
+    ViewBag.Title = Html.CommonResource("DomainRegTitle");
 }
 
 <h3>@ViewBag.Title</h3>
 <div class="settingsboxinner">
-    <p>Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (<span class="required">*</span>) are required.</p>
+    <p>@Html.CommonResourceRaw("DomainRegDescription")</p>
 
     @using (Html.BeginForm())
     {

@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
+        /// </summary>
+        internal static string DomainRegDescription {
+            get {
+                return ResourceManager.GetString("DomainRegDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order web hosting and DNS.
         /// </summary>
         internal static string DomainRegTitle {
