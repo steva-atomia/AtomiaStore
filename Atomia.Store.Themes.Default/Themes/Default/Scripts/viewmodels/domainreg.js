@@ -10,15 +10,21 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         results = ko.observableArray(),
         hasResults = ko.pureComputed(function () {
             return results().length > 0;
-        });
+        }),
+        isLoadingResults = ko.observable(false);
 
     function submit() {
+        isLoadingResults(true);
+
         results.removeAll();
+
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result) {
                 var item = new itemsApi.CartItem(result);
                 results.push(item);
             });
+
+            isLoadingResults(false);
         });
     }
 
@@ -26,6 +32,7 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         query: query,
         results: results,
         hasResults: hasResults,
+        isLoadingResults: isLoadingResults,
         submit: submit
     };
 };

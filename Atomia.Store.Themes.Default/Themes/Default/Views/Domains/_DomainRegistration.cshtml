@@ -11,7 +11,7 @@
 <br class="clear">
 
 <div class="domainreg-results">
-    <table data-bind="visible: DomainReg.hasResults">
+    <table data-bind="visible: DomainReg.hasResults" style="display: none;">
         <thead>
             <tr>
                 <th>Domain name</th>
@@ -29,4 +29,8 @@
             </tr>
         </tbody>
     </table>
+</div>
+<div data-bind="visible: DomainReg.isLoadingResults" style="display: none;">
+    <div id="global_processing" class="global_processing"></div>
+    <div id="global_processing_overlay" class="blocker"></div>
 </div>
