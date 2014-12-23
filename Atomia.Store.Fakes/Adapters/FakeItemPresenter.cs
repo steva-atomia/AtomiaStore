@@ -7,11 +7,9 @@ namespace Atomia.Store.Fakes.Adapters
     {
         public string GetName(IPresentableItem item)
         {
-            var domainNameAttribute = item.CustomAttributes.Find(ca => ca.Name == "DomainName");
-
-            if (domainNameAttribute != null)
+            if (item.ArticleNumber.StartsWith("DMN-"))
             {
-                return domainNameAttribute.Value;
+                return "." + item.ArticleNumber.Substring(4).ToLowerInvariant();
             }
 
             return item.ArticleNumber;

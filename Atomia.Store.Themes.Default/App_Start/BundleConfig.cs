@@ -28,7 +28,6 @@ namespace Atomia.Store.Themes.Default
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Themes/Default/Content/css/atomia_2/style.css",
                 "~/Themes/Default/Content/fonts/atomia_2/atomicons*"));
-
         }
     }
 }

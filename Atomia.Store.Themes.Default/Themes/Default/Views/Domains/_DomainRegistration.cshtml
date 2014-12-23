@@ -1,4 +1,5 @@
 ﻿@model Atomia.Store.Themes.Default.Models.DomainsViewModel
+@using Atomia.Store.WebBase.HtmlHelpers;
 
 <div class="domainreg-query big_search">
 @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
@@ -10,8 +11,20 @@
 </div>
 <br class="clear">
 
-<div class="domainreg-results">
-    <table data-bind="visible: DomainReg.hasResults" style="display: none;">
+<div class="domainreg-results" data-bind="visible: DomainReg.hasResults" style="display: none;">
+    <h4 class="fancy">@Html.CommonResource("DomainRegResultsHeading") <strong data-bind="text: DomainReg.query"></strong></h4>
+    <ul class="domains" data-bind="foreach: DomainReg.results()">
+        <li data-bind="attr: { class: AvailabilityClass, title: HoverTitle }">
+            <span data-bind="text: Name" class="domain"></span>
+            <label class="price">
+                <input type="checkbox" id="dmn01" />
+                <label for="dmn01"></label>
+                <label for="dmn01"></label>
+                <label data-bind="html: StatusAndPrice" for="dmn01"></label>
+            </label>
+        </li>
+    </ul>
+    <table>
         <thead>
             <tr>
                 <th>Domain name</th>
@@ -22,13 +35,14 @@
         </thead>
         <tbody data-bind="foreach: DomainReg.results()">
             <tr>
-                <td data-bind="text: Name"></td>
-                <td data-bind="text: Description"></td>
-                <td data-bind="text: PricingVariants[0].Price"></td>
+                <td data-bind="text: DomainName"></td>
+                <td data-bind="text: Status"></td>
+                <td data-bind="text: Price"></td>
                 <td data-bind="click: addToCart"><button>Add to cart</button></td>
             </tr>
         </tbody>
     </table>
+    @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class="button large green" })
 </div>
 <div data-bind="visible: DomainReg.isLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>

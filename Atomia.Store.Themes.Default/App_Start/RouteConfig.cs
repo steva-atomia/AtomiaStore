@@ -41,7 +41,8 @@ namespace Atomia.Store.Themes.Default
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}"
+                url: "{controller}/{action}",
+                defaults: new { controller = "Domains", action = "Index" }
             );
         }
     }

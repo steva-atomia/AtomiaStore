@@ -117,17 +117,32 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="DomainAvailableHoverTitle" xml:space="preserve">
+    <value>is available.</value>
+  </data>
+  <data name="DomainNotAvailableHoverTitle" xml:space="preserve">
+    <value>is not available.</value>
+  </data>
   <data name="DomainRegDescription" xml:space="preserve">
     <value>Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class="required"&gt;*&lt;/span&gt;) are required.</value>
   </data>
+  <data name="DomainRegResultsHeading" xml:space="preserve">
+    <value>Results for</value>
+  </data>
   <data name="DomainRegTitle" xml:space="preserve">
     <value>Order web hosting and DNS</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
   </data>
   <data name="PerYEAR1" xml:space="preserve">
     <value> per year</value>
   </data>
   <data name="PerYEAR2" xml:space="preserve">
     <value> per 2 years</value>
+  </data>
+  <data name="Taken" xml:space="preserve">
+    <value>Taken</value>
   </data>
   <data name="YEAR1" xml:space="preserve">
     <value>1 Year</value>

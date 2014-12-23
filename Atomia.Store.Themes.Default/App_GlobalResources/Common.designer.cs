@@ -61,6 +61,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to is available..
+        /// </summary>
+        internal static string DomainAvailableHoverTitle {
+            get {
+                return ResourceManager.GetString("DomainAvailableHoverTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to is not available..
+        /// </summary>
+        internal static string DomainNotAvailableHoverTitle {
+            get {
+                return ResourceManager.GetString("DomainNotAvailableHoverTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
         /// </summary>
         internal static string DomainRegDescription {
@@ -70,11 +88,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Results for.
+        /// </summary>
+        internal static string DomainRegResultsHeading {
+            get {
+                return ResourceManager.GetString("DomainRegResultsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order web hosting and DNS.
         /// </summary>
         internal static string DomainRegTitle {
             get {
                 return ResourceManager.GetString("DomainRegTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Next.
+        /// </summary>
+        internal static string Next {
+            get {
+                return ResourceManager.GetString("Next", resourceCulture);
             }
         }
         
@@ -93,6 +129,15 @@ namespace Resources {
         internal static string PerYEAR2 {
             get {
                 return ResourceManager.GetString("PerYEAR2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Taken.
+        /// </summary>
+        internal static string Taken {
+            get {
+                return ResourceManager.GetString("Taken", resourceCulture);
             }
         }
         
