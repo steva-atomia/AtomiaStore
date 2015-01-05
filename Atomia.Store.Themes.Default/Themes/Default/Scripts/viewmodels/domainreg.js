@@ -22,9 +22,11 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         results.removeAll();
 
         domainsApi.findDomains(query(), function (data) {
-            _.each(data, function (result) {
+            _.each(data, function (result, index) {
                 var baseItem = new itemsApi.CartItem(result),
                     item;
+
+                baseItem.Index = index;
 
                 // Make some properties more easily accessible.
                 baseItem.DomainName = _.find(baseItem.CustomAttributes, function (i) { return i.Name === 'DomainName'; }).Value;

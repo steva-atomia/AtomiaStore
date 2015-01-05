@@ -16,12 +16,8 @@
     <ul class="domains" data-bind="foreach: DomainReg.results()">
         <li data-bind="attr: { class: AvailabilityClass, title: HoverTitle }">
             <span data-bind="text: Name" class="domain"></span>
-            <label class="price">
-                <input type="checkbox" id="dmn01" />
-                <label for="dmn01"></label>
-                <label for="dmn01"></label>
-                <label data-bind="html: StatusAndPrice" for="dmn01"></label>
-            </label>
+            <span data-bind="html: StatusAndPrice">
+            </span>
         </li>
     </ul>
     <table>
