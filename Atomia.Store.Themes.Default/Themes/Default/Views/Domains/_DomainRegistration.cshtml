@@ -13,7 +13,7 @@
 
 <div class="domainreg-results" data-bind="visible: DomainReg.hasResults" style="display: none;">
     <h4 class="fancy">@Html.CommonResource("DomainRegResultsHeading") <strong data-bind="text: DomainReg.query"></strong></h4>
-    <ul class="domains" data-bind="foreach: DomainReg.results()">
+    <ul class="domains" data-bind="foreach: DomainReg.primaryResults()">
         <!-- ko if: Status === 'available' -->
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
                 <span data-bind="text: Name" class="domain"></span>
@@ -43,7 +43,7 @@
                 <th style="width: 20%;"></th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: DomainReg.results()">
+        <tbody data-bind="foreach: DomainReg.secondaryResults()">
             <!-- ko if: Status === 'available' -->
                 <tr>
                     <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>

@@ -118,7 +118,7 @@ namespace Atomia.Store.Fakes.Adapters
                         },
                         new CustomAttribute {
                             Name = "Status",
-                            Value = "available"
+                            Value = "unavailable"
                         }
                     }
                 });

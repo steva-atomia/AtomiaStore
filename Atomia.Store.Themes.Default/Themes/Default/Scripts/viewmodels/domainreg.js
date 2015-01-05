@@ -7,9 +7,10 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
     'use strict';
 
     var query = ko.observable(),
-        results = ko.observableArray(),
+        primaryResults = ko.observableArray(),
+        secondaryResults = ko.observableArray(),
         hasResults = ko.pureComputed(function () {
-            return results().length > 0;
+            return primaryResults().length > 0 || secondaryResults().length > 0;
         }),
         isLoadingResults = ko.observable(false),
         showMoreResults = ko.observable(false);
@@ -17,12 +18,14 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
     function submit() {
         isLoadingResults(true);
 
-        results.removeAll();
+        primaryResults.removeAll();
+        secondaryResults.removeAll();
 
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result, index) {
                 var item = new itemsApi.CartItem(result),
-                    domainParts;
+                    domainParts,
+                    primaryAttr = _.find(item.CustomAttributes, function (i) { return i.Name === 'Premium'; });
 
                 item.Id = 'dmn' + index;
 
@@ -35,7 +38,12 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
                 item.DomainNameSld = domainParts[0];
                 item.DomainNameTld = domainParts[1];
 
-                results.push(item);
+                if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
+                    primaryResults.push(item);
+                }
+                else {
+                    secondaryResults.push(item);
+                }
             });
 
             isLoadingResults(false);
@@ -48,7 +56,8 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
 
     return {
         query: query,
-        results: results,
+        primaryResults: primaryResults,
+        secondaryResults: secondaryResults,
         hasResults: hasResults,
         isLoadingResults: isLoadingResults,
         submit: submit,

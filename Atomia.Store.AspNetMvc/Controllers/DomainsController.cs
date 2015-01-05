@@ -13,11 +13,11 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public class DomainsController : Controller
     {
-        private readonly DomainSearchProvider domainSearchProvider;
+        private readonly DomainsProvider domainSearchProvider;
 
         public DomainsController()
         {
-            domainSearchProvider = DependencyResolver.Current.GetService<DomainSearchProvider>();
+            domainSearchProvider = DependencyResolver.Current.GetService<DomainsProvider>();
         }
 
         [HttpGet]
