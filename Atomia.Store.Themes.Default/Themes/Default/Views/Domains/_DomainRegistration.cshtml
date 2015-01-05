@@ -2,12 +2,12 @@
 @using Atomia.Store.WebBase.HtmlHelpers;
 
 <div class="domainreg-query big_search">
-@using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
-{
-    @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainReg.query", id = "register_box", placeholder = "mydomain.com"})
-    <button type="submit" class="button green" style="vertical-align:top;">Find domain</button>
-    <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
-}
+    @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
+    {
+        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainReg.query", id = "register_box", placeholder = "mydomain.com" })
+        <button type="submit" class="button green" style="vertical-align:top;">Find domain</button>
+        <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
+    }
 </div>
 <br class="clear">
 
@@ -20,26 +20,40 @@
             </span>
         </li>
     </ul>
-    <table data-bind="visible: DomainReg.showMoreResults">
+    <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: DomainReg.showMoreResults">
         <thead>
             <tr>
-                <th>Domain name</th>
-                <th>Status</th>
-                <th>Annual fee</th>
-                <th>Buy</th>
+                <th class="left">@Html.CommonResource("Domain")</th>
+                <th class="right" style="width: 20%;">@Html.CommonResource("Fee")</th>
+                <th style="width: 20%;"></th>
             </tr>
         </thead>
         <tbody data-bind="foreach: DomainReg.results()">
-            <tr>
-                <td data-bind="text: DomainName"></td>
-                <td data-bind="text: Status"></td>
-                <td data-bind="text: Price"></td>
-                <td data-bind="click: addToCart"><button>Add to cart</button></td>
+            <tr data-bind="if: Status === 'available'">
+                <td data-bind="html: StrongTldDomainName"></td>
+                <td class="right nowrap" data-bind="text: Price"></td>
+                <td><a title="Add to cart" href="javascript:void(0);" class="button">Add to cart</a></td>
+            </tr>
+
+            <tr data-bind="if: Status === 'unavailable'">
+                <td><span class="fade" data-bind="html: StrongTldDomainName"></span></td>
+                <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+                <td><span class="taken">@Html.CommonResource("Taken")</span></td>
+            </tr>
+
+            <tr data-bind="if: Status === 'processing'">
+                <td><span class="fade" data-bind="html: StrongTldDomainName"></span></td>
+                <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+                <td><span class="processing"></span></td>
             </tr>
         </tbody>
     </table>
-    <p data-bind="visible: !DomainReg.showMoreResults()"><a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">More results</a></p>
-    @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class="button large green" })
+    <p data-bind="ifnot: DomainReg.showMoreResults">
+        <a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">More results</a>
+    </p>
+    <p class="actions">
+        @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
+    </p>
 </div>
 <div data-bind="visible: DomainReg.isLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>

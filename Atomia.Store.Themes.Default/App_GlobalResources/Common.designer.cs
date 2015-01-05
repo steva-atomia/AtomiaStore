@@ -61,6 +61,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Domain.
+        /// </summary>
+        internal static string Domain {
+            get {
+                return ResourceManager.GetString("Domain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to is available..
         /// </summary>
         internal static string DomainAvailableHoverTitle {
@@ -102,6 +111,15 @@ namespace Resources {
         internal static string DomainRegTitle {
             get {
                 return ResourceManager.GetString("DomainRegTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Fee.
+        /// </summary>
+        internal static string Fee {
+            get {
+                return ResourceManager.GetString("Fee", resourceCulture);
             }
         }
         
