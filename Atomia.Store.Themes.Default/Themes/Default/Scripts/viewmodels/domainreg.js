@@ -14,7 +14,8 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         isLoadingResults = ko.observable(false),
         extendItem = function (item) {
             return item;
-        };
+        },
+        showMoreResults = ko.observable(false);
 
     function submit() {
         isLoadingResults(true);
@@ -50,13 +51,19 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         extendItem = itemExtenderFn;
     }
 
+    function setShowMoreResults() {
+        showMoreResults(true);
+    }
+
     return {
         query: query,
         results: results,
         hasResults: hasResults,
         isLoadingResults: isLoadingResults,
         submit: submit,
-        extendItems: extendItems
+        extendItems: extendItems,
+        setShowMoreResults: setShowMoreResults,
+        showMoreResults: showMoreResults
     };
 };
 

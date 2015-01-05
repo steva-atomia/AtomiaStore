@@ -20,7 +20,7 @@
             </span>
         </li>
     </ul>
-    <table>
+    <table data-bind="visible: DomainReg.showMoreResults">
         <thead>
             <tr>
                 <th>Domain name</th>
@@ -38,6 +38,7 @@
             </tr>
         </tbody>
     </table>
+    <p data-bind="visible: !DomainReg.showMoreResults()"><a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">More results</a></p>
     @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class="button large green" })
 </div>
 <div data-bind="visible: DomainReg.isLoadingResults" style="display: none;">
