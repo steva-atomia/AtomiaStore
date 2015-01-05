@@ -14,11 +14,26 @@
 <div class="domainreg-results" data-bind="visible: DomainReg.hasResults" style="display: none;">
     <h4 class="fancy">@Html.CommonResource("DomainRegResultsHeading") <strong data-bind="text: DomainReg.query"></strong></h4>
     <ul class="domains" data-bind="foreach: DomainReg.results()">
-        <li data-bind="attr: { class: AvailabilityClass, title: HoverTitle }">
-            <span data-bind="text: Name" class="domain"></span>
-            <span data-bind="html: StatusAndPrice">
-            </span>
-        </li>
+        <!-- ko if: Status === 'available' -->
+            <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
+                <span data-bind="text: Name" class="domain"></span>
+                <label class="price">
+                    <input type="checkbox" data-bind="attr: { id: Id }" />
+                    <label data-bind="attr: { for: Id }"></label>
+                    <label data-bind="attr: { id: Id }"></label>
+                    <span data-bind="text: Price"></span>
+                </label>
+            </li>
+        <!-- /ko -->
+        <!-- ko if: Status !== 'available' -->
+            <li class="not_available" title="@Html.CommonResource("DomainNotAvailableHoverTitle")">
+                <span data-bind="text: Name" class="domain"></span>
+                <span class="price">
+                    <em>@Html.CommonResource("Taken")</em>
+                    <span data-bind="text: Price"></span>
+                </span>
+            </li>
+        <!-- /ko -->
     </ul>
     <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: DomainReg.showMoreResults">
         <thead>
@@ -29,23 +44,27 @@
             </tr>
         </thead>
         <tbody data-bind="foreach: DomainReg.results()">
-            <tr data-bind="if: Status === 'available'">
-                <td data-bind="html: StrongTldDomainName"></td>
-                <td class="right nowrap" data-bind="text: Price"></td>
-                <td><a title="Add to cart" href="javascript:void(0);" class="button">Add to cart</a></td>
-            </tr>
-
-            <tr data-bind="if: Status === 'unavailable'">
-                <td><span class="fade" data-bind="html: StrongTldDomainName"></span></td>
-                <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
-                <td><span class="taken">@Html.CommonResource("Taken")</span></td>
-            </tr>
-
-            <tr data-bind="if: Status === 'processing'">
-                <td><span class="fade" data-bind="html: StrongTldDomainName"></span></td>
-                <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
-                <td><span class="processing"></span></td>
-            </tr>
+            <!-- ko if: Status === 'available' -->
+                <tr>
+                    <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
+                    <td class="right nowrap" data-bind="text: Price"></td>
+                    <td><a title="Add to cart" href="javascript:void(0);" class="button">Add to cart</a></td>
+                </tr>
+            <!-- /ko -->
+            <!-- ko if: Status === 'unavailable' -->
+                <tr>
+                    <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
+                    <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+                    <td><span class="taken">@Html.CommonResource("Taken")</span></td>
+                </tr>
+            <!-- /ko -->
+            <!-- ko if: Status === 'processing' -->
+                <tr>
+                    <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
+                    <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+                    <td><span class="processing"></span></td>
+                </tr>
+            <!-- /ko -->
         </tbody>
     </table>
     <p data-bind="ifnot: DomainReg.showMoreResults">

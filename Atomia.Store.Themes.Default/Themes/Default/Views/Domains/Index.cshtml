@@ -31,27 +31,4 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/domains")
-
-    <script type="text/javascript">
-        Atomia.RootVM.DomainReg.extendItems(function (item) {
-            var dmnId = 'dmn' + item.Index,
-                domainParts = item.DomainName.split('.');
-
-            item.StrongTldDomainName = domainParts[0] + '<strong>.' + domainParts[1] + '</strong>';
-            item.Price = item.PricingVariants[0].Price;
-            item.AvailabilityClass = 'not_available';
-            item.HoverTitle = item.DomainName + ' @Html.CommonResource("DomainNotAvailableHoverTitle")';
-            item.StatusAndPrice = '<span class="price"><em>' + '@Html.CommonResource("Taken")' + '</em>' + item.Price + '</span>';
-
-            if (item.Status === 'available')
-            {
-                item.AvailabilityClass = 'available';
-                item.HoverTitle = item.DomainName + ' @Html.CommonResource("DomainAvailableHoverTitle")';
-                item.StatusAndPrice = '<label class="price"><input type="checkbox" id="' + dmnId + '" /><label for="' + dmnId + '"></label><label for="' + dmnId + '"></label><span>' + item.Price + '</span></label>';
-                item.FadeSecondary = false;
-            }
-
-            return item;
-        });
-    </script>
 }

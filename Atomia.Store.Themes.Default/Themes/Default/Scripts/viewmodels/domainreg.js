@@ -12,9 +12,6 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
             return results().length > 0;
         }),
         isLoadingResults = ko.observable(false),
-        extendItem = function (item) {
-            return item;
-        },
         showMoreResults = ko.observable(false);
 
     function submit() {
@@ -24,31 +21,25 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
 
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result, index) {
-                var baseItem = new itemsApi.CartItem(result),
-                    item;
+                var item = new itemsApi.CartItem(result),
+                    domainParts;
 
-                baseItem.Index = index;
+                item.Id = 'dmn' + index;
 
                 // Make some properties more easily accessible.
-                baseItem.DomainName = _.find(baseItem.CustomAttributes, function (i) { return i.Name === 'DomainName'; }).Value;
-                baseItem.Status = _.find(baseItem.CustomAttributes, function (i) { return i.Name === 'Status'; }).Value;
+                item.DomainName = _.find(item.CustomAttributes, function (i) { return i.Name === 'DomainName'; }).Value;
+                item.Status = _.find(item.CustomAttributes, function (i) { return i.Name === 'Status'; }).Value;
+                item.Price = item.PricingVariants[0].Price;
 
-                item = extendItem(baseItem);
-
-                if (item === undefined) {
-                    throw Error('extendItems function must return an item');
-                }
+                domainParts = item.DomainName.split('.');
+                item.DomainNameSld = domainParts[0];
+                item.DomainNameTld = domainParts[1];
 
                 results.push(item);
             });
 
             isLoadingResults(false);
         });
-    }
-
-    // Allows for setting a function that can extend or transform an item before being pushed to results array.
-    function extendItems(itemExtenderFn) {
-        extendItem = itemExtenderFn;
     }
 
     function setShowMoreResults() {
@@ -61,7 +52,6 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         hasResults: hasResults,
         isLoadingResults: isLoadingResults,
         submit: submit,
-        extendItems: extendItems,
         setShowMoreResults: setShowMoreResults,
         showMoreResults: showMoreResults
     };
