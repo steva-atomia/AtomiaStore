@@ -254,7 +254,8 @@
     <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
-    <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />
+    <Content Include="Themes\Default\Scripts\lib\api-cart.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\cartitem.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domainreg.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domaintransfer.js" />

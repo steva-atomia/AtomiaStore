@@ -15,5 +15,12 @@
         decoder: 'jsend'
     });
 
+    request.define('Cart.RemoveItem', 'ajax', {
+        url: '/Cart/RemoveItem',
+        dataType: 'json',
+        type: 'POST',
+        decoder: 'jsend'
+    });
+
 
 } (amplify.request));

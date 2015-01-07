@@ -32,9 +32,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                cart.AddItem(item.CartItem);
+                var cartItemId = cart.AddItem(item.CartItem);
 
-                return JsonEnvelope.Success(new CartModel(cart));
+                return JsonEnvelope.Success(new 
+                    {
+                        CartItemId = cartItemId,
+                        Cart = new CartModel(cart)
+                    });
             }
 
             return JsonEnvelope.Fail(ModelState);

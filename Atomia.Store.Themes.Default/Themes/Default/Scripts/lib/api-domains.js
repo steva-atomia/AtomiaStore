@@ -6,21 +6,23 @@ Atomia._unbound = Atomia._unbound || {};
 Atomia._unbound.Domains = function (_, request) {
     'use strict';
 
-    function findDomains(searchTerm, callback) {
-        var data = {
+    function findDomains(searchTerm, success, error) {
+        var requestData = {
             'searchQuery.Query': searchTerm
         };
 
         request({
             resourceId: 'Domains.FindDomains',
-            data: data,
-            success: function (data) {
-                if (callback) {
-                    callback(data);
+            data: requestData,
+            success: function (result) {
+                if (success !== undefined) {
+                    success(result);
                 }
             },
-            error: function (data) {
-                console.log(data);
+            error: function (result) {
+                if (error !== undefined) {
+                    error(result);
+                }
             }
         });
     }

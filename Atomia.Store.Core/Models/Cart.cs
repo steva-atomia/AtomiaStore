@@ -93,7 +93,7 @@ namespace Atomia.Store.Core
             this.total = total;
         }
 
-        public void AddItem(CartItem cartItem)
+        public int AddItem(CartItem cartItem)
         {
             if (cartItem == null)
             {
@@ -104,6 +104,8 @@ namespace Atomia.Store.Core
             this.cartItems.Add(cartItem);
 
             RecalculatePricingAndSave();
+
+            return cartItem.Id;
         }
 
         public void RemoveItem(int itemId)

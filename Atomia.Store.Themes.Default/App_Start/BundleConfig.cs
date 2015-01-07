@@ -17,7 +17,8 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/lib/api-definitions.js",
                 "~/Themes/Default/Scripts/lib/ko-binding-submitvalid.js",
                 "~/Themes/Default/Scripts/viewmodels/root.js",
-                "~/Themes/Default/Scripts/viewmodels/cart.js"));
+                "~/Themes/Default/Scripts/lib/api-cart.js",
+                "~/Themes/Default/Scripts/viewmodels/cartitem.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(
                 "~/Themes/Default/Scripts/lib/api-domains.js",
