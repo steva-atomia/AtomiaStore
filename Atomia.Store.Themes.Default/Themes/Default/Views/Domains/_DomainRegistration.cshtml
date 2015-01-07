@@ -18,7 +18,7 @@
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
                 <span data-bind="text: Name" class="domain"></span>
                 <label class="price">
-                    <input type="checkbox" data-bind="attr: { id: Id }" />
+                    <input type="checkbox" data-bind="attr: { id: Id }, checked: IsInCart" />
                     <label data-bind="attr: { for: Id }"></label>
                     <label data-bind="attr: { id: Id }"></label>
                     <span data-bind="text: Price"></span>
@@ -45,11 +45,14 @@
         </thead>
         <tbody data-bind="foreach: DomainReg.secondaryResults()">
             <!-- ko if: Status === 'available' -->
-                <tr>
-                    <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
-                    <td class="right nowrap" data-bind="text: Price"></td>
-                    <td><a title="Add to cart" href="javascript:void(0);" class="button">Add to cart</a></td>
-                </tr>
+            <tr>
+                <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
+                <td class="right nowrap" data-bind="text: Price"></td>
+                <td>
+                    <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: addToCart, visible: IsInCart() === false">Add to cart</a>
+                    <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: removeFromCart, visible: IsInCart">Remove</a>
+                </td>
+            </tr>
             <!-- /ko -->
             <!-- ko if: Status === 'unavailable' -->
                 <tr>
@@ -61,7 +64,7 @@
             <!-- ko if: Status === 'processing' -->
                 <tr>
                     <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
-                    <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+                    <td class="right nowrap" data-bind="text: Price"></td>
                     <td><span class="processing"></span></td>
                 </tr>
             <!-- /ko -->

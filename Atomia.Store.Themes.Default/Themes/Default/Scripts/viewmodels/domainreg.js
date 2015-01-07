@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
+Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
     'use strict';
 
     var query = ko.observable(),
@@ -15,6 +15,30 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
         isLoadingResults = ko.observable(false),
         showMoreResults = ko.observable(false);
 
+    function Item(item) {
+        var theItem = this;
+        theItem.IsInCart = ko.observable(false);
+        theItem.IsInCart.subscribe(function (newValue) {
+            newValue ? theItem.addToCart() : theItem.removeFromCart();
+        });
+
+        _.extend(this, item);
+    }
+
+    Item.prototype.addToCart = function () {
+        var theItem = this;
+        cart.addItem(this, function () {
+            theItem.IsInCart(true);
+        });
+    };
+
+    Item.prototype.removeFromCart = function () {
+        var theItem = this;
+        cart.removeItem(this, function () {
+            theItem.IsInCart(false);
+        });
+    };
+
     function submit() {
         isLoadingResults(true);
 
@@ -23,7 +47,7 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
 
         domainsApi.findDomains(query(), function (data) {
             _.each(data, function (result, index) {
-                var item = new itemsApi.CartItem(result),
+                var item = new Item(result),
                     domainParts,
                     primaryAttr = _.find(item.CustomAttributes, function (i) { return i.Name === 'Premium'; });
 
@@ -68,5 +92,5 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, itemsApi) {
 
 
 if (Atomia.RootVM !== undefined) {
-    Atomia.RootVM.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains, Atomia.Items);
+    Atomia.RootVM.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains, Atomia.RootVM.Cart);
 }

@@ -251,10 +251,10 @@
     <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
     <Content Include="Themes\Default\Scripts\lib\api-definitions.js" />
     <Content Include="Themes\Default\Scripts\lib\api-domains.js" />
-    <Content Include="Themes\Default\Scripts\lib\api-items.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domainreg.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domaintransfer.js" />
