@@ -43,9 +43,6 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cartApi) {
                         item.DomainNameSld = domainParts[0];
                         item.DomainNameTld = domainParts[1];
                     },
-                    description: function (i) {
-                        return i.DomainName;
-                    },
                     equals: function (i1, i2) {
                         var i2DomainNameAttr = _.find(i2.CustomAttributes, function (i) { return i.Name === 'DomainName'; });
 

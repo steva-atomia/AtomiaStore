@@ -18,6 +18,8 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
         Total = cartData.Total;
         Tax = cartData.Tax;
         CampaignCode = cartData.CampaignCode;
+
+        amplify.publish('cart:updated');
     }
 
     function _addItem(item, success, error) {
@@ -102,19 +104,12 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
 
         _.defaults(options, {
             init: _.noop,
-            description: function (i) {
-                return i.Name;
-            },
             equals: function (i1, i2) {
                 return i1.ArticleNumber === i2.ArticleNumber;
             }
         });
 
         options.init(item);
-
-        item.getCartDescription = function () {
-            return options.description(item);
-        };
 
         item.equals = function (itemToCompare) {
             return options.equals(item, itemToCompare);

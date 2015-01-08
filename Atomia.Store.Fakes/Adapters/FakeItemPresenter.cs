@@ -9,7 +9,11 @@ namespace Atomia.Store.Fakes.Adapters
         {
             if (item.ArticleNumber.StartsWith("DMN-"))
             {
-                return "." + item.ArticleNumber.Substring(4).ToLowerInvariant();
+                var domainNameAttr = item.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainName");
+                
+                if (domainNameAttr != default(CustomAttribute)) {
+                    return domainNameAttr.Value;
+                }
             }
 
             return item.ArticleNumber;

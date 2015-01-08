@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Add to cart</value>
+  </data>
   <data name="Domain" xml:space="preserve">
     <value>Domain</value>
   </data>
@@ -138,6 +141,12 @@
   <data name="Fee" xml:space="preserve">
     <value>Fee</value>
   </data>
+  <data name="Item" xml:space="preserve">
+    <value>Item</value>
+  </data>
+  <data name="MoreResults" xml:space="preserve">
+    <value>More results</value>
+  </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
   </data>
@@ -147,8 +156,29 @@
   <data name="PerYEAR2" xml:space="preserve">
     <value> per 2 years</value>
   </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Shopping cart</value>
+  </data>
+  <data name="ShoppingCartDescription" xml:space="preserve">
+    <value>Items in your shopping cart can be removed.</value>
+  </data>
+  <data name="ShoppingCartEmpty" xml:space="preserve">
+    <value>There are no items in the shopping cart.</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>Subtotal</value>
+  </data>
   <data name="Taken" xml:space="preserve">
     <value>Taken</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>VAT</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Total</value>
   </data>
   <data name="YEAR1" xml:space="preserve">
     <value>1 Year</value>

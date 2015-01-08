@@ -251,10 +251,12 @@
     <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
     <Content Include="Themes\Default\Scripts\lib\api-definitions.js" />
     <Content Include="Themes\Default\Scripts\lib\api-domains.js" />
+    <Content Include="Themes\Default\Scripts\lib\ko-binding-slidevisible.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Scripts\lib\api-cart.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domainreg.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domaintransfer.js" />
@@ -278,6 +280,7 @@
     <Content Include="Web.Release.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
+    <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">

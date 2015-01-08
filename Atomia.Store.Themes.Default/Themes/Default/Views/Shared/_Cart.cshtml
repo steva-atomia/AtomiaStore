@@ -1,0 +1,46 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div id="head_cart" class="head_tray" data-bind="slideVisible: Cart.IsOpen, css: { opened: Cart.IsOpen } ">
+    <div class="margins">
+        <h3>@Html.CommonResource("ShoppingCart")</h3>
+        <div data-bind="visible: !Cart.IsEmpty()">
+            <p>@Html.CommonResource("ShoppingCartDescription")</p>
+            <table class="strong">
+                <thead>
+                    <tr>
+                        <th>@Html.CommonResource("Item")</th>
+                        <th class="right" style="width: 12em">@Html.CommonResource("Fee")</th>
+                        <th style="width: 12em"></th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                        <td class="right">@Html.CommonResource("Subtotal")</td>
+                        <td class="right nowrap" data-bind="text: Cart.SubTotal"></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td class="right">@Html.CommonResource("Tax")</td>
+                        <td class="right nowrap" data-bind="text: Cart.Tax"></td>
+                        <td></td>
+                    </tr>
+                    <tr class="strong">
+                        <td class="right">@Html.CommonResource("Total")</td>
+                        <td class="right nowrap" data-bind="text: Cart.Total"></td>
+                        <td></td>
+                    </tr>
+                </tfoot>
+                <tbody data-bind="foreach: Cart.CartItems">
+                    <tr>
+                        <td data-bind="text: Name"></td>
+                        <td class="right nowrap" data-bind="text: Price"></td>
+                        <td><a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div data-bind="visible: Cart.IsEmpty">
+            <p>@Html.CommonResource("ShoppingCartEmpty")</p>
+        </div>
+    </div>
+</div>

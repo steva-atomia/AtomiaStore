@@ -16,7 +16,7 @@
     <ul class="domains" data-bind="foreach: DomainReg.primaryResults()">
         <!-- ko if: Status === 'available' -->
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
-                <span data-bind="text: Name" class="domain"></span>
+                <span data-bind="text: DomainNameTld" class="domain"></span>
                 <label class="price">
                     <input type="checkbox" data-bind="attr: { id: LabelId }, checked: ShouldBeInCart" />
                     <label data-bind="attr: { for: LabelId }"></label>
@@ -27,7 +27,7 @@
         <!-- /ko -->
         <!-- ko if: Status !== 'available' -->
             <li class="not_available" title="@Html.CommonResource("DomainNotAvailableHoverTitle")">
-                <span data-bind="text: Name" class="domain"></span>
+                <span data-bind="text: DomainNameTld" class="domain"></span>
                 <span class="price">
                     <em>@Html.CommonResource("Taken")</em>
                     <span data-bind="text: Price"></span>
@@ -49,8 +49,8 @@
                 <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
                 <td class="right nowrap" data-bind="text: Price"></td>
                 <td>
-                    <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: addToCart, visible: !ShouldBeInCart()">Add to cart</a>
-                    <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: removeFromCart, visible: ShouldBeInCart">Remove</a>
+                    <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: addToCart, visible: !ShouldBeInCart()">@Html.CommonResource("AddToCart")</a>
+                    <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: removeFromCart, visible: ShouldBeInCart">@Html.CommonResource("Remove")</a>
                 </td>
             </tr>
             <!-- /ko -->
@@ -71,7 +71,7 @@
         </tbody>
     </table>
     <p data-bind="ifnot: DomainReg.showMoreResults">
-        <a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">More results</a>
+        <a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
     </p>
     <p class="actions">
         @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
