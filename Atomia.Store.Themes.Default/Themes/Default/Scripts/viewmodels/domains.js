@@ -21,6 +21,6 @@ Atomia.ViewModels.Domains = function (ko) {
     };
 };
 
-if (Atomia.RootVM !== undefined) {
-    Atomia.RootVM.Domains = Atomia.ViewModels.Domains(ko);
+if (Atomia.ViewModels.Active !== undefined) {
+    Atomia.ViewModels.Active.Domains = Atomia.ViewModels.Domains(ko);
 }

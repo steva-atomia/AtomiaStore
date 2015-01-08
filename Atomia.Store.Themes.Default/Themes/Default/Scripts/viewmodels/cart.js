@@ -53,6 +53,6 @@ Atomia.ViewModels.Cart = function (_, ko, amplify, cartApi) {
 };
 
 
-if (Atomia.RootVM !== undefined) {
-    Atomia.RootVM.Cart = Atomia.ViewModels.Cart(_, ko, amplify, Atomia.Cart);
+if (Atomia.ViewModels.Active !== undefined) {
+    Atomia.ViewModels.Active.Cart = Atomia.ViewModels.Cart(_, ko, amplify, Atomia.Cart);
 }

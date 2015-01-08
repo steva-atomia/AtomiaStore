@@ -18,6 +18,6 @@ Atomia.ViewModels.DomainTransfer = function (ko) {
     };
 };
 
-if (Atomia.RootVM !== undefined) {
-    Atomia.RootVM.DomainTransfer = Atomia.ViewModels.DomainTransfer(ko);
+if (Atomia.ViewModels.Active !== undefined) {
+    Atomia.ViewModels.Active.DomainTransfer = Atomia.ViewModels.DomainTransfer(ko);
 }
