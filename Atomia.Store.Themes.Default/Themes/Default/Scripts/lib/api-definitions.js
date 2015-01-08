@@ -1,21 +1,21 @@
-﻿(function (request) {
+﻿(function (amplify) {
     'use strict';
 
-    request.define('Domains.FindDomains', 'ajax', {
+    amplify.request.define('Domains.FindDomains', 'ajax', {
         url: '/Domains/FindDomains/',
         dataType: 'json',
         type: 'GET',
         decoder: 'jsend'
     });
 
-    request.define('Cart.AddItem', 'ajax', {
+    amplify.request.define('Cart.AddItem', 'ajax', {
         url: '/Cart/AddItem',
         dataType: 'json',
         type: 'POST',
         decoder: 'jsend'
     });
 
-    request.define('Cart.RemoveItem', 'ajax', {
+    amplify.request.define('Cart.RemoveItem', 'ajax', {
         url: '/Cart/RemoveItem',
         dataType: 'json',
         type: 'POST',
@@ -23,4 +23,4 @@
     });
 
 
-} (amplify.request));
+} (amplify));

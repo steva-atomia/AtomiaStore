@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia._unbound = Atomia._unbound || {};
 /* jshint +W079 */
 
-Atomia._unbound.Domains = function (_, request) {
+Atomia._unbound.Domains = function (_, amplify) {
     'use strict';
 
     function findDomains(searchTerm, success, error) {
@@ -11,7 +11,7 @@ Atomia._unbound.Domains = function (_, request) {
             'searchQuery.Query': searchTerm
         };
 
-        request({
+        amplify.request({
             resourceId: 'Domains.FindDomains',
             data: requestData,
             success: function (result) {
@@ -32,4 +32,4 @@ Atomia._unbound.Domains = function (_, request) {
     };
 };
 
-Atomia.Domains = Atomia._unbound.Domains(_, amplify.request);
+Atomia.Domains = Atomia._unbound.Domains(_, amplify);

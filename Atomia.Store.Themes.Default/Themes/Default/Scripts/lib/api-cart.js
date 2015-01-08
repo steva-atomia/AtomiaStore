@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia._unbound = Atomia._unbound || {};
 /* jshint +W079 */
 
-Atomia._unbound.Cart = function (_, request) {
+Atomia._unbound.Cart = function (_, amplify) {
     'use strict';
 
     var CartItems = [],
@@ -36,7 +36,7 @@ Atomia._unbound.Cart = function (_, request) {
             Quantity: 1
         });
 
-        request({
+        amplify.request({
             resourceId: 'Cart.AddItem',
             data: requestData,
             success: function (result) {
@@ -66,7 +66,7 @@ Atomia._unbound.Cart = function (_, request) {
             Id: item.CartItemId
         };
 
-        request({
+        amplify.request({
             resourceId: 'Cart.RemoveItem',
             data: requestData,
             success: function (result) {
@@ -96,4 +96,4 @@ Atomia._unbound.Cart = function (_, request) {
     };
 };
 
-Atomia.Cart = Atomia._unbound.Cart(_, amplify.request);
+Atomia.Cart = Atomia._unbound.Cart(_, amplify);
