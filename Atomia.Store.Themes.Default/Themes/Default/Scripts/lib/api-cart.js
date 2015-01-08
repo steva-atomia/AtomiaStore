@@ -21,14 +21,11 @@ Atomia._unbound.Cart = function (_, amplify) {
     }
 
     function addItem(item, success, error) {
-        var requestData;
-
         if (!_.has(item, 'ArticleNumber')) {
             throw new Error('Object must have ArticleNumber property to be added to cart.');
         }
 
-        requestData = _.pick(item, 'ArticleNumber', 'RenewalPeriod', 'Quantity');
-        _.defaults(requestData, {
+        _.defaults(item, {
             RenewalPeriod: {
                 Period: 1,
                 Unit: 'YEAR'
@@ -38,7 +35,7 @@ Atomia._unbound.Cart = function (_, amplify) {
 
         amplify.request({
             resourceId: 'Cart.AddItem',
-            data: requestData,
+            data: item,
             success: function (result) {
                 _updateCart(result.Cart);
                 item.CartItemId = result.CartItemId;
