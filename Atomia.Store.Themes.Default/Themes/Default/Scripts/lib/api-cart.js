@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia._unbound = Atomia._unbound || {};
 /* jshint +W079 */
 
-Atomia._unbound.Cart = function (_, amplify) {
+Atomia._unbound.Cart = function (_, ko, amplify) {
     'use strict';
 
     var CartItems = [],
@@ -20,12 +20,18 @@ Atomia._unbound.Cart = function (_, amplify) {
         CampaignCode = cartData.CampaignCode;
     }
 
-    function addItem(item, success, error) {
+    function _addItem(item, success, error) {
+        var requestData;
+
         if (!_.has(item, 'ArticleNumber')) {
             throw new Error('Object must have ArticleNumber property to be added to cart.');
         }
 
-        _.defaults(item, {
+        requestData = _.omit(item, function (value) {
+            return _.isFunction(value);
+        });
+
+        _.defaults(requestData, {
             RenewalPeriod: {
                 Period: 1,
                 Unit: 'YEAR'
@@ -35,7 +41,7 @@ Atomia._unbound.Cart = function (_, amplify) {
 
         amplify.request({
             resourceId: 'Cart.AddItem',
-            data: item,
+            data: requestData,
             success: function (result) {
                 _updateCart(result.Cart);
                 item.CartItemId = result.CartItemId;
@@ -52,7 +58,7 @@ Atomia._unbound.Cart = function (_, amplify) {
         });
     }
 
-    function removeItem(item, success, error) {
+    function _removeItem(item, success, error) {
         var requestData;
 
         if (!_.has(item, 'CartItemId')) {
@@ -82,15 +88,76 @@ Atomia._unbound.Cart = function (_, amplify) {
         });
     }
 
+    function _findItem(item) {
+        return _.find(CartItems, function (cartItem) {
+            return item.equals(cartItem);
+        });
+    }
+
+    function createCartItemViewModel(options) {
+        var item = {},
+            itemInCart;
+
+        options = options || {};
+
+        _.defaults(options, {
+            init: _.noop,
+            description: function (i) {
+                return i.Name;
+            },
+            equals: function (i1, i2) {
+                return i1.ArticleNumber === i2.ArticleNumber;
+            }
+        });
+
+        options.init(item);
+
+        item.getCartDescription = function () {
+            return options.description(item);
+        };
+
+        item.equals = function (itemToCompare) {
+            return options.equals(item, itemToCompare);
+        };
+
+        itemInCart = _findItem(item);
+        if (itemInCart !== undefined) {
+            item.CartItemId = itemInCart.Id;
+        }
+
+        item.ShouldBeInCart = ko.observable(itemInCart !== undefined);
+        item.ShouldBeInCart.subscribe(function (newValue) {
+            if (newValue === true && !_findItem(item)) {
+                _addItem(item, undefined, function () {
+                    item.ShouldBeInCart(false);
+                });
+            }
+            else if (newValue === false && _findItem(item)) {
+                _removeItem(item, undefined, function () {
+                    item.ShouldBeInCart(true);
+                });
+            }
+        });
+
+        item.addToCart = function () {
+            item.ShouldBeInCart(true);
+        };
+
+        item.removeFromCart = function () {
+            item.ShouldBeInCart(false);
+        };
+
+        return item;
+    }
+
     return {
         getCartItems: function () { return CartItems; },
         getSubTotal:  function () { return SubTotal; },
         getTotal:  function () { return Total; },
         getTax:  function () { return Tax; },
         getCampaignCode: function () { return CampaignCode; },
-        addItem: addItem,
-        removeItem: removeItem
+        createCartItemViewModel: createCartItemViewModel
     };
 };
 
-Atomia.Cart = Atomia._unbound.Cart(_, amplify);
+Atomia.Cart = Atomia._unbound.Cart(_, ko, amplify);
