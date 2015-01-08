@@ -13,7 +13,6 @@ namespace Atomia.Store.Core
         private decimal subTotal;
         private decimal tax;
         private decimal total;
-        private int itemNoCounter = 1;
 
         public Cart(ICartProvider cartProvider, ICartPricingService cartPricingService)
         {
@@ -93,14 +92,14 @@ namespace Atomia.Store.Core
             this.total = total;
         }
 
-        public int AddItem(CartItem cartItem)
+        public Guid AddItem(CartItem cartItem)
         {
             if (cartItem == null)
             {
                 throw new ArgumentNullException("cartItem");
             }
 
-            cartItem.Id = itemNoCounter++;
+            cartItem.Id = Guid.NewGuid();
             this.cartItems.Add(cartItem);
 
             RecalculatePricingAndSave();
@@ -108,7 +107,7 @@ namespace Atomia.Store.Core
             return cartItem.Id;
         }
 
-        public void RemoveItem(int itemId)
+        public void RemoveItem(Guid itemId)
         {
             var cartItem = this.cartItems.Find(x => x.Id == itemId);
 
@@ -139,7 +138,7 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
-        public void ChangeQuantity(int itemId, decimal newQuantity)
+        public void ChangeQuantity(Guid itemId, decimal newQuantity)
         {
             if (newQuantity < 0)
             {

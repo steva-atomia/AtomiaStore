@@ -5,7 +5,7 @@ namespace Atomia.Store.Core
 {
     public sealed class CartItem
     {
-        private int id;
+        private Guid id;
 
         private decimal quantity;
         private decimal price;
@@ -35,7 +35,7 @@ namespace Atomia.Store.Core
 
         public List<CustomAttribute> CustomAttributes { get; set; }
 
-        public int Id
+        public Guid Id
         {
             get
             {
@@ -43,7 +43,7 @@ namespace Atomia.Store.Core
             }
             internal set
             {
-                if (id == 0)
+                if (id == Guid.Empty)
                 {
                     id = value;
                 }

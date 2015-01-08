@@ -1,4 +1,5 @@
 ﻿using Atomia.Store.Core;
+using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -99,7 +100,7 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        public int Id
+        public Guid Id
         {
             get
             {
