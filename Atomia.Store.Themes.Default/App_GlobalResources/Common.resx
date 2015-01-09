@@ -135,9 +135,6 @@
   <data name="DomainRegResultsHeading" xml:space="preserve">
     <value>Results for</value>
   </data>
-  <data name="DomainRegTitle" xml:space="preserve">
-    <value>Order web hosting and DNS</value>
-  </data>
   <data name="Fee" xml:space="preserve">
     <value>Fee</value>
   </data>
@@ -149,6 +146,9 @@
   </data>
   <data name="Next" xml:space="preserve">
     <value>Next</value>
+  </data>
+  <data name="OrderPageTitle" xml:space="preserve">
+    <value>Order web hosting and DNS</value>
   </data>
   <data name="PerYEAR1" xml:space="preserve">
     <value> per year</value>

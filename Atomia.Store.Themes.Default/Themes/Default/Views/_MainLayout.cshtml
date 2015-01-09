@@ -1,5 +1,8 @@
-﻿@{
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+@{
     Layout = null;
+    ViewBag.Title = Html.CommonResource("OrderPageTitle");
 }
 
 <!DOCTYPE html>
@@ -64,6 +67,7 @@
         <div class="margins">
             <div id="homecontent">
                 <div class="settingsbox">
+                    <h3>@ViewBag.Title</h3>
                     @RenderBody()
                 </div>
             </div>

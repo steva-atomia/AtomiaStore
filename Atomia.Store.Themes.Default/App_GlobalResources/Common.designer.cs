@@ -115,15 +115,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Order web hosting and DNS.
-        /// </summary>
-        internal static string DomainRegTitle {
-            get {
-                return ResourceManager.GetString("DomainRegTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Fee.
         /// </summary>
         internal static string Fee {
@@ -156,6 +147,15 @@ namespace Resources {
         internal static string Next {
             get {
                 return ResourceManager.GetString("Next", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Order web hosting and DNS.
+        /// </summary>
+        internal static string OrderPageTitle {
+            get {
+                return ResourceManager.GetString("OrderPageTitle", resourceCulture);
             }
         }
         
