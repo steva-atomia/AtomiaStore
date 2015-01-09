@@ -257,7 +257,7 @@
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />
-    <Content Include="Themes\Default\Scripts\viewmodels\category-hosting.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\category-hostingpackages.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domainregistration.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-index.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domaintransfer.js" />
@@ -282,7 +282,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
-    <Content Include="Themes\Default\Views\Category\Hosting.cshtml" />
+    <Content Include="Themes\Default\Views\Category\HostingPackages.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">

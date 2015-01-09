@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Available packages.
+        /// </summary>
+        internal static string AvailablePackages {
+            get {
+                return ResourceManager.GetString("AvailablePackages", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Domain.
         /// </summary>
         internal static string Domain {
@@ -124,11 +133,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to From.
+        /// </summary>
+        internal static string From {
+            get {
+                return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select desired Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
+        /// </summary>
+        internal static string HostingPackageDescription {
+            get {
+                return ResourceManager.GetString("HostingPackageDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Web hosting package.
+        /// </summary>
+        internal static string HostingPackageTitle {
+            get {
+                return ResourceManager.GetString("HostingPackageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         internal static string Item {
             get {
                 return ResourceManager.GetString("Item", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Master domain.
+        /// </summary>
+        internal static string MasterDomain {
+            get {
+                return ResourceManager.GetString("MasterDomain", resourceCulture);
             }
         }
         
@@ -183,6 +228,15 @@ namespace Resources {
         internal static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select.
+        /// </summary>
+        internal static string Select {
+            get {
+                return ResourceManager.GetString("Select", resourceCulture);
             }
         }
         

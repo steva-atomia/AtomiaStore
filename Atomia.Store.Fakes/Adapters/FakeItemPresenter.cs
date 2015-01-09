@@ -16,6 +16,21 @@ namespace Atomia.Store.Fakes.Adapters
                 }
             }
 
+            if (item.ArticleNumber == "DNS-PK")
+            {
+                return "DNS Package";
+            }
+
+            if (item.ArticleNumber == "HST-GLD")
+            {
+                return "Gold Package";
+            }
+
+            if (item.ArticleNumber == "HST-PLT")
+            {
+                return "Platinum Package";
+            }
+
             return item.ArticleNumber;
         }
 

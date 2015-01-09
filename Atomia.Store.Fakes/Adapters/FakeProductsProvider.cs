@@ -13,6 +13,19 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Category = "Hosting",
+                    ArticleNumber = "DNS-PK",
+                    PricingVariants = new List<PricingVariant>
+                    {
+                        new PricingVariant
+                        {
+                            Price = 0,
+                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                        }
+                    },
+                },
+                new Product
+                {
+                    Category = "Hosting",
                     ArticleNumber = "HST-GLD",
                     PricingVariants = new List<PricingVariant>
                     {
@@ -47,11 +60,11 @@ namespace Atomia.Store.Fakes.Adapters
                     {
                         new PricingVariant
                         {
-                            Price = 10m,
+                            Price = 20m,
                             RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
                         },
                         new PricingVariant {
-                            Price = 20m,
+                            Price = 40m,
                             RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
                         },
                     },

@@ -75,6 +75,7 @@
     </section>
 
     @Scripts.Render("~/bundles/shared")
+
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
@@ -82,8 +83,6 @@
             Atomia.ViewModels.Active.Cart.LoadCart(@Html.JsonAction("GetCart", "Cart"));
         });
     </script>
-
-
 
     <footer>
         <div class="margins">

@@ -27,6 +27,9 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/viewmodels/domains-domainregistration.js",
                 "~/Themes/Default/Scripts/viewmodels/domains-domaintransfer.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/hostingpackages").Include(
+                "~/Themes/Default/Scripts/viewmodels/category-hostingpackages.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Themes/Default/Content/css/atomia_2/style.css",
                 "~/Themes/Default/Content/fonts/atomia_2/atomicons*"));

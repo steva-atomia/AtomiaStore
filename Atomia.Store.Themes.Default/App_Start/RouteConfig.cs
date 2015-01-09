@@ -17,8 +17,8 @@ namespace Atomia.Store.Themes.Default
                 defaults: new
                 {
                     controller = "Category",
-                    action = "ListProducts",
-                    category = "Hosting"
+                    action = "Index",
+                    viewName = "HostingPackages"
                 }
             );
 
@@ -28,8 +28,7 @@ namespace Atomia.Store.Themes.Default
                 defaults: new
                 {
                     controller = "Category",
-                    action = "ListProducts",
-                    category = "Extra service"
+                    action = "Index"
                 }
             );
 

@@ -120,6 +120,9 @@
   <data name="AddToCart" xml:space="preserve">
     <value>Add to cart</value>
   </data>
+  <data name="AvailablePackages" xml:space="preserve">
+    <value>Available packages</value>
+  </data>
   <data name="Domain" xml:space="preserve">
     <value>Domain</value>
   </data>
@@ -138,8 +141,20 @@
   <data name="Fee" xml:space="preserve">
     <value>Fee</value>
   </data>
+  <data name="From" xml:space="preserve">
+    <value>From</value>
+  </data>
+  <data name="HostingPackageDescription" xml:space="preserve">
+    <value>Select desired Web hosting package. Please note that all fields marked with an asterisk (&lt;span class="required"&gt;*&lt;/span&gt;) are required.</value>
+  </data>
+  <data name="HostingPackageTitle" xml:space="preserve">
+    <value>Web hosting package</value>
+  </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
+  </data>
+  <data name="MasterDomain" xml:space="preserve">
+    <value>Master domain</value>
   </data>
   <data name="MoreResults" xml:space="preserve">
     <value>More results</value>
@@ -158,6 +173,9 @@
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Select</value>
   </data>
   <data name="ShoppingCart" xml:space="preserve">
     <value>Shopping cart</value>

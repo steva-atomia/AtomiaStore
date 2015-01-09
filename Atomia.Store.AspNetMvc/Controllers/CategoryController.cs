@@ -1,7 +1,7 @@
-﻿using Atomia.Store.AspNetMvc.Providers;
+﻿using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
+using Atomia.Store.AspNetMvc.Providers;
 using Atomia.Store.Core;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -18,28 +18,31 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult ListProducts(string category, string viewName = "ListProducts")
+        public ActionResult Index(string viewName = "ListProducts")
         {
-            var model = DependencyResolver.Current.GetService<CategoryViewModel>();
+            return View(viewName);
+        }
 
-            model.Category = category;
-            model.Products = productsProvider.GetProducts(new ProductSearchQuery
-            {
-                Terms = new List<SearchTerm>
-                {
-                    new SearchTerm 
-                    {
-                        Key = "category",
-                        Value = category
-                    }
-                }
-            }).Select(r => new ProductModel(r)).ToList();
+        [HttpGet]
+        public ActionResult ListCategory(string category, string viewName = "ListProducts")
+        {
+            var model = InitViewModel(category);
 
             return View(viewName, model);
         }
 
         [ChildActionOnly]
-        public PartialViewResult ListProductsPartial(string category, string viewName = "_ListProducts")
+        public JsonResult ListCategoryData(string category)
+        {
+            var model = InitViewModel(category);
+
+            return JsonEnvelope.Success(new
+            {
+                CategoryData = model
+            });
+        }
+
+        private CategoryViewModel InitViewModel(string category)
         {
             var model = DependencyResolver.Current.GetService<CategoryViewModel>();
 
@@ -56,7 +59,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
                 }
             }).Select(r => new ProductModel(r)).ToList();
 
-            return PartialView(viewName, model);
+            return model;
         }
     }
 }
