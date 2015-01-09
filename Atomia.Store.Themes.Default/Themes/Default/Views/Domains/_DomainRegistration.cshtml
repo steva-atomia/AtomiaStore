@@ -16,7 +16,7 @@
     <ul class="domains" data-bind="foreach: DomainRegistration.PrimaryResults()">
         <!-- ko if: Status === 'available' -->
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
-                <span data-bind="text: DomainNameTld" class="domain"></span>
+                <span class="domain">.<!-- ko text: DomainNameTld --><!-- /ko --></span>
                 <label class="price">
                     <input type="checkbox" data-bind="attr: { id: LabelId }, click: ToggleInCart, checked: IsInCart" />
                     <label data-bind="attr: { for: LabelId }"></label>
@@ -27,7 +27,7 @@
         <!-- /ko -->
         <!-- ko if: Status !== 'available' -->
             <li class="not_available" title="@Html.CommonResource("DomainNotAvailableHoverTitle")">
-                <span data-bind="text: DomainNameTld" class="domain"></span>
+                <span class="domain">.<!-- ko text: DomainNameTld --><!-- /ko --></span>
                 <span class="price">
                     <em>@Html.CommonResource("Taken")</em>
                     <span data-bind="text: Price"></span>
