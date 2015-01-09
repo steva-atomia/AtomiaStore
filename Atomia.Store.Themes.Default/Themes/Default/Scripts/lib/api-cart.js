@@ -1,9 +1,10 @@
 ﻿/* jshint -W079 */
 var Atomia = Atomia || {};
-Atomia._unbound = Atomia._unbound || {};
+Atomia.Api = Atomia.Api || {};
+Atomia.Api._unbound = Atomia.Api._unbound || {};
 /* jshint +W079 */
 
-Atomia._unbound.Cart = function (_, ko, amplify) {
+Atomia.Api._unbound.Cart = function (_, ko, amplify) {
     'use strict';
 
     function AddItem(item, success, error) {
@@ -78,4 +79,4 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
     };
 };
 
-Atomia.Cart = Atomia._unbound.Cart(_, ko, amplify);
+Atomia.Api.Cart = Atomia.Api._unbound.Cart(_, ko, amplify);

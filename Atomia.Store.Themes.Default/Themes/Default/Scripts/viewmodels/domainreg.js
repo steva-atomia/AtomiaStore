@@ -84,5 +84,5 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
 
 
 if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Domains, Atomia.ViewModels.Active.Cart);
+    Atomia.ViewModels.Active.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Api.Domains, Atomia.ViewModels.Active.Cart);
 }

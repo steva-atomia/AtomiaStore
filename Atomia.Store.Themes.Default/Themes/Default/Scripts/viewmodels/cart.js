@@ -132,5 +132,5 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
 
 
 if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.Cart = Atomia.ViewModels.Cart(_, ko, Atomia.Cart);
+    Atomia.ViewModels.Active.Cart = Atomia.ViewModels.Cart(_, ko, Atomia.Api.Cart);
 }

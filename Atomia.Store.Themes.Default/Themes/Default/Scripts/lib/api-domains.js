@@ -1,9 +1,10 @@
 ﻿/* jshint -W079 */
 var Atomia = Atomia || {};
-Atomia._unbound = Atomia._unbound || {};
+Atomia.Api = Atomia.Api || {};
+Atomia.Api._unbound = Atomia.Api._unbound || {};
 /* jshint +W079 */
 
-Atomia._unbound.Domains = function (_, amplify) {
+Atomia.Api._unbound.Domains = function (_, amplify) {
     'use strict';
 
     function findDomains(searchTerm, success, error) {
@@ -32,4 +33,4 @@ Atomia._unbound.Domains = function (_, amplify) {
     };
 };
 
-Atomia.Domains = Atomia._unbound.Domains(_, amplify);
+Atomia.Api.Domains = Atomia.Api._unbound.Domains(_, amplify);
