@@ -6,18 +6,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 Atomia.ViewModels.Domains = function (ko) {
     'use strict';
 
-    var queryType = ko.observable('domainreg'),
-        domainRegActive = ko.pureComputed(function () {
-            return queryType() === 'domainreg';
+    var QueryType = ko.observable('domainreg'),
+        DomainRegActive = ko.pureComputed(function () {
+            return QueryType() === 'domainreg';
         }),
-        domainTransferActive = ko.pureComputed(function () {
-            return queryType() === 'transfer';
+        DomainTransferActive = ko.pureComputed(function () {
+            return QueryType() === 'transfer';
         });
 
     return {
-        queryType: queryType,
-        domainRegActive: domainRegActive,
-        domainTransferActive: domainTransferActive
+        QueryType: QueryType,
+        DomainRegActive: DomainRegActive,
+        DomainTransferActive: DomainTransferActive
     };
 };
 

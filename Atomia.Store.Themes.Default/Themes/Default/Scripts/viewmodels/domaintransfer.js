@@ -6,15 +6,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 Atomia.ViewModels.DomainTransfer = function (ko) {
     'use strict';
 
-    var query = ko.observable();
+    var Query = ko.observable();
 
-    function submit() {
+    function Submit() {
         console.log('Transfer!');
     }
 
     return {
-        query: query,
-        submit: submit
+        Query: Query,
+        Submit: Submit
     };
 };
 

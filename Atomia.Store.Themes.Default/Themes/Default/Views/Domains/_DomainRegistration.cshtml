@@ -2,18 +2,18 @@
 @using Atomia.Store.WebBase.HtmlHelpers;
 
 <div class="domainreg-query big_search">
-    @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.submit" }))
+    @using (Html.BeginForm("FindDomains", "Domains", FormMethod.Post, new { data_bind = "submitValid: DomainReg.Submit" }))
     {
-        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainReg.query", id = "register_box", placeholder = "mydomain.com" })
+        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainReg.Query", id = "register_box", placeholder = "mydomain.com" })
         <button type="submit" class="button green" style="vertical-align:top;">Find domain</button>
         <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
     }
 </div>
 <br class="clear">
 
-<div class="domainreg-results" data-bind="visible: DomainReg.hasResults" style="display: none;">
-    <h4 class="fancy">@Html.CommonResource("DomainRegResultsHeading") <strong data-bind="text: DomainReg.query"></strong></h4>
-    <ul class="domains" data-bind="foreach: DomainReg.primaryResults()">
+<div class="domainreg-results" data-bind="visible: DomainReg.HasResults" style="display: none;">
+    <h4 class="fancy">@Html.CommonResource("DomainRegResultsHeading") <strong data-bind="text: DomainReg.Query"></strong></h4>
+    <ul class="domains" data-bind="foreach: DomainReg.PrimaryResults()">
         <!-- ko if: Status === 'available' -->
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
                 <span data-bind="text: DomainNameTld" class="domain"></span>
@@ -35,7 +35,7 @@
             </li>
         <!-- /ko -->
     </ul>
-    <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: DomainReg.showMoreResults">
+    <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: DomainReg.ShowMoreResults">
         <thead>
             <tr>
                 <th class="left">@Html.CommonResource("Domain")</th>
@@ -43,7 +43,7 @@
                 <th style="width: 20%;"></th>
             </tr>
         </thead>
-        <tbody data-bind="foreach: DomainReg.secondaryResults()">
+        <tbody data-bind="foreach: DomainReg.SecondaryResults()">
             <!-- ko if: Status === 'available' -->
             <tr>
                 <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
@@ -70,14 +70,14 @@
             <!-- /ko -->
         </tbody>
     </table>
-    <p data-bind="ifnot: DomainReg.showMoreResults">
-        <a id="more" class="button small green" data-bind="click: DomainReg.setShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
+    <p data-bind="ifnot: DomainReg.ShowMoreResults">
+        <a id="more" class="button small green" data-bind="click: DomainReg.SetShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
     </p>
     <p class="actions">
         @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
     </p>
 </div>
-<div data-bind="visible: DomainReg.isLoadingResults" style="display: none;">
+<div data-bind="visible: DomainReg.IsLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>
     <div id="global_processing_overlay" class="blocker"></div>
 </div>

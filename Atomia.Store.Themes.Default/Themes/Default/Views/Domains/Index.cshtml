@@ -16,15 +16,15 @@
 
         <fieldset>
             <label for="queryType-domainreg">
-                <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.queryType" />
+                <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.QueryType" />
             </label>
             <label for="queryType-transfer">
-                <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.queryType" />
+                <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.QueryType" />
             </label>
         </fieldset>
     }
 
-    <div data-bind="visible: Domains.domainRegActive">
+    <div data-bind="visible: Domains.DomainRegActive">
         @Html.Partial("_DomainRegistration", Model)
     </div>
 </div>

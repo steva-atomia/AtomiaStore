@@ -6,24 +6,24 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
     'use strict';
 
-    var query = ko.observable(),
-        isLoadingResults = ko.observable(false),
-        showMoreResults = ko.observable(false),
+    var Query = ko.observable(),
+        IsLoadingResults = ko.observable(false),
+        ShowMoreResults = ko.observable(false),
 
-        primaryResults = ko.observableArray(),
-        secondaryResults = ko.observableArray(),
+        PrimaryResults = ko.observableArray(),
+        SecondaryResults = ko.observableArray(),
 
-        hasResults = ko.pureComputed(function () {
-            return primaryResults().length > 0 || secondaryResults().length > 0;
+        HasResults = ko.pureComputed(function () {
+            return PrimaryResults().length > 0 || SecondaryResults().length > 0;
         });
 
-    function submit() {
-        isLoadingResults(true);
+    function Submit() {
+        IsLoadingResults(true);
 
-        primaryResults.removeAll();
-        secondaryResults.removeAll();
+        PrimaryResults.removeAll();
+        SecondaryResults.removeAll();
 
-        domainsApi.findDomains(query(), function (data) {
+        domainsApi.FindDomains(Query(), function (data) {
             _.each(data, function (result, index) {
                 var cartItem,
                     primaryAttr;
@@ -55,30 +55,30 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
                     
                 primaryAttr = _.find(cartItem.CustomAttributes, function (i) { return i.Name === 'Premium'; });
                 if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
-                    primaryResults.push(cartItem);
+                    PrimaryResults.push(cartItem);
                 }
                 else {
-                    secondaryResults.push(cartItem);
+                    SecondaryResults.push(cartItem);
                 }
             });
 
-            isLoadingResults(false);
+            IsLoadingResults(false);
         });
     }
 
-    function setShowMoreResults() {
-        showMoreResults(true);
+    function SetShowMoreResults() {
+        ShowMoreResults(true);
     }
 
     return {
-        hasResults: hasResults,
-        isLoadingResults: isLoadingResults,
-        primaryResults: primaryResults,
-        query: query,
-        secondaryResults: secondaryResults,
-        setShowMoreResults: setShowMoreResults,
-        showMoreResults: showMoreResults,
-        submit: submit
+        HasResults: HasResults,
+        IsLoadingResults: IsLoadingResults,
+        PrimaryResults: PrimaryResults,
+        Query: Query,
+        SecondaryResults: SecondaryResults,
+        SetShowMoreResults: SetShowMoreResults,
+        ShowMoreResults: ShowMoreResults,
+        Submit: Submit
     };
 };
 

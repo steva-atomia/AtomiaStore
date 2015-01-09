@@ -7,7 +7,7 @@ Atomia.Api._unbound = Atomia.Api._unbound || {};
 Atomia.Api._unbound.Domains = function (_, amplify) {
     'use strict';
 
-    function findDomains(searchTerm, success, error) {
+    function FindDomains(searchTerm, success, error) {
         var requestData = {
             'searchQuery.Query': searchTerm
         };
@@ -29,7 +29,7 @@ Atomia.Api._unbound.Domains = function (_, amplify) {
     }
 
     return {
-        findDomains: findDomains
+        FindDomains: FindDomains
     };
 };
 
