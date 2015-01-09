@@ -12,7 +12,7 @@ var FakeDomainsApi = {
 QUnit.test('basic', function (assert) {
     'use strict';
 
-    var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
+    var domainReg = Atomia.ViewModels.DomainRegistration(_, ko, FakeDomainsApi);
 
     domainReg.results.push('bloop');
 
@@ -22,7 +22,7 @@ QUnit.test('basic', function (assert) {
 QUnit.test('test2', function (assert) {
     'use strict';
 
-    var domainReg = Atomia.ViewModels.DomainReg(_, ko, FakeDomainsApi);
+    var domainReg = Atomia.ViewModels.DomainRegistration(_, ko, FakeDomainsApi);
 
     domainReg.submit();
 

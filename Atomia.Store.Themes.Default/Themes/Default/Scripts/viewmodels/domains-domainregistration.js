@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
+Atomia.ViewModels.DomainRegistration = function (_, ko, domainsApi, cart) {
     'use strict';
 
     var Query = ko.observable(),
@@ -84,5 +84,5 @@ Atomia.ViewModels.DomainReg = function (_, ko, domainsApi, cart) {
 
 
 if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.DomainReg = Atomia.ViewModels.DomainReg(_, ko, Atomia.Api.Domains, Atomia.ViewModels.Active.Cart);
+    Atomia.ViewModels.Active.DomainRegistration = Atomia.ViewModels.DomainRegistration(_, ko, Atomia.Api.Domains, Atomia.ViewModels.Active.Cart);
 }

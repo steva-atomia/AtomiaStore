@@ -23,9 +23,9 @@ namespace Atomia.Store.Themes.Default
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(
                 "~/Themes/Default/Scripts/lib/api-domains.js",
-                "~/Themes/Default/Scripts/viewmodels/domains.js",
-                "~/Themes/Default/Scripts/viewmodels/domainreg.js",
-                "~/Themes/Default/Scripts/viewmodels/domaintransfer.js"));
+                "~/Themes/Default/Scripts/viewmodels/domains-index.js",
+                "~/Themes/Default/Scripts/viewmodels/domains-domainregistration.js",
+                "~/Themes/Default/Scripts/viewmodels/domains-domaintransfer.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Themes/Default/Content/css/atomia_2/style.css",
