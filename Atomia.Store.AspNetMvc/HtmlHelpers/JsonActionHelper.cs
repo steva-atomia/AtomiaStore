@@ -22,5 +22,14 @@ namespace Atomia.Store.AspNetMvc.HtmlHelpers
 
             return actionResult;
         }
+
+        public static MvcHtmlString JsonAction(this HtmlHelper htmlHelper, string action, string controller)
+        {
+            var parentContentType = htmlHelper.ViewContext.HttpContext.Response.ContentType;
+            var actionResult = htmlHelper.Action(action, controller);
+            htmlHelper.ViewContext.HttpContext.Response.ContentType = parentContentType;
+
+            return actionResult;
+        }
     }
 }

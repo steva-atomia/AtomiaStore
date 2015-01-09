@@ -63,7 +63,7 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
         item.IsInCart = ko.computed(function () {
             var isInCart = _.any(CartItems(), function (cartItem) {
                 return options.equals(item, cartItem);
-            })
+            });
 
             return isInCart;
         }).extend({ notify: 'always' });
@@ -78,7 +78,7 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
                     function (result) {
                         _updateCart(result.Cart);
                     },
-                    function (result) {
+                    function () {
                         // Failed: remove item
                         CartItems.remove(function (cartItem) {
                             options.equals(item, cartItem);
@@ -102,7 +102,7 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
                     function (result) {
                         _updateCart(result.Cart);
                     },
-                    function (result) {
+                    function () {
                         // Failed: add back item.
                         CartItems.push(itemInCart);
                     }
@@ -112,9 +112,13 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
 
         item.ToggleInCart = function () {
             item.IsInCart() ? item.RemoveFromCart() : item.AddToCart();
-        }
+        };
 
         return item;
+    }
+
+    function LoadCart(getCartResponse) {
+        _updateCart(getCartResponse.data.Cart);
     }
 
     return {
@@ -126,7 +130,8 @@ Atomia.ViewModels.Cart = function (_, ko, cartApi) {
         IsOpen: IsOpen,
         IsEmpty: IsEmpty,
         ToggleDropdown: ToggleDropdown,
-        CreateCartItem: CreateCartItem
+        CreateCartItem: CreateCartItem,
+        LoadCart: LoadCart
     };
 };
 

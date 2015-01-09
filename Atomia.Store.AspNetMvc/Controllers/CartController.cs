@@ -16,15 +16,12 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index()
+        public JsonResult GetCart()
         {
-            return View(new CartModel(cart));
-        }
-
-        [ChildActionOnly]
-        public ActionResult Partial()
-        {
-            return PartialView(new CartModel(cart));
+            return JsonEnvelope.Success(new
+                {
+                    Cart = new CartModel(cart)
+                });
         }
 
         [HttpPost]

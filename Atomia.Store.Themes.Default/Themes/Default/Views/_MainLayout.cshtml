@@ -73,6 +73,14 @@
     @Scripts.Render("~/bundles/shared")
     @RenderSection("scripts", required: false)
 
+    <script type="text/javascript">
+        $(document).ready(function () {
+            Atomia.ViewModels.Active.Cart.LoadCart(@Html.JsonAction("GetCart", "Cart"));
+        });
+    </script>
+
+
+
     <footer>
         <div class="margins">
             <p id="copyright_placeholder">Copyright © 2014 Atomia. All rights reserved.</p>
