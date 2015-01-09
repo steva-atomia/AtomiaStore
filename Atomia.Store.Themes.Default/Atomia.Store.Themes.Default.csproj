@@ -249,13 +249,13 @@
     <Content Include="Themes\Default\Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Themes\Default\Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
+    <Content Include="Themes\Default\Scripts\lib\api-cart.js" />
     <Content Include="Themes\Default\Scripts\lib\api-definitions.js" />
     <Content Include="Themes\Default\Scripts\lib\api-domains.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-slidevisible.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
-    <Content Include="Themes\Default\Scripts\lib\api-cart.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domainreg.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains.js" />

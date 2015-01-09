@@ -51,7 +51,10 @@ namespace Atomia.Store.AspNetMvc.Controllers
             {
                 cart.RemoveItem(removeItem.Id);
 
-                return JsonEnvelope.Success(new CartModel(cart));
+                return JsonEnvelope.Success(new
+                    {
+                        Cart = new CartModel(cart)
+                    });
             }
 
             return JsonEnvelope.Fail(ModelState);
@@ -64,7 +67,10 @@ namespace Atomia.Store.AspNetMvc.Controllers
             {
                 cart.ChangeQuantity(quantityChangeItem.Id, quantityChangeItem.Quantity);
 
-                return JsonEnvelope.Success(new CartModel(cart));
+                return JsonEnvelope.Success(new
+                {
+                    Cart = new CartModel(cart)
+                });
             }
 
             return JsonEnvelope.Fail(ModelState);

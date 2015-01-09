@@ -6,23 +6,7 @@ Atomia._unbound = Atomia._unbound || {};
 Atomia._unbound.Cart = function (_, ko, amplify) {
     'use strict';
 
-    var CartItems = [],
-        SubTotal = 0,
-        Total = 0,
-        Tax = 0,
-        CampaignCode = '';
-
-    function _updateCart(cartData) {
-        CartItems = cartData.CartItems;
-        SubTotal = cartData.SubTotal;
-        Total = cartData.Total;
-        Tax = cartData.Tax;
-        CampaignCode = cartData.CampaignCode;
-
-        amplify.publish('cart:updated');
-    }
-
-    function _addItem(item, success, error) {
+    function AddItem(item, success, error) {
         var requestData;
 
         if (!_.has(item, 'ArticleNumber')) {
@@ -45,7 +29,6 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
             resourceId: 'Cart.AddItem',
             data: requestData,
             success: function (result) {
-                _updateCart(result.Cart);
                 item.CartItemId = result.CartItemId;
 
                 if (success !== undefined) {
@@ -60,7 +43,7 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
         });
     }
 
-    function _removeItem(item, success, error) {
+    function RemoveItem(item, success, error) {
         var requestData;
 
         if (!_.has(item, 'CartItemId')) {
@@ -75,7 +58,6 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
             resourceId: 'Cart.RemoveItem',
             data: requestData,
             success: function (result) {
-                _updateCart(result);
                 delete item.CartItemId;
 
                 if (success !== undefined) {
@@ -90,68 +72,9 @@ Atomia._unbound.Cart = function (_, ko, amplify) {
         });
     }
 
-    function _findItem(item) {
-        return _.find(CartItems, function (cartItem) {
-            return item.equals(cartItem);
-        });
-    }
-
-    function createCartItemViewModel(options) {
-        var item = {},
-            itemInCart;
-
-        options = options || {};
-
-        _.defaults(options, {
-            init: _.noop,
-            equals: function (i1, i2) {
-                return i1.ArticleNumber === i2.ArticleNumber;
-            }
-        });
-
-        options.init(item);
-
-        item.equals = function (itemToCompare) {
-            return options.equals(item, itemToCompare);
-        };
-
-        itemInCart = _findItem(item);
-        if (itemInCart !== undefined) {
-            item.CartItemId = itemInCart.Id;
-        }
-
-        item.ShouldBeInCart = ko.observable(itemInCart !== undefined);
-        item.ShouldBeInCart.subscribe(function (newValue) {
-            if (newValue === true && !_findItem(item)) {
-                _addItem(item, undefined, function () {
-                    item.ShouldBeInCart(false);
-                });
-            }
-            else if (newValue === false && _findItem(item)) {
-                _removeItem(item, undefined, function () {
-                    item.ShouldBeInCart(true);
-                });
-            }
-        });
-
-        item.addToCart = function () {
-            item.ShouldBeInCart(true);
-        };
-
-        item.removeFromCart = function () {
-            item.ShouldBeInCart(false);
-        };
-
-        return item;
-    }
-
     return {
-        getCartItems: function () { return CartItems; },
-        getSubTotal:  function () { return SubTotal; },
-        getTotal:  function () { return Total; },
-        getTax:  function () { return Tax; },
-        getCampaignCode: function () { return CampaignCode; },
-        createCartItemViewModel: createCartItemViewModel
+        AddItem: AddItem,
+        RemoveItem: RemoveItem
     };
 };
 
