@@ -36,7 +36,7 @@ namespace Atomia.Store.Fakes.Adapters
 
         public string GetDescription(IPresentableItem item)
         {
-            return "Description of " + item.ArticleNumber;
+            return "Description of <em>" + GetName(item) + "</em><ul><li>Bleep</li><li>Bloop</li>";
         }
     }
 }
