@@ -3,49 +3,45 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (module, _) {
-    'use strict';
-
-    var HostingPackagesItem = function HostingPackagesItem(productData) {
-        _.extend(this, productData);
-    };
-
-    module.HostingPackagesItem = HostingPackagesItem;
-
-})(Atomia.ViewModels, _);
-
 
 (function (module, _, ko) {
     'use strict';
 
-    var HostingPackages = function HostingPackages() {
+    var HostingPackagesItem, HostingPackages;
+
+    HostingPackagesItem = function HostingPackagesItem(productData) {
+        _.extend(this, productData);
+    };
+
+    HostingPackages = function HostingPackages() {
+        this.HostingPackagesItem = HostingPackagesItem;
+
         this.Products = ko.observableArray();
 
-        this.Init = this._Init.bind(this);
-        this.UpdateProducts = this._UpdateProducts.bind(this);
-        this.Load = this._Load.bind(this);
+        _.bindAll(this, 'Init', '_UpdateProducts', 'Load');
     };
 
     HostingPackages.prototype = {
-        _Init: function(MakeCartItem, HostingPackagesItem) {
-            this._MakeCartItem = MakeCartItem;
-            this._HostingPackagesItem = HostingPackagesItem;
+        Init: function(cart) {
+            this._MakeCartItem = cart.MakeCartItem;
         },
+
         _UpdateProducts: function (products) {
             var self = this;
 
             _.each(products, function (product) {
-                var productToAdd = self._MakeCartItem(new self._HostingPackagesItem(product));
+                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product));
 
                 self.Products.push(productToAdd);
             });
         },
 
-        _Load: function (listProductsDataResponse) {
-            this.UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
+        Load: function (listProductsDataResponse) {
+            this._UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
         }
     };
     
+    module.HostingPackagesItem = HostingPackagesItem;
     module.HostingPackages = HostingPackages;
 
 })(Atomia.ViewModels, _, ko);

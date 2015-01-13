@@ -3,34 +3,27 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-
-(function (module, _) {
-    'use strict';
-
-    var ItemInCart = function ItemInCart(itemData) {
-        _.extend(this, itemData);
-
-        this.CartItemId = this.Id;
-        this.Equals = this._Equals.bind(this);
-    };
-
-    ItemInCart.prototype = {
-        _Equals: function (other) {
-            return this.CartItemId === other.CartItemId;
-        }
-    };
-    
-    module.ItemInCart = ItemInCart;
-
-})(Atomia.ViewModels, _);
-
-
 (function (module, _, ko, cartApi) {
     'use strict';
 
-    var Cart = function Cart(ItemInCart) {
+    var ItemInCart, Cart;
 
-        this._ItemInCart = ItemInCart;
+    ItemInCart = function ItemInCart(itemData) {
+        _.extend(this, itemData);
+
+        this.CartItemId = this.Id;
+
+        _.bindAll(this, 'Equals');
+    };
+
+    ItemInCart.prototype = {
+        Equals: function (other) {
+            return this.CartItemId === other.CartItemId;
+        }
+    };
+
+    Cart = function Cart() {
+        this.ItemInCart = ItemInCart;
 
         this.CartItems = ko.observableArray();
         this.SubTotal = ko.observable(0);
@@ -39,29 +32,28 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.CampaignCode = ko.observable('');
         this.IsOpen = ko.observable(false);
 
-        this.NumberOfItems = ko.pureComputed(this._NumberOfItems, this);
-        this.IsEmpty = ko.pureComputed(this._IsEmpty, this);
+        this.NumberOfItems = ko.pureComputed(this.NumberOfItems, this);
+        this.IsEmpty = ko.pureComputed(this.IsEmpty, this);
 
-        this.UpdateCart = this._UpdateCart.bind(this);
-        this.ToggleDropdown = this._ToggleDropdown.bind(this);
-        this.MakeCartItem = this._MakeCartItem.bind(this);
-        this.Load = this._Load.bind(this);
+        _.bindAll(this, '_UpdateCart', 'ToggleDropdown', 'MakeCartItem', 'Load');
     };
 
     Cart.prototype = {
-        _NumberOfItems: function () {
+        NumberOfItems: function () {
             return this.CartItems().length;
         },
-        _IsEmpty: function () {
+
+        IsEmpty: function () {
             return this.NumberOfItems() <= 0;
         },
+
         _UpdateCart: function (cartData) {
             var self = this;
 
             this.CartItems.removeAll();
 
             _.each(cartData.CartItems, function (cartItemData) {
-                var item = new self._ItemInCart(cartItemData),
+                var item = new self.ItemInCart(cartItemData),
                     cartItem = self.MakeCartItem(item);
 
                 self.CartItems.push(cartItem);
@@ -73,11 +65,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.CampaignCode(cartData.CampaignCode);
         },
 
-        _ToggleDropdown: function () {
+        ToggleDropdown: function () {
             this.IsOpen() ? this.IsOpen(false) : this.IsOpen(true);
         },
 
-        _MakeCartItem: function (item) {
+        MakeCartItem: function (item) {
             var cart = this;
 
             _.defaults(item, {
@@ -97,7 +89,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                         cartApi.AddItem(
                             item,
                             function (result) {
-                                cart.UpdateCart(result.Cart);
+                                cart._UpdateCart(result.Cart);
                             },
                             function () {
                                 // Failed: remove item
@@ -121,7 +113,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                         cartApi.RemoveItem(
                             itemInCart,
                             function (result) {
-                                cart.UpdateCart(result.Cart);
+                                cart._UpdateCart(result.Cart);
                             },
                             function () {
                                 // Failed: add back item.
@@ -143,11 +135,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return item;
         },
 
-        _Load: function (getCartResponse) {
-            this.UpdateCart(getCartResponse.data.Cart);
+        Load: function (getCartResponse) {
+            this._UpdateCart(getCartResponse.data.Cart);
         }
     };
 
+    module.ItemInCart = ItemInCart;
     module.Cart = Cart;
 
 })(Atomia.ViewModels, _, ko, Atomia.Api.Cart);

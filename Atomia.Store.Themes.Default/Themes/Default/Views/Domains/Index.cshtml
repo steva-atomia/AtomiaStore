@@ -35,9 +35,8 @@
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
 
         Atomia.ActiveViewModel.Domains = new Atomia.ViewModels.Domains();
-        Atomia.ActiveViewModel.DomainRegistration = new Atomia.ViewModels.DomainRegistration(
-            Atomia.ActiveViewModel.Cart.MakeCartItem,
-            Atomia.ViewModels.DomainRegistrationItem
-        );
+        Atomia.ActiveViewModel.DomainRegistration = new Atomia.ViewModels.DomainRegistration();
+
+        Atomia.ActiveViewModel.DomainRegistration.Init(Atomia.ActiveViewModel.Cart);
     </script>
 }

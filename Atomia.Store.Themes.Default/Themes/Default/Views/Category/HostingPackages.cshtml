@@ -50,7 +50,8 @@
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
 
         Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.HostingPackages();
-        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart.MakeCartItem, Atomia.ViewModels.HostingPackagesItem);
+
+        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart);
         Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
     </script>
 }

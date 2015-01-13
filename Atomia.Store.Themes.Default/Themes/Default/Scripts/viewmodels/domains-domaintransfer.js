@@ -3,21 +3,21 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.DomainTransfer = function (ko) {
+(function (module, ko) {
     'use strict';
 
-    var Query = ko.observable();
+    var DomainTransfer = function DomainTransfer() {
+        this.Query = ko.observable();
 
-    function Submit() {
-        console.log('Transfer!');
-    }
-
-    return {
-        Query: Query,
-        Submit: Submit
+        _.bindAll(this, 'Submit');
     };
-};
 
-if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.DomainTransfer = Atomia.ViewModels.DomainTransfer(ko);
-}
+    DomainTransfer.prototype = {
+        Submit: function() {
+            console.log('Transfer!');
+        }
+    };
+
+    module.DomainTransfer = DomainTransfer;
+
+})(Atomia.ViewModels, ko);

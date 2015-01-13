@@ -9,15 +9,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     var Domains = function Domains() {
         this.QueryType = ko.observable('domainreg');
 
-        this.DomainRegActive = ko.pureComputed(this._DomainRegActive, this);
-        this.DomainTransferActive = ko.pureComputed(this._DomainTransferActive, this);
+        this.DomainRegActive = ko.pureComputed(this.DomainRegActive, this);
+        this.DomainTransferActive = ko.pureComputed(this.DomainTransferActive, this);
     };
 
     Domains.prototype = {
-        _DomainRegActive: function () {
+        DomainRegActive: function () {
             return this.QueryType() === 'domainreg';
         },
-        _DomainTransferActive: function () {
+        DomainTransferActive: function () {
             return this.QueryType() === 'transfer';
         }
     };
