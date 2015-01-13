@@ -30,8 +30,6 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             resourceId: 'Cart.AddItem',
             data: requestData,
             success: function (result) {
-                item.CartItemId = result.CartItemId;
-
                 if (success !== undefined) {
                     success(result);
                 }
@@ -59,8 +57,6 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             resourceId: 'Cart.RemoveItem',
             data: requestData,
             success: function (result) {
-                delete item.CartItemId;
-
                 if (success !== undefined) {
                     success(result);
                 }

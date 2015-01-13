@@ -55,7 +55,8 @@ Atomia.ViewModels.DomainRegistration = function (_, ko, domainsApi, cart) {
         domainsApi.FindDomains(Query(), function (data) {
             _.each(data, function (result, index) {
                 var item = new DomainRegistrationItem(result, index),
-                    cartItem = cart.CreateCartItem(item),
+                    cartItem = cart.MakeCartItem(item),
+
                     primaryAttr = _.find(cartItem.CustomAttributes, function (ca) {
                         return ca.Name === 'Premium';
                     });

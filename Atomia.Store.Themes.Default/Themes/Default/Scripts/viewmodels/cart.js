@@ -3,140 +3,153 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.Cart = function (_, ko, cartApi) {
+
+(function (_) {
     'use strict';
 
-    var CartItems = ko.observableArray(),
-        SubTotal = ko.observable(0),
-        Total = ko.observable(0),
-        Tax = ko.observable(0),
-        CampaignCode = ko.observable(''),
-        IsOpen = ko.observable(false),
-        NumberOfItems = ko.pureComputed(function () {
-            return CartItems().length;
-        }),
-        IsEmpty = ko.pureComputed(function () {
-            return NumberOfItems() <= 0;
-        });
-
-    function Item(itemData) {
+    function CartItem(itemData) {
         _.extend(this, itemData);
 
         this.CartItemId = this.Id;
         this.Equals = this._Equals.bind(this);
     }
 
-    Item.prototype._Equals = function (other) {
+    CartItem.prototype._Equals = function (other) {
         return this.CartItemId === other.CartItemId;
-    }
-
-    function _updateCart(cartData) {
-        CartItems.removeAll();
-
-        _.each(cartData.CartItems, function (cartItemData) {
-            var item = new Item(cartItemData),
-                cartItem = CreateCartItem(item);
-
-            CartItems.push(cartItem);
-        });
-
-        SubTotal(cartData.SubTotal);
-        Total(cartData.Total);
-        Tax(cartData.Tax);
-        CampaignCode(cartData.CampaignCode);
-    }
-
-    function ToggleDropdown() {
-        IsOpen() ? IsOpen(false) : IsOpen(true);
-    }
-
-    function CreateCartItem(baseItem) {
-        var item = {};
-
-        _.extend(item, baseItem);
-
-        _.defaults(item, {
-            IsInCart: ko.computed(function () {
-                var isInCart = _.any(CartItems(), function (cartItem) {
-                    return item.Equals(cartItem);
-                });
-
-                return isInCart;
-            }).extend({ notify: 'always' }),
-
-            AddToCart: function () {
-                if (!item.IsInCart()) {
-                    // Preliminarily add item to cart.
-                    CartItems.push(item);
-
-                    cartApi.AddItem(
-                        item,
-                        function (result) {
-                            _updateCart(result.Cart);
-                        },
-                        function () {
-                            // Failed: remove item
-                            CartItems.remove(function (cartItem) {
-                                item.Equals(cartItem);
-                            });
-                        }
-                    );
-                }
-            },
-
-            RemoveFromCart: function () {
-                var itemInCart = _.find(CartItems(), function (cartItem) {
-                    return item.Equals(cartItem);
-                });
-
-                if (itemInCart !== undefined) {
-                    // Preliminarily remove item from cart.
-                    CartItems.remove(itemInCart);
-
-                    cartApi.RemoveItem(
-                        itemInCart,
-                        function (result) {
-                            _updateCart(result.Cart);
-                        },
-                        function () {
-                            // Failed: add back item.
-                            CartItems.push(itemInCart);
-                        }
-                    );
-                }
-            },
-
-            ToggleInCart: function () {
-                item.IsInCart() ? item.RemoveFromCart() : item.AddToCart();
-            },
-
-            Equals: function (other) {
-                return item.ArticleNumber === other.ArticleNumber;
-            }
-        });
-
-        return item;
-    }
-
-    function LoadCart(getCartResponse) {
-        _updateCart(getCartResponse.data.Cart);
-    }
-
-    return {
-        CartItems: CartItems,
-        SubTotal: SubTotal,
-        Total: Total,
-        Tax: Tax,
-        NumberOfItems: NumberOfItems,
-        IsOpen: IsOpen,
-        IsEmpty: IsEmpty,
-        ToggleDropdown: ToggleDropdown,
-        CreateCartItem: CreateCartItem,
-        LoadCart: LoadCart
     };
-};
+    
+    Atomia.ViewModels.CartItem = CartItem;
+
+})(_);
+
+(function (_, ko, cartApi) {
+    'use strict';
+
+    var Cart = function Cart(CartItem) {
+
+        this._CartItem = CartItem;
+
+        this.CartItems = ko.observableArray();
+        this.SubTotal = ko.observable(0);
+        this.Total = ko.observable(0);
+        this.Tax = ko.observable(0);
+        this.CampaignCode = ko.observable('');
+        this.IsOpen = ko.observable(false);
+
+        this.NumberOfItems = ko.pureComputed(this._NumberOfItems, this);
+        this.IsEmpty = ko.pureComputed(this._IsEmpty, this);
+
+        this.UpdateCart = this._UpdateCart.bind(this);
+        this.ToggleDropdown = this._ToggleDropdown.bind(this);
+        this.MakeCartItem = this._MakeCartItem.bind(this);
+        this.Load = this._Load.bind(this);
+    };
+
+    Cart.prototype = {
+        _NumberOfItems: function () {
+            return this.CartItems().length;
+        },
+        _IsEmpty: function () {
+            return this.NumberOfItems() <= 0;
+        },
+        _UpdateCart: function (cartData) {
+            var self = this;
+
+            this.CartItems.removeAll();
+
+            _.each(cartData.CartItems, function (cartItemData) {
+                var item = new self._CartItem(cartItemData),
+                    cartItem = self.MakeCartItem(item);
+
+                self.CartItems.push(cartItem);
+            });
+
+            this.SubTotal(cartData.SubTotal);
+            this.Total(cartData.Total);
+            this.Tax(cartData.Tax);
+            this.CampaignCode(cartData.CampaignCode);
+        },
+
+        _ToggleDropdown: function () {
+            this.IsOpen() ? this.IsOpen(false) : this.IsOpen(true);
+        },
+
+        _MakeCartItem: function (item) {
+            var cart = this;
+
+            _.defaults(item, {
+                IsInCart: ko.computed(function () {
+                    var isInCart = _.any(cart.CartItems(), function (cartItem) {
+                        return item.Equals(cartItem);
+                    });
+
+                    return isInCart;
+                }).extend({ notify: 'always' }),
+
+                AddToCart: function () {
+                    if (!item.IsInCart()) {
+                        // Preliminarily add item to cart.
+                        cart.CartItems.push(item);
+
+                        cartApi.AddItem(
+                            item,
+                            function (result) {
+                                cart.UpdateCart(result.Cart);
+                            },
+                            function () {
+                                // Failed: remove item
+                                cart.CartItems.remove(function (cartItem) {
+                                    item.Equals(cartItem);
+                                });
+                            }
+                        );
+                    }
+                },
+
+                RemoveFromCart: function () {
+                    var itemInCart = _.find(cart.CartItems(), function (cartItem) {
+                        return item.Equals(cartItem);
+                    });
+
+                    if (itemInCart !== undefined) {
+                        // Preliminarily remove item from cart.
+                        cart.CartItems.remove(itemInCart);
+
+                        cartApi.RemoveItem(
+                            itemInCart,
+                            function (result) {
+                                cart.UpdateCart(result.Cart);
+                            },
+                            function () {
+                                // Failed: add back item.
+                                cart.CartItems.push(itemInCart);
+                            }
+                        );
+                    }
+                },
+
+                ToggleInCart: function () {
+                    item.IsInCart() ? item.RemoveFromCart() : item.AddToCart();
+                },
+
+                Equals: function (other) {
+                    return item.ArticleNumber === other.ArticleNumber;
+                }
+            });
+
+            return item;
+        },
+
+        _Load: function (getCartResponse) {
+            this.UpdateCart(getCartResponse.data.Cart);
+        }
+    };
+
+    Atomia.ViewModels.Cart = Cart;
+
+})(_, ko, Atomia.Api.Cart);
 
 
 if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.Cart = Atomia.ViewModels.Cart(_, ko, Atomia.Api.Cart);
+    Atomia.ViewModels.Active.Cart = new Atomia.ViewModels.Cart(Atomia.ViewModels.CartItem);
 }

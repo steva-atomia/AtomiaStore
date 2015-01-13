@@ -14,7 +14,7 @@ Atomia.ViewModels.HostingPackages = function (_, ko, cart) {
 
     function _updateProducts(products) {
         _.each(products, function (product) {
-            var productToAdd = cart.CreateCartItem(new Product(product));
+            var productToAdd = cart.MakeCartItem(new Product(product));
 
             Products.push(productToAdd);
         });
