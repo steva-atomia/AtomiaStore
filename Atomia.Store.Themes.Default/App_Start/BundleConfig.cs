@@ -17,7 +17,6 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/lib/api-definitions.js",
                 "~/Themes/Default/Scripts/lib/ko-binding-submitvalid.js",
                 "~/Themes/Default/Scripts/lib/ko-binding-slidevisible.js",
-                "~/Themes/Default/Scripts/viewmodels/root.js",
                 "~/Themes/Default/Scripts/lib/api-cart.js",
                 "~/Themes/Default/Scripts/viewmodels/cart.js"));
 

@@ -261,7 +261,6 @@
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domainregistration.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-index.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domaintransfer.js" />
-    <Content Include="Themes\Default\Scripts\viewmodels\root.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainTransfer.cshtml" />

@@ -15,7 +15,7 @@
             <div class="card full-width stickers selectable">
                 <div class="card_content">
                     <h4 class="card_content_title" data-bind="text: Name"></h4>
-                    <p class="card_content_description" data-bind="text: Description"></p>
+                    <p class="card_content_description" data-bind="html: Description"></p>
                     <p class="card_sticker">
                         <span class="card_sticker_small above">@Html.CommonResource("From")</span>
                         <span class="card_sticker_big" data-bind="text: PricingVariants[0].Price"></span>
@@ -46,8 +46,11 @@
     @Scripts.Render("~/bundles/hostingpackages")
 
     <script type="text/javascript">
-        $(document).ready(function () {
-            Atomia.ViewModels.Active.HostingPackages.LoadProducts(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
-        });
+        var Atomia = Atomia || {};
+        Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
+
+        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.HostingPackages();
+        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart.MakeCartItem, Atomia.ViewModels.HostingPackagesItem);
+        Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
     </script>
 }

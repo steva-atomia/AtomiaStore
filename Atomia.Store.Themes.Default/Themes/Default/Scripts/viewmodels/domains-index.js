@@ -3,24 +3,25 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.Domains = function (ko) {
+(function (module, ko) {
     'use strict';
 
-    var QueryType = ko.observable('domainreg'),
-        DomainRegActive = ko.pureComputed(function () {
-            return QueryType() === 'domainreg';
-        }),
-        DomainTransferActive = ko.pureComputed(function () {
-            return QueryType() === 'transfer';
-        });
+    var Domains = function Domains() {
+        this.QueryType = ko.observable('domainreg');
 
-    return {
-        QueryType: QueryType,
-        DomainRegActive: DomainRegActive,
-        DomainTransferActive: DomainTransferActive
+        this.DomainRegActive = ko.pureComputed(this._DomainRegActive, this);
+        this.DomainTransferActive = ko.pureComputed(this._DomainTransferActive, this);
     };
-};
 
-if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.Domains = Atomia.ViewModels.Domains(ko);
-}
+    Domains.prototype = {
+        _DomainRegActive: function () {
+            return this.QueryType() === 'domainreg';
+        },
+        _DomainTransferActive: function () {
+            return this.QueryType() === 'transfer';
+        }
+    };
+
+    module.Domains = Domains;
+
+})(Atomia.ViewModels, ko);

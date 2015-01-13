@@ -18,9 +18,9 @@
             <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
                 <span class="domain">.<!-- ko text: DomainNameTld --><!-- /ko --></span>
                 <label class="price">
-                    <input type="checkbox" data-bind="attr: { id: LabelId }, click: ToggleInCart, checked: IsInCart" />
-                    <label data-bind="attr: { for: LabelId }"></label>
-                    <label data-bind="attr: { for: LabelId }"></label>
+                    <input type="checkbox" data-bind="attr: { id: UniqueId }, click: ToggleInCart, checked: IsInCart" />
+                    <label data-bind="attr: { for: UniqueId }"></label>
+                    <label data-bind="attr: { for: UniqueId }"></label>
                     <span data-bind="text: Price"></span>
                 </label>
             </li>

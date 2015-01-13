@@ -3,33 +3,49 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-Atomia.ViewModels.HostingPackages = function (_, ko, cart) {
+(function (module, _) {
     'use strict';
 
-    var Products = ko.observableArray();
-
-    function Product(productData) {
+    var HostingPackagesItem = function HostingPackagesItem(productData) {
         _.extend(this, productData);
-    }
-
-    function _updateProducts(products) {
-        _.each(products, function (product) {
-            var productToAdd = cart.MakeCartItem(new Product(product));
-
-            Products.push(productToAdd);
-        });
-    }
-
-    function LoadProducts(listProductsDataResponse) {
-        _updateProducts(listProductsDataResponse.data.CategoryData.Products);
-    }
-    
-    return {
-        Products: Products,
-        LoadProducts: LoadProducts
     };
-};
 
-if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.HostingPackages = Atomia.ViewModels.HostingPackages(_, ko, Atomia.ViewModels.Active.Cart);
-}
+    module.HostingPackagesItem = HostingPackagesItem;
+
+})(Atomia.ViewModels, _);
+
+
+(function (module, _, ko) {
+    'use strict';
+
+    var HostingPackages = function HostingPackages() {
+        this.Products = ko.observableArray();
+
+        this.Init = this._Init.bind(this);
+        this.UpdateProducts = this._UpdateProducts.bind(this);
+        this.Load = this._Load.bind(this);
+    };
+
+    HostingPackages.prototype = {
+        _Init: function(MakeCartItem, HostingPackagesItem) {
+            this._MakeCartItem = MakeCartItem;
+            this._HostingPackagesItem = HostingPackagesItem;
+        },
+        _UpdateProducts: function (products) {
+            var self = this;
+
+            _.each(products, function (product) {
+                var productToAdd = self._MakeCartItem(new self._HostingPackagesItem(product));
+
+                self.Products.push(productToAdd);
+            });
+        },
+
+        _Load: function (listProductsDataResponse) {
+            this.UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
+        }
+    };
+    
+    module.HostingPackages = HostingPackages;
+
+})(Atomia.ViewModels, _, ko);

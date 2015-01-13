@@ -4,30 +4,33 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
 
-(function (_) {
+(function (module, _) {
     'use strict';
 
-    function CartItem(itemData) {
+    var ItemInCart = function ItemInCart(itemData) {
         _.extend(this, itemData);
 
         this.CartItemId = this.Id;
         this.Equals = this._Equals.bind(this);
-    }
+    };
 
-    CartItem.prototype._Equals = function (other) {
-        return this.CartItemId === other.CartItemId;
+    ItemInCart.prototype = {
+        _Equals: function (other) {
+            return this.CartItemId === other.CartItemId;
+        }
     };
     
-    Atomia.ViewModels.CartItem = CartItem;
+    module.ItemInCart = ItemInCart;
 
-})(_);
+})(Atomia.ViewModels, _);
 
-(function (_, ko, cartApi) {
+
+(function (module, _, ko, cartApi) {
     'use strict';
 
-    var Cart = function Cart(CartItem) {
+    var Cart = function Cart(ItemInCart) {
 
-        this._CartItem = CartItem;
+        this._ItemInCart = ItemInCart;
 
         this.CartItems = ko.observableArray();
         this.SubTotal = ko.observable(0);
@@ -58,7 +61,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.CartItems.removeAll();
 
             _.each(cartData.CartItems, function (cartItemData) {
-                var item = new self._CartItem(cartItemData),
+                var item = new self._ItemInCart(cartItemData),
                     cartItem = self.MakeCartItem(item);
 
                 self.CartItems.push(cartItem);
@@ -145,11 +148,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    Atomia.ViewModels.Cart = Cart;
+    module.Cart = Cart;
 
-})(_, ko, Atomia.Api.Cart);
-
-
-if (Atomia.ViewModels.Active !== undefined) {
-    Atomia.ViewModels.Active.Cart = new Atomia.ViewModels.Cart(Atomia.ViewModels.CartItem);
-}
+})(Atomia.ViewModels, _, ko, Atomia.Api.Cart);

@@ -29,4 +29,15 @@
 
 @section scripts {
     @Scripts.Render("~/bundles/domains")
+
+    <script type="text/javascript">
+        var Atomia = Atomia || {};
+        Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
+
+        Atomia.ActiveViewModel.Domains = new Atomia.ViewModels.Domains();
+        Atomia.ActiveViewModel.DomainRegistration = new Atomia.ViewModels.DomainRegistration(
+            Atomia.ActiveViewModel.Cart.MakeCartItem,
+            Atomia.ViewModels.DomainRegistrationItem
+        );
+    </script>
 }
