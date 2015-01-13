@@ -17,6 +17,35 @@ Atomia.ViewModels.DomainRegistration = function (_, ko, domainsApi, cart) {
             return PrimaryResults().length > 0 || SecondaryResults().length > 0;
         });
 
+    function DomainRegistrationItem(itemData, index) {
+        var domainName = _.find(itemData.CustomAttributes, function (ca) {
+                return ca.Name === 'DomainName';
+            }).Value,
+            domainParts = domainName.split('.');
+
+        _.extend(this, itemData);
+
+        this.LabelId = 'dmn' + index;
+        this.DomainName = domainName;
+        this.DomainNameSld = domainParts[0];
+        this.DomainNameTld = domainParts[1];
+        this.Price = this.PricingVariants[0].Price;
+        this.Status = _.find(this.CustomAttributes, function (ca) {
+            return ca.Name === 'Status';
+        }).Value;
+
+        this.Equals = this._Equals.bind(this);
+    }
+
+    DomainRegistrationItem.prototype._Equals = function (other) {
+        var otherDomainNameAttr = _.find(other.CustomAttributes, function (ca) { 
+            return ca.Name === 'DomainName'; 
+        }),
+            otherDomainName = otherDomainNameAttr !== undefined ? otherDomainNameAttr.Value : undefined;
+
+        return this.ArticleNumber === other.ArticleNumber && this.DomainName === otherDomainName;
+    };
+
     function Submit() {
         IsLoadingResults(true);
 
@@ -25,35 +54,12 @@ Atomia.ViewModels.DomainRegistration = function (_, ko, domainsApi, cart) {
 
         domainsApi.FindDomains(Query(), function (data) {
             _.each(data, function (result, index) {
-                var cartItem,
-                    primaryAttr;
-                
-                cartItem = cart.CreateCartItem({
-                    init: function (item) {
-                        var domainParts;
+                var item = new DomainRegistrationItem(result, index),
+                    cartItem = cart.CreateCartItem(item),
+                    primaryAttr = _.find(cartItem.CustomAttributes, function (ca) {
+                        return ca.Name === 'Premium';
+                    });
 
-                        _.extend(item, result);
-
-                        item.LabelId = 'dmn' + index;
-                        item.DomainName = _.find(item.CustomAttributes, function (i) { return i.Name === 'DomainName'; }).Value;
-                        item.Status = _.find(item.CustomAttributes, function (i) { return i.Name === 'Status'; }).Value;
-                        item.Price = item.PricingVariants[0].Price;
-
-                        domainParts = item.DomainName.split('.');
-                        item.DomainNameSld = domainParts[0];
-                        item.DomainNameTld = domainParts[1];
-                    },
-                    equals: function (i1, i2) {
-                        var i2DomainNameAttr = _.find(i2.CustomAttributes, function (i) { return i.Name === 'DomainName'; });
-
-                        i2.DomainName = i2DomainNameAttr !== undefined ? i2DomainNameAttr.Value : undefined;
-
-                        return i1.ArticleNumber === i2.ArticleNumber &&
-                               i1.DomainName === i2.DomainName;
-                    }
-                });
-                    
-                primaryAttr = _.find(cartItem.CustomAttributes, function (i) { return i.Name === 'Premium'; });
                 if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
                     PrimaryResults.push(cartItem);
                 }
