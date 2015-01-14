@@ -21,11 +21,16 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
-                return new RenewalPeriodModel
+                if (pricingVariant.RenewalPeriod != null)
                 {
-                    Period = pricingVariant.RenewalPeriod.Period,
-                    Unit = pricingVariant.RenewalPeriod.Unit
-                };
+                    return new RenewalPeriodModel
+                    {
+                        Period = pricingVariant.RenewalPeriod.Period,
+                        Unit = pricingVariant.RenewalPeriod.Unit
+                    };
+                }
+
+                return null;
             }
         }
 
@@ -47,16 +52,21 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public override string ToString()
         {
-            var renewalPeriodUnitType = RenewalPeriod.Unit;
-
-            if (RenewalPeriod.Period > 1)
+            if (RenewalPeriod != null)
             {
-                renewalPeriodUnitType = RenewalPeriod.Unit + "Plural";
+                var renewalPeriodUnitType = RenewalPeriod.Unit;
+
+                if (RenewalPeriod.Period > 1)
+                {
+                    renewalPeriodUnitType = RenewalPeriod.Unit + "Plural";
+                }
+
+                var renewalPeriodUnit = resourceProvider.GetResource(renewalPeriodUnitType);
+
+                return string.Format(resourceProvider.GetResource("PricingVariantDisplay"), Price, RenewalPeriod.Period, renewalPeriodUnit);
             }
 
-            var renewalPeriodUnit = resourceProvider.GetResource(renewalPeriodUnitType);
-
-            return string.Format(resourceProvider.GetResource("PricingVariantDisplay"), Price, RenewalPeriod.Period, renewalPeriodUnit);
+            return Price;
         }
     }
 }

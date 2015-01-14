@@ -16,17 +16,26 @@
                 <div class="card_content">
                     <h4 class="card_content_title" data-bind="text: Name"></h4>
                     <p class="card_content_description" data-bind="html: Description"></p>
-                    <p class="card_sticker">
+                    <p class="card_sticker" data-bind="visible: HasVariants">
                         <label class="select" data-bind="attr: { for: UniqueId }">
                             <select data-bind="
                                 options: PricingVariants,
                                 optionsText: 'Display',
                                 value: SelectedPricingVariant,
-                                attr: { 
+                                attr: {
                                     name: UniqueId,
                                     id: UniqueId
                                 }"></select>
                         </label>
+                    </p>
+                    <p class="card_sticker" data-bind="visible: !HasVariants()">
+                        <span class="card_sticker_big" data-bind="text: Price"></span>
+                        <!-- ko if: RenewalPeriod -->
+                            <span class="card_sticker_small" data-bind="text: RenewalPeriod().Display"></span>
+                        <!-- /ko-->
+                        <!-- ko ifnot: RenewalPeriod -->
+                            <span class="card_sticker_small">&nbsp;</span>
+                        <!-- /ko-->
                     </p>
                 </div>
                 <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: AddToCart">@Html.CommonResource("Select")</a></p>

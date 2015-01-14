@@ -22,6 +22,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.DomainNameSld = domainParts[0];
         this.DomainNameTld = domainParts[1];
         this.Price = this.PricingVariants[0].Price;
+        this.RenewalPeriod = this.PricingVariants[0].RenewalPeriod;
         this.Status = _.find(this.CustomAttributes, function (ca) {
             return ca.Name === 'Status';
         }).Value;

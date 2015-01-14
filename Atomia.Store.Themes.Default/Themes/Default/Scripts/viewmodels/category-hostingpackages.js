@@ -15,11 +15,23 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.UniqueId = _.uniqueId('productitem-');
         this.SelectedPricingVariant = ko.observable();
         this.Price = ko.pureComputed(function () {
-            return this.SelectedPricingVariant.Price;
+            if (this.HasVariants()) {
+                return this.SelectedPricingVariant().Price;
+            }
+
+            return this.PricingVariants[0].Price;
         }, this);
 
         this.RenewalPeriod = ko.pureComputed(function () {
-            return this.SelectedPricingVariant.RenewalPeriod;
+            if (this.HasVariants()) {
+                return this.SelectedPricingVariant().RenewalPeriod;
+            }
+
+            return this.PricingVariants[0].RenewalPeriod;
+        }, this);
+
+        this.HasVariants = ko.pureComputed(function () {
+            return this.PricingVariants.length > 1;
         }, this);
     };
 

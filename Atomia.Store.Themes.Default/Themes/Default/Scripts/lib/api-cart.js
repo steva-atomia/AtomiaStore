@@ -7,6 +7,10 @@ Atomia.Api._unbound = Atomia.Api._unbound || {};
 Atomia.Api._unbound.Cart = function (_, ko, amplify) {
     'use strict';
 
+    function _GetValueOrObservable(value) {
+        return _.isFunction(value) ? value() : value;
+    }
+
     function AddItem(item, success, error) {
         var requestData;
 
@@ -14,9 +18,12 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             throw new Error('Object must have ArticleNumber property to be added to cart.');
         }
 
-        requestData = _.omit(item, function (value) {
-            return _.isFunction(value);
-        });
+        requestData = {
+            ArticleNumber: _GetValueOrObservable(item.ArticleNumber),
+            RenewalPeriod: _GetValueOrObservable(item.RenewalPeriod),
+            Quantity: _GetValueOrObservable(item.Quantity),
+            CustomAttributes: _GetValueOrObservable(item.CustomAttributes)
+        };
 
         _.defaults(requestData, {
             RenewalPeriod: {

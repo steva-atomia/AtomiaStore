@@ -19,7 +19,7 @@ namespace Atomia.Store.Fakes.Adapters
                         new PricingVariant
                         {
                             Price = 0,
-                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                            RenewalPeriod = null
                         }
                     },
                 },
@@ -31,19 +31,9 @@ namespace Atomia.Store.Fakes.Adapters
                     {
                         new PricingVariant 
                         {
-                            Price = 5m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 6, Unit = "MONTH" }
-                        },
-                        new PricingVariant 
-                        {
                             Price = 10m,
                             RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
-                        },
-                        new PricingVariant 
-                        {
-                            Price = 20m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" },
-                        },
+                        }
                     },
                     CustomAttributes = new List<CustomAttribute>
                     {
