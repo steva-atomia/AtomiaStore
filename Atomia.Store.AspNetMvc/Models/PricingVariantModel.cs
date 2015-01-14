@@ -47,7 +47,16 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public override string ToString()
         {
-            return Price + resourceProvider.GetResource("Per" + RenewalPeriod.Unit + RenewalPeriod.Period);
+            var renewalPeriodUnitType = RenewalPeriod.Unit;
+
+            if (RenewalPeriod.Period > 1)
+            {
+                renewalPeriodUnitType = RenewalPeriod.Unit + "Plural";
+            }
+
+            var renewalPeriodUnit = resourceProvider.GetResource(renewalPeriodUnitType);
+
+            return string.Format(resourceProvider.GetResource("PricingVariantDisplay"), Price, RenewalPeriod.Period, renewalPeriodUnit);
         }
     }
 }

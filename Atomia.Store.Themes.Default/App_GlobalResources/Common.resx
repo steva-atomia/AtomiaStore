@@ -156,6 +156,12 @@
   <data name="MasterDomain" xml:space="preserve">
     <value>Master domain</value>
   </data>
+  <data name="MONTH" xml:space="preserve">
+    <value>month</value>
+  </data>
+  <data name="MONTHPlural" xml:space="preserve">
+    <value>months</value>
+  </data>
   <data name="MoreResults" xml:space="preserve">
     <value>More results</value>
   </data>
@@ -165,11 +171,8 @@
   <data name="OrderPageTitle" xml:space="preserve">
     <value>Order web hosting and DNS</value>
   </data>
-  <data name="PerYEAR1" xml:space="preserve">
-    <value> per year</value>
-  </data>
-  <data name="PerYEAR2" xml:space="preserve">
-    <value> per 2 years</value>
+  <data name="PricingVariantDisplay" xml:space="preserve">
+    <value>{1} {2} - {0}</value>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
@@ -198,10 +201,13 @@
   <data name="Total" xml:space="preserve">
     <value>Total</value>
   </data>
-  <data name="YEAR1" xml:space="preserve">
-    <value>1 Year</value>
+  <data name="YEAR" xml:space="preserve">
+    <value>year</value>
   </data>
-  <data name="YEAR2" xml:space="preserve">
-    <value>2 Years</value>
+  <data name="YEARPlural" xml:space="preserve">
+    <value>years</value>
+  </data>
+  <data name="RenewalPeriodDisplay" xml:space="preserve">
+    <value>{0} {1}</value>
   </data>
 </root>

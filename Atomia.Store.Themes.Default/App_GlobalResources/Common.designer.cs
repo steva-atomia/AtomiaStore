@@ -178,6 +178,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to month.
+        /// </summary>
+        internal static string MONTH {
+            get {
+                return ResourceManager.GetString("MONTH", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to months.
+        /// </summary>
+        internal static string MONTHPlural {
+            get {
+                return ResourceManager.GetString("MONTHPlural", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to More results.
         /// </summary>
         internal static string MoreResults {
@@ -205,20 +223,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to  per year.
+        ///   Looks up a localized string similar to {1} {2} - {0}.
         /// </summary>
-        internal static string PerYEAR1 {
+        internal static string PricingVariantDisplay {
             get {
-                return ResourceManager.GetString("PerYEAR1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  per 2 years.
-        /// </summary>
-        internal static string PerYEAR2 {
-            get {
-                return ResourceManager.GetString("PerYEAR2", resourceCulture);
+                return ResourceManager.GetString("PricingVariantDisplay", resourceCulture);
             }
         }
         
@@ -228,6 +237,15 @@ namespace Resources {
         internal static string Remove {
             get {
                 return ResourceManager.GetString("Remove", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} {1}.
+        /// </summary>
+        internal static string RenewalPeriodDisplay {
+            get {
+                return ResourceManager.GetString("RenewalPeriodDisplay", resourceCulture);
             }
         }
         
@@ -304,20 +322,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 1 Year.
+        ///   Looks up a localized string similar to year.
         /// </summary>
-        internal static string YEAR1 {
+        internal static string YEAR {
             get {
-                return ResourceManager.GetString("YEAR1", resourceCulture);
+                return ResourceManager.GetString("YEAR", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to 2 Years.
+        ///   Looks up a localized string similar to years.
         /// </summary>
-        internal static string YEAR2 {
+        internal static string YEARPlural {
             get {
-                return ResourceManager.GetString("YEAR2", resourceCulture);
+                return ResourceManager.GetString("YEARPlural", resourceCulture);
             }
         }
     }

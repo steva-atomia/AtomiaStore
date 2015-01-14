@@ -28,7 +28,16 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public override string ToString()
         {
-            return resourceProvider.GetResource(Unit + Period);
+            var renewalPeriodUnitType = this.Unit;
+
+            if (this.Period > 1)
+            {
+                renewalPeriodUnitType = this.Unit + "Plural";
+            }
+
+            var renewalPeriodUnit = resourceProvider.GetResource(renewalPeriodUnitType);
+
+            return string.Format(resourceProvider.GetResource("RenewalPeriodDisplay"), this.Period, renewalPeriodUnit);
         }
     }
 }
