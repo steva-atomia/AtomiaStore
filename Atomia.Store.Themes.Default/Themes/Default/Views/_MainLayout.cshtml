@@ -80,15 +80,12 @@
         var Atomia = Atomia || {};
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
         Atomia.ActiveViewModel.Cart = new Atomia.ViewModels.Cart(Atomia.ViewModels.ItemInCart);
+        Atomia.ActiveViewModel.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
     </script>
-
-
 
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
-        Atomia.ActiveViewModel.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
-
         ko.applyBindings(Atomia.ActiveViewModel);
     </script>
 

@@ -10,10 +10,21 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     var HostingPackagesItem, HostingPackages;
 
     HostingPackagesItem = function HostingPackagesItem(productData) {
+        var selectedPricingVariantInitialized = false;
+
         _.extend(this, productData);
 
         this.UniqueId = _.uniqueId('productitem-');
         this.SelectedPricingVariant = ko.observable();
+
+        this.SelectedPricingVariant.subscribe(function (newValue) {
+            if (selectedPricingVariantInitialized && this.IsInCart()) {
+                this.RemoveFromCart();
+            }
+
+            selectedPricingVariantInitialized = true;
+        }, this);
+
         this.Price = ko.pureComputed(function () {
             if (this.HasVariants()) {
                 return this.SelectedPricingVariant().Price;
@@ -40,7 +51,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         this.Products = ko.observableArray();
 
-        _.bindAll(this, 'Init', '_UpdateProducts', 'Load');
+        _.bindAll(this, 'Init', '_UpdateProducts', 'Load', '_InitPricingVariant');
     };
 
     HostingPackages.prototype = {
@@ -48,11 +59,39 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this._MakeCartItem = cart.MakeCartItem;
         },
 
+        _InitPricingVariant: function (productToAdd) {
+            var itemInCart = productToAdd.GetItemInCart(),
+                selectedPricingVariant = _.find(productToAdd.PricingVariants, function (pv) {
+                    if (pv.RenewalPeriod === null || itemInCart.RenewalPeriod === null) {
+                        return false;
+                    }
+
+                    return pv.RenewalPeriod.Unit === itemInCart.RenewalPeriod.Unit &&
+                           pv.RenewalPeriod.Period === itemInCart.RenewalPeriod.Period;
+                });
+
+            if (selectedPricingVariant !== undefined) {
+                productToAdd.SelectedPricingVariant(selectedPricingVariant);
+            }
+        },
+
         _UpdateProducts: function (products) {
             var self = this;
 
             _.each(products, function (product) {
-                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product));
+                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product)),
+                    addToCart = productToAdd.AddToCart.bind(productToAdd);
+
+                // Amend to remove any other selected package when adding to cart.
+                productToAdd.AddToCart = function () {
+                    _.invoke(self.Products(), 'RemoveFromCart');
+
+                    addToCart();
+                }.bind(productToAdd);
+
+                if (productToAdd.IsInCart()){
+                    self._InitPricingVariant(productToAdd);
+                }
 
                 self.Products.push(productToAdd);
             });

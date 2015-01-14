@@ -71,6 +71,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         MakeCartItem: function (item) {
             var cart = this;
+            
+            // Must be defined before IsInCart.
+            if (item.Equals === undefined) {
+                item.Equals = function (other) {
+                    return item.ArticleNumber === other.ArticleNumber;
+                };
+            }
 
             _.defaults(item, {
                 IsInCart: ko.computed(function () {
@@ -80,6 +87,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                     return isInCart;
                 }).extend({ notify: 'always' }),
+
+                GetItemInCart: function () {
+                    var itemInCart = _.find(cart.CartItems(), function (cartItem) {
+                        return item.Equals(cartItem);
+                    });
+
+                    return itemInCart;
+                },
 
                 AddToCart: function () {
                     if (!item.IsInCart()) {
@@ -102,33 +117,33 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 },
 
                 RemoveFromCart: function () {
-                    var itemInCart = _.find(cart.CartItems(), function (cartItem) {
-                        return item.Equals(cartItem);
-                    });
+                    var itemInCart;
 
-                    if (itemInCart !== undefined) {
-                        // Preliminarily remove item from cart.
-                        cart.CartItems.remove(itemInCart);
+                    if (item.IsInCart()) {
+                        itemInCart = _.find(cart.CartItems(), function (cartItem) {
+                            return item.Equals(cartItem);
+                        });
 
-                        cartApi.RemoveItem(
-                            itemInCart,
-                            function (result) {
-                                cart._UpdateCart(result.Cart);
-                            },
-                            function () {
-                                // Failed: add back item.
-                                cart.CartItems.push(itemInCart);
-                            }
-                        );
+                        if (itemInCart !== undefined) {
+                            // Preliminarily remove item from cart.
+                            cart.CartItems.remove(itemInCart);
+
+                            cartApi.RemoveItem(
+                                itemInCart,
+                                function (result) {
+                                    cart._UpdateCart(result.Cart);
+                                },
+                                function () {
+                                    // Failed: add back item.
+                                    cart.CartItems.push(itemInCart);
+                                }
+                            );
+                        }
                     }
                 },
 
                 ToggleInCart: function () {
                     item.IsInCart() ? item.RemoveFromCart() : item.AddToCart();
-                },
-
-                Equals: function (other) {
-                    return item.ArticleNumber === other.ArticleNumber;
                 }
             });
 
