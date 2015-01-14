@@ -51,12 +51,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         this.Products = ko.observableArray();
 
-        _.bindAll(this, 'Init', '_UpdateProducts', 'Load', '_InitPricingVariant');
+        _.bindAll(this, 'Init', '_UpdateProducts', 'Load', '_InitPricingVariant', '_AmendAddForSingleSelection');
     };
 
     HostingPackages.prototype = {
-        Init: function(cart) {
+        Init: function(cart, options) {
             this._MakeCartItem = cart.MakeCartItem;
+
+            this._Options = options || {};
+            _.defaults(this._Options, {
+                SingleSelection: false
+            });
         },
 
         _InitPricingVariant: function (productToAdd) {
@@ -75,19 +80,27 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        _AmendAddForSingleSelection: function(productToAdd) {
+            var self = this,
+                originalAddToCart = productToAdd.AddToCart.bind(productToAdd);
+
+            // Amend to remove any other selected package when adding to cart.
+            productToAdd.AddToCart = function () {
+                _.invoke(self.Products(), 'RemoveFromCart');
+
+                originalAddToCart();
+            }.bind(productToAdd);
+        },
+
         _UpdateProducts: function (products) {
             var self = this;
 
             _.each(products, function (product) {
-                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product)),
-                    addToCart = productToAdd.AddToCart.bind(productToAdd);
-
-                // Amend to remove any other selected package when adding to cart.
-                productToAdd.AddToCart = function () {
-                    _.invoke(self.Products(), 'RemoveFromCart');
-
-                    addToCart();
-                }.bind(productToAdd);
+                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product));
+                
+                if (self._Options.SingleSelection) {
+                    self._AmendAddForSingleSelection(productToAdd);
+                }
 
                 if (productToAdd.IsInCart()){
                     self._InitPricingVariant(productToAdd);
