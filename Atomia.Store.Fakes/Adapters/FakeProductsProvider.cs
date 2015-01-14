@@ -31,6 +31,11 @@ namespace Atomia.Store.Fakes.Adapters
                     {
                         new PricingVariant 
                         {
+                            Price = 5m,
+                            RenewalPeriod = new RenewalPeriod() { Period = 6, Unit = "MONTH" }
+                        },
+                        new PricingVariant 
+                        {
                             Price = 10m,
                             RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
                         },
@@ -58,6 +63,11 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "HST-PLT",
                     PricingVariants = new List<PricingVariant>
                     {
+                        new PricingVariant 
+                        {
+                            Price = 10m,
+                            RenewalPeriod = new RenewalPeriod() { Period = 6, Unit = "MONTH" }
+                        },
                         new PricingVariant
                         {
                             Price = 20m,

@@ -11,6 +11,16 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     HostingPackagesItem = function HostingPackagesItem(productData) {
         _.extend(this, productData);
+
+        this.UniqueId = _.uniqueId('productitem-');
+        this.SelectedPricingVariant = ko.observable();
+        this.Price = ko.pureComputed(function () {
+            return this.SelectedPricingVariant.Price;
+        }, this);
+
+        this.RenewalPeriod = ko.pureComputed(function () {
+            return this.SelectedPricingVariant.RenewalPeriod;
+        }, this);
     };
 
     HostingPackages = function HostingPackages() {

@@ -17,8 +17,16 @@
                     <h4 class="card_content_title" data-bind="text: Name"></h4>
                     <p class="card_content_description" data-bind="html: Description"></p>
                     <p class="card_sticker">
-                        <span class="card_sticker_small above">@Html.CommonResource("From")</span>
-                        <span class="card_sticker_big" data-bind="text: PricingVariants[0].Price"></span>
+                        <label class="select" data-bind="attr: { for: UniqueId }">
+                            <select data-bind="
+                                options: PricingVariants,
+                                optionsText: 'Display',
+                                value: SelectedPricingVariant,
+                                attr: { 
+                                    name: UniqueId,
+                                    id: UniqueId
+                                }"></select>
+                        </label>
                     </p>
                 </div>
                 <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: AddToCart">@Html.CommonResource("Select")</a></p>

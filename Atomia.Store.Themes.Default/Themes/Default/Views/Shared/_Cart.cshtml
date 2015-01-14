@@ -32,7 +32,12 @@
                 </tfoot>
                 <tbody data-bind="foreach: Cart.CartItems">
                     <tr>
-                        <td data-bind="text: Name"></td>
+                        <td>
+                            <!-- ko text: Name --><!-- /ko-->
+                            <!-- ko if: RenewalPeriod !== undefined -->
+                                (<!-- ko text: RenewalPeriod.Display --><!-- /ko-->)
+                            <!-- /ko-->
+                        </td>
                         <td class="right nowrap" data-bind="text: Price"></td>
                         <td><a class="button small orange" href="javascript:void(0);" data-bind="click: RemoveFromCart">@Html.CommonResource("Remove")</a></td>
                     </tr>
