@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (module, _, ko, cartApi) {
+(function (module, _, ko, amplify, cartApi) {
     'use strict';
 
     var ItemInCart, Cart;
@@ -16,16 +16,32 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.Id = tmpId;
         }
 
-        _.bindAll(this, 'Equals');
+        _.bindAll(this, 'Equals', 'CustomOptions');
     };
 
     ItemInCart.prototype = {
         Equals: function (other) {
             return this.Id === other.Id;
+        },
+        CustomOptions: function () {
+            var options = [],
+                domainAttr;
+
+            if (this.RenewalPeriod) {
+                options.push(this.RenewalPeriod.Display);
+            }
+
+            if (this.Category !== 'Domain') {
+                domainAttr = _.findWhere(this.CustomAttributes, { Name: 'DomainName' });
+
+                if (domainAttr !== undefined) {
+                    options.push(domainAttr.Value);
+                }
+            }
+
+            return options;
         }
     };
-
-
 
     /* Cart and prototype */
     Cart = function Cart() {
@@ -62,6 +78,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.Total(cartData.Total);
             this.Tax(cartData.Tax);
             this.CampaignCode(cartData.CampaignCode);
+
+            amplify.publish('cart:update');
         },
 
         DomainItems: function() {
@@ -110,6 +128,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     cartItem,
                     function (result) {
                         self._UpdateCart(result.Cart);
+
+                        amplify.publish('cart:add', cartItem);
                     },
                     function () {
                         // Failed: remove item
@@ -138,6 +158,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                         itemInCart,
                         function (result) {
                             self._UpdateCart(result.Cart);
+
+                            amplify.publish('cart:remove', itemInCart);
                         },
                         function () {
                             // Failed: add back item.
@@ -161,6 +183,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 };
             }
 
+            // Add convenience properties to items for easier data binding
             _.defaults(item, {
                 IsInCart: ko.computed(function () {
                     return cart.Contains(item);
@@ -197,4 +220,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     module.ItemInCart = ItemInCart;
     module.Cart = Cart;
 
-})(Atomia.ViewModels, _, ko, Atomia.Api.Cart);
+})(Atomia.ViewModels, _, ko, amplify, Atomia.Api.Cart);
