@@ -23,6 +23,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+
+
+    /* Cart and prototype */
     Cart = function Cart() {
         this.ItemInCart = ItemInCart;
 
@@ -40,9 +43,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove');
     };
 
-
-
-    /* Cart and prototype */
     Cart.prototype = {
         NumberOfItems: function () {
             return this.CartItems().length;
@@ -146,11 +146,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         ExtendWithCartProperties: function (item) {
             var cart = this;
             
-            _.defaults(item, {
-                Equals: function (other) {
+            if (item.Equals === undefined) {
+                item.Equals = function (other) {
                     return item.ArticleNumber === other.ArticleNumber;
-                },
+                };
+            }
 
+            _.defaults(item, {
                 IsInCart: ko.computed(function () {
                     return cart.Contains(item);
                 }).extend({ notify: 'always' }),
@@ -180,6 +182,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+
+
+    /* Export models */
     module.ItemInCart = ItemInCart;
     module.Cart = Cart;
 

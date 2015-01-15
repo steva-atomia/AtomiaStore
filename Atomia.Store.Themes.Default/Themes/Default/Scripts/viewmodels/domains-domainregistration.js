@@ -9,6 +9,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     var DomainRegistrationItem, DomainRegistration;
 
+    /* DomainRegistrationItem and prototype */
     DomainRegistrationItem = function DomainRegistrationItem(itemData) {
         var domainName = _.find(itemData.CustomAttributes, function (ca) {
             return ca.Name === 'DomainName';
@@ -42,6 +43,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
 
+
+    /* DomainRegistration and prototype */
     DomainRegistration = function DomainRegistration() {
         this.DomainRegistrationItem = DomainRegistrationItem;
 
@@ -74,17 +77,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             domainsApi.FindDomains(this.Query(), function (data) {
                 _.each(data, function (result) {
-                    var item = new self.DomainRegistrationItem(result),
-                        cartItem = self._ExtendWithCartProperties(item),
-                        primaryAttr = _.find(cartItem.CustomAttributes, function (ca) {
-                            return ca.Name === 'Premium';
-                        });
+                    var item, primaryAttr;
+                    
+                    item = self._ExtendWithCartProperties(new self.DomainRegistrationItem(result));
+                    primaryAttr = _.find(item.CustomAttributes, function (ca) {
+                        return ca.Name === 'Premium';
+                    });
 
                     if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
-                        self.PrimaryResults.push(cartItem);
+                        self.PrimaryResults.push(item);
                     }
                     else {
-                        self.SecondaryResults.push(cartItem);
+                        self.SecondaryResults.push(item);
                     }
                 });
 
@@ -116,6 +120,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
     };
 
+
+
+    /* Export models */
     module.DomainRegistrationItem = DomainRegistrationItem;
     module.DomainRegistration = DomainRegistration;
 
