@@ -32,7 +32,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DomainsViewModel>();
 
             // Product providers
-            container.RegisterType<PackagesProvider, Atomia.Store.Fakes.Adapters.FakeProductsProvider>();
+            container.RegisterType<AllProductsProvider, Atomia.Store.Fakes.Adapters.FakeProductsProvider>();
             container.RegisterType<DomainSearchProvider, Atomia.Store.Fakes.Adapters.FakeDomainSearchProvider>();
             container.RegisterType<CategoryProvider, Atomia.Store.AspNetMvc.Providers.SimpleCategoryProvider>();
             container.RegisterType<DomainsProvider, Atomia.Store.AspNetMvc.Providers.PremiumDomainsProvider>();

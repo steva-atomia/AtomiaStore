@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Core
 {
-    public abstract class PackagesProvider : IProductsProvider
+    public abstract class AllProductsProvider : IProductsProvider
     {
         public abstract IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery);
     }

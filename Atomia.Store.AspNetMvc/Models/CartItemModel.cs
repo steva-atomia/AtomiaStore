@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -9,6 +10,7 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         private readonly IItemPresenter itemPresenter;
         private readonly ICurrencyFormatter currencyFormatter;
+
         private CartItem cartItem;
        
         public CartItemModel()
@@ -121,6 +123,14 @@ namespace Atomia.Store.AspNetMvc.Models
             get
             {
                 return itemPresenter.GetDescription(this);
+            }
+        }
+
+        public string Category
+        {
+            get
+            {
+                return itemPresenter.GetCategory(this);
             }
         }
 

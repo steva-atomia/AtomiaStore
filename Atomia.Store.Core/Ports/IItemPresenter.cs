@@ -15,5 +15,7 @@ namespace Atomia.Store.Core
         string GetName(IPresentableItem item);
 
         string GetDescription(IPresentableItem item);
+
+        string GetCategory(IPresentableItem item);
     }
 }

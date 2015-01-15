@@ -6,9 +6,9 @@ namespace Atomia.Store.AspNetMvc.Providers
 {
     public class SimpleCategoryProvider : CategoryProvider
     {
-        protected readonly PackagesProvider packagesProvider;
+        protected readonly AllProductsProvider packagesProvider;
 
-        public SimpleCategoryProvider(PackagesProvider packagesProvider)
+        public SimpleCategoryProvider(AllProductsProvider packagesProvider)
         {
             this.packagesProvider = packagesProvider;
         }

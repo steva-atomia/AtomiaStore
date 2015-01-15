@@ -2,12 +2,14 @@
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
 using System.Web.Mvc;
+using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CartController : Controller
     {
         private readonly Cart cart;
+        
 
         public CartController()
         {

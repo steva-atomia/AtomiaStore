@@ -1,13 +1,29 @@
 ﻿using Atomia.Store.Core;
+using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
     public class FakeItemPresenter: IItemPresenter
     {
+        private List<Product> allProducts;
+
+        public FakeItemPresenter(AllProductsProvider productsProvider)
+        {
+            if (productsProvider == null)
+            {
+                throw new ArgumentNullException("productsProvider");
+            }
+
+            this.allProducts = productsProvider.GetProducts(null).ToList();
+        }
+        
         public string GetName(IPresentableItem item)
         {
-            if (item.ArticleNumber.StartsWith("DMN-"))
+            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+
+            if (product.Category == "Domain")
             {
                 var domainNameAttr = item.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainName");
                 
@@ -16,27 +32,21 @@ namespace Atomia.Store.Fakes.Adapters
                 }
             }
 
-            if (item.ArticleNumber == "DNS-PK")
-            {
-                return "DNS Package";
-            }
-
-            if (item.ArticleNumber == "HST-GLD")
-            {
-                return "Gold Package";
-            }
-
-            if (item.ArticleNumber == "HST-PLT")
-            {
-                return "Platinum Package";
-            }
-
-            return item.ArticleNumber;
+            return product.Name;
         }
 
         public string GetDescription(IPresentableItem item)
         {
-            return "Description of <em>" + GetName(item) + "</em><ul><li>Bleep</li><li>Bloop</li>";
+            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+
+            return product.Description;
+        }
+
+        public string GetCategory(IPresentableItem item)
+        {
+            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+
+            return product.Category;
         }
     }
 }
