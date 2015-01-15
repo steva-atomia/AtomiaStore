@@ -40,18 +40,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.IsEmpty = ko.pureComputed(this.IsEmpty, this);
 
         _.bindAll(this, '_UpdateCart', 'ToggleDropdown', 'ExtendWithCartProperties', 'Load',
-            'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove');
+            'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove', 'DomainItems');
     };
 
     Cart.prototype = {
-        NumberOfItems: function () {
-            return this.CartItems().length;
-        },
-
-        IsEmpty: function () {
-            return this.NumberOfItems() <= 0;
-        },
-
         _UpdateCart: function (cartData) {
             var self = this;
 
@@ -68,6 +60,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.Total(cartData.Total);
             this.Tax(cartData.Tax);
             this.CampaignCode(cartData.CampaignCode);
+        },
+
+        DomainItems: function() {
+            return _.where(this.CartItems(), {Category: 'Domain'});
+        },
+
+        NumberOfItems: function () {
+            return this.CartItems().length;
+        },
+
+        IsEmpty: function () {
+            return this.NumberOfItems() <= 0;
         },
 
         ToggleDropdown: function () {

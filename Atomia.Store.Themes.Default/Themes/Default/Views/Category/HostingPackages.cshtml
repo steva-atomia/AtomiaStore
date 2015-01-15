@@ -44,19 +44,21 @@
     </div>
     <br class="clear">
 </div>
-<h4>@Html.CommonResource("MainDomain")</h4>
-<div class="formrow">
-    <h5><label class="required" for="master"><span>*</span> @Html.CommonResource("MainDomain"):</label></h5>
-    <div class="col2row">
-        <label class="select">
-            <select id="master" name="master">
-                <option selected="selected" disabled="disabled"></option>
-                <option>mydomain.com</option>
-                <option>mydomain.se</option>
-            </select>
-        </label>
+<div data-bind="visible: Cart.DomainItems().length > 0">
+    <h4>@Html.CommonResource("MainDomain")</h4>
+    <div class="formrow">
+        <h5><label class="required" for="master"><span>*</span> @Html.CommonResource("MainDomain"):</label></h5>
+        <div class="col2row">
+            <label class="select">
+                <select id="master" name="master">
+                    <option selected="selected" disabled="disabled"></option>
+                    <option>mydomain.com</option>
+                    <option>mydomain.se</option>
+                </select>
+            </label>
+        </div>
+        <br class="clear">
     </div>
-    <br class="clear">
 </div>
 
 <p class="actions" style="display: block;">
