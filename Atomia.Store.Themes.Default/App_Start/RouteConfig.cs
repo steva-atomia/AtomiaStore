@@ -12,6 +12,16 @@ namespace Atomia.Store.Themes.Default
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
+                name: "Domains",
+                url: "Domains/{action}",
+                defaults: new
+                {
+                    controller = "Domains",
+                    action = "Index"
+                }
+            );
+
+            routes.MapRoute(
                 name: "Hosting",
                 url: "Hosting",
                 defaults: new
@@ -23,25 +33,23 @@ namespace Atomia.Store.Themes.Default
             );
 
             routes.MapRoute(
-                name: "Addons",
-                url: "Addons",
+                name: "Account",
+                url: "Account/{action}",
                 defaults: new
                 {
-                    controller = "Category",
+                    controller = "Account",
                     action = "Index"
                 }
             );
 
             routes.MapRoute(
-                name: "Domains",
-                url: "Domains/{action}",
-                defaults: new { controller = "Domains", action = "Index" }
-            );
-
-            routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}",
-                defaults: new { controller = "Domains", action = "Index" }
+                defaults: new 
+                { 
+                    controller = "Domains", 
+                    action = "Index" 
+                }
             );
         }
     }

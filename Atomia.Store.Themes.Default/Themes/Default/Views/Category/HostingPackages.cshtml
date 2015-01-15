@@ -31,10 +31,10 @@
                     <p class="card_sticker" data-bind="visible: !HasVariants()">
                         <span class="card_sticker_big" data-bind="text: Price"></span>
                         <!-- ko if: RenewalPeriod -->
-                            <span class="card_sticker_small" data-bind="text: RenewalPeriod().Display"></span>
+                        <span class="card_sticker_small" data-bind="text: RenewalPeriod().Display"></span>
                         <!-- /ko-->
                         <!-- ko ifnot: RenewalPeriod -->
-                            <span class="card_sticker_small">&nbsp;</span>
+                        <span class="card_sticker_small">&nbsp;</span>
                         <!-- /ko-->
                     </p>
                 </div>
@@ -58,6 +58,11 @@
     </div>
     <br class="clear">
 </div>
+
+<p class="actions" style="display: block;">
+    @Html.RouteLink(Html.CommonResource("Back"), "Domains", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
+    @Html.RouteLink(Html.CommonResource("Next"), "Account", null, new { id = "next_step", @class = "button large green" })
+</p>
 
 @section scripts {
     @Scripts.Render("~/bundles/hostingpackages")

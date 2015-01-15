@@ -282,6 +282,7 @@
     </Content>
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
     <Content Include="Themes\Default\Views\Category\HostingPackages.cshtml" />
+    <Content Include="Themes\Default\Views\Account\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">
