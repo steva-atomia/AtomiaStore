@@ -153,8 +153,8 @@
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
-  <data name="MasterDomain" xml:space="preserve">
-    <value>Master domain</value>
+  <data name="MainDomain" xml:space="preserve">
+    <value>Main domain</value>
   </data>
   <data name="MONTH" xml:space="preserve">
     <value>month</value>

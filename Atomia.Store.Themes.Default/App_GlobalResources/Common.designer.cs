@@ -178,11 +178,11 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Master domain.
+        ///   Looks up a localized string similar to Main domain.
         /// </summary>
-        internal static string MasterDomain {
+        internal static string MainDomain {
             get {
-                return ResourceManager.GetString("MasterDomain", resourceCulture);
+                return ResourceManager.GetString("MainDomain", resourceCulture);
             }
         }
         
