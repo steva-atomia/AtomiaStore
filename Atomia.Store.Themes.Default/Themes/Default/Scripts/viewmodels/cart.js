@@ -8,6 +8,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     var ItemInCart, Cart;
 
+    /* ItemInCart and prototype */
     ItemInCart = function ItemInCart(itemData) {
         _.extend(this, itemData);
 
@@ -35,9 +36,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.NumberOfItems = ko.pureComputed(this.NumberOfItems, this);
         this.IsEmpty = ko.pureComputed(this.IsEmpty, this);
 
-        _.bindAll(this, '_UpdateCart', 'ToggleDropdown', 'MakeCartItem', 'Load');
+        _.bindAll(this, '_UpdateCart', 'ToggleDropdown', 'ExtendWithCartProperties', 'Load',
+            'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove');
     };
 
+
+
+    /* Cart and prototype */
     Cart.prototype = {
         NumberOfItems: function () {
             return this.CartItems().length;
@@ -54,7 +59,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             _.each(cartData.CartItems, function (cartItemData) {
                 var item = new self.ItemInCart(cartItemData),
-                    cartItem = self.MakeCartItem(item);
+                    cartItem = self.ExtendWithCartProperties(item);
 
                 self.CartItems.push(cartItem);
             });
@@ -69,81 +74,101 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.IsOpen() ? this.IsOpen(false) : this.IsOpen(true);
         },
 
-        MakeCartItem: function (item) {
+        Contains: function(item) {
+            var isInCart = _.any(this.CartItems(), function (cartItem) {
+                return item.Equals(cartItem);
+            });
+
+            return isInCart;
+        },
+
+        GetExisting: function(item) {
+            var itemInCart = _.find(this.CartItems(), function (cartItem) {
+                return item.Equals(cartItem);
+            });
+
+            return itemInCart;
+        },
+
+        Add: function (item) {
+            var self = this;
+
+            if (!this.Contains(item)) {
+                // Preliminarily add item to cart.
+                this.CartItems.push(item);
+
+                cartApi.AddItem(
+                    item,
+                    function (result) {
+                        self._UpdateCart(result.Cart);
+                    },
+                    function () {
+                        // Failed: remove item
+                        self.CartItems.remove(function (cartItem) {
+                            item.Equals(cartItem);
+                        });
+                    }
+                );
+            }
+        },
+
+        Remove: function(item) {
+            var itemInCart,
+                self = this;
+
+            if (this.Contains(item)) {
+                itemInCart = _.find(this.CartItems(), function (cartItem) {
+                    return item.Equals(cartItem);
+                });
+
+                if (itemInCart !== undefined) {
+                    // Preliminarily remove item from cart.
+                    this.CartItems.remove(itemInCart);
+
+                    cartApi.RemoveItem(
+                        itemInCart,
+                        function (result) {
+                            self._UpdateCart(result.Cart);
+                        },
+                        function () {
+                            // Failed: add back item.
+                            self.CartItems.push(itemInCart);
+                        }
+                    );
+                }
+            }
+        },
+
+        AddOrRemove: function(item) {
+            this.Contains(item) ? this.Remove(item) : this.Add(item)
+        },
+
+        ExtendWithCartProperties: function (item) {
             var cart = this;
             
-            // Must be defined before IsInCart.
-            if (item.Equals === undefined) {
-                item.Equals = function (other) {
-                    return item.ArticleNumber === other.ArticleNumber;
-                };
-            }
-
             _.defaults(item, {
-                IsInCart: ko.computed(function () {
-                    var isInCart = _.any(cart.CartItems(), function (cartItem) {
-                        return item.Equals(cartItem);
-                    });
+                Equals: function (other) {
+                    return item.ArticleNumber === other.ArticleNumber;
+                },
 
-                    return isInCart;
+                IsInCart: ko.computed(function () {
+                    return cart.Contains(item);
                 }).extend({ notify: 'always' }),
 
                 GetItemInCart: function () {
-                    var itemInCart = _.find(cart.CartItems(), function (cartItem) {
-                        return item.Equals(cartItem);
-                    });
-
-                    return itemInCart;
+                    return cart.GetExisting(item);
                 },
 
                 AddToCart: function () {
-                    if (!item.IsInCart()) {
-                        // Preliminarily add item to cart.
-                        cart.CartItems.push(item);
-
-                        cartApi.AddItem(
-                            item,
-                            function (result) {
-                                cart._UpdateCart(result.Cart);
-                            },
-                            function () {
-                                // Failed: remove item
-                                cart.CartItems.remove(function (cartItem) {
-                                    item.Equals(cartItem);
-                                });
-                            }
-                        );
-                    }
+                    return cart.Add(item);
                 },
 
                 RemoveFromCart: function () {
-                    var itemInCart;
-
-                    if (item.IsInCart()) {
-                        itemInCart = _.find(cart.CartItems(), function (cartItem) {
-                            return item.Equals(cartItem);
-                        });
-
-                        if (itemInCart !== undefined) {
-                            // Preliminarily remove item from cart.
-                            cart.CartItems.remove(itemInCart);
-
-                            cartApi.RemoveItem(
-                                itemInCart,
-                                function (result) {
-                                    cart._UpdateCart(result.Cart);
-                                },
-                                function () {
-                                    // Failed: add back item.
-                                    cart.CartItems.push(itemInCart);
-                                }
-                            );
-                        }
-                    }
+                    return cart.Remove(item);
                 },
 
                 ToggleInCart: function () {
-                    item.IsInCart() ? item.RemoveFromCart() : item.AddToCart();
+                    cart.AddOrRemove(item);
                 }
             });
 

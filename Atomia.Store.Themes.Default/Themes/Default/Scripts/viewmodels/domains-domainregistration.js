@@ -61,7 +61,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         Init: function (cart) {
-            this._MakeCartItem = cart.MakeCartItem;
+            this._ExtendWithCartProperties = cart.ExtendWithCartProperties;
         },
 
         Submit: function () {
@@ -75,7 +75,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             domainsApi.FindDomains(this.Query(), function (data) {
                 _.each(data, function (result) {
                     var item = new self.DomainRegistrationItem(result),
-                        cartItem = self._MakeCartItem(item),
+                        cartItem = self._ExtendWithCartProperties(item),
                         primaryAttr = _.find(cartItem.CustomAttributes, function (ca) {
                             return ca.Name === 'Premium';
                         });

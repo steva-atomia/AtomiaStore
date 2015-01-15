@@ -56,7 +56,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     HostingPackages.prototype = {
         Init: function(cart, options) {
-            this._MakeCartItem = cart.MakeCartItem;
+            this._ExtendWithCartProperties = cart.ExtendWithCartProperties;
 
             this._Options = options || {};
             _.defaults(this._Options, {
@@ -96,7 +96,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             var self = this;
 
             _.each(products, function (product) {
-                var productToAdd = self._MakeCartItem(new self.HostingPackagesItem(product));
+                var productToAdd = self._ExtendWithCartProperties(new self.HostingPackagesItem(product));
                 
                 if (self._Options.SingleSelection) {
                     self._AmendAddForSingleSelection(productToAdd);
