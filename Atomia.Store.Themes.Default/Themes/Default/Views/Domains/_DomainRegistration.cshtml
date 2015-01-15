@@ -38,11 +38,8 @@
     <p data-bind="ifnot: DomainRegistration.ShowMoreResults">
         <a id="more" class="button small green" data-bind="click: DomainRegistration.SetShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
     </p>
-
-    <p class="actions">
-        @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
-    </p>
 </div>
+
 <div data-bind="visible: DomainRegistration.IsLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>
     <div id="global_processing_overlay" class="blocker"></div>
