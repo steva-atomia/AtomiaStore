@@ -17,7 +17,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.UniqueId = _.uniqueId('productitem-');
         this.SelectedPricingVariant = ko.observable();
 
-        this.SelectedPricingVariant.subscribe(function (newValue) {
+        this.SelectedPricingVariant.subscribe(function () {
             if (selectedPricingVariantInitialized && this.IsInCart()) {
                 this.RemoveFromCart();
             }

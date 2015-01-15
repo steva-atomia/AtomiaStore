@@ -9,17 +9,19 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     var ItemInCart, Cart;
 
     /* ItemInCart and prototype */
-    ItemInCart = function ItemInCart(itemData) {
+    ItemInCart = function ItemInCart(itemData, tmpId) {
         _.extend(this, itemData);
 
-        this.CartItemId = this.Id;
+        if (tmpId !== undefined) {
+            this.Id = tmpId;
+        }
 
         _.bindAll(this, 'Equals');
     };
 
     ItemInCart.prototype = {
         Equals: function (other) {
-            return this.CartItemId === other.CartItemId;
+            return this.Id === other.Id;
         }
     };
 
@@ -95,21 +97,24 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         Add: function (item) {
-            var self = this;
+            var self = this,
+                cartItem;
 
             if (!this.Contains(item)) {
+                cartItem = new ItemInCart(item, _.uniqueId('tmp-cartitem-'));
+
                 // Preliminarily add item to cart.
-                this.CartItems.push(item);
+                this.CartItems.push(cartItem);
 
                 cartApi.AddItem(
-                    item,
+                    cartItem,
                     function (result) {
                         self._UpdateCart(result.Cart);
                     },
                     function () {
                         // Failed: remove item
-                        self.CartItems.remove(function (cartItem) {
-                            item.Equals(cartItem);
+                        self.CartItems.remove(function (itemToRemove) {
+                            cartItem.Equals(itemToRemove);
                         });
                     }
                 );
@@ -144,7 +149,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         AddOrRemove: function(item) {
-            this.Contains(item) ? this.Remove(item) : this.Add(item)
+            this.Contains(item) ? this.Remove(item) : this.Add(item);
         },
 
         ExtendWithCartProperties: function (item) {

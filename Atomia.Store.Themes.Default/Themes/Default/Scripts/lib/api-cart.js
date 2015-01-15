@@ -52,12 +52,12 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
     function RemoveItem(item, success, error) {
         var requestData;
 
-        if (!_.has(item, 'CartItemId')) {
-            throw new Error('Object must have CartItemId property to be removed from cart.');
+        if (!_.has(item, 'Id')) {
+            throw new Error('Object must have Id property to be removed from cart.');
         }
 
         requestData = {
-            Id: item.CartItemId
+            Id: item.Id
         };
 
         amplify.request({
