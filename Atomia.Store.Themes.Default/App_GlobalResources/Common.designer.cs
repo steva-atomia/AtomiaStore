@@ -205,6 +205,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You are required to add a main domain to your package. Please go back and add a domain name to the cart..
+        /// </summary>
+        internal static string MainDomainRequiredWarning {
+            get {
+                return ResourceManager.GetString("MainDomainRequiredWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to month.
         /// </summary>
         internal static string MONTH {

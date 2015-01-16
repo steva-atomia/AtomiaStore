@@ -7,8 +7,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (module, _, ko, amplify) {
     'use strict';
 
-    var HostingPackagesItem, HostingPackages;
-
+    var HostingPackagesItem, HostingPackages,
+        NO_DOMAIN = '---';
 
 
     /* HostingPackagesItem and prototype */
@@ -91,46 +91,69 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* HostingPackages and prototype */
     HostingPackages = function HostingPackages() {
-        var selectedMainDomainInitialized = false,
-            mainDomainOptionsCountInitialized = false;
+        this._Options = {
+            MainDomainIsRequired: false,
+            PackageIsRequired: true
+        };
+
+        this.MainDomainIsRequired = ko.pureComputed(function () {
+            return this._Options.MainDomainIsRequired;
+        }, this);
+
+        this.PackageIsRequired = ko.pureComputed(function () {
+            return this._Options.PackageIsRequired;
+        }, this);
 
         this.HostingPackagesItem = HostingPackagesItem;
-
         this.Products = ko.observableArray();
+
+        // Main domain options
         this.MainDomainOptions = ko.observableArray();
         this.MainDomainOptionsCount = ko.observable();
-        this.MainDomainOptionsCount.subscribe(function (newValue) {
+
+        // Selected package
+        this.SelectedPackage = ko.observable();
+        this.PackageIsSelected = ko.pureComputed(function () {
+            return this.SelectedPackage() !== undefined;
+        },this)
+
+        // Selected main domain
+        this.SelectedMainDomain = ko.observable();
+        this.SelectedMainDomain.subscribe(function (newValue) {
             var selectedPackage;
 
-            if (!this._Options.MainDomainEnabled || newValue !== 0) {
+            if (newValue === undefined) {
                 return;
             }
-
-            _.invoke(this.Products(), '_RemoveDomainNameAttribute');
+            else if (newValue === NO_DOMAIN) {
+                _.invoke(this.Products(), '_RemoveDomainNameAttribute');
+            }
+            else {
+                _.invoke(this.Products(), '_SetDomainNameAttribute', newValue);
+            }
 
             selectedPackage = this.SelectedPackage();
             if (selectedPackage !== undefined) {
                 this.SelectPackage(selectedPackage);
             }
         }, this);
+        this.MainDomainIsSelected = ko.pureComputed(function () {
+            return this.SelectedMainDomain() !== undefined && this.SelectedMainDomain() !== NO_DOMAIN;
+        }, this);
 
-        this.SelectedPackage = ko.observable();
-        this.SelectedMainDomain = ko.observable();
-        this.SelectedMainDomain.subscribe(function (newValue) {
-            var selectedPackage;
+        this.AllowContinue = ko.pureComputed(function () {
+            var conditions = [];
 
-            if (!this._Options.MainDomainEnabled || newValue === undefined) {
-                return;
-            }
-            
-            _.invoke(this.Products(), '_SetDomainNameAttribute', newValue);
-            
-            selectedPackage = this.SelectedPackage();
-            if (selectedMainDomainInitialized && selectedPackage !== undefined) {
-                this.SelectPackage(selectedPackage);
+            if (this.PackageIsRequired()) {
+                conditions.push(this.PackageIsSelected());
             }
 
-            selectedMainDomainInitialized = true;
+            if (this.MainDomainIsRequired()) {
+                conditions.push(this.MainDomainIsSelected());
+            }
+
+            return _.every(conditions);
+
         }, this);
         
         _.bindAll(this, 'Init', 'Load', 'SelectPackage', '_UpdateProducts', '_UpdateMainDomainOptions');
@@ -140,11 +163,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         Init: function (cart, options) {
             this._Cart = cart;
 
-            this._Options = options || {};
-            _.defaults(this._Options, {
-                SingleSelectionEnabled: false,
-                MainDomainEnabled: false
-            });
+            options = options || {};
+            _.extend(this._Options, options);
 
             this._UpdateMainDomainOptions();
 
@@ -166,21 +186,21 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         SelectPackage: function (item) {
-            if (this._Options.SingleSelectionEnabled) {
-                this.SelectedPackage(item);
+            this.SelectedPackage(item);
 
-                _.each(this.Products(), function (product) {
-                    if (this._Cart.Contains(product)) {
-                        this._Cart.Remove(product);
-                    }
-                }.bind(this));
-            }
+            _.each(this.Products(), function (product) {
+                if (this._Cart.Contains(product)) {
+                    this._Cart.Remove(product);
+                }
+            }.bind(this));
 
             this._Cart.Add(item);
         },
 
         _UpdateMainDomainOptions: function () {
             this.MainDomainOptions.removeAll();
+
+            this.MainDomainOptions.push(NO_DOMAIN);
 
             _.each(this._Cart.DomainItems(), function (item) {
                 var domainNameAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
@@ -207,6 +227,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                     if (domainAttr !== undefined) {
                         this.SelectedMainDomain(domainAttr.Value);
+                    }
+                    else {
+                        this.SelectedMainDomain(NO_DOMAIN);
                     }
 
                     this.SelectPackage(item);

@@ -219,4 +219,7 @@
   <data name="MainDomainOptionsCaption" xml:space="preserve">
     <value>Select main domain ...</value>
   </data>
+  <data name="MainDomainRequiredWarning" xml:space="preserve">
+    <value>You are required to add a main domain to your package. Please go back and add a domain name to the cart.</value>
+  </data>
 </root>
