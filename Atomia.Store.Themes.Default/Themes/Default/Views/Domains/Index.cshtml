@@ -26,7 +26,7 @@
         @Html.Partial("_DomainRegistration", Model)
     </div>
 
-    <p class="actions" data-bind="visible: DomainRegistration.HasResults">
+    <p class="actions">
         @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
     </p>
 </div>
