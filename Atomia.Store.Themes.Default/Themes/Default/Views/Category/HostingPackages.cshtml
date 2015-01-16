@@ -45,27 +45,6 @@
     <br class="clear">
 </div>
 
-<h4>@Html.CommonResource("MainDomain")</h4>
-<p>@Html.CommonResource("MainDomainDescription")</p>
-<p class="warning" data-bind="visible: HostingPackages.MainDomainIsRequired() && HostingPackages.MainDomainOptionsCount() === 1">@Html.CommonResource("MainDomainRequiredWarning")</p>
-<div class="formrow">
-    <h5>
-        <label for="master" data-bind="css: { required: HostingPackages.MainDomainIsRequired }">
-            <span data-bind="visible: HostingPackages.MainDomainIsRequired">* </span>@Html.CommonResource("MainDomain"):
-        </label>
-    </h5>
-    <div class="col2row">
-        <label class="select">
-            <select id="master" name="master" data-bind="
-                options: $root.HostingPackages.MainDomainOptions,
-                value: $root.HostingPackages.SelectedMainDomain
-                "></select>
-        </label>
-    </div>
-    <br class="clear">
-</div>
-
-
 <p class="actions" style="display: block;">
     @Html.RouteLink(Html.CommonResource("Back"), "Domains", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
     @Html.RouteLink(Html.CommonResource("Next"), "Account", null, new { id = "next_step", @class = "button large green", data_bind="visible: HostingPackages.AllowContinue" })
@@ -78,9 +57,9 @@
         var Atomia = Atomia || {};
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
 
-        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.SingleSelectionDomainProducts();
+        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.ProductsListing();
         Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, {
-            MainDomainIsRequired: true
+            SingleSelection: true
         });
 
         Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
