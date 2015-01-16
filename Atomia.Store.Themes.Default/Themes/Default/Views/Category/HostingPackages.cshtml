@@ -38,7 +38,7 @@
                         <!-- /ko-->
                     </p>
                 </div>
-                <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: $root.HostingPackages.SelectPackage, css: { disabled: IsInCart }">@Html.CommonResource("Select")</a></p>
+                <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: $root.HostingPackages.SelectProduct, css: { disabled: IsInCart }">@Html.CommonResource("Select")</a></p>
             </div>
         </div>
     </div>
@@ -78,11 +78,11 @@
         var Atomia = Atomia || {};
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
 
-        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.HostingPackages();
-
+        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.SingleSelectionDomainProducts();
         Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, {
             MainDomainIsRequired: true
         });
+
         Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
     </script>
 }

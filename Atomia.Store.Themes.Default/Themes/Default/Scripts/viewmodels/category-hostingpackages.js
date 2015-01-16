@@ -7,48 +7,59 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (module, _, ko, amplify) {
     'use strict';
 
-    var HostingPackagesItem, HostingPackages,
+    var SingleSelectionDomainProductsItem,
+        SingleSelectionDomainProducts,
         NO_DOMAIN = '---';
 
 
-    /* HostingPackagesItem and prototype */
-    HostingPackagesItem = function HostingPackagesItem(productData) {
-        var selectedPricingVariantInitialized = false;
+    /* SingleSelectionDomainProductsItem and prototype */
+    SingleSelectionDomainProductsItem = function SingleSelectionDomainProductsItem(productData) {
+        this._selectedPricingVariantInitialized = false;
 
         _.extend(this, productData);
 
         this.UniqueId = _.uniqueId('productitem-');
 
         this.SelectedPricingVariant = ko.observable();
-        this.SelectedPricingVariant.subscribe(function () {
-            if (selectedPricingVariantInitialized && this.IsInCart()) {
+        this.SelectedPricingVariant.subscribe(this._SelectPricingVariant, this);
+
+        this.Price = ko.pureComputed(this._Price, this);
+        this.RenewalPeriod = ko.pureComputed(this._RenewalPeriod, this);
+        this.HasVariants = ko.pureComputed(this._HasVariants, this);
+
+        _.bindAll(this, '_InitPricingVariant', '_SetDomainNameAttribute', '_RemoveDomainNameAttribute');
+    };
+
+    SingleSelectionDomainProductsItem.prototype = {
+        _SelectPricingVariant: function () {
+            if (this._selectedPricingVariantInitialized && this.IsInCart()) {
                 this.RemoveFromCart();
             }
 
-            selectedPricingVariantInitialized = true;
-        }, this);
+            this._selectedPricingVariantInitialized = true;
+        },
 
-        this.Price = ko.pureComputed(function () {
+        _Price: function () {
             if (this.HasVariants()) {
                 return this.SelectedPricingVariant().Price;
             }
 
             return this.PricingVariants[0].Price;
-        }, this);
+        },
 
-        this.RenewalPeriod = ko.pureComputed(function () {
+        _RenewalPeriod: function () {
             if (this.HasVariants()) {
                 return this.SelectedPricingVariant().RenewalPeriod;
             }
 
             return this.PricingVariants[0].RenewalPeriod;
-        }, this);
+        },
 
-        this.HasVariants = ko.pureComputed(function () {
+        _HasVariants: function () {
             return this.PricingVariants.length > 1;
-        }, this);
+        },
 
-        this._InitPricingVariant = function () {
+        _InitPricingVariant: function () {
             var itemInCart = this.GetItemInCart(),
                 selectedPricingVariant = _.find(this.PricingVariants, function (pv) {
                     if (pv.RenewalPeriod === null || itemInCart.RenewalPeriod === null) {
@@ -62,9 +73,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             if (selectedPricingVariant !== undefined) {
                 this.SelectedPricingVariant(selectedPricingVariant);
             }
-        }.bind(this);
+        },
 
-        this._SetDomainNameAttribute = function (domainName) {
+        _SetDomainNameAttribute: function (domainName) {
             var domainAttr = _.findWhere(this.CustomAttributes, { Name: 'DomainName' });
 
             if (domainAttr !== undefined) {
@@ -76,90 +87,46 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     Value: domainName
                 });
             }
-        }.bind(this);
+        },
 
-        this._RemoveDomainNameAttribute = function () {
+        _RemoveDomainNameAttribute: function () {
             var domainAttr = _.findWhere(this.CustomAttributes, { Name: 'DomainName' });
 
             if (domainAttr !== undefined) {
                 this.CustomAttributes = _.without(this.CustomAttributes, domainAttr);
             }
-        }.bind(this);
+        }
     };
 
 
 
-    /* HostingPackages and prototype */
-    HostingPackages = function HostingPackages() {
+    /* SingleSelectionDomainProducts and prototype */
+    SingleSelectionDomainProducts = function SingleSelectionDomainProducts() {
+
+        this.Item = SingleSelectionDomainProductsItem;
         this._Options = {
             MainDomainIsRequired: false,
-            PackageIsRequired: true
+            ProductIsRequired: true
         };
 
-        this.MainDomainIsRequired = ko.pureComputed(function () {
-            return this._Options.MainDomainIsRequired;
-        }, this);
-
-        this.PackageIsRequired = ko.pureComputed(function () {
-            return this._Options.PackageIsRequired;
-        }, this);
-
-        this.HostingPackagesItem = HostingPackagesItem;
         this.Products = ko.observableArray();
+        this.SelectedProduct = ko.observable();
+        this.ProductIsSelected = ko.pureComputed(this._ProductIsSelected, this);
+        this.ProductIsRequired = ko.pureComputed(this._ProductIsRequired, this);
 
-        // Main domain options
         this.MainDomainOptions = ko.observableArray();
         this.MainDomainOptionsCount = ko.observable();
-
-        // Selected package
-        this.SelectedPackage = ko.observable();
-        this.PackageIsSelected = ko.pureComputed(function () {
-            return this.SelectedPackage() !== undefined;
-        },this)
-
-        // Selected main domain
         this.SelectedMainDomain = ko.observable();
-        this.SelectedMainDomain.subscribe(function (newValue) {
-            var selectedPackage;
-
-            if (newValue === undefined) {
-                return;
-            }
-            else if (newValue === NO_DOMAIN) {
-                _.invoke(this.Products(), '_RemoveDomainNameAttribute');
-            }
-            else {
-                _.invoke(this.Products(), '_SetDomainNameAttribute', newValue);
-            }
-
-            selectedPackage = this.SelectedPackage();
-            if (selectedPackage !== undefined) {
-                this.SelectPackage(selectedPackage);
-            }
-        }, this);
-        this.MainDomainIsSelected = ko.pureComputed(function () {
-            return this.SelectedMainDomain() !== undefined && this.SelectedMainDomain() !== NO_DOMAIN;
-        }, this);
-
-        this.AllowContinue = ko.pureComputed(function () {
-            var conditions = [];
-
-            if (this.PackageIsRequired()) {
-                conditions.push(this.PackageIsSelected());
-            }
-
-            if (this.MainDomainIsRequired()) {
-                conditions.push(this.MainDomainIsSelected());
-            }
-
-            return _.every(conditions);
-
-        }, this);
+        this.SelectedMainDomain.subscribe(this.SelectMainDomain, this);
+        this.MainDomainIsSelected = ko.pureComputed(this._MainDomainIsSelected, this);
+        this.MainDomainIsRequired = ko.pureComputed(this._MainDomainIsRequired, this);
         
-        _.bindAll(this, 'Init', 'Load', 'SelectPackage', '_UpdateProducts', '_UpdateMainDomainOptions');
+        this.AllowContinue = ko.pureComputed(this._AllowContinue, this);
+        
+        _.bindAll(this, 'Init', 'Load', 'SelectProduct', '_UpdateProducts', '_UpdateMainDomainOptions');
     };
 
-    HostingPackages.prototype = {
+    SingleSelectionDomainProducts.prototype = {
         Init: function (cart, options) {
             this._Cart = cart;
 
@@ -185,8 +152,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this._UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
         },
 
-        SelectPackage: function (item) {
-            this.SelectedPackage(item);
+        SelectProduct: function (item) {
+            this.SelectedProduct(item);
 
             _.each(this.Products(), function (product) {
                 if (this._Cart.Contains(product)) {
@@ -195,6 +162,41 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }.bind(this));
 
             this._Cart.Add(item);
+        },
+
+        SelectMainDomain: function (newDomain) {
+            var selectedProduct;
+
+            if (newDomain === undefined) {
+                return;
+            }
+            else if (newDomain === NO_DOMAIN) {
+                _.invoke(this.Products(), '_RemoveDomainNameAttribute');
+            }
+            else {
+                _.invoke(this.Products(), '_SetDomainNameAttribute', newDomain);
+            }
+
+            selectedProduct = this.SelectedProduct();
+            if (selectedProduct !== undefined) {
+                this.SelectProduct(selectedProduct);
+            }
+        },
+
+        _MainDomainIsRequired: function () {
+            return this._Options.MainDomainIsRequired;
+        },
+
+        _ProductIsRequired: function () {
+            return this._Options.ProductIsRequired;
+        },
+
+        _MainDomainIsSelected: function () {
+            return this.SelectedMainDomain() !== undefined && this.SelectedMainDomain() !== NO_DOMAIN;
+        },
+
+        _ProductIsSelected: function () {
+            return this.SelectedProduct() !== undefined;
         },
 
         _UpdateMainDomainOptions: function () {
@@ -208,14 +210,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 this.MainDomainOptions.push(domainNameAttr.Value);
             }, this);
 
-            this.MainDomainOptionsCount(this.MainDomainOptions().length)
+            this.MainDomainOptionsCount(this.MainDomainOptions().length);
         },
 
         _UpdateProducts: function (products) {
             _.each(products, function (product) {
                 var domainAttr,
                     itemInCart,
-                    item = new this.HostingPackagesItem(product);
+                    item = new this.Item(product);
 
                 item = this._Cart.ExtendWithCartProperties(item);
 
@@ -232,18 +234,33 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                         this.SelectedMainDomain(NO_DOMAIN);
                     }
 
-                    this.SelectPackage(item);
+                    this.SelectProduct(item);
                 }
 
                 this.Products.push(item);
             }, this);
+        },
+
+        _AllowContinue: function () {
+            var conditions = [];
+
+            if (this.ProductIsRequired()) {
+                conditions.push(this.ProductIsSelected());
+            }
+
+            if (this.MainDomainIsRequired()) {
+                conditions.push(this.MainDomainIsSelected());
+            }
+
+            return _.every(conditions);
+
         }
     };
     
 
 
     /* Export models */
-    module.HostingPackagesItem = HostingPackagesItem;
-    module.HostingPackages = HostingPackages;
+    module.SingleSelectionDomainProductsItem = SingleSelectionDomainProductsItem;
+    module.SingleSelectionDomainProducts = SingleSelectionDomainProducts;
 
 })(Atomia.ViewModels, _, ko, amplify);
