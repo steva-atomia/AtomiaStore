@@ -38,23 +38,22 @@
                         <!-- /ko-->
                     </p>
                 </div>
-                <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: AddToCart, css: { disabled: IsInCart }">@Html.CommonResource("Select")</a></p>
+                <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green js_select_package" data-bind="click: $root.HostingPackages.SelectPackage, css: { disabled: IsInCart }">@Html.CommonResource("Select")</a></p>
             </div>
         </div>
     </div>
     <br class="clear">
 </div>
-<div data-bind="visible: Cart.DomainItems().length > 0">
+<div data-bind="visible: HostingPackages.MainDomainOptionsCount() > 0">
     <h4>@Html.CommonResource("MainDomain")</h4>
     <div class="formrow">
         <h5><label class="required" for="master"><span>*</span> @Html.CommonResource("MainDomain"):</label></h5>
         <div class="col2row">
             <label class="select">
-                <select id="master" name="master">
-                    <option selected="selected" disabled="disabled"></option>
-                    <option>mydomain.com</option>
-                    <option>mydomain.se</option>
-                </select>
+                <select id="master" name="master" data-bind="
+                    options: $root.HostingPackages.MainDomainOptions,
+                    value: $root.HostingPackages.SelectedMainDomain
+                    "></select>
             </label>
         </div>
         <br class="clear">
@@ -75,7 +74,10 @@
 
         Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.HostingPackages();
 
-        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, { SingleSelection: true });
+        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, {
+            SingleSelectionEnabled: true,
+            MainDomainEnabled: true
+        });
         Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
     </script>
 }
