@@ -187,6 +187,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to We will setup the services in your package to be connected with the selected main domain name..
+        /// </summary>
+        internal static string MainDomainDescription {
+            get {
+                return ResourceManager.GetString("MainDomainDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select main domain ....
+        /// </summary>
+        internal static string MainDomainOptionsCaption {
+            get {
+                return ResourceManager.GetString("MainDomainOptionsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to month.
         /// </summary>
         internal static string MONTH {

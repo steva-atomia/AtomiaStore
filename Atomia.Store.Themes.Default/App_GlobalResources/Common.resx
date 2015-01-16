@@ -213,4 +213,10 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
+  <data name="MainDomainDescription" xml:space="preserve">
+    <value>We will setup the services in your package to be connected with the selected main domain name.</value>
+  </data>
+  <data name="MainDomainOptionsCaption" xml:space="preserve">
+    <value>Select main domain ...</value>
+  </data>
 </root>
