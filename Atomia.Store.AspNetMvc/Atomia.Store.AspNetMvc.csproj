@@ -90,6 +90,8 @@
     <Compile Include="Infrastructure\ModelBinding.cs" />
     <Compile Include="Models\CartItemModel.cs" />
     <Compile Include="Models\CartItemQuantityModel.cs" />
+    <Compile Include="Models\CartItemRemoveAttributeModel.cs" />
+    <Compile Include="Models\CartItemSetAttributeModel.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\DomainQueryModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />

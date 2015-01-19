@@ -22,5 +22,19 @@
         decoder: 'jsend'
     });
 
+    amplify.request.define('Cart.SetItemAttribute', 'ajax', {
+        url: '/Cart/SetItemAttribute',
+        dataType: 'json',
+        type: 'POST',
+        decoder: 'jsend'
+    });
+
+    amplify.request.define('Cart.RemoveItemAttribute', 'ajax', {
+        url: '/Cart/RemoveItemAttribute',
+        dataType: 'json',
+        type: 'POST',
+        decoder: 'jsend'
+    });
+
 
 } (amplify));

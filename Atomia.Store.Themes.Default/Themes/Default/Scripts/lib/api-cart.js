@@ -76,9 +76,80 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
         });
     }
 
+    function SetItemAttribute(item, attributeName, attributeValue, success, error) {
+        var requestData;
+
+        if (!_.has(item, 'Id')) {
+            throw new Error('Object must have Id property to have attribute set.');
+        }
+
+        if (attributeName === undefined) {
+            throw new Error('Missing argument attributeName.');
+        }
+
+        if (attributeValue === undefined) {
+            throw new Error('Missing argument attributeValue.');
+        }
+
+        requestData = {
+            Id: item.Id,
+            AttributeName: attributeName,
+            AttributeValue: attributeValue
+        };
+
+        amplify.request({
+            resourceId: 'Cart.SetItemAttribute',
+            data: requestData,
+            success: function (result) {
+                if (success !== undefined) {
+                    success(result);
+                }
+            },
+            error: function (result) {
+                if (error !== undefined) {
+                    error(result);
+                }
+            }
+        });
+    }
+
+    function RemoveItemAttribute(item, attributeName, success, error) {
+        var requestData;
+
+        if (!_.has(item, 'Id')) {
+            throw new Error('Object must have Id property to have attribute set.');
+        }
+
+        if (attributeName === undefined) {
+            throw new Error('Missing argument attributeName.');
+        }
+
+        requestData = {
+            Id: item.Id,
+            AttributeName: attributeName
+        };
+
+        amplify.request({
+            resourceId: 'Cart.RemoveItemAttribute',
+            data: requestData,
+            success: function (result) {
+                if (success !== undefined) {
+                    success(result);
+                }
+            },
+            error: function (result) {
+                if (error !== undefined) {
+                    error(result);
+                }
+            }
+        });
+    }
+
     return {
         AddItem: AddItem,
-        RemoveItem: RemoveItem
+        RemoveItem: RemoveItem,
+        SetItemAttribute: SetItemAttribute,
+        RemoveItemAttribute: RemoveItemAttribute
     };
 };
 

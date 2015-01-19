@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atomia.Store.Core
 {
@@ -136,6 +137,66 @@ namespace Atomia.Store.Core
         {
             this.campaignCode = string.Empty;
             RecalculatePricingAndSave();
+        }
+
+        public void SetItemAttribute(Guid itemId, string name, string value)
+        {
+            var cartItem = this.cartItems.Find(x => x.Id == itemId);
+
+            if (cartItem == default(CartItem))
+            {
+                throw new ArgumentException("itemId");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("name");
+            }
+
+            if (value == null)
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            var attributeToSet = cartItem.CustomAttributes.FirstOrDefault(ca => ca.Name == name);
+            
+            if (attributeToSet == null) {
+                cartItem.CustomAttributes.Add(new CustomAttribute
+                {
+                    Name = name,
+                    Value = value
+                });
+            }
+            else
+            {
+                attributeToSet.Value = value;
+            }
+
+            RecalculatePricingAndSave();
+        }
+
+        public void RemoveItemAttribute(Guid itemId, string name)
+        {
+            var cartItem = this.cartItems.Find(x => x.Id == itemId);
+
+            if (cartItem == default(CartItem))
+            {
+                throw new ArgumentException("itemId");
+            }
+
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentException("name");
+            }
+
+            var attributeToRemove = cartItem.CustomAttributes.FirstOrDefault(ca => ca.Name == name);
+
+            if (attributeToRemove != null)
+            {
+                cartItem.CustomAttributes.Remove(attributeToRemove);
+                RecalculatePricingAndSave();                
+            }
+
         }
 
         public void ChangeQuantity(Guid itemId, decimal newQuantity)

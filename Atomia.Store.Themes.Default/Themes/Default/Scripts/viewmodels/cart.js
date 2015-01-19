@@ -25,17 +25,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
         CustomOptions: function () {
             var options = [],
-                domainAttr;
+                domainName;
 
             if (this.RenewalPeriod) {
                 options.push(this.RenewalPeriod.Display);
             }
 
             if (this.Category !== 'Domain') {
-                domainAttr = _.findWhere(this.CustomAttributes, { Name: 'DomainName' });
+                domainName = this.GetDomainName()
 
-                if (domainAttr !== undefined) {
-                    options.push(domainAttr.Value);
+                if (domainName !== undefined) {
+                    options.push(domainName);
                 }
             }
 
@@ -46,6 +46,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     /* Cart and prototype */
     Cart = function Cart() {
         this.ItemInCart = ItemInCart;
+
+        this._DomainConnections = {};
 
         this.CartItems = ko.observableArray();
         this.SubTotal = ko.observable(0);
@@ -58,7 +60,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.IsEmpty = ko.pureComputed(this.IsEmpty, this);
 
         _.bindAll(this, '_UpdateCart', 'ToggleDropdown', 'ExtendWithCartProperties', 'Load',
-            'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove', 'DomainItems');
+            'Contains', 'GetExisting', 'Add', 'Remove', 'AddOrRemove', 'DomainItems',
+            'AddDomainName', 'RemoveDomainName', 'ClearDomainItem');
     };
 
     Cart.prototype = {
@@ -142,8 +145,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         Remove: function(item) {
-            var itemInCart,
-                self = this;
+            var itemInCart;
 
             if (this.Contains(item)) {
                 itemInCart = _.find(this.CartItems(), function (cartItem) {
@@ -153,25 +155,82 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 if (itemInCart !== undefined) {
                     // Preliminarily remove item from cart.
                     this.CartItems.remove(itemInCart);
-
+                    
                     cartApi.RemoveItem(
                         itemInCart,
                         function (result) {
-                            self._UpdateCart(result.Cart);
+                            this._UpdateCart(result.Cart);
 
                             amplify.publish('cart:remove', itemInCart);
-                        },
+
+                            if (itemInCart.Category === 'Domain') {
+                                this.ClearDomainItem(itemInCart);
+                            }
+                        }.bind(this),
                         function () {
                             // Failed: add back item.
-                            self.CartItems.push(itemInCart);
-                        }
+                            this.CartItems.push(itemInCart);
+                        }.bind(this)
                     );
                 }
             }
         },
 
+        Update: function(item) {
+            this.Remove(item);
+            this.Add(item);
+        },
+
         AddOrRemove: function(item) {
             this.Contains(item) ? this.Remove(item) : this.Add(item);
+        },
+
+        AddDomainName: function (mainItem, domainName) {
+            var mainInCart = this.GetExisting(mainItem),
+                existingDomainName;
+
+            if (mainInCart === undefined) {
+                throw new Error('mainItem is not in cart.');
+            }
+
+            existingDomainName = mainInCart.GetDomainName();
+
+            if (existingDomainName !== domainName) {
+                cartApi.SetItemAttribute(
+                    mainInCart, 'DomainName', domainName,
+                    function (result) {
+                        this._UpdateCart(result.Cart);
+                    }.bind(this)
+                );
+            }
+        },
+
+        RemoveDomainName: function(mainItem) {
+            var mainInCart = this.GetExisting(mainItem),
+                domainName;
+
+            if (mainInCart === undefined) {
+                throw new Error('mainItem is not in cart.');
+            }
+
+            if (mainInCart.GetDomainName() !== undefined) {
+                cartApi.RemoveItemAttribute(
+                    mainInCart, 'DomainName',
+                    function (result) {
+                        this._UpdateCart(result.Cart);
+                    }.bind(this)
+                );
+            }
+        },
+
+        ClearDomainItem: function (domainItem) {
+            var domainNameToRemove = domainItem.GetDomainName();
+
+            _.each(this.CartItems(), function (item) {
+                if (!domainItem.Equals(item) && item.GetDomainName() === domainNameToRemove) {
+                    this.RemoveDomainName(item);
+                }
+            }.bind(this));
         },
 
         ExtendWithCartProperties: function (item) {
@@ -203,6 +262,20 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 ToggleInCart: function () {
                     cart.AddOrRemove(item);
+                },
+
+                GetDomainName: function() {
+                    var domainAttr, domainName;
+
+                    if (item.CustomAttributes !== undefined) {
+                        domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' })
+                    }
+
+                    if (domainAttr !== undefined) {
+                        domainName = domainAttr.Value;
+                    }
+                    
+                    return domainName;
                 }
             });
 

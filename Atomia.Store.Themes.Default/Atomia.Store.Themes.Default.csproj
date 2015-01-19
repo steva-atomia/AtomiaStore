@@ -261,6 +261,7 @@
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domainregistration.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-index.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domaintransfer.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\domainconnection.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainTransfer.cshtml" />
@@ -283,6 +284,7 @@
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
     <Content Include="Themes\Default\Views\Category\HostingPackages.cshtml" />
     <Content Include="Themes\Default\Views\Account\Index.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_DomainConnection.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">

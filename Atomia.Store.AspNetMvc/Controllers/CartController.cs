@@ -60,6 +60,38 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpPost]
+        public JsonResult SetItemAttribute(CartItemSetAttributeModel item)
+        {
+            if (ModelState.IsValid)
+            {
+                cart.SetItemAttribute(item.Id, item.AttributeName, item.AttributeValue);
+
+                return JsonEnvelope.Success(new
+                {
+                    Cart = new CartModel(cart)
+                });
+            }
+
+            return JsonEnvelope.Fail(ModelState);
+        }
+
+        [HttpPost]
+        public JsonResult RemoveItemAttribute(CartItemRemoveAttributeModel item)
+        {
+            if (ModelState.IsValid)
+            {
+                cart.RemoveItemAttribute(item.Id, item.AttributeName);
+
+                return JsonEnvelope.Success(new
+                {
+                    Cart = new CartModel(cart)
+                });
+            }
+
+            return JsonEnvelope.Fail(ModelState);
+        }
+
+        [HttpPost]
         public JsonResult ChangeQuantity(CartItemQuantityChangeModel quantityChangeItem)
         {
             if (ModelState.IsValid)
