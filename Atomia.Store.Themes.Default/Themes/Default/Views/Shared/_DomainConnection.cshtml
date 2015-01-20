@@ -5,7 +5,7 @@
             createViewModel: function (params) {
                 var viewModel = new Atomia.ViewModels.DomainConnection();
 
-                viewModel.Init(params.cart, params.selectedItem);
+                viewModel.Init(params.cart, params.selectedItem, params.statusNotifier);
 
                 return viewModel;
             }

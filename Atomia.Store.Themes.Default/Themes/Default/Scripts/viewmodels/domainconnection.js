@@ -6,7 +6,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (module, _, ko, amplify) {
     'use strict';
 
-    var DomainConnection;
+    var DomainConnection, DomainStatus;
+
+    DomainStatus = function DomainStatus() {
+        this.DomainNameHasBeenSelected = ko.observable(false);
+        this.DomainNameOptionsCount = ko.observable(0);
+    };
+
 
 
     /* DomainConnection and prototype */
@@ -18,20 +24,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         this.SelectedDomainName = ko.observable();
         this.SelectedDomainName.subscribe(this._DomainNameSelected, this);
 
-        this.DomainHasBeenSelected = ko.pureComputed(function () {
-            return this.SelectedDomainName() !== undefined;
-        }, this);
-        this.DomainNameOptionsCount = ko.pureComputed(function () {
-            return this.DomainNameOptions().length;
-        }, this);
-
         _.bindAll(this, 'Init', 'SetInitialDomainName', '_UpdateDomainNameOptions', '_DomainNameSelected');
     };
 
     DomainConnection.prototype = {
-        Init: function (cart, selectedItem) {
+        Init: function (cart, selectedItem, statusNotifier) {
             
             this._Cart = cart;
+            this._StatusNotifier = statusNotifier;
             
             this._UpdateDomainNameOptions();
 
@@ -90,10 +90,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             this.DomainNameOptions(domainNames);
+
+            if (this._StatusNotifier !== undefined) {
+                this._StatusNotifier.DomainNameOptionsCount(domainNames.length);
+            }
         },
 
         _DomainNameSelected: function (selectedDomainName) {
             var selectedItem = this.SelectedItem();
+
+            if (this._StatusNotifier !== undefined) {
+                this._StatusNotifier.DomainNameHasBeenSelected(selectedDomainName !== undefined);
+            }
 
             if (selectedItem === undefined || !selectedItem.IsInCart()) {
                 return;
@@ -108,9 +116,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-
-
     /* Export models */
+    module.DomainStatus = DomainStatus;
     module.DomainConnection = DomainConnection;
 
 })(Atomia.ViewModels, _, ko, amplify);
