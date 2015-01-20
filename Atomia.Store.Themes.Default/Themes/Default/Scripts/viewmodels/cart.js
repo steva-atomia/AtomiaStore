@@ -32,7 +32,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             if (this.Category !== 'Domain') {
-                domainName = this.GetDomainName()
+                domainName = this.GetDomainName();
 
                 if (domainName !== undefined) {
                     options.push(domainName);
@@ -206,8 +206,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         RemoveDomainName: function(mainItem) {
-            var mainInCart = this.GetExisting(mainItem),
-                domainName;
+            var mainInCart = this.GetExisting(mainItem);
 
             if (mainInCart === undefined) {
                 throw new Error('mainItem is not in cart.');
@@ -268,7 +267,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     var domainAttr, domainName;
 
                     if (item.CustomAttributes !== undefined) {
-                        domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' })
+                        domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
                     }
 
                     if (domainAttr !== undefined) {
