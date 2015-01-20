@@ -47,7 +47,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     Cart = function Cart() {
         this.ItemInCart = ItemInCart;
 
-        this._DomainConnections = {};
+        this.DomainCategories = ['Domain'];
 
         this.CartItems = ko.observableArray();
         this.SubTotal = ko.observable(0);
@@ -66,16 +66,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     Cart.prototype = {
         _UpdateCart: function (cartData) {
-            var self = this;
-
             this.CartItems.removeAll();
 
             _.each(cartData.CartItems, function (cartItemData) {
-                var item = new self.ItemInCart(cartItemData),
-                    cartItem = self.ExtendWithCartProperties(item);
+                var item = new this.ItemInCart(cartItemData),
+                    cartItem = this.ExtendWithCartProperties(item);
 
-                self.CartItems.push(cartItem);
-            });
+                this.CartItems.push(cartItem);
+            }.bind(this));
 
             this.SubTotal(cartData.SubTotal);
             this.Total(cartData.Total);
@@ -86,7 +84,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         DomainItems: function() {
-            return _.where(this.CartItems(), {Category: 'Domain'});
+            return _.filter(this.CartItems(), function (item) {
+                return _.contains(this.DomainCategories, item.Category);
+            }.bind(this));
         },
 
         NumberOfItems: function () {
@@ -278,7 +278,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 },
 
                 IsDomainItem: function () {
-                    return item.Category === 'Domain';
+                    return _.contains(cart.DomainCategories, item.Category);
                 }
             });
 
@@ -287,6 +287,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         Load: function (getCartResponse) {
             this._UpdateCart(getCartResponse.data.Cart);
+
+            if (getCartResponse.data.DomainCategories !== undefined) {
+                this.DomainCategories = getCartResponse.data.DomainCategories;
+            }
         }
     };
 
