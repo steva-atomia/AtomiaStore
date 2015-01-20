@@ -3,6 +3,7 @@ using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.AspNetMvc.Providers;
 using Atomia.Store.Core;
 using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 using System.Web.Mvc;
 using Unity.Mvc5;
 
@@ -36,6 +37,8 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<DomainSearchProvider, Atomia.Store.Fakes.Adapters.FakeDomainSearchProvider>();
             container.RegisterType<CategoryProvider, Atomia.Store.AspNetMvc.Providers.SimpleCategoryProvider>();
             container.RegisterType<DomainsProvider, Atomia.Store.AspNetMvc.Providers.PremiumDomainsProvider>();
+
+            container.LoadConfiguration();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }

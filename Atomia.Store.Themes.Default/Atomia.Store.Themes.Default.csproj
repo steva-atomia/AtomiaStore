@@ -66,6 +66,13 @@
     <Reference Include="Atomia.Web.Base">
       <HintPath>..\Lib\Atomia.Web.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
+      <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
+    </Reference>
+    <Reference Include="Atomia.Web.Plugin.ProductsProvider, Version=14.1.5498.26805, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Atomia.Web.Plugin.ProductsProvider.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
