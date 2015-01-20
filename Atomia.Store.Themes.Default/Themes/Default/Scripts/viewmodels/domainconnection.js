@@ -9,8 +9,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     var DomainConnection;
 
 
-    /* ItemConnections and prototype */
+    /* DomainConnection and prototype */
     DomainConnection = function DomainConnection() {
+        
         this.SelectedItem = undefined; // Set in Init
 
         this.DomainNameOptions = ko.observableArray();
@@ -28,15 +29,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
     DomainConnection.prototype = {
-        Init: function (cart, itemObservable) {
+        Init: function (cart, selectedItem) {
+            
             this._Cart = cart;
-
-            if (!ko.isObservable(itemObservable)) {
-                throw new Error('itemObservable must be a knockout observable.');
-            }
-            this.SelectedItem = itemObservable;
-
+            
             this._UpdateDomainNameOptions();
+
+            if (_.isFunction(selectedItem)) {
+                this.SelectedItem = selectedItem;
+            }
+            else {
+                this.SelectedItem = function () { return selectedItem; };
+            }
 
             amplify.subscribe('cart:add', this, function (addedItem) {
                 var selectedItem = this.SelectedItem();
@@ -91,7 +95,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         _DomainNameSelected: function (selectedDomainName) {
             var selectedItem = this.SelectedItem();
 
-            if (selectedItem === undefined) {
+            if (selectedItem === undefined || !selectedItem.IsInCart()) {
                 return;
             }
 
@@ -103,6 +107,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         }
     };
+
+
 
     /* Export models */
     module.DomainConnection = DomainConnection;

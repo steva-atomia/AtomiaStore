@@ -1,1 +1,25 @@
-﻿@using Atomia.Store.WebBase.HtmlHelpers;
+﻿<script type="text/javascript">
+    ko.components.register('domain-connection', {
+        template: { element: 'domain-connection-tmpl' },
+        viewModel: {
+            createViewModel: function (params) {
+                var viewModel = new Atomia.ViewModels.DomainConnection();
+
+                viewModel.Init(params.cart, params.selectedItem);
+
+                return viewModel;
+            }
+        }
+    });
+</script>
+
+<script type="text/html" id="domain-connection-tmpl">
+    <label class="select">
+        <select id="master" name="master" data-bind="
+        options: DomainNameOptions,
+        optionsCaption: '---',
+        optionsAfterRender: SetInitialDomainName,
+        value: SelectedDomainName
+        "></select>
+    </label>
+</script>
