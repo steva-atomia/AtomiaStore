@@ -47,7 +47,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             amplify.subscribe('cart:add', this, function (addedItem) {
                 var selectedItem = this.SelectedItem();
 
-                if (addedItem.Category === 'Domain') {
+                if (addedItem.IsDomainItem()) {
                     this._UpdateDomainNameOptions();
                 }
                 else if (selectedItem.Equals(addedItem)) {
@@ -56,7 +56,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             });
 
             amplify.subscribe('cart:remove', this, function (removedItem) {
-                if (removedItem.Category === 'Domain') {
+                if (removedItem.IsDomainItem()) {
                     this._UpdateDomainNameOptions();
                 }
             });

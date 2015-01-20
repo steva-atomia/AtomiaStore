@@ -31,7 +31,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 options.push(this.RenewalPeriod.Display);
             }
 
-            if (this.Category !== 'Domain') {
+            if (!this.IsDomainItem()) {
                 domainName = this.GetDomainName();
 
                 if (domainName !== undefined) {
@@ -163,7 +163,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                             amplify.publish('cart:remove', itemInCart);
 
-                            if (itemInCart.Category === 'Domain') {
+                            if (itemInCart.IsDomainItem()) {
                                 this.ClearDomainItem(itemInCart);
                             }
                         }.bind(this),
@@ -275,6 +275,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     }
                     
                     return domainName;
+                },
+
+                IsDomainItem: function () {
+                    return item.Category === 'Domain';
                 }
             });
 
