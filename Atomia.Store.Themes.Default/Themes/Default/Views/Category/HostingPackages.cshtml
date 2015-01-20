@@ -80,12 +80,10 @@
         var Atomia = Atomia || {};
         Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
 
-        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.ProductsListing();
-        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, {
-            SingleSelection: true
-        });
-
         Atomia.ActiveViewModel.MainDomainStatus = new Atomia.ViewModels.DomainStatus();
+
+        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.ProductsListing();
+        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, { SingleSelection: true });
         Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("ListCategoryData", "Category", new { category = "Hosting" }));
     </script>
 

@@ -6,7 +6,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (module, _, ko, amplify) {
     'use strict';
 
-    var DomainConnection, DomainStatus;
+    var DomainConnection, DomainStatus, DomainConnectionFactory;
 
     DomainStatus = function DomainStatus() {
         this.DomainNameHasBeenSelected = ko.observable(false);
@@ -19,6 +19,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     DomainConnection = function DomainConnection() {
         
         this.SelectedItem = undefined; // Set in Init
+
+        this.UniqueId = _.uniqueId('domain-connection-');
 
         this.DomainNameOptions = ko.observableArray();
         this.SelectedDomainName = ko.observable();
@@ -116,8 +118,20 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+    
+
+    DomainConnectionFactory = function DomainConnectionFactory(params) {
+        var viewModel = new DomainConnection();
+
+        viewModel.Init(params.cart, params.selectedItem, params.statusNotifier);
+
+        return viewModel;
+    };
+
+
     /* Export models */
     module.DomainStatus = DomainStatus;
     module.DomainConnection = DomainConnection;
+    module.DomainConnectionFactory = DomainConnectionFactory;
 
 })(Atomia.ViewModels, _, ko, amplify);
