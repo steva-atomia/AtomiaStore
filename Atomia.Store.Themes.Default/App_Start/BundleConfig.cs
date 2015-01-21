@@ -14,6 +14,8 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/knockout-{version}.js",
                 "~/Themes/Default/Scripts/underscore.js",
                 "~/Themes/Default/Scripts/amplify.js",
+                "~/Themes/Default/Scripts/lib/polyfills.js",
+                "~/Themes/Default/Scripts/lib/utils.js",
                 "~/Themes/Default/Scripts/lib/api-definitions.js",
                 "~/Themes/Default/Scripts/lib/ko-binding-submitvalid.js",
                 "~/Themes/Default/Scripts/lib/ko-binding-slidevisible.js",

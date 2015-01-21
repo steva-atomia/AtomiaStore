@@ -2,7 +2,11 @@
     ko.components.register('domain-connection', {
         template: { element: 'domain-connection-tmpl' },
         viewModel: {
-            createViewModel: Atomia.ViewModels.DomainConnectionFactory 
+            createViewModel: function(params) {
+                return Atomia.ViewModels.CreateDomainConnection(params.cart, params.selectedItem, {
+                    StatusNotifier: params.statusNotifier
+                });
+            }
         }
     });
 </script>

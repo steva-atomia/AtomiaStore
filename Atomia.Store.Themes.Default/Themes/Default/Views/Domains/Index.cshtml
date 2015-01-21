@@ -36,11 +36,9 @@
 
     <script type="text/javascript">
         var Atomia = Atomia || {};
-        Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
+        Atomia.VM = Atomia.VM || {};
 
-        Atomia.ActiveViewModel.Domains = new Atomia.ViewModels.Domains();
-        Atomia.ActiveViewModel.DomainRegistration = new Atomia.ViewModels.DomainRegistration();
-
-        Atomia.ActiveViewModel.DomainRegistration.Init(Atomia.ActiveViewModel.Cart);
+        Atomia.VM.Domains = Atomia.ViewModels.CreateDomainsPage();
+        Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistration(Atomia.VM.Cart);
     </script>
 }

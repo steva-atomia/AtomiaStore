@@ -261,6 +261,8 @@
     <Content Include="Themes\Default\Scripts\lib\api-domains.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-slidevisible.js" />
     <Content Include="Themes\Default\Scripts\lib\ko-binding-submitvalid.js" />
+    <Content Include="Themes\Default\Scripts\lib\polyfills.js" />
+    <Content Include="Themes\Default\Scripts\lib\utils.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\cart.js" />

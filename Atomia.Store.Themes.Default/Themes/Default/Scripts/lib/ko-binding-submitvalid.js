@@ -1,10 +1,9 @@
-﻿/* jshint unused: false */
-(function ($, ko) {
+﻿(function ($, ko) {
     'use strict';
 
     ko.bindingHandlers.submitValid = {
         init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
-            var validatingValueAccessor = function (data, event) {
+            var validatingValueAccessor = function () {
                 return function (data, event) {
                     if ($(element).valid()) {
                         valueAccessor().call(viewModel, data, event);

@@ -3,25 +3,45 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (module, ko) {
+(function (exports, _, ko, utils) {
     'use strict';
 
-    var Domains = function Domains() {
-        this.QueryType = ko.observable('domainreg');
+    var CreateDomainsPage,
+        CreateDomainsPagePrototype;
 
-        this.DomainRegActive = ko.pureComputed(this.DomainRegActive, this);
-        this.DomainTransferActive = ko.pureComputed(this.DomainTransferActive, this);
-    };
 
-    Domains.prototype = {
-        DomainRegActive: function () {
+
+    /* Domains page prototype and factory */
+    CreateDomainsPagePrototype = {
+        _DomainRegActive: function _DomainRegActive() {
             return this.QueryType() === 'domainreg';
         },
-        DomainTransferActive: function () {
+
+        _DomainTransferActive: function _DomainTransferActive() {
             return this.QueryType() === 'transfer';
         }
     };
 
-    module.Domains = Domains;
+    CreateDomainsPage = function CreateDomainsPage(extensions) {
+        var defaults;
 
-})(Atomia.ViewModels, ko);
+        defaults = function (self) {
+            return {
+                QueryType: ko.observable('domainreg'),
+
+                DomainRegActive: ko.pureComputed(self._DomainRegActive, self),
+                DomainTransferActive: ko.pureComputed(self._DomainTransferActive, self)
+            };
+        };
+
+        return utils.createViewModel(CreateDomainsPagePrototype, defaults, extensions);
+    };
+
+
+
+    /* Module exports */
+    _.extend(exports, {
+        CreateDomainsPage: CreateDomainsPage
+    });
+
+})(Atomia.ViewModels, _, ko, Atomia.Utils);

@@ -3,73 +3,54 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-
-(function (module, _, ko, domainsApi) {
+(function (exports, _, ko, utils, domainsApi, viewModelsApi) {
     'use strict';
 
-    var DomainRegistrationItem, DomainRegistration;
+    var DomainRegistrationItemPrototype,
+        CreateDomainRegistrationItem,
+        DomainRegistrationPrototype,
+        CreateDomainRegistration;
 
-    /* DomainRegistrationItem and prototype */
-    DomainRegistrationItem = function DomainRegistrationItem(itemData) {
-        var domainName = _.find(itemData.CustomAttributes, function (ca) {
-            return ca.Name === 'DomainName';
-        }).Value,
-            domainParts = domainName.split('.');
 
-        _.extend(this, itemData);
 
-        this.UniqueId = _.uniqueId('dmn');
-        this.DomainName = domainName;
-        this.DomainNameSld = domainParts[0];
-        this.DomainNameTld = domainParts[1];
-        this.Price = this.PricingVariants[0].Price;
-        this.RenewalPeriod = this.PricingVariants[0].RenewalPeriod;
-        this.Status = _.find(this.CustomAttributes, function (ca) {
-            return ca.Name === 'Status';
-        }).Value;
-
-        _.bindAll(this, 'Equals');
-    };
-
-    DomainRegistrationItem.prototype = {
-        Equals: function (other) {
+    /* Domain registration item protype and factory */
+    DomainRegistrationItemPrototype = {
+        Equals: function Equals(other) {
             var otherDomainNameAttr = _.find(other.CustomAttributes, function (ca) {
-                return ca.Name === 'DomainName';
-            }),
+                    return ca.Name === 'DomainName';
+                }),
                 otherDomainName = otherDomainNameAttr !== undefined ? otherDomainNameAttr.Value : undefined;
 
             return this.ArticleNumber === other.ArticleNumber && this.DomainName === otherDomainName;
         }
     };
 
+    CreateDomainRegistrationItem = function CreateDomainRegistrationItem(extensions, instance) {
+        var domainName, domainParts;
 
+        domainName = _.find(instance.CustomAttributes, function (ca) {
+            return ca.Name === 'DomainName';
+        }).Value;
+        domainParts = domainName.split('.');
 
-    /* DomainRegistration and prototype */
-    DomainRegistration = function DomainRegistration() {
-        this.DomainRegistrationItem = DomainRegistrationItem;
-
-        this.Query = ko.observable();
-        this.IsLoadingResults = ko.observable(false);
-        this.ShowMoreResults = ko.observable(false);
-        this.PrimaryResults = ko.observableArray();
-        this.SecondaryResults = ko.observableArray();
-
-        this.HasResults = ko.pureComputed(this.HasResults, this);
-        _.bindAll(this, 'Init', 'Submit', 'SetShowMoreResults', 'GetTemplateName');
+        return utils.createViewModel(DomainRegistrationItemPrototype, {
+            UniqueId: _.uniqueId('dmn'),
+            DomainName: domainName,
+            DomainNameSld: domainParts[0],
+            DomainNameTld: domainParts[1],
+            Price: instance.PricingVariants[0].Price,
+            RenewalPeriod: instance.PricingVariants[0].RenewalPeriod,
+            Status: _.find(instance.CustomAttributes, function (ca) {
+                return ca.Name === 'Status';
+            }).Value
+        }, instance, extensions);
     };
-    
-    DomainRegistration.prototype = {
-        HasResults: function () {
-            return this.PrimaryResults().length > 0 || this.SecondaryResults().length > 0;
-        },
 
-        Init: function (cart) {
-            this._ExtendWithCartProperties = cart.ExtendWithCartProperties;
-        },
 
-        Submit: function () {
-            var self = this;
 
+    /* Domain registration prototype and factory */
+    DomainRegistrationPrototype = {
+        Submit: function Submit() {
             this.IsLoadingResults(true);
 
             this.PrimaryResults.removeAll();
@@ -79,31 +60,32 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 _.each(data, function (result) {
                     var item, primaryAttr;
                     
-                    item = self._ExtendWithCartProperties(new self.DomainRegistrationItem(result));
+                    item = viewModelsApi.AddCartExtensions(this._Cart, this.CreateDomainRegistrationItem(result));
+
                     primaryAttr = _.find(item.CustomAttributes, function (ca) {
                         return ca.Name === 'Premium';
                     });
 
                     if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
-                        self.PrimaryResults.push(item);
+                        this.PrimaryResults.push(item);
                     }
                     else {
-                        self.SecondaryResults.push(item);
+                        this.SecondaryResults.push(item);
                     }
-                });
+                }.bind(this));
 
-                self.IsLoadingResults(false);
-            });
+                this.IsLoadingResults(false);
+            }.bind(this));
         },
 
-        SetShowMoreResults: function() {
+        SetShowMoreResults: function SetShowMoreResults() {
             this.ShowMoreResults(true);
         },
 
-        GetTemplateName: function (item) {
+        GetTemplateName: function GetTemplateName(item) {
             var primaryAttr = _.find(item.CustomAttributes, function (ca) {
-                return ca.Name === 'Premium';
-            }),
+                    return ca.Name === 'Premium';
+                }),
                 primary = primaryAttr !== undefined && primaryAttr.Value === 'true',
                 displayType = 'domainregistration-';
 
@@ -118,12 +100,38 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             return displayType;
         },
+
+        _HasResults: function _HasResults() {
+            return this.PrimaryResults().length > 0 || this.SecondaryResults().length > 0;
+        }
+    };
+
+    CreateDomainRegistration = function CreateDomainRegistration(cart, extensions, itemExtensions) {
+        var defaults;
+
+        defaults = function (self) {
+            return {
+                _Cart: cart,
+                CreateDomainRegistrationItem: _.partial(CreateDomainRegistrationItem, itemExtensions || {}),
+
+                Query: ko.observable(),
+                IsLoadingResults: ko.observable(false),
+                ShowMoreResults: ko.observable(false),
+                PrimaryResults: ko.observableArray(),
+                SecondaryResults: ko.observableArray(),
+
+                HasResults: ko.pureComputed(self._HasResults, self)
+            };
+        };
+
+        return utils.createViewModel(DomainRegistrationPrototype, defaults, extensions);
     };
 
 
 
-    /* Export models */
-    module.DomainRegistrationItem = DomainRegistrationItem;
-    module.DomainRegistration = DomainRegistration;
+    /* Module exports */
+    _.extend(exports, {
+        CreateDomainRegistration: CreateDomainRegistration
+    });
 
-})(Atomia.ViewModels, _, ko, Atomia.Api.Domains);
+})(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.Api.Domains, Atomia.ViewModels);

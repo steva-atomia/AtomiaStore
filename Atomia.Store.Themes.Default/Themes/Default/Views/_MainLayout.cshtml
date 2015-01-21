@@ -78,15 +78,16 @@
 
     <script type="text/javascript">
         var Atomia = Atomia || {};
-        Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
-        Atomia.ActiveViewModel.Cart = new Atomia.ViewModels.Cart(Atomia.ViewModels.ItemInCart);
-        Atomia.ActiveViewModel.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
+        Atomia.VM = Atomia.VM || {};
+
+        Atomia.VM.Cart = Atomia.ViewModels.CreateCart();
+        Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
     </script>
 
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
-        ko.applyBindings(Atomia.ActiveViewModel);
+        ko.applyBindings(Atomia.VM);
     </script>
 
     <footer>

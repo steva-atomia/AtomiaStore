@@ -1,10 +1,10 @@
 ﻿/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
-Atomia.Api._unbound = Atomia.Api._unbound || {};
+Atomia.Api.Cart = Atomia.Api.Cart || {};
 /* jshint +W079 */
 
-Atomia.Api._unbound.Cart = function (_, ko, amplify) {
+(function (exports, _, ko, utils) {
     'use strict';
 
     function _GetValueOrObservable(value) {
@@ -33,7 +33,7 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             Quantity: 1
         });
 
-        amplify.request({
+        utils.request({
             resourceId: 'Cart.AddItem',
             data: requestData,
             success: function (result) {
@@ -60,7 +60,7 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             Id: item.Id
         };
 
-        amplify.request({
+        utils.request({
             resourceId: 'Cart.RemoveItem',
             data: requestData,
             success: function (result) {
@@ -97,7 +97,7 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             AttributeValue: attributeValue
         };
 
-        amplify.request({
+        utils.request({
             resourceId: 'Cart.SetItemAttribute',
             data: requestData,
             success: function (result) {
@@ -129,7 +129,7 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
             AttributeName: attributeName
         };
 
-        amplify.request({
+        utils.request({
             resourceId: 'Cart.RemoveItemAttribute',
             data: requestData,
             success: function (result) {
@@ -145,12 +145,12 @@ Atomia.Api._unbound.Cart = function (_, ko, amplify) {
         });
     }
 
-    return {
+
+    _.extend(exports, {
         AddItem: AddItem,
         RemoveItem: RemoveItem,
         SetItemAttribute: SetItemAttribute,
         RemoveItemAttribute: RemoveItemAttribute
-    };
-};
-
-Atomia.Api.Cart = Atomia.Api._unbound.Cart(_, ko, amplify);
+    });
+    
+})(Atomia.Api.Cart, _, ko, Atomia.Utils);

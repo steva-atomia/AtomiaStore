@@ -3,76 +3,16 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (module, _, ko, amplify) {
+(function (exports, _, ko, utils) {
     'use strict';
 
-    var DomainConnection, DomainStatus, DomainConnectionFactory;
-
-    DomainStatus = function DomainStatus() {
-        this.DomainNameHasBeenSelected = ko.observable(false);
-        this.DomainNameOptionsCount = ko.observable(0);
-    };
+    var DomainConnectionPrototype,
+        CreateDomainConnection,
+        CreateDomainStatus;
 
 
-
-    /* DomainConnection and prototype */
-    DomainConnection = function DomainConnection() {
-        
-        this.SelectedItem = undefined; // Set in Init
-
-        this.UniqueId = _.uniqueId('domain-connection-');
-
-        this.DomainNameOptions = ko.observableArray();
-        this.SelectedDomainName = ko.observable();
-        this.SelectedDomainName.subscribe(this._DomainNameSelected, this);
-
-        _.bindAll(this, 'Init', 'SetInitialDomainName', '_UpdateDomainNameOptions', '_DomainNameSelected');
-    };
-
-    DomainConnection.prototype = {
-        Init: function (cart, selectedItem, statusNotifier) {
-            
-            this._Cart = cart;
-
-            if (statusNotifier !== undefined) {
-                if (!_.isFunction(statusNotifier.DomainNameOptionsCount)) {
-                    throw new Error('Status notifier must have DomainNameOptionsCount method.');
-                }
-
-                if (!_.isFunction(statusNotifier.DomainNameHasBeenSelected)) {
-                    throw new Error('Status notifier must have DomainNameHasBeenSelected method.');
-                }
-
-                this._StatusNotifier = statusNotifier;
-            }
-            
-            this._UpdateDomainNameOptions();
-
-            if (_.isFunction(selectedItem)) {
-                this.SelectedItem = selectedItem;
-            }
-            else {
-                this.SelectedItem = function () { return selectedItem; };
-            }
-
-            amplify.subscribe('cart:add', this, function (addedItem) {
-                var selectedItem = this.SelectedItem();
-
-                if (addedItem.IsDomainItem()) {
-                    this._UpdateDomainNameOptions();
-                }
-                else if (selectedItem.Equals(addedItem)) {
-                    this._DomainNameSelected(this.SelectedDomainName());
-                }
-            });
-
-            amplify.subscribe('cart:remove', this, function (removedItem) {
-                if (removedItem.IsDomainItem()) {
-                    this._UpdateDomainNameOptions();
-                }
-            });
-        },
-
+    /* DomainConnection prototype and factory */
+    DomainConnectionPrototype = {
         SetInitialDomainName: function () {
             var selectedItem = this.SelectedItem(),
                 itemInCart,
@@ -91,7 +31,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
-        _UpdateDomainNameOptions: function () {
+        _UpdateDomainNameOptions: function _UpdateDomainNameOptions() {
             var domainItems = this._Cart.DomainItems(),
                 domainNames = [];
 
@@ -99,21 +39,21 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 _.each(domainItems, function (item) {
                     var domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
                     domainNames.push(domainAttr.Value);
-                }.bind(this));
+                });
             }
             
             this.DomainNameOptions(domainNames);
 
-            if (this._StatusNotifier !== undefined) {
-                this._StatusNotifier.DomainNameOptionsCount(domainNames.length);
+            if (this.StatusNotifier !== undefined) {
+                this.StatusNotifier.DomainNameOptionsCount(domainNames.length);
             }
         },
 
-        _DomainNameSelected: function (selectedDomainName) {
+        _HandleSelectedDomainName: function _HandleSelectedDomainName(selectedDomainName) {
             var selectedItem = this.SelectedItem();
 
-            if (this._StatusNotifier !== undefined) {
-                this._StatusNotifier.DomainNameHasBeenSelected(selectedDomainName !== undefined);
+            if (this.StatusNotifier !== undefined) {
+                this.StatusNotifier.DomainNameHasBeenSelected(selectedDomainName !== undefined);
             }
 
             if (selectedItem === undefined || !selectedItem.IsInCart()) {
@@ -126,23 +66,66 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             else {
                 this._Cart.RemoveDomainName(selectedItem);
             }
+        },
+
+        _HandleAddedCartItem: function _HandleAddedCartItem(addedItem) {
+            var selectedItem = this.SelectedItem();
+
+            if (addedItem.IsDomainItem()) {
+                this._UpdateDomainNameOptions();
+            }
+            else if (selectedItem.Equals(addedItem)) {
+                this._HandleSelectedDomainName(this.SelectedDomainName());
+            }
+        },
+
+        _HandleRemovedCartItem: function _HandleRemovedCartItem(removedItem) {
+            if (removedItem.IsDomainItem()) {
+                this._UpdateDomainNameOptions();
+            }
         }
     };
-
     
+    CreateDomainConnection = function CreateDomainConnection(cart, selectedItem, extensions) {
+        var item;
 
-    DomainConnectionFactory = function DomainConnectionFactory(params) {
-        var viewModel = new DomainConnection();
+        item = utils.createViewModel(DomainConnectionPrototype, {
+            _Cart: cart,
+            SelectedItem: _.isFunction(selectedItem) ? selectedItem : function () { return selectedItem; },
+            UniqueId: _.uniqueId('domain-connection-'),
+            DomainNameOptions: ko.observableArray(),
+            SelectedDomainName: ko.observable()
+        }, extensions);
 
-        viewModel.Init(params.cart, params.selectedItem, params.statusNotifier);
+        item.SelectedDomainName.subscribe(item._HandleSelectedDomainName);
+        
+        utils.subscribe('cart:add', item._HandleAddedCartItem);
+        utils.subscribe('cart:remove', item._HandleRemovedCartItem);
 
-        return viewModel;
+        item._UpdateDomainNameOptions();
+
+        return item;
     };
 
 
-    /* Export models */
-    module.DomainStatus = DomainStatus;
-    module.DomainConnection = DomainConnection;
-    module.DomainConnectionFactory = DomainConnectionFactory;
 
-})(Atomia.ViewModels, _, ko, amplify);
+    /* DomainStatus factory */
+    CreateDomainStatus = function CreateDomainStatus(extensions) {
+        var statusItem = Object.create({}),
+            defaults = {
+                DomainNameHasBeenSelected: ko.observable(false),
+                DomainNameOptionsCount: ko.observable(0)
+            };
+
+        return _.extend(statusItem, defaults, extensions);
+    };
+
+
+
+    /* Module exports */
+    _.extend(exports, {
+        CreateDomainStatus: CreateDomainStatus,
+        CreateDomainConnection: CreateDomainConnection
+    });
+
+})(Atomia.ViewModels, _, ko, Atomia.Utils);

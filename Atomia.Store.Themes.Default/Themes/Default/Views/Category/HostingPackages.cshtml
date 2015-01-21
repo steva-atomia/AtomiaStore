@@ -59,9 +59,9 @@
     <div class="col2row" data-bind="component: {
         name: 'domain-connection',
         params: {
-            cart: Atomia.ActiveViewModel.Cart,
-            selectedItem: Atomia.ActiveViewModel.HostingPackages.SelectedProduct,
-            statusNotifier: Atomia.ActiveViewModel.MainDomainStatus
+            cart: Atomia.VM.Cart,
+            selectedItem: Atomia.VM.HostingPackages.SelectedProduct,
+            statusNotifier: Atomia.VM.MainDomainStatus
         }
     }">
 
@@ -79,13 +79,12 @@
 
     <script type="text/javascript">
         var Atomia = Atomia || {};
-        Atomia.ActiveViewModel = Atomia.ActiveViewModel || {};
+        Atomia.VM = Atomia.VM || {};
 
-        Atomia.ActiveViewModel.MainDomainStatus = new Atomia.ViewModels.DomainStatus();
+        Atomia.VM.MainDomainStatus = Atomia.ViewModels.CreateDomainStatus();
 
-        Atomia.ActiveViewModel.HostingPackages = new Atomia.ViewModels.ProductsListing();
-        Atomia.ActiveViewModel.HostingPackages.Init(Atomia.ActiveViewModel.Cart, { SingleSelection: true });
-        Atomia.ActiveViewModel.HostingPackages.Load(@Html.JsonAction("CategoryData", "Category", new { category = Model.Category }));
+        Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductsListing(Atomia.VM.Cart, { SingleSelection: true });
+        Atomia.VM.HostingPackages.Load(@Html.JsonAction("CategoryData", "Category", new { category = Model.Category }));
     </script>
 
     @Html.Partial("_DomainConnection")

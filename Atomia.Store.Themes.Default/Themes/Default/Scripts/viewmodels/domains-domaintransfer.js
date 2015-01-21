@@ -3,21 +3,32 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (module, ko) {
+(function (exports, _, ko, utils) {
     'use strict';
 
-    var DomainTransfer = function DomainTransfer() {
-        this.Query = ko.observable();
+    var DomainTransferPrototype,
+        CreateDomainTransfer;
+        
 
-        _.bindAll(this, 'Submit');
-    };
 
-    DomainTransfer.prototype = {
-        Submit: function() {
+    /* Domain transfer prototype and factory */
+    DomainTransferPrototype = {
+        Submit: function Submit() {
             console.log('Transfer!');
         }
     };
 
-    module.DomainTransfer = DomainTransfer;
+    CreateDomainTransfer = function CreateDomainTransfer(extensions) {
+        return utils.createViewModel(DomainTransferPrototype, {
+            Query: ko.observable()
+        }, extensions);
+    };
 
-})(Atomia.ViewModels, ko);
+
+
+    /* Module exports */
+    _.extend(exports, {
+        CreateDomainTransfer: CreateDomainTransfer
+    });
+
+})(Atomia.ViewModels, _, ko, Atomia.Utils);
