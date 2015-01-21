@@ -33,7 +33,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         Init: function (cart, selectedItem, statusNotifier) {
             
             this._Cart = cart;
-            this._StatusNotifier = statusNotifier;
+
+            if (statusNotifier !== undefined) {
+                if (!_.isFunction(statusNotifier.DomainNameOptionsCount)) {
+                    throw new Error('Status notifier must have DomainNameOptionsCount method.');
+                }
+
+                if (!_.isFunction(statusNotifier.DomainNameHasBeenSelected)) {
+                    throw new Error('Status notifier must have DomainNameHasBeenSelected method.');
+                }
+
+                this._StatusNotifier = statusNotifier;
+            }
             
             this._UpdateDomainNameOptions();
 
@@ -90,7 +101,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     domainNames.push(domainAttr.Value);
                 }.bind(this));
             }
-
+            
             this.DomainNameOptions(domainNames);
 
             if (this._StatusNotifier !== undefined) {
