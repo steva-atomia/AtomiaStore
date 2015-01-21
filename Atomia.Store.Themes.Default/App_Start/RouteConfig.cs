@@ -28,6 +28,7 @@ namespace Atomia.Store.Themes.Default
                 {
                     controller = "Category",
                     action = "Index",
+                    category = "Hosting",
                     viewName = "HostingPackages"
                 }
             );

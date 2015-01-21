@@ -93,8 +93,9 @@
     <Compile Include="Models\CartItemRemoveAttributeModel.cs" />
     <Compile Include="Models\CartItemSetAttributeModel.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CategoryIndexViewModel.cs" />
     <Compile Include="Models\DomainQueryModel.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\CategoryDataViewModel.cs" />
     <Compile Include="Models\PricingVariantModel.cs" />
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RenewalPeriodModel.cs" />

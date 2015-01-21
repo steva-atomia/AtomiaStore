@@ -29,7 +29,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IItemPresenter, Atomia.Store.Fakes.Adapters.FakeItemPresenter>();
 
             // ViewModels
-            container.RegisterType<CategoryViewModel, Atomia.Store.Themes.Default.Models.CategoryViewModel>();
+            container.RegisterType<CategoryDataViewModel, Atomia.Store.Themes.Default.Models.CategoryViewModel>();
             container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DomainsViewModel>();
 
             // Product providers

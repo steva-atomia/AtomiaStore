@@ -18,21 +18,16 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpGet]
-        public ActionResult Index(string viewName = "ListProducts")
+        public ActionResult Index(string category, string viewName = "Index")
         {
-            return View(viewName);
-        }
-
-        [HttpGet]
-        public ActionResult ListCategory(string category, string viewName = "ListProducts")
-        {
-            var model = InitViewModel(category);
-
+            var model = new CategoryIndexViewModel {
+                Category = category
+            };
             return View(viewName, model);
         }
 
-        [ChildActionOnly]
-        public JsonResult ListCategoryData(string category)
+        [HttpGet]
+        public JsonResult CategoryData(string category)
         {
             var model = InitViewModel(category);
 
@@ -42,9 +37,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             });
         }
 
-        private CategoryViewModel InitViewModel(string category)
+        private CategoryDataViewModel InitViewModel(string category)
         {
-            var model = DependencyResolver.Current.GetService<CategoryViewModel>();
+            var model = DependencyResolver.Current.GetService<CategoryDataViewModel>();
 
             model.Category = category;
             model.Products = productsProvider.GetProducts(new ProductSearchQuery

@@ -276,7 +276,6 @@
     <Content Include="Themes\Default\Views\Error\Forbidden.cshtml" />
     <Content Include="Themes\Default\Views\Error\InternalServerError.cshtml" />
     <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />
-    <Content Include="Themes\Default\Views\Category\ListProducts.cshtml" />
     <Content Include="Themes\Default\Views\Shared\Error.cshtml" />
     <Content Include="Themes\Default\Views\Web.config" />
     <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.map" />
