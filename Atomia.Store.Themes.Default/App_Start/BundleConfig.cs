@@ -14,25 +14,25 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/knockout-{version}.js",
                 "~/Themes/Default/Scripts/underscore.js",
                 "~/Themes/Default/Scripts/amplify.js",
-                "~/Themes/Default/Scripts/lib/polyfills.js",
-                "~/Themes/Default/Scripts/lib/utils.js",
-                "~/Themes/Default/Scripts/lib/api-definitions.js",
-                "~/Themes/Default/Scripts/lib/ko-binding-submitvalid.js",
-                "~/Themes/Default/Scripts/lib/ko-binding-slidevisible.js",
-                "~/Themes/Default/Scripts/lib/api-cart.js",
-                "~/Themes/Default/Scripts/viewmodels/language-selector.js",
-                "~/Themes/Default/Scripts/viewmodels/cart.js",
-                "~/Themes/Default/Scripts/viewmodels/progress.js",
-                "~/Themes/Default/Scripts/viewmodels/domainconnection.js"));
+                "~/Themes/Default/Scripts/atomia/polyfills.js",
+                "~/Themes/Default/Scripts/atomia/atomia.utils.js",
+                "~/Themes/Default/Scripts/atomia/atomia.api.definitions.js",
+                "~/Themes/Default/Scripts/atomia/atomia.ko.submitvalid-binding.js",
+                "~/Themes/Default/Scripts/atomia/atomia.ko.slidevisible-binding.js",
+                "~/Themes/Default/Scripts/atomia/atomia.api.cart.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.languageselector.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.cart.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.progress.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainconnection.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/domains").Include(
-                "~/Themes/Default/Scripts/lib/api-domains.js",
-                "~/Themes/Default/Scripts/viewmodels/domains-index.js",
-                "~/Themes/Default/Scripts/viewmodels/domains-domainregistration.js",
-                "~/Themes/Default/Scripts/viewmodels/domains-domaintransfer.js"));
+                "~/Themes/Default/Scripts/atomia/atomia.api.domains.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainspage.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainregistration.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domaintransfer.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/hostingpackages").Include(
-                "~/Themes/Default/Scripts/viewmodels/category-hostingpackages.js"));
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productslisting.js"));
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                 "~/Themes/Default/Content/css/atomia_2/style.css",
