@@ -24,14 +24,18 @@ Atomia.Utils = Atomia.Utils || {};
     }
 
     function createViewModel(proto) {
-        var viewModel, extensions;
+        var viewModel, extensions, protoFuncs;
         
         if (!_.isObject(proto)) {
             return proto;
         }
 
         viewModel = Object.create(proto);
-        _.bindAll.apply(_, [viewModel].concat(_.functions(proto)));
+        protoFuncs = _.functions(proto);
+
+        if (protoFuncs.length > 0) {
+            _.bindAll.apply(_, [viewModel].concat(protoFuncs));
+        }
 
         extensions = [].slice.call(arguments, 1);
 
