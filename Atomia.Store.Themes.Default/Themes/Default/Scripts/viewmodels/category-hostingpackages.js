@@ -117,7 +117,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 if (this._Cart.Contains(item)) {
                     item._InitPricingVariant();
                     
-                    if (this.SingleSelection()) {
+                    if (this.SingleSelection) {
                         this.SelectProduct(item);
                     }
                 }
