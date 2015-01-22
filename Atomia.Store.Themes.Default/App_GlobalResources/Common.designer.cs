@@ -268,6 +268,78 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Set up account info.
+        /// </summary>
+        internal static string ProgressAccountDescription {
+            get {
+                return ResourceManager.GetString("ProgressAccountDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        internal static string ProgressAccountTitle {
+            get {
+                return ResourceManager.GetString("ProgressAccountTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice and payment options.
+        /// </summary>
+        internal static string ProgressCheckoutDescription {
+            get {
+                return ResourceManager.GetString("ProgressCheckoutDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Checkout.
+        /// </summary>
+        internal static string ProgressCheckoutTitle {
+            get {
+                return ResourceManager.GetString("ProgressCheckoutTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy new or move existing.
+        /// </summary>
+        internal static string ProgressDomainsDescription {
+            get {
+                return ResourceManager.GetString("ProgressDomainsDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domains.
+        /// </summary>
+        internal static string ProgressDomainsTitle {
+            get {
+                return ResourceManager.GetString("ProgressDomainsTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose hosting package.
+        /// </summary>
+        internal static string ProgressPackagesDescription {
+            get {
+                return ResourceManager.GetString("ProgressPackagesDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hosting.
+        /// </summary>
+        internal static string ProgressPackagesTitle {
+            get {
+                return ResourceManager.GetString("ProgressPackagesTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Remove.
         /// </summary>
         internal static string Remove {

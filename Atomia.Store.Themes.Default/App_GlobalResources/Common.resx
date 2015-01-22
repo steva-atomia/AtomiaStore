@@ -222,4 +222,28 @@
   <data name="MainDomainRequiredWarning" xml:space="preserve">
     <value>You are required to add a main domain to your package. Please go back and add a domain name to the cart.</value>
   </data>
+  <data name="ProgressAccountDescription" xml:space="preserve">
+    <value>Set up account info</value>
+  </data>
+  <data name="ProgressAccountTitle" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="ProgressCheckoutDescription" xml:space="preserve">
+    <value>Invoice and payment options</value>
+  </data>
+  <data name="ProgressCheckoutTitle" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="ProgressDomainsDescription" xml:space="preserve">
+    <value>Buy new or move existing</value>
+  </data>
+  <data name="ProgressDomainsTitle" xml:space="preserve">
+    <value>Domains</value>
+  </data>
+  <data name="ProgressPackagesDescription" xml:space="preserve">
+    <value>Choose hosting package</value>
+  </data>
+  <data name="ProgressPackagesTitle" xml:space="preserve">
+    <value>Hosting</value>
+  </data>
 </root>

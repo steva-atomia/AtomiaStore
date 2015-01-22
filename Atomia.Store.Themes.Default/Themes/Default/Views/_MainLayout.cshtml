@@ -37,32 +37,9 @@
         @Html.Partial("_Cart")
 
     </header>
-    <div class="progress_block">
-        <div class="margins">
-            <ol class="progress">
-                <li class="current">
-                    <div>1</div>
-                    <h4>Domains</h4>
-                    <p>Buy new or move existing</p>
-                </li>
-                <li>
-                    <div>2</div>
-                    <h4>Hosting</h4>
-                    <p>Choose hosting package</p>
-                </li>
-                <li>
-                    <div>3</div>
-                    <h4>Account</h4>
-                    <p>Set up account info</p>
-                </li>
-                <li>
-                    <div>4</div>
-                    <h4>Checkout</h4>
-                    <p>Invoice and payment options</p>
-                </li>
-            </ol>
-        </div>
-    </div>
+
+    @Html.Partial("_Progress")
+    
     <section id="main">
         <div class="margins">
             <div id="homecontent">
@@ -82,6 +59,8 @@
 
         Atomia.VM.Cart = Atomia.ViewModels.CreateCart();
         Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
+
+        Atomia.VM.Progress = Atomia.ViewModels.CreateProgress();
     </script>
 
     @RenderSection("scripts", required: false)

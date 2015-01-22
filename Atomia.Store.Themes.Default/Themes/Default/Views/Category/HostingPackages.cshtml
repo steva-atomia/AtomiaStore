@@ -85,6 +85,8 @@
 
         Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductsListing(Atomia.VM.Cart, { SingleSelection: true });
         Atomia.VM.HostingPackages.Load(@Html.JsonAction("CategoryData", "Category", new { category = Model.Category }));
+
+        Atomia.VM.Progress.Step(2);
     </script>
 
     @Html.Partial("_DomainConnection")
