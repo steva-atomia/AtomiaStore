@@ -246,4 +246,7 @@
   <data name="ProgressPackagesTitle" xml:space="preserve">
     <value>Hosting</value>
   </data>
+  <data name="LanguageSelectorTitle" xml:space="preserve">
+    <value>Language</value>
+  </data>
 </root>

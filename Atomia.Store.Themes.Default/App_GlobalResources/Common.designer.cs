@@ -178,6 +178,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Language.
+        /// </summary>
+        internal static string LanguageSelectorTitle {
+            get {
+                return ResourceManager.GetString("LanguageSelectorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Main domain.
         /// </summary>
         internal static string MainDomain {

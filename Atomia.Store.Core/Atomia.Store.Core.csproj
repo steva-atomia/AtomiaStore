@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PricingVariant.cs" />
     <Compile Include="Models\ProductSearchQuery.cs" />
     <Compile Include="Models\RequiredAttribute.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Models\RenewalPeriod.cs" />
     <Compile Include="Models\Cart.cs" />
     <Compile Include="Models\CartItem.cs" />
+    <Compile Include="Ports\ILanguageProvider.cs" />
     <Compile Include="Ports\IThemeNamesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ports\ICurrencyFormatter.cs" />

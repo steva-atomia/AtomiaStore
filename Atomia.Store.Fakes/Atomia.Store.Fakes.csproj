@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Adapters\FakeDomainSearchProvider.cs" />
     <Compile Include="Adapters\FakeItemPresenter.cs" />
+    <Compile Include="Adapters\FakeLanguageProvider.cs" />
     <Compile Include="Adapters\FakePricingProvider.cs" />
     <Compile Include="Adapters\FakeProductsProvider.cs" />
     <Compile Include="Adapters\FakeThemeNamesProvider.cs" />

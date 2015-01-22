@@ -1,0 +1,14 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div id="language_selector" class="head_tray" data-bind="slideVisible: LanguageSelector.IsOpen, css: { opened: LanguageSelector.IsOpen }">
+    <div class="margins">
+        <div class="lngbox">
+            <h3>@Html.CommonResource("LanguageSelectorTitle")</h3>
+            <ul data-bind="foreach: LanguageSelector.Languages">
+                <li>
+                    <a data-bind="attr: { href: ChangeLanguageUrl }"><span data-bind="text: Code"></span> <!-- ko text: Name --><!-- /ko --></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

@@ -271,6 +271,7 @@
     <Content Include="Themes\Default\Scripts\viewmodels\domains-index.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domains-domaintransfer.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\domainconnection.js" />
+    <Content Include="Themes\Default\Scripts\viewmodels\language-selector.js" />
     <Content Include="Themes\Default\Scripts\viewmodels\progress.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
@@ -295,6 +296,7 @@
     <Content Include="Themes\Default\Views\Account\Index.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_DomainConnection.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Progress.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_LanguageSelector.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">

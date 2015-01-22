@@ -27,6 +27,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IResourceProvider, Atomia.Store.WebBase.Adapters.ResourceProvider>();
             container.RegisterType<ICartPricingService, Atomia.Store.Fakes.Adapters.FakePricingProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.Fakes.Adapters.FakeItemPresenter>();
+            container.RegisterType<ILanguageProvider, Atomia.Store.Fakes.Adapters.FakeLanguageProvider>();
 
             // ViewModels
             container.RegisterType<CategoryDataViewModel, Atomia.Store.Themes.Default.Models.CategoryViewModel>();
