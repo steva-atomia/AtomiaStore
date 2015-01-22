@@ -215,7 +215,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     CreateCart = function CreateCart(extensions, itemExtensions) {
         var defaults, cart;
         
-        defaults = function(self) {
+        defaults = function (self) {
             return {
                 CreateCartItem: _.partial(CreateCartItem, itemExtensions || {}),
                 DomainCategories: ['Domain'],
@@ -234,7 +234,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     return self.NumberOfItems() <= 0;
                 })
             };
-        }
+        };
 
         cart = utils.createViewModel(CartPrototype, defaults, extensions);
 
