@@ -1,4 +1,4 @@
-﻿@model Atomia.Store.AspNetMvc.Models.CategoryIndexViewModel
+﻿@model Atomia.Store.AspNetMvc.Models.ProductListingViewModel
 @using Atomia.Store.Core;
 @using Atomia.Store.WebBase.HtmlHelpers;
 
@@ -84,7 +84,7 @@
         Atomia.VM.MainDomainStatus = Atomia.ViewModels.CreateDomainStatus();
 
         Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductsListing(Atomia.VM.Cart, { SingleSelection: true });
-        Atomia.VM.HostingPackages.Load(@Html.JsonAction("CategoryData", "Category", new { category = Model.Category }));
+        Atomia.VM.HostingPackages.Load(@Html.JsonAction("GetData", "ProductListing", new { query = Model.Query }));
 
         Atomia.VM.Progress.Step(2);
     </script>

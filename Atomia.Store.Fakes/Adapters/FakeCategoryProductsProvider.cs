@@ -4,9 +4,22 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeProductsProvider : AllProductsProvider
+    public class FakeCategoryProductsProvider : IProductsProvider
     {
-        public override IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery)
+        public string Name
+        {
+            get { return "Category"; }
+        }
+
+        public IEnumerable<Product> GetProducts(ICollection<SearchTerm> terms)
+        {
+            var allProducts = GetAllProducts();
+            var category = terms.First().Value;
+
+            return allProducts.Where(p => p.Category == category);
+        }
+
+        public IEnumerable<Product> GetAllProducts()
         {
             var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" } };
 

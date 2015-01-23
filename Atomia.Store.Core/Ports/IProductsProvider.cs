@@ -4,7 +4,8 @@ namespace Atomia.Store.Core
 {
     public interface IProductsProvider
     {
-        IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery);
+        string Name { get; }
+
+        IEnumerable<Product> GetProducts(ICollection<SearchTerm> terms);
     }
 }
-

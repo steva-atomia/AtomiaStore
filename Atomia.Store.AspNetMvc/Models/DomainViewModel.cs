@@ -7,7 +7,7 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public class DomainsViewModel
+    public class DomainViewModel
     {
         //[Required]
         public string SearchQuery { get; set; }

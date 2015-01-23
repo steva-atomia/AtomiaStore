@@ -9,14 +9,12 @@ namespace Atomia.Store.Fakes.Adapters
     {
         private List<Product> allProducts;
 
-        public FakeItemPresenter(AllProductsProvider productsProvider)
+        public FakeItemPresenter()
         {
-            if (productsProvider == null)
-            {
-                throw new ArgumentNullException("productsProvider");
-            }
+            // TODO: for real presenter use plugin product provider interface for getting based on articlenumber
+            var productsProvider = new FakeCategoryProductsProvider();
 
-            this.allProducts = productsProvider.GetProducts(null).ToList();
+            this.allProducts = productsProvider.GetAllProducts().ToList();
         }
         
         public string GetName(IPresentableItem item)

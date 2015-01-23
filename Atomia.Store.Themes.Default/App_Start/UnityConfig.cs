@@ -1,6 +1,5 @@
 using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
-using Atomia.Store.AspNetMvc.Providers;
 using Atomia.Store.Core;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
@@ -30,14 +29,15 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ILanguageProvider, Atomia.Store.Fakes.Adapters.FakeLanguageProvider>();
 
             // ViewModels
-            container.RegisterType<CategoryDataViewModel, Atomia.Store.Themes.Default.Models.CategoryViewModel>();
-            container.RegisterType<DomainsViewModel, Atomia.Store.Themes.Default.Models.DomainsViewModel>();
+            container.RegisterType<DomainViewModel, DomainViewModel>();
+            container.RegisterType<ProductListingViewModel, ProductListingViewModel>();
+            container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
+            container.RegisterType<AccountViewModel, DefaultAccountViewModel>();
+            
 
             // Product providers
-            container.RegisterType<AllProductsProvider, Atomia.Store.Fakes.Adapters.FakeProductsProvider>();
-            container.RegisterType<DomainSearchProvider, Atomia.Store.Fakes.Adapters.FakeDomainSearchProvider>();
-            container.RegisterType<CategoryProvider, Atomia.Store.AspNetMvc.Providers.SimpleCategoryProvider>();
-            container.RegisterType<DomainsProvider, Atomia.Store.AspNetMvc.Providers.PremiumDomainsProvider>();
+            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.Adapters.FakeCategoryProductsProvider>();
+            container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainSearchProvider>();
 
             container.LoadConfiguration();
 

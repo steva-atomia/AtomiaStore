@@ -4,12 +4,12 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeDomainSearchProvider : DomainSearchProvider
+    public class FakePremiumDomainSearchProvider : IDomainsProvider
     {
-        public override IEnumerable<Product> GetProducts(ProductSearchQuery searchQuery) 
+        public IEnumerable<Product> GetDomains(ICollection<SearchTerm> terms)
         {
             var results = new List<Product>();
-            var searchTerm = searchQuery.Terms.First().Value;
+            var searchTerm = terms.First().Value;
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
@@ -29,6 +29,10 @@ namespace Atomia.Store.Fakes.Adapters
                         new CustomAttribute {
                             Name = "Status",
                             Value = "available"
+                        },
+                        new CustomAttribute {
+                            Name = "Premium",
+                            Value = "true"
                         }
                     }
                 });
@@ -47,6 +51,10 @@ namespace Atomia.Store.Fakes.Adapters
                         new CustomAttribute {
                             Name = "Status",
                             Value = "unavailable"
+                        },
+                        new CustomAttribute {
+                            Name = "Premium",
+                            Value = "true"
                         }
                     }
                 });
@@ -65,6 +73,10 @@ namespace Atomia.Store.Fakes.Adapters
                         new CustomAttribute {
                             Name = "Status",
                             Value = "available"
+                        },
+                        new CustomAttribute {
+                            Name = "Premium",
+                            Value = "true"
                         }
                     }
                 });
@@ -143,6 +155,11 @@ namespace Atomia.Store.Fakes.Adapters
             }
 
             return results;
+        }
+
+        public string GetStatus(string domainName)
+        {
+            return "available";
         }
     }
 }

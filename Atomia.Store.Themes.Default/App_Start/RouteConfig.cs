@@ -16,7 +16,7 @@ namespace Atomia.Store.Themes.Default
                 url: "Domains/{action}",
                 defaults: new
                 {
-                    controller = "Domains",
+                    controller = "Domain",
                     action = "Index"
                 }
             );
@@ -26,9 +26,9 @@ namespace Atomia.Store.Themes.Default
                 url: "Hosting",
                 defaults: new
                 {
-                    controller = "Category",
+                    controller = "ProductListing",
                     action = "Index",
-                    category = "Hosting",
+                    query = "Hosting",
                     viewName = "HostingPackages"
                 }
             );
@@ -48,7 +48,7 @@ namespace Atomia.Store.Themes.Default
                 url: "{controller}/{action}",
                 defaults: new 
                 { 
-                    controller = "Domains", 
+                    controller = "Domain", 
                     action = "Index" 
                 }
             );

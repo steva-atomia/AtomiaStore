@@ -2,8 +2,8 @@
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public class CategoryIndexViewModel
+    public class ProductListingViewModel
     {
-        public string Category { get; set; }
+        public virtual string Query { get; set; }
     }
 }

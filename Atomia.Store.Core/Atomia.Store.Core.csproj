@@ -52,11 +52,10 @@
   <ItemGroup>
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PricingVariant.cs" />
-    <Compile Include="Models\ProductSearchQuery.cs" />
     <Compile Include="Models\RequiredAttribute.cs" />
     <Compile Include="Models\SearchTerm.cs" />
-    <Compile Include="Ports\AllProductsProvider.cs" />
-    <Compile Include="Ports\DomainSearchProvider.cs" />
+    <Compile Include="Ports\IProductsProvider.cs" />
+    <Compile Include="Ports\IDomainsProvider.cs" />
     <Compile Include="Ports\ICartPricingService.cs" />
     <Compile Include="Ports\ICartProvider.cs" />
     <Compile Include="Models\CustomAttribute.cs" />
@@ -72,7 +71,6 @@
     <Compile Include="Ports\ICurrencyProvider.cs" />
     <Compile Include="Ports\IItemPresenter.cs" />
     <Compile Include="Ports\ILogger.cs" />
-    <Compile Include="Ports\IProductsProvider.cs" />
     <Compile Include="Ports\IResourceProvider.cs" />
   </ItemGroup>
   <ItemGroup />

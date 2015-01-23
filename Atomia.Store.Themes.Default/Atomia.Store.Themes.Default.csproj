@@ -175,8 +175,6 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\DomainsViewModel.cs" />
-    <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -274,9 +272,9 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.languageselector.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.progress.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\_DomainTransfer.cshtml" />
-    <Content Include="Themes\Default\Views\Domains\Index.cshtml" />
+    <Content Include="Themes\Default\Views\Domain\_DomainRegistration.cshtml" />
+    <Content Include="Themes\Default\Views\Domain\_DomainTransfer.cshtml" />
+    <Content Include="Themes\Default\Views\Domain\Index.cshtml" />
     <Content Include="Themes\Default\Views\Error\Forbidden.cshtml" />
     <Content Include="Themes\Default\Views\Error\InternalServerError.cshtml" />
     <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />
@@ -292,7 +290,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
-    <Content Include="Themes\Default\Views\Category\HostingPackages.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\HostingPackages.cshtml" />
     <Content Include="Themes\Default\Views\Account\Index.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_DomainConnection.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Progress.cshtml" />
