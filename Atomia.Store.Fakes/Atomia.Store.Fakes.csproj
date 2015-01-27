@@ -46,6 +46,7 @@
     <Compile Include="Adapters\FakeLanguageProvider.cs" />
     <Compile Include="Adapters\FakePricingProvider.cs" />
     <Compile Include="Adapters\FakeCategoryProductsProvider.cs" />
+    <Compile Include="Adapters\FakeResellerProvider.cs" />
     <Compile Include="Adapters\FakeThemeNamesProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -18,12 +18,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Index(AccountViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // TODO: Save account state in session
-                // TODO: Redirect to checkout
+                HttpContext.Session["AccountInfo"] = model;
+                
+                return RedirectToAction("Index", "Checkout");
             }
 
             return View(model);

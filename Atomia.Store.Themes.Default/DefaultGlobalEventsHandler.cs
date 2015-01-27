@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Atomia.Web.Plugin.Validation.ValidationAttributes;
 
 
 namespace Atomia.Store.Themes.Default
@@ -26,6 +27,13 @@ namespace Atomia.Store.Themes.Default
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CustomerValidationAttribute), typeof(CustomerValidationAttribute.CustomerValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRegularExpressionAttribute), typeof(AtomiaRegularExpressionValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRequiredAttribute), typeof(AtomiaRequiredValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaStringLengthAttribute), typeof(AtomiaStringLengthValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRangeAttribute), typeof(AtomiaRangeValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaUsernameAttribute), typeof(AtomiaUsernameAttribute.AtomiaUsernameValidator));
 
             foreach (GlobalSetting globalSetting in AppConfig.Instance.GlobalSettingsList)
             {

@@ -17,7 +17,6 @@ namespace Atomia.Store.AspNetMvc.Controllers
             this.cart = cartProvider.GetCart();
         }
 
-        [HttpGet]
         public JsonResult GetCart()
         {
             return JsonEnvelope.Success(new

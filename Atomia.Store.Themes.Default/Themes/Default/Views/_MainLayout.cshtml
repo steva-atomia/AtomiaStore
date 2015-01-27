@@ -13,6 +13,7 @@
     <title>@ViewBag.Title</title>
 
     @Styles.Render("~/Content/css")
+    
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Dosis:300,500|Oswald:300,400,700" type="text/css" />
     <!--[if IE]><link rel="shortcut icon" href="img/atomia_2/favicon.ico" type="image/x-icon" /><![endif]-->
@@ -53,7 +54,7 @@
         </div>
     </section>
 
-    @Scripts.Render("~/bundles/shared")
+    @Scripts.Render("~/bundles/scripts")
 
     <script type="text/javascript">
     var Atomia = Atomia || {};
@@ -68,9 +69,12 @@
     Atomia.VM.Progress = Atomia.ViewModels.CreateProgress();
     </script>
 
+    
     @RenderSection("scripts", required: false)
 
     <script type="text/javascript">
+        AtomiaValidation.init('AtomiaRequired', 'AtomiaRegularExpression', 'AtomiaUsername');
+
         ko.applyBindings(Atomia.VM);
     </script>
 

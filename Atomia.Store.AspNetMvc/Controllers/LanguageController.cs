@@ -16,7 +16,6 @@ namespace Atomia.Store.AspNetMvc.Controllers
             this.languageProvider = DependencyResolver.Current.GetService<ILanguageProvider>();
         }
 
-        [HttpGet]
         public JsonResult GetLanguages()
         {
             return JsonEnvelope.Success(new

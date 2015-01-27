@@ -73,6 +73,13 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.Web.Plugin.ProductsProvider.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.ServiceReferences">
+      <HintPath>..\Lib\Atomia.Web.Plugin.ServiceReferences.dll</HintPath>
+    </Reference>
+    <Reference Include="Atomia.Web.Plugin.Validation, Version=14.1.5504.31635, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Atomia.Web.Plugin.Validation.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -164,10 +171,15 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="App_GlobalResources\Common.sv.Designer.cs">
-      <DependentUpon>Common.sv.resx</DependentUpon>
+    <Compile Include="App_GlobalResources\CustomerValidation.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
+      <DependentUpon>CustomerValidation.resx</DependentUpon>
+    </Compile>
+    <Compile Include="App_GlobalResources\ValidationErrors.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -242,7 +254,9 @@
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.eot" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.ttf" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.woff" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.account.js" />
     <None Include="Themes\Default\Scripts\jquery-1.11.1-vsdoc.js" />
+    <Content Include="Themes\Default\Scripts\atomia\AtomiaValidation.js" />
     <Content Include="Themes\Default\Scripts\jquery-1.11.1.js" />
     <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.js" />
     <Content Include="Themes\Default\Scripts\jquery.unobtrusive-ajax.js" />
@@ -261,6 +275,7 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.submitvalid-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\polyfills.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.js" />
+    <Content Include="Themes\Default\Scripts\MicrosoftMvcJQueryValidation.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.cart.js" />
@@ -295,13 +310,17 @@
     <Content Include="Themes\Default\Views\Shared\_DomainConnection.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Progress.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_LanguageSelector.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="App_GlobalResources\Common.sv.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Common.sv.Designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
+    <Content Include="App_GlobalResources\CustomerValidation.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomerValidation.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\ValidationErrors.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>ValidationErrors.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Themes\Default\Scripts\amplify\amplify\" />
@@ -329,8 +348,8 @@
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>
-    </PostBuildEvent>
+    <PostBuildEvent>xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.OrderServiceReferences.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"
+xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.Validation.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

@@ -1,144 +1,102 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DefaultAccountViewModel
-@using Atomia.Store.Core;
 @using Atomia.Store.WebBase.HtmlHelpers;
+@using Atomia.Web.Plugin.Validation.HtmlHelpers;
 
 @{
     Layout = "~/Themes/Default/Views/_MainLayout.cshtml";
 }
 
 <div class="settingsboxinner">
-    <h4>Contact info</h4>
-    <h5>@Model.CustomerType</h5>
-    <div class="formrow">
-        <h5><label class="required" for="firstname"><span>*</span> First name:</label></h5>
-        <div class="col2row"><input type="text" name="firstname" id="firstname"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="lastname"><span>*</span> Last name:</label></h5>
-        <div class="col2row">
-            <input class="errorinfo" type="text" name="lastname" id="lastname">
-            <p class="errorinfo">E-mail format is not valid.</p>
-        </div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="co_name"><span>*</span> Company name:</label></h5>
-        <div class="col2row"><input type="text" id="co_name" name="co_name"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="co_num"><span>*</span> VAT number:</label></h5>
-        <div class="col2row"><span class="input_prefix"><span>SE</span> <input type="text" id="co_num" name="co_num"></span></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="address"><span>*</span> Address:</label></h5>
-        <div class="col2row"><input type="text" name="address" id="address"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label for="address2">Address 2:</label></h5>
-        <div class="col2row"><input type="text" name="address2" id="address2"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="city"><span>*</span> City:</label></h5>
-        <div class="col2row"><input type="text" name="city" id="city"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="zip"><span>*</span> Zip:</label></h5>
-        <div class="col2row"><input type="text" name="zip" id="zip"></div>
-        <br class="clear">
-    </div>
-    <div class="formrow">
-        <h5><label class="required" for="country"><span>*</span> Country:</label></h5>
-        <div class="col2row">
-            <label class="select">
-                <select id="country" name="country">
-                    <option>Sweden</option>
-                    <option>Serbia</option>
-                </select>
-            </label>
-        </div>
-        <br class="clear">
-    </div>
-    <h4>
-        Billing address
-        <span id="billing-text-open">(Same as contact info - <a id="billing-trigger-open" href="javascript:void(0);">Change</a>)</span>
-        <span id="billing-text-close" style="display: none;">(Different billing address - <a id="billing-trigger-close" href="javascript:void(0);">Make it same as contact info</a>)</span>
-    </h4>
-    <div id="billing" style="display: none;">
+    
+
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
+    {
+        @Html.AntiForgeryToken()
+
+        <h4>@Html.CommonResource("AccountTitle")</h4>
+        @Html.FormRowFor(m => m.MainContact.Email, Html.CommonResource("Email") + ":", true)
+        @Html.FormRowFor(m => m.MainContact.FirstName, Html.CommonResource("FirstName") + ":", true)
+        @Html.FormRowFor(m => m.MainContact.LastName, Html.CommonResource("LastName") + ":", true)
+        @Html.FormRowFor(m => m.MainContact.CompanyName, Html.CommonResource("CompanyName") + ":", false)
+        @Html.FormRowFor(m => m.MainContact.IdentityNumber, Html.CommonResource("IdentityNumber") + ":", false)
+
         <div class="formrow">
-            <h5><label for="firstname"> First name:</label></h5>
-            <div class="col2row"><input type="text" name="firstname" id="firstname"></div>
+            <h5><label class="required" for="co_num"><span>**</span> VAT number:</label></h5>
+            <div class="col2row"><span class="input_prefix"><span>SE</span> <input type="text" id="co_num" name="co_num"></span></div>
             <br class="clear">
         </div>
+
+        @Html.FormRowFor(m => m.MainContact.Address, Html.CommonResource("Address") + ":", true)
+        @Html.FormRowFor(m => m.MainContact.Address2, Html.CommonResource("Address2") + ":", false)
+        @Html.FormRowFor(m => m.MainContact.City, Html.CommonResource("City") + ":", true)
+        @Html.FormRowFor(m => m.MainContact.Zip, Html.CommonResource("Zip") + ":", true)
+
         <div class="formrow">
-            <h5><label for="lastname"> Last name:</label></h5>
-            <div class="col2row"><input type="text" name="lastname" id="lastname"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="co_name"> Company:</label></h5>
-            <div class="col2row"><input type="text" name="co_name" id="co_name"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="address"> Address:</label></h5>
-            <div class="col2row"><input type="text" name="address" id="address"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="address2">Address 2:</label></h5>
-            <div class="col2row"><input type="text" name="address2" id="address2"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="city"> City:</label></h5>
-            <div class="col2row"><input type="text" name="city" id="city"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="zip"> Zip:</label></h5>
-            <div class="col2row"><input type="text" name="zip" id="zip"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="country"> Country:</label></h5>
+            <h5><label class="required" for="country"><span>*</span> Country:</label></h5>
             <div class="col2row">
                 <label class="select">
                     <select id="country" name="country">
-                        <option selected="selected" disabled="disabled"></option>
+                        <option>Sweden</option>
                         <option>Serbia</option>
                     </select>
                 </label>
             </div>
             <br class="clear">
         </div>
-        <div class="formrow">
-            <h5><label for="phone"> Phone:</label></h5>
-            <div class="col2row">
-                <input id="phone" type="text" name="phone">
+
+        @Html.FormRowFor(m => m.MainContact.Phone, Html.CommonResource("Phone") + ":", true)
+
+        <h4>
+            @Html.CommonResource("BillingAddressTitle")
+            <span id="billing-text-open" data-bind="visible: !Account.OtherBillingContact()">(@Html.CommonResource("BillingSameAsMain") - <a id="billing-trigger-open" href="javascript:void(0);" data-bind="click: Account.UseOtherBillingContact">@Html.CommonResource("Change")</a>)</span>
+            <span id="billing-text-close" style="display: none;" data-bind="visible: Account.OtherBillingContact">(@Html.CommonResource("BillingDifferentThanMain") - <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: Account.UseMainAsBillingContact">Make it same as contact info</a>)</span>
+        </h4>
+
+        <div id="billing" style="display: none;" data-bind="slideVisible: Account.OtherBillingContact">
+            @Html.FormRowFor(m => m.BillingContact.Email, Html.CommonResource("Email") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.FirstName, Html.CommonResource("FirstName") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.LastName, Html.CommonResource("LastName") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.CompanyName, Html.CommonResource("CompanyName") + ":", false, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.IdentityNumber, Html.CommonResource("IdentityNumber") + ":", false, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Address, Html.CommonResource("Address") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Address2, Html.CommonResource("Address2") + ":", false, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.City, Html.CommonResource("City") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Zip, Html.CommonResource("Zip") + ":", true, "Account.OtherBillingContact")
+
+            <div class="formrow">
+                <h5><label for="country"> Country:</label></h5>
+                <div class="col2row" data-bind="if: Account.OtherBillingContact">
+                    <label class="select">
+                        <select id="country" name="country">
+                            <option selected="selected" disabled="disabled"></option>
+                            <option>Serbia</option>
+                        </select>
+                    </label>
+                </div>
+                <br class="clear">
             </div>
-            <br class="clear">
+
+            @Html.FormRowFor(m => m.BillingContact.Phone, Html.CommonResource("Phone") + ":", true, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Fax, Html.CommonResource("Fax") + ":", false, "Account.OtherBillingContact")
         </div>
-        <div class="formrow">
-            <h5><label for="mobile">Mobile:</label></h5>
-            <div class="col2row"><input type="text" name="mobile" id="mobile"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label for="fax">Fax:</label></h5>
-            <div class="col2row"><input type="text" name="fax" id="fax"></div>
-            <br class="clear">
-        </div>
-    </div>
+        
+        <p class="actions" style="display: block;">
+            @Html.RouteLink(Html.CommonResource("Back"), "Hosting", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
+            <button type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("Next")</button>
+        </p>
+    }
 </div>
 
 @section scripts {
+    @{
+        Html.EnableClientValidation();
+        Html.AddCustomerValidationRules(new CustomerValidationOptions() { SubModel = "MainContact" });
+        Html.AddCustomerValidationRules(new CustomerValidationOptions() { SubModel = "BillingContact" });
+    }
+
     <script type="text/javascript">
+        Atomia.VM.Account = Atomia.ViewModels.CreateAccount();
+
         Atomia.VM.Progress.Step(3);
     </script>
 }

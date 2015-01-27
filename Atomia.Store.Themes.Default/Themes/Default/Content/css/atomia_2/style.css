@@ -464,7 +464,7 @@ input[type=text].date-input {
     color: #423c32;
     opacity: 1
 }
-.formrow h5 .required span, span.required {
+.formrow h5 .required span, .formrow h5 span.required, span.required {
     color: #d8005b;
     font-size: 1.4em
 }
@@ -526,13 +526,13 @@ input[type=radio].errorinfo + label, input[type=radio].input-validation-error + 
 	background-color: #fee4bc;
 	border-color: #fba621
 }
-p.errorinfo, p.input-validation-error, span.input-validation-error {
+p.errorinfo, p.input-validation-error, span.input-validation-error, span.field-validation-error {
 	color: #423c32;
 	margin: .4em 0 0 .4em;
 	line-height: 1.4em;
 	opacity: .7;
 }
-span.input-validation-error {
+span.input-validation-error, span.field-validation-error {
 	display: block
 }
 /*

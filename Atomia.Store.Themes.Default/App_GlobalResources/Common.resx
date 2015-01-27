@@ -249,4 +249,61 @@
   <data name="LanguageSelectorTitle" xml:space="preserve">
     <value>Language</value>
   </data>
+  <data name="AccountTitle" xml:space="preserve">
+    <value>Contact info</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Address</value>
+  </data>
+  <data name="Address2" xml:space="preserve">
+    <value>Address2</value>
+  </data>
+  <data name="BillingAddressTitle" xml:space="preserve">
+    <value>Billing address</value>
+  </data>
+  <data name="BillingDifferentThanMain" xml:space="preserve">
+    <value>Different billing address</value>
+  </data>
+  <data name="BillingSameAsMain" xml:space="preserve">
+    <value>Same as contact info</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Change</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Company name</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>Email is required.</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Fax</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>First name</value>
+  </data>
+  <data name="IdentityNumber" xml:space="preserve">
+    <value>Corp./personal ID no.</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Last name</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Mobile</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Phone</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>Zip</value>
+  </data>
 </root>

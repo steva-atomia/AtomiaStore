@@ -112,12 +112,66 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="Hello" xml:space="preserve">
-    <value>Hallå</value>
+  <data name="Address" xml:space="preserve">
+    <value>The address is not valid</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>The city is not valid</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>The company name is not valid</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>The country is not valid</value>
+  </data>
+  <data name="vat_number.default.default.dmn-nu" xml:space="preserve">
+    <value>.nu domain order requires a valid VAT number</value>
+  </data>
+  <data name="vat_number.default.default.dmn-se" xml:space="preserve">
+    <value>.se domain order requires a valid VAT number</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>The email address is not valid</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>The fax number is not valid for the selected country</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>The first name is not valid</value>
+  </data>
+  <data name="IdentityNumber" xml:space="preserve">
+    <value>The company/person no. is not valid</value>
+  </data>
+  <data name="identity_number.no.default.default" xml:space="preserve">
+    <value>Not a valid Norwegian identity number (YYMMDD-XXXXX)</value>
+  </data>
+  <data name="identity_number.se.default.default" xml:space="preserve">
+    <value>Not a valid Swedish identity number (YYMMDD-XXXX)</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>The last name is not valid</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>The mobile number is not valid for the selected country</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>The phone number is not valid for the selected country</value>
+  </data>
+  <data name="identity_number.se.default.dmn-nu" xml:space="preserve">
+    <value>.nu domain order requires a Swedish company/person no.</value>
+  </data>
+  <data name="identity_number.se.default.dmn-se" xml:space="preserve">
+    <value>.se domain order requires a Swedish company/person no.</value>
+  </data>
+  <data name="VatNumber" xml:space="preserve">
+    <value>The VAT number is not valid for the selected country</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>The zip is not valid for the selected country</value>
   </data>
 </root>
