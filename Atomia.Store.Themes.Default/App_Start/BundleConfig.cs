@@ -31,9 +31,8 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productslisting.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.account.js"));
 
-            bundles.Add(new StyleBundle("~/Content/css").Include(
-                "~/Themes/Default/Content/css/atomia_2/style.css",
-                "~/Themes/Default/Content/fonts/atomia_2/atomicons*"));
+            bundles.Add(new StyleBundle("~/Themes/Default/Content/css/atomia_2/style").Include(
+                "~/Themes/Default/Content/css/atomia_2/style.css"));
         }
     }
 }
