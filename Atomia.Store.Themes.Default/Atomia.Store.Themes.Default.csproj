@@ -273,7 +273,6 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.domains.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.slidevisible-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.submitvalid-binding.js" />
-    <Content Include="Themes\Default\Scripts\atomia\polyfills.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.js" />
     <Content Include="Themes\Default\Scripts\MicrosoftMvcJQueryValidation.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
