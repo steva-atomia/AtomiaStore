@@ -7,23 +7,36 @@
 }
 
 <div class="settingsboxinner">
-    
+
 
     @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
     {
         @Html.AntiForgeryToken()
 
         <h4>@Html.CommonResource("AccountTitle")</h4>
+
+        <div class="formrow">
+            <h5>
+                <span class="required">*</span>
+                @Html.LabelFor(m => m.MainContact.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
+            </h5>
+            <div class="col2row">
+                @Html.DropDownListFor(m => m.MainContact.CustomerType, Model.MainContact.CustomerTypeOptions, new { data_bind = "value: Account.MainContactCustomerType" })
+                @Html.ValidationMessageFor(m => m.MainContact.CustomerType)
+            </div>
+            <br class="clear">
+        </div>
+
         @Html.FormRowFor(m => m.MainContact.Email, Html.CommonResource("Email") + ":", true)
         @Html.FormRowFor(m => m.MainContact.FirstName, Html.CommonResource("FirstName") + ":", true)
         @Html.FormRowFor(m => m.MainContact.LastName, Html.CommonResource("LastName") + ":", true)
-        @Html.FormRowFor(m => m.MainContact.CompanyName, Html.CommonResource("CompanyName") + ":", false)
-        @Html.FormRowFor(m => m.MainContact.IdentityNumber, Html.CommonResource("IdentityNumber") + ":", false)
-
-        <div class="formrow">
-            <h5><label class="required" for="co_num"><span>**</span> VAT number:</label></h5>
-            <div class="col2row"><span class="input_prefix"><span>SE</span> <input type="text" id="co_num" name="co_num"></span></div>
-            <br class="clear">
+        <div data-bind="slideVisible: Account.MainContactIsCompany, slideDuration: 300">
+            @Html.FormRowFor(m => m.MainContact.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: Account.MainContactIsCompany")
+            @Html.FormRowFor(m => m.MainContact.CompanyInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true)
+            @Html.FormRowFor(m => m.MainContact.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: Account.MainContactIsCompany")
+        </div>
+        <div data-bind="slideVisible: !Account.MainContactIsCompany(), slideDuration: 300">
+            @Html.FormRowFor(m => m.MainContact.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", false)
         </div>
 
         @Html.FormRowFor(m => m.MainContact.Address, Html.CommonResource("Address") + ":", true)
@@ -32,14 +45,13 @@
         @Html.FormRowFor(m => m.MainContact.Zip, Html.CommonResource("Zip") + ":", true)
 
         <div class="formrow">
-            <h5><label class="required" for="country"><span>*</span> Country:</label></h5>
+            <h5>
+                <span class="required">*</span>
+                @Html.LabelFor(m => m.MainContact.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
+            </h5>
             <div class="col2row">
-                <label class="select">
-                    <select id="country" name="country">
-                        <option>Sweden</option>
-                        <option>Serbia</option>
-                    </select>
-                </label>
+                @Html.DropDownListFor(m => m.MainContact.Country, Model.MainContact.CountryOptions)
+                @Html.ValidationMessageFor(m => m.MainContact.Country)
             </div>
             <br class="clear">
         </div>
@@ -53,49 +65,92 @@
         </h4>
 
         <div id="billing" style="display: none;" data-bind="slideVisible: Account.OtherBillingContact">
-            @Html.FormRowFor(m => m.BillingContact.Email, Html.CommonResource("Email") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.FirstName, Html.CommonResource("FirstName") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.LastName, Html.CommonResource("LastName") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.CompanyName, Html.CommonResource("CompanyName") + ":", false, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.IdentityNumber, Html.CommonResource("IdentityNumber") + ":", false, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.Address, Html.CommonResource("Address") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.Address2, Html.CommonResource("Address2") + ":", false, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.City, Html.CommonResource("City") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.Zip, Html.CommonResource("Zip") + ":", true, "Account.OtherBillingContact")
 
             <div class="formrow">
-                <h5><label for="country"> Country:</label></h5>
-                <div class="col2row" data-bind="if: Account.OtherBillingContact">
-                    <label class="select">
-                        <select id="country" name="country">
-                            <option selected="selected" disabled="disabled"></option>
-                            <option>Serbia</option>
-                        </select>
-                    </label>
+                <h5>
+                    <span class="required">*</span>
+                    @Html.LabelFor(m => m.BillingContact.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
+                </h5>
+                <div class="col2row">
+                    @Html.DropDownListFor(m => m.BillingContact.CustomerType, Model.BillingContact.CustomerTypeOptions, new { data_bind = "value: Account.BillingContactCustomerType, if: Account.OtherBillingContact" })
+                    @Html.ValidationMessageFor(m => m.BillingContact.CustomerType)
+                </div>
+                <br class="clear" />
+            </div>
+
+            @Html.FormRowFor(m => m.BillingContact.Email, Html.CommonResource("Email") + ":", true, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.FirstName, Html.CommonResource("FirstName") + ":", true, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.LastName, Html.CommonResource("LastName") + ":", true, "if: Account.OtherBillingContact")
+            <div data-bind="slideVisible: Account.BillingContactIsCompany, slideDuration: 300">
+                @Html.FormRowFor(m => m.BillingContact.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: Account.OtherBillingContact() && Account.BillingContactIsCompany()")
+                @*
+                    TODO: VAT can currently only be saved once per account in Atomia Billing, so don't show this for BillingContact until fixed
+                    @Html.FormRowFor(m => m.BillingContact.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: Account.OtherBillingContact() && Account.BillingContactIsCompany()")
+                *@
+                @Html.FormRowFor(m => m.BillingContact.IndividualInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: Account.OtherBillingContact")
+            </div>
+            <div data-bind="slideVisible: !Account.BillingContactIsCompany(), slideDuration: 300">
+                @Html.FormRowFor(m => m.BillingContact.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", false, "if: Account.OtherBillingContact")
+            </div>
+            @Html.FormRowFor(m => m.BillingContact.Address, Html.CommonResource("Address") + ":", true, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Address2, Html.CommonResource("Address2") + ":", false, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.City, Html.CommonResource("City") + ":", true, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Zip, Html.CommonResource("Zip") + ":", true, "if: Account.OtherBillingContact")
+
+            <div class="formrow">
+                <h5>
+                    <span class="required">*</span>
+                    @Html.LabelFor(m => m.BillingContact.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
+                </h5>
+                <div class="col2row">
+                    @Html.DropDownListFor(m => m.BillingContact.Country, Model.BillingContact.CountryOptions)
+                    @Html.ValidationMessageFor(m => m.BillingContact.Country)
                 </div>
                 <br class="clear">
             </div>
 
-            @Html.FormRowFor(m => m.BillingContact.Phone, Html.CommonResource("Phone") + ":", true, "Account.OtherBillingContact")
-            @Html.FormRowFor(m => m.BillingContact.Fax, Html.CommonResource("Fax") + ":", false, "Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Phone, Html.CommonResource("Phone") + ":", true, "if: Account.OtherBillingContact")
+            @Html.FormRowFor(m => m.BillingContact.Fax, Html.CommonResource("Fax") + ":", false, "if: Account.OtherBillingContact")
         </div>
-        
+
         <p class="actions" style="display: block;">
             @Html.RouteLink(Html.CommonResource("Back"), "Hosting", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
             <button type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("Next")</button>
         </p>
+
+        @Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" })
     }
 </div>
 
 @section scripts {
     @{
         Html.EnableClientValidation();
-        Html.AddCustomerValidationRules(new CustomerValidationOptions() { SubModel = "MainContact" });
-        Html.AddCustomerValidationRules(new CustomerValidationOptions() { SubModel = "BillingContact" });
+        Html.AddCustomerValidationRules(new CustomerValidationOptions()
+        {
+            SubForms = new List<Form>
+            {
+                new Form("MainContact", "MainContact"),
+                new Form("MainContact.IndividualInfo", "MainContact"),
+                new Form("MainContact.CompanyInfo", "MainContact"),
+                new Form("BillingContact", "BillingContact"),
+                new Form("BillingContact.IndividualInfo", "BillingContact"),
+                new Form("BillingContact.CompanyInfo", "BillingContact")
+            },
+            ProductsChangedEvent = "Atomia.VM.Cart.ValidationUpdateEvent",
+            ArticleNumberList = "Atomia.VM.Cart.ArticleNumbers()",
+            ProductCategoryList = "Atomia.VM.Cart.Categories()"
+        });
     }
 
     <script type="text/javascript">
         Atomia.VM.Account = Atomia.ViewModels.CreateAccount();
+        Atomia.VM.Account.OtherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
+        @{
+            var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;
+            var initialBillingCustomerType = string.IsNullOrEmpty(Model.BillingContact.CustomerType) ? "individual" : Model.BillingContact.CustomerType;
+        }
+        Atomia.VM.Account.MainContactCustomerType('@initialMainContactCustomerType');
+        Atomia.VM.Account.BillingContactCustomerType('@initialBillingCustomerType');
 
         Atomia.VM.Progress.Step(3);
     </script>

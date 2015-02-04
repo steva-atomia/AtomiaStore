@@ -291,8 +291,8 @@
   <data name="FirstName" xml:space="preserve">
     <value>First name</value>
   </data>
-  <data name="IdentityNumber" xml:space="preserve">
-    <value>Corp./personal ID no.</value>
+  <data name="IndividualIdentityNumber" xml:space="preserve">
+    <value>Personal ID no.</value>
   </data>
   <data name="LastName" xml:space="preserve">
     <value>Last name</value>
@@ -305,5 +305,20 @@
   </data>
   <data name="Zip" xml:space="preserve">
     <value>Zip</value>
+  </data>
+  <data name="VatNumber" xml:space="preserve">
+    <value>VAT number</value>
+  </data>
+  <data name="CompanyIdentityNumber" xml:space="preserve">
+    <value>Corporate ID no.</value>
+  </data>
+  <data name="CustomerType" xml:space="preserve">
+    <value>Customer type</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Individual</value>
   </data>
 </root>

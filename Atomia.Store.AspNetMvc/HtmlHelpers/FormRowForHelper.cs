@@ -25,7 +25,7 @@ namespace Atomia.Store.AspNetMvc.HtmlHelpers
             </div>", asterisk, label, textBox, validationMessage));
         }
 
-        public static MvcHtmlString FormRowFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string labelText, Boolean required, string knockoutIfAttribute)
+        public static MvcHtmlString FormRowFor<TModel, TValue>(this HtmlHelper<TModel> html, Expression<Func<TModel, TValue>> expression, string labelText, Boolean required, string dataBindAttribute)
         {
             var asterisk = required ? @"<span class=""required"">*</span>" : "";
             var label = required ? html.LabelFor(expression, labelText, new { @class = "required" }) : html.LabelFor(expression, labelText);
@@ -34,9 +34,9 @@ namespace Atomia.Store.AspNetMvc.HtmlHelpers
 
             return new MvcHtmlString(String.Format(@"<div class=""formrow"">
                 <h5>{0}{1}</h5>
-                <div class=""col2row"" data-bind=""if: {2}"">{3}{4}</div>
+                <div class=""col2row"" data-bind=""{2}"">{3}{4}</div>
                 <br class=""clear"">
-            </div>", asterisk, label, knockoutIfAttribute, textBox, validationMessage));
+            </div>", asterisk, label, dataBindAttribute, textBox, validationMessage));
         }
     }
 }

@@ -1,8 +1,11 @@
-﻿
+﻿using System.Collections.Generic;
+
 namespace Atomia.Store.Core
 {
     public interface ICountryProvider
     {
-        string GetCountryCode();
+        Country GetDefaultCountry();
+
+        IEnumerable<Country> GetCountries();
     }
 }

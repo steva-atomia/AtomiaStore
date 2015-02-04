@@ -16,7 +16,7 @@ namespace Atomia.Store.AspNetMvc.Models
     }
 
 
-    public sealed class DefaultAccountViewModel : AccountViewModel
+    public class DefaultAccountViewModel : AccountViewModel
     {
         public DefaultAccountViewModel()
         {
@@ -32,20 +32,24 @@ namespace Atomia.Store.AspNetMvc.Models
             this.MainContact = new MainContactModel()
             {
                 ResellerId = resellerId,
-                CartItems = cart.CartItems.ToList()
+                CartItems = cart.CartItems.ToList(),
+                CompanyInfo = new CompanyExtraInfo(),
+                IndividualInfo = new IndividualExtraInfo()
             };
 
             this.BillingContact = new BillingContactModel()
             {
                 ResellerId = resellerId,
-                CartItems = cart.CartItems.ToList()
+                CartItems = cart.CartItems.ToList(),
+                CompanyInfo = new CompanyExtraInfo(),
+                IndividualInfo = new IndividualExtraInfo()
             };
         }
-
-        public string CustomerType { get; set; }
 
         public MainContactModel MainContact { get; set; }
 
         public BillingContactModel BillingContact { get; set; }
+
+        public bool OtherBillingContact { get; set; }
     }
 }

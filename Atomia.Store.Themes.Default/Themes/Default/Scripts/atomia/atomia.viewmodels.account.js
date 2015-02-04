@@ -18,10 +18,26 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		}
 	};
 
-	CreateAccount = function CreateAccount(extensions) {
-		return utils.createViewModel(CreateAccountPrototype, {
-			OtherBillingContact: ko.observable(false)
-		}, extensions);
+    CreateAccount = function CreateAccount(extensions) {
+        var defaults;
+            
+        defaults = function (self) {
+            return {
+                MainContactCustomerType: ko.observable('individual'),
+                BillingContactCustomerType: ko.observable('individual'),
+
+                OtherBillingContact: ko.observable(false),
+
+                MainContactIsCompany: ko.pureComputed(function () {
+                    return self.MainContactCustomerType() === 'company';
+                }, self),
+                BillingContactIsCompany: ko.pureComputed(function () {
+                    return self.BillingContactCustomerType() === 'company';
+                }, self)
+            };
+        };
+
+	    return utils.createViewModel(CreateAccountPrototype, defaults, extensions);
 	};
 
 

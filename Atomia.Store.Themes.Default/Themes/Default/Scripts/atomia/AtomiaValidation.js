@@ -23,7 +23,7 @@ var AtomiaValidation = (function (jQuery) {
         switch (element.nodeName.toLowerCase()) {
             case 'select':
                 var options = $("option:selected", element);
-                return options.length > 0 && (element.type == "select-multiple" || ($.browser.msie && !(options[0].attributes['value'].specified) ? options[0].text : options[0].value).length > 0);
+                return options.length > 0 && (element.type == "select-multiple" || (!(options[0].attributes['value'].specified) ? options[0].text : options[0].value).length > 0);
             case 'input':
                 if (formValidator.checkable(element))
                     return formValidator.getLength(value, element) > 0;

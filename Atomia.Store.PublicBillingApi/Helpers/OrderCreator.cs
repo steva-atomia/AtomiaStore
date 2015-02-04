@@ -26,7 +26,7 @@ namespace Atomia.Store.PublicBillingApi
             return new PublicOrder
             {
                 ResellerId = resellerProvider.GetResellerId(),
-                Country = countryProvider.GetCountryCode(),
+                Country = countryProvider.GetDefaultCountry().Code,
                 Currency = currencyProvider.GetCurrencyCode()
             };
         }

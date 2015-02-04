@@ -50,7 +50,7 @@ namespace Atomia.Store.Fakes.Adapters
                         },
                         new CustomAttribute {
                             Name = "Status",
-                            Value = "unavailable"
+                            Value = "available"
                         },
                         new CustomAttribute {
                             Name = "Premium",

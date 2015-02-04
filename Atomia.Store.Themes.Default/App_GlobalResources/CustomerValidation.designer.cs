@@ -79,6 +79,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The corporate ID no. is not valid.
+        /// </summary>
+        internal static string CompanyIdentityNumber {
+            get {
+                return ResourceManager.GetString("CompanyIdentityNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The company name is not valid.
         /// </summary>
         internal static string CompanyName {
@@ -165,6 +174,15 @@ namespace Resources {
         internal static string identity_number_se_default_dmn_se {
             get {
                 return ResourceManager.GetString("identity_number.se.default.dmn-se", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The personal ID no. is not valid.
+        /// </summary>
+        internal static string IndividualIdentityNumber {
+            get {
+                return ResourceManager.GetString("IndividualIdentityNumber", resourceCulture);
             }
         }
         

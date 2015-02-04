@@ -160,6 +160,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Company.
+        /// </summary>
+        internal static string Company {
+            get {
+                return ResourceManager.GetString("Company", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Corporate ID no..
+        /// </summary>
+        internal static string CompanyIdentityNumber {
+            get {
+                return ResourceManager.GetString("CompanyIdentityNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Company name.
         /// </summary>
         internal static string CompanyName {
@@ -174,6 +192,15 @@ namespace Resources {
         internal static string Country {
             get {
                 return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer type.
+        /// </summary>
+        internal static string CustomerType {
+            get {
+                return ResourceManager.GetString("CustomerType", resourceCulture);
             }
         }
         
@@ -295,11 +322,20 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Corp./personal ID no..
+        ///   Looks up a localized string similar to Individual.
         /// </summary>
-        internal static string IdentityNumber {
+        internal static string Individual {
             get {
-                return ResourceManager.GetString("IdentityNumber", resourceCulture);
+                return ResourceManager.GetString("Individual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Personal ID no..
+        /// </summary>
+        internal static string IndividualIdentityNumber {
+            get {
+                return ResourceManager.GetString("IndividualIdentityNumber", resourceCulture);
             }
         }
         
@@ -597,6 +633,15 @@ namespace Resources {
         internal static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT number.
+        /// </summary>
+        internal static string VatNumber {
+            get {
+                return ResourceManager.GetString("VatNumber", resourceCulture);
             }
         }
         
