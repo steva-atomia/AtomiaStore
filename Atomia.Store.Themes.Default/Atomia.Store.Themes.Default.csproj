@@ -204,12 +204,35 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <None Include="Scripts\jquery-2.1.3.intellisense.js" />
+    <None Include="Scripts\amplify-vsdoc.js" />
+    <Content Include="Scripts\amplify.js" />
+    <Content Include="Scripts\amplify.min.js" />
+    <Content Include="Scripts\amplify\amplify.core.js" />
+    <Content Include="Scripts\amplify\amplify.core.min.js" />
+    <Content Include="Scripts\amplify\amplify.request.js" />
+    <Content Include="Scripts\amplify\amplify.request.min.js" />
+    <Content Include="Scripts\amplify\amplify.store.js" />
+    <Content Include="Scripts\amplify\amplify.store.min.js" />
+    <Content Include="Scripts\GPL-LICENSE.txt" />
+    <Content Include="Scripts\jquery-2.1.3.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\knockout-3.2.0.debug.js" />
+    <Content Include="Scripts\knockout-3.2.0.js" />
+    <Content Include="Scripts\MIT-LICENSE.txt" />
+    <Content Include="Scripts\README.txt" />
+    <Content Include="Scripts\underscore.js" />
+    <Content Include="Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Content\css\atomia_2\style.css" />
     <Content Include="Themes\Default\Content\Error.html" />
     <Content Include="Global.asax" />
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Scripts\underscore.min.map" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.WebBase\Atomia.Store.WebBase.csproj">
@@ -245,41 +268,23 @@
     <Content Include="Themes\Default\Content\img\atomia_2\icons\anm_processing_28.png" />
     <Content Include="Themes\Default\Content\img\atomia_2\icons\flags.png" />
     <Content Include="Themes\Default\Content\img\atomia_2\icons\sys_icons.png" />
-    <Content Include="Themes\Default\Scripts\amplify-vsdoc.js" />
     <Content Include="Themes\Default\Scripts\amplify.js" />
-    <Content Include="Themes\Default\Scripts\amplify.min.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.core.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.core.min.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.request.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.request.min.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.store.js" />
-    <Content Include="Themes\Default\Scripts\amplify\amplify.store.min.js" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.eot" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.ttf" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.woff" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.account.js" />
-    <None Include="Themes\Default\Scripts\jquery-1.11.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-2.1.3.min.map" />
     <Content Include="Themes\Default\Scripts\atomia\AtomiaValidation.js" />
-    <Content Include="Themes\Default\Scripts\jquery-1.11.1.js" />
-    <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.js" />
-    <Content Include="Themes\Default\Scripts\jquery.unobtrusive-ajax.js" />
-    <Content Include="Themes\Default\Scripts\jquery.unobtrusive-ajax.min.js" />
-    <Content Include="Themes\Default\Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Themes\Default\Scripts\jquery-2.1.3.js" />
     <Content Include="Themes\Default\Scripts\jquery.validate.js" />
-    <Content Include="Themes\Default\Scripts\jquery.validate.min.js" />
-    <Content Include="Themes\Default\Scripts\jquery.validate.unobtrusive.js" />
-    <Content Include="Themes\Default\Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Themes\Default\Scripts\knockout-3.2.0.debug.js" />
-    <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.cart.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.definitions.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.domains.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.slidevisible-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.submitvalid-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.js" />
+    <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
     <Content Include="Themes\Default\Scripts\MicrosoftMvcJQueryValidation.js" />
-    <Content Include="Themes\Default\Scripts\underscore.js" />
-    <Content Include="Themes\Default\Scripts\underscore.min.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.cart.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productslisting.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainregistration.js" />
@@ -288,6 +293,7 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainconnection.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.languageselector.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.progress.js" />
+    <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Views\_MainLayout.cshtml" />
     <Content Include="Themes\Default\Views\Domain\_DomainRegistration.cshtml" />
     <Content Include="Themes\Default\Views\Domain\_DomainTransfer.cshtml" />
@@ -297,8 +303,6 @@
     <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />
     <Content Include="Themes\Default\Views\Shared\Error.cshtml" />
     <Content Include="Themes\Default\Views\Web.config" />
-    <Content Include="Themes\Default\Scripts\jquery-1.11.1.min.map" />
-    <None Include="Themes\Default\Scripts\underscore.min.map" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -324,9 +328,7 @@
       <LastGenOutput>ValidationErrors.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Themes\Default\Scripts\amplify\amplify\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
       <Visible>False</Visible>
