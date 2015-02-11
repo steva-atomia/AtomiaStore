@@ -87,6 +87,7 @@
     <Compile Include="Adapters\CurrencyProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
     <Compile Include="Adapters\TermsOfServiceProvider.cs" />
+    <Compile Include="Adapters\ThemeNamesProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />

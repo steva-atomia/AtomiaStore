@@ -29,6 +29,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICustomerTypeProvider, Atomia.Store.AspNetMvc.Adapters.CustomerTypeProvider>();
             container.RegisterType<ITermsOfServiceProvider, Atomia.Store.AspNetMvc.Adapters.TermsOfServiceProvider>();
             container.RegisterType<PaymentUrlProvider, Atomia.Store.AspNetMvc.Adapters.PaymentUrlProvider>();
+            container.RegisterType<IThemeNamesProvider, Atomia.Store.AspNetMvc.Adapters.ThemeNamesProvider>();
             
 
             // Payment plugins
@@ -61,7 +62,6 @@ namespace Atomia.Store.Themes.Default
             
 
             // Fakes
-            container.RegisterType<IThemeNamesProvider, Atomia.Store.Fakes.Adapters.FakeThemeNamesProvider>();
             container.RegisterType<ICartPricingService, Atomia.Store.Fakes.Adapters.FakePricingProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.Fakes.Adapters.FakeItemPresenter>();
             container.RegisterType<ILanguageProvider, Atomia.Store.Fakes.Adapters.FakeLanguageProvider>();

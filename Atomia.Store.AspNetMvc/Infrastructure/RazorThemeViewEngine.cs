@@ -9,7 +9,7 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
     {
         public RazorThemeViewEngine(IThemeNamesProvider themeNamesProvider)
         {
-            var themes = themeNamesProvider.GetActiveThemeNames().Concat(new List<string> { "Default" });
+            var themes = themeNamesProvider.GetActiveThemeNames();
 
             var areaViewLocations = new List<string>();
             var areaMasterLocations = new List<string>();
