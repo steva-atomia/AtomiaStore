@@ -114,6 +114,11 @@ var AtomiaValidation = (function (jQuery) {
     }
 
 
+    // Client validation for model properties annotated with AtomiaRequiredConfirmation.
+    function AtomiaRequiredConfirmation(value, element, params) {
+        return $(element).is(":checked");
+    }
+
 
     /*
     *      PUBLIC FUNCTIONS
@@ -157,6 +162,9 @@ var AtomiaValidation = (function (jQuery) {
                     break;
                 case "AtomiaRepeatPassword":
                     validationFunction = AtomiaRepeatPassword;
+                    break;
+                case "AtomiaRequiredConfirmation":
+                    validationFunction = AtomiaRequiredConfirmation;
                     break;
                 default:
                     validationFunction = null;

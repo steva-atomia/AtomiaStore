@@ -233,8 +233,49 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_CampaignCode.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_VatCheck.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_PaymentMethods.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_TermsOfService.cshtml" />
+    <Content Include="Themes\Default\Views\PayExRedirect\Confirm.cshtml" />
+    <Content Include="Themes\Default\Views\PayPal\Confirm.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Atomia.Store.Payment.AdyenHpp\Atomia.Store.Payment.AdyenHpp.csproj">
+      <Project>{0818e4f0-582e-4180-a6d4-8b98ed2da529}</Project>
+      <Name>Atomia.Store.Payment.AdyenHpp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.DibsFlexwin\Atomia.Store.Payment.DibsFlexwin.csproj">
+      <Project>{6549c7cb-56ac-45ee-b039-1a76fa90ce2a}</Project>
+      <Name>Atomia.Store.Payment.DibsFlexwin</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.Invoice\Atomia.Store.Payment.Invoice.csproj">
+      <Project>{ec5f1af3-2fef-4bc7-892c-9d8b7a55cd5c}</Project>
+      <Name>Atomia.Store.Payment.Invoice</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.PayExRedirect\Atomia.Store.Payment.PayExRedirect.csproj">
+      <Project>{bd45c681-b126-43b1-9bea-80e6a42d0528}</Project>
+      <Name>Atomia.Store.Payment.PayExRedirect</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.PayPal\Atomia.Store.Payment.PayPal.csproj">
+      <Project>{34e4fc9c-5995-4441-a3f0-5c82e74b5e65}</Project>
+      <Name>Atomia.Store.Payment.PayPal</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.WorldPayXml\Atomia.Store.Payment.WorldPayXml.csproj">
+      <Project>{34ca3fb6-290f-4367-9933-5763c631b2cc}</Project>
+      <Name>Atomia.Store.Payment.WorldPayXml</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.WorldPay\Atomia.Store.Payment.WorldPay.csproj">
+      <Project>{be84dd41-cb57-4b2a-af2b-cf4aa4f86864}</Project>
+      <Name>Atomia.Store.Payment.WorldPay</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.PublicBillingApi\Atomia.Store.PublicBillingApi.csproj">
+      <Project>{5737fe58-757b-4f60-a480-5fd54eeed008}</Project>
+      <Name>Atomia.Store.PublicBillingApi</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.WebBase\Atomia.Store.WebBase.csproj">
       <Project>{51b7c760-9389-482a-be5b-ab67f846a380}</Project>
       <Name>Atomia.Store.Services.WebBase</Name>
@@ -273,6 +314,7 @@
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.ttf" />
     <Content Include="Themes\Default\Content\fonts\atomia_2\atomicons.woff" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.account.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paymentselector.js" />
     <Content Include="Scripts\jquery-2.1.3.min.map" />
     <Content Include="Themes\Default\Scripts\atomia\AtomiaValidation.js" />
     <Content Include="Themes\Default\Scripts\jquery-2.1.3.js" />

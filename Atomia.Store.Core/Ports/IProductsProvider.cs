@@ -7,5 +7,7 @@ namespace Atomia.Store.Core
         string Name { get; }
 
         IEnumerable<Product> GetProducts(ICollection<SearchTerm> terms);
+
+        Product GetProduct(string articleNumber);
     }
 }

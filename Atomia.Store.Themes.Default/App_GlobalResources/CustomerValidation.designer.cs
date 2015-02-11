@@ -214,6 +214,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must read and accept the Terms and Conditions.
+        /// </summary>
+        internal static string TermsConfirmation {
+            get {
+                return ResourceManager.GetString("TermsConfirmation", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The VAT number is not valid for the selected country.
         /// </summary>
         internal static string VatNumber {

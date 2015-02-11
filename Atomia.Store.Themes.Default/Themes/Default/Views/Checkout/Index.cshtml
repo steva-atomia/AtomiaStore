@@ -1,4 +1,5 @@
-﻿@using Atomia.Store.WebBase.HtmlHelpers;
+﻿@model Atomia.Store.AspNetMvc.Models.DefaultCheckoutViewModel
+@using Atomia.Store.WebBase.HtmlHelpers;
 @using Atomia.Web.Plugin.Validation.HtmlHelpers;
 
 @{
@@ -6,198 +7,47 @@
 }
 
 <div class="settingsboxinner">
-
-
-    <!-- BEGIN PAYMENT METHOD -->
-    <h4>Payment options</h4>
-    <div class="formrow">
-        <h5><label class="required" for="payment-select"><span>*</span> Pay using:</label></h5>
-        <div id="payment-select" class="col2row">
-            <label><input id="ac" type="radio" name="p_opt"><label for="ac"></label><label for="ac"></label> Atomia credit</label><br>
-            <label><input id="cc" type="radio" name="p_opt"><label for="cc"></label><label for="cc"></label> Credit card</label><br>
-            <label><input id="ppal" type="radio" name="p_opt"><label for="ppal"></label><label for="ppal"></label> PayPal</label><br>
-            <label><input id="invoice" type="radio" name="p_opt"><label for="invoice"></label><label for="invoice"></label> Invoice</label>
-        </div>
-        <br class="clear">
+    <div data-bind="visible: Atomia.VM.Cart.IsEmpty()">
+        <h4>@Html.CommonResource("CheckoutCartIsEmptyTitle")</h4>
+        <p>@Html.CommonResource("CheckoutCartIsEmptyDescription")</p>
     </div>
 
-    <div id="invoice-box" class="formrow" style="display: none;">
-        <h5><label class="required" for="inv-send"><span>*</span> Send invoice via:</label></h5>
-        <div id="inv-send" class="col2row">
-            <label><input id="inv-send1" type="radio" name="inv-send" checked="checked"><label for="inv-send1"></label><label for="inv-send1"></label> E-mail</label><br>
-            <label><input id="inv-send2" type="radio" name="inv-send"><label for="inv-send2"></label><label for="inv-send2"></label> Post (+45 kr)</label>
-        </div>
-        <br class="clear">
-    </div><!-- END INVOICE-BOX -->
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-    <div id="ppal-box" style="display: none;">
-        <p class="notice">By clicking Order button you will be redirected to PayPal site to enter your credentials and then will be returned here to finish the transaction.</p>
-    </div><!-- END PPAL-BOX -->
+        <div data-bind="visible: !Atomia.VM.Cart.IsEmpty()">
+            <h4>@Html.CommonResource("PaymentOptions")</h4>
+            @Html.Partial("_PaymentMethods", Model.PaymentMethods)
 
-    <div id="ac-box" style="display: none;">
-        <p class="notice">Payment must be made in full. If you don't have enough Atomia credits to complete transaction, you can buy more credits. <span title="Atomia credits - 152" class="inline-label"><strong>Atomia credits</strong> 152</span> <a class="button small green" href="bcup_credits.html">Buy credits</a></p>
-    </div><!-- END AC-BOX -->
+            @*
+                <h4>@Html.CommonResource("AddCampaignCode")</h4>
+                @Html.Partial("_CampaignCode")
+            *@
 
-    <div id="cc-box" class="formrow" style="display: none;">
-        <h5><label class="required"><span>*</span> Credit card to use:</label></h5>
-        <div id="cc_old_or_new" class="col2row">
-            <input id="cc_existing" type="radio" name="use_cc" checked="checked"><label for="cc_existing"></label><label for="cc_existing"></label>
-            <label for="cc_existing">Existing</label>
-            <div id="cc_list" class="adv_combo_box cc_list">
-                <input type="text" value="Select" readonly="readonly">
-                <ul style="display: none;">
-                    <li>
-                        <p class="title">VISA</p>
-                        <p class="description">xxxx-xxxx-xxxx-7541</p>
-                    </li>
-                    <li>
-                        <p class="title">MASTER</p>
-                        <p class="description">xxxx-xxxx-xxxx-1106</p>
-                    </li>
-                    <li>
-                        <p class="title">AMEX</p>
-                        <p class="description">xxxx-xxxx-xxxx-3847</p>
-                    </li>
-                </ul>
-            </div>
-            <br>
-            <input id="cc_new" type="radio" name="use_cc"><label for="cc_new"></label><label for="cc_new"></label> <label for="cc_new">New</label>
-        </div>
-        <br class="clear">
-    </div>
-    <div id="cc-options" style="display: none;">
-        <div class="formrow">
-            <h5><label class="required" for="cc_no"><span>*</span> Card number:</label></h5>
-            <div class="col2row"><input id="cc_no" type="text" name="cc_no"></div>
-            <br class="clear">
+            <h4>@Html.CommonResource("Invoice")</h4>
+            @* @Html.Partial("_VatCheck") *@
+            @Html.Partial("_CartSummary")
+
+            @if (Model.TermsOfService != null)
+            {
+                <h4>@Html.CommonResource("Terms")</h4>
+                @Html.Partial("_TermsOfService", Model.TermsOfService)
+            }
         </div>
 
-        <div class="formrow">
-            <h5><label class="required" for="ccv"><span>*</span> CCV:</label></h5>
-            <div class="col2row"><input id="ccv" type="text" name="ccv"></div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label class="required"><span>*</span> Expires:</label></h5>
-            <div class="col2row">
-                <label class="select auto-width">
-                    <select class="auto-width" id="month" name="month">
-                        <option selected="selected" disabled="disabled"></option>
-                        <option>01</option>
-                        <option>02</option>
-                        <option>03</option>
-                        <option>04</option>
-                        <option>05</option>
-                        <option>06</option>
-                        <option>07</option>
-                        <option>08</option>
-                        <option>09</option>
-                        <option>10</option>
-                        <option>11</option>
-                        <option>12</option>
-                    </select>
-                </label> /
-                <label class="select auto-width">
-                    <select class="auto-width" id="year" name="year">
-                        <option selected="selected" disabled="disabled"></option>
-                        <option>2014</option>
-                        <option>2015</option>
-                        <option>2016</option>
-                        <option>2017</option>
-                        <option>2018</option>
-                    </select>
-                </label>
-            </div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label class="required" for="cc_name"><span>*</span> Card owner:</label></h5>
-            <div class="col2row">
-                <label><input id="cc_name" type="text" name="cc_name"></label>
-            </div>
-            <br class="clear">
-        </div>
-        <div class="formrow">
-            <h5><label>Payment profile options:</label></h5>
-            <div class="col2row">
-                <label><input type="checkbox" id="ppo01"><label for="ppo01"></label><label for="ppo01"></label> Save my credit card information</label><br>
-                <label><input type="checkbox" id="ppo02"><label for="ppo02"></label><label for="ppo02"></label> Pay invoices on expiration day automatically</label>
-            </div>
-            <br class="clear">
-        </div>
-    </div><!-- END CC-BOX -->
-    <!-- END PAYMENT METHOD -->
-    <h4>Redeem gift card</h4>
-    <div class="formrow">
-        <h5><label for="gift_card">Gift card number:</label></h5>
-        <div class="col2row"><input id="gift_card" type="text"> <a id="redeem_trigger" class="button small green" href="javascript:void(0);">Redeem</a></div>
-        <br class="clear">
-    </div>
-    <div id="redeem_box" class="success" style="display: none;">
-        <h4>Gift card sucessfully redeemed</h4>
-        <p>You now have <strong>EUR 5,00</strong> credit that will be used in this purchase.</p>
-    </div>
-    <h4>Invoice</h4>
-    <div id="vat_alert" class="warning">
-        <p>Your VAT number in not correct/validation service is not available atm, therefore VAT will be applied to your invoice. You should check your VAT number and try to validate it again.</p>
-        <div class="formrow">
-            <h5><label for="vat_again">VAT number:</label></h5>
-            <div class="col2row"><input id="vat_again" type="text" value="SE-804576985"> <a id="vat_trigger" class="button small green" href="javascript:void(0);">Retry</a></div>
-            <br class="clear">
-        </div>
-    </div>
-    <div id="vat_box" class="success" style="display: none;">
-        <h4>VAT validation successful</h4>
-        <p>Your VAT number is successfully validated and your invoice will be free of VAT.</p>
-    </div>
-    <table class="list display strong" id="product_list">
-        <thead>
-            <tr>
-                <th class="ta_left" scope="col">Product</th>
-                <th scope="col">Period</th>
-                <th class="right" scope="col" style="width: 20%;">Fee</th>
-                <th class="right" scope="col" style="width: 20%;">Discount</th>
-                <th class="right" scope="col" style="width: 20%;">Subtotal</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <td class="right" colspan="4">Subtotal:</td>
-                <td class="right nowrap" colspan="1">34,98<span class="currency">EUR</span></td>
-            </tr>
-            <tr>
-                <td class="right" colspan="4">VAT 25%:</td>
-                <td class="right nowrap" colspan="1">8,75<span class="currency">EUR</span></td>
-            </tr>
-            <tr class="strong">
-                <td class="right" colspan="4">Amount to pay:</td>
-                <td class="right nowrap" colspan="1">43,73<span class="currency">EUR</span></td>
-            </tr>
-        </tfoot>
-        <tbody>
-            <tr id="hidden5" style="display: table-row;">
-                <td>mydomain<strong>.com</strong></td>
-                <td class="right">1 year</td>
-                <td class="right nowrap">4,99<span class="currency">EUR</span></td>
-                <td class="right nowrap">0,00<span class="currency">EUR</span></td>
-                <td class="right nowrap">4,99<span class="currency">EUR</span></td>
-            </tr>
-            <tr id="hidden6" style="display: table-row;">
-                <td><strong>Premium package</strong><br><span class="fine-print">Description: Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut sit amet vulputate ipsum. Sed vitae sapien quis elit vestibulum pretium sed eget arcu.</span></td>
-                <td class="right">1 year</td>
-                <td class="right nowrap">29,99<span class="currency">EUR</span></td>
-                <td class="right nowrap">0,00<span class="currency">EUR</span></td>
-                <td class="right nowrap">29,99<span class="currency">EUR</span></td>
-            </tr>
-        </tbody>
-    </table>
-    <h4>Terms</h4>
-    <div class="formrow">
-        <h5><label class="required"><span>*</span> Comfirmation:</label></h5>
-        <div class="col2row">
-            <input type="checkbox" id="agree"><label for="agree"></label><label for="agree"></label> <label for="agree">I have read and agree with the <a href="javascript:void(0);">Atomia Terms and Conditions</a>.</label><br>
-            <input type="checkbox" id="agree2"><label for="agree2"></label><input name="termCheck0" type="hidden" value="false"><label for="agree2"></label> <label for="agree2">I have read and agree with the <a href="javascript:void(0);">CORE's Terms and Conditions</a>.</label>
-        </div>
-        <br class="clear">
-    </div>
+        <p class="actions" style="display: block;">
+            @Html.ActionLink(Html.CommonResource("Back"), "Index", "Account", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
+            <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !Atomia.VM.Cart.IsEmpty()">@Html.CommonResource("Checkout")</button>
+        </p>
+    }
 </div>
+
+@section scripts {
+    <script type="text/javascript">
+        Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelector();
+        Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
+
+        Atomia.VM.Progress.Step(4);
+    </script>
+}

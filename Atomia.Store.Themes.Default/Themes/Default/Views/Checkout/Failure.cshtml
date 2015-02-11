@@ -1,0 +1,18 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+@{
+    Layout = "~/Themes/Default/Views/_MainLayout.cshtml";
+}
+
+<div class="settingsboxinner">
+    <h4>@Html.CommonResource("CheckoutFailureTitle")</h4>
+    <p>@Html.CommonResource("CheckoutFailureDescription")</p>
+
+    <p class="actions" style="display: block;">
+        @Html.ActionLink(Html.CommonResource("TryAgain"), "Index", "Checkout", null, new { @class = "button large", style = "display: inline-block;" })
+    </p>
+</div>
+
+@section scripts {
+
+}

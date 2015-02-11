@@ -1,0 +1,33 @@
+﻿@model List<Atomia.Store.AspNetMvc.Ports.PaymentMethodGuiPlugin>
+@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div class="formrow">
+    <h5><label class="required" for="payment-select"><span>*</span> @Html.CommonResource("PayUsing"):</label></h5>
+    <div id="payment-select" class="col2row">
+        @foreach (var paymentMethod in Model)
+        {
+            <label>
+                <input id="@paymentMethod.Id" type="radio" name="SelectedPaymentMethodId" value="@paymentMethod.Id" data-bind="checked: Atomia.VM.Payment.SelectedPaymentMethod">
+                <label for="@paymentMethod.Id"></label>
+                <label for="@paymentMethod.Id"></label>
+                @paymentMethod.Name
+            </label><br>
+        }
+    </div>
+    <br class="clear">
+</div>
+
+@foreach (var paymentMethod in Model)
+{
+    <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: Atomia.VM.Payment.SelectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
+        @if (!string.IsNullOrEmpty(paymentMethod.Description))
+        {
+            <p class="notice">@paymentMethod.Description</p>
+        }
+
+        @if (paymentMethod.PaymentForm != null)
+        {
+            @paymentMethod.PaymentForm.Render();
+        }
+    </div>
+}

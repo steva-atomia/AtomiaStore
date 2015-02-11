@@ -10,9 +10,9 @@ using System.Web.Mvc;
 namespace Atomia.Store.AspNetMvc.Models
 {
 
-    public abstract class AccountViewModel
+    public abstract class AccountViewModel : IContactDataCollection
     {
-        
+        public abstract ICollection<object> GetContactData();
     }
 
 
@@ -51,5 +51,13 @@ namespace Atomia.Store.AspNetMvc.Models
         public BillingContactModel BillingContact { get; set; }
 
         public bool OtherBillingContact { get; set; }
+
+        public override ICollection<object> GetContactData()
+        {
+            return new List<object> {
+                MainContact,
+                BillingContact
+            };
+        }
     }
 }

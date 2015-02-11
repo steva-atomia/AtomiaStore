@@ -1,0 +1,22 @@
+﻿@model List<Atomia.Store.AspNetMvc.Models.TermsOfServiceModel>
+@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div class="formrow">
+    <h5><label class="required"><span>*</span> Comfirmation:</label></h5>
+    <div class="col2row">
+        @{
+            
+            for (var i = 0; i < Model.Count(); i++)
+            {
+                <input type="checkbox" id="@(Model[i].Id)" value="true" name="[@i].Confirmed" />
+                <label for="@(Model[i].Id)"></label>
+                <label for="@(Model[i].Id)"></label>
+                <label for="@(Model[i].Id)">@Html.CommonResource("ReadAndAgree") @Html.ActionLink(Model[i].Name, "TermsOfService", new { Id = Model[i].Id }, new { }).</label><br>
+
+                i += 1;
+            }
+        }
+    </div>
+    <br class="clear">
+</div>
+

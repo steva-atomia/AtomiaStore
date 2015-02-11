@@ -321,4 +321,94 @@
   <data name="Individual" xml:space="preserve">
     <value>Individual</value>
   </data>
+  <data name="Checkout" xml:space="preserve">
+    <value>Checkout</value>
+  </data>
+  <data name="PaymentOptions" xml:space="preserve">
+    <value>Payment options</value>
+  </data>
+  <data name="AddCampaignCode" xml:space="preserve">
+    <value>Add Campaign Code</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>Terms</value>
+  </data>
+  <data name="ReadAndAgree" xml:space="preserve">
+    <value>I have read and agree with the</value>
+  </data>
+  <data name="PayUsing" xml:space="preserve">
+    <value>Pay using</value>
+  </data>
+  <data name="PayPalDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to PayPal to enter your credentials and then will be returned here to finish the transaction.</value>
+  </data>
+  <data name="PayPalName" xml:space="preserve">
+    <value>PayPal</value>
+  </data>
+  <data name="InvoiceByEmailName" xml:space="preserve">
+    <value>Send me an invoice by email</value>
+  </data>
+  <data name="InvoiceByPostDescription" xml:space="preserve">
+    <value>$5.77 postal fee will be included</value>
+  </data>
+  <data name="InvoiceByPostName" xml:space="preserve">
+    <value>Send me an invoice by regular mail</value>
+  </data>
+  <data name="AmountToPay" xml:space="preserve">
+    <value>Amount to pay</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>Discount</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Period</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Product</value>
+  </data>
+  <data name="CheckoutCartIsEmptyDescription" xml:space="preserve">
+    <value>Please go back and add some items to your cart before checking out.</value>
+  </data>
+  <data name="CheckoutCartIsEmptyTitle" xml:space="preserve">
+    <value>Your cart is empty</value>
+  </data>
+  <data name="defaultTOS_Name" xml:space="preserve">
+    <value>Terms and Conditions</value>
+  </data>
+  <data name="defaultTOS_Terms" xml:space="preserve">
+    <value>This is a placeholder for the company's Terms and Conditions.</value>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Invoice</value>
+  </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TOS_core_Name" xml:space="preserve">
+    <value>CORE's Terms and Conditions</value>
+  </data>
+  <data name="TOS_core_Terms" xml:space="preserve">
+    <value>This is a placeholder for the company's Terms and Conditions.</value>
+  </data>
+  <data name="TOS_se_Name" xml:space="preserve">
+    <value>Terms and Conditions for .SE domain names</value>
+  </data>
+  <data name="TOS_se_Terms" xml:space="preserve">
+    <value>This is a placeholder for the company's Terms and Conditions.</value>
+  </data>
+  <data name="CheckoutFailureDescription" xml:space="preserve">
+    <value>Please try using a different payment method. Domain names will be registered after the payment has been verified.</value>
+  </data>
+  <data name="CheckoutFailureTitle" xml:space="preserve">
+    <value>Payment was not accepted</value>
+  </data>
+  <data name="CheckoutSuccessDescription" xml:space="preserve">
+    <value>We hope that you will have great use of the service!</value>
+  </data>
+  <data name="CheckoutSuccessTitle" xml:space="preserve">
+    <value>Thank you for your order!</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Try again</value>
+  </data>
 </root>

@@ -11,6 +11,12 @@ namespace Atomia.Store.Fakes.Adapters
             get { return "Category"; }
         }
 
+        public Product GetProduct(string articleNumber)
+        {
+            var allProducts = GetAllProducts();
+            return allProducts.FirstOrDefault(p => p.ArticleNumber == articleNumber);
+        }
+
         public IEnumerable<Product> GetProducts(ICollection<SearchTerm> terms)
         {
             var allProducts = GetAllProducts();
@@ -39,6 +45,13 @@ namespace Atomia.Store.Fakes.Adapters
                             RenewalPeriod = null
                         }
                     },
+                    CustomAttributes = new List<CustomAttribute>
+                    {
+                        new CustomAttribute {
+                            Name = "tos",
+                            Value = "defaultTOS"
+                        }
+                    }
                 },
                 new Product
                 {
@@ -63,6 +76,10 @@ namespace Atomia.Store.Fakes.Adapters
                         new CustomAttribute {
                             Name = "Foo", 
                             Value = "Bar" 
+                        },
+                        new CustomAttribute {
+                            Name = "tos",
+                            Value = "defaultTOS"
                         }
                     }
                 },
@@ -89,6 +106,13 @@ namespace Atomia.Store.Fakes.Adapters
                             RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
                         },
                     },
+                    CustomAttributes = new List<CustomAttribute>
+                    {
+                        new CustomAttribute {
+                            Name = "tos",
+                            Value = "defaultTOS"
+                        }
+                    }
                 },
                 new Product
                 {
@@ -137,7 +161,13 @@ namespace Atomia.Store.Fakes.Adapters
                     Description = "Domain registration .com",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     Category = "Domain",
-                    CustomAttributes = new List<CustomAttribute>()
+                    CustomAttributes = new List<CustomAttribute>
+                    {
+                        new CustomAttribute {
+                            Name = "tos",
+                            Value = "TOS_core"
+                        }
+                    }
                 },
                 new Product
                 {

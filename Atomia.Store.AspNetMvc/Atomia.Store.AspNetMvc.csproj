@@ -82,9 +82,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\CartProvider.cs" />
+    <Compile Include="Adapters\ContactDataProvider.cs" />
     <Compile Include="Adapters\CurrencyFormatter.cs" />
     <Compile Include="Adapters\CurrencyProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
+    <Compile Include="Adapters\TermsOfServiceProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
@@ -105,6 +107,8 @@
     <Compile Include="Models\CartItemRemoveAttributeModel.cs" />
     <Compile Include="Models\CartItemSetAttributeModel.cs" />
     <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CheckoutViewModel.cs" />
+    <Compile Include="Ports\PaymentMethodGuiPlugin.cs" />
     <Compile Include="Models\ProductListingViewModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
     <Compile Include="Models\DomainQueryModel.cs" />
@@ -113,6 +117,8 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RenewalPeriodModel.cs" />
     <Compile Include="Models\DomainViewModel.cs" />
+    <Compile Include="Models\TermsOfServiceModel.cs" />
+    <Compile Include="Adapters\PaymentUrlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

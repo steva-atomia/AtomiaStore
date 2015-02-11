@@ -46,7 +46,6 @@
     <br class="clear">
 </div>
 
-
 <h4>@Html.CommonResource("MainDomain")</h4>
 <p>@Html.CommonResource("MainDomainDescription")</p>
 <p class="warning" data-bind="visible: MainDomainStatus.DomainNameOptionsCount() === 0">@Html.CommonResource("MainDomainRequiredWarning")</p>
@@ -71,7 +70,7 @@
 
 <p class="actions" style="display: block;">
     @Html.RouteLink(Html.CommonResource("Back"), "Domains", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-    @Html.RouteLink(Html.CommonResource("Next"), "Account", null, new { id = "next_step", @class = "button large green", data_bind = "visible: HostingPackages.AllowContinue() && MainDomainStatus.DomainNameHasBeenSelected()" })
+    @Html.ActionLink(Html.CommonResource("Next"), "Index", "Account", null, new { id = "next_step", @class = "button large green", data_bind = "visible: HostingPackages.AllowContinue() && MainDomainStatus.DomainNameHasBeenSelected()" })
 </p>
 
 @section scripts {

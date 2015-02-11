@@ -180,4 +180,7 @@
   <data name="IndividualIdentityNumber" xml:space="preserve">
     <value>The personal ID no. is not valid</value>
   </data>
+  <data name="TermsConfirmation" xml:space="preserve">
+    <value>You must read and accept the Terms and Conditions</value>
+  </data>
 </root>

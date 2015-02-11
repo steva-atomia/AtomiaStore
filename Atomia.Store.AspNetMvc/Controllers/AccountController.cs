@@ -9,6 +9,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class AccountController : Controller
     {
+        private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
+
         [HttpGet]
         public ActionResult Index()
         {
@@ -23,7 +25,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                HttpContext.Session["AccountInfo"] = model;
+                contactDataProvider.SaveContactData(model);
                 
                 return RedirectToAction("Index", "Checkout");
             }

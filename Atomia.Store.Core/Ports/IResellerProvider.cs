@@ -9,5 +9,7 @@ namespace Atomia.Store.Core
     public interface IResellerProvider
     {
         Guid GetResellerId();
+
+        bool IsSubReseller();
     }
 }

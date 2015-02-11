@@ -13,5 +13,10 @@ namespace Atomia.Store.Fakes.Adapters
         {
             return new Guid("B77B8B91-741B-4CF1-88B4-FEB21550055C");
         }
+
+        public bool IsSubReseller()
+        {
+            return false;
+        }
     }
 }

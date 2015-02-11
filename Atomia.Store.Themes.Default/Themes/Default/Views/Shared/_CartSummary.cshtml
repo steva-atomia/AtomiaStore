@@ -1,0 +1,50 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+<table class="list display strong" id="product_list">
+    <thead>
+        <tr>
+            <th class="ta_left" scope="col">@Html.CommonResource("Product")</th>
+            <th scope="col">@Html.CommonResource("Period")</th>
+            <th class="right" scope="col" style="width: 20%;">@Html.CommonResource("Fee")</th>
+            <th class="right" scope="col" style="width: 20%;">@Html.CommonResource("Discount")</th>
+            <th class="right" scope="col" style="width: 20%;">@Html.CommonResource("Subtotal")</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td class="right" colspan="4">@Html.CommonResource("Subtotal"):</td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.SubTotal"></td>
+        </tr>
+        <tr>
+            <td class="right" colspan="4">VAT:</td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.Tax"></td>
+        </tr>
+        <tr class="strong">
+            <td class="right" colspan="4">@Html.CommonResource("AmountToPay"):</td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.Total"></td>
+        </tr>
+    </tfoot>
+    <tbody data-bind="foreach: Atomia.VM.Cart.CartItems()">
+        <tr id="hidden5" style="display: table-row;">
+            <td>
+                <strong data-bind="text: Name"></strong>
+                <br />
+                <span class="fine-print">
+                    <span data-bind="text: Category"></span>
+                    <span data-bind="visible: !IsDomainItem() && GetDomainName() !== undefined, text: ', ' + GetDomainName()"></span>
+                </span>
+            </td>
+            <td class="right">
+                <!-- ko if: RenewalPeriod === undefined -->
+                <span>-</span>
+                <!-- /ko -->
+                <!-- ko if: RenewalPeriod !== undefined -->
+                <span data-bind="text: RenewalPeriod.Display"></span>
+                <!-- /ko -->
+            </td>
+            <td class="right nowrap" data-bind="text: Price"></td>
+            <td class="right nowrap" data-bind="text: Discount"></td>
+            <td class="right nowrap" data-bind="text: Total"></td>
+        </tr>
+    </tbody>
+</table>

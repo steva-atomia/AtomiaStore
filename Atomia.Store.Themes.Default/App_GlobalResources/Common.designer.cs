@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add Campaign Code.
+        /// </summary>
+        internal static string AddCampaignCode {
+            get {
+                return ResourceManager.GetString("AddCampaignCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Address.
         /// </summary>
         internal static string Address {
@@ -93,6 +102,15 @@ namespace Resources {
         internal static string AddToCart {
             get {
                 return ResourceManager.GetString("AddToCart", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Amount to pay.
+        /// </summary>
+        internal static string AmountToPay {
+            get {
+                return ResourceManager.GetString("AmountToPay", resourceCulture);
             }
         }
         
@@ -151,6 +169,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Checkout.
+        /// </summary>
+        internal static string Checkout {
+            get {
+                return ResourceManager.GetString("Checkout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please go back and add some items to your cart before checking out..
+        /// </summary>
+        internal static string CheckoutCartIsEmptyDescription {
+            get {
+                return ResourceManager.GetString("CheckoutCartIsEmptyDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your cart is empty.
+        /// </summary>
+        internal static string CheckoutCartIsEmptyTitle {
+            get {
+                return ResourceManager.GetString("CheckoutCartIsEmptyTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Please try using a different payment method. Domain names will be registered after the payment has been verified..
+        /// </summary>
+        internal static string CheckoutFailureDescription {
+            get {
+                return ResourceManager.GetString("CheckoutFailureDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Payment was not accepted.
+        /// </summary>
+        internal static string CheckoutFailureTitle {
+            get {
+                return ResourceManager.GetString("CheckoutFailureTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We hope that you will have great use of the service!.
+        /// </summary>
+        internal static string CheckoutSuccessDescription {
+            get {
+                return ResourceManager.GetString("CheckoutSuccessDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thank you for your order!.
+        /// </summary>
+        internal static string CheckoutSuccessTitle {
+            get {
+                return ResourceManager.GetString("CheckoutSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to City.
         /// </summary>
         internal static string City {
@@ -201,6 +282,33 @@ namespace Resources {
         internal static string CustomerType {
             get {
                 return ResourceManager.GetString("CustomerType", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms and Conditions.
+        /// </summary>
+        internal static string defaultTOS_Name {
+            get {
+                return ResourceManager.GetString("defaultTOS_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a placeholder for the company&apos;s Terms and Conditions..
+        /// </summary>
+        internal static string defaultTOS_Terms {
+            get {
+                return ResourceManager.GetString("defaultTOS_Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Discount.
+        /// </summary>
+        internal static string Discount {
+            get {
+                return ResourceManager.GetString("Discount", resourceCulture);
             }
         }
         
@@ -340,6 +448,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        internal static string Invoice {
+            get {
+                return ResourceManager.GetString("Invoice", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send me an invoice by email.
+        /// </summary>
+        internal static string InvoiceByEmailName {
+            get {
+                return ResourceManager.GetString("InvoiceByEmailName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to $5.77 postal fee will be included.
+        /// </summary>
+        internal static string InvoiceByPostDescription {
+            get {
+                return ResourceManager.GetString("InvoiceByPostDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Send me an invoice by regular mail.
+        /// </summary>
+        internal static string InvoiceByPostName {
+            get {
+                return ResourceManager.GetString("InvoiceByPostName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Item.
         /// </summary>
         internal static string Item {
@@ -457,6 +601,51 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment options.
+        /// </summary>
+        internal static string PaymentOptions {
+            get {
+                return ResourceManager.GetString("PaymentOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to PayPal to enter your credentials and then will be returned here to finish the transaction..
+        /// </summary>
+        internal static string PayPalDescription {
+            get {
+                return ResourceManager.GetString("PayPalDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PayPal.
+        /// </summary>
+        internal static string PayPalName {
+            get {
+                return ResourceManager.GetString("PayPalName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay using.
+        /// </summary>
+        internal static string PayUsing {
+            get {
+                return ResourceManager.GetString("PayUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Period.
+        /// </summary>
+        internal static string Period {
+            get {
+                return ResourceManager.GetString("Period", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Phone.
         /// </summary>
         internal static string Phone {
@@ -471,6 +660,24 @@ namespace Resources {
         internal static string PricingVariantDisplay {
             get {
                 return ResourceManager.GetString("PricingVariantDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Product.
+        /// </summary>
+        internal static string Product {
+            get {
+                return ResourceManager.GetString("Product", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I have read and agree with the.
+        /// </summary>
+        internal static string ReadAndAgree {
+            get {
+                return ResourceManager.GetString("ReadAndAgree", resourceCulture);
             }
         }
         
@@ -601,6 +808,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string String1 {
+            get {
+                return ResourceManager.GetString("String1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subtotal.
         /// </summary>
         internal static string Subtotal {
@@ -628,11 +844,65 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Terms.
+        /// </summary>
+        internal static string Terms {
+            get {
+                return ResourceManager.GetString("Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CORE&apos;s Terms and Conditions.
+        /// </summary>
+        internal static string TOS_core_Name {
+            get {
+                return ResourceManager.GetString("TOS_core_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a placeholder for the company&apos;s Terms and Conditions..
+        /// </summary>
+        internal static string TOS_core_Terms {
+            get {
+                return ResourceManager.GetString("TOS_core_Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Terms and Conditions for .SE domain names.
+        /// </summary>
+        internal static string TOS_se_Name {
+            get {
+                return ResourceManager.GetString("TOS_se_Name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This is a placeholder for the company&apos;s Terms and Conditions..
+        /// </summary>
+        internal static string TOS_se_Terms {
+            get {
+                return ResourceManager.GetString("TOS_se_Terms", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Total.
         /// </summary>
         internal static string Total {
             get {
                 return ResourceManager.GetString("Total", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Try again.
+        /// </summary>
+        internal static string TryAgain {
+            get {
+                return ResourceManager.GetString("TryAgain", resourceCulture);
             }
         }
         
