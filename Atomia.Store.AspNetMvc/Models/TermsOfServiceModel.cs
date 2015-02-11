@@ -16,7 +16,7 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public string Terms { get; set; }
 
-        [AtomiaRequiredConfirmation("ValidationErrors, TermsConfirmation")]
+//        [AtomiaRequiredConfirmation("ValidationErrors, TermsConfirmation")]
         public bool Confirmed { get; set; }
     }
 }

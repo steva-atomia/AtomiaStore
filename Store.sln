@@ -31,8 +31,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.WebBase", "Ato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Payment.PayPal", "Atomia.Store.Payment.PayPal\Atomia.Store.Payment.PayPal.csproj", "{34E4FC9C-5995-4441-A3F0-5C82E74B5E65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Web.Plugin.Validation", "..\WebFramePlugins\Atomia\Web\Plugins\Atomia Web Frame v2.x\Validation\Atomia.Web.Plugin.Validation.csproj", "{E9142A99-3BA0-4100-B349-ED78D7286E77}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Payment.Invoice", "Atomia.Store.Payment.Invoice\Atomia.Store.Payment.Invoice.csproj", "{EC5F1AF3-2FEF-4BC7-892C-9D8B7A55CD5C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Payment.PayExRedirect", "Atomia.Store.Payment.PayExRedirect\Atomia.Store.Payment.PayExRedirect.csproj", "{BD45C681-B126-43B1-9BEA-80E6A42D0528}"
@@ -99,10 +97,6 @@ Global
 		{34E4FC9C-5995-4441-A3F0-5C82E74B5E65}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{34E4FC9C-5995-4441-A3F0-5C82E74B5E65}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{34E4FC9C-5995-4441-A3F0-5C82E74B5E65}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E9142A99-3BA0-4100-B349-ED78D7286E77}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E9142A99-3BA0-4100-B349-ED78D7286E77}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E9142A99-3BA0-4100-B349-ED78D7286E77}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E9142A99-3BA0-4100-B349-ED78D7286E77}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EC5F1AF3-2FEF-4BC7-892C-9D8B7A55CD5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EC5F1AF3-2FEF-4BC7-892C-9D8B7A55CD5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EC5F1AF3-2FEF-4BC7-892C-9D8B7A55CD5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
