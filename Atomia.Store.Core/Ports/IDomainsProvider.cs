@@ -7,5 +7,7 @@ namespace Atomia.Store.Core
         IEnumerable<Product> GetDomains(ICollection<SearchTerm> terms);
 
         string GetStatus(string domainName);
+
+        IEnumerable<string> GetDomainCategories();
     }
 }

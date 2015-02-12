@@ -235,7 +235,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         defaults = function (self) {
             return {
                 CreateCartItem: _.partial(CreateCartItem, itemExtensions || {}),
-                DomainCategories: ['TLD', 'TransferTLD', 'OwnDomain'],
+                DomainCategories: [],
                 CartItems: ko.observableArray(),
                 SubTotal: ko.observable(0),
                 Total: ko.observable(0),

@@ -9,11 +9,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
     public sealed class CartController : Controller
     {
         private readonly Cart cart;
-        
+        private readonly IDomainsProvider domainsProvider;
 
         public CartController()
         {
             var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
+            
+            this.domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
             this.cart = cartProvider.GetCart();
         }
 
@@ -21,7 +23,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             return JsonEnvelope.Success(new
                 {
-                    Cart = new CartModel(cart)
+                    Cart = new CartModel(cart),
+                    DomainCategories = domainsProvider.GetDomainCategories()
                 });
         }
 

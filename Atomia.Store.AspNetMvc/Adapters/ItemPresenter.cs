@@ -3,22 +3,35 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Atomia.Store.Fakes.Adapters
+namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class FakeItemPresenter: IItemPresenter
+    public class ItemPresenter: IItemPresenter
     {
-        private IProductProvider productProvider;
+        private readonly IProductProvider productProvider;
+        private readonly IDomainsProvider domainsProvider;
 
-        public FakeItemPresenter(IProductProvider productProvider)
+        public ItemPresenter(IProductProvider productProvider, IDomainsProvider domainsProvider)
         {
+            if (productProvider == null)
+            {
+                throw new ArgumentNullException("productProvider");
+            }
+
+            if (domainsProvider == null)
+            {
+                throw new ArgumentNullException("domainsProvider");
+            }
+
             this.productProvider = productProvider;
+            this.domainsProvider = domainsProvider;
         }
         
         public string GetName(IPresentableItem item)
         {
             var product = productProvider.GetProduct(item.ArticleNumber);
+            var domainCategories = domainsProvider.GetDomainCategories();
 
-            if (product.Category == "Domain")
+            if (domainCategories.Contains(product.Category))
             {
                 var domainNameAttr = item.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainName");
                 

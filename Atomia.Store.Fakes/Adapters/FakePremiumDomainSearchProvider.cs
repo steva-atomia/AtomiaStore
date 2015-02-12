@@ -142,5 +142,11 @@ namespace Atomia.Store.Fakes.Adapters
         {
             return "available";
         }
+
+
+        public IEnumerable<string> GetDomainCategories()
+        {
+            return new List<string> { "TLD", "TransferTLD", "OwnDomain" };
+        }
     }
 }
