@@ -62,6 +62,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     ItemNo = itemNo++
                 });
             }
+            publicOrder.OrderItems = publicOrderItems.ToArray();
 
             var publicOrderCustomData = new List<PublicOrderCustomData>();
             if (!string.IsNullOrEmpty(cart.CampaignCode))
@@ -82,7 +83,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             foreach(var cartItem in cart.CartItems)
             {
                 var calculatedItem = calculatedPublicOrder.OrderItems
-                    .First(x => x.ItemNumber == cartItem.ArticleNumber && x.RenewalPeriod == cartItem.RenewalPeriod.Period && x.RenewalPeriodUnit == cartItem.RenewalPeriod.Unit);
+                    .First(x => x.ItemNumber == cartItem.ArticleNumber 
+                        && x.RenewalPeriod == cartItem.RenewalPeriod.Period 
+                        && x.RenewalPeriodUnit.ToUpper() == cartItem.RenewalPeriod.Unit);
 
                 cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, calculatedItem.TaxAmount);
                 cartItem.Quantity = calculatedItem.Quantity;
@@ -103,7 +106,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
         private Guid GetRenewalPeriodId(CartItem cartItem)
         {
-            var renewalPeriod = cartItem.RenewalPeriod;
+            if (cartItem.RenewalPeriod == null)
+            {
+                return Guid.Empty;
+            }
+
+            var period = cartItem.RenewalPeriod.Period;
+            var unit = cartItem.RenewalPeriod.Unit;
             var product = productsProvider.GetShopProductsByArticleNumbers(resellerProvider.GetReseller().Id, "", new List<string> { cartItem.ArticleNumber }).FirstOrDefault();
 
             if (product == null)
@@ -111,11 +120,12 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new InvalidOperationException(String.Format("No product with articlenumber {0} found", cartItem.ArticleNumber));
             }
 
-            var apiRenewalPeriod = product.RenewalPeriods.FirstOrDefault(r => r.RenewalPeriodUnit == renewalPeriod.Unit && r.RenewalPeriodValue == renewalPeriod.Period);
+            var apiRenewalPeriod = product.RenewalPeriods
+                .FirstOrDefault(r => r.RenewalPeriodUnit.ToUpper() == unit && r.RenewalPeriodValue == period);
 
             if (apiRenewalPeriod == null)
             {
-                throw new InvalidOperationException(String.Format("No renewal period {0} {1} found", renewalPeriod.Period, renewalPeriod.Unit));
+                throw new InvalidOperationException(String.Format("No renewal period {0} {1} found", period, unit));
             }
 
             return apiRenewalPeriod.Id;
