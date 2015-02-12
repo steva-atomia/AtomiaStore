@@ -47,7 +47,6 @@
     <Compile Include="Adapters\FakeOrderPlacementService.cs" />
     <Compile Include="Adapters\FakePaymentMethodsProvider.cs" />
     <Compile Include="Adapters\FakePremiumDomainSearchProvider.cs" />
-    <Compile Include="Adapters\FakeItemPresenter.cs" />
     <Compile Include="Adapters\FakeLanguageProvider.cs" />
     <Compile Include="Adapters\FakePricingProvider.cs" />
     <Compile Include="Adapters\FakeCategoryProductsProvider.cs" />

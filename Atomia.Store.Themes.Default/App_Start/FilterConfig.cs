@@ -1,4 +1,4 @@
-﻿using Atomia.Web.Base.ActionFilters;
+﻿using Atomia.Store.AspNetMvc.Filters;
 using System.Web.Mvc;
 
 namespace Atomia.Store.Themes.Default
@@ -7,7 +7,7 @@ namespace Atomia.Store.Themes.Default
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new InternationalizationAttribute());
+            filters.Add(new LanguageFilter());
         }
     }
 }

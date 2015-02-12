@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Atomia.Store.Core
 {
@@ -13,6 +14,18 @@ namespace Atomia.Store.Core
         public string PrimaryTag { get; set; }
 
         public string RegionTag { get; set; }
+
+        public CultureInfo AsCultureInfo()
+        {
+            if (String.IsNullOrEmpty(RegionTag))
+            {
+                return CultureInfo.CreateSpecificCulture(PrimaryTag.ToLower());
+            }
+            else
+            {
+                return CultureInfo.GetCultureInfo(Tag.ToLower());
+            }
+        }
 
         public static Language CreateLanguage(IResourceProvider resourceProvider, string languageTag)
         {

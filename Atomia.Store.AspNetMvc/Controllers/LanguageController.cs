@@ -23,7 +23,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return JsonEnvelope.Success(new
             {
                 Languages = languageProvider.GetAvailableLanguages(),
-                CurrentLanguage = languagePreferenceProvider.GetPreferredLanguage()
+                CurrentLanguage = languagePreferenceProvider.GetCurrentLanguage()
             });
         }
     }

@@ -16,12 +16,12 @@ namespace Atomia.Store.Fakes.Adapters
             this.resourceProvider = resourceProvider;
         }
 
-        public Language GetPreferredLanguage()
+        public Language GetCurrentLanguage()
         {
             return Language.CreateLanguage(resourceProvider, "EN");
         }
 
-        public void SetPreference(Language language)
+        public void SetPreferredLanguage(Language language)
         {
             
         }

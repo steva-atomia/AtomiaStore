@@ -9,8 +9,8 @@ namespace Atomia.Store.Core
 {
     public interface ILanguagePreferenceProvider
     {
-        void SetPreference(Language language);
+        void SetPreferredLanguage(Language language);
 
-        Language GetPreferredLanguage();
+        Language GetCurrentLanguage();
     }
 }

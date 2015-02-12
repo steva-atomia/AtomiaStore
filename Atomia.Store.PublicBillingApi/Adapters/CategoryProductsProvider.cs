@@ -55,7 +55,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             var category = terms.First().Value;
             var resellerId = resellerProvider.GetReseller().Id;
             var currencyCode = currencyProvider.GetCurrencyCode();
-            var language = languagePreferenceProvider.GetPreferredLanguage();
+            var language = languagePreferenceProvider.GetCurrentLanguage();
             var products = new List<CoreProduct>();
 
             var apiProducts = productsProvider.GetShopProductsByCategories(resellerId, null, new List<string>() { category });
