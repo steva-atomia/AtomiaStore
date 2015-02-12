@@ -37,6 +37,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IProductListProvider, Atomia.Store.PublicBillingApi.Adapters.CategoryProductsProvider>("Category");
             container.RegisterType<IProductProvider, Atomia.Store.PublicBillingApi.Adapters.ProductProvider>();
             container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.CartPricingProvider>();
+            container.RegisterType<IPaymentMethodsProvider, Atomia.Store.PublicBillingApi.Adapters.PaymentMethodsProvider>();
             
 
             // Payment plugins
@@ -81,9 +82,9 @@ namespace Atomia.Store.Themes.Default
             //container.RegisterType<IProductListProvider, Atomia.Store.Fakes.Adapters.FakeCategoryProductsProvider>();
             //container.RegisterType<IProductProvider, Atomia.Store.Fakes.Adapters.FakeCategoryProductsProvider>();
             //container.RegisterType<ICartPricingService, Atomia.Store.Fakes.Adapters.FakePricingProvider>();
+            //container.RegisterType<IPaymentMethodsProvider, Atomia.Store.Fakes.Adapters.FakePaymentMethodsProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.Fakes.Adapters.FakeItemPresenter>();
             container.RegisterType<ILanguagePreferenceProvider, Atomia.Store.Fakes.Adapters.FakeLanguagePreferenceProvider>();
-            container.RegisterType<IPaymentMethodsProvider, Atomia.Store.Fakes.Adapters.FakePaymentMethodsProvider>();
             container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainSearchProvider>();
             container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
             container.RegisterType<IResellerIdentifierProvider, Atomia.Store.Fakes.Adapters.FakeRootResellerIdentifierProvider>();
