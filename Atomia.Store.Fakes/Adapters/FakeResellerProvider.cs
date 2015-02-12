@@ -9,14 +9,13 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public class FakeResellerProvider : IResellerProvider
     {
-        public Guid GetResellerId()
+        public Reseller GetReseller()
         {
-            return new Guid("B77B8B91-741B-4CF1-88B4-FEB21550055C");
-        }
-
-        public bool IsSubReseller()
-        {
-            return false;
+            return new Reseller
+            {
+                Id = new Guid("B77B8B91-741B-4CF1-88B4-FEB21550055C"),
+                IsSubReseller = false
+            };
         }
     }
 }

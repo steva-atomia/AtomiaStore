@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeCategoryProductsProvider : IProductsProvider
+    public class FakeCategoryProductsProvider : IProductListProvider, IProductProvider
     {
         public string Name
         {
@@ -34,7 +34,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "DNS Package",
-                    Category = "Hosting",
+                    Category = "HostingPackage",
                     ArticleNumber = "DNS-PK",
                     Description = "DNS Package<ul><li>Domain management</li><li>DNS</li></br></br></ul>",
                     PricingVariants = new List<PricingVariant>
@@ -56,7 +56,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "Gold Package",
-                    Category = "Hosting",
+                    Category = "HostingPackage",
                     ArticleNumber = "HST-GLD",
                     Description = "Basic hosting package<ul><li>Web hosting</li><li>Email</li><li>Domain management</li><li>DNS</li></ul>",
                     PricingVariants = new List<PricingVariant>
@@ -86,7 +86,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "Platinum package",
-                    Category = "Hosting",
+                    Category = "HostingPackage",
                     ArticleNumber = "HST-PLT",
                     Description = "Premium hosting package<ul><li>Web hosting</li><li>Email</li><li>Domain management</li><li>DNS</li></ul>",
                     PricingVariants = new List<PricingVariant>

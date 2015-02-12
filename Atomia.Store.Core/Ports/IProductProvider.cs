@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public interface IResellerProvider
+    public interface IProductProvider
     {
-        Reseller GetReseller();
+        Product GetProduct(string articleNumber);
     }
 }

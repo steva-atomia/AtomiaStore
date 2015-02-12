@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Data" />
@@ -49,6 +50,7 @@
     <Compile Include="Adapters\FakeLanguageProvider.cs" />
     <Compile Include="Adapters\FakePricingProvider.cs" />
     <Compile Include="Adapters\FakeCategoryProductsProvider.cs" />
+    <Compile Include="Adapters\FakeRootResellerIdentifierProvider.cs" />
     <Compile Include="Adapters\FakeResellerProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

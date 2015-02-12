@@ -2,32 +2,57 @@
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System.Collections.Generic;
 using System.Linq;
+using System;
+using Atomia.Web.Plugin.ProductsProvider;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class CartPricingProvider : ICartPricingService
+    public class CartPricingProvider : PublicBillingApiClient, ICartPricingService
     {
-        private readonly IOrderCreator orderCreator;
-        private readonly IOrderCalculator orderCalculator;
-        private readonly IRenewalPeriodProvider renewalPeriodProvider;
+        private readonly IProductsProvider productsProvider;
+        private readonly IResellerProvider resellerProvider;
+        private readonly ICurrencyProvider currencyProvider;
+        private readonly ICountryProvider countryProvider;
 
-        public CartPricingProvider(IOrderCreator orderCreator, IOrderCalculator orderCalculator, IRenewalPeriodProvider renewalPeriodProvider)
+        public CartPricingProvider(IProductsProvider productsProvider, IResellerProvider resellerProvider, ICurrencyProvider currencyProvider, ICountryProvider countryProvider, PublicBillingApiProxy billingApi)
+            : base(billingApi)
         {
-            this.orderCreator = orderCreator;
-            this.orderCalculator = orderCalculator;
-            this.renewalPeriodProvider = renewalPeriodProvider;   
+            if (productsProvider == null)
+            {
+                throw new ArgumentNullException("productsProvider");
+            }
+
+            if (resellerProvider == null)
+            {
+                throw new ArgumentNullException("productsProvider");
+            }
+
+            if (currencyProvider == null)
+            {
+                throw new ArgumentNullException("currencyProvider");
+            }
+
+            if (countryProvider == null)
+            {
+                throw new ArgumentNullException("countryProvider");
+            }
+
+            this.productsProvider = productsProvider;
+            this.resellerProvider = resellerProvider;
+            this.currencyProvider = currencyProvider;
+            this.countryProvider = countryProvider;
         }
 
         public Cart CalculatePricing(Cart cart)
         {
-            var publicOrder = orderCreator.CreateBasicOrder();
+            var publicOrder = CreateBasicOrder();
 
             var publicOrderItems = new List<PublicOrderItem>();
             var itemNo = 0;
 
             foreach(var cartItem in cart.CartItems)
             {
-                var renewalPeriodId = renewalPeriodProvider.GetRenewalPeriodId(cartItem.ArticleNumber, cartItem.RenewalPeriod.Period, cartItem.RenewalPeriod.Unit);
+                var renewalPeriodId = GetRenewalPeriodId(cartItem);
 
                 publicOrderItems.Add(new PublicOrderItem
                 {
@@ -50,7 +75,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             }
             publicOrder.CustomData = publicOrderCustomData.ToArray();
 
-            var calculatedPublicOrder = orderCalculator.CalculateOrder(publicOrder);
+            var calculatedPublicOrder = BillingApi.CalculateOrder(publicOrder);
 
             cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Taxes.Sum(t => t.Total), calculatedPublicOrder.Total);
 
@@ -64,6 +89,36 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             }
 
             return cart;
+        }
+
+        private PublicOrder CreateBasicOrder()
+        {
+            return new PublicOrder
+            {
+                ResellerId = resellerProvider.GetReseller().Id,
+                Country = countryProvider.GetDefaultCountry().Code,
+                Currency = currencyProvider.GetCurrencyCode()
+            };
+        }
+
+        private Guid GetRenewalPeriodId(CartItem cartItem)
+        {
+            var renewalPeriod = cartItem.RenewalPeriod;
+            var product = productsProvider.GetShopProductsByArticleNumbers(resellerProvider.GetReseller().Id, "", new List<string> { cartItem.ArticleNumber }).FirstOrDefault();
+
+            if (product == null)
+            {
+                throw new InvalidOperationException(String.Format("No product with articlenumber {0} found", cartItem.ArticleNumber));
+            }
+
+            var apiRenewalPeriod = product.RenewalPeriods.FirstOrDefault(r => r.RenewalPeriodUnit == renewalPeriod.Unit && r.RenewalPeriodValue == renewalPeriod.Period);
+
+            if (apiRenewalPeriod == null)
+            {
+                throw new InvalidOperationException(String.Format("No renewal period {0} {1} found", renewalPeriod.Period, renewalPeriod.Unit));
+            }
+
+            return apiRenewalPeriod.Id;
         }
     }
 }

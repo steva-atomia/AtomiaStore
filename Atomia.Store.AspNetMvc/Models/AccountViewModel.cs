@@ -23,7 +23,7 @@ namespace Atomia.Store.AspNetMvc.Models
             var resellerProvider = DependencyResolver.Current.GetService<IResellerProvider>();
             var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
 
-            var resellerId = resellerProvider.GetResellerId();
+            var resellerId = resellerProvider.GetReseller().Id;
             var cart = cartProvider.GetCart();
 
 

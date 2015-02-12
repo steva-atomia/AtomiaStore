@@ -44,9 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\CartPricingProvider.cs" />
-    <Compile Include="Helpers\OrderCreator.cs" />
-    <Compile Include="Helpers\RenewalPeriodProvider.cs" />
-    <Compile Include="Helpers\PublicBillingApiProxy.cs" />
+    <Compile Include="Adapters\CategoryProductsProvider.cs" />
+    <Compile Include="Adapters\CountryProvider.cs" />
+    <Compile Include="Adapters\LanguageProvider.cs" />
+    <Compile Include="Adapters\ResellerProvider.cs" />
+    <Compile Include="PublicBillingApiClient.cs" />
+    <Compile Include="PublicBillingApiProxy.cs" />
     <Compile Include="Ports\PaymentMethodHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

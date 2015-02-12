@@ -2,12 +2,10 @@
 
 namespace Atomia.Store.Core
 {
-    public interface IProductsProvider
+    public interface IProductListProvider
     {
         string Name { get; }
 
         IEnumerable<Product> GetProducts(ICollection<SearchTerm> terms);
-
-        Product GetProduct(string articleNumber);
     }
 }

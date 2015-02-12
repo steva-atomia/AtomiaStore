@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public interface IResellerProvider
+    public class ResellerIdentifier
     {
-        Reseller GetReseller();
+        public string AccountHash { get; set; }
+
+        public string BaseUrl { get; set; }
     }
 }

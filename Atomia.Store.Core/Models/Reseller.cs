@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public interface IResellerProvider
+    public class Reseller
     {
-        Reseller GetReseller();
+        public Guid Id { get; set; }
+
+        public bool IsSubReseller { get; set; }
     }
 }

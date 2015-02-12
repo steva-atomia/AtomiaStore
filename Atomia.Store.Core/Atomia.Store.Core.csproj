@@ -57,6 +57,8 @@
     <Compile Include="Models\PaymentTransaction.cs" />
     <Compile Include="Models\PricingVariant.cs" />
     <Compile Include="Models\RequiredAttribute.cs" />
+    <Compile Include="Models\Reseller.cs" />
+    <Compile Include="Models\ResellerIdentifier.cs" />
     <Compile Include="Models\SearchTerm.cs" />
     <Compile Include="Models\TermsOfService.cs" />
     <Compile Include="Ports\IContactDataCollection.cs" />
@@ -64,10 +66,12 @@
     <Compile Include="Ports\ICustomerTypeProvider.cs" />
     <Compile Include="Ports\IOrderPlacementService.cs" />
     <Compile Include="Ports\IPaymentMethod.cs" />
+    <Compile Include="Ports\IProductProvider.cs" />
+    <Compile Include="Ports\IResellerIdentifierProvider.cs" />
     <Compile Include="Ports\ITermsOfServiceProvider.cs" />
     <Compile Include="Ports\PaymentMethodData.cs" />
     <Compile Include="Ports\IPaymentMethodsProvider.cs" />
-    <Compile Include="Ports\IProductsProvider.cs" />
+    <Compile Include="Ports\IProductListProvider.cs" />
     <Compile Include="Ports\IDomainsProvider.cs" />
     <Compile Include="Ports\ICartPricingService.cs" />
     <Compile Include="Ports\ICartProvider.cs" />

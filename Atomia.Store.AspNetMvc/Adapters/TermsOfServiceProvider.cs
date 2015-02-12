@@ -10,20 +10,20 @@ namespace Atomia.Store.AspNetMvc.Adapters
     public class TermsOfServiceProvider : ITermsOfServiceProvider
     {
         private readonly ICartProvider cartProvider;
-        private readonly IProductsProvider productsProvider;
+        private readonly IProductProvider productProvider;
         private readonly IResourceProvider resourceProvider;
         private readonly IResellerProvider resellerProvider;
 
-        public TermsOfServiceProvider(ICartProvider cartProvider, IProductsProvider productsProvider, IResourceProvider resourceProvider, IResellerProvider resellerProvider)
+        public TermsOfServiceProvider(ICartProvider cartProvider, IProductProvider productProvider, IResourceProvider resourceProvider, IResellerProvider resellerProvider)
         {
             if (cartProvider == null)
             {
                 throw new ArgumentNullException("cartProvider");
             }
 
-            if (productsProvider == null)
+            if (productProvider == null)
             {
-                throw new ArgumentNullException("productsProvider");
+                throw new ArgumentNullException("productProvider");
             }
 
             if (resourceProvider == null)
@@ -37,7 +37,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
 
             this.cartProvider = cartProvider;
-            this.productsProvider = productsProvider;
+            this.productProvider = productProvider;
             this.resourceProvider = resourceProvider;
             this.resellerProvider = resellerProvider;
         }
@@ -47,12 +47,12 @@ namespace Atomia.Store.AspNetMvc.Adapters
             var termsOfService = new HashSet<TermsOfService>();
             var cart = cartProvider.GetCart();
             var articleNumbers = new HashSet<string>(cart.CartItems.Select(c => c.ArticleNumber));
-            var isReseller = resellerProvider.IsSubReseller();
+            var isReseller = resellerProvider.GetReseller().IsSubReseller;
             var tosResources = new HashSet<string>();
 
             foreach (var articleNumber in articleNumbers)
             {
-                var product = productsProvider.GetProduct(articleNumber);
+                var product = productProvider.GetProduct(articleNumber);
 
                 if (product != null)
                 {

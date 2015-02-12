@@ -10,11 +10,11 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class ProductListingController : Controller
     {
-        private readonly IEnumerable<IProductsProvider> providers;
+        private readonly IEnumerable<IProductListProvider> providers;
 
         public ProductListingController()
         {
-            this.providers = DependencyResolver.Current.GetServices<IProductsProvider>();
+            this.providers = DependencyResolver.Current.GetServices<IProductListProvider>();
         }
 
         [HttpGet]

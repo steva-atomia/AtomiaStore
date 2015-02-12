@@ -3,6 +3,7 @@ using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi.Ports;
+using Atomia.Store.PublicBillingApi;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System.Web.Mvc;
@@ -52,6 +53,11 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.WorldPayXml.WorldPayXmlHandler>("WorldPayXml");
 
 
+            // PublicBillingApi types
+            container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
+            container.RegisterType<PublicBillingApiProxy, PublicBillingApiProxy>();
+            container.RegisterType<ResellerDataProvider, ResellerDataProvider>();
+
 
             // ViewModels
             container.RegisterType<DomainViewModel, DomainViewModel>();
@@ -59,7 +65,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
             container.RegisterType<AccountViewModel, DefaultAccountViewModel>();
             container.RegisterType<CheckoutViewModel, DefaultCheckoutViewModel>();
-            
+
 
             // Fakes
             container.RegisterType<ICartPricingService, Atomia.Store.Fakes.Adapters.FakePricingProvider>();
@@ -68,9 +74,10 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IResellerProvider, Atomia.Store.Fakes.Adapters.FakeResellerProvider>();
             container.RegisterType<ICountryProvider, Atomia.Store.Fakes.Adapters.FakeCountryProvider>();
             container.RegisterType<IPaymentMethodsProvider, Atomia.Store.Fakes.Adapters.FakePaymentMethodsProvider>();
-            container.RegisterType<IProductsProvider, Atomia.Store.Fakes.Adapters.FakeCategoryProductsProvider>();
+            container.RegisterType<IProductListProvider, Atomia.Store.Fakes.Adapters.FakeCategoryProductsProvider>();
             container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainSearchProvider>();
             container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
+            container.RegisterType<IResellerIdentifierProvider, Atomia.Store.Fakes.Adapters.FakeRootResellerIdentifierProvider>();
 
             container.LoadConfiguration();
 
