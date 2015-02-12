@@ -43,7 +43,7 @@ namespace Atomia.Store.Themes.Default
             // Payment plugins
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.AdyenHpp.AdyenHppGuiPlugin>("AdyenHpp");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinGuiPlugin>("DibsFlexwin");
-            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.InvoiceByEmailGuiPlugin>("InvoiceByEmail");
+            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.PayWithInvoiceGuiPlugin>("InvoiceByEmail");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.InvoiceByPostGuiPlugin>("InvoiceByPost");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.PayExRedirect.PayExRedirectGuiPlugin>("PayExRedirect");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.PayPal.PayPalGuiPlugin>("PayPal");
@@ -52,7 +52,7 @@ namespace Atomia.Store.Themes.Default
 
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.AdyenHpp.AdyenHppHandler>("AdyenHpp");
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinHandler>("DibsFlexwin");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.Invoice.InvoiceByEmailHandler>("InvoiceByEmail");
+            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.Invoice.PayWithInvoiceHandler>("InvoiceByEmail");
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.Invoice.InvoiceByPostHandler>("InvoiceByPost");
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.PayExRedirect.PayExRedirectHandler>("PayExRedirect");
             container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.PayPal.PayPalHandler>("PayPal");

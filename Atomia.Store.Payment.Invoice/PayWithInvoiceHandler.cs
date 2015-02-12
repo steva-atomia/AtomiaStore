@@ -8,11 +8,11 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.Payment.Invoice
 {
-    public class InvoiceByEmailHandler : PaymentMethodHandler
+    public class PayWithInvoiceHandler : PaymentMethodHandler
     {
         public override string Id
         {
-            get { return "InvoiceByEmail"; }
+            get { return "PayWithInvoice"; }
         }
 
         public override PaymentMethodEnum PaymentMethodType

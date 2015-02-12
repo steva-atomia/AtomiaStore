@@ -511,15 +511,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Send me an invoice by email.
-        /// </summary>
-        internal static string InvoiceByEmailName {
-            get {
-                return ResourceManager.GetString("InvoiceByEmailName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to $5.77 postal fee will be included.
         /// </summary>
         internal static string InvoiceByPostDescription {
@@ -687,6 +678,15 @@ namespace Resources {
         internal static string PayUsing {
             get {
                 return ResourceManager.GetString("PayUsing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invoice.
+        /// </summary>
+        internal static string PayWithInvoiceName {
+            get {
+                return ResourceManager.GetString("PayWithInvoiceName", resourceCulture);
             }
         }
         

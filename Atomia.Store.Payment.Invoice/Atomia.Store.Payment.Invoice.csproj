@@ -43,9 +43,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="InvoiceByPostHandler.cs" />
-    <Compile Include="InvoiceByEmailHandler.cs" />
+    <Compile Include="PayWithInvoiceHandler.cs" />
     <Compile Include="InvoiceByPostGuiPlugin.cs" />
-    <Compile Include="InvoiceByEmailGuiPlugin.cs" />
+    <Compile Include="PayWithInvoiceGuiPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

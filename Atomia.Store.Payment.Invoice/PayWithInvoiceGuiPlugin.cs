@@ -8,11 +8,11 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.Payment.Invoice
 {
-    public class InvoiceByEmailGuiPlugin : PaymentMethodGuiPlugin
+    public class PayWithInvoiceGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 
-        public InvoiceByEmailGuiPlugin(IResourceProvider resourceProvider)
+        public PayWithInvoiceGuiPlugin(IResourceProvider resourceProvider)
         {
             if (resourceProvider == null)
             {
@@ -24,14 +24,14 @@ namespace Atomia.Store.Payment.Invoice
 
         public override string Id
         {
-            get { return "InvoiceByEmail"; }
+            get { return "PayWithInvoice"; }
         }
 
         public override string Name
         {
             get 
-            { 
-                return resourceProvider.GetResource("InvoiceByEmailName"); 
+            {
+                return resourceProvider.GetResource("PayWithInvoiceName"); 
             }
         }
 
@@ -39,8 +39,10 @@ namespace Atomia.Store.Payment.Invoice
         {
             get
             {
-                return resourceProvider.GetResource("InvoiceByEmailDescription"); 
+                return resourceProvider.GetResource("PayWithInvoiceDescription"); 
             }
         }
+
+        // TODO: Add form to select between email and post invoice.
     }
 }
