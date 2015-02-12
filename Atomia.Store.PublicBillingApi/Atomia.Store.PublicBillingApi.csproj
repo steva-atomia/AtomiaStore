@@ -33,6 +33,9 @@
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.ProductsProvider">
+      <HintPath>..\Lib\Atomia.Web.Plugin.ProductsProvider.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
@@ -52,6 +55,7 @@
     <Compile Include="PublicBillingApiProxy.cs" />
     <Compile Include="Ports\PaymentMethodHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ResellerDataProvider.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.Core\Atomia.Store.Core.csproj">
