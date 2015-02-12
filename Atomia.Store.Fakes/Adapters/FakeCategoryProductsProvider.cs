@@ -27,7 +27,7 @@ namespace Atomia.Store.Fakes.Adapters
 
         public IEnumerable<Product> GetAllProducts()
         {
-            var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" } };
+            var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod(1, RenewalPeriod.YEAR) };
 
             var products = new List<Product>
             {
@@ -64,7 +64,7 @@ namespace Atomia.Store.Fakes.Adapters
                         new PricingVariant 
                         {
                             Price = 10m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(1, RenewalPeriod.YEAR)
                         }
                     },
                     CustomAttributes = new List<CustomAttribute>
@@ -94,16 +94,16 @@ namespace Atomia.Store.Fakes.Adapters
                         new PricingVariant 
                         {
                             Price = 10m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 6, Unit = "MONTH" }
+                            RenewalPeriod = new RenewalPeriod(6, RenewalPeriod.MONTH)
                         },
                         new PricingVariant
                         {
                             Price = 20m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(1, RenewalPeriod.YEAR)
                         },
                         new PricingVariant {
                             Price = 40m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(2, RenewalPeriod.YEAR)
                         },
                     },
                     CustomAttributes = new List<CustomAttribute>
@@ -125,12 +125,12 @@ namespace Atomia.Store.Fakes.Adapters
                         new PricingVariant
                         {
                             Price = 10m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(1, RenewalPeriod.YEAR)
                         },
                         new PricingVariant
                         {
                             Price = 20m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(2, RenewalPeriod.YEAR)
                         },
                     },
                 },
@@ -145,12 +145,12 @@ namespace Atomia.Store.Fakes.Adapters
                         new PricingVariant
                         {
                             Price = 10m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 1, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(1, RenewalPeriod.YEAR)
                         },
                         new PricingVariant
                         {
                             Price = 20m,
-                            RenewalPeriod = new RenewalPeriod() { Period = 2, Unit = "YEAR" }
+                            RenewalPeriod = new RenewalPeriod(2, RenewalPeriod.YEAR)
                         },
                     },
                 },
@@ -229,7 +229,7 @@ namespace Atomia.Store.Fakes.Adapters
                 }
             };
 
-            return products;
+            return products.OrderBy(p => p.PricingVariants.Min(v => v.Price));
         }
     }
 }

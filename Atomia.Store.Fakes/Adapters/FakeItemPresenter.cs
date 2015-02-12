@@ -7,19 +7,16 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public class FakeItemPresenter: IItemPresenter
     {
-        private List<Product> allProducts;
+        private IProductProvider productProvider;
 
-        public FakeItemPresenter()
+        public FakeItemPresenter(IProductProvider productProvider)
         {
-            // TODO: for real presenter use plugin product provider interface for getting based on articlenumber
-            var productsProvider = new FakeCategoryProductsProvider();
-
-            this.allProducts = productsProvider.GetAllProducts().ToList();
+            this.productProvider = productProvider;
         }
         
         public string GetName(IPresentableItem item)
         {
-            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+            var product = productProvider.GetProduct(item.ArticleNumber);
 
             if (product.Category == "Domain")
             {
@@ -35,14 +32,14 @@ namespace Atomia.Store.Fakes.Adapters
 
         public string GetDescription(IPresentableItem item)
         {
-            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+            var product = productProvider.GetProduct(item.ArticleNumber);
 
             return product.Description;
         }
 
         public string GetCategory(IPresentableItem item)
         {
-            var product = allProducts.First(p => p.ArticleNumber == item.ArticleNumber);
+            var product = productProvider.GetProduct(item.ArticleNumber);
 
             return product.Category;
         }

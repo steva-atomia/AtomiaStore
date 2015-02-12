@@ -50,7 +50,9 @@
     <Compile Include="Adapters\CategoryProductsProvider.cs" />
     <Compile Include="Adapters\CountryProvider.cs" />
     <Compile Include="Adapters\LanguageProvider.cs" />
+    <Compile Include="Adapters\ProductProvider.cs" />
     <Compile Include="Adapters\ResellerProvider.cs" />
+    <Compile Include="ProductMapper.cs" />
     <Compile Include="PublicBillingApiClient.cs" />
     <Compile Include="PublicBillingApiProxy.cs" />
     <Compile Include="Ports\PaymentMethodHandler.cs" />

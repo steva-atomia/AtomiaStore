@@ -13,8 +13,7 @@ namespace Atomia.Store.Fakes.Adapters
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
-                var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod { Period = 1, Unit = "YEAR" } };
-
+                var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod(1, RenewalPeriod.YEAR) };
                 results.Add(new Product
                 {
                     ArticleNumber = "DMN-COM",

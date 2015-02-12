@@ -76,11 +76,7 @@ namespace Atomia.Store.AspNetMvc.Models
             {
                 if (value != null)
                 {
-                    cartItem.RenewalPeriod = new RenewalPeriod
-                    {
-                        Period = value.Period,
-                        Unit = value.Unit
-                    };
+                    cartItem.RenewalPeriod = new RenewalPeriod(value.Period, value.Unit);
                 }
             }
         }
