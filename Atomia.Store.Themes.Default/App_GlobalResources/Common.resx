@@ -411,4 +411,28 @@
   <data name="TryAgain" xml:space="preserve">
     <value>Try again</value>
   </data>
+  <data name="DE_name" xml:space="preserve">
+    <value>German</value>
+  </data>
+  <data name="DE_shortname" xml:space="preserve">
+    <value>DE</value>
+  </data>
+  <data name="EN_name" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="EN_shortname" xml:space="preserve">
+    <value>EN</value>
+  </data>
+  <data name="FR_name" xml:space="preserve">
+    <value>French</value>
+  </data>
+  <data name="FR_shortname" xml:space="preserve">
+    <value>FR</value>
+  </data>
+  <data name="SV_SE_name" xml:space="preserve">
+    <value>Swedish</value>
+  </data>
+  <data name="SV_SE_shortname" xml:space="preserve">
+    <value>SE</value>
+  </data>
 </root>

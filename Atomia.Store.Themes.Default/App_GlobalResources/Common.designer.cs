@@ -304,6 +304,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to German.
+        /// </summary>
+        internal static string DE_name {
+            get {
+                return ResourceManager.GetString("DE_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DE.
+        /// </summary>
+        internal static string DE_shortname {
+            get {
+                return ResourceManager.GetString("DE_shortname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Discount.
         /// </summary>
         internal static string Discount {
@@ -376,6 +394,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to English.
+        /// </summary>
+        internal static string EN_name {
+            get {
+                return ResourceManager.GetString("EN_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to EN.
+        /// </summary>
+        internal static string EN_shortname {
+            get {
+                return ResourceManager.GetString("EN_shortname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fax.
         /// </summary>
         internal static string Fax {
@@ -408,6 +444,24 @@ namespace Resources {
         internal static string From {
             get {
                 return ResourceManager.GetString("From", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to French.
+        /// </summary>
+        internal static string FR_name {
+            get {
+                return ResourceManager.GetString("FR_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to FR.
+        /// </summary>
+        internal static string FR_shortname {
+            get {
+                return ResourceManager.GetString("FR_shortname", resourceCulture);
             }
         }
         
@@ -822,6 +876,24 @@ namespace Resources {
         internal static string Subtotal {
             get {
                 return ResourceManager.GetString("Subtotal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swedish.
+        /// </summary>
+        internal static string SV_SE_name {
+            get {
+                return ResourceManager.GetString("SV_SE_name", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to SE.
+        /// </summary>
+        internal static string SV_SE_shortname {
+            get {
+                return ResourceManager.GetString("SV_SE_shortname", resourceCulture);
             }
         }
         

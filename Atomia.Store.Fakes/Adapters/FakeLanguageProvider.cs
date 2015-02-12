@@ -9,49 +9,27 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public class FakeLanguageProvider : ILanguageProvider
     {
+        private readonly IResourceProvider resourceProvider;
+
+        public FakeLanguageProvider(IResourceProvider resourceProvider)
+        {
+            this.resourceProvider = resourceProvider;
+        }
+
         public IList<Language> GetAvailableLanguages()
         {
             return new List<Language>
             {
-                new Language
-                {
-                    Name = "English",
-                    Code = "EN"
-                },
-                new Language
-                {
-                    Name = "Swedish",
-                    Code = "SE"
-                },
-                new Language
-                {
-                    Name = "German",
-                    Code = "DE"
-                },
-                new Language
-                {
-                    Name = "French",
-                    Code = "FR"
-                }
+                Language.CreateLanguage(resourceProvider, "EN-US"),
+                Language.CreateLanguage(resourceProvider, "SV-SE"),
+                Language.CreateLanguage(resourceProvider, "FR"),
+                Language.CreateLanguage(resourceProvider, "DE")
             };
         }
 
         public Language GetDefaultLanguage()
         {
-            return new Language
-            {
-                Name = "English",
-                Code = "EN"
-            };
-        }
-
-        public Language GetCurrentLanguage()
-        {
-            return new Language
-            {
-                Name = "English",
-                Code = "EN"
-            };
+            return Language.CreateLanguage(resourceProvider, "EN-US");
         }
     }
 }

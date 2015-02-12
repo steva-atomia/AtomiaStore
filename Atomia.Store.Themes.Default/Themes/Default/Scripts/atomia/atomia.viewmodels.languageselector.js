@@ -30,7 +30,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         var defaults;
         
         defaults = {
-            ChangeLanguageUrl: getNewLanguageURL(instance._CurrentLanguage.Code, instance.Code)
+            ChangeLanguageUrl: getNewLanguageURL(instance._CurrentLanguage.Tag, instance.Tag)
         };
         
         return utils.createViewModel({}, defaults, instance, extensions);

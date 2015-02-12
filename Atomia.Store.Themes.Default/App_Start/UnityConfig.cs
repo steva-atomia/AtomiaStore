@@ -78,6 +78,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainSearchProvider>();
             container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
             container.RegisterType<IResellerIdentifierProvider, Atomia.Store.Fakes.Adapters.FakeRootResellerIdentifierProvider>();
+            container.RegisterType<ILanguagePreferenceProvider, Atomia.Store.Fakes.Adapters.FakeLanguagePreferenceProvider>();
 
             container.LoadConfiguration();
 

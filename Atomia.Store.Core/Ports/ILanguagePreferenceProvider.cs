@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Atomia.Store.Core;
 
 namespace Atomia.Store.Core
 {
-    public interface ILanguageProvider
+    public interface ILanguagePreferenceProvider
     {
-        IList<Language> GetAvailableLanguages();
+        void SetPreference(Language language);
 
-        Language GetDefaultLanguage();
+        Language GetPreferredLanguage();
     }
 }

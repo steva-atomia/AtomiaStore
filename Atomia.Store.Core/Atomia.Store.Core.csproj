@@ -64,6 +64,7 @@
     <Compile Include="Ports\IContactDataCollection.cs" />
     <Compile Include="Ports\IContactDataProvider.cs" />
     <Compile Include="Ports\ICustomerTypeProvider.cs" />
+    <Compile Include="Ports\ILanguagePreferenceProvider.cs" />
     <Compile Include="Ports\IOrderPlacementService.cs" />
     <Compile Include="Ports\IPaymentMethod.cs" />
     <Compile Include="Ports\IProductProvider.cs" />

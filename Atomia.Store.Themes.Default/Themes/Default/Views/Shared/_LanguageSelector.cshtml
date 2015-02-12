@@ -6,7 +6,7 @@
             <h3>@Html.CommonResource("LanguageSelectorTitle")</h3>
             <ul data-bind="foreach: LanguageSelector.Languages">
                 <li>
-                    <a data-bind="attr: { href: ChangeLanguageUrl }"><span data-bind="text: Code"></span> <!-- ko text: Name --><!-- /ko --></a>
+                    <a data-bind="attr: { href: ChangeLanguageUrl }"><span data-bind="text: ShortName"></span> <!-- ko text: Name --><!-- /ko --></a>
                 </li>
             </ul>
         </div>
