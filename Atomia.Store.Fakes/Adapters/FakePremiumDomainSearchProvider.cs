@@ -133,24 +133,6 @@ namespace Atomia.Store.Fakes.Adapters
                         }
                     }
                 });
-
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-RS",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
-                        {
-                            Name = "DomainName",
-                            Value = searchTerm + ".rs"
-                        },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "unavailable"
-                        }
-                    }
-                });
             }
 
             return results;

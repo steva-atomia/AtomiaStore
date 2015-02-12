@@ -117,7 +117,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "MySQL Database",
-                    Category = "Extra service",
+                    Category = "ExtraService",
                     ArticleNumber = "XSV-MYSQL",
                     Description = "MySQL Database addon.",
                     PricingVariants = new List<PricingVariant>
@@ -137,7 +137,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "MSSQL Database",
-                    Category = "Extra service",
+                    Category = "ExtraService",
                     ArticleNumber = "XSV-MSSQL",
                     Description = "MSSQL Database addon.",
                     PricingVariants = new List<PricingVariant>
@@ -160,7 +160,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-COM",
                     Description = "Domain registration .com",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
+                    Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>
                     {
                         new CustomAttribute {
@@ -175,7 +175,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-SE",
                     Description = "Domain registration .se",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
+                    Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
                 },
 
@@ -185,7 +185,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-EU",
                     Description = "Domain registration .eu",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
+                    Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
                 },
 
@@ -195,7 +195,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-NET",
                     Description = "Domain registration .net",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
+                    Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
                 },
 
@@ -205,7 +205,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-INFO",
                     Description = "Domain registration .info",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
+                    Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
                 },
 
@@ -214,17 +214,8 @@ namespace Atomia.Store.Fakes.Adapters
                     Name = ".biz",
                     ArticleNumber = "DMN-BIZ",
                     Description = "Domain registration .biz",
+                    Category = "TLD",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>()
-                },
-
-                new Product
-                {
-                    Name = ".rs",
-                    ArticleNumber = "DMN-RS",
-                    Description = "Domain registration .rs",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "Domain",
                     CustomAttributes = new List<CustomAttribute>()
                 }
             };
