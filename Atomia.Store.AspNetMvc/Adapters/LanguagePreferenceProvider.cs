@@ -15,6 +15,11 @@ namespace Atomia.Store.AspNetMvc.Adapters
 
         public void SetPreferredLanguage(Language language)
         {
+            if (language == null)
+            {
+                throw new ArgumentException("language");
+            }
+
             HttpContext.Current.Session["PreferredLanguage"] = language;
         }
 

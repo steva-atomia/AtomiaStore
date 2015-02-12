@@ -26,17 +26,28 @@ namespace Atomia.Store.PublicBillingApi
         public AccountData GetResellerAccountData()
         {
             var resellerIdentifier = resellerIdentifierProvider.GetResellerIdentifier();
+            AccountData resellerData = null;
 
             if (resellerIdentifier != null && !string.IsNullOrEmpty(resellerIdentifier.AccountHash))
             {
-                return BillingApi.GetAccountDataByHash(resellerIdentifier.AccountHash);
+                resellerData = BillingApi.GetAccountDataByHash(resellerIdentifier.AccountHash);
             }
             else if (resellerIdentifier != null && !string.IsNullOrEmpty(resellerIdentifier.BaseUrl))
             {
-                return BillingApi.GetResellerDataByUrl(resellerIdentifier.BaseUrl);
+                resellerData = BillingApi.GetResellerDataByUrl(resellerIdentifier.BaseUrl);
             }
 
-            return BillingApi.GetDefaultResellerData();
+            if (resellerData == null)
+            {
+                resellerData = BillingApi.GetDefaultResellerData();
+            }
+
+            if (resellerData == null)
+            {
+                throw new InvalidOperationException("Could not determine reseller AccountData.");
+            }
+
+            return resellerData;
         }
     }
 }

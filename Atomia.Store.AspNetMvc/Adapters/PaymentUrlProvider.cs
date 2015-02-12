@@ -7,7 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 using Atomia.Store.Core;
-
+using Atomia.Store.AspNetMvc.Helpers;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
@@ -47,8 +47,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
 
         public override string QualifiedUrl(string path)
         {
-            var currentUrl = HttpContext.Current.Request.Url;
-            var baseUri = new Uri(string.Format("{0}://{1}/", currentUrl.Scheme, currentUrl.Authority));
+            var baseUri = BaseUriHelper.GetBaseUri();
             var qualifiedUri = new Uri(baseUri, path);
 
             return qualifiedUri.ToString();

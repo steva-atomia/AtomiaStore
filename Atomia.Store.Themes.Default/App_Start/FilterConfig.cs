@@ -7,7 +7,8 @@ namespace Atomia.Store.Themes.Default
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new LanguageFilter());
+            filters.Add(new ResellerFilter(), 1);
+            filters.Add(new LanguageFilter(), 2);
         }
     }
 }

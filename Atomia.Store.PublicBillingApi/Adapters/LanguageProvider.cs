@@ -39,11 +39,17 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
         public Language GetDefaultLanguage()
         {
-            
-            var language = String.IsNullOrEmpty(resellerData.DefaultLanguage)
-                ? Language.CreateLanguage(resourceProvider, "en-us")
-                : Language.CreateLanguage(resourceProvider, resellerData.DefaultLanguage);
+            Language language;
 
+            if (resellerData != null && !String.IsNullOrEmpty(resellerData.DefaultLanguage))
+            {
+                language = Language.CreateLanguage(resourceProvider, resellerData.DefaultLanguage);
+            }
+            else
+            {
+                language = Language.CreateLanguage(resourceProvider, "en-us");
+            }
+            
             return language;
         }
     }
