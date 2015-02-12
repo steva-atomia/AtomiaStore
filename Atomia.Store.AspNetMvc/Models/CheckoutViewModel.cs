@@ -22,8 +22,15 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public DefaultCheckoutViewModel()
         {
-            SelectedPaymentMethodId = paymentMethodsProvider.GetDefaultPaymentMethod().Id;
             PaymentMethods = GetAvailablePaymentMethods();
+            SelectedPaymentMethodId = paymentMethodsProvider.GetDefaultPaymentMethod().Id;
+            
+            var paymentMethodIds = PaymentMethods.Select(p => p.Id);
+            if (!paymentMethodIds.Contains(SelectedPaymentMethodId))
+            {
+                SelectedPaymentMethodId = paymentMethodIds.First();
+            }
+
             TermsOfService = termsOfServiceProvider.GetTermsOfService().Select(tos => new TermsOfServiceModel
             {
                 Id = tos.Id,
