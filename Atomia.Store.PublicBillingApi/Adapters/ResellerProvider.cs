@@ -8,29 +8,29 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class ResellerProvider : PublicBillingApiClient, IResellerProvider
+    public class ResellerProvider : IResellerProvider
     {
-        private readonly AccountData resellerData;
+        private readonly ResellerDataProvider resellerDataProvider;
 
-        public ResellerProvider(ResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
-            : base(billingApi)
+        public ResellerProvider(ResellerDataProvider resellerDataProvider)
         {
             if (resellerDataProvider == null)
             {
                 throw new ArgumentNullException("resellerDataProvider");
             }
 
-            resellerData = resellerDataProvider.GetResellerAccountData();
+            this.resellerDataProvider = resellerDataProvider;
         }
 
         public Reseller GetReseller()
         {
-            var defaultAccountData = BillingApi.GetDefaultResellerData();
+            var resellerData =  resellerDataProvider.GetResellerAccountData();
+            var defaultResellerData = resellerDataProvider.GetDefaultResellerAccountData();
 
             var reseller = new Reseller
             {
                 Id = resellerData.Id,
-                IsSubReseller = resellerData.Id != defaultAccountData.Id
+                IsSubReseller = resellerData.Id != defaultResellerData.Id
             };
 
             return reseller;

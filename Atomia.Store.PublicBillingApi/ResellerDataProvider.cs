@@ -49,5 +49,17 @@ namespace Atomia.Store.PublicBillingApi
 
             return resellerData;
         }
+
+        public AccountData GetDefaultResellerAccountData()
+        {
+            var resellerData = BillingApi.GetDefaultResellerData();
+
+            if (resellerData == null)
+            {
+                throw new InvalidOperationException("Could not get default reseller AccountData.");
+            }
+
+            return resellerData;
+        }
     }
 }
