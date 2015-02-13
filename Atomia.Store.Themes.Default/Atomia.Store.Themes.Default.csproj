@@ -169,6 +169,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_GlobalResources\Common.sv.designer.cs">
+      <DependentUpon>Common.sv.resx</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
     <Compile Include="App_GlobalResources\Common.designer.cs">
       <DependentUpon>Common.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -386,6 +391,12 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\Common.sv.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>Common.sv.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

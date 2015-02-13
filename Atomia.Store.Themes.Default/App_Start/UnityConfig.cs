@@ -24,7 +24,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ILogger, Atomia.Store.ActionTrail.Adapters.Logger>();
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Adapters.CartProvider>();
             container.RegisterType<IContactDataProvider, Atomia.Store.AspNetMvc.Adapters.ContactDataProvider>();
-            container.RegisterType<ICurrencyProvider, Atomia.Store.AspNetMvc.Adapters.CurrencyProvider>();
+            container.RegisterType<ICurrencyPreferenceProvider, Atomia.Store.AspNetMvc.Adapters.CurrencyPreferenceProvider>();
             container.RegisterType<ICurrencyFormatter, Atomia.Store.AspNetMvc.Adapters.CurrencyFormatter>();
             container.RegisterType<IResourceProvider, Atomia.Store.WebBase.Adapters.ResourceProvider>();
             container.RegisterType<ICustomerTypeProvider, Atomia.Store.AspNetMvc.Adapters.CustomerTypeProvider>();
@@ -34,6 +34,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICountryProvider, Atomia.Store.PublicBillingApi.Adapters.CountryProvider>();
             container.RegisterType<IResellerProvider, Atomia.Store.PublicBillingApi.Adapters.ResellerProvider>();
             container.RegisterType<ILanguageProvider, Atomia.Store.PublicBillingApi.Adapters.LanguageProvider>();
+            container.RegisterType<ICurrencyProvider, Atomia.Store.PublicBillingApi.Adapters.CurrencyProvider>();
             container.RegisterType<IProductListProvider, Atomia.Store.PublicBillingApi.Adapters.CategoryProductsProvider>("Category");
             container.RegisterType<IProductProvider, Atomia.Store.PublicBillingApi.Adapters.ProductProvider>();
             container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.CartPricingProvider>();

@@ -11,10 +11,10 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     {
         private readonly IProductsProvider productsProvider;
         private readonly IResellerProvider resellerProvider;
-        private readonly ICurrencyProvider currencyProvider;
+        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly ICountryProvider countryProvider;
 
-        public CartPricingProvider(IProductsProvider productsProvider, IResellerProvider resellerProvider, ICurrencyProvider currencyProvider, ICountryProvider countryProvider, PublicBillingApiProxy billingApi)
+        public CartPricingProvider(IProductsProvider productsProvider, IResellerProvider resellerProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ICountryProvider countryProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
             if (productsProvider == null)
@@ -27,9 +27,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("productsProvider");
             }
 
-            if (currencyProvider == null)
+            if (currencyPreferenceProvider == null)
             {
-                throw new ArgumentNullException("currencyProvider");
+                throw new ArgumentNullException("currencyPreferenceProvider");
             }
 
             if (countryProvider == null)
@@ -39,7 +39,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
             this.productsProvider = productsProvider;
             this.resellerProvider = resellerProvider;
-            this.currencyProvider = currencyProvider;
+            this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.countryProvider = countryProvider;
         }
 
@@ -100,7 +100,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             {
                 ResellerId = resellerProvider.GetReseller().Id,
                 Country = countryProvider.GetDefaultCountry().Code,
-                Currency = currencyProvider.GetCurrencyCode()
+                Currency = currencyPreferenceProvider.GetCurrentCurrency().Code
             };
         }
 

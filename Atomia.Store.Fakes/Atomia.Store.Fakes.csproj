@@ -43,6 +43,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\FakeCountryProvider.cs" />
+    <Compile Include="Adapters\FakeCurrencyPreferenceProvider.cs" />
+    <Compile Include="Adapters\FakeCurrencyProvider.cs" />
     <Compile Include="Adapters\FakeLanguagePreferenceProvider.cs" />
     <Compile Include="Adapters\FakeOrderPlacementService.cs" />
     <Compile Include="Adapters\FakePaymentMethodsProvider.cs" />

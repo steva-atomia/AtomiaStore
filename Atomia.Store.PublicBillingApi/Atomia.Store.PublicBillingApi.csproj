@@ -49,6 +49,7 @@
     <Compile Include="Adapters\CartPricingProvider.cs" />
     <Compile Include="Adapters\CategoryProductsProvider.cs" />
     <Compile Include="Adapters\CountryProvider.cs" />
+    <Compile Include="Adapters\CurrencyProvider.cs" />
     <Compile Include="Adapters\LanguageProvider.cs" />
     <Compile Include="Adapters\PaymentMethodsProvider.cs" />
     <Compile Include="Adapters\ProductProvider.cs" />

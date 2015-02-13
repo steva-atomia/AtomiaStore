@@ -14,10 +14,10 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     {
         private readonly IResellerProvider resellerProvider;
         private readonly ILanguagePreferenceProvider languagePreferenceProvider;
-        private readonly ICurrencyProvider currencyProvider;
+        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly IProductsProvider productsProvider;
 
-        public CategoryProductsProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyProvider currencyProvider, IProductsProvider productsProvider)
+        public CategoryProductsProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IProductsProvider productsProvider)
         {
             if (resellerProvider == null)
             {
@@ -29,9 +29,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("languagePreferenceProvider");
             }
 
-            if (currencyProvider == null)
+            if (currencyPreferenceProvider == null)
             {
-                throw new ArgumentNullException("currencyProvider");
+                throw new ArgumentNullException("currencyPreferenceProvider");
             }
 
             if (productsProvider == null)
@@ -41,7 +41,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
             this.resellerProvider = resellerProvider;
             this.languagePreferenceProvider = languagePreferenceProvider;
-            this.currencyProvider = currencyProvider;
+            this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.productsProvider = productsProvider;
         }
 
@@ -54,7 +54,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         {
             var category = terms.First().Value;
             var resellerId = resellerProvider.GetReseller().Id;
-            var currencyCode = currencyProvider.GetCurrencyCode();
+            var currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
             var language = languagePreferenceProvider.GetCurrentLanguage();
             var products = new List<CoreProduct>();
 

@@ -7,16 +7,16 @@ namespace Atomia.Store.AspNetMvc.Adapters
 {
     public class CurrencyFormatter : ICurrencyFormatter
     {
-        private readonly ICurrencyProvider currencyProvider;
+        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
 
-        public CurrencyFormatter(ICurrencyProvider currencyProvider)
+        public CurrencyFormatter(ICurrencyPreferenceProvider currencyPreferenceProvider)
         {
-            if (currencyProvider == null)
+            if (currencyPreferenceProvider == null)
             {
-                throw new ArgumentNullException("currencyProvider");
+                throw new ArgumentNullException("currencyPreferenceProvider");
             }
 
-            this.currencyProvider = currencyProvider;
+            this.currencyPreferenceProvider = currencyPreferenceProvider;
         }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
         /// </summary>
         public string FormatAmount(decimal amount)
         {
-            var currencyCode = currencyProvider.GetCurrencyCode();
+            var currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
             var culture = CultureInfo.GetCultures(CultureTypes.SpecificCultures).First(c => new RegionInfo(c.LCID).ISOCurrencySymbol == currencyCode.ToUpper());
 
             if (culture == default(CultureInfo))

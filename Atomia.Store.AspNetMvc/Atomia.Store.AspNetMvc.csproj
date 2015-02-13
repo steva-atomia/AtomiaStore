@@ -84,7 +84,7 @@
     <Compile Include="Adapters\CartProvider.cs" />
     <Compile Include="Adapters\ContactDataProvider.cs" />
     <Compile Include="Adapters\CurrencyFormatter.cs" />
-    <Compile Include="Adapters\CurrencyProvider.cs" />
+    <Compile Include="Adapters\CurrencyPreferenceProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
     <Compile Include="Adapters\ItemPresenter.cs" />
     <Compile Include="Adapters\LanguagePreferenceProvider.cs" />

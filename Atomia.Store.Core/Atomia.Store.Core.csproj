@@ -51,6 +51,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Models\Country.cs" />
+    <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CustomerType.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
@@ -63,6 +64,7 @@
     <Compile Include="Models\TermsOfService.cs" />
     <Compile Include="Ports\IContactDataCollection.cs" />
     <Compile Include="Ports\IContactDataProvider.cs" />
+    <Compile Include="Ports\ICurrencyPreferenceProvider.cs" />
     <Compile Include="Ports\ICustomerTypeProvider.cs" />
     <Compile Include="Ports\ILanguagePreferenceProvider.cs" />
     <Compile Include="Ports\IOrderPlacementService.cs" />

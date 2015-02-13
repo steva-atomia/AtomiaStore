@@ -47,9 +47,6 @@ namespace Atomia.Store.Themes.Default
 
         public override void Session_Start(object sender, EventArgs e)
         {
-            // FIXME: set this properly.
-            new CurrencyProvider().SetCurrencyCode("USD");
-
             // FIXME: This is a temporary measure to add a theme to the session.
             if (HttpContext.Current != null)
             {

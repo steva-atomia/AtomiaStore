@@ -1,10 +1,12 @@
-﻿
+﻿using System;
+using System.Collections.Generic;
+
 namespace Atomia.Store.Core
 {
     public interface ICurrencyProvider
     {
-        string GetCurrencyCode();
+        IList<Currency> GetAvailableCurrencies();
 
-        void SetCurrencyCode(string currencyCode);
+        Currency GetDefaultCurrency();
     }
 }
