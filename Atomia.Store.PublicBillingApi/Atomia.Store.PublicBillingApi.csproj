@@ -61,6 +61,7 @@
     <Compile Include="Adapters\PaymentMethodsProvider.cs" />
     <Compile Include="Adapters\ProductProvider.cs" />
     <Compile Include="Adapters\ResellerProvider.cs" />
+    <Compile Include="CachedResellerDataProvider.cs" />
     <Compile Include="ProductMapper.cs" />
     <Compile Include="PublicBillingApiClient.cs" />
     <Compile Include="PublicBillingApiProxy.cs" />

@@ -19,7 +19,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly string countryCode;
 
         public DomainsProvider(
-            ResellerDataProvider resellerDataProvider, 
+            IResellerDataProvider resellerDataProvider, 
             ICurrencyPreferenceProvider currencyPreferenceProvider, 
             IProductProvider productProvider, 
             PublicBillingApiProxy billingApi) : base(billingApi)

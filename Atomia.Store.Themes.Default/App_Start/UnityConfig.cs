@@ -70,7 +70,11 @@ namespace Atomia.Store.Themes.Default
             // PublicBillingApi types
             container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
             container.RegisterType<PublicBillingApiProxy, PublicBillingApiProxy>();
-            container.RegisterType<ResellerDataProvider, ResellerDataProvider>();
+            container.RegisterType<IResellerDataProvider, ResellerDataProvider>("apiProvider");
+            container.RegisterType<IResellerDataProvider, CachedResellerDataProvider>(
+                new InjectionConstructor(
+                    new ResolvedParameter<IResellerDataProvider>("apiProvider"),
+                    new ResolvedParameter<IResellerIdentifierProvider>()));
 
 
             // ViewModels

@@ -13,7 +13,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly AccountData resellerData;
         private readonly IResourceProvider resourceProvider;
 
-        public LanguageProvider(IResourceProvider resourceProvider, ResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
+        public LanguageProvider(IResourceProvider resourceProvider, IResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
             if (resourceProvider == null)

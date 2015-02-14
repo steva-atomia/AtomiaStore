@@ -8,7 +8,14 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.PublicBillingApi
 {
-    public class ResellerDataProvider : PublicBillingApiClient
+    public interface IResellerDataProvider
+    {
+        AccountData GetResellerAccountData();
+
+        AccountData GetDefaultResellerAccountData();
+    }
+
+    public class ResellerDataProvider : PublicBillingApiClient, IResellerDataProvider
     {
         private readonly IResellerIdentifierProvider resellerIdentifierProvider;
 

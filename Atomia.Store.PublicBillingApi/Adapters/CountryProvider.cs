@@ -12,7 +12,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     {
         private readonly AccountData resellerData;
 
-        public CountryProvider(ResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
+        public CountryProvider(IResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
             if (resellerDataProvider == null)

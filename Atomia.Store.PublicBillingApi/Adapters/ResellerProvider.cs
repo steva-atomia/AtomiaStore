@@ -10,9 +10,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 {
     public class ResellerProvider : IResellerProvider
     {
-        private readonly ResellerDataProvider resellerDataProvider;
+        private readonly IResellerDataProvider resellerDataProvider;
 
-        public ResellerProvider(ResellerDataProvider resellerDataProvider)
+        public ResellerProvider(IResellerDataProvider resellerDataProvider)
         {
             if (resellerDataProvider == null)
             {
