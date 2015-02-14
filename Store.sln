@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Core", "Atomia
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.AspNetMvc", "Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj", "{22E89989-1534-4B38-925D-03906D0284BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.WebPluginDomainSearch", "Atomia.Store.WebPluginDomainSearch\Atomia.Store.WebPluginDomainSearch.csproj", "{899A798A-E1E5-4C85-B5E7-2C715866D807}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96F5FCEF-73A7-4B7A-BD33-9C3BFCA36654}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.ActionTrail", "Atomia.Store.ActionTrail\Atomia.Store.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
@@ -61,10 +59,6 @@ Global
 		{22E89989-1534-4B38-925D-03906D0284BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22E89989-1534-4B38-925D-03906D0284BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22E89989-1534-4B38-925D-03906D0284BF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{899A798A-E1E5-4C85-B5E7-2C715866D807}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{899A798A-E1E5-4C85-B5E7-2C715866D807}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{899A798A-E1E5-4C85-B5E7-2C715866D807}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{899A798A-E1E5-4C85-B5E7-2C715866D807}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F81B202-21AF-49BB-8606-518149972EED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F81B202-21AF-49BB-8606-518149972EED}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F81B202-21AF-49BB-8606-518149972EED}.Release|Any CPU.ActiveCfg = Release|Any CPU

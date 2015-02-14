@@ -33,10 +33,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
             if (ModelState.IsValid)
             {
                 var searchTerms = new List<string> { searchQuery.Query };
-                var searchResults = domainProvider.FindDomains(searchTerms)
-                    .Select(r => new DomainResultModel(r)).ToList();
+                var domainSearchData = domainProvider.FindDomains(searchTerms);
 
-                return JsonEnvelope.Success(searchResults);
+                return JsonEnvelope.Success(new
+                {
+                    DomainSearchId = domainSearchData.DomainSearchId,
+                    FinishSearch = domainSearchData.FinishSearch,
+                    Results = domainSearchData.Results.Select(r => new DomainResultModel(r)).ToList()
+                });
             }
 
             return JsonEnvelope.Fail(ModelState);
@@ -47,8 +51,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
-                var searchResults = domainProvider.CheckStatus(domainSearchId)
-                    .Select(r => new DomainResultModel(r)).ToList();
+                var domainSearchData = domainProvider.CheckStatus(domainSearchId);
+
+                return JsonEnvelope.Success(new
+                {
+                    DomainSearchId = domainSearchData.DomainSearchId,
+                    FinishSearch = domainSearchData.FinishSearch,
+                    Results = domainSearchData.Results.Select(r => new DomainResultModel(r)).ToList()
+                });
             }
 
             return JsonEnvelope.Fail(ModelState);

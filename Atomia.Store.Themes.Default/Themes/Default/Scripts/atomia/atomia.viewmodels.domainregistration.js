@@ -39,33 +39,76 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Domain registration prototype and factory */
     DomainRegistrationPrototype = {
+        StatusCheckInterval: 250,
+
         Submit: function Submit() {
+            this.PrimaryResults.removeAll();
+            this.SecondaryResults.removeAll();
+            this.ShowMoreResults(false);
             this.IsLoadingResults(true);
             this.SubmittedQuery(this.Query());
 
-            this.PrimaryResults.removeAll();
-            this.SecondaryResults.removeAll();
-
             domainsApi.FindDomains(this.Query(), function (data) {
-                _.each(data, function (result) {
-                    var item, primaryAttr;
-                    
-                    item = viewModelsApi.AddCartExtensions(this._Cart, this.CreateDomainRegistrationItem(result));
+                var domainSearchId = data.DomainSearchId,
+                    statusCheckId;
 
-                    primaryAttr = _.find(item.CustomAttributes, function (ca) {
-                        return ca.Name === 'Premium';
-                    });
+                if (!data.FinishSearch) {
 
-                    if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
-                        this.PrimaryResults.push(item);
-                    }
-                    else {
-                        this.SecondaryResults.push(item);
-                    }
-                }.bind(this));
+                    statusCheckId = setInterval(function () {
 
-                this.IsLoadingResults(false);
+                        domainsApi.CheckStatus(domainSearchId, function (data) {
+
+                            this.UpdateResults(data.Results);
+
+                            if (data.FinishSearch) {
+                                clearInterval(statusCheckId);
+                            }
+
+                        }.bind(this));
+
+                    }.bind(this), this.StatusCheckInterval)
+                }
             }.bind(this));
+        },
+
+        PrimaryResultsLoading: function () {
+            if (this.PrimaryResults().length === 0) {
+                return false;
+            }
+
+            return _.any(this.PrimaryResults(), function(r) { 
+                return r.Status === 'loading'; 
+            });
+        },
+
+        UpdateResults: function UpdateResults(results) {
+            var primaryResults = [],
+                secondaryResults = [];
+
+            _.each(results, function (result) {
+                var item, primaryAttr;
+
+                item = viewModelsApi.AddCartExtensions(this._Cart, this.CreateDomainRegistrationItem(result));
+
+                primaryAttr = _.find(item.CustomAttributes, function (ca) {
+                    return ca.Name === 'Premium';
+                });
+
+                if (primaryAttr !== undefined && primaryAttr.Value === 'true') {
+                    primaryResults.push(item);
+                }
+                else {
+                    secondaryResults.push(item);
+                }
+            }.bind(this));
+
+            // Set all at once to avoid triggering bindings on each push.
+            this.PrimaryResults(primaryResults);
+            this.SecondaryResults(secondaryResults);
+
+            if (!this.PrimaryResultsLoading()) {
+                this.IsLoadingResults(false);
+            }
         },
 
         SetShowMoreResults: function SetShowMoreResults() {

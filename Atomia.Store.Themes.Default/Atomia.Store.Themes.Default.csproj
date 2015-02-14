@@ -169,6 +169,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\PremiumDomainsProvider.cs" />
     <Compile Include="App_GlobalResources\Common.sv.designer.cs">
       <DependentUpon>Common.sv.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -294,10 +295,6 @@
       <Project>{1239517a-dc31-414c-8d3d-37dd34c2e143}</Project>
       <Name>Atomia.Store.Services.Fakes</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Atomia.Store.WebPluginDomainSearch\Atomia.Store.WebPluginDomainSearch.csproj">
-      <Project>{899A798A-E1E5-4C85-B5E7-2C715866D807}</Project>
-      <Name>Atomia.Store.Services.WebPluginDomainSearch</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Core\Atomia.Store.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
       <Name>Atomia.Store.Core</Name>
@@ -407,7 +404,8 @@
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.OrderServiceReferences.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"
-xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.Validation.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"</PostBuildEvent>
+xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.Validation.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"
+xcopy /y "$(SolutionDir)Lib\Atomia.Web.Plugin.DomainSearch.dll.config" "$(SolutionDir)Atomia.Store.Themes.Default\bin"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" />
   <ProjectExtensions>

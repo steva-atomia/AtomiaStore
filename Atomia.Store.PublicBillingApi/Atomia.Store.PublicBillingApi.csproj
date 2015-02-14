@@ -30,11 +30,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Atomia.Web.Plugin.DomainSearch">
+      <HintPath>..\Lib\Atomia.Web.Plugin.DomainSearch.dll</HintPath>
+    </Reference>
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
     <Reference Include="Atomia.Web.Plugin.ProductsProvider">
       <HintPath>..\Lib\Atomia.Web.Plugin.ProductsProvider.dll</HintPath>
+    </Reference>
+    <Reference Include="idnlib">
+      <HintPath>..\Lib\idnlib.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -50,6 +56,7 @@
     <Compile Include="Adapters\CategoryProductsProvider.cs" />
     <Compile Include="Adapters\CountryProvider.cs" />
     <Compile Include="Adapters\CurrencyProvider.cs" />
+    <Compile Include="Adapters\DomainsProvider.cs" />
     <Compile Include="Adapters\LanguageProvider.cs" />
     <Compile Include="Adapters\PaymentMethodsProvider.cs" />
     <Compile Include="Adapters\ProductProvider.cs" />

@@ -7,7 +7,7 @@ Atomia.Utils = Atomia.Utils || {};
     'use strict';
 
     function request(options) {
-        amplify.request(options);
+        return amplify.request(options);
     }
 
     function publish(topic, item) {

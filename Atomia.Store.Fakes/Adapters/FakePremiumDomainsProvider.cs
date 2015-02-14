@@ -4,11 +4,11 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakePremiumDomainSearchProvider : IDomainsProvider
+    public class FakePremiumDomainsProvider : IDomainsProvider
     {
         private static string lastSearchTerm = "";
 
-        public IEnumerable<DomainResult> FindDomains(ICollection<string> searchTerms)
+        public DomainSearchData FindDomains(ICollection<string> searchTerms)
         {
             var results = new List<DomainResult>();
             var searchTerm = searchTerms.First();
@@ -25,6 +25,7 @@ namespace Atomia.Store.Fakes.Adapters
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                             CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
                         },
+                        "com",
                         searchTerm + ".com",
                         DomainResult.AVAILABLE,
                         1
@@ -39,6 +40,7 @@ namespace Atomia.Store.Fakes.Adapters
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                             CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true" } }
                         },
+                        "se",
                         searchTerm + ".se",
                         DomainResult.AVAILABLE,
                         1
@@ -53,6 +55,7 @@ namespace Atomia.Store.Fakes.Adapters
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                             CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
                         },
+                        "eu",
                         searchTerm + ".eu",
                         DomainResult.UNAVAILABLE,
                         1
@@ -66,6 +69,7 @@ namespace Atomia.Store.Fakes.Adapters
                             ArticleNumber = "DMN-NET",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
+                        "net",
                         searchTerm + ".net",
                         DomainResult.LOADING,
                         1
@@ -79,6 +83,7 @@ namespace Atomia.Store.Fakes.Adapters
                             ArticleNumber = "DMN-INFO",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
+                        "info",
                         searchTerm + ".info",
                         DomainResult.UNKNOWN,
                         1
@@ -92,6 +97,7 @@ namespace Atomia.Store.Fakes.Adapters
                             ArticleNumber = "DMN-BIZ",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
+                        "biz",
                         searchTerm + ".biz",
                         DomainResult.AVAILABLE,
                         1
@@ -99,12 +105,22 @@ namespace Atomia.Store.Fakes.Adapters
                 );
             }
 
-            return results;
+            var data = new DomainSearchData
+            {
+                FinishSearch = false,
+                DomainSearchId = 1,
+                Results = results
+            };
+
+            return data;
         }
 
-        public IEnumerable<DomainResult> CheckStatus(int domainSearchId)
+        public DomainSearchData CheckStatus(int domainSearchId)
         {
-            return FindDomains(new List<string>{ lastSearchTerm }).Select(r => SetAvailable(r));
+            var data = FindDomains(new List<string>{ lastSearchTerm });
+            data.Results = data.Results.Select(r => SetAvailable(r));
+
+            return data;
         }
 
 
@@ -115,8 +131,7 @@ namespace Atomia.Store.Fakes.Adapters
 
         private DomainResult SetAvailable(DomainResult result)
         {
-
-            return new DomainResult(result.Product, result.DomainName, DomainResult.AVAILABLE, result.DomainSearchId);
+            return new DomainResult(result.Product, result.TLD, result.DomainName, DomainResult.AVAILABLE, result.DomainSearchId);
         }
     }
 }

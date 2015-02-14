@@ -20,8 +20,9 @@ namespace Atomia.Store.Core
         private string domainName;
         private string status;
         private int domainSearchId;
+        private string tld;
 
-        public DomainResult(Product product, string domainName, string status, int domainSearchId)
+        public DomainResult(Product product, string tld, string domainName, string status, int domainSearchId)
         {
             this.product = product;
 
@@ -32,6 +33,7 @@ namespace Atomia.Store.Core
 
             this.status = status;
             this.domainSearchId = domainSearchId;
+            this.tld = tld;
             this.DomainName = domainName;
         }
 
@@ -56,6 +58,14 @@ namespace Atomia.Store.Core
             get
             {
                 return status;
+            }
+        }
+
+        public string TLD
+        {
+            get
+            {
+                return tld;
             }
         }
 

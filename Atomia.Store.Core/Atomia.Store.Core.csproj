@@ -54,6 +54,7 @@
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CustomerType.cs" />
     <Compile Include="Models\DomainResult.cs" />
+    <Compile Include="Models\DomainSearchData.cs" />
     <Compile Include="Models\Language.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\PaymentTransaction.cs" />

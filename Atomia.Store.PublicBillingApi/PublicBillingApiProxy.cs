@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.PublicBillingApi
@@ -12,8 +14,15 @@ namespace Atomia.Store.PublicBillingApi
 
         public PublicBillingApiProxy(AtomiaBillingPublicService service)
         {
-
             this.service = service;
+        }
+
+        public AtomiaBillingPublicService Service
+        {
+            get
+            {
+                return service;
+            }
         }
 
         public virtual PublicOrder CalculateOrder(PublicOrder publicOrder)
@@ -21,7 +30,7 @@ namespace Atomia.Store.PublicBillingApi
             return service.CalculateOrder(publicOrder);
         }
 
-        public virtual Country[] GetCountries()
+        public virtual IEnumerable<Country> GetCountries()
         {
             return service.GetCountries();
         }
@@ -39,6 +48,13 @@ namespace Atomia.Store.PublicBillingApi
         public AccountData GetDefaultResellerData()
         {
             return service.GetDefaultResellerData();
+        }
+
+        public IEnumerable<AttributeData> CheckDomains(IEnumerable<string> domains)
+        {
+            var domainsArray = domains.ToArray();
+            
+            return service.CheckDomains(domainsArray);
         }
     }
 }
