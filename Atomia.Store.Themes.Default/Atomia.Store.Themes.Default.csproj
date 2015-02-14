@@ -209,6 +209,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\atomiaRegularExpressionConfig.config" />
     <None Include="Scripts\jquery-2.1.3.intellisense.js" />
     <None Include="Scripts\amplify-vsdoc.js" />
     <Content Include="Scripts\amplify.js" />
@@ -398,6 +399,7 @@
       <LastGenOutput>Common.sv.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

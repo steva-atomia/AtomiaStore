@@ -41,6 +41,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     DomainRegistrationPrototype = {
         Submit: function Submit() {
             this.IsLoadingResults(true);
+            this.SubmittedQuery(this.Query());
 
             this.PrimaryResults.removeAll();
             this.SecondaryResults.removeAll();
@@ -103,6 +104,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 _Cart: cart,
                 CreateDomainRegistrationItem: _.partial(CreateDomainRegistrationItem, itemExtensions || {}),
 
+                SubmittedQuery: ko.observable(),
                 Query: ko.observable(),
                 IsLoadingResults: ko.observable(false),
                 ShowMoreResults: ko.observable(false),
