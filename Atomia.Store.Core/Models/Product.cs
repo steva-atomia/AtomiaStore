@@ -16,7 +16,5 @@ namespace Atomia.Store.Core
         public List<CustomAttribute> CustomAttributes { get; set; }
 
         public List<PricingVariant> PricingVariants { get; set; }
-
-        public List<RequiredAttribute> RequiredAttributes { get; set; }
     }
 }

@@ -115,6 +115,7 @@
     <Compile Include="Models\CartItemSetAttributeModel.cs" />
     <Compile Include="Models\CartModel.cs" />
     <Compile Include="Models\CheckoutViewModel.cs" />
+    <Compile Include="Models\DomainResultModel.cs" />
     <Compile Include="Ports\PaymentMethodGuiPlugin.cs" />
     <Compile Include="Models\ProductListingViewModel.cs" />
     <Compile Include="Models\ContactModel.cs" />

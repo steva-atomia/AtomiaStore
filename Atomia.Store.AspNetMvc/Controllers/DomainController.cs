@@ -27,18 +27,28 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return View(model);
         }
 
-        [HttpGet]
+        [HttpPost]
         public JsonResult FindDomains(DomainQueryModel searchQuery)
         {
             if (ModelState.IsValid)
             {
-                var searchResults = domainProvider.GetDomains(
-                    new List<SearchTerm> {
-                        new SearchTerm("query", searchQuery.Query)
-                    }
-                ).Select(r => new ProductModel(r)).ToList();
+                var searchTerms = new List<string> { searchQuery.Query };
+                var searchResults = domainProvider.FindDomains(searchTerms)
+                    .Select(r => new DomainResultModel(r)).ToList();
 
                 return JsonEnvelope.Success(searchResults);
+            }
+
+            return JsonEnvelope.Fail(ModelState);
+        }
+
+        [HttpPost]
+        public JsonResult CheckStatus(int domainSearchId)
+        {
+            if (ModelState.IsValid)
+            {
+                var searchResults = domainProvider.CheckStatus(domainSearchId)
+                    .Select(r => new DomainResultModel(r)).ToList();
             }
 
             return JsonEnvelope.Fail(ModelState);

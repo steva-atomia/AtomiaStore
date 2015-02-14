@@ -11,8 +11,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         DomainRegistrationPrototype,
         CreateDomainRegistration;
 
-
-
     /* Domain registration item protype and factory */
     DomainRegistrationItemPrototype = {
         Equals: function Equals(other) {
@@ -26,27 +24,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
     CreateDomainRegistrationItem = function CreateDomainRegistrationItem(extensions, instance) {
-        var domainName, domainParts;
+        var domainParts;
 
-        domainName = _.find(instance.CustomAttributes, function (ca) {
-            return ca.Name === 'DomainName';
-        }).Value;
-        domainParts = domainName.split('.');
+        domainParts = instance.DomainName.split('.');
 
         return utils.createViewModel(DomainRegistrationItemPrototype, {
             UniqueId: _.uniqueId('dmn'),
-            DomainName: domainName,
             DomainNameSld: domainParts[0],
             DomainNameTld: domainParts[1],
             Price: instance.PricingVariants[0].Price,
-            RenewalPeriod: instance.PricingVariants[0].RenewalPeriod,
-            Status: _.find(instance.CustomAttributes, function (ca) {
-                return ca.Name === 'Status';
-            }).Value
+            RenewalPeriod: instance.PricingVariants[0].RenewalPeriod
         }, instance, extensions);
     };
-
-
 
     /* Domain registration prototype and factory */
     DomainRegistrationPrototype = {

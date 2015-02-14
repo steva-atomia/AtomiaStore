@@ -6,147 +6,117 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public class FakePremiumDomainSearchProvider : IDomainsProvider
     {
-        public IEnumerable<Product> GetDomains(ICollection<SearchTerm> terms)
+        private static string lastSearchTerm = "";
+
+        public IEnumerable<DomainResult> FindDomains(ICollection<string> searchTerms)
         {
-            var results = new List<Product>();
-            var searchTerm = terms.First().Value;
+            var results = new List<DomainResult>();
+            var searchTerm = searchTerms.First();
 
             if (!string.IsNullOrEmpty(searchTerm))
             {
+                lastSearchTerm = searchTerm;
                 var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod(1, RenewalPeriod.YEAR) };
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-COM",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".com"
+                            ArticleNumber = "DMN-COM",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "available"
-                        },
-                        new CustomAttribute {
-                            Name = "Premium",
-                            Value = "true"
-                        }
-                    }
-                });
+                        searchTerm + ".com",
+                        DomainResult.AVAILABLE,
+                        1
+                    )
+                );
 
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-SE",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".se"
+                            ArticleNumber = "DMN-SE",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true" } }
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "available"
-                        },
-                        new CustomAttribute {
-                            Name = "Premium",
-                            Value = "true"
-                        }
-                    }
-                });
+                        searchTerm + ".se",
+                        DomainResult.AVAILABLE,
+                        1
+                    )
+                );
 
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-EU",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".eu"
+                            ArticleNumber = "DMN-EU",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "available"
-                        },
-                        new CustomAttribute {
-                            Name = "Premium",
-                            Value = "true"
-                        }
-                    }
-                });
+                        searchTerm + ".eu",
+                        DomainResult.UNAVAILABLE,
+                        1
+                    )
+                );
 
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-NET",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".net"
+                            ArticleNumber = "DMN-NET",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "available"
-                        }
-                    }
-                });
+                        searchTerm + ".net",
+                        DomainResult.LOADING,
+                        1
+                    )
+                );
 
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-INFO",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".info"
+                            ArticleNumber = "DMN-INFO",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "processing"
-                        }
-                    }
-                });
+                        searchTerm + ".info",
+                        DomainResult.UNKNOWN,
+                        1
+                    )
+                );
 
-                results.Add(new Product
-                {
-                    ArticleNumber = "DMN-BIZ",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>
-                    {
-                        new CustomAttribute 
+                results.Add(
+                    new DomainResult(
+                        new Product
                         {
-                            Name = "DomainName",
-                            Value = searchTerm + ".biz"
+                            ArticleNumber = "DMN-BIZ",
+                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                         },
-                        new CustomAttribute {
-                            Name = "Status",
-                            Value = "unavailable"
-                        }
-                    }
-                });
+                        searchTerm + ".biz",
+                        DomainResult.AVAILABLE,
+                        1
+                    )
+                );
             }
 
             return results;
         }
 
-        public string GetStatus(string domainName)
+        public IEnumerable<DomainResult> CheckStatus(int domainSearchId)
         {
-            return "available";
+            return FindDomains(new List<string>{ lastSearchTerm }).Select(r => SetAvailable(r));
         }
 
 
         public IEnumerable<string> GetDomainCategories()
         {
             return new List<string> { "TLD", "TransferTLD", "OwnDomain" };
+        }
+
+        private DomainResult SetAvailable(DomainResult result)
+        {
+
+            return new DomainResult(result.Product, result.DomainName, DomainResult.AVAILABLE, result.DomainSearchId);
         }
     }
 }

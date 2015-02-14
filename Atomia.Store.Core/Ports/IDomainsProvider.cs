@@ -4,9 +4,9 @@ namespace Atomia.Store.Core
 {
     public interface IDomainsProvider
     {
-        IEnumerable<Product> GetDomains(ICollection<SearchTerm> terms);
+        IEnumerable<DomainResult> FindDomains(ICollection<string> searchTerms);
 
-        string GetStatus(string domainName);
+        IEnumerable<DomainResult> CheckStatus(int domainSearchId);
 
         IEnumerable<string> GetDomainCategories();
     }

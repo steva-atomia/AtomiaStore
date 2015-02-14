@@ -7,12 +7,11 @@ namespace Atomia.Store.AspNetMvc.Models
 {
     public class ProductModel : IPresentableItem
     {
-        private readonly IItemPresenter itemPresenter;
+        private readonly IItemPresenter itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
         private readonly Product product;
 
         public ProductModel(Product product)
         {
-            this.itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
             this.product = product;
         }
 

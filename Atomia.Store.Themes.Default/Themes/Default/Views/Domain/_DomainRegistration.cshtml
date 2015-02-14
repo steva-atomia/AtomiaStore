@@ -86,10 +86,18 @@
     </tr>
 </script>
 
-<script type="text/html" id="domainregistration-secondary-processing">
+<script type="text/html" id="domainregistration-secondary-loading">
     <tr>
         <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
         <td class="right nowrap" data-bind="text: Price"></td>
         <td><span class="processing"></span></td>
+    </tr>
+</script>
+
+<script type="text/html" id="domainregistration-secondary-unknown">
+    <tr>
+        <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
+        <td class="right nowrap" data-bind="text: Price"></td>
+        <td><span class="warning"></span></td>
     </tr>
 </script>

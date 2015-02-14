@@ -4,7 +4,14 @@
     amplify.request.define('Domains.FindDomains', 'ajax', {
         url: '/Domains/FindDomains/',
         dataType: 'json',
-        type: 'GET',
+        type: 'POST',
+        decoder: 'jsend'
+    });
+
+    amplify.request.define('Domains.CheckStatus', 'ajax', {
+        url: '/Domains/CheckStatus/',
+        dataType: 'json',
+        type: 'POST',
         decoder: 'jsend'
     });
 
