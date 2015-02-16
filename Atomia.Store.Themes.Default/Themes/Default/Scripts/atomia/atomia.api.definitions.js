@@ -1,5 +1,23 @@
-﻿(function (amplify) {
+﻿;(function (amplify) {
     'use strict';
+
+    // Monkey-patch the builtin jsend decoder to handle invalid data better.
+    amplify.request.decoders.jsend = function (data, status, ampXHR, success, error) {
+        if (ampXHR.statusText === 'abort') {
+            return;
+        }
+
+        if (data && data.status === 'success') {
+            success(data.data);
+        } else if (data && data.status === 'fail') {
+            error(data.data, 'fail');
+        } else if (data && data.status === 'error') {
+            delete data.status;
+            error(data, 'error');
+        } else {
+            error(null, 'error');
+        }
+    };
 
     amplify.request.define('Domains.FindDomains', 'ajax', {
         url: '/Domains/FindDomains/',
@@ -15,33 +33,10 @@
         decoder: 'jsend'
     });
 
-    amplify.request.define('Cart.AddItem', 'ajax', {
-        url: '/Cart/AddItem',
+    amplify.request.define('Cart.RecalculateCart', 'ajax', {
+        url: '/Cart/RecalculateCart',
         dataType: 'json',
         type: 'POST',
         decoder: 'jsend'
     });
-
-    amplify.request.define('Cart.RemoveItem', 'ajax', {
-        url: '/Cart/RemoveItem',
-        dataType: 'json',
-        type: 'POST',
-        decoder: 'jsend'
-    });
-
-    amplify.request.define('Cart.SetItemAttribute', 'ajax', {
-        url: '/Cart/SetItemAttribute',
-        dataType: 'json',
-        type: 'POST',
-        decoder: 'jsend'
-    });
-
-    amplify.request.define('Cart.RemoveItemAttribute', 'ajax', {
-        url: '/Cart/RemoveItemAttribute',
-        dataType: 'json',
-        type: 'POST',
-        decoder: 'jsend'
-    });
-
-
 } (amplify));

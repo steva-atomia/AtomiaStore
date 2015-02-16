@@ -89,35 +89,36 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return itemInCart;
         },
 
-        Add: function Add(item) {
-            var self = this,
-                cartItem;
+        Add: function Add(item, recalculate) {
+            var cartItem;
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
 
             if (!this.Contains(item)) {
                 cartItem = this.CreateCartItem(item);
-
-                // Preliminarily add item to cart.
                 this.CartItems.push(cartItem);
 
-                cartApi.AddItem(
-                    cartItem,
-                    function (result) {
-                        self._UpdateCart(result.Cart);
+                if (recalculate === true) {
+                    cartApi.RecalculateCart(
+                        this,
+                        function (result) {
+                            this._UpdateCart(result.Cart);
 
-                        utils.publish('cart:add', cartItem);
-                    },
-                    function () {
-                        // Failed: remove item
-                        self.CartItems.remove(function (itemToRemove) {
-                            cartItem.Equals(itemToRemove);
-                        });
-                    }
-                );
+                            utils.publish('cart:add', cartItem);
+                        }.bind(this)
+                    );
+                }
             }
         },
 
-        Remove: function Remove(item) {
+        Remove: function Remove(item, recalculate) {
             var itemInCart;
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
 
             if (this.Contains(item)) {
                 itemInCart = _.find(this.CartItems(), function (cartItem) {
@@ -125,36 +126,37 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (itemInCart !== undefined) {
-                    // Preliminarily remove item from cart.
                     this.CartItems.remove(itemInCart);
                     
-                    cartApi.RemoveItem(
-                        itemInCart,
-                        function (result) {
-                            this._UpdateCart(result.Cart);
+                    if (recalculate === true) {
+                        cartApi.RecalculateCart(
+                            this,
+                            function (result) {
+                                this._UpdateCart(result.Cart);
 
-                            utils.publish('cart:remove', itemInCart);
+                                utils.publish('cart:remove', itemInCart);
 
-                            if (itemInCart.IsDomainItem()) {
-                                this.ClearDomainItem(itemInCart);
-                            }
-                        }.bind(this),
-                        function () {
-                            // Failed: add back item.
-                            this.CartItems.push(itemInCart);
-                        }.bind(this)
-                    );
+                                if (itemInCart.IsDomainItem()) {
+                                    this.ClearDomainItem(itemInCart);
+                                }
+                            }.bind(this)
+                        );
+                    }
                 }
             }
         },
 
-        AddOrRemove: function AddOrRemove(item) {
-            this.Contains(item) ? this.Remove(item) : this.Add(item);
+        AddOrRemove: function AddOrRemove(item, recalculate) {
+            this.Contains(item) ? this.Remove(item, recalculate) : this.Add(item, recalculate);
         },
 
-        AddDomainName: function AddDomainName(mainItem, domainName) {
+        AddDomainName: function AddDomainName(mainItem, domainName, recalculate) {
             var mainInCart = this.GetExisting(mainItem),
                 existingDomainName;
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
 
             if (mainInCart === undefined) {
                 throw new Error('mainItem is not in cart.');
@@ -163,29 +165,46 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             existingDomainName = mainInCart.GetDomainName();
 
             if (existingDomainName !== domainName) {
-                cartApi.SetItemAttribute(
-                    mainInCart, 'DomainName', domainName,
-                    function (result) {
-                        this._UpdateCart(result.Cart);
-                    }.bind(this)
-                );
+                mainInCart.CustomAttributes.push({
+                    Name: 'DomainName',
+                    Value: domainName
+                });
+
+                if (recalculate === true) {
+                    cartApi.RecalculateCart(
+                        this,
+                        function (result) {
+                            this._UpdateCart(result.Cart);
+                        }.bind(this)
+                    );
+                }
             }
         },
 
-        RemoveDomainName: function RemoveDomainName(mainItem) {
+        RemoveDomainName: function RemoveDomainName(mainItem, recalculate) {
             var mainInCart = this.GetExisting(mainItem);
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
 
             if (mainInCart === undefined) {
                 throw new Error('mainItem is not in cart.');
             }
 
             if (mainInCart.GetDomainName() !== undefined) {
-                cartApi.RemoveItemAttribute(
-                    mainInCart, 'DomainName',
-                    function (result) {
-                        this._UpdateCart(result.Cart);
-                    }.bind(this)
-                );
+                mainInCart.CustomAttributes = _.reject(mainInCart.CustomAttributes, function (item) {
+                    return item.Name === 'DomainName';
+                });
+
+                if (recalculate === true) {
+                    cartApi.RecalculateCart(
+                        this,
+                        function (result) {
+                            this._UpdateCart(result.Cart);
+                        }.bind(this)
+                    );
+                }
             }
         },
 

@@ -82,10 +82,22 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
             foreach(var cartItem in cart.CartItems)
             {
-                var calculatedItem = calculatedPublicOrder.OrderItems
-                    .First(x => x.ItemNumber == cartItem.ArticleNumber 
-                        && x.RenewalPeriod == cartItem.RenewalPeriod.Period 
-                        && x.RenewalPeriodUnit.ToUpper() == cartItem.RenewalPeriod.Unit);
+                PublicOrderItem calculatedItem;
+                var calcOrderItems = calculatedPublicOrder.OrderItems;
+
+                if (cartItem.RenewalPeriod == null)
+                {
+                    calculatedItem = calcOrderItems.First(x => 
+                        x.ItemNumber == cartItem.ArticleNumber 
+                        && x.RenewalPeriod == 0);
+                }
+                else
+                {
+                   calculatedItem = calcOrderItems.First(x => 
+                       x.ItemNumber == cartItem.ArticleNumber 
+                       && x.RenewalPeriod == cartItem.RenewalPeriod.Period 
+                       && x.RenewalPeriodUnit.ToUpper() == cartItem.RenewalPeriod.Unit);
+                }
 
                 cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, calculatedItem.TaxAmount);
                 cartItem.Quantity = calculatedItem.Quantity;

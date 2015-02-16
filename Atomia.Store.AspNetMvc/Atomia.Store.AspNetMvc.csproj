@@ -102,7 +102,6 @@
     <Compile Include="HtmlHelpers\FormRowForHelper.cs" />
     <Compile Include="Infrastructure\RazorThemeViewEngine.cs" />
     <Compile Include="Models\AccountViewModel.cs" />
-    <Compile Include="Models\CartItemRemoveModel.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\ProductListingController.cs" />
     <Compile Include="HtmlHelpers\JsonActionHelper.cs" />
@@ -110,10 +109,8 @@
     <Compile Include="Infrastructure\JsonEnvelope.cs" />
     <Compile Include="Infrastructure\ModelBinding.cs" />
     <Compile Include="Models\CartItemModel.cs" />
-    <Compile Include="Models\CartItemQuantityModel.cs" />
-    <Compile Include="Models\CartItemRemoveAttributeModel.cs" />
-    <Compile Include="Models\CartItemSetAttributeModel.cs" />
-    <Compile Include="Models\CartModel.cs" />
+    <Compile Include="Models\CartDataModel.cs" />
+    <Compile Include="Models\CartUpdateModel.cs" />
     <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\DomainResultModel.cs" />
     <Compile Include="Ports\PaymentMethodGuiPlugin.cs" />

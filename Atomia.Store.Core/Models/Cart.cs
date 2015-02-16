@@ -93,6 +93,31 @@ namespace Atomia.Store.Core
             this.total = total;
         }
 
+        public void UpdateCart(IEnumerable<CartItem> cartItems, string campaignCode)
+        {
+            if (cartItems == null)
+            {
+                throw new ArgumentNullException("cartItems");
+            }
+
+            foreach(var cartItem in cartItems)
+            {
+                cartItem.Id = Guid.NewGuid();
+                this.cartItems.Add(cartItem);
+            }
+
+            if (String.IsNullOrEmpty(campaignCode))
+            {
+                this.campaignCode = String.Empty;
+            }
+            else
+            {
+                this.campaignCode = campaignCode;
+            }
+
+            RecalculatePricingAndSave();
+        }
+
         public Guid AddItem(CartItem cartItem)
         {
             if (cartItem == null)

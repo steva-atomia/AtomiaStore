@@ -96,7 +96,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 _.each(this.Products(), function (product) {
                     if (this._Cart.Contains(product)) {
-                        this._Cart.Remove(product);
+                        this._Cart.Remove(product, false);
                     }
                 }.bind(this));
             }

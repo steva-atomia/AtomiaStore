@@ -3,6 +3,7 @@ using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
 using System.Web.Mvc;
 using System.Linq;
+using System;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -23,86 +24,21 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             return JsonEnvelope.Success(new
                 {
-                    Cart = new CartModel(cart),
+                    Cart = new CartDataModel(cart),
                     DomainCategories = domainsProvider.GetDomainCategories()
                 });
         }
 
         [HttpPost]
-        public JsonResult AddItem(CartItemModel item)
+        public JsonResult RecalculateCart(CartUpdateModel updatedCart)
         {
             if (ModelState.IsValid)
             {
-                var cartItemId = cart.AddItem(item.CartItem);
-
-                return JsonEnvelope.Success(new 
-                    {
-                        CartItemId = cartItemId,
-                        Cart = new CartModel(cart)
-                    });
-            }
-
-            return JsonEnvelope.Fail(ModelState);
-        }
-
-        [HttpPost]
-        public JsonResult RemoveItem(CartItemRemoveModel removeItem)
-        {
-            if (ModelState.IsValid)
-            {
-                cart.RemoveItem(removeItem.Id);
-
-                return JsonEnvelope.Success(new
-                    {
-                        Cart = new CartModel(cart)
-                    });
-            }
-
-            return JsonEnvelope.Fail(ModelState);
-        }
-
-        [HttpPost]
-        public JsonResult SetItemAttribute(CartItemSetAttributeModel item)
-        {
-            if (ModelState.IsValid)
-            {
-                cart.SetItemAttribute(item.Id, item.AttributeName, item.AttributeValue);
-
-                return JsonEnvelope.Success(new
-                {
-                    Cart = new CartModel(cart)
-                });
-            }
-
-            return JsonEnvelope.Fail(ModelState);
-        }
-
-        [HttpPost]
-        public JsonResult RemoveItemAttribute(CartItemRemoveAttributeModel item)
-        {
-            if (ModelState.IsValid)
-            {
-                cart.RemoveItemAttribute(item.Id, item.AttributeName);
-
-                return JsonEnvelope.Success(new
-                {
-                    Cart = new CartModel(cart)
-                });
-            }
-
-            return JsonEnvelope.Fail(ModelState);
-        }
-
-        [HttpPost]
-        public JsonResult ChangeQuantity(CartItemQuantityChangeModel quantityChangeItem)
-        {
-            if (ModelState.IsValid)
-            {
-                cart.ChangeQuantity(quantityChangeItem.Id, quantityChangeItem.Quantity);
-
-                return JsonEnvelope.Success(new
-                {
-                    Cart = new CartModel(cart)
+                cart.Clear();
+                cart.UpdateCart(updatedCart.CartItems.Select(ci => ci.CartItem), updatedCart.CampaignCode);
+                
+                return JsonEnvelope.Success(new {
+                    Cart = new CartDataModel(cart)
                 });
             }
 
