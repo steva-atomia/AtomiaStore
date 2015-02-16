@@ -435,4 +435,7 @@
   <data name="SV_SE_shortname" xml:space="preserve">
     <value>SE</value>
   </data>
+  <data name="DomainRegNoResultsHeading" xml:space="preserve">
+    <value>No results for</value>
+  </data>
 </root>

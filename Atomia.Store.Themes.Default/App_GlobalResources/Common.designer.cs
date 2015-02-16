@@ -367,6 +367,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No results for.
+        /// </summary>
+        internal static string DomainRegNoResultsHeading {
+            get {
+                return ResourceManager.GetString("DomainRegNoResultsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Results for.
         /// </summary>
         internal static string DomainRegResultsHeading {

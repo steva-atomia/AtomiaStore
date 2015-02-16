@@ -40,6 +40,10 @@
     </p>
 </div>
 
+<div class="domainreg-results" data-bind="visible: !DomainRegistration.HasResults() && DomainRegistration.NoResults()" style="display: none;">
+    <h4 class="fancy">@Html.CommonResource("DomainRegNoResultsHeading") <strong data-bind="text: DomainRegistration.SubmittedQuery"></strong></h4>
+</div>
+
 <div data-bind="visible: DomainRegistration.IsLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>
     <div id="global_processing_overlay" class="blocker"></div>
