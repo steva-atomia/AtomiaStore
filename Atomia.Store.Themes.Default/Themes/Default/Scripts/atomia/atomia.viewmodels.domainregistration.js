@@ -42,10 +42,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         StatusCheckInterval: 250,
 
         Submit: function Submit() {
+            this.IsLoadingResults(true);
             this.PrimaryResults.removeAll();
             this.SecondaryResults.removeAll();
             this.ShowMoreResults(false);
-            this.IsLoadingResults(true);
             this.SubmittedQuery(this.Query());
             this.NoResults(false);
 
@@ -64,6 +64,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                         domainsApi.CheckStatus(domainSearchId, function (data) {
 
                             this.UpdateResults(data.Results);
+
+                            if (!this.PrimaryResultsLoading()) {
+                                this.IsLoadingResults(false);
+                            }
 
                             if (data.FinishSearch) {
                                 clearInterval(statusCheckId);
@@ -110,10 +114,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             // Set all at once to avoid triggering bindings on each push.
             this.PrimaryResults(primaryResults);
             this.SecondaryResults(secondaryResults);
-
-            if (!this.PrimaryResultsLoading()) {
-                this.IsLoadingResults(false);
-            }
         },
 
         SetShowMoreResults: function SetShowMoreResults() {
