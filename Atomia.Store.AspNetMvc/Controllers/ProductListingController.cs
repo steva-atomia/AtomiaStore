@@ -10,12 +10,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class ProductListingController : Controller
     {
-        private readonly IEnumerable<IProductListProvider> providers;
-
-        public ProductListingController()
-        {
-            this.providers = DependencyResolver.Current.GetServices<IProductListProvider>();
-        }
+        private readonly IEnumerable<IProductListProvider> productListProviders = DependencyResolver.Current.GetServices<IProductListProvider>();
 
         [HttpGet]
         public ActionResult Index(string query, string listingType = "Category", string viewName = "Index")
@@ -40,7 +35,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private ProductListingDataModel InitDataModel(string query, string listingType)
         {
             var model = DependencyResolver.Current.GetService<ProductListingDataModel>();
-            var provider = providers.FirstOrDefault(x => x.Name == listingType);
+            var provider = productListProviders.FirstOrDefault(x => x.Name == listingType);
 
             if (provider == null)
             {

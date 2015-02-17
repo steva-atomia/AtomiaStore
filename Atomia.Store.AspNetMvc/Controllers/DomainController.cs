@@ -12,12 +12,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public class DomainController : Controller
     {
-        private readonly IDomainsProvider domainProvider;
-
-        public DomainController()
-        {
-            this.domainProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
-        }
+        private readonly IDomainsProvider domainProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 
         [HttpGet]
         public ActionResult Index()

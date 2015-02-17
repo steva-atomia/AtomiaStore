@@ -7,7 +7,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
 {
     public class RazorThemeViewEngine : RazorViewEngine
     {
-        public RazorThemeViewEngine(IThemeNamesProvider themeNamesProvider)
+        private readonly IThemeNamesProvider themeNamesProvider = DependencyResolver.Current.GetService<IThemeNamesProvider>();
+
+        public RazorThemeViewEngine()
         {
             var themes = themeNamesProvider.GetActiveThemeNames();
 

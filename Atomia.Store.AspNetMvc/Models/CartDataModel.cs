@@ -7,13 +7,13 @@ namespace Atomia.Store.AspNetMvc.Models
 {
     public class CartDataModel
     {
-        private readonly ICurrencyFormatter currencyFormatter;
+        private readonly ICurrencyFormatter currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
+
         private readonly Cart cart;
 
         public CartDataModel(Cart cart)
         {
             this.cart = cart;
-            this.currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
         }
 
         public IReadOnlyCollection<CartItemModel> CartItems

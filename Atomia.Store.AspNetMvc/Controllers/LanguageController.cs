@@ -9,14 +9,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class LanguageController : Controller
     {
-        private readonly ILanguageProvider languageProvider;
-        private readonly ILanguagePreferenceProvider languagePreferenceProvider;
-
-        public LanguageController()
-        {
-            this.languageProvider = DependencyResolver.Current.GetService<ILanguageProvider>();
-            this.languagePreferenceProvider = DependencyResolver.Current.GetService<ILanguagePreferenceProvider>();
-        }
+        private readonly ILanguageProvider languageProvider = DependencyResolver.Current.GetService<ILanguageProvider>();
+        private readonly ILanguagePreferenceProvider languagePreferenceProvider = DependencyResolver.Current.GetService<ILanguagePreferenceProvider>();
 
         public JsonResult GetLanguages()
         {

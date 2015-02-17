@@ -2,29 +2,14 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
     public class ItemPresenter: IItemPresenter
     {
-        private readonly IProductProvider productProvider;
-        private readonly IDomainsProvider domainsProvider;
-
-        public ItemPresenter(IProductProvider productProvider, IDomainsProvider domainsProvider)
-        {
-            if (productProvider == null)
-            {
-                throw new ArgumentNullException("productProvider");
-            }
-
-            if (domainsProvider == null)
-            {
-                throw new ArgumentNullException("domainsProvider");
-            }
-
-            this.productProvider = productProvider;
-            this.domainsProvider = domainsProvider;
-        }
+        private readonly IProductProvider productProvider = DependencyResolver.Current.GetService<IProductProvider>();
+        private readonly IDomainsProvider domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
         
         public string GetName(IPresentableItem item)
         {

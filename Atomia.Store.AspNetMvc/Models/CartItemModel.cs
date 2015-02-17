@@ -8,16 +8,13 @@ namespace Atomia.Store.AspNetMvc.Models
 {
     public class CartItemModel : IPresentableItem
     {
-        private readonly IItemPresenter itemPresenter;
-        private readonly ICurrencyFormatter currencyFormatter;
+        private readonly IItemPresenter itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
+        private readonly ICurrencyFormatter currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
 
         private CartItem cartItem;
        
         public CartItemModel()
         {
-            itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
-            currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
-
             if (this.cartItem == null)
             {
                 this.cartItem = new CartItem();

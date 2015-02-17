@@ -5,12 +5,7 @@ namespace Atomia.Store.AspNetMvc.Models
 {
     public class RenewalPeriodModel
     {
-        private IResourceProvider resourceProvider;
-
-        public RenewalPeriodModel()
-        {
-            resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
-        }
+        private readonly IResourceProvider resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
 
         //[Required][1+]
         public int Period { get; set; }

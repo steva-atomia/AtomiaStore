@@ -1,17 +1,13 @@
 ﻿using Atomia.Store.Core;
 using System.Web;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
     public class CartProvider : ICartProvider
     {
-        private readonly ICartPricingService cartPricingProvider;
+        private readonly ICartPricingService cartPricingProvider = DependencyResolver.Current.GetService<ICartPricingService>();
 
-        public CartProvider(ICartPricingService cartPricingProvider)
-        {
-            this.cartPricingProvider = cartPricingProvider;
-        }
-        
         public Cart GetCart() 
         {
             var cart = HttpContext.Current.Session["Cart"] as Cart;

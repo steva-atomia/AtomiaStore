@@ -2,22 +2,13 @@
 using System;
 using System.Globalization;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
     public class CurrencyFormatter : ICurrencyFormatter
     {
-        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
-
-        public CurrencyFormatter(ICurrencyPreferenceProvider currencyPreferenceProvider)
-        {
-            if (currencyPreferenceProvider == null)
-            {
-                throw new ArgumentNullException("currencyPreferenceProvider");
-            }
-
-            this.currencyPreferenceProvider = currencyPreferenceProvider;
-        }
+        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider = DependencyResolver.Current.GetService<ICurrencyPreferenceProvider>();
 
         /// <summary>
         /// Return default .NET currency format or fallback to simple 

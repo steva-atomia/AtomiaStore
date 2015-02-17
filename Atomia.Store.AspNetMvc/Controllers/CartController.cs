@@ -9,19 +9,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CartController : Controller
     {
-        private readonly Cart cart;
-        private readonly IDomainsProvider domainsProvider;
-
-        public CartController()
-        {
-            var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
-            
-            this.domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
-            this.cart = cartProvider.GetCart();
-        }
+        private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
+        private readonly IDomainsProvider domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 
         public JsonResult GetCart()
         {
+            var cart = cartProvider.GetCart();
+
             return JsonEnvelope.Success(new
                 {
                     Cart = new CartDataModel(cart),
@@ -34,6 +28,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         {
             if (ModelState.IsValid)
             {
+                var cart = cartProvider.GetCart();
+
                 cart.Clear();
                 cart.UpdateCart(updatedCart.CartItems.Select(ci => ci.CartItem), updatedCart.CampaignCode);
                 
