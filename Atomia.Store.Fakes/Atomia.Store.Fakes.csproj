@@ -63,7 +63,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj">
       <Project>{22e89989-1534-4b38-925d-03906d0284bf}</Project>
-      <Name>Atomia.Store.UI.AspNetMvc</Name>
+      <Name>Atomia.Store.AspNetMvc</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

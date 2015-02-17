@@ -288,15 +288,15 @@
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.WebBase\Atomia.Store.WebBase.csproj">
       <Project>{51b7c760-9389-482a-be5b-ab67f846a380}</Project>
-      <Name>Atomia.Store.Services.WebBase</Name>
+      <Name>Atomia.Store.WebBase</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.ActionTrail\Atomia.Store.ActionTrail.csproj">
       <Project>{6f81b202-21af-49bb-8606-518149972eed}</Project>
-      <Name>Atomia.Store.Services.ActionTrail</Name>
+      <Name>Atomia.Store.ActionTrail</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Fakes\Atomia.Store.Fakes.csproj">
       <Project>{1239517a-dc31-414c-8d3d-37dd34c2e143}</Project>
-      <Name>Atomia.Store.Services.Fakes</Name>
+      <Name>Atomia.Store.Fakes</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Core\Atomia.Store.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
@@ -304,7 +304,7 @@
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj">
       <Project>{22E89989-1534-4B38-925D-03906D0284BF}</Project>
-      <Name>Atomia.Store.Services.AspNetMvc</Name>
+      <Name>Atomia.Store.AspNetMvc</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
