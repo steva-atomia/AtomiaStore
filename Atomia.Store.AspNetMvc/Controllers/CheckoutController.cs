@@ -5,11 +5,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System;
+using Atomia.Store.AspNetMvc.Ports;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CheckoutController : Controller
     {
+        private readonly IEnumerable<PaymentMethodForm> paymentForms = DependencyResolver.Current.GetServices<PaymentMethodForm>();
+        private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
+        private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
+        private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
+        
         [HttpGet]
         public ActionResult Index()
         {
@@ -22,28 +28,26 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(CheckoutViewModel model)
         {
-            if (model.SelectedPaymentMethod != null && model.SelectedPaymentMethod.PaymentForm != null)
+            var updated = false;
+            if (model.SelectedPaymentMethod != null)
             {
-                TryUpdateModel(model.SelectedPaymentMethod.PaymentForm);
+                // Validate form connected to payment method, if any.
+                var paymentForm = paymentForms.FirstOrDefault(f => f.Id == model.SelectedPaymentMethod.Id);
+
+                if (paymentForm != null)
+                {
+                    updated = TryUpdateModel(paymentForm, model.SelectedPaymentMethod.Id);
+                }
             }
 
-            // ModelState.AddModelError("", 
-            // ModelState.AddModelError("", 
-            // Validate Cart (with TOS)
-            // Validate AccountData
+            // TODO: Add cart and contactdata validation.
 
             if (ModelState.IsValid)
             {
-                var orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
-
-                var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
                 var cart = cartProvider.GetCart();
-
-                var contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
                 var contactDataCollection = contactDataProvider.GetContactData();
 
                 var redirectUrl = orderPlacementService.PlaceOrder(cart, contactDataCollection, model.SelectedPaymentMethod);
-
                 return Redirect(redirectUrl);
             }
 

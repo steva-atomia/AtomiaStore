@@ -5,13 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Atomia.Store.Core;
 
-namespace Atomia.Store.Fakes.Adapters
+namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class FakeOrderPlacementService : IOrderPlacementService
+    public class OrderPlacementService : IOrderPlacementService
     {
         private readonly PaymentUrlProvider urlProvider;
 
-        public FakeOrderPlacementService(PaymentUrlProvider urlProvider)
+        public OrderPlacementService(PaymentUrlProvider urlProvider)
         {
             if (urlProvider == null)
             {
@@ -23,7 +23,7 @@ namespace Atomia.Store.Fakes.Adapters
 
         public string PlaceOrder(Cart cart, IContactDataCollection contactData, PaymentData paymentMethodData)
         {
-            return urlProvider.SuccessUrl;
+            throw new NotImplementedException();
         }
     }
 }

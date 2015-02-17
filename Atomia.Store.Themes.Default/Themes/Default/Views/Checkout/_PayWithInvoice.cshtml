@@ -1,0 +1,23 @@
+﻿@model Atomia.Store.Payment.Invoice.PayWithInvoiceForm
+
+@using Atomia.Store.Payment.Invoice
+@using Atomia.Store.WebBase.HtmlHelpers
+
+<div id="invoice-box" class="formrow" style="display: block;">
+    <h5><label class="required" for="inv-send"><span>*</span> @Html.CommonResource("SendInvoiceVia"):</label></h5>
+    <div id="inv-send" class="col2row">
+        
+        <label>
+            <input id="inv-send-email" type="radio" name="PayWithInvoice.SelectedInvoiceType" value="@PayWithInvoiceForm.EMAIL" checked="checked">
+            <label for="inv-send-email"></label>
+            <label for="inv-send-email"></label> @Html.CommonResource("InvoiceByEmailName")
+        </label><br />
+
+        <label>
+            <input id="inv-send-post" type="radio" name="PayWithInvoice.SelectedInvoiceType" value="@PayWithInvoiceForm.POST">
+            <label for="inv-send-post"></label>
+            <label for="inv-send-psot"></label> @Html.CommonResource("InvoiceByPostName")
+        </label><br />
+    </div>
+    <br class="clear">
+</div>

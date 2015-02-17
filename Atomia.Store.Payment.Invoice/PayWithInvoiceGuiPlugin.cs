@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 
+
 namespace Atomia.Store.Payment.Invoice
 {
     public class PayWithInvoiceGuiPlugin : PaymentMethodGuiPlugin
@@ -43,6 +44,22 @@ namespace Atomia.Store.Payment.Invoice
             }
         }
 
-        // TODO: Add form to select between email and post invoice.
+        public override PaymentMethodForm Form
+        {
+            get
+            {
+                return new PayWithInvoiceForm();
+            }
+        }
+
+        public string SelectedInvoiceType
+        {
+            get
+            {
+                var form = (PayWithInvoiceForm) Form;
+
+                return form.SelectedInvoiceType;
+            }
+        }
     }
 }

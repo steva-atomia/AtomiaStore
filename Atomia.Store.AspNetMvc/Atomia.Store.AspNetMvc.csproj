@@ -89,13 +89,13 @@
     <Compile Include="Adapters\ItemPresenter.cs" />
     <Compile Include="Adapters\LanguagePreferenceProvider.cs" />
     <Compile Include="Adapters\ResellerIdentifierProvider.cs" />
-    <Compile Include="Adapters\TermsOfServiceProvider.cs" />
     <Compile Include="Adapters\ThemeNamesProvider.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Helpers\PaymentMethodGuiPluginsProvider.cs" />
     <Compile Include="Filters\LanguageFilter.cs" />
     <Compile Include="Filters\ResellerFilter.cs" />
     <Compile Include="Helpers\UrlHelper.cs" />
@@ -108,11 +108,15 @@
     <Compile Include="Infrastructure\GlobalEventsHandler.cs" />
     <Compile Include="Infrastructure\JsonEnvelope.cs" />
     <Compile Include="Infrastructure\ModelBinding.cs" />
+    <Compile Include="Models\BillingContactModel.cs" />
     <Compile Include="Models\CartItemModel.cs" />
     <Compile Include="Models\CartDataModel.cs" />
     <Compile Include="Models\CartUpdateModel.cs" />
     <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\DomainResultModel.cs" />
+    <Compile Include="Models\MainContactModel.cs" />
+    <Compile Include="Ports\ContactDataForm.cs" />
+    <Compile Include="Ports\PaymentMethodForm.cs" />
     <Compile Include="Ports\PaymentMethodGuiPlugin.cs" />
     <Compile Include="Models\ProductListingViewModel.cs" />
     <Compile Include="Models\ContactModel.cs" />
@@ -122,7 +126,6 @@
     <Compile Include="Models\ProductModel.cs" />
     <Compile Include="Models\RenewalPeriodModel.cs" />
     <Compile Include="Models\DomainViewModel.cs" />
-    <Compile Include="Models\TermsOfServiceModel.cs" />
     <Compile Include="Adapters\PaymentUrlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

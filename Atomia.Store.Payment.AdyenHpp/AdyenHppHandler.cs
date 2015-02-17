@@ -9,7 +9,7 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.Payment.AdyenHpp
 {
-    public class AdyenHppHandler : PaymentMethodHandler
+    public class AdyenHppHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 
@@ -33,7 +33,7 @@ namespace Atomia.Store.Payment.AdyenHpp
             get { return PaymentMethodEnum.PayByCard; }
         }
 
-        public override void AmendTransaction(PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public override void AmendTransaction(PaymentData paymentMethodData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
         {
             transaction.ReturnUrl = urlProvider.PaymentRedirectUrl;
             transaction.Attributes.First(item => item.Name == "CancelUrl").Value = urlProvider.CancelUrl;

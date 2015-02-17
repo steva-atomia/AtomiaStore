@@ -348,11 +348,8 @@
   <data name="PayWithInvoiceName" xml:space="preserve">
     <value>Invoice</value>
   </data>
-  <data name="InvoiceByPostDescription" xml:space="preserve">
-    <value>$5.77 postal fee will be included</value>
-  </data>
   <data name="InvoiceByPostName" xml:space="preserve">
-    <value>Send me an invoice by regular mail</value>
+    <value>Post (+$5.77)</value>
   </data>
   <data name="AmountToPay" xml:space="preserve">
     <value>Amount to pay</value>
@@ -437,5 +434,11 @@
   </data>
   <data name="DomainRegNoResultsHeading" xml:space="preserve">
     <value>No results for</value>
+  </data>
+  <data name="InvoiceByEmailName" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="SendInvoiceVia" xml:space="preserve">
+    <value>Send invoice via</value>
   </data>
 </root>

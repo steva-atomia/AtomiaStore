@@ -8,6 +8,6 @@ namespace Atomia.Store.Core
 {
     public interface IOrderPlacementService
     {
-        string PlaceOrder(Cart cart, IContactDataCollection contactData, PaymentMethodData paymentMethodData);
+        string PlaceOrder(Cart cart, IContactDataCollection contactData, PaymentData paymentMethodData);
     }
 }

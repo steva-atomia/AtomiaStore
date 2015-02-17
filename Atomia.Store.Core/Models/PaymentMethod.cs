@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public class PaymentMethod : IPaymentMethod
+    public class PaymentMethod
     {
         public string Id { get; set; }
     }

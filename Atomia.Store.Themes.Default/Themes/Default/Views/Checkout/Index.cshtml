@@ -18,7 +18,7 @@
 
         <div data-bind="visible: !Atomia.VM.Cart.IsEmpty()">
             <h4>@Html.CommonResource("PaymentOptions")</h4>
-            @Html.Partial("_PaymentMethods", Model.PaymentMethods)
+            @Html.Partial("_PaymentMethods", Model.PaymentMethodGuiPlugins)
 
             @*
                 <h4>@Html.CommonResource("AddCampaignCode")</h4>
@@ -28,12 +28,6 @@
             <h4>@Html.CommonResource("Invoice")</h4>
             @* @Html.Partial("_VatCheck") *@
             @Html.Partial("_CartSummary")
-
-            @if (Model.TermsOfService != null)
-            {
-                <h4>@Html.CommonResource("Terms")</h4>
-                @Html.Partial("_TermsOfService", Model.TermsOfService)
-            }
         </div>
 
         <p class="actions" style="display: block;">
@@ -44,6 +38,10 @@
 </div>
 
 @section scripts {
+    @{
+        Html.EnableClientValidation();
+    }
+
     <script type="text/javascript">
         Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelector();
         Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');

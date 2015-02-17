@@ -8,18 +8,35 @@ using System.Web.Mvc;
 using Atomia.Common.Validation;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
 using Atomia.Store.Core;
+using Atomia.Store.AspNetMvc.Ports;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public abstract class ContactModel
+    public abstract class ContactModel : ContactDataForm
     {
+        private readonly ICustomerTypeProvider customerTypeProvider = DependencyResolver.Current.GetService<ICustomerTypeProvider>();
+        private readonly ICountryProvider countryProvider = DependencyResolver.Current.GetService<ICountryProvider>();
+
         private IndividualExtraInfo individualInfo;
         private CompanyExtraInfo companyInfo;
+
+        public ContactModel()
+        {
+            var resellerProvider = DependencyResolver.Current.GetService<IResellerProvider>();
+            var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
+
+            var resellerId = resellerProvider.GetReseller().Id;
+            var cart = cartProvider.GetCart();
+
+            this.ResellerId = resellerId;
+            this.CartItems = cart.CartItems.ToList();
+            this.CompanyInfo = new CompanyExtraInfo();
+            this.IndividualInfo = new IndividualExtraInfo();
+        }
 
         public virtual IEnumerable<SelectListItem> CustomerTypeOptions { 
             get
             {
-                var customerTypeProvider = DependencyResolver.Current.GetService<ICustomerTypeProvider>();
                 var customerTypes = customerTypeProvider.GetCustomerTypes();
 
                 return customerTypes.Select(x => new SelectListItem
@@ -34,7 +51,6 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
-                var countryProvider = DependencyResolver.Current.GetService<ICountryProvider>();
                 var countries = countryProvider.GetCountries();
                 var defaultCountry = countryProvider.GetDefaultCountry();
 
@@ -181,20 +197,5 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         [CustomerValidation(CustomerValidationType.IdentityNumber, "CustomerValidation,IndividualIdentityNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string IdentityNumber { get; set; }
-    }
-
-
-    public class MainContactModel : ContactModel
-    {
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
-        [CustomerValidation(CustomerValidationType.Email, "CustomerValidation,Email")]
-        [AtomiaUsername("ValidationErrors,ErrorUsernameNotAvailable")]
-        public override string Email { get; set; }
-    }
-
-
-    public class BillingContactModel : ContactModel
-    {
-
     }
 }

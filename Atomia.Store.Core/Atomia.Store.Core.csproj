@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Models\ContactData.cs" />
     <Compile Include="Models\Country.cs" />
     <Compile Include="Models\Currency.cs" />
     <Compile Include="Models\CustomerType.cs" />
@@ -70,11 +71,10 @@
     <Compile Include="Ports\ICustomerTypeProvider.cs" />
     <Compile Include="Ports\ILanguagePreferenceProvider.cs" />
     <Compile Include="Ports\IOrderPlacementService.cs" />
-    <Compile Include="Ports\IPaymentMethod.cs" />
     <Compile Include="Ports\IProductProvider.cs" />
     <Compile Include="Ports\IResellerIdentifierProvider.cs" />
     <Compile Include="Ports\ITermsOfServiceProvider.cs" />
-    <Compile Include="Ports\PaymentMethodData.cs" />
+    <Compile Include="Models\PaymentData.cs" />
     <Compile Include="Ports\IPaymentMethodsProvider.cs" />
     <Compile Include="Ports\IProductListProvider.cs" />
     <Compile Include="Ports\IDomainsProvider.cs" />

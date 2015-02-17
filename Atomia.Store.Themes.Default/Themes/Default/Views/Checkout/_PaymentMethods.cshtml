@@ -20,14 +20,18 @@
 @foreach (var paymentMethod in Model)
 {
     <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: Atomia.VM.Payment.SelectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
+
         @if (!string.IsNullOrEmpty(paymentMethod.Description))
         {
             <p class="notice">@paymentMethod.Description</p>
         }
 
-        @if (paymentMethod.PaymentForm != null)
+        @if (paymentMethod.Form != null)
         {
-            @paymentMethod.PaymentForm.Render();
+            @Html.Partial(paymentMethod.Form.PartialViewName, paymentMethod.Form, new ViewDataDictionary
+            {
+                TemplateInfo = new TemplateInfo { HtmlFieldPrefix = paymentMethod.Id }
+            });
         }
     </div>
 }

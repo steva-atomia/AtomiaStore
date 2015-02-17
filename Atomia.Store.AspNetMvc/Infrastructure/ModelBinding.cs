@@ -7,7 +7,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
     {
         public override object BindModel(ControllerContext controllerContext, ModelBindingContext bindingContext)
         {
-            var model = DependencyResolver.Current.GetService(bindingContext.ModelType);
+            var model = bindingContext.Model == null 
+                ? DependencyResolver.Current.GetService(bindingContext.ModelType)
+                : bindingContext.Model;
 
             if (model != null)
             {

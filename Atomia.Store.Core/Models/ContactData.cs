@@ -6,13 +6,8 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public abstract class PaymentMethodData : IPaymentMethod
+    public abstract class ContactData
     {
         public abstract string Id { get; }
-
-        public virtual object GetPaymentMethodData()
-        {
-            return null;
-        }
     }
 }

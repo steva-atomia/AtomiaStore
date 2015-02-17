@@ -1,0 +1,48 @@
+﻿@model Atomia.Store.AspNetMvc.Models.BillingContactModel
+@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div class="formrow">
+    <h5>
+        <span class="required">*</span>
+        @Html.LabelFor(m => m.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
+    </h5>
+    <div class="col2row">
+        @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.BillingContactCustomerType, if: Account.OtherBillingContact" })
+        @Html.ValidationMessageFor(m => m.CustomerType)
+    </div>
+    <br class="clear" />
+</div>
+
+@Html.FormRowFor(m => m.Email, Html.CommonResource("Email") + ":", true, "if: Account.OtherBillingContact")
+@Html.FormRowFor(m => m.FirstName, Html.CommonResource("FirstName") + ":", true, "if: Account.OtherBillingContact")
+@Html.FormRowFor(m => m.LastName, Html.CommonResource("LastName") + ":", true, "if: Account.OtherBillingContact")
+
+<div data-bind="slideVisible: Account.BillingContactIsCompany, slideDuration: 300">
+    @Html.FormRowFor(m => m.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: Account.OtherBillingContact() && Account.BillingContactIsCompany()")
+    @*
+        TODO: VAT can currently only be saved once per account in Atomia Billing, so don't show this for BillingContact until fixed
+        @Html.FormRowFor(m => m.BillingContact.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: Account.OtherBillingContact() && Account.BillingContactIsCompany()")
+    *@
+    @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: Account.OtherBillingContact() && Account.BillingContactIsCompany()")
+</div>
+
+<div data-bind="slideVisible: !Account.BillingContactIsCompany(), slideDuration: 300">
+    @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", false, "if: Account.OtherBillingContact() && !Account.BillingContactIsCompany()")
+</div>
+
+@Html.FormRowFor(m => m.Address, Html.CommonResource("Address") + ":", true, "if: Account.OtherBillingContact")
+@Html.FormRowFor(m => m.Address2, Html.CommonResource("Address2") + ":", false, "if: Account.OtherBillingContact")
+@Html.FormRowFor(m => m.City, Html.CommonResource("City") + ":", true, "if: Account.OtherBillingContact")
+@Html.FormRowFor(m => m.Zip, Html.CommonResource("Zip") + ":", true, "if: Account.OtherBillingContact")
+
+<div class="formrow">
+    <h5>
+        <span class="required">*</span>
+        @Html.LabelFor(m => m.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
+    </h5>
+    <div class="col2row">
+        @Html.DropDownListFor(m => m.Country, Model.CountryOptions, new { data_bind = "if: Account.OtherBillingContact" })
+        @Html.ValidationMessageFor(m => m.Country)
+    </div>
+    <br class="clear">
+</div>

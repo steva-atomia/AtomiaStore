@@ -8,6 +8,6 @@ namespace Atomia.Store.Core
 {
     public interface IContactDataCollection
     {
-        ICollection<object> GetContactData();
+        IEnumerable<ContactData> GetContactData();
     }
 }

@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 using System.ComponentModel.DataAnnotations;
 using Atomia.Store.Core;
 using System.Web.Mvc;
+using Atomia.Store.AspNetMvc.Ports;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-
     public abstract class AccountViewModel : IContactDataCollection
     {
-        public abstract ICollection<object> GetContactData();
+        public abstract IEnumerable<ContactData> GetContactData();
     }
 
 
@@ -20,30 +20,8 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         public DefaultAccountViewModel()
         {
-            var resellerProvider = DependencyResolver.Current.GetService<IResellerProvider>();
-            var cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
-
-            var resellerId = resellerProvider.GetReseller().Id;
-            var cart = cartProvider.GetCart();
-
-
-            // Initialize contact submodels with properties required by Atomia Validation plugin.
-
-            this.MainContact = new MainContactModel()
-            {
-                ResellerId = resellerId,
-                CartItems = cart.CartItems.ToList(),
-                CompanyInfo = new CompanyExtraInfo(),
-                IndividualInfo = new IndividualExtraInfo()
-            };
-
-            this.BillingContact = new BillingContactModel()
-            {
-                ResellerId = resellerId,
-                CartItems = cart.CartItems.ToList(),
-                CompanyInfo = new CompanyExtraInfo(),
-                IndividualInfo = new IndividualExtraInfo()
-            };
+            MainContact = new MainContactModel();
+            BillingContact = new BillingContactModel();
         }
 
         public MainContactModel MainContact { get; set; }
@@ -52,9 +30,9 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public bool OtherBillingContact { get; set; }
 
-        public override ICollection<object> GetContactData()
+        public override IEnumerable<ContactData> GetContactData()
         {
-            return new List<object> {
+            return new ContactData[] {
                 MainContact,
                 BillingContact
             };

@@ -28,7 +28,6 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICurrencyFormatter, Atomia.Store.AspNetMvc.Adapters.CurrencyFormatter>();
             container.RegisterType<IResourceProvider, Atomia.Store.WebBase.Adapters.ResourceProvider>();
             container.RegisterType<ICustomerTypeProvider, Atomia.Store.AspNetMvc.Adapters.CustomerTypeProvider>();
-            container.RegisterType<ITermsOfServiceProvider, Atomia.Store.AspNetMvc.Adapters.TermsOfServiceProvider>();
             container.RegisterType<PaymentUrlProvider, Atomia.Store.AspNetMvc.Adapters.PaymentUrlProvider>();
             container.RegisterType<IThemeNamesProvider, Atomia.Store.AspNetMvc.Adapters.ThemeNamesProvider>();
             container.RegisterType<ICountryProvider, Atomia.Store.PublicBillingApi.Adapters.CountryProvider>();
@@ -47,24 +46,24 @@ namespace Atomia.Store.Themes.Default
                 new InjectionConstructor(new ResolvedParameter<IDomainsProvider>("apiProvider")));
             
 
-            // Payment plugins
+            // Payment plugins, forms and handlers
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.AdyenHpp.AdyenHppGuiPlugin>("AdyenHpp");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinGuiPlugin>("DibsFlexwin");
-            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.PayWithInvoiceGuiPlugin>("InvoiceByEmail");
-            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.InvoiceByPostGuiPlugin>("InvoiceByPost");
+            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.Invoice.PayWithInvoiceGuiPlugin>("PayWithInvoice");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.PayExRedirect.PayExRedirectGuiPlugin>("PayExRedirect");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.PayPal.PayPalGuiPlugin>("PayPal");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.WorldPay.WorldPayGuiPlugin>("WorldPay");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.WorldPayXml.WorldPayXmlGuiPlugin>("WorldPayXml");
 
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.AdyenHpp.AdyenHppHandler>("AdyenHpp");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinHandler>("DibsFlexwin");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.Invoice.PayWithInvoiceHandler>("InvoiceByEmail");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.Invoice.InvoiceByPostHandler>("InvoiceByPost");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.PayExRedirect.PayExRedirectHandler>("PayExRedirect");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.PayPal.PayPalHandler>("PayPal");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.WorldPay.WorldPayHandler>("WorldPay");
-            container.RegisterType<PaymentMethodHandler, Atomia.Store.Payment.WorldPayXml.WorldPayXmlHandler>("WorldPayXml");
+            container.RegisterType<PaymentMethodForm, Atomia.Store.Payment.Invoice.PayWithInvoiceForm>("PayWithInvoice");
+
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.AdyenHpp.AdyenHppHandler>("AdyenHpp");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinHandler>("DibsFlexwin");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.Invoice.PayWithInvoiceHandler>("PayWithInvoice");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.PayExRedirect.PayExRedirectHandler>("PayExRedirect");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.PayPal.PayPalHandler>("PayPal");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPay.WorldPayHandler>("WorldPay");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPayXml.WorldPayXmlHandler>("WorldPayXml");
 
 
             // PublicBillingApi types

@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using Atomia.Store.Core;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
 using Atomia.Store.AspNetMvc.Ports;
+using Atomia.Store.AspNetMvc.Helpers;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -15,29 +16,15 @@ namespace Atomia.Store.AspNetMvc.Models
         public abstract PaymentMethodGuiPlugin SelectedPaymentMethod { get; }
     }
 
+
     public class DefaultCheckoutViewModel : CheckoutViewModel
     {
-        private readonly IPaymentMethodsProvider paymentMethodsProvider = DependencyResolver.Current.GetService<IPaymentMethodsProvider>();
-        private readonly ITermsOfServiceProvider termsOfServiceProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
-
         public DefaultCheckoutViewModel()
         {
-            PaymentMethods = GetAvailablePaymentMethods();
-            SelectedPaymentMethodId = paymentMethodsProvider.GetDefaultPaymentMethod().Id;
+            var paymentPluginsProvider = new PaymentMethodGuiPluginsProvider();
             
-            var paymentMethodIds = PaymentMethods.Select(p => p.Id);
-            if (!paymentMethodIds.Contains(SelectedPaymentMethodId))
-            {
-                SelectedPaymentMethodId = paymentMethodIds.First();
-            }
-
-            TermsOfService = termsOfServiceProvider.GetTermsOfService().Select(tos => new TermsOfServiceModel
-            {
-                Id = tos.Id,
-                Name = tos.Name,
-                Terms = tos.Terms,
-                Confirmed = false
-            }).ToList();
+            this.PaymentMethodGuiPlugins = paymentPluginsProvider.AvailablePaymentMethodGuiPlugins;
+            this.SelectedPaymentMethodId = paymentPluginsProvider.DefaultPaymentMethodId;
         }
 
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
@@ -45,32 +32,14 @@ namespace Atomia.Store.AspNetMvc.Models
 
         public override PaymentMethodGuiPlugin SelectedPaymentMethod
         {
-            get 
+            get
             {
-                return PaymentMethods.Where(x => x.Id == SelectedPaymentMethodId).FirstOrDefault();
+                return PaymentMethodGuiPlugins
+                    .Where(x => x.Id == SelectedPaymentMethodId)
+                    .FirstOrDefault();
             }
         }
 
-        public virtual List<PaymentMethodGuiPlugin> PaymentMethods { get; set;}
-
-        public virtual List<TermsOfServiceModel> TermsOfService { get; set; }
-
-        private List<PaymentMethodGuiPlugin> GetAvailablePaymentMethods()
-        {
-            var availablePaymentMethodPlugins = new List<PaymentMethodGuiPlugin>();
-
-            var paymentMethodPlugins = DependencyResolver.Current.GetServices<PaymentMethodGuiPlugin>();
-            var paymentMethods = paymentMethodsProvider.GetPaymentMethods();
-
-            foreach (var plugin in paymentMethodPlugins)
-            {
-                if (paymentMethods.Any(method => method.Id == plugin.Id))
-                {
-                    availablePaymentMethodPlugins.Add(plugin);
-                }
-            }
-
-            return availablePaymentMethodPlugins.ToList();
-        }
+        public virtual IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set;}
     }
 }

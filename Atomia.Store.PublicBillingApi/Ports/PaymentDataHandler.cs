@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Atomia.Store.Core;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.PublicBillingApi.Ports
 {
-    public abstract class PaymentMethodHandler
+    public abstract class PaymentDataHandler
     {
         public abstract string Id { get; }
 
@@ -17,7 +18,7 @@ namespace Atomia.Store.PublicBillingApi.Ports
         /// Amend order with payment method specific attributes.
         /// </summary>
         /// <param name="order">The order to amend.</param>
-        public virtual void AmendOrder(PublicOrder order, List<PublicOrderCustomData> customData)
+        public virtual void AmendOrder(PaymentData paymentData, PublicOrder order, List<PublicOrderCustomData> customData)
         {
         }
 
@@ -26,7 +27,7 @@ namespace Atomia.Store.PublicBillingApi.Ports
         /// Typical is to set ReturnUrl on transaction and add CancelUrl to attributes.
         /// </summary>
         /// <param name="transaction">The transaction to amend</param>
-        public virtual void AmendTransaction(PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public virtual void AmendTransaction(PaymentData paymentData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
         {
         }
     }

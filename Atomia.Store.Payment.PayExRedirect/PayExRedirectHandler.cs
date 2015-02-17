@@ -12,7 +12,7 @@ using System.Web.Routing;
 
 namespace Atomia.Store.Payment.PayExRedirect
 {
-    public class PayExRedirectHandler : PaymentMethodHandler
+    public class PayExRedirectHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 
@@ -36,7 +36,7 @@ namespace Atomia.Store.Payment.PayExRedirect
             get { return PaymentMethodEnum.PayByCard; }
         }
 
-        public override void AmendTransaction(PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public override void AmendTransaction(PaymentData paymentMethodData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext, RouteTable.Routes);
             var path = urlHelper.Action("Confirm", "PayExRedirect");

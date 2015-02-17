@@ -245,10 +245,13 @@
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CampaignCode.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_VatCheck.cshtml" />
-    <Content Include="Themes\Default\Views\Shared\_PaymentMethods.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_PaymentMethods.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_TermsOfService.cshtml" />
     <Content Include="Themes\Default\Views\PayExRedirect\Confirm.cshtml" />
     <Content Include="Themes\Default\Views\PayPal\Confirm.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_MainContact.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_BillingContact.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_PayWithInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.Payment.AdyenHpp\Atomia.Store.Payment.AdyenHpp.csproj">

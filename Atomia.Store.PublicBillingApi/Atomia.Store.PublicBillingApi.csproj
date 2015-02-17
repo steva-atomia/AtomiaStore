@@ -58,14 +58,16 @@
     <Compile Include="Adapters\CurrencyProvider.cs" />
     <Compile Include="Adapters\DomainsProvider.cs" />
     <Compile Include="Adapters\LanguageProvider.cs" />
+    <Compile Include="Adapters\OrderPlacementService.cs" />
     <Compile Include="Adapters\PaymentMethodsProvider.cs" />
     <Compile Include="Adapters\ProductProvider.cs" />
     <Compile Include="Adapters\ResellerProvider.cs" />
     <Compile Include="CachedResellerDataProvider.cs" />
+    <Compile Include="Ports\ContactDataHandler.cs" />
     <Compile Include="ProductMapper.cs" />
     <Compile Include="PublicBillingApiClient.cs" />
     <Compile Include="PublicBillingApiProxy.cs" />
-    <Compile Include="Ports\PaymentMethodHandler.cs" />
+    <Compile Include="Ports\PaymentDataHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ResellerDataProvider.cs" />
   </ItemGroup>

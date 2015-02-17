@@ -33,7 +33,12 @@
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.Validation, Version=14.1.5522.19945, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Atomia.Web.Plugin.Validation.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -42,9 +47,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InvoiceByPostHandler.cs" />
+    <Compile Include="PayWithInvoiceForm.cs" />
     <Compile Include="PayWithInvoiceHandler.cs" />
-    <Compile Include="InvoiceByPostGuiPlugin.cs" />
     <Compile Include="PayWithInvoiceGuiPlugin.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

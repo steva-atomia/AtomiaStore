@@ -12,7 +12,7 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.Payment.PayPal
 {
-    public class PayPalHandler : PaymentMethodHandler
+    public class PayPalHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 
@@ -36,7 +36,7 @@ namespace Atomia.Store.Payment.PayPal
             get { return PaymentMethodEnum.PayByCard; }
         }
 
-        public override void AmendTransaction(PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public override void AmendTransaction(PaymentData paymentMethodData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext, RouteTable.Routes);
             var path = urlHelper.Action("Confirm", "PayPal");

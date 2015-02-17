@@ -9,12 +9,7 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Ports
 {
-    public abstract class PaymentForm
-    {
-        public abstract MvcHtmlString Render();
-    }
-
-    public abstract class PaymentMethodGuiPlugin : PaymentMethodData
+    public abstract class PaymentMethodGuiPlugin : PaymentData
     {
         public abstract string Name { get; }
 
@@ -26,8 +21,8 @@ namespace Atomia.Store.AspNetMvc.Ports
             }
         }
 
-        public virtual PaymentForm PaymentForm
-        {
+        public virtual PaymentMethodForm Form 
+        { 
             get
             {
                 return null;
