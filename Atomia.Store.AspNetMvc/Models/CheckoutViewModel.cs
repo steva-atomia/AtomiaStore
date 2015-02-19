@@ -27,19 +27,14 @@ namespace Atomia.Store.AspNetMvc.Models
             this.SelectedPaymentMethodId = paymentPluginsProvider.DefaultPaymentMethodId;
         }
 
+        public virtual IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set; }
+
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         public string SelectedPaymentMethodId { get; set; }
 
         public override PaymentMethodGuiPlugin SelectedPaymentMethod
         {
-            get
-            {
-                return PaymentMethodGuiPlugins
-                    .Where(x => x.Id == SelectedPaymentMethodId)
-                    .FirstOrDefault();
-            }
+            get { return PaymentMethodGuiPlugins.Where(x => x.Id == SelectedPaymentMethodId).FirstOrDefault();}
         }
-
-        public virtual IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set;}
     }
 }

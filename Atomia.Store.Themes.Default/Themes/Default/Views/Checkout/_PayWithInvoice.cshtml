@@ -3,20 +3,18 @@
 @using Atomia.Store.Payment.Invoice
 @using Atomia.Store.WebBase.HtmlHelpers
 
-<div id="invoice-box" class="formrow" style="display: block;">
+<div id="invoice-box" class="formrow" style="display: block;" >
     <h5><label class="required" for="inv-send"><span>*</span> @Html.CommonResource("SendInvoiceVia"):</label></h5>
-    <div id="inv-send" class="col2row">
-        
+    <div id="inv-send" class="col2row" data-bind="if: Payment.SelectedPaymentMethod() == '@Model.Id'">
         <label>
-            <input id="inv-send-email" type="radio" name="PayWithInvoice.SelectedInvoiceType" value="@PayWithInvoiceForm.EMAIL" checked="checked">
+            @Html.RadioButtonFor(m => m.SelectedInvoiceType, PayWithInvoiceForm.EMAIL, new { id="inv-send-email", @checked=true })
             <label for="inv-send-email"></label>
             <label for="inv-send-email"></label> @Html.CommonResource("InvoiceByEmailName")
         </label><br />
-
         <label>
-            <input id="inv-send-post" type="radio" name="PayWithInvoice.SelectedInvoiceType" value="@PayWithInvoiceForm.POST">
+            @Html.RadioButtonFor(m => m.SelectedInvoiceType, PayWithInvoiceForm.POST, new { id = "inv-send-post" })
             <label for="inv-send-post"></label>
-            <label for="inv-send-psot"></label> @Html.CommonResource("InvoiceByPostName")
+            <label for="inv-send-post"></label> @Html.CommonResource("InvoiceByPostName")
         </label><br />
     </div>
     <br class="clear">

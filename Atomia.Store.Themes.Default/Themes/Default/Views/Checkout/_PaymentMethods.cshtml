@@ -7,7 +7,7 @@
         @foreach (var paymentMethod in Model)
         {
             <label>
-                <input id="@paymentMethod.Id" type="radio" name="SelectedPaymentMethodId" value="@paymentMethod.Id" data-bind="checked: Atomia.VM.Payment.SelectedPaymentMethod">
+                <input id="@paymentMethod.Id" type="radio" name="SelectedPaymentMethodId" value="@paymentMethod.Id" data-bind="checked: Payment.SelectedPaymentMethod">
                 <label for="@paymentMethod.Id"></label>
                 <label for="@paymentMethod.Id"></label>
                 @paymentMethod.Name
@@ -19,18 +19,18 @@
 
 @foreach (var paymentMethod in Model)
 {
-    <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: Atomia.VM.Payment.SelectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
+    <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: Payment.SelectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
 
         @if (!string.IsNullOrEmpty(paymentMethod.Description))
         {
             <p class="notice">@paymentMethod.Description</p>
         }
 
-        @if (paymentMethod.Form != null)
+        @if (paymentMethod.HasForm)
         {
             @Html.Partial(paymentMethod.Form.PartialViewName, paymentMethod.Form, new ViewDataDictionary
             {
-                TemplateInfo = new TemplateInfo { HtmlFieldPrefix = paymentMethod.Id }
+                TemplateInfo = new TemplateInfo { HtmlFieldPrefix = "SelectedPaymentMethod.Form" }
             });
         }
     </div>

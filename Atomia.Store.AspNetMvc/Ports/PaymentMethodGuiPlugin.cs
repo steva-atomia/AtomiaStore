@@ -21,12 +21,11 @@ namespace Atomia.Store.AspNetMvc.Ports
             }
         }
 
-        public virtual PaymentMethodForm Form 
-        { 
-            get
-            {
-                return null;
-            }
+        public virtual bool HasForm
+        {
+            get { return false; }
         }
+
+        public virtual PaymentMethodForm Form { get; set; }
     }
 }

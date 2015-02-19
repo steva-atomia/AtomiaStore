@@ -11,7 +11,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
 {
     public sealed class CheckoutController : Controller
     {
-        private readonly IEnumerable<PaymentMethodForm> paymentForms = DependencyResolver.Current.GetServices<PaymentMethodForm>();
+        private readonly IEnumerable<PaymentMethodForm> paymentMethodForms = DependencyResolver.Current.GetServices<PaymentMethodForm>();
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
         private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
@@ -28,23 +28,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(CheckoutViewModel model)
         {
-            var updated = false;
-            if (model.SelectedPaymentMethod != null)
-            {
-                // Validate form connected to payment method, if any.
-                var paymentForm = paymentForms.FirstOrDefault(f => f.Id == model.SelectedPaymentMethod.Id);
-
-                if (paymentForm != null)
-                {
-                    updated = TryUpdateModel(paymentForm, model.SelectedPaymentMethod.Id);
-                }
-            }
-
             // TODO: Add cart and contactdata validation.
-
             if (ModelState.IsValid)
             {
-                
                 var cart = cartProvider.GetCart();
                 var contactDataCollection = contactDataProvider.GetContactData();
 

@@ -12,6 +12,7 @@ namespace Atomia.Store.Payment.Invoice
     public class PayWithInvoiceGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
+        private PayWithInvoiceForm form;
 
         public PayWithInvoiceGuiPlugin(IResourceProvider resourceProvider)
         {
@@ -21,6 +22,7 @@ namespace Atomia.Store.Payment.Invoice
             }
 
             this.resourceProvider = resourceProvider;
+            this.form = new PayWithInvoiceForm();
         }
 
         public override string Id
@@ -44,11 +46,20 @@ namespace Atomia.Store.Payment.Invoice
             }
         }
 
+        public override bool HasForm
+        {
+            get { return true; }
+        }
+
         public override PaymentMethodForm Form
         {
             get
             {
-                return new PayWithInvoiceForm();
+                return form;
+            }
+            set
+            {
+                form = value as PayWithInvoiceForm;
             }
         }
 
@@ -56,9 +67,12 @@ namespace Atomia.Store.Payment.Invoice
         {
             get
             {
-                var form = (PayWithInvoiceForm) Form;
+                if (form != null)
+                {
+                    return form.SelectedInvoiceType;
+                }
 
-                return form.SelectedInvoiceType;
+                return String.Empty;
             }
         }
     }
