@@ -15,8 +15,7 @@ namespace Atomia.Store.Payment.PayPal
 {
     public class PayPalController : Controller
     {
-        // TODO: Better way of instantiating this?
-        private readonly AtomiaBillingPublicService billingPublicService = new AtomiaBillingPublicService();
+        private readonly AtomiaBillingPublicService billingApi = DependencyResolver.Current.GetService<AtomiaBillingPublicService>();
         private readonly PaymentUrlProvider urlProvider = DependencyResolver.Current.GetService<PaymentUrlProvider>();
 
         [AcceptVerbs(HttpVerbs.Get)]
@@ -25,7 +24,7 @@ namespace Atomia.Store.Payment.PayPal
             string token = this.Request.Params["token"];
             string PayerID = this.Request.Params["PayerID"];
 
-            var transaction = billingPublicService.GetPaymentTransactionById(token);
+            var transaction = billingApi.GetPaymentTransactionById(token);
 
             if (transaction == null)
             {
@@ -53,7 +52,7 @@ namespace Atomia.Store.Payment.PayPal
         [AcceptVerbs(HttpVerbs.Post)]
         public ActionResult Confirm(string token, string PayerID)
         {
-            var transaction = billingPublicService.GetPaymentTransactionById(token);
+            var transaction = billingApi.GetPaymentTransactionById(token);
 
             if (transaction == null)
             {
@@ -86,7 +85,7 @@ namespace Atomia.Store.Payment.PayPal
                 nameValues.Add(new NameValue { Name = item.Name, Value = item.Value });
             }
 
-            var finishedTransaction = billingPublicService.FinishPayment(transaction.TransactionId);
+            var finishedTransaction = billingApi.FinishPayment(transaction.TransactionId);
 
             if (finishedTransaction == null)
             {
