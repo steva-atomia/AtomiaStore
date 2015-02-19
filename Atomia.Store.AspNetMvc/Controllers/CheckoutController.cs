@@ -44,11 +44,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
 
             if (ModelState.IsValid)
             {
+                
                 var cart = cartProvider.GetCart();
                 var contactDataCollection = contactDataProvider.GetContactData();
 
-                var redirectUrl = orderPlacementService.PlaceOrder(cart, contactDataCollection, model.SelectedPaymentMethod);
-                return Redirect(redirectUrl);
+                var orderContext = new OrderContext(cart, contactDataCollection, model.SelectedPaymentMethod, new object[] { Request });
+                var result = orderPlacementService.PlaceOrder(orderContext);
+
+                return Redirect(result.RedirectUrl);
             }
 
             return View(model);

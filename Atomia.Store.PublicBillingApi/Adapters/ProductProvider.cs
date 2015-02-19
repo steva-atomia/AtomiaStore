@@ -54,7 +54,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             {
                 throw new ArgumentException(String.Format("Could not find product with article number {0} for current reseller.", articleNumber));
             }
-
+            
             var language = languagePreferenceProvider.GetCurrentLanguage();
             var currency = currencyPreferenceProvider.GetCurrentCurrency();
 

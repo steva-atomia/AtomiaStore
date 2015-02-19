@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Atomia.Store.PublicBillingApi.Ports;
+using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using Atomia.Store.Core;
 
@@ -33,10 +33,12 @@ namespace Atomia.Store.Payment.DibsFlexwin
             get { return PaymentMethodEnum.PayByCard; }
         }
 
-        public override void AmendTransaction(PaymentData paymentMethodData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public override PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction transaction, PaymentData paymentData)
         {
-            transaction.ReturnUrl = urlProvider.PaymentRedirectUrl;
-            transaction.Attributes.First(item => item.Name == "CancelUrl").Value = urlProvider.CancelUrl;
+            transaction.ReturnUrl = urlProvider.DefaultPaymentRedirectUrl;
+            transaction = SetCancelUrl(transaction, urlProvider.CancelUrl);
+
+            return transaction;
         }
     }
 }

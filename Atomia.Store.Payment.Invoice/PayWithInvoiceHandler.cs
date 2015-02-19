@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Atomia.Store.Core;
-using Atomia.Store.PublicBillingApi.Ports;
+using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.Payment.Invoice
@@ -21,16 +21,18 @@ namespace Atomia.Store.Payment.Invoice
             get { return PaymentMethodEnum.PayByInvoice; }
         }
 
-        public override void AmendOrder(PaymentData paymentMethodData, PublicOrder order, List<PublicOrderCustomData> customData)
+        public override PublicOrder AmendOrder(PublicOrder order, PaymentData paymentMethodData)
         {
             var data = paymentMethodData as PayWithInvoiceGuiPlugin;
             
-            customData.Add(new PublicOrderCustomData { Name = "PayByInvoice", Value = "true" });
+            Add(order, new PublicOrderCustomData { Name = "PayByInvoice", Value = "true" });
 
             if (data.SelectedInvoiceType == "post")
             {
-                customData.Add(new PublicOrderCustomData { Name = "SendInvoiceByPost", Value = "true" });
+                Add(order, new PublicOrderCustomData { Name = "SendInvoiceByPost", Value = "true" });
             }
+
+            return order;
         }
     }
 }

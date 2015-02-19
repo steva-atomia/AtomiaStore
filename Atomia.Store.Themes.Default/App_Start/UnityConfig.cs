@@ -2,12 +2,13 @@ using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
-using Atomia.Store.PublicBillingApi.Ports;
+using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Store.PublicBillingApi;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System.Web.Mvc;
 using Unity.Mvc5;
+using System.Collections.Generic;
 
 
 namespace Atomia.Store.Themes.Default
@@ -17,6 +18,7 @@ namespace Atomia.Store.Themes.Default
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
+
 
             // Core types
             container.RegisterType<IViewEngine, Atomia.Store.AspNetMvc.Infrastructure.RazorThemeViewEngine>("RazorThemeViewEngine");
@@ -44,7 +46,26 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IDomainsProvider, Atomia.Store.PublicBillingApi.Adapters.DomainsProvider>("apiProvider");
             container.RegisterType<IDomainsProvider, Atomia.Store.Themes.Default.Adapters.PremiumDomainsProvider>(
                 new InjectionConstructor(new ResolvedParameter<IDomainsProvider>("apiProvider")));
-            
+
+
+            // ViewModels
+            container.RegisterType<DomainViewModel, DomainViewModel>();
+            container.RegisterType<ProductListingViewModel, ProductListingViewModel>();
+            container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
+            container.RegisterType<AccountViewModel, DefaultAccountViewModel>();
+            container.RegisterType<CheckoutViewModel, DefaultCheckoutViewModel>();
+
+
+            // PublicBillingApi types
+            container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
+            container.RegisterType<PublicBillingApiProxy, PublicBillingApiProxy>();
+            container.RegisterType<RenewalPeriodProvider, RenewalPeriodProvider>();
+            container.RegisterType<IResellerDataProvider, ResellerDataProvider>("apiProvider");
+            container.RegisterType<IResellerDataProvider, CachedResellerDataProvider>(
+                new InjectionConstructor(
+                    new ResolvedParameter<IResellerDataProvider>("apiProvider"),
+                    new ResolvedParameter<IResellerIdentifierProvider>()));
+
 
             // Payment plugins, forms and handlers
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.AdyenHpp.AdyenHppGuiPlugin>("AdyenHpp");
@@ -65,23 +86,61 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPay.WorldPayHandler>("WorldPay");
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPayXml.WorldPayXmlHandler>("WorldPayXml");
 
+            container.RegisterType<TransactionDataHandler, Atomia.Store.PublicOrderHandlers.TransactionDataHandlers.RequestParamsHandler>("RequestParamsHandler");
 
-            // PublicBillingApi types
-            container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
-            container.RegisterType<PublicBillingApiProxy, PublicBillingApiProxy>();
-            container.RegisterType<IResellerDataProvider, ResellerDataProvider>("apiProvider");
-            container.RegisterType<IResellerDataProvider, CachedResellerDataProvider>(
+            // Order data handlers and order placement service
+            // We resolve the OrderPlacementService parameters manually to control the order the OrderHandlers are applied.
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ResellerHandler>("Reseller");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.LanguageHandler>("LanguageHandler");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CurrencyHandler>("Currency");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.MainContactDataHandler>("MainContact");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.BillingContactDataHandler>("BillingContact");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CampaignCodeHandler>("CampaignCode");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.IpAddressHandler>("IpAddress");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.RegisterDomainHandler>("RegisterDomain");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.TransferDomainHandler>("TransferDomain");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.OwnDomainHandler>("OwnDomain");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.DefaultHandler>("Default");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.SetupFeesHandler>("SetupFees");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.RemovePostOrderHandler>("RemovePostOrder");
+            container.RegisterType<IOrderPlacementService, Atomia.Store.PublicBillingApi.Adapters.OrderPlacementService>(
                 new InjectionConstructor(
-                    new ResolvedParameter<IResellerDataProvider>("apiProvider"),
-                    new ResolvedParameter<IResellerIdentifierProvider>()));
+                    new ResolvedParameter<PaymentUrlProvider>(),
+                    new ResolvedParameter<IProductProvider>(),
+                    new ResolvedParameter<RenewalPeriodProvider>(),
+                    new ResolvedArrayParameter<OrderDataHandler>(
+                        new ResolvedParameter<OrderDataHandler>("Reseller"),
+                        new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
+                        new ResolvedParameter<OrderDataHandler>("Currency"),
+                        new ResolvedParameter<OrderDataHandler>("MainContact"),
+                        new ResolvedParameter<OrderDataHandler>("BillingContact"),
+                        new ResolvedParameter<OrderDataHandler>("CampaignCode"),
+                        new ResolvedParameter<OrderDataHandler>("IpAddress"),
+                        new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
+                        new ResolvedParameter<OrderDataHandler>("TransferDomain"),
+                        new ResolvedParameter<OrderDataHandler>("OwnDomain"),
+
+                        // This is a good position for TLD specific handlers.
+
+                        new ResolvedParameter<OrderDataHandler>("Default"),
+
+                        // This is a good position for handlers that add extra items depending on other items in cart, e.g. like HST-APPY in old order page.
+
+                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
+                        new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
+                    ),
+                    new ResolvedParameter<IEnumerable<PaymentDataHandler>>(),
+                    new ResolvedParameter<IEnumerable<TransactionDataHandler>>(),
+                    new ResolvedParameter<PublicBillingApiProxy>()
+                )
+            );
 
 
-            // ViewModels
-            container.RegisterType<DomainViewModel, DomainViewModel>();
-            container.RegisterType<ProductListingViewModel, ProductListingViewModel>();
-            container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
-            container.RegisterType<AccountViewModel, DefaultAccountViewModel>();
-            container.RegisterType<CheckoutViewModel, DefaultCheckoutViewModel>();
+            // These are required since Unity does not handle IEnumerable<T> automatically.
+            container.RegisterType<IEnumerable<PaymentDataHandler>, PaymentDataHandler[]>();
+            container.RegisterType<IEnumerable<OrderDataHandler>, OrderDataHandler[]>();
+            container.RegisterType<IEnumerable<TransactionDataHandler>, TransactionDataHandler[]>();
+
 
 
             // Fake adapters, just un-comment the ones you want to use and it will override previous registrations.
@@ -94,12 +153,14 @@ namespace Atomia.Store.Themes.Default
             //container.RegisterType<IPaymentMethodsProvider, Atomia.Store.Fakes.Adapters.FakePaymentMethodsProvider>();
             //container.RegisterType<IResellerIdentifierProvider, Atomia.Store.Fakes.Adapters.FakeRootResellerIdentifierProvider>();
             //container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainsProvider>();
-            container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
+            //container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
             
 
             container.LoadConfiguration();
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
         }
+
+        // TODO: wrap sections in protected methods for easier subclassing and overriding
     }
 }

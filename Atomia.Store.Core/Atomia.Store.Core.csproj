@@ -57,6 +57,8 @@
     <Compile Include="Models\DomainResult.cs" />
     <Compile Include="Models\DomainSearchData.cs" />
     <Compile Include="Models\Language.cs" />
+    <Compile Include="Models\OrderContext.cs" />
+    <Compile Include="Models\OrderResult.cs" />
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\PaymentTransaction.cs" />
     <Compile Include="Models\PricingVariant.cs" />

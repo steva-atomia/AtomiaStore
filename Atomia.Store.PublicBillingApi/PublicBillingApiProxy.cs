@@ -35,26 +35,36 @@ namespace Atomia.Store.PublicBillingApi
             return service.GetCountries();
         }
 
-        public AccountData GetAccountDataByHash(string accountHash)
+        public virtual AccountData GetAccountDataByHash(string accountHash)
         {
             return service.GetAccountDataByHash(accountHash);
         }
 
-        public AccountData GetResellerDataByUrl(string orderPageUrl)
+        public virtual AccountData GetResellerDataByUrl(string orderPageUrl)
         {
             return service.GetResellerDataByUrl(orderPageUrl);
         }
 
-        public AccountData GetDefaultResellerData()
+        public virtual AccountData GetDefaultResellerData()
         {
             return service.GetDefaultResellerData();
         }
 
-        public IEnumerable<AttributeData> CheckDomains(IEnumerable<string> domains)
+        public virtual IEnumerable<AttributeData> CheckDomains(IEnumerable<string> domains)
         {
             var domainsArray = domains.ToArray();
             
             return service.CheckDomains(domainsArray);
+        }
+
+        public virtual PublicOrder CreateOrder(PublicOrder order)
+        {
+            return service.CreateOrder(order);
+        }
+
+        public virtual PublicPaymentTransaction MakePayment(PublicPaymentTransaction paymentTransaction)
+        {
+            return service.MakePayment(paymentTransaction);
         }
     }
 }

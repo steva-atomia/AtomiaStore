@@ -21,9 +21,9 @@ namespace Atomia.Store.Fakes.Adapters
             this.urlProvider = urlProvider;
         }
 
-        public string PlaceOrder(Cart cart, IContactDataCollection contactData, PaymentData paymentMethodData)
+        public OrderResult PlaceOrder(OrderContext orderContext)
         {
-            return urlProvider.SuccessUrl;
+            return new OrderResult { RedirectUrl = urlProvider.SuccessUrl };
         }
     }
 }

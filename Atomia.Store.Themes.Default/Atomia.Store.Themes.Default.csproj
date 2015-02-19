@@ -170,11 +170,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\PremiumDomainsProvider.cs" />
-    <Compile Include="App_GlobalResources\Common.sv.designer.cs">
-      <DependentUpon>Common.sv.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <Compile Include="App_GlobalResources\Common.designer.cs">
       <DependentUpon>Common.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -254,6 +249,10 @@
     <Content Include="Themes\Default\Views\Checkout\_PayWithInvoice.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
+      <Project>{552f114f-55f2-4126-98ec-21f98896ba0a}</Project>
+      <Name>Atomia.Store.PublicOrderHandlers</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Payment.AdyenHpp\Atomia.Store.Payment.AdyenHpp.csproj">
       <Project>{0818e4f0-582e-4180-a6d4-8b98ed2da529}</Project>
       <Name>Atomia.Store.Payment.AdyenHpp</Name>
@@ -392,12 +391,6 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\Common.sv.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>Common.sv.designer.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>

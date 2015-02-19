@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Atomia.Store.PublicBillingApi.Ports;
+using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using Atomia.Store.Core;
 using System.Web.Mvc;
@@ -36,13 +36,15 @@ namespace Atomia.Store.Payment.PayExRedirect
             get { return PaymentMethodEnum.PayByCard; }
         }
 
-        public override void AmendTransaction(PaymentData paymentMethodData, PublicPaymentTransaction transaction, List<AttributeData> attributes)
+        public override PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction transaction, PaymentData paymentData)
         {
             var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext, RouteTable.Routes);
             var path = urlHelper.Action("Confirm", "PayExRedirect");
 
             transaction.ReturnUrl = urlProvider.QualifiedUrl(path);
-            transaction.Attributes.First(item => item.Name == "CancelUrl").Value = urlProvider.CancelUrl;
+            transaction = SetCancelUrl(transaction, urlProvider.CancelUrl);
+            
+            return transaction;
         }
     }
 }

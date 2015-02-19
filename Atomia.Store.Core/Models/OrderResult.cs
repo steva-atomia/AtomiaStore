@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Atomia.Store.Core
 {
-    public interface IOrderPlacementService
+    public class OrderResult
     {
-        OrderResult PlaceOrder(OrderContext orderContext);
+        public string RedirectUrl { get; set; }
     }
 }

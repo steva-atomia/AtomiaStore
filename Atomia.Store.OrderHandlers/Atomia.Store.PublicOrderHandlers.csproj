@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{5737FE58-757B-4F60-A480-5FD54EEED008}</ProjectGuid>
+    <ProjectGuid>{552F114F-55F2-4126-98EC-21F98896BA0A}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Atomia.Store.PublicBillingApi</RootNamespace>
-    <AssemblyName>Atomia.Store.PublicBillingApi</AssemblyName>
+    <RootNamespace>Atomia.Store.PublicOrderHandlers</RootNamespace>
+    <AssemblyName>Atomia.Store.PublicOrderHandlers</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,55 +30,56 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Atomia.Web.Plugin.DomainSearch">
-      <HintPath>..\Lib\Atomia.Web.Plugin.DomainSearch.dll</HintPath>
+    <Reference Include="Atomia.Billing.Core.Common">
+      <HintPath>..\Lib\Atomia.Billing.Core.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Atomia.Common">
+      <HintPath>..\Lib\Atomia.Common.dll</HintPath>
     </Reference>
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
-    <Reference Include="Atomia.Web.Plugin.ProductsProvider">
-      <HintPath>..\Lib\Atomia.Web.Plugin.ProductsProvider.dll</HintPath>
-    </Reference>
-    <Reference Include="idnlib">
-      <HintPath>..\Lib\idnlib.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Adapters\CartPricingProvider.cs" />
-    <Compile Include="Adapters\CategoryProductsProvider.cs" />
-    <Compile Include="Adapters\CountryProvider.cs" />
-    <Compile Include="Adapters\CurrencyProvider.cs" />
-    <Compile Include="Adapters\DomainsProvider.cs" />
-    <Compile Include="Adapters\LanguageProvider.cs" />
-    <Compile Include="Adapters\OrderPlacementService.cs" />
-    <Compile Include="Adapters\PaymentMethodsProvider.cs" />
-    <Compile Include="Adapters\ProductProvider.cs" />
-    <Compile Include="Adapters\ResellerProvider.cs" />
-    <Compile Include="CachedResellerDataProvider.cs" />
-    <Compile Include="Handlers\TransactionDataHandler.cs" />
-    <Compile Include="Handlers\ItemData.cs" />
-    <Compile Include="Handlers\OrderDataHandler.cs" />
-    <Compile Include="Handlers\PaymentDataHandler.cs" />
-    <Compile Include="ProductMapper.cs" />
-    <Compile Include="PublicBillingApiClient.cs" />
-    <Compile Include="PublicBillingApiProxy.cs" />
+    <Compile Include="CampaignCodeHandler.cs" />
+    <Compile Include="CartItemHandlers\DefaultHandler.cs" />
+    <Compile Include="CartItemHandlers\BaseDomainHandler.cs" />
+    <Compile Include="CartItemHandlers\TransferDomainHandler.cs" />
+    <Compile Include="CartItemHandlers\RegisterDomainHandler.cs" />
+    <Compile Include="CartItemHandlers\SetupFeesHandler.cs" />
+    <Compile Include="CartItemHandlers\OwnDomainHandler.cs" />
+    <Compile Include="CartItemHandlers\RemovePostOrderHandler.cs" />
+    <Compile Include="ContactDataHandlers\BillingContactDataHandler.cs" />
+    <Compile Include="ContactDataHandlers\MainContactDataHandler.cs" />
+    <Compile Include="CurrencyHandler.cs" />
+    <Compile Include="TransactionDataHandlers\RequestParamsHandler.cs" />
+    <Compile Include="IpAddressHandler.cs" />
+    <Compile Include="LanguageHandler.cs" />
+    <Compile Include="ResellerHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Handlers\PublicOrderContext.cs" />
-    <Compile Include="RenewalPeriodProvider.cs" />
-    <Compile Include="ResellerDataProvider.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj">
+      <Project>{22e89989-1534-4b38-925d-03906d0284bf}</Project>
+      <Name>Atomia.Store.AspNetMvc</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Core\Atomia.Store.Core.csproj">
       <Project>{3ba8fa31-210d-4dd6-841d-dbe457b96a8f}</Project>
       <Name>Atomia.Store.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.PublicBillingApi\Atomia.Store.PublicBillingApi.csproj">
+      <Project>{5737fe58-757b-4f60-a480-5fd54eeed008}</Project>
+      <Name>Atomia.Store.PublicBillingApi</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
