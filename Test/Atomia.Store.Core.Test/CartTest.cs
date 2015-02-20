@@ -16,6 +16,11 @@ namespace Atomia.Store.Core.Test
         {
             SaveCartCount++;
         }
+
+        public void ClearCart()
+        {
+            throw new NotImplementedException();
+        }
     }
 
     internal class FakeCarPricingProvider : ICartPricingService
