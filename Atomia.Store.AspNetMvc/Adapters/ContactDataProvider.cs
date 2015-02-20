@@ -19,5 +19,10 @@ namespace Atomia.Store.AspNetMvc.Adapters
         {
             HttpContext.Current.Session["ContactData"] = contactData;
         }
+
+        public void ClearContactData()
+        {
+            HttpContext.Current.Session["ContactData"] = null;
+        }
     }
 }

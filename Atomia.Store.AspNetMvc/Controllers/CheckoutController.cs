@@ -46,12 +46,18 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [HttpGet]
         public ActionResult Success()
         {
+            contactDataProvider.ClearContactData();
+            cartProvider.ClearCart();
+
             return View();
         }
 
         [HttpGet]
         public ActionResult Failure()
         {
+            contactDataProvider.ClearContactData();
+            cartProvider.ClearCart();
+
             return View();
         }
 

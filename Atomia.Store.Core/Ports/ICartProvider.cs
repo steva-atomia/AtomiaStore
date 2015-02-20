@@ -6,5 +6,7 @@ namespace Atomia.Store.Core
         Cart GetCart();
 
         void SaveCart(Cart cart);
+
+        void ClearCart();
     }
 }

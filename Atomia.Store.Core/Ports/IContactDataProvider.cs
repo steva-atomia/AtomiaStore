@@ -6,5 +6,7 @@ namespace Atomia.Store.Core
         IContactDataCollection GetContactData();
 
         void SaveContactData(IContactDataCollection contactData);
+
+        void ClearContactData();
     }
 }

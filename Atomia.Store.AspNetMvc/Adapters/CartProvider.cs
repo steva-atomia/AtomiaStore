@@ -24,5 +24,11 @@ namespace Atomia.Store.AspNetMvc.Adapters
         {
             HttpContext.Current.Session["Cart"] = cart;
         }
+
+
+        public void ClearCart()
+        {
+            HttpContext.Current.Session["Cart"] = null;
+        }
     }
 }
