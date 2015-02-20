@@ -1,17 +1,44 @@
-﻿@{
-    Layout = null;
+﻿@model Atomia.Store.Payment.PayPal.PayPalViewModel
+@using Atomia.Store.WebBase.HtmlHelpers;
+@using Atomia.Web.Plugin.Validation.HtmlHelpers;
+
+@{
+    Layout = "~/Themes/Default/Views/_SimpleLayout.cshtml";
 }
 
-<!DOCTYPE html>
+<div class="settingsboxinner">
+    <h4>@Html.CommonResource("PayPalConfirmTitle")</h4>
+    <p>@Html.CommonResource("PayPalConfirmDescription")</p>
+    <p class="data-row">
+        <strong>@Html.CommonResource("ChargedAmount")</strong>
+        <span>@Model.PayAmount <span class="currency">@Model.Currency</span></span>
+    </p>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title></title>
-</head>
-<body>
-    <div>
-    
-    </div>
-</body>
-</html>
+    @using (Html.BeginForm("Confirm", "PayPal", FormMethod.Post, new { id = "submit_form" }))
+    {
+        @Html.HiddenFor(m => m.ReferenceNumber);
+        @Html.HiddenFor(m => m.PayerId);
+        @Html.HiddenFor(m => m.Action);
+
+        <p class="actions" style="display: block;">
+            <button id="submitLink" type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("Order")</button>
+            <button id="cancelLink" type="submit" class="button orange" style="vertical-align:top;">@Html.CommonResource("Cancel")</button>
+        </p>
+    }
+</div>
+<br class="clear" />
+@section scripts {
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submitLink').click(function () {
+                $("#Action").val("confirm");
+                $('#submit_form').submit();
+            });
+
+            $('#cancelLink').click(function () {
+                $("#Action").val("cancel");
+                $('#submit_form').submit();
+            });
+        });
+    </script>
+}

@@ -31,18 +31,12 @@
             </nav>
             <ul class="addons">
                 <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: LanguageSelector.ToggleDropdown, text: LanguageSelector.SelectedLanguage().ShortName"></a></li>
-                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: Cart.ToggleDropdown"><span class="empty" data-bind="text: Cart.NumberOfItems"></span></a></li>
             </ul>
         </div>
 
         @Html.Partial("_LanguageSelector")
-
-        @Html.Partial("_Cart")
-
     </header>
 
-    @Html.Partial("_Progress")
-    
     <section id="main">
         <div class="margins">
             <div id="homecontent">
@@ -62,13 +56,7 @@
 
     Atomia.VM.LanguageSelector = Atomia.ViewModels.CreateLanguageSelector();
     Atomia.VM.LanguageSelector.Load(@Html.JsonAction("GetLanguages", "Language"));
-
-    Atomia.VM.Cart = Atomia.ViewModels.CreateCart();
-    Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
-
-    Atomia.VM.Progress = Atomia.ViewModels.CreateProgress();
     </script>
-
     
     @RenderSection("scripts", required: false)
 

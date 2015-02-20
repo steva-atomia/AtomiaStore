@@ -160,11 +160,29 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string Cancel {
+            get {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         internal static string Change {
             get {
                 return ResourceManager.GetString("Change", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Charged amount.
+        /// </summary>
+        internal static string ChargedAmount {
+            get {
+                return ResourceManager.GetString("ChargedAmount", resourceCulture);
             }
         }
         
@@ -646,6 +664,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Order.
+        /// </summary>
+        internal static string Order {
+            get {
+                return ResourceManager.GetString("Order", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order web hosting and DNS.
         /// </summary>
         internal static string OrderPageTitle {
@@ -660,6 +687,24 @@ namespace Resources {
         internal static string PaymentOptions {
             get {
                 return ResourceManager.GetString("PaymentOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We are ready to take your order now. Please review your order and click on Order button to confirm the transaction. Your order will be securely processed by PayPal..
+        /// </summary>
+        internal static string PayPalConfirmDescription {
+            get {
+                return ResourceManager.GetString("PayPalConfirmDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to PayPal confirmation.
+        /// </summary>
+        internal static string PayPalConfirmTitle {
+            get {
+                return ResourceManager.GetString("PayPalConfirmTitle", resourceCulture);
             }
         }
         
@@ -876,15 +921,6 @@ namespace Resources {
         internal static string Step4Title {
             get {
                 return ResourceManager.GetString("Step4Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to .
-        /// </summary>
-        internal static string String1 {
-            get {
-                return ResourceManager.GetString("String1", resourceCulture);
             }
         }
         

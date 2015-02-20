@@ -21,5 +21,7 @@ namespace Atomia.Store.Payment.PayPal
         public string Currency { get; set; }
 
         public string CancelUrl { get; set; }
+
+        public string Action { get; set; }
     }
 }

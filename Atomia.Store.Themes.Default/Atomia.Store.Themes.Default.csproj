@@ -247,6 +247,7 @@
     <Content Include="Themes\Default\Views\Account\_MainContact.cshtml" />
     <Content Include="Themes\Default\Views\Account\_BillingContact.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_PayWithInvoice.cshtml" />
+    <Content Include="Themes\Default\Views\_SimpleLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
