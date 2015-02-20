@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
-using Atomia.Store.Core;
-using System.Web.Mvc;
-using System.Web;
-using System.Web.Routing;
+using System;
 
 namespace Atomia.Store.Payment.PayExRedirect
 {
@@ -38,10 +31,7 @@ namespace Atomia.Store.Payment.PayExRedirect
 
         public override PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction transaction, PaymentData paymentData)
         {
-            var urlHelper = new UrlHelper(HttpContext.Current.Request.RequestContext, RouteTable.Routes);
-            var path = urlHelper.Action("Confirm", "PayExRedirect");
-
-            transaction.ReturnUrl = urlProvider.QualifiedUrl(path);
+            transaction.ReturnUrl = urlProvider.DefaultPaymentRedirectUrl;
             transaction = SetCancelUrl(transaction, urlProvider.CancelUrl);
             
             return transaction;
