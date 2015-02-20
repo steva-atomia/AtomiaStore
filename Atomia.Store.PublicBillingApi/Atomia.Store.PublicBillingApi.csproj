@@ -62,6 +62,7 @@
     <Compile Include="Adapters\PaymentMethodsProvider.cs" />
     <Compile Include="Adapters\ProductProvider.cs" />
     <Compile Include="Adapters\ResellerProvider.cs" />
+    <Compile Include="Adapters\SetupFeeCartPricingProvider.cs" />
     <Compile Include="CachedResellerDataProvider.cs" />
     <Compile Include="Handlers\TransactionDataHandler.cs" />
     <Compile Include="Handlers\ItemData.cs" />

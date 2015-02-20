@@ -4,6 +4,7 @@ using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Store.PublicBillingApi;
+using Atomia.Store.PublicBillingApi.Adapters;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System.Web.Mvc;
@@ -38,14 +39,21 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICurrencyProvider, Atomia.Store.PublicBillingApi.Adapters.CurrencyProvider>();
             container.RegisterType<IProductListProvider, Atomia.Store.PublicBillingApi.Adapters.CategoryProductsProvider>("Category");
             container.RegisterType<IProductProvider, Atomia.Store.PublicBillingApi.Adapters.ProductProvider>();
-            container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.CartPricingProvider>();
             container.RegisterType<IPaymentMethodsProvider, Atomia.Store.PublicBillingApi.Adapters.PaymentMethodsProvider>();
             container.RegisterType<IItemPresenter, Atomia.Store.AspNetMvc.Adapters.ItemPresenter>();
             container.RegisterType<ILanguagePreferenceProvider, Atomia.Store.AspNetMvc.Adapters.LanguagePreferenceProvider>();
             container.RegisterType<IResellerIdentifierProvider, Atomia.Store.AspNetMvc.Adapters.ResellerIdentifierProvider>();
+            
             container.RegisterType<IDomainsProvider, Atomia.Store.PublicBillingApi.Adapters.DomainsProvider>("apiProvider");
             container.RegisterType<IDomainsProvider, Atomia.Store.Themes.Default.Adapters.PremiumDomainsProvider>(
                 new InjectionConstructor(new ResolvedParameter<IDomainsProvider>("apiProvider")));
+
+            container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.CartPricingProvider>("apiPricingService");
+            container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.SetupFeeCartPricingService>(
+                new InjectionConstructor(
+                    new ResolvedParameter<ICartPricingService>("apiPricingService"), 
+                    new ResolvedParameter<IResellerProvider>(),
+                    new ResolvedParameter<Atomia.Web.Plugin.ProductsProvider.IProductsProvider>()));
 
 
             // ViewModels

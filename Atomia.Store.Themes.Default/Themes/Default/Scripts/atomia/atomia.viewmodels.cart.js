@@ -326,6 +326,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             IsDomainItem: function IsDomainItem() {
                 return _.contains(cart.DomainCategories, item.Category);
+            },
+
+            IsRemovable: function IsRemovable() {
+                var notRemovable = _.any(item.CustomAttributes, function (ca) {
+                    return ca.Name === 'NotRemovable' && ca.Value !== 'false';
+                });
+
+                return !notRemovable;
             }
         };
 

@@ -39,7 +39,11 @@
                             </span>
                         </td>
                         <td class="right nowrap" data-bind="text: Price"></td>
-                        <td><a class="button small orange" href="javascript:void(0);" data-bind="click: RemoveFromCart">@Html.CommonResource("Remove")</a></td>
+                        <td>
+                            <!-- ko if: IsRemovable() -->
+                                <a class="button small orange" href="javascript:void(0);" data-bind="click: RemoveFromCart">@Html.CommonResource("Remove")</a>
+                            <!-- /ko -->
+                        </td>
                     </tr>
                 </tbody>
             </table>
