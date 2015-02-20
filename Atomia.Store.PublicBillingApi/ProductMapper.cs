@@ -31,19 +31,41 @@ namespace Atomia.Store.PublicBillingApi
 
         private static void SetNameAndDescription(CoreProduct product, ApiProduct apiProduct, Language language)
         {
-            // TODO: Update when there is language code available.
-            /*if (apiProduct.MultilanguageNames != null && apiProduct.MultilanguageNames.Count > 0)
-            {
-
-            }
-
-            if (apiProduct.MultilanguageNames != null && apiProduct.MultilanguageNames.Count > 0)
-            {
-
-            }*/
-
+            // Set defaults before checking if translations are available.
             product.Name = apiProduct.Name;
             product.Description = apiProduct.Description;
+
+            if (apiProduct.MultilanguageNames != null)
+            {
+                var names = apiProduct.MultilanguageNames.Where(l => l.LanguageIso639Name.ToUpper() == language.PrimaryTag);
+                var regionalName = names.FirstOrDefault(l => l.LanguageCulture.ToUpper() == language.RegionTag);
+                var standardName = names.FirstOrDefault();
+                
+                if (regionalName != null)
+                {
+                    product.Name = regionalName.Value;
+                }
+                else if (standardName != null)
+                {
+                    product.Name = standardName.Value;
+                }
+            }
+
+            if (apiProduct.MultilanguageDescriptions != null)
+            {
+                var descriptions = apiProduct.MultilanguageDescriptions.Where(l => l.LanguageIso639Name.ToUpper() == language.PrimaryTag);
+                var regionalDescription = descriptions.FirstOrDefault(l => l.LanguageCulture.ToUpper() == language.RegionTag);
+                var standardDescription = descriptions.FirstOrDefault();
+                
+                if (regionalDescription != null)
+                {
+                    product.Name = regionalDescription.Value;
+                }
+                else if (standardDescription != null)
+                {
+                    product.Name = standardDescription.Value;
+                }
+            }
         }
 
         private static void SetPricingVariants(CoreProduct product, ApiProduct apiProduct, string currencyCode)
