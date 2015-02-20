@@ -35,10 +35,10 @@
                 </span>
             </td>
             <td class="right">
-                <!-- ko if: RenewalPeriod === undefined -->
+                <!-- ko if: RenewalPeriod === undefined || RenewalPeriod === null -->
                 <span>-</span>
                 <!-- /ko -->
-                <!-- ko if: RenewalPeriod !== undefined -->
+                <!-- ko if: RenewalPeriod !== undefined && RenewalPeriod !== null -->
                 <span data-bind="text: RenewalPeriod.Display"></span>
                 <!-- /ko -->
             </td>
