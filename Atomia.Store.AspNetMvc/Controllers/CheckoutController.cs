@@ -55,9 +55,6 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [HttpGet]
         public ActionResult Failure()
         {
-            contactDataProvider.ClearContactData();
-            cartProvider.ClearCart();
-
             return View();
         }
 
