@@ -583,7 +583,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Post (+$5.77).
+        ///   Looks up a localized string similar to Post.
         /// </summary>
         internal static string InvoiceByPostName {
             get {

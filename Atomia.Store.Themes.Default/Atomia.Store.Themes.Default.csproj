@@ -248,6 +248,7 @@
     <Content Include="Themes\Default\Views\Account\_BillingContact.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_PayWithInvoice.cshtml" />
     <Content Include="Themes\Default\Views\_SimpleLayout.cshtml" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paywithinvoice.js" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

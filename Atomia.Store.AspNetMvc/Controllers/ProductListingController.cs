@@ -11,6 +11,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
     public sealed class ProductListingController : Controller
     {
         private readonly IEnumerable<IProductListProvider> productListProviders = DependencyResolver.Current.GetServices<IProductListProvider>();
+        private readonly IProductProvider productProvider = DependencyResolver.Current.GetService<IProductProvider>();
 
         [HttpGet]
         public ActionResult Index(string query, string listingType = "Category", string viewName = "Index")
@@ -30,6 +31,40 @@ namespace Atomia.Store.AspNetMvc.Controllers
             {
                 CategoryData = model
             });
+        }
+
+        [HttpGet]
+        public JsonResult GetItem(string articleNumber)
+        {
+            if (ModelState.IsValid)
+            {
+                Product product = null;
+
+                try
+                {
+                    product = productProvider.GetProduct(articleNumber);
+                }
+                catch(ArgumentException)
+                { 
+                }
+
+                if (product != null)
+                {
+                    return JsonEnvelope.Success(new
+                    {
+                        Item = new ProductModel(product)
+                    });
+                }
+                else
+                {
+                    return JsonEnvelope.Fail(new
+                    {
+                        Message = String.Format("No product with article number {0}", articleNumber)
+                    });
+                }
+            }
+
+            return JsonEnvelope.Fail(ModelState);
         }
 
         private ProductListingDataModel InitDataModel(string query, string listingType)

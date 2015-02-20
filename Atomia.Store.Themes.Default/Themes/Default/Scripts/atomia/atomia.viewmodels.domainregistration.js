@@ -75,7 +75,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                         }.bind(this));
 
-                    }.bind(this), this.StatusCheckInterval)
+                    }.bind(this), this.StatusCheckInterval);
                 }
             }.bind(this));
         },

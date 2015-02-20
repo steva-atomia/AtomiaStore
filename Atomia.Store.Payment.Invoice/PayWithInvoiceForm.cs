@@ -10,9 +10,6 @@ namespace Atomia.Store.Payment.Invoice
 {
     public class PayWithInvoiceForm : PaymentMethodForm
     {
-        public const string EMAIL = "email";
-        public const string POST = "post";
-
         public override string Id
         {
             get { return "PayWithInvoice"; }

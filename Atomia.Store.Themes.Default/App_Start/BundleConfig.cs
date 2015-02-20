@@ -29,7 +29,8 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domaintransfer.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productslisting.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.account.js",
-                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js"));
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js"));
 
             bundles.Add(new StyleBundle("~/Themes/Default/Content/css/atomia_2/style").Include(
                 "~/Themes/Default/Content/css/atomia_2/style.css"));

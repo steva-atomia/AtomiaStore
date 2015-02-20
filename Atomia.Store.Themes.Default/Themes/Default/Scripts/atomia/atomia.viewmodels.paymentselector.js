@@ -18,10 +18,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 	    defaults = function (self) {
 	        return {
-	            SelectedPaymentMethod: ko.observable(),
-	            SelectedPaymentMessage: ko.computed(function() {
-
-	            }, self)
+	            SelectedPaymentMethod: ko.observable()
 	        };
 	    };
 
