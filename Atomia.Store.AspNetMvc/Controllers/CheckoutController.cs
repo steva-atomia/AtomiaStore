@@ -15,10 +15,15 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
         private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
+        private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
         
         [HttpGet]
         public ActionResult Index()
         {
+            // Make sure cart is properly calculated.
+            var cart = cartProvider.GetCart();
+            cartPricingService.CalculatePricing(cart);
+
             var model = DependencyResolver.Current.GetService<CheckoutViewModel>();
 
             return View(model);
@@ -33,6 +38,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             {
                 var cart = cartProvider.GetCart();
                 var contactDataCollection = contactDataProvider.GetContactData();
+                
+                // Recalculate cart one last time, to make sure e.g. setup fees are still there.
+                cartPricingService.CalculatePricing(cart);
 
                 var orderContext = new OrderContext(cart, contactDataCollection, model.SelectedPaymentMethod, new object[] { Request });
                 var result = orderPlacementService.PlaceOrder(orderContext);
