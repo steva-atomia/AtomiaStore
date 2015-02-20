@@ -32,11 +32,6 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return DefaultAtomiaService;
         }
 
-        protected override bool SetMainDomain(ItemData connectedItem)
-        {
-            return IsHostingPackageWithWebsitesAllowed(connectedItem);
-        }
-
         protected override string GetAtomiaServiceExtraProperties(ItemData connectedItem)
         {
             if (IsHostingPackageWithWebsitesAllowed(connectedItem))

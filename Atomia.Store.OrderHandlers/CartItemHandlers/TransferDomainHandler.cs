@@ -41,11 +41,6 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return DefaultAtomiaService;
         }
 
-        protected override bool SetMainDomain(ItemData connectedItem)
-        {
-            return true;
-        }
-
         protected override IEnumerable<PublicOrderItemProperty> GetExtraCustomData(ItemData domainItem)
         {
             // TODO: Add authcode

@@ -32,11 +32,6 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
                     var atomiaService = GetAtomiaService(connectedItem);
                     customData.Add(new PublicOrderItemProperty { Name = "AtomiaService", Value = atomiaService });
 
-                    if (SetMainDomain(connectedItem))
-                    {
-                        customData.Add(new PublicOrderItemProperty { Name = "MainDomain", Value = "true" });
-                    }
-
                     var extraProperties = GetAtomiaServiceExtraProperties(domainItem);
                     if (!String.IsNullOrEmpty(extraProperties))
                     {
@@ -99,11 +94,6 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         protected virtual string GetAtomiaService(ItemData connectedItem)
         {
             return DefaultAtomiaService;
-        }
-
-        protected virtual bool SetMainDomain(ItemData connectedItem)
-        {
-            return false;
         }
 
         protected virtual string GetAtomiaServiceExtraProperties(ItemData connectedItem)

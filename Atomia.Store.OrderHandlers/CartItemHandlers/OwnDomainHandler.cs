@@ -41,10 +41,5 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 
             return DefaultAtomiaService;
         }
-
-        protected override bool SetMainDomain(ItemData connectedItem)
-        {
-            return true;
-        }
     }
 }
