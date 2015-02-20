@@ -286,6 +286,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Connected domain.
+        /// </summary>
+        internal static string ConnectedDomain {
+            get {
+                return ResourceManager.GetString("ConnectedDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to We will setup the services in your package to be connected with the selected domain name..
+        /// </summary>
+        internal static string ConnectedDomainDescription {
+            get {
+                return ResourceManager.GetString("ConnectedDomainDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Select domain ....
+        /// </summary>
+        internal static string ConnectedDomainOptionsCaption {
+            get {
+                return ResourceManager.GetString("ConnectedDomainOptionsCaption", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You are required to add a connected domain to your package. Please go back and add a domain name to the cart..
+        /// </summary>
+        internal static string ConnectedDomainRequiredWarning {
+            get {
+                return ResourceManager.GetString("ConnectedDomainRequiredWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {
@@ -579,42 +615,6 @@ namespace Resources {
         internal static string LastName {
             get {
                 return ResourceManager.GetString("LastName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Main domain.
-        /// </summary>
-        internal static string MainDomain {
-            get {
-                return ResourceManager.GetString("MainDomain", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to We will setup the services in your package to be connected with the selected main domain name..
-        /// </summary>
-        internal static string MainDomainDescription {
-            get {
-                return ResourceManager.GetString("MainDomainDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Select main domain ....
-        /// </summary>
-        internal static string MainDomainOptionsCaption {
-            get {
-                return ResourceManager.GetString("MainDomainOptionsCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are required to add a main domain to your package. Please go back and add a domain name to the cart..
-        /// </summary>
-        internal static string MainDomainRequiredWarning {
-            get {
-                return ResourceManager.GetString("MainDomainRequiredWarning", resourceCulture);
             }
         }
         

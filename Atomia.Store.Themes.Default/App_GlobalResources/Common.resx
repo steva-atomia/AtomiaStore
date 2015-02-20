@@ -153,8 +153,8 @@
   <data name="Item" xml:space="preserve">
     <value>Item</value>
   </data>
-  <data name="MainDomain" xml:space="preserve">
-    <value>Main domain</value>
+  <data name="ConnectedDomain" xml:space="preserve">
+    <value>Connected domain</value>
   </data>
   <data name="MONTH" xml:space="preserve">
     <value>month</value>
@@ -213,14 +213,14 @@
   <data name="Back" xml:space="preserve">
     <value>Back</value>
   </data>
-  <data name="MainDomainDescription" xml:space="preserve">
-    <value>We will setup the services in your package to be connected with the selected main domain name.</value>
+  <data name="ConnectedDomainDescription" xml:space="preserve">
+    <value>We will setup the services in your package to be connected with the selected domain name.</value>
   </data>
-  <data name="MainDomainOptionsCaption" xml:space="preserve">
-    <value>Select main domain ...</value>
+  <data name="ConnectedDomainOptionsCaption" xml:space="preserve">
+    <value>Select domain ...</value>
   </data>
-  <data name="MainDomainRequiredWarning" xml:space="preserve">
-    <value>You are required to add a main domain to your package. Please go back and add a domain name to the cart.</value>
+  <data name="ConnectedDomainRequiredWarning" xml:space="preserve">
+    <value>You are required to add a connected domain to your package. Please go back and add a domain name to the cart.</value>
   </data>
   <data name="Step3Description" xml:space="preserve">
     <value>Set up account info</value>
