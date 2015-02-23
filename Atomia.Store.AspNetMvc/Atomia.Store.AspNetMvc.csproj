@@ -130,6 +130,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Solution\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.Core\Atomia.Store.Core.csproj">
       <Project>{3BA8FA31-210D-4DD6-841D-DBE457B96A8F}</Project>
       <Name>Atomia.Store.Core</Name>

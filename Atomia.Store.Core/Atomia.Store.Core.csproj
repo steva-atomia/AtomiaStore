@@ -99,6 +99,11 @@
     <Compile Include="Ports\ILogger.cs" />
     <Compile Include="Ports\IResourceProvider.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\Solution\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

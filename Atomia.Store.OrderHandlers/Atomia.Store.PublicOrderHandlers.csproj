@@ -68,6 +68,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Solution\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="app.config" />
   </ItemGroup>
   <ItemGroup>

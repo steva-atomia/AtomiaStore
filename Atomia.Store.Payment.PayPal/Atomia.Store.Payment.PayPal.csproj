@@ -82,6 +82,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\Solution\SolutionInfo.cs">
+      <Link>Properties\SolutionInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.AspNetMvc\Atomia.Store.AspNetMvc.csproj">
       <Project>{22e89989-1534-4b38-925d-03906d0284bf}</Project>
       <Name>Atomia.Store.AspNetMvc</Name>
