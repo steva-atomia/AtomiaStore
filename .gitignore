@@ -1,5 +1,6 @@
 bin
 obj
 *.suo
-packages/
 *.user
+publish/
+!Atomia.Store.Themes.Default/Original Files/bin

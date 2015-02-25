@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Wix xmlns="http://schemas.microsoft.com/wix/2006/wi" xmlns:iis="http://schemas.microsoft.com/wix/IIsExtension" xmlns:util="http://schemas.microsoft.com/wix/UtilExtension">
+  <Product Id="*" Name="Atomia Store" Language="1033" Version="$(var.Version)" Manufacturer="Atomia AB" UpgradeCode="84FFA1B0-2E4D-458A-AC8F-5536D1A4F904">
+    <Package InstallerVersion="200" Compressed="yes" />
+
+    <Media Id="1" Cabinet="media1.cab" EmbedCab="yes" />
+
+    <CustomActionRef Id="ShowIniUI"/>
+    <CustomActionRef Id="RunTransform"/>
+    <CustomActionRef Id="Backup"/>
+
+    <MajorUpgrade DowngradeErrorMessage="Higher Version already installed." Schedule="afterInstallInitialize" AllowSameVersionUpgrades="no" />
+    
+    <WixVariable Id="Host" Value="[STOREHOST]"/>
+
+    <DirectoryRef Id="ProgramFiles64Folder">
+      <Directory Id="GENERALLOCATION" Name="Atomia">
+        <Directory Id="FProduct" Name="Store">
+          <Component Id="CSetPriviliges" Guid="{00BE6F83-ACEB-4880-BDF5-D083A083435D}">
+            <CreateFolder>
+              <util:PermissionEx GenericAll="yes" User="[GENERALUSER]" />
+            </CreateFolder>
+          </Component>
+          <Component Id="CMakeConfig" Guid="{7A71E991-2DDA-4C1C-9BA6-1DDD48A77EF0}">
+            <CreateFolder/>
+            <Shortcut Id="MakeConfig" Target="[XMLTRANS]" Arguments="&quot;[FProduct]\&quot; &quot;[INIFILE]&quot;" Name="Recreate config files" Description="Recreates the config files using the Atomia Transformation Engine"/>
+          </Component>
+          <Component Id="CRegister" Guid="{ADB93948-9923-4069-B840-294339D82D43}">
+            <RegistryKey Action="create" Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\App Paths\Atomia.Store.Core.dll">
+              <RegistryValue Type="string" Value="[FProduct]bin\Atomia.Store.Core.dll"/>
+              <RegistryValue Type="string" Value="[FProduct]" Name="Path" />
+            </RegistryKey>
+          </Component>
+          <Component Id="CWebsite" Guid="">
+            <CreateFolder/>
+            <iis:WebSite Id="Website" Description="[STOREHOST]" StartOnInstall="yes" Directory="FProduct" ConfigureIfExists="no" AutoStart="yes">
+              <iis:WebAddress Id="WebAddressS" Header="[STOREHOST]" Secure="yes" Port="443"/>
+              <iis:WebApplication Id="WebApp" Name="[STOREHOST]" WebAppPool="AppPoolI4"/>
+            </iis:WebSite>
+            <iis:WebSite Id="WebsiteRedir" Description="redirect.[STOREHOST]" StartOnInstall="yes" Directory="FRedirect" ConfigureIfExists="no" AutoStart="yes">
+              <iis:WebAddress Id="WebAddress" Header="[STOREHOST]" Port="80"/>
+              <iis:WebApplication Id="WebAppRedirect" Name="redirect.[STOREHOST]" WebAppPool="AppPoolI4"/>
+            </iis:WebSite>
+          </Component>
+
+          <Directory Name="redirection" Id="FRedirect">
+            <Directory Name="Original Files" Id="FOrigRedir">
+              <Component Id="COrgWeb" Guid="{5690954F-73FD-4F8B-91C4-FACB8BA26B96}">
+                <File Id="OrgWeb" Source="web.config"/>
+              </Component>
+            </Directory>
+            <Directory Name="Transformation Files" Id="FTransRedir">
+              <Component Id="CTransFolder" Guid="{7A0C7C4C-CBB4-43D5-9E6F-F963CF4D862F}">
+                <CreateFolder/>
+              </Component>
+            </Directory>
+            <Component Id="CWeb" Guid="{091370F5-9C74-4F39-9E8C-5D26EC37357F}">
+              <File Id="Web" Source="web.config"/>
+            </Component>
+          </Directory>
+
+          <Component Id="CStartStop" Guid="{868032F6-3B53-4588-9ADA-C91CA859463A}">
+            <CreateFolder/>
+            <ServiceControl Id="W3SVC" Name="W3SVC" Start="both" Stop="both"/>
+          </Component>
+        </Directory>
+      </Directory>
+    </DirectoryRef>
+
+    <DirectoryRef Id="GENERALLOGFOLDER">
+        <Directory Id="FElmah" Name="Elmah">
+            <Directory Id="FStoreLog" Name="Store">
+                <Component Guid="FD135A07-4172-4B92-B928-4341819B1566" Id="CStoreLog">
+                    <CreateFolder />
+                </Component>
+            </Directory>
+        </Directory>
+    </DirectoryRef>
+
+    <Feature Id="ProductFeature" Title="Atomia.Store.Setup" Level="1">
+      <ComponentRef Id="CWebsite" />
+      <ComponentRef Id="CSetPriviliges" />
+      <ComponentRef Id="CRegister" />
+      <ComponentGroupRef Id="Store" />
+      <ComponentRef Id="CAppPoolI4"/>
+      <ComponentRef Id="CLogFolder"/>
+      <ComponentRef Id="CStartStop"/>
+      <ComponentRef Id="CMakeConfig"/>
+      <ComponentRef Id="CRegisterGuiApp"/>
+      <ComponentRef Id="COrgWeb"/>
+      <ComponentRef Id="CWeb"/>
+      <ComponentRef Id="CTransFolder"/>
+      <ComponentRef Id="CStoreLog"/>
+    </Feature>
+
+  </Product>
+</Wix>
