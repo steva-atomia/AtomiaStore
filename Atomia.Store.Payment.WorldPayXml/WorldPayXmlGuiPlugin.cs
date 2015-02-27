@@ -24,7 +24,7 @@ namespace Atomia.Store.Payment.WorldPayXml
 
         public override string Id
         {
-            get { return "WorldPayXml"; }
+            get { return "WorldPayXmlRedirect"; }
         }
 
         public override string Name

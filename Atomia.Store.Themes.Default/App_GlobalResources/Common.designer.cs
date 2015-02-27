@@ -106,6 +106,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to Adyen to enter your credit card details and will then be returned here..
+        /// </summary>
+        internal static string AdyenHppDescription {
+            get {
+                return ResourceManager.GetString("AdyenHppDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string AdyenHppName {
+            get {
+                return ResourceManager.GetString("AdyenHppName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount to pay.
         /// </summary>
         internal static string AmountToPay {
@@ -372,6 +390,24 @@ namespace Resources {
         internal static string DE_shortname {
             get {
                 return ResourceManager.GetString("DE_shortname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to DIBS to enter your credit card details and will then be returned here..
+        /// </summary>
+        internal static string DibsFlexwinDescription {
+            get {
+                return ResourceManager.GetString("DibsFlexwinDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string DibsFlexwinName {
+            get {
+                return ResourceManager.GetString("DibsFlexwinName", resourceCulture);
             }
         }
         
@@ -736,6 +772,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to PayEx to enter your credit card details and will then be returned here..
+        /// </summary>
+        internal static string PayExRedirectDescription {
+            get {
+                return ResourceManager.GetString("PayExRedirectDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string PayExRedirectName {
+            get {
+                return ResourceManager.GetString("PayExRedirectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Payment options.
         /// </summary>
         internal static string PaymentOptions {
@@ -763,7 +817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to PayPal to enter your credentials and then will be returned here to finish the transaction..
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to PayPal to enter your credentials or credit card details and will then be returned here to finish the transaction..
         /// </summary>
         internal static string PayPalDescription {
             get {
@@ -1092,6 +1146,42 @@ namespace Resources {
         internal static string VatNumber {
             get {
                 return ResourceManager.GetString("VatNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to Worldpay to enter your credit card details and will then be returned here..
+        /// </summary>
+        internal static string WorldPayRedirectDescription {
+            get {
+                return ResourceManager.GetString("WorldPayRedirectDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string WorldPayRedirectName {
+            get {
+                return ResourceManager.GetString("WorldPayRedirectName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to By clicking Checkout you will be redirected to Worldpay to enter your credit card details and will then be returned here..
+        /// </summary>
+        internal static string WorldPayXmlRedirectDescription {
+            get {
+                return ResourceManager.GetString("WorldPayXmlRedirectDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string WorldPayXmlRedirectName {
+            get {
+                return ResourceManager.GetString("WorldPayXmlRedirectName", resourceCulture);
             }
         }
         

@@ -340,7 +340,7 @@
     <value>Pay using</value>
   </data>
   <data name="PayPalDescription" xml:space="preserve">
-    <value>By clicking Checkout you will be redirected to PayPal to enter your credentials and then will be returned here to finish the transaction.</value>
+    <value>By clicking Checkout you will be redirected to PayPal to enter your credentials or credit card details and will then be returned here to finish the transaction.</value>
   </data>
   <data name="PayPalName" xml:space="preserve">
     <value>PayPal</value>
@@ -470,5 +470,35 @@
   </data>
   <data name="Error_NotFoundTitle" xml:space="preserve">
     <value>Not found</value>
+  </data>
+  <data name="AdyenHppDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to Adyen to enter your credit card details and will then be returned here.</value>
+  </data>
+  <data name="AdyenHppName" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="DibsFlexwinDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to DIBS to enter your credit card details and will then be returned here.</value>
+  </data>
+  <data name="DibsFlexwinName" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="PayExRedirectDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to PayEx to enter your credit card details and will then be returned here.</value>
+  </data>
+  <data name="PayExRedirectName" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="WorldPayRedirectDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to Worldpay to enter your credit card details and will then be returned here.</value>
+  </data>
+  <data name="WorldPayRedirectName" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="WorldPayXmlRedirectDescription" xml:space="preserve">
+    <value>By clicking Checkout you will be redirected to Worldpay to enter your credit card details and will then be returned here.</value>
+  </data>
+  <data name="WorldPayXmlRedirectName" xml:space="preserve">
+    <value>Credit Card</value>
   </data>
 </root>
