@@ -127,14 +127,20 @@ namespace Atomia.Store.Themes.Default
                         new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
                         new ResolvedParameter<OrderDataHandler>("TransferDomain"),
                         new ResolvedParameter<OrderDataHandler>("OwnDomain"),
+                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
+
 
                         // This is a good position for TLD specific handlers.
 
+
+                        // Default should be placed after all other handlers that add items form the cart to the order, or there is risk of adding the same item twice.
                         new ResolvedParameter<OrderDataHandler>("Default"),
 
-                        // This is a good position for handlers that add extra items depending on other items in cart, e.g. like HST-APPY in old order page.
 
-                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
+                        // This is a good position for handlers that add extra items depending on other items in cart, e.g. like HST-APPY in old order page.
+                        
+
+                        // RemovePostOrder should be placed last to make sure any added postal fees are removed, since they will be added by Atomia Billing.
                         new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
                     ),
                     new ResolvedParameter<IEnumerable<PaymentDataHandler>>(),
