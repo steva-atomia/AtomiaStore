@@ -475,6 +475,60 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Sorry, you do not have enough privileges to view the page..
+        /// </summary>
+        internal static string Error_ForbiddenDescription {
+            get {
+                return ResourceManager.GetString("Error_ForbiddenDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Forbidden.
+        /// </summary>
+        internal static string Error_ForbiddenTitle {
+            get {
+                return ResourceManager.GetString("Error_ForbiddenTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to An unknown error has occurred. Please try again later..
+        /// </summary>
+        internal static string Error_InternalServerErrorDescription {
+            get {
+                return ResourceManager.GetString("Error_InternalServerErrorDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown error.
+        /// </summary>
+        internal static string Error_InternalServerErrorTitle {
+            get {
+                return ResourceManager.GetString("Error_InternalServerErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The resource you were looking for is not here..
+        /// </summary>
+        internal static string Error_NotFoundDescription {
+            get {
+                return ResourceManager.GetString("Error_NotFoundDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Not found.
+        /// </summary>
+        internal static string Error_NotFoundTitle {
+            get {
+                return ResourceManager.GetString("Error_NotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Fax.
         /// </summary>
         internal static string Fax {

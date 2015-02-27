@@ -260,6 +260,7 @@
     <Content Include="Themes\Default\Views\_SimpleLayout.cshtml" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paywithinvoice.js" />
     <Content Include="Scripts\underscore.min.map" />
+    <Content Include="Themes\Default\Views\_StaticLayout.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

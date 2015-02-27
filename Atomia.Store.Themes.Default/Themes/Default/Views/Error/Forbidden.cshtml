@@ -1,17 +1,15 @@
-﻿
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
 @{
-    Layout = null;
+    Layout = "~/Themes/Default/Views/_StaticLayout.cshtml";
+    ViewBag.Title = Html.CommonResource("Error_ForbiddenTitle");
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>NotEnoughPrivileges</title>
-</head>
-<body>
-    <div> 
-    </div>
-</body>
-</html>
+<div class="settingsboxinner">
+    <h3>@ViewBag.Title</h3>
+    <p>@Html.CommonResource("Error_ForbiddenDescription")</p>
+    <ul>
+        <li><a href="javascript:void(0);" onclick="javascript:history.go(-1);">Previous page</a></li>
+        <li><a href="/">Home</a></li>
+    </ul>
+</div>

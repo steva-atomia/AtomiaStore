@@ -453,4 +453,22 @@
   <data name="PayPalConfirmTitle" xml:space="preserve">
     <value>PayPal confirmation</value>
   </data>
+  <data name="Error_ForbiddenDescription" xml:space="preserve">
+    <value>Sorry, you do not have enough privileges to view the page.</value>
+  </data>
+  <data name="Error_ForbiddenTitle" xml:space="preserve">
+    <value>Forbidden</value>
+  </data>
+  <data name="Error_InternalServerErrorDescription" xml:space="preserve">
+    <value>An unknown error has occurred. Please try again later.</value>
+  </data>
+  <data name="Error_InternalServerErrorTitle" xml:space="preserve">
+    <value>Unknown error</value>
+  </data>
+  <data name="Error_NotFoundDescription" xml:space="preserve">
+    <value>The resource you were looking for is not here.</value>
+  </data>
+  <data name="Error_NotFoundTitle" xml:space="preserve">
+    <value>Not found</value>
+  </data>
 </root>
