@@ -33,7 +33,7 @@ namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
             order.Fax = Normalize(fax);
 
             var phone = FormattingHelper.FormatPhoneNumber(mainContact.Phone, mainContact.Country);
-            order.Phone = Normalize(mainContact.Phone);
+            order.Phone = Normalize(phone);
 
             if (mainContact.IndividualInfo != null)
             {

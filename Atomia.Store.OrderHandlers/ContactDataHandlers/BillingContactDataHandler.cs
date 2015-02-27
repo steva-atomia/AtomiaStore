@@ -48,10 +48,10 @@ namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
             order.BillingCountry = Normalize(billingContact.Country);
 
             var fax = FormattingHelper.FormatPhoneNumber(billingContact.Fax, billingContact.Country);
-            order.Fax = Normalize(fax);
+            order.BillingFax = Normalize(fax);
 
             var phone = FormattingHelper.FormatPhoneNumber(billingContact.Phone, billingContact.Country);
-            order.Phone = Normalize(billingContact.Phone);
+            order.BillingPhone = Normalize(phone);
 
             if (billingContact.IndividualInfo != null)
             {
