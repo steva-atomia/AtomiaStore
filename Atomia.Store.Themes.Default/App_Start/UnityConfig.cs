@@ -145,6 +145,7 @@ namespace Atomia.Store.Themes.Default
                     ),
                     new ResolvedParameter<IEnumerable<PaymentDataHandler>>(),
                     new ResolvedParameter<IEnumerable<TransactionDataHandler>>(),
+                    new ResolvedParameter<ILogger>(),
                     new ResolvedParameter<PublicBillingApiProxy>()
                 )
             );

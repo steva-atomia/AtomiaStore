@@ -7,6 +7,7 @@ using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi;
 using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+using System.Web.Services.Protocols;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
@@ -18,6 +19,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly IEnumerable<OrderDataHandler> orderDataHandlers;
         private readonly IEnumerable<PaymentDataHandler> paymentDataHandlers;
         private readonly IEnumerable<TransactionDataHandler> transactionDataHandlers;
+        private readonly ILogger logger;
         
         public OrderPlacementService(
             PaymentUrlProvider urlProvider,
@@ -26,6 +28,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             IEnumerable<OrderDataHandler> orderDataHandlers,
             IEnumerable<PaymentDataHandler> paymentDataHandlers,
             IEnumerable<TransactionDataHandler> transactionDataHandlers,
+            ILogger logger,
             PublicBillingApiProxy billingApi) 
             : base(billingApi)
         {
@@ -59,12 +62,18 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("transactionDataHandlers");
             }
 
+            if (logger == null)
+            {
+                throw new ArgumentNullException("logger");
+            }
+
             this.urlProvider = urlProvider;
             this.productProvider = productProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
             this.orderDataHandlers = orderDataHandlers;
             this.paymentDataHandlers = paymentDataHandlers;
             this.transactionDataHandlers = transactionDataHandlers;
+            this.logger = logger;
         }
 
         public OrderResult PlaceOrder(OrderContext orderContext)
@@ -168,7 +177,19 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 }
             }
 
-            var createdTransaction = BillingApi.MakePayment(paymentTransaction);
+            PublicPaymentTransaction createdTransaction;
+            
+            try
+            {
+                createdTransaction = BillingApi.MakePayment(paymentTransaction);
+            }
+            catch(SoapException ex)
+            {
+                logger.LogException(ex, "MakePayment failed.");
+
+                return urlProvider.FailureUrl;
+            }
+
 
             if (createdTransaction.Status.ToUpper() == "IN_PROGRESS" && !string.IsNullOrEmpty(createdTransaction.RedirectUrl))
             {
