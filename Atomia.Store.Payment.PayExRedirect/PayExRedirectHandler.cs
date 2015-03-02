@@ -31,7 +31,7 @@ namespace Atomia.Store.Payment.PayExRedirect
 
         public override PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction transaction, PaymentData paymentData)
         {
-            transaction.ReturnUrl = urlProvider.DefaultPaymentRedirectUrl;
+            transaction.ReturnUrl = urlProvider.DefaultPaymentUrl;
             transaction = SetCancelUrl(transaction, urlProvider.CancelUrl);
             
             return transaction;

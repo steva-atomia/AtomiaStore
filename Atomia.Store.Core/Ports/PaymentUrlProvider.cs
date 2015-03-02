@@ -14,7 +14,7 @@ namespace Atomia.Store.Core
 
         public abstract string CancelUrl { get; }
 
-        public abstract string DefaultPaymentRedirectUrl { get; }
+        public abstract string DefaultPaymentUrl { get; }
 
         public abstract string QualifiedUrl(string path);
     }

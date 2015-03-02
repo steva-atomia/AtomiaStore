@@ -66,23 +66,29 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <remarks>The parameters correspond to the standard parameters sent by Atomia payment HTTP handlers</remarks>
         [AcceptVerbs(HttpVerbs.Get)]
-        public ActionResult PaymentRedirect(string amount, string transactionReference, int transactionReferenceType, string status)
+        public ActionResult Payment(string amount, string transactionReference, int transactionReferenceType, string status)
         {
-            decimal decimalAmount;
-            Decimal.TryParse(amount, out decimalAmount);
+            var action = "Failure";
 
-            if (status.ToUpper() == PaymentTransaction.Ok || status.ToUpper() == PaymentTransaction.InProgress)
-            {
-                return RedirectToAction("Success");
-            }
-            
-            if (status.ToUpper() == PaymentTransaction.Failed)
-            {
-                return RedirectToAction("Failure");
-            }
-            
-            return RedirectToAction("Failure");
+            switch (status.ToUpper())
+	        {
+                case PaymentTransaction.Ok:
+                case PaymentTransaction.InProgress:
+                    action = "Success";
+                    break;
+
+                case PaymentTransaction.Failed:
+		        default:
+                    action = "Failure";
+                    break;
+	        }
+
+            return RedirectToAction(action);
         }
     }
 }

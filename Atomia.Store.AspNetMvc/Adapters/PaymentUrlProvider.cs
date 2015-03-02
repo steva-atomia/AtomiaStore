@@ -37,7 +37,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
         }
 
-        public override string DefaultPaymentRedirectUrl
+        public override string DefaultPaymentUrl
         {
             get
             {
