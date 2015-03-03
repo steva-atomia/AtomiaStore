@@ -1,0 +1,20 @@
+﻿@model Atomia.Store.AspNetMvc.Models.DefaultCheckoutViewModel
+@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div class="formrow">
+    <h5><label class="required"><span>*</span> @Html.CommonResource("Confirmation"):</label></h5>
+    <div class="col2row">
+        @for (var i = 0; i < Model.TermsOfService.Count(); i++)
+        {
+            <div>
+                @Html.CheckBoxFor(m => m.TermsOfService[i].Confirm)
+                @Html.LabelFor(m => m.TermsOfService[i].Confirm, " ")
+                @Html.LabelFor(m => m.TermsOfService[i].Confirm, " ")
+                @Html.LabelFor(m => m.TermsOfService[i].Confirm, "I have read and agree with the") @Html.ActionLink(Model.TermsOfService[i].Name, "TermsOfService", new { Id = Model.TermsOfService[i].Id }, new { target = "_blank" })
+                @Html.ValidationMessageFor(m => m.TermsOfService[i].Confirm)
+                @Html.HiddenFor(m => m.TermsOfService[i].Id)
+            </div>
+        }
+    </div>
+    <br class="clear">
+</div>

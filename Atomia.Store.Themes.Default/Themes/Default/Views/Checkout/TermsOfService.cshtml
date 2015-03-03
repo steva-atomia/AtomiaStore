@@ -1,0 +1,12 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+@model Atomia.Store.AspNetMvc.Models.TermsOfServiceModel
+
+@{
+    Layout = "~/Themes/Default/Views/_StaticLayout.cshtml";
+    ViewBag.Title = Model.Name;
+}
+
+<div class="settingsboxinner">
+    <h3>@Model.Name</h3>
+    @Model.Terms
+</div>

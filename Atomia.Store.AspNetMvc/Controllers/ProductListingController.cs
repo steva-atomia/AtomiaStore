@@ -33,7 +33,6 @@ namespace Atomia.Store.AspNetMvc.Controllers
             });
         }
 
-        [HttpGet]
         public JsonResult GetItem(string articleNumber)
         {
             if (ModelState.IsValid)

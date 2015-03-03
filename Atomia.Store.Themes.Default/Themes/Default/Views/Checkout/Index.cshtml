@@ -7,7 +7,7 @@
 }
 
 <div class="settingsboxinner">
-    <div data-bind="visible: Atomia.VM.Cart.IsEmpty()">
+    <div data-bind="visible: Cart.IsEmpty()">
         <h4>@Html.CommonResource("CheckoutCartIsEmptyTitle")</h4>
         <p>@Html.CommonResource("CheckoutCartIsEmptyDescription")</p>
     </div>
@@ -16,7 +16,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div data-bind="visible: !Atomia.VM.Cart.IsEmpty()">
+        <div data-bind="visible: !Cart.IsEmpty()">
             <h4>@Html.CommonResource("PaymentOptions")</h4>
             @Html.Partial("_PaymentMethods", Model.PaymentMethodGuiPlugins)
 
@@ -28,11 +28,14 @@
             <h4>@Html.CommonResource("Invoice")</h4>
             @* @Html.Partial("_VatCheck") *@
             @Html.Partial("_CartSummary")
+
+            <h4>@Html.CommonResource("Terms")</h4>
+            @Html.Partial("_TermsOfServiceConfirmation", Model)
         </div>
 
         <p class="actions" style="display: block;">
             @Html.ActionLink(Html.CommonResource("Back"), "Index", "Account", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-            <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !Atomia.VM.Cart.IsEmpty()">@Html.CommonResource("Checkout")</button>
+            <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !Cart.IsEmpty()">@Html.CommonResource("Checkout")</button>
         </p>
     }
 </div>

@@ -9,5 +9,7 @@ namespace Atomia.Store.Core
     public interface ITermsOfServiceProvider
     {
         IEnumerable<TermsOfService> GetTermsOfService();
+
+        TermsOfService GetTermsOfService(string id);
     }
 }

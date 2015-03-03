@@ -501,4 +501,16 @@
   <data name="WorldPayXmlRedirectName" xml:space="preserve">
     <value>Credit Card</value>
   </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Confirmation</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="CampaignCode" xml:space="preserve">
+    <value>Campaign code</value>
+  </data>
+  <data name="CampaignCodeSuccess" xml:space="preserve">
+    <value>Campaign code sucessfully added</value>
+  </data>
 </root>

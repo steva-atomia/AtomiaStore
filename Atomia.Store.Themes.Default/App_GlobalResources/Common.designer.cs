@@ -70,6 +70,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add.
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add Campaign Code.
         /// </summary>
         internal static string AddCampaignCode {
@@ -174,6 +183,24 @@ namespace Resources {
         internal static string BillingSameAsMain {
             get {
                 return ResourceManager.GetString("BillingSameAsMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaign code.
+        /// </summary>
+        internal static string CampaignCode {
+            get {
+                return ResourceManager.GetString("CampaignCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Campaign code sucessfully added.
+        /// </summary>
+        internal static string CampaignCodeSuccess {
+            get {
+                return ResourceManager.GetString("CampaignCodeSuccess", resourceCulture);
             }
         }
         
@@ -300,6 +327,15 @@ namespace Resources {
         internal static string CompanyName {
             get {
                 return ResourceManager.GetString("CompanyName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Confirmation.
+        /// </summary>
+        internal static string Confirmation {
+            get {
+                return ResourceManager.GetString("Confirmation", resourceCulture);
             }
         }
         

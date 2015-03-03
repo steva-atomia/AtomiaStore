@@ -16,6 +16,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
         private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
+        private readonly ITermsOfServiceProvider tosProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
         
         [HttpGet]
         public ActionResult Index()
@@ -89,6 +90,24 @@ namespace Atomia.Store.AspNetMvc.Controllers
 	        }
 
             return RedirectToAction(action);
+        }
+
+        [HttpGet]
+        public ActionResult TermsOfService(string id)
+        {
+            var tos = tosProvider.GetTermsOfService(id);
+
+            if (tos == null)
+            {
+                return HttpNotFound();
+            }
+
+            return View(new TermsOfServiceModel
+            {
+                Id = tos.Id,
+                Name = tos.Name,
+                Terms = tos.Terms
+            });
         }
     }
 }
