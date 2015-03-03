@@ -226,6 +226,36 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        AddCampaignCode: function AddCampaignCode(campaignCode) {
+            if (!_.isString(campaignCode) || campaignCode === '') {
+                throw Exception("campaignCode must be a non-empty string.");
+            }
+
+            this.CampaignCode(campaignCode);
+
+            cartApi.RecalculateCart(
+                this,
+                function (result) {
+                    this._UpdateCart(result.Cart);
+
+                    utils.publish('cart:addCampaignCode', campaignCode);
+                }.bind(this)
+            );
+        },
+
+        RemoveCampaignCode: function RemoveCampaignCode() {
+            this.CampaignCode('');
+
+            cartApi.RecalculateCart(
+                this,
+                function (result) {
+                    this._UpdateCart(result.Cart);
+
+                    utils.publish('cart:removeCampaignCode');
+                }.bind(this)
+            );
+        },
+
         _UpdateCart: function _UpdateCart(cartData) {
             this.CartItems.removeAll();
 

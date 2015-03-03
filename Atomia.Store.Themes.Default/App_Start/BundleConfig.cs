@@ -22,6 +22,7 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/atomia/atomia.ko.slidevisible-binding.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.languageselector.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.cart.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.campaign.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.progress.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainconnection.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainspage.js",

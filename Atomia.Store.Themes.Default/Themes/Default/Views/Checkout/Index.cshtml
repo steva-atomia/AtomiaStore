@@ -20,10 +20,8 @@
             <h4>@Html.CommonResource("PaymentOptions")</h4>
             @Html.Partial("_PaymentMethods", Model.PaymentMethodGuiPlugins)
 
-            @*
-                <h4>@Html.CommonResource("AddCampaignCode")</h4>
-                @Html.Partial("_CampaignCode")
-            *@
+            <h4>@Html.CommonResource("AddCampaignCode")</h4>
+            @Html.Partial("_CampaignCode")
 
             <h4>@Html.CommonResource("Invoice")</h4>
             @* @Html.Partial("_VatCheck") *@
@@ -46,12 +44,14 @@
     }
 
     <script type="text/javascript">
-    Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelector();
-    Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
+        Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelector();
+        Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
 
         Atomia.VM.PayWithInvoice = Atomia.ViewModels.CreatePayWithInvoice(Atomia.VM.Cart, Atomia.VM.Payment);
         Atomia.VM.PayWithInvoice.LoadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
         Atomia.VM.PayWithInvoice.InvoiceType('email');
+
+        Atomia.VM.Campaign = Atomia.ViewModels.CreateCampaign(Atomia.VM.Cart);
 
         Atomia.VM.Progress.Step(4);
     </script>

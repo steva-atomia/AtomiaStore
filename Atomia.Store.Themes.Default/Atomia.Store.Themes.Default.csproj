@@ -245,6 +245,7 @@
     <Content Include="packages.config">
       <SubType>Designer</SubType>
     </Content>
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />

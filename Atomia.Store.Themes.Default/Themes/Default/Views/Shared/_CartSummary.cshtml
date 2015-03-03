@@ -24,8 +24,9 @@
             <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.Total"></td>
         </tr>
     </tfoot>
-    <tbody data-bind="foreach: Atomia.VM.Cart.CartItems()">
-        <tr id="hidden5" style="display: table-row;">
+    <tbody>
+        <!-- ko foreach: Cart.CartItems() -->
+        <tr style="display: table-row;">
             <td>
                 <strong data-bind="text: Name"></strong>
                 <br />
@@ -45,6 +46,16 @@
             <td class="right nowrap" data-bind="text: Price"></td>
             <td class="right nowrap" data-bind="text: Discount"></td>
             <td class="right nowrap" data-bind="text: Total"></td>
+        </tr>
+        <!-- /ko -->
+        <tr style="display: table-row;" data-bind="visible: Cart.CampaignCode">
+            <td>
+                <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: Cart.CampaignCode"></span>
+            </td>
+            <td class="right"></td>
+            <td class="right nowrap"></td>
+            <td class="right nowrap"></td>
+            <td class="right nowrap"></td>
         </tr>
     </tbody>
 </table>

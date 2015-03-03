@@ -30,7 +30,8 @@
                         <td></td>
                     </tr>
                 </tfoot>
-                <tbody data-bind="foreach: Cart.CartItems">
+                <tbody>
+                    <!-- ko foreach: Cart.CartItems -->
                     <tr>
                         <td>
                             <span data-bind="text: Name"></span>
@@ -43,6 +44,16 @@
                             <!-- ko if: IsRemovable() -->
                                 <a class="button small orange" href="javascript:void(0);" data-bind="click: RemoveFromCart">@Html.CommonResource("Remove")</a>
                             <!-- /ko -->
+                        </td>
+                    </tr>
+                    <!-- /ko -->
+                    <tr data-bind="visible: Cart.CampaignCode">
+                        <td>
+                            <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: Cart.CampaignCode"></span>
+                        </td>
+                        <td class="right nowrap"></td>
+                        <td>
+                            <a class="button small orange" href="javascript:void(0);" data-bind="click: Cart.RemoveCampaignCode">@Html.CommonResource("Remove")</a>
                         </td>
                     </tr>
                 </tbody>
