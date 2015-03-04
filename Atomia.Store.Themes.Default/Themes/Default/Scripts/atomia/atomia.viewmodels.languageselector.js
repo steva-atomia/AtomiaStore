@@ -38,7 +38,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     LanguageSelectorPrototype = {
         ToggleDropdown: function ToggleDropdown() {
-            this.IsOpen() ? this.IsOpen(false) : this.IsOpen(true);
+            if (this.IsOpen()) {
+                this.IsOpen(false);
+            }
+            else {
+                utils.publish('dropdown:open');
+                this.IsOpen(true);
+            }
+        },
+
+        CloseDropdown: function CloseDropdown() {
+            this.IsOpen(false);
         },
 
         Load: function Load(getLanguagesResponse) {
@@ -62,7 +72,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
     CreateLanguageSelector = function CreateLanguageSelector(extensions, itemExtensions) {
-        var defaults;
+        var defaults, viewModel;
 
         defaults = {
             CreateLanguage: _.partial(CreateLanguage, itemExtensions || {}),
@@ -71,7 +81,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             SelectedLanguage: ko.observable()
         };
 
-        return utils.createViewModel(LanguageSelectorPrototype, defaults, extensions);
+        viewModel = utils.createViewModel(LanguageSelectorPrototype, defaults, extensions);
+
+        utils.subscribe('dropdown:open', function () {
+            viewModel.IsOpen(false);
+        });
+
+        return viewModel;
     };
 
 

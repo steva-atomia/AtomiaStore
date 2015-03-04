@@ -70,7 +70,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         },
 
         ToggleDropdown: function ToggleDropdown() {
-            this.IsOpen() ? this.IsOpen(false) : this.IsOpen(true);
+            if (this.IsOpen()) {
+                this.IsOpen(false);
+            }
+            else {
+                utils.publish('dropdown:open');
+                this.IsOpen(true);
+            }
+        },
+
+        CloseDropdown: function CloseDropdown() {
+            this.IsOpen(false);
         },
 
         Contains: function Contains(item) {
@@ -303,6 +313,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         };
 
         cart = utils.createViewModel(CartPrototype, defaults, extensions);
+
+        utils.subscribe('dropdown:open', function () {
+            cart.IsOpen(false);
+        });
 
         return cart;
     };
