@@ -39,8 +39,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Domain registration prototype and factory */
     DomainRegistrationPrototype = {
-        StatusCheckInterval: 250,
-
         Submit: function Submit() {
             this.IsLoadingResults(true);
             this.PrimaryResults.removeAll();
@@ -50,42 +48,36 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.NoResults(false);
 
             domainsApi.FindDomains(this.Query(), function (data) {
-                var domainSearchId = data.DomainSearchId,
-                    statusCheckId;
+                var domainSearchId = data.DomainSearchId;
 
-                if (data.Results.length === 0) {
+                if (data.Results.length === 0 && data.FinishSearch) {
                     this.NoResults(true);
                     this.IsLoadingResults(false);
                 }
-                else if (!data.FinishSearch) {
-
-                    statusCheckId = setInterval(function () {
-
-                        domainsApi.CheckStatus(domainSearchId, function (data) {
-
-                            this.UpdateResults(data.Results);
-
-                            if (!this.PrimaryResultsLoading()) {
+                else if (data.FinishSearch) {
+                    this.UpdateResults(data.Result);
+                }
+                else {
+                    domainsApi.CheckStatus(domainSearchId,
+                        function (data) {
+                            if (data.Results.length === 0 && data.FinishSearch) {
+                                this.NoResults(true);
                                 this.IsLoadingResults(false);
                             }
-
-                            if (data.FinishSearch) {
-                                clearInterval(statusCheckId);
+                            else {
+                                this.UpdateResults(data.Results);
                             }
-
                         }.bind(this));
-
-                    }.bind(this), this.StatusCheckInterval);
                 }
             }.bind(this));
         },
 
-        PrimaryResultsLoading: function () {
+        PrimaryResultsAreFinished: function () {
             if (this.PrimaryResults().length === 0) {
                 return false;
             }
 
-            return _.any(this.PrimaryResults(), function(r) { 
+            return !_.any(this.PrimaryResults(), function(r) { 
                 return r.Status === 'loading'; 
             });
         },
@@ -114,6 +106,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             // Set all at once to avoid triggering bindings on each push.
             this.PrimaryResults(primaryResults);
             this.SecondaryResults(secondaryResults);
+
+            if (this.PrimaryResultsAreFinished()) {
+                this.IsLoadingResults(false);
+            }
         },
 
         SetShowMoreResults: function SetShowMoreResults() {
