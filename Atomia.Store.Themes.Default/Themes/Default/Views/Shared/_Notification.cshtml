@@ -1,0 +1,11 @@
+﻿@using Atomia.Store.WebBase.HtmlHelpers;
+
+<div id="notification" class="notification" style="display: none;" data-bind="visible: Notification.IsOpen, css: Notification.MessageType">
+    <div class="margins">
+        <a class="close-btn" id="notification-close" href="javascript:void(0);" title="@Html.CommonResource("Dismiss")" data-bind="click: Notification.Close">
+            <span class="icn_close"></span>
+        </a>
+        <h4 data-bind="text: Notification.Title"></h4>
+        <p data-bind="text: Notification.Message"></p>
+    </div>
+</div>

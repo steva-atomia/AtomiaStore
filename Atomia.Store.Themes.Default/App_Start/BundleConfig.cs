@@ -20,6 +20,7 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/atomia/atomia.api.domains.js",
                 "~/Themes/Default/Scripts/atomia/atomia.ko.submitvalid-binding.js",
                 "~/Themes/Default/Scripts/atomia/atomia.ko.slidevisible-binding.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.notification.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.languageselector.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.cart.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.campaign.js",

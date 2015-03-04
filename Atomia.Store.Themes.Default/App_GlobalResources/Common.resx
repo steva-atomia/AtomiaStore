@@ -513,4 +513,13 @@
   <data name="CampaignCodeSuccess" xml:space="preserve">
     <value>Campaign code sucessfully added</value>
   </data>
+  <data name="AjaxErrorMessage" xml:space="preserve">
+    <value>Please reload the page and try again.</value>
+  </data>
+  <data name="AjaxErrorTitle" xml:space="preserve">
+    <value>Something went wrong</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Dismiss</value>
+  </data>
 </root>

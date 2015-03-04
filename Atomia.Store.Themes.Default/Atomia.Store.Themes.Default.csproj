@@ -246,6 +246,7 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.notification.js" />
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
@@ -264,6 +265,8 @@
     <Content Include="Themes\Default\Views\_StaticLayout.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\TermsOfService.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_TermsOfServiceConfirmation.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_Notification.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_Footer.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

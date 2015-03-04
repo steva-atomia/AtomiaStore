@@ -54,6 +54,13 @@
         </div>
     </section>
 
+
+    @Html.Partial("_Footer")
+
+
+    @Html.Partial("_Notification")
+    
+
     @Scripts.Render("~/bundles/scripts")
 
     <script type="text/javascript">
@@ -67,6 +74,9 @@
     Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
 
     Atomia.VM.Progress = Atomia.ViewModels.CreateProgress();
+
+    Atomia.VM.Notification = Atomia.ViewModels.CreateNotification();
+    Atomia.VM.Notification.NotifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
     </script>
 
     
@@ -77,11 +87,5 @@
 
         ko.applyBindings(Atomia.VM);
     </script>
-
-    <footer>
-        <div class="margins">
-            <p id="copyright_placeholder">Copyright © 2015 Atomia. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>

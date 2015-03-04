@@ -48,6 +48,11 @@
         </div>
     </section>
 
+    @Html.Partial("_Footer")
+
+    @Html.Partial("_Notification")
+
+
     @Scripts.Render("~/bundles/scripts")
 
     <script type="text/javascript">
@@ -56,6 +61,9 @@
 
     Atomia.VM.LanguageSelector = Atomia.ViewModels.CreateLanguageSelector();
     Atomia.VM.LanguageSelector.Load(@Html.JsonAction("GetLanguages", "Language"));
+
+    Atomia.VM.Notification = Atomia.ViewModels.CreateNotification();
+    Atomia.VM.Notification.NotifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
     </script>
     
     @RenderSection("scripts", required: false)
@@ -65,11 +73,5 @@
 
         ko.applyBindings(Atomia.VM);
     </script>
-
-    <footer>
-        <div class="margins">
-            <p id="copyright_placeholder">Copyright © 2015 Atomia. All rights reserved.</p>
-        </div>
-    </footer>
 </body>
 </html>

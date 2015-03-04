@@ -1186,6 +1186,10 @@ header li > a:hover, header li > span:hover, header li .opened, .addons li a.ope
 	z-index: 40;
 	text-align: left
 }
+/* Override notification display to let knockout model set it */
+.notification {
+    display: block;
+}
 .head_tray h3 {
 	margin-top: 0
 }

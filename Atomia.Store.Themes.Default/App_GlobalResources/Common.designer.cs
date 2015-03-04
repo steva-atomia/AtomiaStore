@@ -133,6 +133,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Please reload the page and try again..
+        /// </summary>
+        internal static string AjaxErrorMessage {
+            get {
+                return ResourceManager.GetString("AjaxErrorMessage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Something went wrong.
+        /// </summary>
+        internal static string AjaxErrorTitle {
+            get {
+                return ResourceManager.GetString("AjaxErrorTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Amount to pay.
         /// </summary>
         internal static string AmountToPay {
@@ -453,6 +471,15 @@ namespace Resources {
         internal static string Discount {
             get {
                 return ResourceManager.GetString("Discount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Dismiss.
+        /// </summary>
+        internal static string Dismiss {
+            get {
+                return ResourceManager.GetString("Dismiss", resourceCulture);
             }
         }
         
