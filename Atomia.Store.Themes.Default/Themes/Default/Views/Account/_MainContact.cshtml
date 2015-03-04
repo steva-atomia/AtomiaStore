@@ -7,9 +7,11 @@
         @Html.LabelFor(m => m.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
     </h5>
     <div class="col2row">
-        @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.MainContactCustomerType" })
+        <label class="select">
+            @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.MainContactCustomerType" })
+        </label>
         @Html.ValidationMessageFor(m => m.CustomerType)
-    </div>
+</div>
     <br class="clear">
 </div>
 
@@ -38,7 +40,9 @@
         @Html.LabelFor(m => m.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
     </h5>
     <div class="col2row">
-        @Html.DropDownListFor(m => m.Country, Model.CountryOptions)
+        <label class="select">
+            @Html.DropDownListFor(m => m.Country, Model.CountryOptions)
+        </label>
         @Html.ValidationMessageFor(m => m.Country)
     </div>
     <br class="clear">

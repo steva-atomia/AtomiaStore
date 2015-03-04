@@ -7,7 +7,9 @@
         @Html.LabelFor(m => m.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
     </h5>
     <div class="col2row">
-        @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.BillingContactCustomerType, if: Account.OtherBillingContact" })
+        <label class="select">
+            @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.BillingContactCustomerType, if: Account.OtherBillingContact" })
+        </label>
         @Html.ValidationMessageFor(m => m.CustomerType)
     </div>
     <br class="clear" />
@@ -41,7 +43,9 @@
         @Html.LabelFor(m => m.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
     </h5>
     <div class="col2row">
-        @Html.DropDownListFor(m => m.Country, Model.CountryOptions, new { data_bind = "if: Account.OtherBillingContact" })
+        <label class="select">
+            @Html.DropDownListFor(m => m.Country, Model.CountryOptions, new { data_bind = "if: Account.OtherBillingContact" })
+        </label>
         @Html.ValidationMessageFor(m => m.Country)
     </div>
     <br class="clear">
