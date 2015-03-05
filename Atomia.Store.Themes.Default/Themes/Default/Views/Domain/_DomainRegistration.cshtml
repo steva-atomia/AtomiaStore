@@ -1,5 +1,4 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DomainViewModel
-@using Atomia.Store.WebBase.HtmlHelpers;
 
 <div class="domainreg-query big_search">
     @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: DomainRegistration.Submit" }))

@@ -1,6 +1,4 @@
-﻿@using Atomia.Store.WebBase.HtmlHelpers;
-
-<div id="head_cart" class="head_tray" data-bind="slideVisible: Cart.IsOpen, css: { opened: Cart.IsOpen }, event: { mouseleave: Cart.CloseDropdown }">
+﻿<div id="head_cart" class="head_tray" data-bind="slideVisible: Cart.IsOpen, css: { opened: Cart.IsOpen }, event: { mouseleave: Cart.CloseDropdown }">
     <div class="margins">
         <h3>@Html.CommonResource("ShoppingCart")</h3>
         <div data-bind="visible: !Cart.IsEmpty()">
