@@ -5,13 +5,13 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public class CartDataModel
+    public class CartModel
     {
         private readonly ICurrencyFormatter currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();
 
         private readonly Cart cart;
 
-        public CartDataModel(Cart cart)
+        public CartModel(Cart cart)
         {
             this.cart = cart;
         }

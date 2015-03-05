@@ -66,9 +66,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return JsonEnvelope.Fail(ModelState);
         }
 
-        private ProductListingDataModel InitDataModel(string query, string listingType)
+        private ProductListingModel InitDataModel(string query, string listingType)
         {
-            var model = DependencyResolver.Current.GetService<ProductListingDataModel>();
+            var model = DependencyResolver.Current.GetService<ProductListingModel>();
             var provider = productListProviders.FirstOrDefault(x => x.Name == listingType);
 
             if (provider == null)

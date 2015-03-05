@@ -12,7 +12,7 @@ namespace Atomia.Store.AspNetMvc.Models
     {
         public abstract PaymentMethodGuiPlugin SelectedPaymentMethod { get; }
 
-        public abstract IList<TermsOfServiceModel> TermsOfService { get; set; }
+        public abstract IList<TermsOfServiceConfirmationModel> TermsOfService { get; set; }
     }
 
 
@@ -21,7 +21,7 @@ namespace Atomia.Store.AspNetMvc.Models
         private readonly ITermsOfServiceProvider termsOfServiceProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
         private readonly PaymentMethodGuiPluginsProvider paymentPluginsProvider = new PaymentMethodGuiPluginsProvider();
 
-        private IList<TermsOfServiceModel> termsOfServiceModels = null;
+        private IList<TermsOfServiceConfirmationModel> termsOfServiceConfirmationModels = null;
 
         public DefaultCheckoutViewModel()
         {
@@ -39,22 +39,21 @@ namespace Atomia.Store.AspNetMvc.Models
             get { return PaymentMethodGuiPlugins.Where(x => x.Id == SelectedPaymentMethodId).FirstOrDefault();}
         }
 
-        public override IList<TermsOfServiceModel> TermsOfService
+        public override IList<TermsOfServiceConfirmationModel> TermsOfService
         {
             get
             {
-                if (termsOfServiceModels == null)
+                if (termsOfServiceConfirmationModels == null)
                 {
                     return termsOfServiceProvider.GetTermsOfService().Select(tos =>
-                        new TermsOfServiceModel
+                        new TermsOfServiceConfirmationModel
                         {
                             Id = tos.Id,
                             Name = tos.Name,
-                            Terms = tos.Terms
                         }).ToList();
                 }
 
-                return termsOfServiceModels;
+                return termsOfServiceConfirmationModels;
             }
             set
             {
@@ -64,10 +63,9 @@ namespace Atomia.Store.AspNetMvc.Models
                 {
                     var data = termsOfServiceData.First(tos => tos.Id == val.Id);
                     val.Name = data.Name;
-                    val.Terms = data.Terms;
                 }
 
-                termsOfServiceModels = value;
+                termsOfServiceConfirmationModels = value;
             }
         }
     }

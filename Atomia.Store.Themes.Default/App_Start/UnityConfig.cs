@@ -109,7 +109,7 @@ namespace Atomia.Store.Themes.Default
         {
             container.RegisterType<DomainsViewModel, DomainsViewModel>();
             container.RegisterType<ProductListingViewModel, ProductListingViewModel>();
-            container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
+            container.RegisterType<ProductListingModel, ProductListingModel>();
             container.RegisterType<AccountViewModel, DefaultAccountViewModel>();
             container.RegisterType<CheckoutViewModel, DefaultCheckoutViewModel>();
         }

@@ -17,7 +17,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
 
             return JsonEnvelope.Success(new
                 {
-                    Cart = new CartDataModel(cart),
+                    Cart = new CartModel(cart),
                     DomainCategories = domainsProvider.GetDomainCategories()
                 });
         }
@@ -33,7 +33,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
                 cart.UpdateCart(updatedCart.CartItems.Select(ci => ci.CartItem), updatedCart.CampaignCode);
                 
                 return JsonEnvelope.Success(new {
-                    Cart = new CartDataModel(cart)
+                    Cart = new CartModel(cart)
                 });
             }
 

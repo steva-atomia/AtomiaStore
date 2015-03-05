@@ -99,12 +99,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
                 return HttpNotFound();
             }
 
-            return View(new TermsOfServiceModel
+            var model = new TermsOfServiceViewModel
             {
                 Id = tos.Id,
                 Name = tos.Name,
                 Terms = tos.Terms
-            });
+            };
+
+            return View(model);
         }
     }
 }
