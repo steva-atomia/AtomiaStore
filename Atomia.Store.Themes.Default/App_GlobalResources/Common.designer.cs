@@ -513,27 +513,27 @@ namespace Resources {
         /// <summary>
         ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
         /// </summary>
-        internal static string DomainRegDescription {
+        internal static string DomainRegistrationDescription {
             get {
-                return ResourceManager.GetString("DomainRegDescription", resourceCulture);
+                return ResourceManager.GetString("DomainRegistrationDescription", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to No results for.
         /// </summary>
-        internal static string DomainRegNoResultsHeading {
+        internal static string DomainRegistrationNoResultsHeading {
             get {
-                return ResourceManager.GetString("DomainRegNoResultsHeading", resourceCulture);
+                return ResourceManager.GetString("DomainRegistrationNoResultsHeading", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Results for.
         /// </summary>
-        internal static string DomainRegResultsHeading {
+        internal static string DomainRegistrationResultsHeading {
             get {
-                return ResourceManager.GetString("DomainRegResultsHeading", resourceCulture);
+                return ResourceManager.GetString("DomainRegistrationResultsHeading", resourceCulture);
             }
         }
         

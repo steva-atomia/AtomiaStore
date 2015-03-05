@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public class DomainViewModel
+    public class DomainsViewModel
     {
 
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]

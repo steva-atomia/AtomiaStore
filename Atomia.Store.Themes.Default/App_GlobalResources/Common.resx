@@ -132,10 +132,10 @@
   <data name="DomainNotAvailableHoverTitle" xml:space="preserve">
     <value>is not available.</value>
   </data>
-  <data name="DomainRegDescription" xml:space="preserve">
+  <data name="DomainRegistrationDescription" xml:space="preserve">
     <value>Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class="required"&gt;*&lt;/span&gt;) are required.</value>
   </data>
-  <data name="DomainRegResultsHeading" xml:space="preserve">
+  <data name="DomainRegistrationResultsHeading" xml:space="preserve">
     <value>Results for</value>
   </data>
   <data name="Fee" xml:space="preserve">
@@ -429,7 +429,7 @@
   <data name="SV_SE_shortname" xml:space="preserve">
     <value>SE</value>
   </data>
-  <data name="DomainRegNoResultsHeading" xml:space="preserve">
+  <data name="DomainRegistrationNoResultsHeading" xml:space="preserve">
     <value>No results for</value>
   </data>
   <data name="InvoiceByEmailName" xml:space="preserve">

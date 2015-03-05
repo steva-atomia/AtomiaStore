@@ -1,26 +1,26 @@
-﻿@model Atomia.Store.AspNetMvc.Models.DomainViewModel
+﻿@model Atomia.Store.AspNetMvc.Models.DomainsViewModel
 
 @{
     Layout = "~/Themes/Default/Views/_MainLayout.cshtml";
 }
 
 <div class="settingsboxinner">
-    <p>@Html.CommonResourceRaw("DomainRegDescription")</p>
+    <p>@Html.CommonResourceRaw("DomainRegistrationDescription")</p>
 
     @using (Html.BeginForm())
     {
 
         <fieldset>
-            <label for="queryType-domainreg">
-                <input id="queryType-domainreg" name="queryType" type="radio" value="domainreg" data-bind="checked: Domains.QueryType" />
+            <label for="queryType-register">
+                <input id="queryType-register" name="queryType" type="radio" value="register" data-bind="checked: Domains.QueryType" />
             </label>
-            <label for="queryType-transfer">
-                <input id="queryType-transfer" name="queryType" type="radio" value="transfer" data-bind="checked: Domains.QueryType" />
+            <label for="queryType-move">
+                <input id="queryType-move" name="queryType" type="radio" value="move" data-bind="checked: Domains.QueryType" />
             </label>
         </fieldset>
     }
 
-    <div data-bind="visible: Domains.DomainRegActive">
+    <div data-bind="visible: Domains.DomainRegistrationActive">
         @Html.Partial("_DomainRegistration", Model)
     </div>
 
@@ -34,7 +34,7 @@
         var Atomia = Atomia || {};
         Atomia.VM = Atomia.VM || {};
 
-        Atomia.VM.Domains = Atomia.ViewModels.CreateDomainsPage();
+        Atomia.VM.Domains = Atomia.ViewModels.CreateDomains();
         Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistration(Atomia.VM.Cart);
 
         Atomia.VM.Progress.Step(1);

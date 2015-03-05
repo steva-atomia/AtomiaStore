@@ -107,7 +107,7 @@ namespace Atomia.Store.Themes.Default
         /// </summary>
         protected void RegisterViewModels()
         {
-            container.RegisterType<DomainViewModel, DomainViewModel>();
+            container.RegisterType<DomainsViewModel, DomainsViewModel>();
             container.RegisterType<ProductListingViewModel, ProductListingViewModel>();
             container.RegisterType<ProductListingDataModel, ProductListingDataModel>();
             container.RegisterType<AccountViewModel, DefaultAccountViewModel>();

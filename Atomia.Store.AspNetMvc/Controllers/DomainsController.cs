@@ -7,14 +7,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
-    public sealed class DomainController : Controller
+    public sealed class DomainsController : Controller
     {
         private readonly IDomainsProvider domainProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 
         [HttpGet]
         public ActionResult Index()
         {
-            var model = DependencyResolver.Current.GetService<DomainViewModel>();
+            var model = DependencyResolver.Current.GetService<DomainsViewModel>();
 
             return View(model);
         }

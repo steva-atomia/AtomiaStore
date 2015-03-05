@@ -6,42 +6,42 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateDomainsPage,
-        CreateDomainsPagePrototype;
+    var CreateDomains,
+        CreateDomainsPrototype;
 
 
 
     /* Domains page prototype and factory */
-    CreateDomainsPagePrototype = {
-        _DomainRegActive: function _DomainRegActive() {
+    CreateDomainsPrototype = {
+        _DomainRegistrationActive: function _DomainRegistrationActive() {
             return this.QueryType() === 'domainreg';
         },
 
-        _DomainTransferActive: function _DomainTransferActive() {
+        _MoveDomainActive: function _MoveDomainActive() {
             return this.QueryType() === 'transfer';
         }
     };
 
-    CreateDomainsPage = function CreateDomainsPage(extensions) {
+    CreateDomains = function CreateDomains(extensions) {
         var defaults;
 
         defaults = function (self) {
             return {
                 QueryType: ko.observable('domainreg'),
 
-                DomainRegActive: ko.pureComputed(self._DomainRegActive, self),
-                DomainTransferActive: ko.pureComputed(self._DomainTransferActive, self)
+                DomainRegistrationActive: ko.pureComputed(self._DomainRegistrationActive, self),
+                MoveDomainActive: ko.pureComputed(self._MoveDomainActive, self)
             };
         };
 
-        return utils.createViewModel(CreateDomainsPagePrototype, defaults, extensions);
+        return utils.createViewModel(CreateDomainsPrototype, defaults, extensions);
     };
 
 
 
     /* Module exports */
     _.extend(exports, {
-        CreateDomainsPage: CreateDomainsPage
+        CreateDomains: CreateDomains
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);
