@@ -33,7 +33,7 @@ namespace Atomia.Store.Themes.Default
             this.RegisterOrderHandling();
 
             // Un-comment to use fake static data instead of public order api.
-            // RegisterFakeAdapters(container);
+            // RegisterFakeAdapters();
 
             container.LoadConfiguration();
 
