@@ -252,9 +252,8 @@
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Campaign.cshtml" />
-    <Content Include="Themes\Default\Views\Shared\_VatCheck.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_VatCheck.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_PaymentMethods.cshtml" />
-    <Content Include="Themes\Default\Views\Shared\_TermsOfService.cshtml" />
     <Content Include="Themes\Default\Views\PayPal\Confirm.cshtml" />
     <Content Include="Themes\Default\Views\Account\_MainContact.cshtml" />
     <Content Include="Themes\Default\Views\Account\_BillingContact.cshtml" />
@@ -380,7 +379,7 @@
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\HostingPackages.cshtml" />
     <Content Include="Themes\Default\Views\Account\Index.cshtml" />
-    <Content Include="Themes\Default\Views\Shared\_DomainConnection.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_DomainConnection.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Progress.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_LanguageSelector.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Index.cshtml" />
