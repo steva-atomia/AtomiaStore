@@ -6,9 +6,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateCampaignPrototype, CreateCampaign;
+    var CampaignModelPrototype,
+        CreateCampaignModel;
 
-    CreateCampaignPrototype = {
+
+    CampaignModelPrototype = {
         AddToCart: function AddToCart() {
             var code = this.Code();
 
@@ -20,8 +22,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateCampaign = function CreateCampaign(cart, extensions) {
-        return utils.createViewModel(CreateCampaignPrototype, {
+    CreateCampaignModel = function CreateCampaignModel(cart, extensions) {
+        return utils.createViewModel(CampaignModelPrototype, {
             _Cart: cart,
             Code: ko.observable(''),
             Added: ko.observable(false)
@@ -31,7 +33,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateCampaign: CreateCampaign
+        CreateCampaignModel: CreateCampaignModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

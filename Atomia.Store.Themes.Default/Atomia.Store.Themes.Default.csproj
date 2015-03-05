@@ -251,7 +251,7 @@
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
-    <Content Include="Themes\Default\Views\Shared\_CampaignCode.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_Campaign.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_VatCheck.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_PaymentMethods.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_TermsOfService.cshtml" />
@@ -353,7 +353,7 @@
     <Content Include="Themes\Default\Scripts\knockout-3.2.0.js" />
     <Content Include="Themes\Default\Scripts\MicrosoftMvcJQueryValidation.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.cart.js" />
-    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productslisting.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productlisting.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainregistration.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domains.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainmove.js" />

@@ -8,8 +8,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     var DomainRegistrationItemPrototype,
         CreateDomainRegistrationItem,
-        DomainRegistrationPrototype,
-        CreateDomainRegistration;
+        DomainRegistrationModelPrototype,
+        CreateDomainRegistrationModel;
 
     /* Domain registration item protype and factory */
     DomainRegistrationItemPrototype = {
@@ -38,7 +38,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
     /* Domain registration prototype and factory */
-    DomainRegistrationPrototype = {
+    DomainRegistrationModelPrototype = {
         Submit: function Submit() {
             this.IsLoadingResults(true);
             this.PrimaryResults.removeAll();
@@ -89,7 +89,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             _.each(results, function (result) {
                 var item, primaryAttr;
 
-                item = viewModelsApi.AddCartExtensions(this._Cart, this.CreateDomainRegistrationItem(result));
+                item = viewModelsApi.AddCartItemExtensions(this._Cart, this.CreateDomainRegistrationItem(result));
 
                 primaryAttr = _.find(item.CustomAttributes, function (ca) {
                     return ca.Name === 'Premium';
@@ -140,7 +140,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateDomainRegistration = function CreateDomainRegistration(cart, extensions, itemExtensions) {
+    CreateDomainRegistrationModel = function CreateDomainRegistrationModel(cart, extensions, itemExtensions) {
         var defaults;
 
         defaults = function (self) {
@@ -160,14 +160,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-        return utils.createViewModel(DomainRegistrationPrototype, defaults, extensions);
+        return utils.createViewModel(DomainRegistrationModelPrototype, defaults, extensions);
     };
 
 
 
     /* Module exports */
     _.extend(exports, {
-        CreateDomainRegistration: CreateDomainRegistration
+        CreateDomainRegistrationModel: CreateDomainRegistrationModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.Api.Domains, Atomia.ViewModels);

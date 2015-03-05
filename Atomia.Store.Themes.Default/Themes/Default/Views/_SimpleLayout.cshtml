@@ -57,10 +57,10 @@
     var Atomia = Atomia || {};
     Atomia.VM = Atomia.VM || {};
 
-    Atomia.VM.LanguageSelector = Atomia.ViewModels.CreateLanguageSelector();
+    Atomia.VM.LanguageSelector = Atomia.ViewModels.CreateLanguageSelectorModel();
     Atomia.VM.LanguageSelector.Load(@Html.JsonAction("GetLanguages", "Language"));
 
-    Atomia.VM.Notification = Atomia.ViewModels.CreateNotification();
+    Atomia.VM.Notification = Atomia.ViewModels.CreateNotificationModel();
     Atomia.VM.Notification.NotifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
     </script>
     

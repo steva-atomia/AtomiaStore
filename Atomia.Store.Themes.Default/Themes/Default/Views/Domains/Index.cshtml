@@ -34,8 +34,8 @@
         var Atomia = Atomia || {};
         Atomia.VM = Atomia.VM || {};
 
-        Atomia.VM.Domains = Atomia.ViewModels.CreateDomains();
-        Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistration(Atomia.VM.Cart);
+        Atomia.VM.Domains = Atomia.ViewModels.CreateDomainsModel();
+        Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistrationModel(Atomia.VM.Cart);
 
         Atomia.VM.Progress.Step(1);
     </script>

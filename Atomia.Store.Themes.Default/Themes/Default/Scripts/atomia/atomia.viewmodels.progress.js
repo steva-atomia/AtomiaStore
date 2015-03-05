@@ -6,10 +6,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateProgress;
+    var CreateProgressModel;
 
 
-    CreateProgress = function CreateProgress(extensions) {
+    CreateProgressModel = function CreateProgressModel(extensions) {
         return utils.createViewModel({}, {
             Step: ko.observable(0)
         }, extensions);
@@ -18,7 +18,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateProgress: CreateProgress
+        CreateProgressModel: CreateProgressModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

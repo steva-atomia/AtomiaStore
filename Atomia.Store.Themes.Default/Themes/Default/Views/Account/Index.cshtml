@@ -62,7 +62,7 @@
     }
 
     <script type="text/javascript">
-        Atomia.VM.Account = Atomia.ViewModels.CreateAccount();
+        Atomia.VM.Account = Atomia.ViewModels.CreateAccountModel();
         Atomia.VM.Account.OtherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
         @{
             var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;

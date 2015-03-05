@@ -6,13 +6,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var DomainConnectionPrototype,
-        CreateDomainConnection,
-        CreateDomainStatus;
+    var DomainConnectionModelPrototype,
+        CreateDomainConnectionModel,
+        CreateDomainStatusModel;
 
 
     /* DomainConnection prototype and factory */
-    DomainConnectionPrototype = {
+    DomainConnectionModelPrototype = {
         SetInitialDomainName: function () {
             var selectedItem = this.SelectedItem(),
                 itemInCart,
@@ -86,10 +86,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
     
-    CreateDomainConnection = function CreateDomainConnection(cart, selectedItem, extensions) {
+    CreateDomainConnectionModel = function CreateDomainConnectionModel(cart, selectedItem, extensions) {
         var item;
 
-        item = utils.createViewModel(DomainConnectionPrototype, {
+        item = utils.createViewModel(DomainConnectionModelPrototype, {
             _Cart: cart,
             SelectedItem: _.isFunction(selectedItem) ? selectedItem : function () { return selectedItem; },
             UniqueId: _.uniqueId('domain-connection-'),
@@ -110,7 +110,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
     /* DomainStatus factory */
-    CreateDomainStatus = function CreateDomainStatus(extensions) {
+    CreateDomainStatusModel = function CreateDomainStatusModel(extensions) {
         var statusItem = Object.create({}),
             defaults = {
                 DomainNameHasBeenSelected: ko.observable(false),
@@ -124,8 +124,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateDomainStatus: CreateDomainStatus,
-        CreateDomainConnection: CreateDomainConnection
+        CreateDomainStatusModel: CreateDomainStatusModel,
+        CreateDomainConnectionModel: CreateDomainConnectionModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

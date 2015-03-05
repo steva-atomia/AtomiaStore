@@ -6,9 +6,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var LanguageSelectorPrototype,
-        CreateLanguageSelector,
-        CreateLanguage;
+    var LanguageSelectorModelPrototype,
+        CreateLanguageSelectorModel,
+        CreateLanguageItem;
 
     function getNewLanguageURL(currentLanguageCode, newLanguageCode) {
         var currentURL = window.location.href,
@@ -26,7 +26,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         return newURL;
     }
 
-    CreateLanguage = function CreateLanguage(extensions, instance) {
+    CreateLanguageItem = function CreateLanguageItem(extensions, instance) {
         var defaults;
         
         defaults = {
@@ -36,7 +36,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         return utils.createViewModel({}, defaults, instance, extensions);
     };
 
-    LanguageSelectorPrototype = {
+    LanguageSelectorModelPrototype = {
         ToggleDropdown: function ToggleDropdown() {
             if (this.IsOpen()) {
                 this.IsOpen(false);
@@ -64,24 +64,24 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             _.each(data.Languages, function (language) {
                 language._CurrentLanguage = currentLanguage;
 
-                tmpLanguages.push(this.CreateLanguage(language));
+                tmpLanguages.push(this.CreateLanguageItem(language));
             }, this);
 
             this.Languages(tmpLanguages);
         }
     };
 
-    CreateLanguageSelector = function CreateLanguageSelector(extensions, itemExtensions) {
+    CreateLanguageSelectorModel = function CreateLanguageSelectorModel(extensions, itemExtensions) {
         var defaults, viewModel;
 
         defaults = {
-            CreateLanguage: _.partial(CreateLanguage, itemExtensions || {}),
+            CreateLanguageItem: _.partial(CreateLanguageItem, itemExtensions || {}),
             IsOpen: ko.observable(false),
             Languages: ko.observableArray(),
             SelectedLanguage: ko.observable()
         };
 
-        viewModel = utils.createViewModel(LanguageSelectorPrototype, defaults, extensions);
+        viewModel = utils.createViewModel(LanguageSelectorModelPrototype, defaults, extensions);
 
         utils.subscribe('dropdown:open', function () {
             viewModel.IsOpen(false);
@@ -93,7 +93,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateLanguageSelector: CreateLanguageSelector
+        CreateLanguageSelectorModel: CreateLanguageSelectorModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

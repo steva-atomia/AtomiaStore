@@ -6,20 +6,19 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateDomainMovePrototype,
-        CreateDomainMove;
+    var DomainMoveModelPrototype,
+        CreateDomainMoveModel;
         
 
-
     /* Domain move prototype and factory */
-    CreateDomainMovePrototype = {
+    DomainMoveModelPrototype = {
         Submit: function Submit() {
             console.log('Transfer!');
         }
     };
 
-    CreateDomainMove = function CreateDomainMove(extensions) {
-        return utils.createViewModel(CreateDomainMovePrototype, {
+    CreateDomainMoveModel = function CreateDomainMoveModel(extensions) {
+        return utils.createViewModel(DomainMoveModelPrototype, {
             Query: ko.observable()
         }, extensions);
     };
@@ -28,7 +27,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateDomainMove: CreateDomainMove
+        CreateDomainMoveModel: CreateDomainMoveModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

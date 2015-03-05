@@ -6,11 +6,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, $, utils, cartApi) {
     'use strict';
 
-    var CartPrototype,
+    var CartModelPrototype,
         CartItemPrototype,
-        CreateCart,
+        CreateCartModel,
         CreateCartItem,
-        AddCartExtensions;
+        AddCartItemExtensions;
 
 
     /* Cart item prototype and factory */
@@ -48,7 +48,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
     /* Cart prototype and factory */
-    CartPrototype = {
+    CartModelPrototype = {
         ValidationUpdateEvent: 'cart:update',
 
         DomainItems: function DomainItems() {
@@ -271,7 +271,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             _.each(cartData.CartItems, function (cartItemData) {
                 var item = this.CreateCartItem(cartItemData),
-                    cartItem = AddCartExtensions(this, item);
+                    cartItem = AddCartItemExtensions(this, item);
 
                 this.CartItems.push(cartItem);
             }.bind(this));
@@ -288,7 +288,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateCart = function CreateCart(extensions, itemExtensions) {
+    CreateCartModel = function CreateCartModel(extensions, itemExtensions) {
         var defaults, cart;
         
         defaults = function (self) {
@@ -312,7 +312,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-        cart = utils.createViewModel(CartPrototype, defaults, extensions);
+        cart = utils.createViewModel(CartModelPrototype, defaults, extensions);
 
         utils.subscribe('dropdown:open', function () {
             cart.IsOpen(false);
@@ -323,8 +323,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
 
-    /* AddCartExtensions item extender */
-    AddCartExtensions = function AddCartExtensions(cart, item) {
+    /* AddCartItemExtensions item extender */
+    AddCartItemExtensions = function AddCartItemExtensions(cart, item) {
         var cartExtensions;
 
         if (item.Equals === undefined) {
@@ -388,8 +388,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateCart: CreateCart,
-        AddCartExtensions: AddCartExtensions
+        CreateCartModel: CreateCartModel,
+        AddCartItemExtensions: AddCartItemExtensions
     });
 
 })(Atomia.ViewModels, _, ko, jQuery, Atomia.Utils, Atomia.Api.Cart);

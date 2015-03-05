@@ -6,10 +6,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
 	'use strict';
 
-	var CreateAccountPrototype, CreateAccount;
+	var AccountModelPrototype,
+        CreateAccountModel;
 
 
-	CreateAccountPrototype = {
+	AccountModelPrototype = {
 		UseOtherBillingContact: function UseSeparateBillingContact() {
 			this.OtherBillingContact(true);
 		},
@@ -18,7 +19,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		}
 	};
 
-    CreateAccount = function CreateAccount(extensions) {
+    CreateAccountModel = function CreateAccountModel(extensions) {
         var defaults;
             
         defaults = function (self) {
@@ -37,13 +38,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-	    return utils.createViewModel(CreateAccountPrototype, defaults, extensions);
+	    return utils.createViewModel(AccountModelPrototype, defaults, extensions);
 	};
 
 
 	/* Module exports */
 	_.extend(exports, {
-		CreateAccount: CreateAccount
+		CreateAccountModel: CreateAccountModel
 	});
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

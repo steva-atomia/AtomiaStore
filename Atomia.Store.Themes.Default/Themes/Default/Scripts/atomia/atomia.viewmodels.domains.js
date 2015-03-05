@@ -6,13 +6,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateDomains,
-        CreateDomainsPrototype;
-
+    var DomainsModelPrototype,
+        CreateDomainsModel;
 
 
     /* Domains page prototype and factory */
-    CreateDomainsPrototype = {
+        DomainsModelPrototype = {
         _DomainRegistrationActive: function _DomainRegistrationActive() {
             return this.QueryType() === 'domainreg';
         },
@@ -22,7 +21,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateDomains = function CreateDomains(extensions) {
+    CreateDomainsModel = function CreateDomainsModel(extensions) {
         var defaults;
 
         defaults = function (self) {
@@ -34,14 +33,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-        return utils.createViewModel(CreateDomainsPrototype, defaults, extensions);
+        return utils.createViewModel(DomainsModelPrototype, defaults, extensions);
     };
 
 
 
     /* Module exports */
     _.extend(exports, {
-        CreateDomains: CreateDomains
+        CreateDomainsModel: CreateDomainsModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

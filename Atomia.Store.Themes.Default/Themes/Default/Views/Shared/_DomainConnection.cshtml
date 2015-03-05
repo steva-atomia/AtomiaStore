@@ -3,7 +3,7 @@
         template: { element: 'domain-connection-tmpl' },
         viewModel: {
             createViewModel: function(params) {
-                return Atomia.ViewModels.CreateDomainConnection(params.cart, params.selectedItem, {
+                return Atomia.ViewModels.CreateDomainConnectionModel(params.cart, params.selectedItem, {
                     StatusNotifier: params.statusNotifier
                 });
             }

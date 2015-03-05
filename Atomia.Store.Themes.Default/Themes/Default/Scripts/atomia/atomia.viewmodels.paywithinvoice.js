@@ -6,9 +6,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, viewModelsApi) {
 	'use strict';
 
-	var CreatePayWithInvoice, CreatePayWithInvoicePrototype;
+	var PayWithInvoiceModelPrototype,
+        CreatePayWithInvoiceModel;
 
-	CreatePayWithInvoicePrototype = {
+	PayWithInvoiceModelPrototype = {
 		_SelectPaymentMethod: function _SelectPaymentMethod(newValue) {
 			var cartItem = this._CreatePostalFeeItem();;
 
@@ -40,7 +41,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 				Value: 'true'
 			});
 
-			cartItem = viewModelsApi.AddCartExtensions(this._Cart, postalFeeItem);
+			cartItem = viewModelsApi.AddCartItemExtensions(this._Cart, postalFeeItem);
 
 			return cartItem;
 		},
@@ -67,7 +68,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		}
 	};
 
-	CreatePayWithInvoice = function CreatePayWithInvoice(cart, paymentSelection, extensions) {
+	CreatePayWithInvoiceModel = function CreatePayWithInvoiceModel(cart, paymentSelection, extensions) {
 		var defaults, viewModel;
 
 		defaults = {
@@ -76,7 +77,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 			PostalFeeItem: ko.observable(null)
 		};
 
-		viewModel = utils.createViewModel(CreatePayWithInvoicePrototype, defaults, extensions);
+		viewModel = utils.createViewModel(PayWithInvoiceModelPrototype, defaults, extensions);
 
 		viewModel.InvoiceType.subscribe(viewModel._SelectInvoiceType, viewModel);
 		paymentSelection.SelectedPaymentMethod.subscribe(viewModel._SelectPaymentMethod, viewModel);
@@ -87,7 +88,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 	/* Module exports */
 	_.extend(exports, {
-		CreatePayWithInvoice: CreatePayWithInvoice
+	    CreatePayWithInvoiceModel: CreatePayWithInvoiceModel
 	});
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.ViewModels);

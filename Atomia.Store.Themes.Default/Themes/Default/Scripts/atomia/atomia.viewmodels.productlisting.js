@@ -6,15 +6,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, viewModelsApi) {
     'use strict';
 
-    var ProductsListingItemPrototype,
-        CreateProductsListingItem,
-        ProductsListingPrototype,
-        CreateProductsListing;
+    var ProductListingItemPrototype,
+        CreateProductListingItem,
+        ProductListingModelPrototype,
+        CreateProductListingModel;
 
 
 
     /* Products listing item prototype and factory */
-    ProductsListingItemPrototype = {
+    ProductListingItemPrototype = {
         _InitPricingVariant: function _InitPricingVariant() {
             var itemInCart = this.GetItemInCart(),
                 selectedPricingVariant = _.find(this.PricingVariants, function (pv) {
@@ -60,7 +60,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateProductsListingItem = function CreateProductsListingItem(extensions, instance) {
+    CreateProductListingItem = function CreateProductListingItem(extensions, instance) {
         var item, defaults;
 
         defaults = function (self) {
@@ -76,7 +76,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-        item = utils.createViewModel(ProductsListingItemPrototype, defaults, instance, extensions);
+        item = utils.createViewModel(ProductListingItemPrototype, defaults, instance, extensions);
         item.SelectedPricingVariant.subscribe(item._SelectPricingVariant, item);
 
         return item;
@@ -85,7 +85,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
     /* Products listing prototype and factory */
-    ProductsListingPrototype = {
+    ProductListingModelPrototype = {
         Load: function Load(listProductsDataResponse) {
             this._UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
         },
@@ -110,9 +110,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         _UpdateProducts: function _UpdateProducts(products) {
             _.each(products, function (product) {
-                var item = this.CreateProductsListingItem(product);
+                var item = this.CreateProductListingItem(product);
 
-                item = viewModelsApi.AddCartExtensions(this._Cart, item);
+                item = viewModelsApi.AddCartItemExtensions(this._Cart, item);
 
                 if (this._Cart.Contains(item)) {
                     item._InitPricingVariant();
@@ -143,11 +143,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
-    CreateProductsListing = function CreateProductsListing(cart, extensions, itemExtensions) {
+    CreateProductListingModel = function CreateProductListingModel(cart, extensions, itemExtensions) {
         var defaults = function (self) {
             return {
                 _Cart: cart,
-                CreateProductsListingItem: _.partial(CreateProductsListingItem, itemExtensions || {}),
+                CreateProductListingItem: _.partial(CreateProductListingItem, itemExtensions || {}),
 
                 ProductIsRequired: true,
                 SingleSelection: false,
@@ -159,12 +159,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             };
         };
 
-        return utils.createViewModel(ProductsListingPrototype, defaults, extensions);
+        return utils.createViewModel(ProductListingModelPrototype, defaults, extensions);
     };
     
 
     _.extend(exports, {
-        CreateProductsListing: CreateProductsListing
+        CreateProductListingModel: CreateProductListingModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.ViewModels);

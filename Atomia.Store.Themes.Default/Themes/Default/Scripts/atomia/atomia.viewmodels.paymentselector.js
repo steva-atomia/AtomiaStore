@@ -6,14 +6,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
 	'use strict';
 
-	var CreatePaymentSelectorPrototype, CreatePaymentSelector;
+	var PaymentSelectorModelPrototype,
+        CreatePaymentSelectorModel;
 
 
-	CreatePaymentSelectorPrototype = {
+	PaymentSelectorModelPrototype = {
 
 	};
 
-	CreatePaymentSelector = function CreatePaymentSelector(extensions) {
+	CreatePaymentSelectorModel = function CreatePaymentSelectorModel(extensions) {
 	    var defaults;
 
 	    defaults = function (self) {
@@ -22,13 +23,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        };
 	    };
 
-	    return utils.createViewModel(CreatePaymentSelectorPrototype, defaults, extensions);
+	    return utils.createViewModel(PaymentSelectorModelPrototype, defaults, extensions);
 	};
 
 
 	/* Module exports */
 	_.extend(exports, {
-	    CreatePaymentSelector: CreatePaymentSelector
+	    CreatePaymentSelectorModel: CreatePaymentSelectorModel
 	});
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

@@ -6,9 +6,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    var CreateNotification, CreateNotificationPrototype, timeoutId;
+    var NotificationModelPrototype,
+        CreateNotificationModel,
+        timeoutId;
 
-    CreateNotificationPrototype = {
+    NotificationModelPrototype = {
         Open: function Open(title, message, messageType) {
             if (this.IsOpen()) {
                 this.Close();
@@ -50,8 +52,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
 
-    CreateNotification = function CreateNotification(extensions) {
-        return utils.createViewModel(CreateNotificationPrototype, {
+    CreateNotificationModel = function CreateNotificationModel(extensions) {
+        return utils.createViewModel(NotificationModelPrototype, {
             MessageType: ko.observable(''),
             Title: ko.observable(''),
             Message: ko.observable(''),
@@ -62,7 +64,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
-        CreateNotification: CreateNotification
+        CreateNotificationModel: CreateNotificationModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils);

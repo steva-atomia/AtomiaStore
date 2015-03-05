@@ -76,9 +76,9 @@
         var Atomia = Atomia || {};
         Atomia.VM = Atomia.VM || {};
 
-        Atomia.VM.ConnectedDomainStatus = Atomia.ViewModels.CreateDomainStatus();
+        Atomia.VM.ConnectedDomainStatus = Atomia.ViewModels.CreateDomainStatusModel();
 
-        Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductsListing(Atomia.VM.Cart, { SingleSelection: true });
+        Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductListingModel(Atomia.VM.Cart, { SingleSelection: true });
         Atomia.VM.HostingPackages.Load(@Html.JsonAction("GetData", "ProductListing", new { query = Model.Query }));
 
         Atomia.VM.Progress.Step(2);

@@ -29,7 +29,7 @@ namespace Atomia.Store.Themes.Default
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domains.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainregistration.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.domainmove.js",
-                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productslisting.js",
+                "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productlisting.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.account.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js",
                 "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js"));
