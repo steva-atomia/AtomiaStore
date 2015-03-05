@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace Atomia.Store.Core
 {
     public sealed class CustomAttribute

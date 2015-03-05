@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atomia.Store.AspNetMvc.Helpers;
 using Atomia.Store.Core;
-using System.Web;
-using Atomia.Store.AspNetMvc.Helpers;
 
 namespace Atomia.Store.Fakes.Adapters
 {

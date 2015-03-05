@@ -1,7 +1,5 @@
-﻿using Atomia.Store.Core;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using System.Web.Routing;
-using System.Collections.Generic;
 
 namespace Atomia.Store.Themes.Default
 {

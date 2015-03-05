@@ -1,7 +1,4 @@
 ﻿using Atomia.Store.Core;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {

@@ -1,9 +1,8 @@
 ﻿using Atomia.Store.Core;
-using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+using Atomia.Web.Plugin.ProductsProvider;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System;
-using Atomia.Web.Plugin.ProductsProvider;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {

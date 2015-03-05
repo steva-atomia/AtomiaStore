@@ -1,7 +1,7 @@
 ﻿using Atomia.Store.Core;
 using System.Collections.Generic;
-using System.Web.Mvc;
 using System.Linq;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Web.Mvc;
+﻿using Atomia.Store.AspNetMvc.Helpers;
+using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
-using Atomia.Store.AspNetMvc.Ports;
-using Atomia.Store.AspNetMvc.Helpers;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {

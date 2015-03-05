@@ -1,7 +1,6 @@
-﻿using System;
+﻿using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System.Collections.Generic;
 using System.Linq;
-using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.PublicBillingApi
 {

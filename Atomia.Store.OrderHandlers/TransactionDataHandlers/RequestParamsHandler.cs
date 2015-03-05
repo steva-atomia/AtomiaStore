@@ -1,12 +1,8 @@
-﻿using System;
+﻿using Atomia.Billing.Core.Common.PaymentPlugins;
+using Atomia.Store.PublicBillingApi.Handlers;
+using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.Core;
-using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
-using Atomia.Store.PublicBillingApi.Handlers;
-using Atomia.Billing.Core.Common.PaymentPlugins;
 using System.Web;
 
 namespace Atomia.Store.PublicOrderHandlers.TransactionDataHandlers

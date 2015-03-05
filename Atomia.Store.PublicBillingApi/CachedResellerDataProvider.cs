@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.Core;
+﻿using Atomia.Store.Core;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+using System;
 using System.Web;
 
 namespace Atomia.Store.PublicBillingApi

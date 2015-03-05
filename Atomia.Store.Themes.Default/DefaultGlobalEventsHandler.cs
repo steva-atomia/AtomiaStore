@@ -3,7 +3,6 @@ using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.Core;
 using Atomia.Web.Base.Configs;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
-using Microsoft.Practices.Unity;
 using System;
 using System.Net;
 using System.Web;

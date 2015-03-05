@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.AspNetMvc.Ports;
+﻿using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
+using System;
 
 namespace Atomia.Store.Payment.WorldPayXml
 {

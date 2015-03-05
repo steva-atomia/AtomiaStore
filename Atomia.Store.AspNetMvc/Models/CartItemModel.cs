@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Models
 {

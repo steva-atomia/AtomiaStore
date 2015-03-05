@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Atomia.Store.Core;
 
 namespace Atomia.Store.Payment.PayPal
 {

@@ -1,7 +1,6 @@
-﻿using System;
-using System.Linq;
+﻿using Atomia.Store.AspNetMvc.Ports;
+using System;
 using System.Web.Mvc;
-using Atomia.Store.AspNetMvc.Ports;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {

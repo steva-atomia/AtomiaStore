@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.PublicBillingApi;
-using Atomia.Store.PublicBillingApi.Handlers;
-using Atomia.Store.Core;
-using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+﻿using Atomia.Common;
 using Atomia.Store.AspNetMvc.Models;
-using Atomia.Common;
+using Atomia.Store.PublicBillingApi.Handlers;
+using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
+using System.Linq;
 
 namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
 {

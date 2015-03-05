@@ -1,11 +1,8 @@
-﻿using System;
+﻿using Atomia.Store.AspNetMvc.Ports;
+using Atomia.Store.Core;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.AspNetMvc.Ports;
 using System.Web.Mvc;
-using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Helpers
 {

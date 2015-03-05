@@ -1,13 +1,11 @@
-﻿using System;
+﻿using Atomia.Store.Core;
+using Atomia.Web.Plugin.DomainSearch.Helpers;
+using Atomia.Web.Plugin.DomainSearch.Models;
+using SimpleDnsPlus;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Atomia.Store.Core;
-using Atomia.Web.Plugin.DomainSearch.Models;
-using Atomia.Web.Plugin.DomainSearch.Helpers;
-using SimpleDnsPlus;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {

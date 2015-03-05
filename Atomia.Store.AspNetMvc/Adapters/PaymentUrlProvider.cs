@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Atomia.Store.AspNetMvc.Helpers;
+using System;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using Atomia.Store.Core;
-using Atomia.Store.AspNetMvc.Helpers;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {

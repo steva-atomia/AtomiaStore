@@ -1,9 +1,6 @@
 ﻿using Atomia.Store.AspNetMvc.Infrastructure;
-using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
 using System.Web.Mvc;
-using System.Linq;
-using System.Collections.Generic;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {

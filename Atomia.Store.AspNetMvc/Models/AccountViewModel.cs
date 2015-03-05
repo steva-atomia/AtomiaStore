@@ -1,12 +1,5 @@
-﻿using System;
+﻿using Atomia.Store.Core;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.ComponentModel.DataAnnotations;
-using Atomia.Store.Core;
-using System.Web.Mvc;
-using Atomia.Store.AspNetMvc.Ports;
 
 namespace Atomia.Store.AspNetMvc.Models
 {

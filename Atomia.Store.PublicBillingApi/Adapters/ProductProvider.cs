@@ -1,10 +1,8 @@
-﻿using System;
+﻿using Atomia.Store.Core;
+using Atomia.Web.Plugin.ProductsProvider;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Atomia.Store.Core;
-using Atomia.Web.Plugin.ProductsProvider;
 using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
