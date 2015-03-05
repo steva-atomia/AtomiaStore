@@ -19,8 +19,6 @@ namespace Atomia.Store.Themes.Default
         {
             this.HandlerClass = null;
 
-            // TODO: Error handling, logging, etc.
-
             var globalEventsHandlerType = ConfigurationManager.AppSettings["GlobalEventsHandler"];
 
             Type t = Type.GetType(globalEventsHandlerType);

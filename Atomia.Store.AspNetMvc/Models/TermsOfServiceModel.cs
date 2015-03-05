@@ -7,6 +7,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    //TODO: Update to use Atomia Validation
     public class TermsOfServiceModel
     {
         [Required]

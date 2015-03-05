@@ -21,7 +21,8 @@ namespace Atomia.Store.Themes.Default
         {
             AreaRegistration.RegisterAllAreas();
 
-            UnityConfig.RegisterComponents();
+            var unityConfig = new UnityConfig();
+            unityConfig.RegisterComponents();
 
             WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
@@ -34,7 +35,6 @@ namespace Atomia.Store.Themes.Default
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaStringLengthAttribute), typeof(AtomiaStringLengthValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRangeAttribute), typeof(AtomiaRangeValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaUsernameAttribute), typeof(AtomiaUsernameAttribute.AtomiaUsernameValidator));
-          //  DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRequiredConfirmationAttribute), typeof(AtomiaRequiredConfirmationValidator));
 
             foreach (GlobalSetting globalSetting in AppConfig.Instance.GlobalSettingsList)
             {
