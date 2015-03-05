@@ -21,14 +21,8 @@
 
         <h4>
             @Html.CommonResource("BillingAddressTitle")
-            <span id="billing-text-open" data-bind="visible: !Account.OtherBillingContact()">
-                (@Html.CommonResource("BillingSameAsMain") -
-                <a id="billing-trigger-open" href="javascript:void(0);" data-bind="click: Account.UseOtherBillingContact">@Html.CommonResource("Change")</a>)
-            </span>
-            <span id="billing-text-close" style="display: none;" data-bind="visible: Account.OtherBillingContact">
-                (@Html.CommonResource("BillingDifferentThanMain") -
-                <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: Account.UseMainAsBillingContact">Make it same as contact info</a>)
-            </span>
+            <span id="billing-text-open" data-bind="visible: !Account.OtherBillingContact()">(@Html.CommonResource("BillingSameAsMain") - <a id="billing-trigger-open" href="javascript:void(0);" data-bind="click: Account.UseOtherBillingContact">@Html.CommonResource("Change")</a>)</span>
+            <span id="billing-text-close" style="display: none;" data-bind="visible: Account.OtherBillingContact">(@Html.CommonResource("BillingDifferentThanMain") - <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: Account.UseMainAsBillingContact">Make it same as contact info</a>)</span>
         </h4>
 
         <div id="billing" style="display: none;" data-bind="slideVisible: Account.OtherBillingContact">
@@ -44,8 +38,6 @@
         </p>
 
         @Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" })
-        
-        @RenderSection("extraforms", required: false)
     }
 </div>
 
