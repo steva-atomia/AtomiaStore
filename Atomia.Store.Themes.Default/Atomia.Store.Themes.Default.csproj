@@ -266,6 +266,8 @@
     <Content Include="Themes\Default\Views\Checkout\_TermsOfServiceConfirmation.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Notification.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Footer.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_Head.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_CardListing.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
