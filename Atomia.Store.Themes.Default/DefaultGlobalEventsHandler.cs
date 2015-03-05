@@ -6,7 +6,6 @@ using Atomia.Web.Plugin.Validation.ValidationAttributes;
 using System;
 using System.Net;
 using System.Web;
-using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
@@ -23,7 +22,6 @@ namespace Atomia.Store.Themes.Default
             var unityConfig = new UnityConfig();
             unityConfig.RegisterComponents();
 
-            WebApiConfig.Register(GlobalConfiguration.Configuration);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
