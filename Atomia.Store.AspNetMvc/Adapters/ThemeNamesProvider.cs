@@ -25,5 +25,19 @@ namespace Atomia.Store.AspNetMvc.Adapters
 
             return themes;
         }
+
+        public string GetMainThemeName()
+        {
+            var themeNames = GetActiveThemeNames();
+
+            var mainThemeName = themeNames.FirstOrDefault();
+
+            if (String.IsNullOrEmpty(mainThemeName))
+            {
+                mainThemeName = "Default";
+            }
+
+            return mainThemeName;
+        }
     }
 }

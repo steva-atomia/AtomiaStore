@@ -1,8 +1,9 @@
 ﻿using Atomia.Store.AspNetMvc.Controllers;
 using Atomia.Store.AspNetMvc.Infrastructure;
-using Atomia.Store.AspNetMvc.Adapters;
 using Atomia.Store.Core;
 using Atomia.Web.Base.Configs;
+using Atomia.Web.Plugin.Validation.ValidationAttributes;
+using Microsoft.Practices.Unity;
 using System;
 using System.Net;
 using System.Web;
@@ -10,7 +11,6 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-using Atomia.Web.Plugin.Validation.ValidationAttributes;
 
 
 namespace Atomia.Store.Themes.Default
@@ -47,12 +47,15 @@ namespace Atomia.Store.Themes.Default
 
         public override void Session_Start(object sender, EventArgs e)
         {
-            // FIXME: This is a temporary measure to add a theme to the session.
             if (HttpContext.Current != null)
             {
                 if (HttpContext.Current.Session != null)
                 {
-                    HttpContext.Current.Session["theme"] = "Default";
+                    /* We are making an exception to using DI / service location of adapters here, since they have not yet
+                       been registered with the Unity container. */
+                    var themeNamesProvider = new Atomia.Store.AspNetMvc.Adapters.ThemeNamesProvider();
+
+                    HttpContext.Current.Session["theme"] = themeNamesProvider.GetMainThemeName();
                 }
             }
         }
