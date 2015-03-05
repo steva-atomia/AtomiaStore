@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.Invoice
 {
-    public class PayWithInvoiceGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class PayWithInvoiceGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
         private PayWithInvoiceForm form;

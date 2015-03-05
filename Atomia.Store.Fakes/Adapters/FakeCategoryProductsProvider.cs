@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeCategoryProductsProvider : IProductListProvider, IProductProvider
+    public sealed class FakeCategoryProductsProvider : IProductListProvider, IProductProvider
     {
         public string Name
         {

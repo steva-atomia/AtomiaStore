@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.WorldPay
 {
-    public class WorldPayHandler : PaymentDataHandler
+    public sealed class WorldPayHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 

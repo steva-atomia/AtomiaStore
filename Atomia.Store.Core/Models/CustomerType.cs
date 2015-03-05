@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class CustomerType
+    public sealed class CustomerType
     {
         public string Name { get; set; }
 

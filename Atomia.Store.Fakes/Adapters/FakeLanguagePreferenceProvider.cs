@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeLanguagePreferenceProvider : ILanguagePreferenceProvider
+    public sealed class FakeLanguagePreferenceProvider : ILanguagePreferenceProvider
     {
         private readonly IResourceProvider resourceProvider;
 

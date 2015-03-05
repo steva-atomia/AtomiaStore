@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Atomia.Store.Core
 {
-    public class Language
+    public sealed class Language
     {
         public string Name { get; set; }
 

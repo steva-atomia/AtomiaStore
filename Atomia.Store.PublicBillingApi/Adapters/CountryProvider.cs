@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class CountryProvider : PublicBillingApiClient, ICountryProvider
+    public sealed class CountryProvider : PublicBillingApiClient, ICountryProvider
     {
         private readonly AccountData resellerData;
 

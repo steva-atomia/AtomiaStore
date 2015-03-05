@@ -7,7 +7,7 @@ using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class ProductProvider : IProductProvider
+    public sealed class ProductProvider : IProductProvider
     {
         private readonly IProductsProvider productsProvider;
         private readonly IResellerProvider resellerProvider;

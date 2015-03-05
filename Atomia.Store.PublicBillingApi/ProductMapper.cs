@@ -8,7 +8,7 @@ using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi
 {
-    class ProductMapper
+    internal sealed class ProductMapper
     {
         public static CoreProduct Map(ApiProduct apiProduct, Language language, string currencyCode)
         {

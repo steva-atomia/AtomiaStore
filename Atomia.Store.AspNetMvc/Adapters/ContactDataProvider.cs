@@ -3,7 +3,7 @@ using System.Web;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class ContactDataProvider : IContactDataProvider
+    public sealed class ContactDataProvider : IContactDataProvider
     {
         public IContactDataCollection GetContactData()
         {

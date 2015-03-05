@@ -11,7 +11,7 @@ namespace Atomia.Store.PublicBillingApi
         AccountData GetDefaultResellerAccountData();
     }
 
-    public class ResellerDataProvider : PublicBillingApiClient, IResellerDataProvider
+    public sealed class ResellerDataProvider : PublicBillingApiClient, IResellerDataProvider
     {
         private readonly IResellerIdentifierProvider resellerIdentifierProvider;
 

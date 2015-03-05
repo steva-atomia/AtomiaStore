@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.Payment.PayPal
 {
-    public class PayPalController : Controller
+    public sealed class PayPalController : Controller
     {
         private readonly AtomiaBillingPublicService billingApi = DependencyResolver.Current.GetService<AtomiaBillingPublicService>();
         private readonly PaymentUrlProvider urlProvider = DependencyResolver.Current.GetService<PaymentUrlProvider>();

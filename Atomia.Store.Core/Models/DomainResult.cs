@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Atomia.Store.Core
 {
-    public class DomainResult
+    public sealed class DomainResult
     {
         public const string AVAILABLE = "available";
 

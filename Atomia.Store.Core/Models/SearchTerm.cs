@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class SearchTerm
+    public sealed class SearchTerm
     {
         public SearchTerm(string key, string value)
         {

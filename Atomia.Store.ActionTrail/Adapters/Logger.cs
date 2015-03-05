@@ -10,7 +10,7 @@ namespace Atomia.Store.ActionTrail.Adapters
     /// <summary>
     /// Helper class for Action Trail logging
     /// </summary>
-    public class Logger : ILogger
+    public  sealed class Logger : ILogger
     {
         /// <summary>
         /// Logs the order page exception.

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Core
 {
-    public class OrderContext
+    public sealed class OrderContext
     {
         private readonly Cart cart;
         private readonly IEnumerable<ContactData> contactData;

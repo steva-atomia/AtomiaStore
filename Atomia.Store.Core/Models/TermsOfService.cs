@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class TermsOfService
+    public sealed class TermsOfService
     {
         public string Id { get; set; }
 

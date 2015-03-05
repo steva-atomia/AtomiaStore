@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Filters
 {
-    public class LanguageFilter : ActionFilterAttribute
+    public sealed class LanguageFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

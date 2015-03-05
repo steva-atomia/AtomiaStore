@@ -4,7 +4,7 @@ using System;
 
 namespace Atomia.Store.Payment.PayExRedirect
 {
-    public class PayExRedirectGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class PayExRedirectGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 

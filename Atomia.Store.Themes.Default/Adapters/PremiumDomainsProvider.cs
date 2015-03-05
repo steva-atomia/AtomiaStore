@@ -9,7 +9,7 @@ namespace Atomia.Store.Themes.Default.Adapters
     /// <summary>
     /// Decorates a base provider by setting Premium custom attribute on selected TLDs
     /// </summary>
-    public class PremiumDomainsProvider : IDomainsProvider
+    public sealed class PremiumDomainsProvider : IDomainsProvider
     {
         private readonly IDomainsProvider domainsProvider;
 

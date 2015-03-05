@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakePricingProvider : ICartPricingService
+    public sealed class FakePricingProvider : ICartPricingService
     {
         public Cart CalculatePricing(Cart cart)
         {

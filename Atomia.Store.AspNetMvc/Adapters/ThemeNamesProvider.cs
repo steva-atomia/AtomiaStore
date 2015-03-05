@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class ThemeNamesProvider : IThemeNamesProvider
+    public sealed class ThemeNamesProvider : IThemeNamesProvider
     {
         public IEnumerable<string> GetActiveThemeNames()
         {

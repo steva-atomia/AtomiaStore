@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class PaymentTransaction
+    public sealed class PaymentTransaction
     {
         public const string Ok = "OK";
 

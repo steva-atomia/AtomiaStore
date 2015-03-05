@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class LanguagePreferenceProvider : ILanguagePreferenceProvider
+    public sealed class LanguagePreferenceProvider : ILanguagePreferenceProvider
     {
         private readonly ILanguageProvider languageProvider = DependencyResolver.Current.GetService<ILanguageProvider>();
 

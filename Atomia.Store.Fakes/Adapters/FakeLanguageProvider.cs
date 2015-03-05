@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeLanguageProvider : ILanguageProvider
+    public sealed class FakeLanguageProvider : ILanguageProvider
     {
         private readonly IResourceProvider resourceProvider;
 

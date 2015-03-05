@@ -8,7 +8,7 @@ using System.Web.Routing;
 
 namespace Atomia.Store.Payment.PayPal
 {
-    public class PayPalHandler : PaymentDataHandler
+    public sealed class PayPalHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 

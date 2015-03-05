@@ -4,7 +4,7 @@ using System;
 
 namespace Atomia.Store.Payment.DibsFlexwin
 {
-    public class DibsFlexwinGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class DibsFlexwinGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 

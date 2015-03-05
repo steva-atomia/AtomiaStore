@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.PayExRedirect
 {
-    public class PayExRedirectHandler : PaymentDataHandler
+    public sealed class PayExRedirectHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 

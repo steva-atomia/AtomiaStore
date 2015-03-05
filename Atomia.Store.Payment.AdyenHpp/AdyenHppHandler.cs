@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.AdyenHpp
 {
-    public class AdyenHppHandler : PaymentDataHandler
+    public sealed class AdyenHppHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 

@@ -4,7 +4,7 @@ using System;
 
 namespace Atomia.Store.Payment.WorldPay
 {
-    public class WorldPayGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class WorldPayGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 

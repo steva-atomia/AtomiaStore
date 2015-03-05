@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class DomainsProvider : PublicBillingApiClient, IDomainsProvider
+    public sealed class DomainsProvider : PublicBillingApiClient, IDomainsProvider
     {
         private readonly IProductProvider productProvider;
         private readonly Guid resellerId;

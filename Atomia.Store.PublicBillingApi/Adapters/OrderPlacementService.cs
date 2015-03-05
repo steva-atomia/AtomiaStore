@@ -8,7 +8,7 @@ using System.Web.Services.Protocols;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class OrderPlacementService : PublicBillingApiClient, IOrderPlacementService
+    public sealed class OrderPlacementService : PublicBillingApiClient, IOrderPlacementService
     {
         private readonly PaymentUrlProvider urlProvider;
         private readonly IProductProvider productProvider;

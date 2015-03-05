@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class ItemPresenter: IItemPresenter
+    public sealed class ItemPresenter : IItemPresenter
     {
         private readonly IProductProvider productProvider = DependencyResolver.Current.GetService<IProductProvider>();
         private readonly IDomainsProvider domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();

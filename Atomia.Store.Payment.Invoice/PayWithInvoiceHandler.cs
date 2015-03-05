@@ -4,7 +4,7 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 
 namespace Atomia.Store.Payment.Invoice
 {
-    public class PayWithInvoiceHandler : PaymentDataHandler
+    public sealed class PayWithInvoiceHandler : PaymentDataHandler
     {
         public override string Id
         {

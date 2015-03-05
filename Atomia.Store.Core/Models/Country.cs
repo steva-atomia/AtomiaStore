@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class Country
+    public sealed class Country
     {
         public string Name { get; set; }
 

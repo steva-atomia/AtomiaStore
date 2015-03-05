@@ -3,7 +3,7 @@ using System;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeResellerProvider : IResellerProvider
+    public sealed class FakeResellerProvider : IResellerProvider
     {
         public Reseller GetReseller()
         {

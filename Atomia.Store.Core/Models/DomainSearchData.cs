@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Core
 {
-    public class DomainSearchData
+    public sealed class DomainSearchData
     {
         public IEnumerable<DomainResult> Results { get; set; }
 

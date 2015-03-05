@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakePaymentMethodsProvider : IPaymentMethodsProvider
+    public sealed class FakePaymentMethodsProvider : IPaymentMethodsProvider
     {
         public IEnumerable<PaymentMethod> GetPaymentMethods()
         {

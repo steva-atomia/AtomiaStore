@@ -3,7 +3,7 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeRootResellerIdentifierProvider : IResellerIdentifierProvider
+    public sealed class FakeRootResellerIdentifierProvider : IResellerIdentifierProvider
     {
         public ResellerIdentifier GetResellerIdentifier()
         {

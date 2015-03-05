@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakePremiumDomainsProvider : IDomainsProvider
+    public sealed class FakePremiumDomainsProvider : IDomainsProvider
     {
         private static string lastSearchTerm = "";
 

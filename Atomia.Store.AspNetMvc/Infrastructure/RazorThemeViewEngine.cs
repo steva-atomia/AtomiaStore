@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
-    public class RazorThemeViewEngine : RazorViewEngine
+    public sealed class RazorThemeViewEngine : RazorViewEngine
     {
         private readonly IThemeNamesProvider themeNamesProvider = DependencyResolver.Current.GetService<IThemeNamesProvider>();
 

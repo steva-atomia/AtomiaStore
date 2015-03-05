@@ -4,7 +4,7 @@ using System;
 
 namespace Atomia.Store.Payment.PayPal
 {
-    public class PayPalGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class PayPalGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 

@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class CartPricingProvider : PublicBillingApiClient, ICartPricingService
+    public sealed class CartPricingProvider : PublicBillingApiClient, ICartPricingService
     {
         private readonly IResellerProvider resellerProvider;
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;

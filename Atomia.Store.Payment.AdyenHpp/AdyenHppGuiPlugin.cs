@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.AdyenHpp
 {
-    public class AdyenHppGuiPlugin : PaymentMethodGuiPlugin
+    public sealed class AdyenHppGuiPlugin : PaymentMethodGuiPlugin
     {
         private readonly IResourceProvider resourceProvider;
 

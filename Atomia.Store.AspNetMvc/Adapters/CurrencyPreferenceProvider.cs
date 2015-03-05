@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class CurrencyPreferenceProvider : ICurrencyPreferenceProvider
+    public sealed class CurrencyPreferenceProvider : ICurrencyPreferenceProvider
     {
         private readonly ICurrencyProvider currencyProvider = DependencyResolver.Current.GetService<ICurrencyProvider>();
 

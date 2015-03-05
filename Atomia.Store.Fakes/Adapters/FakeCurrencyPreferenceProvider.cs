@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeCurrencyPreferenceProvider : ICurrencyPreferenceProvider
+    public sealed class FakeCurrencyPreferenceProvider : ICurrencyPreferenceProvider
     {
         public void SetPreferredCurrency(Currency currency)
         {

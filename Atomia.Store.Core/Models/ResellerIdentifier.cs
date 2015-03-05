@@ -1,7 +1,7 @@
 ﻿
 namespace Atomia.Store.Core
 {
-    public class ResellerIdentifier
+    public sealed class ResellerIdentifier
     {
         public string AccountHash { get; set; }
 

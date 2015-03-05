@@ -3,7 +3,7 @@ using System;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class ResellerProvider : IResellerProvider
+    public sealed class ResellerProvider : IResellerProvider
     {
         private readonly IResellerDataProvider resellerDataProvider;
 

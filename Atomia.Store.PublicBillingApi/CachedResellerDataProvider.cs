@@ -5,7 +5,7 @@ using System.Web;
 
 namespace Atomia.Store.PublicBillingApi
 {
-    public class CachedResellerDataProvider : IResellerDataProvider
+    public sealed class CachedResellerDataProvider : IResellerDataProvider
     {
         private readonly IResellerDataProvider backingProvider;
         private readonly IResellerIdentifierProvider resellerIdentifierProvider;

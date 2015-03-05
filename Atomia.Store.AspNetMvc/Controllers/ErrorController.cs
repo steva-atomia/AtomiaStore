@@ -5,7 +5,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
-    public class ErrorController : Controller
+    public sealed class ErrorController : Controller
     {
         public ActionResult InternalServerError(Exception error)
         {

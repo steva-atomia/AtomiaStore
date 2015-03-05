@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Filters
 {
-    public class ResellerFilter : ActionFilterAttribute
+    public sealed class ResellerFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
         {

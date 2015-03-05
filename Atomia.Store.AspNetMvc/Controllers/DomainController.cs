@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
-    public class DomainController : Controller
+    public sealed class DomainController : Controller
     {
         private readonly IDomainsProvider domainProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 

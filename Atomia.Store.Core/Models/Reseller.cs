@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Core
 {
-    public class Reseller
+    public sealed class Reseller
     {
         public Guid Id { get; set; }
 

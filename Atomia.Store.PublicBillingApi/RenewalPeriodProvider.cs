@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi
 {
-    public class RenewalPeriodProvider
+    public sealed class RenewalPeriodProvider
     {
         private readonly IProductsProvider productsProvider;
         private readonly IResellerProvider resellerProvider;

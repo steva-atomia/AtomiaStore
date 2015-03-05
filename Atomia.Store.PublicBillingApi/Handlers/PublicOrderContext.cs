@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.PublicBillingApi.Handlers
 {
-    public class PublicOrderContext
+    public sealed class PublicOrderContext
     {
         private readonly OrderContext orderContext;
         private readonly List<ItemData> itemData = new List<ItemData>();

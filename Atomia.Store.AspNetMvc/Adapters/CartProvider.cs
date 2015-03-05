@@ -4,7 +4,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class CartProvider : ICartProvider
+    public sealed class CartProvider : ICartProvider
     {
         private readonly ICartPricingService cartPricingProvider = DependencyResolver.Current.GetService<ICartPricingService>();
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class CurrencyProvider : PublicBillingApiClient, ICurrencyProvider
+    public sealed class CurrencyProvider : PublicBillingApiClient, ICurrencyProvider
     {
         private readonly AccountData resellerData;
 

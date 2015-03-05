@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class LanguageProvider : PublicBillingApiClient, ILanguageProvider
+    public sealed class LanguageProvider : PublicBillingApiClient, ILanguageProvider
     {
         private readonly AccountData resellerData;
         private readonly IResourceProvider resourceProvider;

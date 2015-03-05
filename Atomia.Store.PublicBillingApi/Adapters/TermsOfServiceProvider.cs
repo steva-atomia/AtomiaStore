@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class TermsOfServiceProvider : ITermsOfServiceProvider
+    public sealed class TermsOfServiceProvider : ITermsOfServiceProvider
     {
         private readonly ICartProvider cartProvider;
         private readonly IProductProvider productProvider;

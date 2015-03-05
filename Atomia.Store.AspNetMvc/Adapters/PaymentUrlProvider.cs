@@ -6,7 +6,7 @@ using System.Web.Routing;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class PaymentUrlProvider : Atomia.Store.Core.PaymentUrlProvider
+    public sealed class PaymentUrlProvider : Atomia.Store.Core.PaymentUrlProvider
     {
         public override string SuccessUrl
         {

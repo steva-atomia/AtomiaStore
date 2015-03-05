@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeCountryProvider : ICountryProvider
+    public sealed class FakeCountryProvider : ICountryProvider
     {
         public Country GetDefaultCountry()
         {

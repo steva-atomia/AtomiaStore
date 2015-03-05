@@ -5,7 +5,7 @@ using System;
 
 namespace Atomia.Store.Payment.DibsFlexwin
 {
-    public class DibsFlexwinHandler : PaymentDataHandler
+    public sealed class DibsFlexwinHandler : PaymentDataHandler
     {
         private readonly PaymentUrlProvider urlProvider;
 

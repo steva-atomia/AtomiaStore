@@ -2,7 +2,7 @@
 
 namespace Atomia.Store.Core
 {
-    public class Currency
+    public sealed class Currency
     {
         private readonly string code;
 

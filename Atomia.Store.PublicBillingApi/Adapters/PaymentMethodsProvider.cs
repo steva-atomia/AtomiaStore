@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
-    public class PaymentMethodsProvider : PublicBillingApiClient, IPaymentMethodsProvider
+    public sealed class PaymentMethodsProvider : PublicBillingApiClient, IPaymentMethodsProvider
     {
         private readonly AccountData resellerData;
 

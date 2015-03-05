@@ -4,7 +4,7 @@ using System.Web;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
-    public class ResellerIdentifierProvider : IResellerIdentifierProvider
+    public sealed class ResellerIdentifierProvider : IResellerIdentifierProvider
     {
         public ResellerIdentifier GetResellerIdentifier()
         {

@@ -3,7 +3,7 @@ using System;
 
 namespace Atomia.Store.PublicBillingApi.Handlers
 {
-    public class ItemData
+    public sealed class ItemData
     {
         private readonly Product product;
         private readonly CartItem cartItem;

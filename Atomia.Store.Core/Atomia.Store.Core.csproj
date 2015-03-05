@@ -80,7 +80,6 @@
     <Compile Include="Models\PaymentMethod.cs" />
     <Compile Include="Models\PaymentTransaction.cs" />
     <Compile Include="Models\PricingVariant.cs" />
-    <Compile Include="Models\RequiredAttribute.cs" />
     <Compile Include="Models\Reseller.cs" />
     <Compile Include="Models\ResellerIdentifier.cs" />
     <Compile Include="Models\SearchTerm.cs" />

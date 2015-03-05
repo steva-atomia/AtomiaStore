@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Helpers
 {
-    public class PaymentMethodGuiPluginsProvider
+    public sealed class PaymentMethodGuiPluginsProvider
     {
         private readonly IEnumerable<PaymentMethodGuiPlugin> paymentMethodPlugins = DependencyResolver.Current.GetServices<PaymentMethodGuiPlugin>();
         private readonly IPaymentMethodsProvider paymentMethodsProvider = DependencyResolver.Current.GetService<IPaymentMethodsProvider>();

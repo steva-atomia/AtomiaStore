@@ -3,7 +3,7 @@ using Atomia.Web.Plugin.Validation.ValidationAttributes;
 
 namespace Atomia.Store.Payment.Invoice
 {
-    public class PayWithInvoiceForm : PaymentMethodForm
+    public sealed class PayWithInvoiceForm : PaymentMethodForm
     {
         public override string Id
         {

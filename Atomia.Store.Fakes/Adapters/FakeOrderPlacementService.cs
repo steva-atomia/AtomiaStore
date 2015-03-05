@@ -3,7 +3,7 @@ using System;
 
 namespace Atomia.Store.Fakes.Adapters
 {
-    public class FakeOrderPlacementService : IOrderPlacementService
+    public sealed class FakeOrderPlacementService : IOrderPlacementService
     {
         private readonly PaymentUrlProvider urlProvider;
 
