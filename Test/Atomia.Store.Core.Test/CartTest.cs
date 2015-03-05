@@ -110,13 +110,13 @@ namespace Atomia.Store.Core.Test
                 Quantity = 1
             };
 
-            Assert.AreEqual(0, cartItem.Id, "Did not expect Id to be set on new cart item.");
+            Assert.AreEqual(Guid.Empty, cartItem.Id, "Did not expect Id to be set on new cart item.");
 
             cart.AddItem(cartItem);
 
             Assert.IsFalse(cart.IsEmpty(), "Did not expect cart to be empty.");
             Assert.AreEqual(1, cart.CartItems.Count, "Expected 1 item in cart.");
-            Assert.AreEqual(1, cartItem.Id, "Expected cart item to have Id set.");
+            Assert.AreNotEqual(Guid.Empty, cartItem.Id, "Expected cart item to have Id set.");
 
             Assert.AreEqual(1, cartRepository.SaveCartCount, "Expect cart to be saved once.");
             Assert.AreEqual(1, cartPricingProvider.CalculatePriceCount, "Expected prices to be calculated once.");
