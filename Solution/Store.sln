@@ -11,7 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.AspNetMvc", ".
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{96F5FCEF-73A7-4B7A-BD33-9C3BFCA36654}"
 	ProjectSection(SolutionItems) = preProject
+		..\README.md = ..\README.md
 		SolutionInfo.cs = SolutionInfo.cs
+		..\ThemeStarter\startnewtheme.ps1 = ..\ThemeStarter\startnewtheme.ps1
+		WE-Markdown.css = WE-Markdown.css
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.ActionTrail", "..\Atomia.Store.ActionTrail\Atomia.Store.ActionTrail.csproj", "{6F81B202-21AF-49BB-8606-518149972EED}"
@@ -47,6 +50,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentPlugins", "PaymentPlugins", "{0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.PublicOrderHandlers", "..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj", "{552F114F-55F2-4126-98EC-21F98896BA0A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documentation", "..\Documentation\Documentation.csproj", "{901B546B-2E5D-4E24-A5CC-1A38A0D42347}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTheme", "..\ThemeStarter\MyTheme\MyTheme.csproj", "{29430314-CAEB-490A-86F6-31CAFBE80E1C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -200,6 +207,14 @@ Global
 		{552F114F-55F2-4126-98EC-21F98896BA0A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{552F114F-55F2-4126-98EC-21F98896BA0A}.Release|x64.ActiveCfg = Release|x64
 		{552F114F-55F2-4126-98EC-21F98896BA0A}.Release|x64.Build.0 = Release|x64
+		{901B546B-2E5D-4E24-A5CC-1A38A0D42347}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{901B546B-2E5D-4E24-A5CC-1A38A0D42347}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{901B546B-2E5D-4E24-A5CC-1A38A0D42347}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{901B546B-2E5D-4E24-A5CC-1A38A0D42347}.Release|x64.ActiveCfg = Release|Any CPU
+		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

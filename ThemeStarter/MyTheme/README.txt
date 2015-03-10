@@ -1,0 +1,1 @@
+﻿This is a starter project template for creating a custom theme for Atomia Store.
