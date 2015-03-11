@@ -218,6 +218,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IResellerIdentifierProvider, Atomia.Store.Fakes.Adapters.FakeRootResellerIdentifierProvider>();
             container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainsProvider>();
             container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
+            container.RegisterType<ICurrencyProvider, Atomia.Store.Fakes.Adapters.FakeCurrencyProvider>();
         }
     }
 }
