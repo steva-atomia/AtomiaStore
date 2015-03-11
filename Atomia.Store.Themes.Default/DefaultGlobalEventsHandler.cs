@@ -3,28 +3,42 @@ using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.Core;
 using Atomia.Web.Base.Configs;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
+using Microsoft.Practices.Unity;
+using Microsoft.Practices.Unity.Configuration;
 using System;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Unity.Mvc5;
 
 
 namespace Atomia.Store.Themes.Default
 {
     public class DefaultGlobalEventsHandler : GlobalEventsHandler
     {
+        protected virtual void RegisterConfiguration(UnityContainer container)
+        {
+            
+        }
+
         public override void  Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
 
-            var unityConfig = new UnityConfig();
-            unityConfig.RegisterComponents();
+            var container = new UnityContainer();
 
+            UnityConfig.RegisterComponents(container);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
+            RegisterConfiguration(container);
+
+            container.LoadConfiguration();
+
+            DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CustomerValidationAttribute), typeof(CustomerValidationAttribute.CustomerValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRegularExpressionAttribute), typeof(AtomiaRegularExpressionValidator));

@@ -51,3 +51,9 @@ Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewN
 (gc "$($themeDir)\$($themeName).csproj").replace('MyTheme', $themeName)|sc "$($themeDir)\$($themeName).csproj"
 (gc "$($createDir)\$($themeName).sln").replace('MyTheme', $themeName)|sc "$($createDir)\$($themeName).sln"
 (gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
+
+(gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
+(gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
+(gc "$($themeDir)\App_Start\RouteConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\RouteConfig.cs"
+(gc "$($themeDir)\App_Start\UnityConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\UnityConfig.cs"
+(gc "$($themeDir)\GlobalEventsHandler.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\GlobalEventsHandler.cs"

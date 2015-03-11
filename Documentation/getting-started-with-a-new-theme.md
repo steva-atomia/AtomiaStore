@@ -17,7 +17,7 @@ The quickest way to get started with a new custom theme is to use the theme star
 
 4. Open `MyTheme\MyTheme.sln` in Visual Studio 2013.
 
-5. If you do not have a complete Atomia development environment installed, you can use fake backend services by uncommenting the relevant unity section in Web.config
+5. If you do not have a complete Atomia development environment installed, you can use fake backend services by uncommenting the relevant unity sections in Web.config.
 
 6. Run **DEBUG > Start Debugging** and an order page with the default theme will start.
 
