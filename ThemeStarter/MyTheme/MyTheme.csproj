@@ -91,7 +91,6 @@
   <ItemGroup>
     <Folder Include="Adapters\" />
     <Folder Include="Models\" />
-    <Folder Include="Themes\MyTheme\Content\" />
     <Folder Include="Themes\MyTheme\Scripts\" />
     <Folder Include="Transformation FIles\App_Data\" />
     <Folder Include="Transformation FIles\bin\" />
@@ -103,6 +102,7 @@
     </Content>
     <Content Include="Global.asax" />
     <Content Include="README.txt" />
+    <Content Include="Themes\MyTheme\Content\css\theme.css" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
