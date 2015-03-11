@@ -110,13 +110,22 @@ Adding references
 By default the `Atomia.Store.Core.dll`, `Atomia.Store.AspNetMvc.dll`, and `Atomia.Store.Themes.Default` assemblies are referenced in the custom theme project. To add other references use **Add reference...** and *Browse* to the `MyTheme\Lib` folder, where all dll:s for Atomia Store are located.
 
 
-Updating Lib and Default Theme Files
+
+Updating `Lib` and Default Theme Files
 ------------------------------------
 
-TODO: Add script for this
+Please note that any files created by `startnewtheme.ps1` that are not part of the theme solution might be replaced if you run the `updatetheme.ps1` script, so any changes you have made to these files will be overwritten.
+
+1. Make sure your **AtomiaStore** repository is up-to-date, e.g. by ruSnning `git pull`.
+2. Open PowerShell and set execution policy (see getting started instructions above).
+2. Run `AtomiaStore\ThemeStarter\updatetheme.ps1 <ThemePath>`
+3. The script will rebuild the AtomiaStore solution and copy and replace all supporting files in the theme directory.
+
 
 
 Building and Installing the Custom Theme
 ----------------------------------------
 
 When you are ready to deploy your custom theme, just build the theme solution with the **Release** configuration, and you will get a `publish` directory added next to your theme project directory. The `publish` directory contains all files you need to add to your installation of Atomia Store, and a file with instructions how to do it.
+
+

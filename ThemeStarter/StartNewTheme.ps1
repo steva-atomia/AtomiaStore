@@ -28,7 +28,7 @@ Copy-Item $templateSolution $themeSolution
 # Compile Atomia Store solution if not done yet
 if (-Not (Test-Path "$($defaultThemeDir)bin\Atomia.Store.Core.dll")) {
 	$msbuild = "$($Env:SystemRoot)\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
-	Invoke-Expression "$($msbuild) $($storeSolution) /p:Configuration=Release"
+	Invoke-Expression "$($msbuild) $($storeSolution) /p:Configuration=Debug"
 }
 
 
