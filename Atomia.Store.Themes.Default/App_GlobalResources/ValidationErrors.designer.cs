@@ -277,7 +277,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Maximum number of charachters has been exteeded.
+        ///   Looks up a localized string similar to Maximum number of characters has been exeeded.
         /// </summary>
         internal static string ErrorStringLength {
             get {
@@ -286,7 +286,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to You must read and accept the Tearms of Conditions.
+        ///   Looks up a localized string similar to You must read and accept the Terms of Service.
         /// </summary>
         internal static string ErrorTermNotChecked {
             get {

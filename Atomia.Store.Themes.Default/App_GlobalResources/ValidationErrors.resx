@@ -169,10 +169,10 @@
     <value>Add up to 4 domain names separated by space</value>
   </data>
   <data name="ErrorStringLength" xml:space="preserve">
-    <value>Maximum number of charachters has been exteeded</value>
+    <value>Maximum number of characters has been exeeded</value>
   </data>
   <data name="ErrorTermNotChecked" xml:space="preserve">
-    <value>You must read and accept the Tearms of Conditions</value>
+    <value>You must read and accept the Terms of Service</value>
   </data>
   <data name="ErrorDeclarationNotChecked" xml:space="preserve">
     <value>You must read and accept the Declaration</value>

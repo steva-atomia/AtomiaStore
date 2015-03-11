@@ -26,8 +26,11 @@
             @* @Html.Partial("_VatCheck") *@
             @Html.Partial("_CartSummary")
 
-            <h4>@Html.CommonResource("Terms")</h4>
-            @Html.Partial("_TermsOfServiceConfirmation", Model)
+            @if (Model.TermsOfService.Count > 0)
+            {
+                <h4>@Html.CommonResource("Terms")</h4>
+                @Html.Partial("_TermsOfServiceConfirmation", Model)
+            }
         </div>
 
         <p class="actions" style="display: block;">
