@@ -9,7 +9,7 @@ namespace Atomia.Store.Themes.Default
 
         public static void RegisterBundles(BundleCollection bundles)
         {
-            var scriptsBundle = new ScriptBundle(DEFAULT_SCRIPTS_BUNDLE)
+            var scriptBundle = new ScriptBundle(DEFAULT_SCRIPTS_BUNDLE)
                 .Include(
                     "~/Themes/Default/Scripts/jquery-{version}.js",
                     "~/Themes/Default/Scripts/jquery.validate.js",
@@ -39,12 +39,12 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js");
 
-            var stylesBundle = new StyleBundle(DEFAULT_STYLES_BUNDLE)
+            var styleBundle = new StyleBundle(DEFAULT_STYLES_BUNDLE)
                 .Include(
                     "~/Themes/Default/Content/css/atomia_2/style.css");
 
-            bundles.Add(scriptsBundle);
-            bundles.Add(stylesBundle);
+            bundles.Add(scriptBundle);
+            bundles.Add(styleBundle);
         }
     }
 }

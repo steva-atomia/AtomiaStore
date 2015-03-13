@@ -11,16 +11,16 @@ namespace $MyTheme$
              * To start over from scratch instead, call bundles.Clear(); at the top of this method.
              */
 
-            var scriptsBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_SCRIPTS_BUNDLE);
-            scriptsBundle.IncludeDirectory("~/Themes/$MyTheme$/Scripts", "*.js");
+            var scriptBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_SCRIPTS_BUNDLE);
+            scriptBundle.IncludeDirectory("~/Themes/$MyTheme$/Scripts", "*.js");
 
-            var stylesBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
-            stylesBundle.Include("~/Themes/$MyTheme$/Content/css/theme.css");
+            var styleBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
+            styleBundle.Include("~/Themes/$MyTheme$/Content/css/theme.css");
 
             // Re-register bundles
             bundles.Clear();
-            bundles.Add(scriptsBundle);
-            bundles.Add(stylesBundle);
+            bundles.Add(scriptBundle);
+            bundles.Add(styleBundle);
         }
     }
 }
