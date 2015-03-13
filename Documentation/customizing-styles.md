@@ -5,25 +5,35 @@ When you start a new theme the stylesheet `Themes\MyTheme\content\css\theme.css`
 
 This stylesheet can be used to override styles from the Default theme style sheet.
 
-
-Adding Stylesheets or Replacing the Default Stylesheet
-------------------------------------------------------
-
 If you want to do more than just override the Default styles, you can customize what `StyleBundles` are registered in `App_Start\BundleConfig`.
 
-The default `StyleBundle` virtual path can be retrieved by using `Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE`.
 
-**Adding a stylesheet to the Default bundle**, e.g. how the `theme.css` is added, can be done like this:
+Adding a Stylesheet to the Default Bundle
+-----------------------------------------
 
-    var stylesBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
-    stylesBundle.Include("~/Themes/MyTheme/Content/css/theme.css");
+The Default `StyleBundle` virtual path can be retrieved by using `Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE`.
+ 
+This how the generated `theme.css` is added, and can be done like this:
 
-**Completely replacing the Default styles** can be done like this:
+    var styleBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
+    styleBundle.Include("~/Themes/MyTheme/Content/css/theme.css");
+
+
+Completely Replacing the Default Bundle Styles
+----------------------------------------------
+
+If you want to completely customize the styles, you might do something like this:
     
-    var stylesBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
-    bundles.Remove(stylesBundle);
+    var styleBundle = new StyleBundle("~/Themes/MyTheme/Content/css");
+    styleBundle.Include("~/Themes/MyTheme/Content/css/theme.css");
     
-    var myStylesBundle = new StyleBundle("~/Themes/MyTheme/Content/css/");
-    myStylesBundle.Include("~/Themes/MyTheme/Content/css/theme.css");
-    bundles.Add(myStylesBundle);
+    // The 
+    bundles.Clear();
+    bundles.Add(styleBundle);
 
+
+You then need to override the `Themes\MyTheme\Views\Shared\_Head.cshtml` view partial to use the bundle you registered instead of the default one:
+
+    ...
+    @Styles.Render("~/Themes/MyTheme/Content/css")
+    ..
