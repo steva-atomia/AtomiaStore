@@ -3,6 +3,9 @@
 
 AtomiaStore views are written in **Razor**, make heavy use of partial views and are enhanced with [Knockout.js](http://www.knockoutjs.com).
 
+The recommended way of customizing the markup of pages in AtomiaStore is to override just the layouts, views or partial views that need to be changed.
+
+Data is accessible in the views via strongly typed ASP.NET MVC view models, and Knockout.js view models.
 
 Organization
 ------------
@@ -40,8 +43,6 @@ All views use strongly typed view models, and regular use of ViewBag and ViewDat
 The naming of page views are as customary mapped to action names in ASP.NET MVC. One exception to this rule is *ProductListing* pages, where the view name can be customized depending on the type of products to show.
 
 Another naming convention is that view names are named the same as Knockout.js view models. This goes for both page views and partial views.
-
-The recommended way of customizing the markup of pages in AtomiaStore is to override just the views that need to be changed, and thanks to the heavy use of partials, you can do this on a granular level.
 
 If you need to also change the view model of a page, see Customizing View Models and Forms.
 
