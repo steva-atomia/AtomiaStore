@@ -104,6 +104,13 @@
     <Compile Include="Adapters\CurrencyFormatter.cs" />
     <Compile Include="Adapters\CurrencyPreferenceProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
+    <Compile Include="Infrastructure\GlobalOrderFlows.cs" />
+    <Compile Include="Infrastructure\OrderFlow.cs" />
+    <Compile Include="Infrastructure\OrderFlowCollection.cs" />
+    <Compile Include="Infrastructure\OrderFlowStep.cs" />
+    <Compile Include="Infrastructure\RouteCollectionExtension.cs" />
+    <Compile Include="Models\OrderFlowModel.cs" />
+    <Compile Include="Ports\IOrderFlowValidator.cs" />
     <Compile Include="Adapters\ItemPresenter.cs" />
     <Compile Include="Adapters\LanguagePreferenceProvider.cs" />
     <Compile Include="Adapters\ResellerIdentifierProvider.cs" />
@@ -113,6 +120,7 @@
     <Compile Include="Controllers\CheckoutController.cs" />
     <Compile Include="Controllers\DomainsController.cs" />
     <Compile Include="Controllers\LanguageController.cs" />
+    <Compile Include="Filters\OrderFlowFilter.cs" />
     <Compile Include="Helpers\PaymentMethodGuiPluginsProvider.cs" />
     <Compile Include="Filters\LanguageFilter.cs" />
     <Compile Include="Filters\ResellerFilter.cs" />
@@ -132,6 +140,7 @@
     <Compile Include="Models\CheckoutViewModel.cs" />
     <Compile Include="Models\DomainResultModel.cs" />
     <Compile Include="Models\MainContactModel.cs" />
+    <Compile Include="Models\OrderFlowStepModel.cs" />
     <Compile Include="Models\TermsOfServiceConfirmationModel.cs" />
     <Compile Include="Models\TermsOfServiceViewModel.cs" />
     <Compile Include="Ports\ContactDataForm.cs" />

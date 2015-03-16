@@ -1,26 +1,19 @@
-﻿<div class="progress_block">
+﻿@using Atomia.Store.AspNetMvc.Models
+@{
+    var orderFlow = (OrderFlowModel)ViewBag.OrderFlow;
+}
+
+<div class="progress_block">
     <div class="margins">
         <ol class="progress">
-            <li data-bind="css: { current: Progress.Step() === 1 }">
-                <div>1</div>
-                <h4>@Html.CommonResource("Step1Title")</h4>
-                <p>@Html.CommonResource("Step1Description")</p>
-            </li>
-            <li data-bind="css: { current: Progress.Step() === 2 }">
-                <div>2</div>
-                <h4>@Html.CommonResource("Step2Title")</h4>
-                <p>@Html.CommonResource("Step2Description")</p>
-            </li>
-            <li data-bind="css: { current: Progress.Step() === 3 }">
-                <div>3</div>
-                <h4>@Html.CommonResource("Step3Title")</h4>
-                <p>@Html.CommonResource("Step3Description")</p>
-            </li>
-            <li data-bind="css: { current: Progress.Step() === 4 }">
-                <div>4</div>
-                <h4>@Html.CommonResource("Step4Title")</h4>
-                <p>@Html.CommonResource("Step4Description")</p>
-            </li>
+            @foreach (var step in orderFlow.Steps)
+            {
+                <li @(orderFlow.CurrentStep.StepNumber == step.StepNumber ? "class=current" : String.Empty)>
+                    <div>@step.StepNumber</div>
+                    <h4>@step.Title</h4>
+                    <p>@step.Description</p>
+                </li>
+            }
         </ol>
     </div>
 </div>

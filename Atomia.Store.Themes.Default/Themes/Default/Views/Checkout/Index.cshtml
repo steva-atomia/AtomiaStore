@@ -33,10 +33,7 @@
             }
         </div>
 
-        <p class="actions" style="display: block;">
-            @Html.ActionLink(Html.CommonResource("Back"), "Index", "Account", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-            <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !Cart.IsEmpty()">@Html.CommonResource("Checkout")</button>
-        </p>
+        @Html.Partial("_Actions")
     }
 </div>
 
@@ -54,7 +51,5 @@
         Atomia.VM.PayWithInvoice.InvoiceType('email');
 
         Atomia.VM.Campaign = Atomia.ViewModels.CreateCampaignModel(Atomia.VM.Cart);
-
-        Atomia.VM.Progress.Step(4);
     </script>
 }

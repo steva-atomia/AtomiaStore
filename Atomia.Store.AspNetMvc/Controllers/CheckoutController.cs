@@ -3,6 +3,9 @@ using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using Atomia.Store.AspNetMvc.Filters;
+using System.Linq;
+using System;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -14,7 +17,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
         private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
         private readonly ITermsOfServiceProvider tosProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
-        
+
+        [OrderFlowFilter]
         [HttpGet]
         public ActionResult Index()
         {
@@ -31,12 +35,20 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(CheckoutViewModel model)
         {
-            // TODO: Add cart and contactdata validation.
+            var cart = cartProvider.GetCart();
+            var contactDataCollection = contactDataProvider.GetContactData();
+
+            if (cart.IsEmpty())
+            {
+                ModelState.AddModelError("cart", "Cart is empty");
+            }
+            else if (contactDataCollection == null)
+            {
+                ModelState.AddModelError("contactData", "Contact data is empty");
+            }
+
             if (ModelState.IsValid)
             {
-                var cart = cartProvider.GetCart();
-                var contactDataCollection = contactDataProvider.GetContactData();
-                
                 // Recalculate cart one last time, to make sure e.g. setup fees are still there.
                 cartPricingService.CalculatePricing(cart);
 

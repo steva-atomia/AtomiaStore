@@ -36,6 +36,7 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="customizing-the-orderflow.md" />
     <None Include="customizing-views-and-layout.md" />
     <None Include="getting-started-with-a-new-theme.md" />
   </ItemGroup>

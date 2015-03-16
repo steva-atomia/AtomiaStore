@@ -31,11 +31,8 @@
                 TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.BillingContact.Id }
             })
         </div>
-
-        <p class="actions" style="display: block;">
-            @Html.RouteLink(Html.CommonResource("Back"), "Hosting", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-            <button type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("Next")</button>
-        </p>
+        
+        @Html.Partial("_Actions")
 
         @Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" })
     }
@@ -70,7 +67,5 @@
         }
         Atomia.VM.Account.MainContactCustomerType('@initialMainContactCustomerType');
         Atomia.VM.Account.BillingContactCustomerType('@initialBillingCustomerType');
-
-        Atomia.VM.Progress.Step(3);
     </script>
 }

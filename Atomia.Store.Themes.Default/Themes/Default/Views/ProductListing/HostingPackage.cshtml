@@ -37,10 +37,7 @@
     <br class="clear">
 </div>
 
-<p class="actions" style="display: block;">
-    @Html.RouteLink(Html.CommonResource("Back"), "Domains", null, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-    @Html.ActionLink(Html.CommonResource("Next"), "Index", "Account", null, new { id = "next_step", @class = "button large green", data_bind = "visible: HostingPackages.AllowContinue() && ConnectedDomainStatus.DomainNameHasBeenSelected()" })
-</p>
+@Html.Partial("_Actions")
 
 @section scripts {
     <script type="text/javascript">
@@ -51,8 +48,6 @@
 
         Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductListingModel(Atomia.VM.Cart, { SingleSelection: true });
         Atomia.VM.HostingPackages.Load(@Html.JsonAction("GetData", "ProductListing", new { query = Model.Query }));
-
-        Atomia.VM.Progress.Step(2);
     </script>
 
     @Html.Partial("_DomainConnection")

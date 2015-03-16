@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Atomia.Store.AspNetMvc.Filters;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -13,12 +14,13 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly IEnumerable<IProductListProvider> productListProviders = DependencyResolver.Current.GetServices<IProductListProvider>();
         private readonly IProductProvider productProvider = DependencyResolver.Current.GetService<IProductProvider>();
 
+        [OrderFlowFilter]
         [HttpGet]
         public ActionResult Index(string query, string listingType = "Category", string viewName = "Index")
         {
             var model = DependencyResolver.Current.GetService<ProductListingViewModel>();
             model.Query = query;
-
+            
             return View(viewName, model);
         }
 

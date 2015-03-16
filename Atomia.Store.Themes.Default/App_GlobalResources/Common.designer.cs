@@ -1024,74 +1024,74 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Buy new or move existing.
-        /// </summary>
-        internal static string Step1Description {
-            get {
-                return ResourceManager.GetString("Step1Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Domains.
-        /// </summary>
-        internal static string Step1Title {
-            get {
-                return ResourceManager.GetString("Step1Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Choose hosting package.
-        /// </summary>
-        internal static string Step2Description {
-            get {
-                return ResourceManager.GetString("Step2Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Hosting.
-        /// </summary>
-        internal static string Step2Title {
-            get {
-                return ResourceManager.GetString("Step2Title", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Set up account info.
         /// </summary>
-        internal static string Step3Description {
+        internal static string StepDescriptionAccount {
             get {
-                return ResourceManager.GetString("Step3Description", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Account.
-        /// </summary>
-        internal static string Step3Title {
-            get {
-                return ResourceManager.GetString("Step3Title", resourceCulture);
+                return ResourceManager.GetString("StepDescriptionAccount", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Invoice and payment options.
         /// </summary>
-        internal static string Step4Description {
+        internal static string StepDescriptionCheckout {
             get {
-                return ResourceManager.GetString("Step4Description", resourceCulture);
+                return ResourceManager.GetString("StepDescriptionCheckout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Buy new or move existing.
+        /// </summary>
+        internal static string StepDescriptionDomains {
+            get {
+                return ResourceManager.GetString("StepDescriptionDomains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Choose hosting package.
+        /// </summary>
+        internal static string StepDescriptionHostingPackage {
+            get {
+                return ResourceManager.GetString("StepDescriptionHostingPackage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Account.
+        /// </summary>
+        internal static string StepTitleAccount {
+            get {
+                return ResourceManager.GetString("StepTitleAccount", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Checkout.
         /// </summary>
-        internal static string Step4Title {
+        internal static string StepTitleCheckout {
             get {
-                return ResourceManager.GetString("Step4Title", resourceCulture);
+                return ResourceManager.GetString("StepTitleCheckout", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Domains.
+        /// </summary>
+        internal static string StepTitleDomains {
+            get {
+                return ResourceManager.GetString("StepTitleDomains", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hosting.
+        /// </summary>
+        internal static string StepTitleHostingPackage {
+            get {
+                return ResourceManager.GetString("StepTitleHostingPackage", resourceCulture);
             }
         }
         

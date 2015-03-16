@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using Atomia.Store.AspNetMvc.Infrastructure;
 
 
 namespace $MyTheme$
@@ -14,6 +15,7 @@ namespace $MyTheme$
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            OrderFlowConfig.RegisterOrderFlows(GlobalOrderFlows.OrderFlows);
         }
     }
 }

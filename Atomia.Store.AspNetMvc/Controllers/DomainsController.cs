@@ -4,6 +4,7 @@ using Atomia.Store.Core;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using Atomia.Store.AspNetMvc.Filters;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -11,6 +12,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
     {
         private readonly IDomainsProvider domainProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 
+        [OrderFlowFilter]
         [HttpGet]
         public ActionResult Index()
         {

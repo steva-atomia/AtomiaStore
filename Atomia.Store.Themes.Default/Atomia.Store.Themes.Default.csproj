@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\OrderFlowValidator.cs" />
     <Compile Include="Adapters\PremiumDomainsProvider.cs" />
     <Compile Include="App_GlobalResources\Common.designer.cs">
       <DependentUpon>Common.resx</DependentUpon>
@@ -175,6 +176,7 @@
       <DependentUpon>ValidationErrors.resx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\OrderFlowConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
     <Compile Include="DefaultGlobalEventsHandler.cs" />
     <Compile Include="Global.asax.cs">
@@ -255,6 +257,10 @@
     <Content Include="Themes\Default\Views\Shared\_Footer.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Head.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_CardListing.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_Actions.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_Actions.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_Actions.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_Actions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
@@ -365,7 +371,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Themes\Default\Views\Shared\_Cart.cshtml" />
-    <Content Include="Themes\Default\Views\ProductListing\HostingPackages.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\HostingPackage.cshtml" />
     <Content Include="Themes\Default\Views\Account\Index.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_DomainConnection.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_Progress.cshtml" />

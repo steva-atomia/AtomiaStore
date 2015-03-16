@@ -11,6 +11,7 @@ namespace $MyTheme$
              * To start over from scratch instead, call bundles.Clear(); at the top of this method.
              */
 
+            // If you need to load scripts in a specific order, use scriptBundle.Include instead of scriptBundle.IncludeDirectory
             var scriptBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_SCRIPTS_BUNDLE);
             scriptBundle.IncludeDirectory("~/Themes/$MyTheme$/Scripts", "*.js");
 

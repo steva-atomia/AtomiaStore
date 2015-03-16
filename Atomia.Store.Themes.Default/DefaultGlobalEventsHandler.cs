@@ -28,11 +28,13 @@ namespace Atomia.Store.Themes.Default
             AreaRegistration.RegisterAllAreas();
 
             var container = new UnityContainer();
+            var orderFlows = new OrderFlowCollection();
 
             UnityConfig.RegisterComponents(container);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            OrderFlowConfig.RegisterOrderFlows(GlobalOrderFlows.OrderFlows);
 
             RegisterConfiguration(container);
 

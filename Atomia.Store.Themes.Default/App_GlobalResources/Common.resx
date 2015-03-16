@@ -222,28 +222,28 @@
   <data name="ConnectedDomainRequiredWarning" xml:space="preserve">
     <value>You are required to add a connected domain to your package. Please go back and add a domain name to the cart.</value>
   </data>
-  <data name="Step3Description" xml:space="preserve">
+  <data name="StepDescriptionAccount" xml:space="preserve">
     <value>Set up account info</value>
   </data>
-  <data name="Step3Title" xml:space="preserve">
+  <data name="StepTitleAccount" xml:space="preserve">
     <value>Account</value>
   </data>
-  <data name="Step4Description" xml:space="preserve">
+  <data name="StepDescriptionCheckout" xml:space="preserve">
     <value>Invoice and payment options</value>
   </data>
-  <data name="Step4Title" xml:space="preserve">
+  <data name="StepTitleCheckout" xml:space="preserve">
     <value>Checkout</value>
   </data>
-  <data name="Step1Description" xml:space="preserve">
+  <data name="StepDescriptionDomains" xml:space="preserve">
     <value>Buy new or move existing</value>
   </data>
-  <data name="Step1Title" xml:space="preserve">
+  <data name="StepTitleDomains" xml:space="preserve">
     <value>Domains</value>
   </data>
-  <data name="Step2Description" xml:space="preserve">
+  <data name="StepDescriptionHostingPackage" xml:space="preserve">
     <value>Choose hosting package</value>
   </data>
-  <data name="Step2Title" xml:space="preserve">
+  <data name="StepTitleHostingPackage" xml:space="preserve">
     <value>Hosting</value>
   </data>
   <data name="LanguageSelectorTitle" xml:space="preserve">

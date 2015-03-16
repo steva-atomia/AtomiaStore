@@ -1,6 +1,7 @@
 ﻿using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
 using System.Web.Mvc;
+using Atomia.Store.AspNetMvc.Filters;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -8,6 +9,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
     {
         private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
 
+        [OrderFlowFilter]
         [HttpGet]
         public ActionResult Index()
         {

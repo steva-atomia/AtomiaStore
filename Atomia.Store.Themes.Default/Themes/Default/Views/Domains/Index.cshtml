@@ -24,9 +24,7 @@
         @Html.Partial("_DomainRegistration", Model)
     </div>
 
-    <p class="actions">
-        @Html.RouteLink(Html.CommonResource("Next"), "Hosting", null, new { id = "next_step", @class = "button large green" })
-    </p>
+    @Html.Partial("_Actions")
 </div>
 
 @section scripts {
@@ -36,7 +34,5 @@
 
         Atomia.VM.Domains = Atomia.ViewModels.CreateDomainsModel();
         Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistrationModel(Atomia.VM.Cart);
-
-        Atomia.VM.Progress.Step(1);
     </script>
 }
