@@ -36,27 +36,11 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
-    <None Include="adding-a-new-products-page.md" />
-    <None Include="adding-terms-of-service.md" />
-    <None Include="customizing-the-orderflow.md" />
-    <None Include="customizing-order-handling.md" />
     <None Include="customizing-views-and-layout.md" />
-    <None Include="extending-domains-provider.md" />
     <None Include="getting-started-with-a-new-theme.md" />
-    <None Include="overriding-resource-strings.md" />
-    <None Include="topic-configuration.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="customizing-styles.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="customizing-views-changing-the-viewmodel.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="adding-a-payment-method.md" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="topic-knockout-view-models.md" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

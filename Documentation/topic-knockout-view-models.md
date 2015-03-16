@@ -1,1 +1,0 @@
-﻿Communication between models can  done directly, in the case of parents and items, by injecting another model on creation if the two are strongly tied together, like ProductListing and Cart, or by a simple pubsub system, which is for example the case in communcation of dropdown state between Cart and LanguageSelector.
