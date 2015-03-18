@@ -108,8 +108,8 @@
     <Folder Include="Adapters\" />
     <Folder Include="Models\" />
     <Folder Include="Themes\MyTheme\Scripts\" />
-    <Folder Include="Transformation FIles\App_Data\" />
-    <Folder Include="Transformation FIles\bin\" />
+    <Folder Include="Transformation Files\App_Data\" />
+    <Folder Include="Transformation Files\bin\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_GlobalResources\MyTheme\MyThemeCommon.resx">
