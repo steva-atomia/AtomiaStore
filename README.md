@@ -7,4 +7,9 @@ Getting Started With a Custom Theme
 
 1. Clone the AtomiaStore repository
 2. Open PowerShell and run `AtomiaStore\ThemeStarter\startnewtheme.ps1 <themeName>`
-3. Read more at [Getting Started With a Custom Atomia Store Theme](Documentation/getting-started-with-a-new-theme.md), [Customizing Styles](Documentation/customizing-styles.md) and [Customizing Views and Layout](Documentation/customizing-views-and-layout.md)
+3. Read documentation for specific customization tasks:
+ 
+    * [Getting Started With a Custom Atomia Store Theme](Documentation/getting-started-with-a-new-theme.md)
+    * [Customizing Styles](Documentation/customizing-styles.md)
+    * [Customizing Views and Layout](Documentation/customizing-views-and-layout.md)
+    * [Customizing the Order Flow](Documentation/customizing-the-orderflow.md)
