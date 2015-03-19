@@ -376,24 +376,6 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select domain ....
-        /// </summary>
-        internal static string ConnectedDomainOptionsCaption {
-            get {
-                return ResourceManager.GetString("ConnectedDomainOptionsCaption", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You are required to add a connected domain to your package. Please go back and add a domain name to the cart..
-        /// </summary>
-        internal static string ConnectedDomainRequiredWarning {
-            get {
-                return ResourceManager.GetString("ConnectedDomainRequiredWarning", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {

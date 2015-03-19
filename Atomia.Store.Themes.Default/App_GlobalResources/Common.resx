@@ -158,9 +158,11 @@
   </data>
   <data name="MONTH" xml:space="preserve">
     <value>month</value>
+    <comment>Renewal period unit convention</comment>
   </data>
   <data name="MONTHPlural" xml:space="preserve">
     <value>months</value>
+    <comment>Renewal period unit convention</comment>
   </data>
   <data name="MoreResults" xml:space="preserve">
     <value>More results</value>
@@ -173,6 +175,7 @@
   </data>
   <data name="PricingVariantDisplay" xml:space="preserve">
     <value>{1} {2} - {0}</value>
+    <comment>0 = price, 1 = period, 2 = unit</comment>
   </data>
   <data name="Remove" xml:space="preserve">
     <value>Remove</value>
@@ -203,12 +206,15 @@
   </data>
   <data name="YEAR" xml:space="preserve">
     <value>year</value>
+    <comment>Renewal period unit convention</comment>
   </data>
   <data name="YEARPlural" xml:space="preserve">
     <value>years</value>
+    <comment>Renewal period unit convention</comment>
   </data>
   <data name="RenewalPeriodDisplay" xml:space="preserve">
     <value>{0} {1}</value>
+    <comment>0 = period, 1 = unit</comment>
   </data>
   <data name="Back" xml:space="preserve">
     <value>Back</value>
@@ -216,35 +222,37 @@
   <data name="ConnectedDomainDescription" xml:space="preserve">
     <value>We will setup the services in your package to be connected with the selected domain name.</value>
   </data>
-  <data name="ConnectedDomainOptionsCaption" xml:space="preserve">
-    <value>Select domain ...</value>
-  </data>
-  <data name="ConnectedDomainRequiredWarning" xml:space="preserve">
-    <value>You are required to add a connected domain to your package. Please go back and add a domain name to the cart.</value>
-  </data>
   <data name="StepDescriptionAccount" xml:space="preserve">
     <value>Set up account info</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepTitleAccount" xml:space="preserve">
     <value>Account</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepDescriptionCheckout" xml:space="preserve">
     <value>Invoice and payment options</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepTitleCheckout" xml:space="preserve">
     <value>Checkout</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepDescriptionDomains" xml:space="preserve">
     <value>Buy new or move existing</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepTitleDomains" xml:space="preserve">
     <value>Domains</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepDescriptionHostingPackage" xml:space="preserve">
     <value>Choose hosting package</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="StepTitleHostingPackage" xml:space="preserve">
     <value>Hosting</value>
+    <comment>Order flow step resource convention</comment>
   </data>
   <data name="LanguageSelectorTitle" xml:space="preserve">
     <value>Language</value>
@@ -335,6 +343,7 @@
   </data>
   <data name="ReadAndAgree" xml:space="preserve">
     <value>I have read and agree with the</value>
+    <comment>Used together with terms of service *_Name strings</comment>
   </data>
   <data name="PayUsing" xml:space="preserve">
     <value>Pay using</value>
@@ -371,24 +380,30 @@
   </data>
   <data name="defaultTOS_Name" xml:space="preserve">
     <value>Terms and Conditions</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="defaultTOS_Terms" xml:space="preserve">
     <value>This is a placeholder for the company's Terms and Conditions.</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="Invoice" xml:space="preserve">
     <value>Invoice</value>
   </data>
   <data name="TOS_core_Name" xml:space="preserve">
     <value>CORE's Terms and Conditions</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="TOS_core_Terms" xml:space="preserve">
     <value>This is a placeholder for the company's Terms and Conditions.</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="TOS_se_Name" xml:space="preserve">
     <value>Terms and Conditions for .SE domain names</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="TOS_se_Terms" xml:space="preserve">
     <value>This is a placeholder for the company's Terms and Conditions.</value>
+    <comment>Terms of service resource convention</comment>
   </data>
   <data name="CheckoutFailureDescription" xml:space="preserve">
     <value>Please try using a different payment method. Domain names will be registered after the payment has been verified.</value>
@@ -407,27 +422,35 @@
   </data>
   <data name="DE_name" xml:space="preserve">
     <value>German</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="DE_shortname" xml:space="preserve">
     <value>DE</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="EN_name" xml:space="preserve">
     <value>English</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="EN_shortname" xml:space="preserve">
     <value>EN</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="FR_name" xml:space="preserve">
     <value>French</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="FR_shortname" xml:space="preserve">
     <value>FR</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="SV_SE_name" xml:space="preserve">
     <value>Swedish</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="SV_SE_shortname" xml:space="preserve">
     <value>SE</value>
+    <comment>Language resource convention</comment>
   </data>
   <data name="DomainRegistrationNoResultsHeading" xml:space="preserve">
     <value>No results for</value>
