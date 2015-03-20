@@ -7,32 +7,17 @@
 <div class="settingsboxinner">
     <p>@Html.CommonResourceRaw("DomainRegistrationDescription")</p>
 
-    @using (Html.BeginForm())
-    {
-
-        <fieldset>
-            <label for="queryType-register">
-                <input id="queryType-register" name="queryType" type="radio" value="register" data-bind="checked: Domains.QueryType" />
-            </label>
-            <label for="queryType-move">
-                <input id="queryType-move" name="queryType" type="radio" value="move" data-bind="checked: Domains.QueryType" />
-            </label>
-        </fieldset>
-    }
+    @{ Html.RenderPartial("_QueryType", Model); }
 
     <div data-bind="visible: Domains.DomainRegistrationActive">
-        @Html.Partial("_DomainRegistration", Model)
+        @{ Html.RenderPartial("_DomainRegistration", Model); }
     </div>
 
-    @Html.Partial("_Actions")
+    @{ Html.RenderPartial("_Actions", Model); }
 </div>
 
 @section scripts {
-    <script type="text/javascript">
-        var Atomia = Atomia || {};
-        Atomia.VM = Atomia.VM || {};
+    @{ Html.RenderPartial("_Scripts", Model); }
 
-        Atomia.VM.Domains = Atomia.ViewModels.CreateDomainsModel();
-        Atomia.VM.DomainRegistration = Atomia.ViewModels.CreateDomainRegistrationModel(Atomia.VM.Cart);
-    </script>
+    @{ Html.RenderPartial("_ExtraScripts", Model); }
 }

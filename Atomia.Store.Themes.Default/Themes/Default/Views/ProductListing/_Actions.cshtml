@@ -9,5 +9,5 @@
         @Html.RouteLink(Html.CommonResource("Back"), orderFlow.CurrentStep.Previous, routeValues, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
     }
     
-    @Html.RouteLink(Html.CommonResource("Next"), orderFlow.CurrentStep.Next, routeValues, new { id = "next_step", @class = "button large green", data_bind = "visible: HostingPackages.AllowContinue()" })
+    @Html.RouteLink(Html.CommonResource("Next"), orderFlow.CurrentStep.Next, routeValues, new { id = "next_step", @class = "button large green", data_bind = "visible: Products.AllowContinue()" })
 </p>

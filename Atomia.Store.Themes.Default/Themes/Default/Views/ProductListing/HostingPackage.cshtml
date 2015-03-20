@@ -9,47 +9,22 @@
 <p>@Html.CommonResourceRaw("HostingPackageDescription")</p>
 <div class="formrow">
     <h5><label class="required"><span>*</span> @Html.CommonResource("AvailablePackages"):</label></h5>
-    <!-- ko with: HostingPackages -->
+    <!-- ko with: Products -->
     @Html.Partial("_CardListing")
     <!-- /ko -->
     <br class="clear">
 </div>
 
 <div data-bind="visible: ConnectedDomainStatus.DomainNameOptionsCount() > 0">
-    <h4>@Html.CommonResource("ConnectedDomain")</h4>
-    <p>@Html.CommonResource("ConnectedDomainDescription")</p>
-    <div class="formrow">
-        <h5>
-            <label for="master">
-                @Html.CommonResource("ConnectedDomain"):
-            </label>
-        </h5>
-        <div class="col2row" data-bind="component: {
-        name: 'domain-connection',
-        params: {
-            cart: Atomia.VM.Cart,
-            selectedItem: Atomia.VM.HostingPackages.SelectedProduct,
-            statusNotifier: Atomia.VM.ConnectedDomainStatus
-        }
-    }">
-
-        </div>
-        <br class="clear">
-    </div>
+    @Html.Partial("_DomainConnection")
 </div>
 
-@Html.Partial("_Actions")
+@Html.Partial("_Actions", Model)
 
 @section scripts {
-    <script type="text/javascript">
-        var Atomia = Atomia || {};
-        Atomia.VM = Atomia.VM || {};
+    @{ Html.RenderPartial("_Scripts", Model); }
 
-        Atomia.VM.ConnectedDomainStatus = Atomia.ViewModels.CreateDomainStatusModel();
+    @{ Html.RenderPartial("_DomainConnectionScripts", Model); }
 
-        Atomia.VM.HostingPackages = Atomia.ViewModels.CreateProductListingModel(Atomia.VM.Cart, { SingleSelection: true });
-        Atomia.VM.HostingPackages.Load(@Html.JsonAction("GetData", "ProductListing", new { query = Model.Query }));
-    </script>
-
-    @Html.Partial("_DomainConnection")
+    @{ Html.RenderPartial("_ExtraScripts", Model); }
 }

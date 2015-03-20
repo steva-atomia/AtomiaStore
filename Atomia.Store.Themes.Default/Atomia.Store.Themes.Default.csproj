@@ -261,6 +261,21 @@
     <Content Include="Themes\Default\Views\Checkout\_Actions.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_Actions.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_Actions.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_Scripts.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_ExtraScripts.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_ExtraForms.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_EmptyCart.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_Scripts.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_ExtraScripts.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_BeforePaymentMethods.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_BeforeCartSummary.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_BeforeActions.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_Scripts.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_ExtraScripts.cshtml" />
+    <Content Include="Themes\Default\Views\Domains\_QueryType.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_Scripts.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_ExtraScripts.cshtml" />
+    <Content Include="Themes\Default\Views\ProductListing\_DomainConnectionScripts.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

@@ -1,0 +1,16 @@
+﻿@using Atomia.Web.Plugin.Validation.HtmlHelpers;
+
+@{
+    Html.EnableClientValidation();
+}
+
+<script type="text/javascript">
+        Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelectorModel();
+        Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
+
+        Atomia.VM.PayWithInvoice = Atomia.ViewModels.CreatePayWithInvoiceModel(Atomia.VM.Cart, Atomia.VM.Payment);
+        Atomia.VM.PayWithInvoice.LoadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
+        Atomia.VM.PayWithInvoice.InvoiceType('email');
+
+        Atomia.VM.Campaign = Atomia.ViewModels.CreateCampaignModel(Atomia.VM.Cart);
+</script>

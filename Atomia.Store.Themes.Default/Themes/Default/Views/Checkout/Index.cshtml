@@ -1,5 +1,4 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DefaultCheckoutViewModel
-@using Atomia.Web.Plugin.Validation.HtmlHelpers;
 
 @{
     Layout = "~/Themes/Default/Views/_OrderFlowLayout.cshtml";
@@ -7,49 +6,36 @@
 
 <div class="settingsboxinner">
     <div data-bind="visible: Cart.IsEmpty()">
-        <h4>@Html.CommonResource("CheckoutCartIsEmptyTitle")</h4>
-        <p>@Html.CommonResource("CheckoutCartIsEmptyDescription")</p>
+        @{ Html.RenderPartial("_EmptyCart", Model); }
     </div>
 
-    @using (Html.BeginForm())
+    @using (Html.BeginForm("Index", "Checkout", FormMethod.Post, new { id = "Checkout_Form" }))
     {
         @Html.AntiForgeryToken()
 
         <div data-bind="visible: !Cart.IsEmpty()">
-            <h4>@Html.CommonResource("PaymentOptions")</h4>
-            @Html.Partial("_PaymentMethods", Model.PaymentMethodGuiPlugins)
+            @{ Html.RenderPartial("_BeforePaymentMethods", Model); }
 
-            <h4>@Html.CommonResource("AddCampaignCode")</h4>
-            @Html.Partial("_Campaign")
+            @{ Html.RenderPartial("_PaymentMethods", Model.PaymentMethodGuiPlugins); }
 
-            <h4>@Html.CommonResource("Invoice")</h4>
-            @* @Html.Partial("_VatCheck") *@
-            @Html.Partial("_CartSummary")
+            @{ Html.RenderPartial("_Campaign"); }
 
-            @if (Model.TermsOfService.Count > 0)
-            {
-                <h4>@Html.CommonResource("Terms")</h4>
-                @Html.Partial("_TermsOfServiceConfirmation", Model)
-            }
+            @{ Html.RenderPartial("_BeforeCartSummary", Model); }
+                
+            @{ Html.RenderPartial("_CartSummary"); }
+
+            @{ Html.RenderPartial("_TermsOfServiceConfirmation", Model); }
+
+            @{ Html.RenderPartial("_BeforeActions", Model); }
+
         </div>
 
-        @Html.Partial("_Actions")
+        Html.RenderPartial("_Actions", Model);
     }
 </div>
 
 @section scripts {
-    @{
-        Html.EnableClientValidation();
-    }
+    @{ Html.RenderPartial("_Scripts", Model); }
 
-    <script type="text/javascript">
-        Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelectorModel();
-        Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
-
-        Atomia.VM.PayWithInvoice = Atomia.ViewModels.CreatePayWithInvoiceModel(Atomia.VM.Cart, Atomia.VM.Payment);
-        Atomia.VM.PayWithInvoice.LoadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
-        Atomia.VM.PayWithInvoice.InvoiceType('email');
-
-        Atomia.VM.Campaign = Atomia.ViewModels.CreateCampaignModel(Atomia.VM.Cart);
-    </script>
+    @{ Html.RenderPartial("_ExtraScripts", Model); }
 }

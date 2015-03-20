@@ -1,0 +1,27 @@
+﻿<script type="text/javascript">
+    ko.components.register('domain-connection', {
+        template: { element: 'domain-connection-tmpl' },
+        viewModel: {
+            createViewModel: function(params) {
+                return Atomia.ViewModels.CreateDomainConnectionModel(params.cart, params.selectedItem, {
+                    StatusNotifier: params.statusNotifier
+                });
+            }
+        }
+    });
+</script>
+
+<script type="text/html" id="domain-connection-tmpl">
+    <label class="select">
+        <select data-bind="
+            attr: {
+                id: UniqueId,
+                name: UniqueId
+            },
+            options: DomainNameOptions,
+            optionsCaption: '---',
+            optionsAfterRender: SetInitialDomainName,
+            value: SelectedDomainName
+            "></select>
+    </label>
+</script>

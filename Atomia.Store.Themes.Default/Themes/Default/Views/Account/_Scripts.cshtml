@@ -1,0 +1,33 @@
+﻿@model Atomia.Store.AspNetMvc.Models.DefaultAccountViewModel
+@using Atomia.Store.AspNetMvc.Models;
+@using Atomia.Web.Plugin.Validation.HtmlHelpers;
+
+@{
+    Html.EnableClientValidation();
+    Html.AddCustomerValidationRules(new CustomerValidationOptions()
+    {
+        SubForms = new List<Form>()
+            {
+                new Form(formName: "MainContact", countryFormName:"MainContact"),
+                new Form(formName: "MainContact.IndividualInfo", countryFormName:"MainContact"),
+                new Form(formName: "MainContact.CompanyInfo", countryFormName:"MainContact"),
+                new Form(formName: "BillingContact", countryFormName:"BillingContact"),
+                new Form(formName: "BillingContact.IndividualInfo", countryFormName:"BillingContact"),
+                new Form(formName: "BillingContact.CompanyInfo", countryFormName:"BillingContact")
+            },
+        ProductsChangedEvent = "Atomia.VM.Cart.ValidationUpdateEvent",
+        ArticleNumberList = "Atomia.VM.Cart.ArticleNumbers()",
+        ProductCategoryList = "Atomia.VM.Cart.Categories()"
+    });
+}
+
+<script type="text/javascript">
+    Atomia.VM.Account = Atomia.ViewModels.CreateAccountModel();
+    Atomia.VM.Account.OtherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
+    @{
+        var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;
+        var initialBillingCustomerType = string.IsNullOrEmpty(Model.BillingContact.CustomerType) ? "individual" : Model.BillingContact.CustomerType;
+    }
+    Atomia.VM.Account.MainContactCustomerType('@initialMainContactCustomerType');
+    Atomia.VM.Account.BillingContactCustomerType('@initialBillingCustomerType');
+</script>

@@ -1,5 +1,4 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DefaultAccountViewModel
-@using Atomia.Web.Plugin.Validation.HtmlHelpers;
 
 @{
     Layout = "~/Themes/Default/Views/_OrderFlowLayout.cshtml";
@@ -7,65 +6,33 @@
 
 <div class="settingsboxinner">
 
-
     @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
     {
-        @Html.AntiForgeryToken()
+        @Html.AntiForgeryToken();
 
-        <h4>@Html.CommonResource("AccountTitle")</h4>
-
-        @Html.Partial(Model.MainContact.PartialViewName, Model.MainContact, new ViewDataDictionary
+        Html.RenderPartial(Model.MainContact.PartialViewName, Model.MainContact, new ViewDataDictionary
         {
             TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.MainContact.Id }
-        })
+        });
 
-        <h4>
-            @Html.CommonResource("BillingAddressTitle")
-            <span id="billing-text-open" data-bind="visible: !Account.OtherBillingContact()">(@Html.CommonResource("BillingSameAsMain") - <a id="billing-trigger-open" href="javascript:void(0);" data-bind="click: Account.UseOtherBillingContact">@Html.CommonResource("Change")</a>)</span>
-            <span id="billing-text-close" style="display: none;" data-bind="visible: Account.OtherBillingContact">(@Html.CommonResource("BillingDifferentThanMain") - <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: Account.UseMainAsBillingContact">Make it same as contact info</a>)</span>
-        </h4>
+        Html.RenderPartial(Model.BillingContact.PartialViewName, Model.BillingContact, new ViewDataDictionary
+        {
+            TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.BillingContact.Id }
+        });
 
-        <div id="billing" style="display: none;" data-bind="slideVisible: Account.OtherBillingContact">
-            @Html.Partial(Model.BillingContact.PartialViewName, Model.BillingContact, new ViewDataDictionary
-            {
-                TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.BillingContact.Id }
-            })
-        </div>
-        
-        @Html.Partial("_Actions")
+        Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" });
 
-        @Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" })
+        Html.RenderPartial("_ExtraForms", Model);
+
+        Html.RenderPartial("_Actions", Model);
     }
+
 </div>
 
 @section scripts {
-    @{
-        Html.EnableClientValidation();
-        Html.AddCustomerValidationRules(new CustomerValidationOptions()
-        {
-            SubForms = new List<Form>()
-            {
-                new Form("MainContact", "MainContact"),
-                new Form("MainContact.IndividualInfo", "MainContact"),
-                new Form("MainContact.CompanyInfo", "MainContact"),
-                new Form("BillingContact", "BillingContact"),
-                new Form("BillingContact.IndividualInfo", "BillingContact"),
-                new Form("BillingContact.CompanyInfo", "BillingContact")
-            },
-            ProductsChangedEvent = "Atomia.VM.Cart.ValidationUpdateEvent",
-            ArticleNumberList = "Atomia.VM.Cart.ArticleNumbers()",
-            ProductCategoryList = "Atomia.VM.Cart.Categories()"
-        });
-    }
 
-    <script type="text/javascript">
-        Atomia.VM.Account = Atomia.ViewModels.CreateAccountModel();
-        Atomia.VM.Account.OtherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
-        @{
-            var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;
-            var initialBillingCustomerType = string.IsNullOrEmpty(Model.BillingContact.CustomerType) ? "individual" : Model.BillingContact.CustomerType;
-        }
-        Atomia.VM.Account.MainContactCustomerType('@initialMainContactCustomerType');
-        Atomia.VM.Account.BillingContactCustomerType('@initialBillingCustomerType');
-    </script>
+    @{Html.RenderPartial("_Scripts", Model);}
+
+    @{Html.RenderPartial("_ExtraScripts", Model);}
+
 }
