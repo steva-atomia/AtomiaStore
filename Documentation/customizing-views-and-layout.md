@@ -3,9 +3,9 @@
 
 AtomiaStore views are written in **Razor**, make heavy use of partial views and are enhanced with [Knockout.js](http://www.knockoutjs.com).
 
-The recommended way of customizing the markup of pages in AtomiaStore is to override just the layouts, views or partial views that need to be changed.
+The recommended way of customizing the markup of pages in AtomiaStore is to override just the views or partial views that need to be changed.
 
-Data is accessible in the views via strongly typed ASP.NET MVC view models, and Knockout.js view models.
+Data is accessible in the views via strongly typed ASP.NET MVC view models, and Knockout.js view models. See [Customizing Data and Forms](customizing-data-and-forms.md) for more on this topic.
 
 Organization
 ------------
@@ -14,7 +14,7 @@ Organization
 
 **Views** mapping to an action are located in their respective folders, e.g. `Themes\MyTheme\Views\Account` and are named just `<ViewName>.cshtml`.
 
-**Partial views** are named `_<PartialViewName>.cshtml` and are located either with their parent page view, or if they are useful in more than one page, in the `Themes\MyTheme\Shared` folder.
+**Partial views** are named `_<PartialViewName>.cshtml` and are located either with their parent page view, or if they could be useful in more than one page, in the `Themes\MyTheme\Shared` folder.
 
 There is also a static markup page in `Themes\Content\Error.html`, used in last resort error handling.
 
@@ -37,14 +37,14 @@ The views are structured in a standard ASP.NET MVC layout with *Layout => View =
 		    Page Partial
 		    Page Partial
 		    ...
+        ...
+        Shared Partial
 
-All views use strongly typed view models, and regular use of ViewBag and ViewData is discouraged.
+All views use strongly typed view models, and use of `ViewBag` and `ViewData` is limited to some data injected in several different views, like `ViewBag.OrderFlow`.
 
 The naming of page views are as customary mapped to action names in ASP.NET MVC. One exception to this rule is *ProductListing* pages, where the view name can be customized depending on the type of products to show.
 
 Another naming convention is that view names are named the same as Knockout.js view models. This goes for both page views and partial views.
-
-If you need to also change the view model of a page, see Customizing View Models and Forms.
 
 
 Knockout.js View Models Overview
@@ -52,9 +52,9 @@ Knockout.js View Models Overview
 
 Since most views are in some way making use of the JavaScript Model-View-ViewModel library [Knockout.js](http://www.knockoutjs.com) (**KO**) it is useful to know how the KO view models are put together.
 
-As mentioned earlier each KO view model corresponds to a view or view partial with the same name. When the page loads each KO view model in use is created and added to the root view model `Atomia.VM` which then has bindings applied.
+As mentioned earlier each KO view model typically corresponds to a view or view partial with the same name. When the page loads each KO view model in use is created and added to the root view model `Atomia.VM` which then has bindings applied.
 
-As an example this is the structure of the HostingPackages page KO view model:
+As an example this is the structure of the *HostingPackage* page KO view model:
 
     Atomia.VM = {
 	    LanguageSelector: ...
@@ -62,10 +62,10 @@ As an example this is the structure of the HostingPackages page KO view model:
         Progress: ...,	
         Notification: ...,
 	    ConnectedDomainStatus: ...,
-        HostingPackages: ...
+        Products: ...
     }
 
-Some KO view models also have an array of child items. For example a `ProductListing` view model, which `HostingPackages` is an instance of, contains an array of `ProductListingItem`.
+Some KO view models also have an array of child items. For example a `ProductListing` view model, which `Products` is an instance of, contains an array of `ProductListingItem`.
 
 Data bindings in the views are then used with a prefix of the KO view model that is being used, e.g.:
 
@@ -78,4 +78,4 @@ There are also some custom KO bindings defined in  `Themes\Default\Scripts\atomi
 * **slideVisible**: wraps the default *visible* binding in a slide animation.
 * **submitValid**: triggers jQuery validation on forms before submitting, and should be used when submitting AJAX POSTs.
 
-For more on working with the Knockout.js view models see 'Working with Knockout.js View Models'
+For more on working with the Knockout.js view models see [Customizing Data and Forms](customizing-data-and-forms.md).

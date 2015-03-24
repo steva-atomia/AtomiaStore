@@ -12,6 +12,8 @@ Getting Started With a Custom Theme
     * [Getting Started With a Custom Atomia Store Theme](Documentation/getting-started-with-a-new-theme.md)
     * [Customizing Styles](Documentation/customizing-styles.md)
     * [Customizing Views and Layout](Documentation/customizing-views-and-layout.md)
+    * [Customizing Data and Forms](Documentation/customizing-data-and-forms.md)
     * [Resource Strings and Localization](Documentation/resource-strings-and-localization.md)
     * [Customizing the Order Flow](Documentation/customizing-the-orderflow.md)
+    * More to come
 

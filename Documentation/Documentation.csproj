@@ -37,8 +37,10 @@
   </PropertyGroup>
   <ItemGroup>
     <None Include="customizing-the-orderflow.md" />
+    <None Include="customizing-data-and-forms.md" />
     <None Include="customizing-views-and-layout.md" />
     <None Include="getting-started-with-a-new-theme.md" />
+    <None Include="resource-strings-and-localization.md" />
   </ItemGroup>
   <ItemGroup>
     <None Include="customizing-styles.md" />
