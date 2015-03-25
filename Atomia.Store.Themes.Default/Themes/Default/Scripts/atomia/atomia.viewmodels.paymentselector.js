@@ -1,4 +1,8 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -6,24 +10,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils) {
 	'use strict';
 
-	var PaymentSelectorModelPrototype,
-        CreatePaymentSelectorModel;
+	var CreatePaymentSelectorModel;
 
-
-	PaymentSelectorModelPrototype = {
-
-	};
-
+    /** Create payment selector
+     * @param {Object|function} extensions - Extensions to the default payment selector model
+     */
 	CreatePaymentSelectorModel = function CreatePaymentSelectorModel(extensions) {
-	    var defaults;
-
-	    defaults = function (self) {
-	        return {
-	            SelectedPaymentMethod: ko.observable()
-	        };
-	    };
-
-	    return utils.createViewModel(PaymentSelectorModelPrototype, defaults, extensions);
+	    return utils.createViewModel({}, {
+	        SelectedPaymentMethod: ko.observable()
+	    }, extensions);
 	};
 
 

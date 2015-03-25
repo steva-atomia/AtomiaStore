@@ -1,4 +1,8 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -13,7 +17,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     /* Domain move prototype and factory */
     DomainMoveModelPrototype = {
         Submit: function Submit() {
-            console.log('Transfer!');
+            //console.log('Transfer!');
         }
     };
 

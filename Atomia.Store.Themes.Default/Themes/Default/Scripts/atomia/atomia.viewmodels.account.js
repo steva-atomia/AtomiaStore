@@ -1,4 +1,8 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -11,14 +15,22 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
 	AccountModelPrototype = {
+        /** Use other billing contact than main */
 		UseOtherBillingContact: function UseSeparateBillingContact() {
 			this.OtherBillingContact(true);
 		},
+
+        /** Use main as billing contact */
 		UseMainAsBillingContact: function UseMainAsBillingContact() {
 			this.OtherBillingContact(false);
 		}
 	};
 
+    /** 
+     * Create a Knockout view model for coordinating main and billing contact data. 
+     * @param {Objects|Function} extensions - Extensions to the default account view model
+     * @returns the created account view model.
+     */
     CreateAccountModel = function CreateAccountModel(extensions) {
         var defaults;
             

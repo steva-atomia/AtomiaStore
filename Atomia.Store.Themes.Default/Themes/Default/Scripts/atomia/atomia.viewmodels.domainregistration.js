@@ -1,4 +1,10 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+/// <reference path="atomia.api.domains.js" />
+/// <reference path="atomia.viewmodels.cart.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -10,9 +16,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CreateDomainRegistrationItem,
         DomainRegistrationModelPrototype,
         CreateDomainRegistrationModel;
-
-    /* Domain registration item protype and factory */
+    
     DomainRegistrationItemPrototype = {
+        /** 
+         * Checks if domain registration item is equal to other item based on article number and domain name.
+         * @param {Object} other - The item to compare to
+         * @returns {boolean} whether the items are equal or not.
+         */
         Equals: function Equals(other) {
             var otherDomainNameAttr = _.find(other.CustomAttributes, function (ca) {
                     return ca.Name === 'DomainName';
@@ -23,6 +33,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+    /**
+     * Create domain registration item view model
+     * @param {Object|Function} extensions - extensions to the default domain registration item view model
+     * @param {Object} instance - the object to create a domain registration item from.
+     * @returns the created domain registration item.
+     */
     CreateDomainRegistrationItem = function CreateDomainRegistrationItem(extensions, instance) {
         var domainParts;
 
@@ -36,9 +52,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             RenewalPeriod: instance.PricingVariants[0].RenewalPeriod
         }, instance, extensions);
     };
-
-    /* Domain registration prototype and factory */
+    
+    
     DomainRegistrationModelPrototype = {
+        
+        /**
+         * Submit a domain search query.
+         */
         Submit: function Submit() {
             this.IsLoadingResults(true);
             this.PrimaryResults.removeAll();
@@ -46,7 +66,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this.ShowMoreResults(false);
             this.SubmittedQuery(this.Query());
             this.NoResults(false);
-
+            
             domainsApi.FindDomains(this.Query(), function (data) {
                 var domainSearchId = data.DomainSearchId;
 
@@ -71,7 +91,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 }
             }.bind(this));
         },
-
+        
+        /** Primary TLD search results have finished loading. */
         PrimaryResultsAreFinished: function () {
             if (this.PrimaryResults().length === 0) {
                 return false;
@@ -82,6 +103,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             });
         },
 
+        /** 
+         * Create domain registration items from primary and secondary TLD results and update view model.
+         * @param {Array} results - The domain search results.
+         */
         UpdateResults: function UpdateResults(results) {
             var primaryResults = [],
                 secondaryResults = [];
@@ -112,10 +137,16 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Show more results */
         SetShowMoreResults: function SetShowMoreResults() {
             this.ShowMoreResults(true);
         },
 
+        /**
+         * Get template name to use for rendering 'item': 'domainregistration-{primary|secondary}-{available|taken|<status>}
+         * @param {Object} item - The item to select template name for
+         * @returns the template name.
+         */
         GetTemplateName: function GetTemplateName(item) {
             var primaryAttr = _.find(item.CustomAttributes, function (ca) {
                     return ca.Name === 'Premium';
@@ -135,11 +166,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return displayType;
         },
 
+        /** Check if there are domain search results on the view model. */
         _HasResults: function _HasResults() {
             return this.PrimaryResults().length > 0 || this.SecondaryResults().length > 0;
         }
     };
 
+    /** 
+     * Create domain registration view model.
+     * @param {Object} cart - instance of cart to add or remove items to.
+     * @param {Object|Function} extensions - Extensions to the default domain registration view model.
+     * @param {Object|Function} itemExtensions - Extensions to the default domain registration item view model.
+     */
     CreateDomainRegistrationModel = function CreateDomainRegistrationModel(cart, extensions, itemExtensions) {
         var defaults;
 

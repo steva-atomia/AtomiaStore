@@ -1,4 +1,9 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+/// <reference path="atomia.viewmodels.cart.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -8,10 +13,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 	var PayWithInvoiceModelPrototype,
         CreatePayWithInvoiceModel;
+    
 
 	PayWithInvoiceModelPrototype = {
+	    /** 
+         * Callback handler for when payment method is selected. 
+	     * Removes postal fee from cart if payment method is not invoice.
+	     */
 		_SelectPaymentMethod: function _SelectPaymentMethod(newValue) {
-			var cartItem = this._CreatePostalFeeItem();;
+			var cartItem = this._CreatePostalFeeItem();
 
 			if (cartItem !== null && newValue !== 'PayWithInvoice') {
 				this._Cart.Remove(cartItem);
@@ -19,6 +29,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 			this.InvoiceType('email');
 		},
+
+        /** Callback handler for when invoice type is selected. Adds or removes postal fee from cart. */
 		_SelectInvoiceType: function _SelectInvoiceType(newValue) {
 			var cartItem = this._CreatePostalFeeItem();
 
@@ -29,7 +41,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 				this._Cart.Add(cartItem);
 			}
 		},
-		_CreatePostalFeeItem: function _CreatePostalFeeItem(item) {
+
+        /** Make cartable item out of postal fee item.*/
+		_CreatePostalFeeItem: function _CreatePostalFeeItem() {
 			var cartItem, postalFeeItem = this.PostalFeeItem();
 
 			if (postalFeeItem === null) {
@@ -45,6 +59,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 			return cartItem;
 		},
+
+        /** Load postal fee item data generated on server. */
 		LoadPostalFeeItem: function LoadPostalFeeItem(getItemResponse) {
 			var item;
 
@@ -68,6 +84,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		}
 	};
 
+
+    /** 
+     * Create pay with invoice model.
+     * @param {Object} cart - A cart view model instance.
+     * @param {Object} paymentSelection - A payment selection view model instance.
+     * @param {Object|Function} extensions - Extensions to the default pay with invoice view model.
+     */
 	CreatePayWithInvoiceModel = function CreatePayWithInvoiceModel(cart, paymentSelection, extensions) {
 		var defaults, viewModel;
 
@@ -86,7 +109,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	};
 
 
-	/* Module exports */
 	_.extend(exports, {
 	    CreatePayWithInvoiceModel: CreatePayWithInvoiceModel
 	});

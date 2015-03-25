@@ -1,4 +1,7 @@
-﻿;(function (amplify) {
+﻿/// <reference path="../../../../Scripts/amplify-vsdoc.js" />
+
+// Setup resourceIds to use with Atomia.utils.request
+; (function (amplify) {
     'use strict';
 
     // Monkey-patch the builtin jsend decoder to handle invalid data better.
@@ -18,7 +21,7 @@
             error(null, 'error');
         }
     };
-
+    
     amplify.request.define('Domains.FindDomains', 'ajax', {
         url: '/Domains/FindDomains/',
         dataType: 'json',

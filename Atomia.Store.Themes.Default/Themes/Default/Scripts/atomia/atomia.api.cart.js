@@ -1,4 +1,9 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
+/** @namespace */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
 Atomia.Api.Cart = Atomia.Api.Cart || {};
@@ -7,26 +12,29 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
 (function (exports, _, ko, utils) {
     'use strict';
 
-    function _GetValueOrObservable(value) {
-        return _.isFunction(value) ? value() : value;
-    }
-
     var onGoingRecalculateRequest = null;
 
+     /**
+     * Recalculate cart prices, taxes and totals.
+     * @param {Object} cart - The cart to recalculate
+     * @param {Function} success - Callback on successful recalculation of cart
+     * @param {Function} error - Callback on failed recalculation of cart
+     */
     function RecalculateCart(cart, success, error) {
+
         var request, requestData;
 
         requestData = {
             CartItems: [],
-            CampaignCode: _GetValueOrObservable(cart.CampaignCode)
+            CampaignCode: ko.unwrap(cart.CampaignCode)
         };
 
         _.each(cart.CartItems(), function (item) {
             var cartItem = {
-                ArticleNumber: _GetValueOrObservable(item.ArticleNumber),
-                RenewalPeriod: _GetValueOrObservable(item.RenewalPeriod),
-                Quantity: _GetValueOrObservable(item.Quantity),
-                CustomAttributes: _GetValueOrObservable(item.CustomAttributes)
+                ArticleNumber: ko.unwrap(item.ArticleNumber),
+                RenewalPeriod: ko.unwrap(item.RenewalPeriod),
+                Quantity: ko.unwrap(item.Quantity),
+                CustomAttributes: ko.unwrap(item.CustomAttributes)
             };
 
             _.defaults(cartItem, {
@@ -57,7 +65,7 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
             },
             error: function (result) {
                 onGoingRecalculateRequest = null;
-
+                
                 if (error !== undefined) {
                     error(result);
                 }

@@ -1,4 +1,9 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+/// <reference path="atomia.viewmodels.cart.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -10,11 +15,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CreateProductListingItem,
         ProductListingModelPrototype,
         CreateProductListingModel;
-
-
+    
 
     /* Products listing item prototype and factory */
     ProductListingItemPrototype = {
+        /** Pre-select pricing variant to match the one added to cart. */
         _InitPricingVariant: function _InitPricingVariant() {
             var itemInCart = this.GetItemInCart(),
                 selectedPricingVariant = _.find(this.PricingVariants, function (pv) {
@@ -31,6 +36,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Shortcut to price of pricing variant. */
         _Price: function _Price() {
             if (this.HasVariants()) {
                 return this.SelectedPricingVariant().Price;
@@ -39,6 +45,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return this.PricingVariants[0].Price;
         },
 
+        /** Shortcut to renewal period of pricing variant */
         _RenewalPeriod: function _RenewalPeriod() {
             if (this.HasVariants()) {
                 return this.SelectedPricingVariant().RenewalPeriod;
@@ -47,10 +54,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return this.PricingVariants[0].RenewalPeriod;
         }, 
 
+        /** Check if there is more than one pricing variant for the product. */
         _HasVariants: function _HasVariants() {
             return this.PricingVariants.length > 1;
         },
 
+        /** Select pricing variant for product and sync with cart. */
         _SelectPricingVariant: function _SelectPricingVariant() {
             if (this._selectedPricingVariantInitialized && this.IsInCart()) {
                 this.RemoveFromCart();
@@ -60,6 +69,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+
+    /**
+     * Creates product listing item
+     * @param {Object|Function} extensions - Extensions to the default product listing item.
+     * @param {Object} instance - The instance to create product listing item from.
+     */
     CreateProductListingItem = function CreateProductListingItem(extensions, instance) {
         var item, defaults;
 
@@ -86,10 +101,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Products listing prototype and factory */
     ProductListingModelPrototype = {
+        /** Load view model with product listing data generated on server. */
         Load: function Load(listProductsDataResponse) {
             this._UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
         },
 
+        /** Select product and update cart. */
         SelectProduct: function SelectProduct(item) {
             if (this.SingleSelection) {
                 this.SelectedProduct(item);
@@ -104,10 +121,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             this._Cart.Add(item);
         },
 
-        RemoveProduct: function RemoveProductfunction(item) {
+        /** Remove product from cart. */
+        RemoveProduct: function RemoveProduct(item) {
             this._Cart.Remove(item);
         },
 
+        /** Create and add product listing items from products data. */
         _UpdateProducts: function _UpdateProducts(products) {
             _.each(products, function (product) {
                 var item = this.CreateProductListingItem(product);
@@ -126,12 +145,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }, this);
         },
 
+        /** Check if product is in cart. */
         _ProductIsSelected: function _ProductIsSelected() {
             return _.any(this.Products(), function (product) {
                 return this._Cart.Contains(product);
             }, this);
         },
 
+        /** Check if order flow is allowed to continue to next step. */
         _AllowContinue: function _AllowContinue() {
             var conditions = [];
 
@@ -143,6 +164,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+    /**
+     * Create product listing.
+     * @param {Object} cart - An instance of cart view model.
+     * @param {Object|Function} extensions - Extensions to the default product listing view model
+     * @param {Object|Function} itemExtensions - Extensions to the default product listing item view model
+     */
     CreateProductListingModel = function CreateProductListingModel(cart, extensions, itemExtensions) {
         var defaults = function (self) {
             return {

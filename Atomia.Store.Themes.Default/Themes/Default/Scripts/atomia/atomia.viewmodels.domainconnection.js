@@ -1,4 +1,8 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -11,8 +15,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CreateDomainStatusModel;
 
 
-    /* DomainConnection prototype and factory */
     DomainConnectionModelPrototype = {
+
+        /** Set domain name if 'SelectedItem' already has domain name associated. */
         SetInitialDomainName: function () {
             var selectedItem = this.SelectedItem(),
                 itemInCart,
@@ -31,6 +36,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Handler for updating domain name options when cart is updated. */
         _UpdateDomainNameOptions: function _UpdateDomainNameOptions() {
             var domainItems = this._Cart.DomainItems(),
                 domainNames = [];
@@ -49,6 +55,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Add or remove association between 'selectedDomainName' and 'SelectedItem' in cart. */
         _HandleSelectedDomainName: function _HandleSelectedDomainName(selectedDomainName) {
             var selectedItem = this.SelectedItem();
 
@@ -68,6 +75,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Update domain connection when an item ('addedItem') is added to cart. */
         _HandleAddedCartItem: function _HandleAddedCartItem(addedItem) {
             var selectedItem = this.SelectedItem();
 
@@ -79,6 +87,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Update domain connection when an item ('removedItem') is removed from cart. */
         _HandleRemovedCartItem: function _HandleRemovedCartItem(removedItem) {
             if (removedItem.IsDomainItem()) {
                 this._UpdateDomainNameOptions();
@@ -86,6 +95,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
     
+    /** Create domain connection view model. 
+     * @param {Object} cart - Instance of cart to operate on.
+     * @param {Object} selectedItem - Item to connect domain to. Can be an observable.
+     * @param {Object|Function} extensions - Extensions to the default view model.
+     */
     CreateDomainConnectionModel = function CreateDomainConnectionModel(cart, selectedItem, extensions) {
         var item;
 
@@ -109,7 +123,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
 
-    /* DomainStatus factory */
+    /** Create and object to relay status of domain connection.
+     * @param {Object|Function} extensions - Extensions to the default domain status view model.
+      */
     CreateDomainStatusModel = function CreateDomainStatusModel(extensions) {
         var statusItem = Object.create({}),
             defaults = {

@@ -204,6 +204,7 @@
     <Content Include="App_Data\atomiaRegularExpressionConfig.config" />
     <Content Include="Original Files\App_Data\atomiaRegularExpressionConfig.config" />
     <Content Include="Original Files\Web.config" />
+    <Content Include=".jshintrc" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.DomainSearch.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.OrderServiceReferences.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.Validation.dll.config" />

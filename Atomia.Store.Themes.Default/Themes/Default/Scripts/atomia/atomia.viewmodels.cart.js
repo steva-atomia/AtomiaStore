@@ -1,4 +1,10 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/jquery-2.1.3.intellisense.js" />
+/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+/// <reference path="atomia.api.cart.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -11,13 +17,22 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CreateCartModel,
         CreateCartItem,
         AddCartItemExtensions;
-
-
+    
     /* Cart item prototype and factory */
     CartItemPrototype = {
+
+        /** 
+         * Equality comparer between this item and 'other'. Defaults to comparing 'Id' properties. 
+         * @param {Object} other - The item to compare to.
+         */
         Equals: function Equals(other) {
             return this.Id === other.Id;
         },
+
+        /** 
+         * Collects custom options (renewal period and domain name) of item.
+         * @returns {string[]} Array of custom options.
+         */
         CustomOptions: function CustomOptions() {
             var options = [],
                 domainName;
@@ -38,6 +53,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+    /**
+     * Create a cart item view model.
+     * @param {Object|Function} extensions - Extensions to the cart item
+     * @param {Object} instance   - The item to create cart item from.
+     * @returns The created cart item.
+     */
     CreateCartItem = function CreateCartItem(extensions, instance) {
         var defaults = {
                 Id: _.uniqueId('tmp-cartitem-')
@@ -46,29 +67,33 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         return utils.createViewModel(CartItemPrototype, defaults, instance, extensions);
     };
 
-
-    /* Cart prototype and factory */
+    /**Cart prototype and factory */
     CartModelPrototype = {
+        /** Event used to notify Atomia customer validation that cart has been updated. */
         ValidationUpdateEvent: 'cart:update',
 
+        /** Items in cart that are domain items, like registration or transfer */
         DomainItems: function DomainItems() {
             return _.filter(this.CartItems(), function (item) {
                 return _.contains(this.DomainCategories, item.Category);
             }.bind(this));
         },
 
+        /** Distinct article numbers of items in cart. */
         ArticleNumbers: function ArticleNumbers() {
             return _.uniq(_.map(this.CartItems(), function (item) {
                 return item.ArticleNumber;
             }.bind(this)));
         },
 
+        /** Distinct categories of items in cart. */
         Categories: function Categories() {
             return _.uniq(_.map(this.CartItems(), function (item) {
                 return item.Category;
             }.bind(this)));
         },
 
+        /** Open or close cart display. */
         ToggleDropdown: function ToggleDropdown() {
             if (this.IsOpen()) {
                 this.IsOpen(false);
@@ -79,10 +104,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Close cart display */
         CloseDropdown: function CloseDropdown() {
             this.IsOpen(false);
         },
 
+        /** Check if cart contains item that 'Equals' 'item'. */
         Contains: function Contains(item) {
             var isInCart = _.any(this.CartItems(), function (cartItem) {
                 return item.Equals(cartItem);
@@ -91,6 +118,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return isInCart;
         },
 
+        /** Get first item in cart that 'Equals' 'item'. */
         GetExisting: function GetExisting(item) {
             var itemInCart = _.find(this.CartItems(), function (cartItem) {
                 return item.Equals(cartItem);
@@ -99,6 +127,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return itemInCart;
         },
 
+        /** Add 'item' to cart and recalculate. Optionally set 'recalculate' to false. */
         Add: function Add(item, recalculate) {
             var cartItem;
 
@@ -123,6 +152,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Remove 'item' from cart and recalculate. Optionally set 'recalculate' to false. */
         Remove: function Remove(item, recalculate) {
             var itemInCart;
 
@@ -156,10 +186,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Add 'item' to or remove 'item' from cart and recalculate. Optionally set 'recalculate' to false. */
         AddOrRemove: function AddOrRemove(item, recalculate) {
             this.Contains(item) ? this.Remove(item, recalculate) : this.Add(item, recalculate);
         },
 
+        /** Associate 'domainName' to 'mainItem'. Optionally set 'recalculate' to false. */
         AddDomainName: function AddDomainName(mainItem, domainName, recalculate) {
             var mainInCart = this.GetExisting(mainItem),
                 existingDomainName;
@@ -191,6 +223,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+
+        /** Remove any domain name associations from 'mainItem'. Optionally set 'recalculate' to false.*/
         RemoveDomainName: function RemoveDomainName(mainItem, recalculate) {
             var mainInCart = this.GetExisting(mainItem);
 
@@ -218,6 +252,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Remove any associations to domain name tied to 'domainItem' from any other items in cart. */
         ClearDomainItem: function ClearDomainItem(domainItem) {
             var domainNameToRemove = domainItem.GetDomainName();
 
@@ -228,6 +263,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }.bind(this));
         },
 
+        /** Load cart with JSON data from 'getCartResponse'. */
         Load: function Load(getCartResponse) {
             this._UpdateCart(getCartResponse.data.Cart);
 
@@ -236,9 +272,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Add 'campaignCode' to cart. Replaces any existing campaign code and recalculates cart. */
         AddCampaignCode: function AddCampaignCode(campaignCode) {
             if (!_.isString(campaignCode) || campaignCode === '') {
-                throw Exception("campaignCode must be a non-empty string.");
+                throw new Error('campaignCode must be a non-empty string.');
             }
 
             this.CampaignCode(campaignCode);
@@ -253,6 +290,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             );
         },
 
+        /** Remove campaign code from cart and recalculate. */
         RemoveCampaignCode: function RemoveCampaignCode() {
             this.CampaignCode('');
 
@@ -266,6 +304,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             );
         },
 
+        /** Update cart with 'cartData'. */
         _UpdateCart: function _UpdateCart(cartData) {
             this.CartItems.removeAll();
 
@@ -288,6 +327,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+    /**
+     * Create view model for cart.
+     * @param {Object|Function} extensions       - Extensions to the default cart view model.
+     * @param {Object|Function} itemExtensions   - Extensions to the default cart item view model.
+     * @returns {Object} The created view model.
+     */
     CreateCartModel = function CreateCartModel(extensions, itemExtensions) {
         var defaults, cart;
         
@@ -323,7 +368,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
 
-    /* AddCartItemExtensions item extender */
+    /** 
+     * Extends 'item' with cart helper methods.
+     * @param {Object} cart - The cart to apply helpers to.
+     * @param {Object} item - The item to extend with helper methods.
+     * @returns {Object} The extended item.
+     */
     AddCartItemExtensions = function AddCartItemExtensions(cart, item) {
         var cartExtensions;
 

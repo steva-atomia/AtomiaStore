@@ -1,4 +1,7 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
 Atomia.Api.Domains = Atomia.Api.Domains || {};
@@ -18,7 +21,14 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
         statusRequests[domainSearchId] = undefined;
     }
 
+    /**
+     * Find domains from a search term.
+     * @param {string} searchTerm - The search term used to find domains
+     * @param {Function} success - Callback for handling results
+     * @param {Function} error - Callback on error.
+     */
     function FindDomains(searchTerm, success, error) {
+
         var requestData = {
             'searchQuery.Query': searchTerm
         };
@@ -38,8 +48,8 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
             }
         });
     }
+    
 
-    // Check for domain status. Only one request per domainSearchId at a time is allowed.
     function _CheckStatus(domainSearchId, success, error, interval) {
         var requestData = {
             'domainSearchId': domainSearchId
@@ -49,6 +59,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
         
         onGoingRequest = statusRequests[domainSearchId];
 
+        // Only run one status check at a time.
         if (onGoingRequest === undefined) {
 
             if (_.has(statusCheckCount, domainSearchId)) {
@@ -100,7 +111,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
 
             statusRequests[domainSearchId] = request;
 
-            utils.subscribe("request.complete", function (settings, data, status) {
+            utils.subscribe('request.complete', function (settings, data) {
                 if (data.DomainSearchId !== undefined) {
                     clearStatusRequest(data.DomainSearchId);
                 }
@@ -108,13 +119,26 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
         }
     }
 
+    /**
+     * Check status for search with id 'domainSearchId'.
+     * @param {string} domainSearchId - Id for search to check, received in results of 'FindDomains'.
+     * @param {Function} success - Callback on successful check.
+     * @param {Function} error - Callback on error
+     */
     function CheckStatus(domainSearchId, success, error) {
-        // Seed status check interval
+        // Seed _CheckStatus with a start interval.
         _CheckStatus(domainSearchId, success, error, startInterval);
     }
 
 
-    // Optionally configure timing of status checks.
+    /**
+     * Set status check timing options. Increases interval linearly from 'startInterval' to 'finalInterval'
+     * @param {Object} options
+     * @param {number} options.startInterval        - Time in ms for interval between checks to start.
+     * @param {number} options.startIntervalCount   - How many times to use 'startInterval' before slowing down checks.
+     * @param {number} options.finalInterval        - Time in ms for final interval between checks.
+     * @param {number} options.statusCheckMaxCount  - How many times to check status before stopping.
+     */
     function SetStatusCheckTiming(options) {
         if (options.startInterval !== undefined) {
             startInterval = options.startInterval;

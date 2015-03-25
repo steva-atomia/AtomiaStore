@@ -1,4 +1,8 @@
-﻿/* jshint -W079 */
+﻿/// <reference path="../../../../Scripts/underscore.js" />
+/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
+/// <reference path="atomia.utils.js" />
+
+/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -10,6 +14,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CreateLanguageSelectorModel,
         CreateLanguageItem;
 
+    /**
+     * Utility function to convert current URL to a URL with ?lang= query string for switching language
+     * @param {string} currentLanguageCode - Code of currently used language
+     * @param {string} newLanguageCode - Code of language to switch to
+     */
     function getNewLanguageURL(currentLanguageCode, newLanguageCode) {
         var currentURL = window.location.href,
             newURL,
@@ -26,6 +35,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         return newURL;
     }
 
+    /**
+     * Create a language item.
+     * @param {Object|Function} extensions - Extensions to the default language item view model.
+     * @param {Object} instance - The object to create language item from
+     */
     CreateLanguageItem = function CreateLanguageItem(extensions, instance) {
         var defaults;
         
@@ -37,6 +51,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
     LanguageSelectorModelPrototype = {
+        /** Open or close language selector based on current state. */
         ToggleDropdown: function ToggleDropdown() {
             if (this.IsOpen()) {
                 this.IsOpen(false);
@@ -47,10 +62,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
         },
 
+        /** Close language selector. */
         CloseDropdown: function CloseDropdown() {
             this.IsOpen(false);
         },
 
+        /** Load language data generated on server. */
         Load: function Load(getLanguagesResponse) {
             this._UpdateLanguages(getLanguagesResponse.data);
         },
@@ -71,6 +88,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         }
     };
 
+
+    /**
+     * Create language selector view model.
+     * @param {Object|Function} extensions - Extensions to the default language selector view model.
+     * @param {Object|Function} itemExtensions - Extensions to the default language item selector
+     */
     CreateLanguageSelectorModel = function CreateLanguageSelectorModel(extensions, itemExtensions) {
         var defaults, viewModel;
 
@@ -91,7 +114,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     };
 
 
-    /* Module exports */
     _.extend(exports, {
         CreateLanguageSelectorModel: CreateLanguageSelectorModel
     });
