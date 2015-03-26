@@ -2,6 +2,9 @@
 
 namespace Atomia.Store.Core
 {
+    /// <summary>
+    /// Renewal period of a <see cref="Product"/>
+    /// </summary>
     public sealed class RenewalPeriod
     {
         public const string MONTH = "MONTH";
@@ -10,6 +13,11 @@ namespace Atomia.Store.Core
         private readonly int period;
         private readonly string unit;
 
+        /// <summary>
+        /// Renewal period constructor
+        /// </summary>
+        /// <param name="period">Length of the renewal period</param>
+        /// <param name="unit">Unit of the renewal period: <see cref="MONTH" or <see cref="YEAR"/>/></param>
         public RenewalPeriod(int period, string unit)
         {
             if (period <= 0)
@@ -26,6 +34,9 @@ namespace Atomia.Store.Core
             this.unit = unit;
         }
 
+        /// <summary>
+        /// Length of the renewal period
+        /// </summary>
         public int Period
         {
             get
@@ -34,6 +45,9 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// <see cref="MONTH"/> or <see cref="YEAR"/>
+        /// </summary>
         public string Unit 
         {
             get

@@ -3,6 +3,9 @@ using System.Linq;
 
 namespace Atomia.Store.Core
 {
+    /// <summary>
+    /// A domain search result
+    /// </summary>
     public sealed class DomainResult
     {
         public const string AVAILABLE = "available";
@@ -19,6 +22,14 @@ namespace Atomia.Store.Core
         private int domainSearchId;
         private string tld;
 
+        /// <summary>
+        /// Domain result constructor
+        /// </summary>
+        /// <param name="product">The underlying <see cref="Product"/></param>
+        /// <param name="tld">The TLD</param>
+        /// <param name="domainName">The domain name</param>
+        /// <param name="status">The status, see constants above.</param>
+        /// <param name="domainSearchId">The id of the domain search that yielded this result.</param>
         public DomainResult(Product product, string tld, string domainName, string status, int domainSearchId)
         {
             this.product = product;
@@ -34,6 +45,9 @@ namespace Atomia.Store.Core
             this.DomainName = domainName;
         }
 
+        /// <summary>
+        /// The underlying <see cref="Product"/>
+        /// </summary>
         public Product Product
         {
             get
@@ -42,6 +56,9 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// The id of the domain search that yielded this result.
+        /// </summary>
         public int DomainSearchId
         {
             get
@@ -50,6 +67,9 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// The availability status: <see cref="AVAILABLE"/>, <see cref="UNAVAILABLE"/>, <see cref="UNKNOWN"/> or <see cref="LOADING"/>
+        /// </summary>
         public string Status
         {
             get
@@ -58,6 +78,10 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// The TLD this result belongs to. No dot.
+        /// </summary>
+        /// <example>"com", "net", "org"</example>
         public string TLD
         {
             get
@@ -66,6 +90,10 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// The domain name, including TLD.
+        /// </summary>
+        /// <example>"example.com"</example>
         public string DomainName {
             get
             {

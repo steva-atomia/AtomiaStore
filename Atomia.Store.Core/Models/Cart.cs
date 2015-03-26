@@ -4,6 +4,9 @@ using System.Linq;
 
 namespace Atomia.Store.Core
 {
+    /// <summary>
+    /// Shopping cart
+    /// </summary>
     public sealed class Cart
     {
         private readonly ICartProvider cartProvider;
@@ -15,6 +18,11 @@ namespace Atomia.Store.Core
         private decimal tax;
         private decimal total;
 
+        /// <summary>
+        /// Cart constructor
+        /// </summary>
+        /// <param name="cartProvider">Provider to get current cart.</param>
+        /// <param name="cartPricingService">Service to set price on cart and items.</param>
         public Cart(ICartProvider cartProvider, ICartPricingService cartPricingService)
         {
             if (cartProvider == null)
@@ -31,6 +39,9 @@ namespace Atomia.Store.Core
             this.cartPricingService = cartPricingService;
         }
 
+        /// <summary>
+        /// Items in cart.
+        /// </summary>
         public ICollection<CartItem> CartItems 
         { 
             get 
@@ -39,6 +50,9 @@ namespace Atomia.Store.Core
             } 
         }
 
+        /// <summary>
+        /// Campaign code in cart.
+        /// </summary>
         public string CampaignCode 
         { 
             get 
@@ -47,6 +61,9 @@ namespace Atomia.Store.Core
             }
         }
 
+        /// <summary>
+        /// Cart subtotal.
+        /// </summary>
         public decimal SubTotal 
         { 
             get 
@@ -55,6 +72,9 @@ namespace Atomia.Store.Core
             } 
         }
 
+        /// <summary>
+        /// Cart tax.
+        /// </summary>
         public decimal Tax 
         { 
             get 
@@ -63,6 +83,9 @@ namespace Atomia.Store.Core
             } 
         }
 
+        /// <summary>
+        /// Cart total.
+        /// </summary>
         public decimal Total 
         { 
             get 
@@ -71,6 +94,12 @@ namespace Atomia.Store.Core
             } 
         }
 
+        /// <summary>
+        /// Set cart pricing totals.
+        /// </summary>
+        /// <param name="subTotal">Cart subtotal</param>
+        /// <param name="tax">Cart tax</param>
+        /// <param name="total">Cart total</param>
         public void SetPricing(decimal subTotal, decimal tax, decimal total)
         {
             if (subTotal < 0)
@@ -93,6 +122,11 @@ namespace Atomia.Store.Core
             this.total = total;
         }
 
+        /// <summary>
+        /// Add multiple cart items and campaign code to cart.
+        /// </summary>
+        /// <param name="cartItems">Cart items to add</param>
+        /// <param name="campaignCode">Campaign code to add</param>
         public void UpdateCart(IEnumerable<CartItem> cartItems, string campaignCode)
         {
             if (cartItems == null)
@@ -118,6 +152,11 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Add a single cart item to cart.
+        /// </summary>
+        /// <param name="cartItem">The cart item to add.</param>
+        /// <returns>The id assigned to the cart item.</returns>
         public Guid AddItem(CartItem cartItem)
         {
             if (cartItem == null)
@@ -133,6 +172,10 @@ namespace Atomia.Store.Core
             return cartItem.Id;
         }
 
+        /// <summary>
+        /// Remove item matching id
+        /// </summary>
+        /// <param name="itemId">Id of the cart item to remove</param>
         public void RemoveItem(Guid itemId)
         {
             var cartItem = this.cartItems.Find(x => x.Id == itemId);
@@ -147,6 +190,11 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Set campaign code in cart.
+        /// </summary>
+        /// <remarks>Adding an empty string is equal to removing the campaign code</remarks>
+        /// <param name="campaignCode">The campaign code to set</param>
         public void SetCampaignCode(string campaignCode)
         {
             if (campaignCode == null)
@@ -158,12 +206,21 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Remove campaign code from cart.
+        /// </summary>
         public void RemoveCampaignCode()
         {
             this.campaignCode = string.Empty;
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Set custom attribute on an item in cart. Will add or override attribute if exists.
+        /// </summary>
+        /// <param name="itemId">Id of the cart item to set custom attribute on</param>
+        /// <param name="name">The name of the custom attribute to set</param>
+        /// <param name="value">The value of the custom attribute to set</param>
         public void SetItemAttribute(Guid itemId, string name, string value)
         {
             var cartItem = this.cartItems.Find(x => x.Id == itemId);
@@ -200,6 +257,11 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Remove custom attribute from item in cart.
+        /// </summary>
+        /// <param name="itemId">Id of the item to remove custom attribute from</param>
+        /// <param name="name">Name of the custom attribute to remove.</param>
         public void RemoveItemAttribute(Guid itemId, string name)
         {
             var cartItem = this.cartItems.Find(x => x.Id == itemId);
@@ -224,6 +286,11 @@ namespace Atomia.Store.Core
 
         }
 
+        /// <summary>
+        /// Change quantity of item in cart
+        /// </summary>
+        /// <param name="itemId">Id of the item to remove custom attribute from</param>
+        /// <param name="newQuantity">The quantity to set on the item</param>
         public void ChangeQuantity(Guid itemId, decimal newQuantity)
         {
             if (newQuantity < 0)
@@ -242,6 +309,9 @@ namespace Atomia.Store.Core
             RecalculatePricingAndSave();
         }
 
+        /// <summary>
+        /// Remove all cart items and any campaign code from cart.
+        /// </summary>
         public void Clear()
         {
             this.cartItems.Clear();
@@ -250,6 +320,9 @@ namespace Atomia.Store.Core
             cartProvider.SaveCart(this);
         }
 
+        /// <summary>
+        /// Check if cart is empty or not
+        /// </summary>
         public bool IsEmpty()
         {
             return cartItems.Count == 0;
