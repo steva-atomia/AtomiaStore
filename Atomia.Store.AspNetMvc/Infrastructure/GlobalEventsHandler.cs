@@ -4,8 +4,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
 {
 
     /// <summary>
-    /// The GlobalEventsDefaultHandler class
+    /// Provides lifecycle event handlers that can be called from Global.asax
     /// </summary>
+    /// <remarks>Allows for runtime binding of handler instead of changing Global.asax file.</remarks>
     public abstract class GlobalEventsHandler
     {
         /// <summary>

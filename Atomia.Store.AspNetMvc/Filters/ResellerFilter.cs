@@ -4,6 +4,9 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Filters
 {
+    /// <summary>
+    /// Sets <see cref="Atomia.Store.Core.ResellerIdentifier"/> based on reseller hash from query string "?reseller={resellerAccountHash}".
+    /// </summary>
     public sealed class ResellerFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)

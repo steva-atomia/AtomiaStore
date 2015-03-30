@@ -4,12 +4,20 @@ using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
+    /// <summary>
+    /// A named list of rotues that define an order flow.
+    /// </summary>
     public sealed class OrderFlow
     {
         private readonly string name;
         private readonly List<OrderFlowStep> orderFlowSteps = new List<OrderFlowStep>();
         private readonly Dictionary<string, OrderFlowStep> stepIndex = new Dictionary<string, OrderFlowStep>();
 
+        /// <summary>
+        /// Construct the <see cref="OrderFlow"/>
+        /// </summary>
+        /// <param name="name">The name of the order flow</param>
+        /// <param name="routeNames">The names of the routes that should make up the order flow.</param>
         public OrderFlow(string name, string[] routeNames)
         {
             this.name = name;
@@ -46,6 +54,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             }
         }
 
+        /// <summary>
+        /// The order flow name
+        /// </summary>
         public string Name
         {
             get
@@ -54,6 +65,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             }
         }
 
+        /// <summary>
+        /// The contained <see cref="OrderFlowStep">OrderFlowSteps</see>.
+        /// </summary>
         public IEnumerable<OrderFlowStep> Steps
         {
             get
@@ -62,6 +76,15 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             }
         }
 
+        /// <summary>
+        /// Add an alternative route name for a step to map several routes to a single order flow step.
+        /// </summary>
+        /// <param name="alias">The additional route name for a step</param>
+        /// <param name="routeName">The route name for the step as defined in the constructor</param>
+        /// <remarks>
+        /// An order flow step might need to reachable by several different routes, e.g. if the domain search route is the first order step 
+        /// you might want to have both "/" and "/Domains" mapping to the same order flow step.
+        /// </remarks>
         public void AddRouteNameAlias(string alias, string routeName)
         {
             if (this.stepIndex.ContainsKey(alias))
@@ -77,6 +100,12 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             this.stepIndex[alias] = this.stepIndex[routeName];
         }
 
+        /// <summary>
+        /// Get the <see cref="OrderFlowStep"/> that is mapped to a route.
+        /// </summary>
+        /// <param name="routeName">The name of the route to get the step for.</param>
+        /// <returns>The <see cref="OrderFlowStep"/></returns>
+        /// <exception cref="System.ArgumentException">If no step with the specified route exists in the order flow.</exception>
         public OrderFlowStep GetOrderFlowStep(string routeName)
         {
             if (!this.stepIndex.ContainsKey(routeName))

@@ -5,8 +5,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
+    /// <summary>
+    /// Custom error pages or JSON.
+    /// </summary>
     public sealed class ErrorController : Controller
     {
+        /// <summary>
+        /// 500 Internal Server Error
+        /// </summary>
         public ActionResult InternalServerError(Exception error)
         {
             Response.StatusCode = (int)HttpStatusCode.InternalServerError;
@@ -23,6 +29,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             }
         }
 
+        /// <summary>
+        /// 404 Not Found
+        /// </summary>
         public ActionResult NotFound(Exception error)
         {
             Response.StatusCode = (int)HttpStatusCode.NotFound;
@@ -39,6 +48,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             }
         }
 
+        /// <summary>
+        /// 403 Forbidden
+        /// </summary>
         public ActionResult Forbidden(Exception error)
         {
             Response.StatusCode = (int)HttpStatusCode.Forbidden;

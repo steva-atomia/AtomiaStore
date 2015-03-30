@@ -4,10 +4,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// <see cref="Atomia.Store.Core.ICustomerTypeProvider"/> that supports "individual" or "company"
+    /// </summary>
     public sealed class CustomerTypeProvider : ICustomerTypeProvider
     {
         private readonly IResourceProvider resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
 
+        /// <inheritdoc />
         public IEnumerable<CustomerType> GetCustomerTypes()
         {
             return new List<CustomerType> 

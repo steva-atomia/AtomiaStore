@@ -9,7 +9,10 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public abstract class ContactModel : ContactDataForm
+    /// <summary>
+    /// Contact data model that maps closely to data that can be used with Atomia Billing accounts.
+    /// </summary>
+    public abstract class ContactModel : ContactData
     {
         private readonly ICustomerTypeProvider customerTypeProvider = DependencyResolver.Current.GetService<ICustomerTypeProvider>();
         private readonly ICountryProvider countryProvider = DependencyResolver.Current.GetService<ICountryProvider>();
@@ -17,6 +20,9 @@ namespace Atomia.Store.AspNetMvc.Models
         private IndividualExtraInfo individualInfo;
         private CompanyExtraInfo companyInfo;
 
+        /// <summary>
+        /// Construct new instances with instantiated sub-forms.
+        /// </summary>
         public ContactModel()
         {
             var resellerProvider = DependencyResolver.Current.GetService<IResellerProvider>();
@@ -31,6 +37,20 @@ namespace Atomia.Store.AspNetMvc.Models
             this.IndividualInfo = new IndividualExtraInfo();
         }
 
+        /// <summary>
+        /// Partial view name based on the <see cref="ContactData"/> id.
+        /// </summary>
+        public virtual string PartialViewName
+        {
+            get
+            {
+                return "_" + this.Id;
+            }
+        }
+
+        /// <summary>
+        /// Available <see cref="Atomia.Store.Core.CustomerType">CustomerTypes</see> usable as select list.
+        /// </summary>
         public virtual IEnumerable<SelectListItem> CustomerTypeOptions { 
             get
             {
@@ -44,6 +64,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Available <see cref="Atomia.Store.Core.Country">Countires</see> usable as select list.
+        /// </summary>
         public virtual IEnumerable<SelectListItem> CountryOptions
         {
             get
@@ -60,49 +83,89 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Customer selected customer type.
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         public virtual string CustomerType { get; set; }
 
+        /// <summary>
+        /// Customer provided email address
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Email, "CustomerValidation,Email")]
         public virtual string Email { get; set; }
 
+        /// <summary>
+        /// Customer provided first name
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.FirstName, "CustomerValidation,FirstName")]
         public virtual string FirstName { get; set; }
 
+        /// <summary>
+        /// Customer provided last name
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.LastName, "CustomerValidation,LastName")]
         public virtual string LastName { get; set; }
 
+        /// <summary>
+        /// Customer provided address
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Address, "CustomerValidation,Address")]
         public virtual string Address { get; set; }
 
+        /// <summary>
+        /// Customer provided second address line
+        /// </summary>
         [CustomerValidation(CustomerValidationType.Address, "CustomerValidation,address")]
         public virtual string Address2 { get; set; }
 
+        /// <summary>
+        /// Customer provided city
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.City, "CustomerValidation,City")]
         public virtual string City { get; set; }
 
+        /// <summary>
+        /// Customer provided zip code
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Zip, "CustomerValidation,Zip", CountryField = "Country")]
         public virtual string Zip { get; set; }
 
+        //TODO: Fix validation
         //[Required]
         //[CustomerValidation(CustomerValidationType.Country, "CustomerValidation,Country")]
+        /// <summary>
+        /// Customer selected country
+        /// </summary>
         public virtual string Country { get; set; }
 
+        /// <summary>
+        /// Customer provided state
+        /// </summary>
         public virtual string State { get; set; }
 
+        /// <summary>
+        /// Customer provided phone number
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Phone, "CustomerValidation,Phone", CountryField = "Country")]
         public virtual string Phone { get; set; }
 
+        /// <summary>
+        /// Customer provided fax number
+        /// </summary>
         [CustomerValidation(CustomerValidationType.Fax, "CustomerValidation,Fax", CountryField = "Country")]
         public virtual string Fax { get; set; }
 
+        /// <summary>
+        /// <see cref="IndividualExtraInfo"/> sub-form.
+        /// </summary>
         public virtual IndividualExtraInfo IndividualInfo
         {
             get
@@ -122,6 +185,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// <see cref="CompanyExtraInfo"/> sub-form.
+        /// </summary>
         public virtual CompanyExtraInfo CompanyInfo
         {
             get
@@ -140,15 +206,34 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Reseller id.
+        /// </summary>
+        /// <remarks>Property is required by some types of CustomerValidation.</remarks>
         public virtual Guid ResellerId { get; set; }
 
+        /// <summary>
+        /// List of <see cref="CartItem"/> from current <see cref="Cart"/>.
+        /// </summary>
+        /// <remarks>Property is required by some types of CustomerValidation.</remarks>
         public virtual List<CartItem> CartItems { get; set; }
     }
 
+    /// <summary>
+    /// Any sub-forms must implement this class to be compatible with CustomerValidation since certain 
+    /// properties are expected on the form being validated, i.e. the sub-form, but are in this case provided by the customer via the parent form.
+    /// </summary>
+    /// <remarks>The Parent property should be set by the parent form</remarks>
     public class ContactSubmodel
     {
+        /// <summary>
+        /// Reference to the parent <see cref="ContactModel"/>
+        /// </summary>
         internal ContactModel Parent { get; set; }
 
+        /// <summary>
+        /// Proxy to the Country property on the parent form.
+        /// </summary>
         public string Country
         {
             get
@@ -157,6 +242,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Proxy to the CartItems property on the parent form.
+        /// </summary>
         public List<CartItem> CartItems
         {
             get
@@ -165,6 +253,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Proxy to the ResellerId property on the parent form.
+        /// </summary>
         public Guid ResellerId
         {
             get
@@ -174,24 +265,41 @@ namespace Atomia.Store.AspNetMvc.Models
         }
     }
 
-
+    /// <summary>
+    /// A <see cref="ContactSubmodel"/> form that collects data only relevant for company customers.
+    /// </summary>
     public class CompanyExtraInfo : ContactSubmodel
     {
+        /// <summary>
+        /// Customer provided company name
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.CompanyName, "CustomerValidation,CompanyName")]
         public virtual string CompanyName { get; set; }
 
+        /// <summary>
+        /// Customer provided national corporate identification / registration number for the company
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.IdentityNumber, "CustomerValidation,CompanyIdentityNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string IdentityNumber { get; set; }
 
+        /// <summary>
+        /// Customer provided VAT registration number for the company
+        /// </summary>
         [CustomerValidation(CustomerValidationType.VatNumber, "CustomerValidation,VatNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string VatNumber { get; set; }
 
     }
 
+    /// <summary>
+    /// A <see cref="ContactSubmodel"/> form that collects data only relevant for individual (private person) customers.
+    /// </summary>
     public class IndividualExtraInfo : ContactSubmodel
     {
+        /// <summary>
+        /// Customer provided national identification / identity / registration number for the customer
+        /// </summary>
         [CustomerValidation(CustomerValidationType.IdentityNumber, "CustomerValidation,IndividualIdentityNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string IdentityNumber { get; set; }
     }

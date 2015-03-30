@@ -2,6 +2,9 @@
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    /// <summary>
+    /// View model for the DomainsController::Index page.
+    /// </summary>
     public class DomainsViewModel
     {
 

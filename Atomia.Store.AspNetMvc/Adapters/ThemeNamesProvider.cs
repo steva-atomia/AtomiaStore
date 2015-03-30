@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// App settings backed <see cref="Atomia.Store.Core.IThemeNamesProvider"/>
+    /// </summary>
     public sealed class ThemeNamesProvider : IThemeNamesProvider
     {
+        /// <summary>
+        /// Get active theme names from app setting "Themes", specified as comma separated list.
+        /// </summary>
         public IEnumerable<string> GetActiveThemeNames()
         {
             var themes = new List<string>();
@@ -24,6 +30,9 @@ namespace Atomia.Store.AspNetMvc.Adapters
             return themes;
         }
 
+        /// <summary>
+        /// Get first name from list of names in app setting "Themes", or "Default"
+        /// </summary>
         public string GetMainThemeName()
         {
             var themeNames = GetActiveThemeNames();

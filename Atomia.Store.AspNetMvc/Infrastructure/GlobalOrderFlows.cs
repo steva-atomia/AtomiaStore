@@ -1,6 +1,9 @@
 ﻿
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
+    /// <summary>
+    /// Singleton for order flow configuration
+    /// </summary>
     public static class GlobalOrderFlows
     {
         static GlobalOrderFlows()

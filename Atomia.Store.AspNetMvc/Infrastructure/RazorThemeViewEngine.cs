@@ -5,6 +5,9 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
+    /// <summary>
+    /// An implementation of the standard RazorViewEngine that adds views from the Themes folder based on active theme names.
+    /// </summary>
     public sealed class RazorThemeViewEngine : RazorViewEngine
     {
         private readonly IThemeNamesProvider themeNamesProvider = DependencyResolver.Current.GetService<IThemeNamesProvider>();

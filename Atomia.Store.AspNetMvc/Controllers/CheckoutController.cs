@@ -9,15 +9,20 @@ using System;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
+    /// <summary>
+    /// Checkout and related payment handling and terms of service.
+    /// </summary>
     public sealed class CheckoutController : Controller
     {
-        private readonly IEnumerable<PaymentMethodForm> paymentMethodForms = DependencyResolver.Current.GetServices<PaymentMethodForm>();
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
         private readonly IContactDataProvider contactDataProvider = DependencyResolver.Current.GetService<IContactDataProvider>();
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
         private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
         private readonly ITermsOfServiceProvider tosProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
 
+        /// <summary>
+        /// Checkout page, part of order flow
+        /// </summary>
         [OrderFlowFilter]
         [HttpGet]
         public ActionResult Index()
@@ -31,6 +36,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Checkout form handler.
+        /// </summary>
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(CheckoutViewModel model)
@@ -61,6 +69,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return View(model);
         }
 
+        /// <summary>
+        /// Successful payment page.
+        /// </summary>
         [HttpGet]
         public ActionResult Success()
         {
@@ -70,6 +81,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return View();
         }
 
+        /// <summary>
+        /// Failed payment page. 
+        /// </summary>
         [HttpGet]
         public ActionResult Failure()
         {
@@ -77,9 +91,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         /// <summary>
-        /// 
+        /// Page for redirect from Atomia payment HTTP handlers
         /// </summary>
-        /// <remarks>The parameters correspond to the standard parameters sent by Atomia payment HTTP handlers</remarks>
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Payment(string amount, string transactionReference, int transactionReferenceType, string status)
         {
@@ -101,6 +114,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             return RedirectToAction(action);
         }
 
+        /// <summary>
+        /// Terms of service presentation page.
+        /// </summary>
         [HttpGet]
         public ActionResult TermsOfService(string id)
         {

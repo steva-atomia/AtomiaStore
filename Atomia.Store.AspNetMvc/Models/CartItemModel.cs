@@ -5,6 +5,9 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    /// <summary>
+    /// View model for <see cref="Atomia.Store.Core.CartItem"/> with values formatted and localized for display.
+    /// </summary>
     public class CartItemModel : IPresentableItem
     {
         private readonly IItemPresenter itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
@@ -25,6 +28,9 @@ namespace Atomia.Store.AspNetMvc.Models
             this.cartItem = cartItem;
         }
 
+        /// <summary>
+        /// The represented <see cref="Atomia.Store.Core.CartItem"/>
+        /// </summary>
         internal CartItem CartItem
         {
             get
@@ -33,7 +39,6 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        //[Required]
         public string ArticleNumber
         {
             get
@@ -46,7 +51,6 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        //[Required]
         public decimal Quantity
         {
             get

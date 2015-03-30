@@ -143,7 +143,6 @@
     <Compile Include="Models\OrderFlowStepModel.cs" />
     <Compile Include="Models\TermsOfServiceConfirmationModel.cs" />
     <Compile Include="Models\TermsOfServiceViewModel.cs" />
-    <Compile Include="Ports\ContactDataForm.cs" />
     <Compile Include="Ports\PaymentMethodForm.cs" />
     <Compile Include="Ports\PaymentMethodGuiPlugin.cs" />
     <Compile Include="Models\ProductListingViewModel.cs" />

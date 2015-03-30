@@ -10,6 +10,12 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Filters
 {
+    /// <summary>
+    /// Filter for getting data for and validating order flow steps.
+    /// Selects order flow to use based on "?flow={flowName}" querystring, or uses default order flow.
+    /// Populates ViewBag with <see cref="Atomia.Store.AspNetMvc.Models.OrderFlowModel"/> and validates current step.
+    /// <seealso cref="Atomia.Store.AspNetMvc.Infrastructure.GlobalOrderFlow"/>
+    /// </summary>
     public sealed class OrderFlowFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -39,6 +45,9 @@ namespace Atomia.Store.AspNetMvc.Filters
             ValidateOrderFlowStep(filterContext, orderFlow, currentStep);
         }
 
+        /// <summary>
+        /// Adds <see cref="Atomia.Store.AspNetMvc.Models.OrderFlowModel"/> to ViewBag.
+        /// </summary>
         private void PopulateViewBag(ActionExecutingContext filterContext, OrderFlow orderFlow, OrderFlowStep currentStep, bool isDefaultOrderFlow)
         {
             var resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
@@ -70,6 +79,9 @@ namespace Atomia.Store.AspNetMvc.Filters
             filterContext.Controller.ViewBag.OrderFlow = orderFlowModel;
         }
 
+        /// <summary>
+        /// Validates <see cref="Atomia.Store.AspNetMvc.Models.OrderFlowModel"/> for current step.
+        /// </summary>
         private void ValidateOrderFlowStep(ActionExecutingContext filterContext, OrderFlow orderFlow, OrderFlowStep currentOrderFlowStep)
         {
             var orderFlowValidator = DependencyResolver.Current.GetService<IOrderFlowValidator>();

@@ -6,8 +6,12 @@ using System.Web.Routing;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// <see cref="Atomia.Store.Core.PaymentUrlProvider"/> for actions in <see cref="Atomia.Store.AspNetMvc.Controller.CheckoutController"/>
+    /// </summary>
     public sealed class PaymentUrlProvider : Atomia.Store.Core.PaymentUrlProvider
     {
+        /// <inheritdoc/>
         public override string SuccessUrl
         {
             get
@@ -16,6 +20,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
         }
 
+        /// <inheritdoc/>
         public override string FailureUrl
         {
             get
@@ -24,6 +29,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
         }
 
+        /// <inheritdoc/>
         public override string CancelUrl
         {
             get
@@ -32,6 +38,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
         }
 
+        /// <inheritdoc/>
         public override string DefaultPaymentUrl
         {
             get
@@ -40,6 +47,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             }
         }
 
+        /// <inheritdoc/>
         public override string QualifiedUrl(string path)
         {
             var baseUri = BaseUriHelper.GetBaseUri();

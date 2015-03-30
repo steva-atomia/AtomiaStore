@@ -4,10 +4,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// Session backed <see cref="Atomia.Store.Core.ICartProvider"/>
+    /// </summary>
     public sealed class CartProvider : ICartProvider
     {
         private readonly ICartPricingService cartPricingProvider = DependencyResolver.Current.GetService<ICartPricingService>();
 
+        /// <inheritdoc/>
         public Cart GetCart() 
         {
             var cart = HttpContext.Current.Session["Cart"] as Cart;
@@ -20,12 +24,13 @@ namespace Atomia.Store.AspNetMvc.Adapters
             return cart;
         }
 
+        /// <inheritdoc/>
         public void SaveCart(Cart cart)
         {
             HttpContext.Current.Session["Cart"] = cart;
         }
 
-
+        /// <inheritdoc/>
         public void ClearCart()
         {
             HttpContext.Current.Session["Cart"] = null;

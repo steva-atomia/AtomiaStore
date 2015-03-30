@@ -5,10 +5,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// Session backed <see cref="Atomia.Store.Core.ILanguagePreferenceProvider"/>
+    /// </summary>
     public sealed class LanguagePreferenceProvider : ILanguagePreferenceProvider
     {
         private readonly ILanguageProvider languageProvider = DependencyResolver.Current.GetService<ILanguageProvider>();
 
+        /// <inheritdoc/>
         public void SetPreferredLanguage(Language language)
         {
             if (language == null)
@@ -19,6 +23,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             HttpContext.Current.Session["PreferredLanguage"] = language;
         }
 
+        /// <inheritdoc/>
         public Language GetCurrentLanguage()
         {
             var language = HttpContext.Current.Session["PreferredLanguage"] as Language;

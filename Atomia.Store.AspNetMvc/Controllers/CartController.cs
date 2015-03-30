@@ -6,11 +6,17 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
+    /// <summary>
+    /// JSON cart API.
+    /// </summary>
     public sealed class CartController : Controller
     {
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
         private readonly IDomainsProvider domainsProvider = DependencyResolver.Current.GetService<IDomainsProvider>();
 
+        /// <summary>
+        /// Get the current cart and domain categories.
+        /// </summary>
         public JsonResult GetCart()
         {
             var cart = cartProvider.GetCart();
@@ -22,6 +28,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
                 });
         }
 
+        /// <summary>
+        /// Update, recalculate and save current cart based on POST:ed data.
+        /// </summary>
         [HttpPost]
         public JsonResult RecalculateCart(CartUpdateModel updatedCart)
         {

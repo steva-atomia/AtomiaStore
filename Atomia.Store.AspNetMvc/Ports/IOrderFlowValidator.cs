@@ -3,6 +3,9 @@ using Atomia.Store.AspNetMvc.Infrastructure;
 
 namespace Atomia.Store.AspNetMvc.Ports
 {
+    /// <summary>
+    /// Provides functionality for validating the current <see cref="OrderFlowStep"/>, e.g. required cart state or collected information.
+    /// </summary>
     public interface IOrderFlowValidator
     {
         /// <summary>

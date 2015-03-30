@@ -5,6 +5,9 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    /// <summary>
+    /// View model for <see cref="Atomia.Store.Core.Cart"/> with values formatted and localized for display.
+    /// </summary>
     public class CartModel
     {
         private readonly ICurrencyFormatter currencyFormatter = DependencyResolver.Current.GetService<ICurrencyFormatter>();

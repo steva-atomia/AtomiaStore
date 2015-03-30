@@ -5,10 +5,14 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// Session backed <see cref="Atomia.Store.Core.ICurrencyPreferenceProvider"/>
+    /// </summary>
     public sealed class CurrencyPreferenceProvider : ICurrencyPreferenceProvider
     {
         private readonly ICurrencyProvider currencyProvider = DependencyResolver.Current.GetService<ICurrencyProvider>();
 
+        /// <inheritdoc />
         public void SetPreferredCurrency(Currency currency)
         {
             if (currency == null)
@@ -19,6 +23,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             HttpContext.Current.Session["Currency"] = currency;
         }
 
+        /// <inheritdoc />
         public Currency GetCurrentCurrency()
         {
             var currency = HttpContext.Current.Session["Currency"] as Currency;

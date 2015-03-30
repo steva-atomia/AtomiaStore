@@ -5,12 +5,15 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
+    /// <summary>
+    /// <see cref="Atomia.Store.Core.ICurrencyFormatter"/> that formats amount based on culture from customer's currency preference.
+    /// </summary>
     public sealed class CurrencyFormatter : ICurrencyFormatter
     {
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider = DependencyResolver.Current.GetService<ICurrencyPreferenceProvider>();
 
         /// <summary>
-        /// Return default .NET currency format or fallback to simple 
+        /// Format amount based on culture from preferred currency, or fallback to simple currency code prefix.
         /// </summary>
         public string FormatAmount(decimal amount)
         {

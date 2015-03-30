@@ -5,16 +5,25 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    /// <summary>
+    /// A view model of a <see cref="Atomia.Store.Core.Product"/> with added localized name and description.
+    /// </summary>
     public class ProductModel : IPresentableItem
     {
         private readonly IItemPresenter itemPresenter = DependencyResolver.Current.GetService<IItemPresenter>();
         private readonly Product product;
 
+        /// <summary>
+        /// Construct the view model from the <see cref="Atomia.Store.Core.Product"/>
+        /// </summary>
         public ProductModel(Product product)
         {
             this.product = product;
         }
 
+        /// <summary>
+        /// The article number of the underlying product.
+        /// </summary>
         public string ArticleNumber
         {
             get
@@ -23,6 +32,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Localized name of the product
+        /// </summary>
         public string Name
         {
             get
@@ -31,6 +43,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Localized description of the product
+        /// </summary>
         public string Description
         {
             get
@@ -39,6 +54,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Custom attributes from the underlying product
+        /// </summary>
         public List<CustomAttribute> CustomAttributes
         {
             get
@@ -52,6 +70,9 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        /// <summary>
+        /// Display formatted renewal periods and prices from the underlying product.
+        /// </summary>
         public IReadOnlyCollection<PricingVariantModel> PricingVariants
         {
             get

@@ -8,14 +8,25 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
+    /// <summary>
+    /// Abstract view model for the /Checkout/Index page, collecting payment method selection and terms of service confirmations from customer.
+    /// </summary>
     public abstract class CheckoutViewModel
     {
+        /// <summary>
+        /// Payment method selected by customer.
+        /// </summary>
         public abstract PaymentMethodGuiPlugin SelectedPaymentMethod { get; }
 
+        /// <summary>
+        /// Terms of service confirmations needed by products in customer's cart
+        /// </summary>
         public abstract IList<TermsOfServiceConfirmationModel> TermsOfService { get; set; }
     }
 
-
+    /// <summary>
+    /// Default implementation of <see cref="CheckoutViewModel"/>
+    /// </summary>
     public class DefaultCheckoutViewModel : CheckoutViewModel
     {
         private readonly ITermsOfServiceProvider termsOfServiceProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
@@ -23,22 +34,37 @@ namespace Atomia.Store.AspNetMvc.Models
 
         private IList<TermsOfServiceConfirmationModel> termsOfServiceConfirmationModels = null;
 
+        /// <summary>
+        /// Construct instance with available payment methods and pre-select default payment method.
+        /// </summary>
         public DefaultCheckoutViewModel()
         {
             this.PaymentMethodGuiPlugins = paymentPluginsProvider.AvailablePaymentMethodGuiPlugins;
             this.SelectedPaymentMethodId = paymentPluginsProvider.DefaultPaymentMethodId;
         }
 
+        /// <summary>
+        /// Available payment methods as <see cref="PaymentMethodGuiPlugin">PaymentMethodGuiPlugins</see>
+        /// </summary>
         public virtual IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set; }
 
+        /// <summary>
+        /// Payment method id selected by customer.
+        /// </summary>
         [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
         public string SelectedPaymentMethodId { get; set; }
 
+        /// <summary>
+        /// <see cref="PaymentMethodGuiPlugin"/> from payment method id selected by customer.
+        /// </summary>
         public override PaymentMethodGuiPlugin SelectedPaymentMethod
         {
             get { return PaymentMethodGuiPlugins.Where(x => x.Id == SelectedPaymentMethodId).FirstOrDefault();}
         }
 
+        /// <summary>
+        /// List of <see cref="TermsofServiceConfirmationModel"/> for confirming terms of service applicable to products in customer's cart.
+        /// </summary>
         public override IList<TermsOfServiceConfirmationModel> TermsOfService
         {
             get

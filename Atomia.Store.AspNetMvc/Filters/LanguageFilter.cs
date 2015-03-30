@@ -4,6 +4,10 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Filters
 {
+    /// <summary>
+    /// Filter for setting language based on query string "?lang={languageTag}".
+    /// Sets preference via <see cref="Atomia.Store.Core.ILanguagePreferenceProvider"/>, and sets thread CurrentCulture and CurrentUICulture.
+    /// </summary>
     public sealed class LanguageFilter : ActionFilterAttribute
     {
         public override void OnActionExecuting(ActionExecutingContext filterContext)
