@@ -5,13 +5,23 @@ using System.Linq;
 
 namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 {
+    /// <summary>
+    /// Handler to remove any item with category "PostOrder" from order items.
+    /// </summary>
+    /// <remarks>This should be the last order handler to amend the order.</remarks>
     public class RemovePostOrderHandler : OrderDataHandler
     {
+        /// <summary>
+        /// Handle items with category "PostOrder"
+        /// </summary>
         public virtual IEnumerable<string> HandledCategories
         {
             get { return new[] { "PostOrder" }; }
         }
 
+        /// <summary>
+        /// Remove any item with category "PostOrder" from order items.
+        /// </summary>
         public override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
             var postOrderItems = orderContext.ItemData.Where(i => this.HandledCategories.Contains(i.Category));

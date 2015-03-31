@@ -8,8 +8,14 @@ using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi
 {
+    /// <summary>
+    /// Helpers for mapping between products from Atomia Billing Product Service and AtomiaStore products
+    /// </summary>
     internal sealed class ProductMapper
     {
+        /// <summary>
+        /// Map product from Atomia Billing Product Service to AtomiaStore product
+        /// </summary>
         public static CoreProduct Map(ApiProduct apiProduct, Language language, string currencyCode)
         {
             var product = new CoreProduct()
@@ -27,6 +33,12 @@ namespace Atomia.Store.PublicBillingApi
             return product;
         }
 
+        /// <summary>
+        /// Set localized name or description on product
+        /// </summary>
+        /// <param name="product">The product to set name and description on</param>
+        /// <param name="apiProduct">The Atomia Billing product to get localized values from</param>
+        /// <param name="language">The localization langugage to use</param>
         private static void SetNameAndDescription(CoreProduct product, ApiProduct apiProduct, Language language)
         {
             // Set defaults before checking if translations are available.
@@ -66,6 +78,12 @@ namespace Atomia.Store.PublicBillingApi
             }
         }
 
+        /// <summary>
+        /// Select and set price in relevant currency
+        /// </summary>
+        /// <param name="product">The product to set price on</param>
+        /// <param name="apiProduct">The Atomia Billing product to select prices from</param>
+        /// <param name="language">The currency to use</param>
         private static void SetPricingVariants(CoreProduct product, ApiProduct apiProduct, string currencyCode)
         {
             product.PricingVariants = new List<PricingVariant>();
@@ -95,6 +113,9 @@ namespace Atomia.Store.PublicBillingApi
             }
         }
 
+        /// <summary>
+        /// Copy custom attributes from Atomia Billing product to AtomiaStore product
+        /// </summary>
         private static void SetCustomAttributes(CoreProduct product, ApiProduct apiProduct)
         {
             product.CustomAttributes = new List<CustomAttribute>();
@@ -109,6 +130,9 @@ namespace Atomia.Store.PublicBillingApi
             }
         }
 
+        /// <summary>
+        /// Find price value for currency among prices.
+        /// </summary>
         private static decimal FindPriceValue(IList<ProductPrice> prices, string currencyCode)
         {
             var price = prices.FirstOrDefault(p => p.CurrencyCode == currencyCode);

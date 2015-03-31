@@ -6,6 +6,9 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// <see cref="Atomia.Store.Core.ICartPricingService"/> to calculate cart based on current reseller's prices in Atomia Billing.
+    /// </summary>
     public sealed class CartPricingProvider : PublicBillingApiClient, ICartPricingService
     {
         private readonly IResellerProvider resellerProvider;
@@ -13,6 +16,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ICountryProvider countryProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
 
+        /// <summary>
+        /// Construct a new instance of CartPricingProvider
+        /// </summary>
         public CartPricingProvider(IResellerProvider resellerProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ICountryProvider countryProvider, RenewalPeriodProvider renewalPeriodProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
@@ -42,6 +48,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.renewalPeriodProvider = renewalPeriodProvider;
         }
 
+        /// <inheritdoc />
         public Cart CalculatePricing(Cart cart)
         {
             var publicOrder = CreateBasicOrder();

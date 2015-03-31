@@ -8,6 +8,9 @@ using System.Web.Services.Protocols;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// Place an order to Atomia Billing via Atomia Billing Public Service.
+    /// </summary>
     public sealed class OrderPlacementService : PublicBillingApiClient, IOrderPlacementService
     {
         private readonly PaymentUrlProvider urlProvider;
@@ -18,6 +21,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly IEnumerable<TransactionDataHandler> transactionDataHandlers;
         private readonly ILogger logger;
         
+        /// <summary>
+        /// Create a new instance of the service.
+        /// </summary>
         public OrderPlacementService(
             PaymentUrlProvider urlProvider,
             IProductProvider productProvider,
@@ -73,6 +79,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.logger = logger;
         }
 
+        /// <summary>
+        /// Place the order with data collected in the provided <see cref="Atomia.Store.Core.OrderContext"/>.
+        /// </summary>
+        /// <param name="orderContext">Context with cart, contact and other relevant data.</param>
+        /// <returns>The results of placing the order</returns>
         public OrderResult PlaceOrder(OrderContext orderContext)
         {
             var publicOrderContext = new PublicOrderContext(orderContext);
@@ -107,6 +118,12 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             };
         }
 
+        /// <summary>
+        /// Create PublicOrder and call CreateOrder in Atomia Billing Public Service.
+        /// </summary>
+        /// <param name="publicOrderContext">Order data</param>
+        /// <param name="paymentHandler">Handler for customer's selected payment method</param>
+        /// <returns>The order object returned from Atomia Billing Public Service</returns>
         private PublicOrder CreateOrder(PublicOrderContext publicOrderContext, PaymentDataHandler paymentHandler)
         {
             var newOrder = new PublicOrder()
@@ -146,6 +163,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         }
 
 
+        /// <summary>
+        /// Create PublicPaymentTransaction and call MakePayment in Atomia Billing Public Service.
+        /// </summary>
+        /// <param name="publicOrderContext">Order data</param>
+        /// <param name="order">The order object returned from CreateOrder call in Atomia Billing Public Service</param>
+        /// <param name="paymentHandler">Handler for customer's selected payment method</param>
+        /// <returns>URL to redirect to for finishing or seeing result of payment transaction.</returns>
         private string CreatePaymentTransaction(PublicOrderContext publicOrderContext, PublicOrder order, PaymentDataHandler paymentHandler)
         {
             var paymentTransaction = new PublicPaymentTransaction

@@ -3,12 +3,18 @@ using System;
 
 namespace Atomia.Store.PublicBillingApi.Handlers
 {
+    /// <summary>
+    /// Combination of data from <see cref="Atomia.Store.Core.CartItem"/>, <see cref="Atomia.Store.Core.Product"/> and renewal period
+    /// </summary>
     public sealed class ItemData
     {
         private readonly Product product;
         private readonly CartItem cartItem;
         private readonly Guid renewalPeriodId;
 
+        /// <summary>
+        /// Create new instance
+        /// </summary>
         public ItemData(CartItem cartItem, Product product, Guid renewalPeriodId)
         {
             if (cartItem == null)
@@ -26,6 +32,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             this.renewalPeriodId = renewalPeriodId;
         }
 
+        /// <summary>
+        /// The cart item
+        /// </summary>
         public CartItem CartItem
         {
             get
@@ -34,6 +43,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
         }
 
+        /// <summary>
+        /// The product
+        /// </summary>
         public Product Product
         {
             get
@@ -42,6 +54,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Shortcut for article number.
+        /// </summary>
         public string ArticleNumber
         {
             get
@@ -50,6 +65,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Shortcut for category.
+        /// </summary>
         public string Category
         {
             get
@@ -58,6 +76,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Renewal period id.
+        /// </summary>
         public Guid RenewalPeriodId
         {
             get
@@ -66,6 +87,9 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
         }
 
+        /// <summary>
+        /// Shortcut for quantity
+        /// </summary>
         public decimal Quantity
         {
             get

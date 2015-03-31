@@ -9,6 +9,10 @@ using System.Text.RegularExpressions;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// Domain names provider for Atomia Billing and Atomia DomainRegistration via Atomia.Web.Plugin.DomainSearch plugin.
+    /// Returns exact matches of search terms for TLDs that are available for current reseller.
+    /// </summary>
     public sealed class DomainsProvider : PublicBillingApiClient, IDomainsProvider
     {
         private readonly IProductProvider productProvider;
@@ -16,6 +20,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly string currencyCode;
         private readonly string countryCode;
 
+        /// <summary>
+        /// Construct a new instance
+        /// </summary>
         public DomainsProvider(
             IResellerDataProvider resellerDataProvider, 
             ICurrencyPreferenceProvider currencyPreferenceProvider, 
@@ -45,6 +52,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.productProvider = productProvider;
         }
 
+        /// <summary>
+        /// Find domain names that match search terms.
+        /// </summary>
+        /// <param name="searchTerms">A list of search terms</param>
+        /// <returns>A list of domain names that match the search terms</returns>
         public DomainSearchData FindDomains(ICollection<string> searchTerms)
         {
             var results = new List<DomainResult>();
@@ -73,6 +85,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             return data;
         }
 
+        /// <summary>
+        /// Check status of results from search with specified id
+        /// </summary>
         public DomainSearchData CheckStatus(int domainSearchId)
         {
             var results = new List<DomainResult>();
@@ -107,6 +122,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             return data;
         }
 
+        /// <summary>
+        /// Get default domain categories from Atomia Billing: TLD, TransferTLD, OwnDomain
+        /// </summary>
         public IEnumerable<string> GetDomainCategories()
         {
             return new List<string> { "TLD", "TransferTLD", "OwnDomain" };
@@ -175,6 +193,12 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             return results;
         }
 
+        /// <summary>
+        /// Filter domain names to check with Atomia DomainRegistration from those already checked locally.
+        /// </summary>
+        /// <param name="domainNames">All domain names in the search</param>
+        /// <param name="alreadyCheckedDomains">The domain names that have already been checked locally</param>
+        /// <returns>Domain names to check with Atomia DomainRegistration</returns>
         private IEnumerable<string> GetDomainNamesToCheck(IEnumerable<string> domainNames, IEnumerable<DomainDataFromXml> alreadyCheckedDomains)
         {
             var domainNamesToCheck = new HashSet<string>(domainNames);
@@ -183,6 +207,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             return domainNamesToCheck;
         }
 
+        /// <summary>
+        /// Start search for domain names in Atomia DomainRegistration
+        /// </summary>
         private IEnumerable<DomainDataFromXml> StartSearch(IEnumerable<string> domainNamesToCheck)
         {
             var result = DomainSearchHelper.StartSearch(
@@ -196,6 +223,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             return result;
         }
 
+        /// <summary>
+        /// Convert data from DomainSearch plugin to AtomiaStore native <see cref="Atomia.Store.Core.DomainResult"/>
+        /// </summary>
+        /// <param name="productId">Article number of the domain registration product</param>
+        /// <param name="productStatus">Domain name availability status</param>
+        /// <param name="productName">Name of the domain registration product</param>
+        /// <param name="transactionId">Id of the search that the result is from</param>
+        /// <returns>Single domain result</returns>
         private DomainResult CreateDomainResult(string productId, string productStatus, string productName, int transactionId)
         {
             var product = productProvider.GetProduct(productId);

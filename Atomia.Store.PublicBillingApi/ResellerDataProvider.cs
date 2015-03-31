@@ -4,6 +4,9 @@ using System;
 
 namespace Atomia.Store.PublicBillingApi
 {
+    /// <summary>
+    /// Provides Atomia Billing account data for resellers
+    /// </summary>
     public interface IResellerDataProvider
     {
         AccountData GetResellerAccountData();
@@ -11,10 +14,16 @@ namespace Atomia.Store.PublicBillingApi
         AccountData GetDefaultResellerAccountData();
     }
 
+    /// <summary>
+    /// Default reseller acccount data provider.
+    /// </summary>
     public sealed class ResellerDataProvider : PublicBillingApiClient, IResellerDataProvider
     {
         private readonly IResellerIdentifierProvider resellerIdentifierProvider;
 
+        /// <summary>
+        /// Create new instance with reseller identifiers
+        /// </summary>
         public ResellerDataProvider(IResellerIdentifierProvider resellerIdentifierProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
@@ -26,6 +35,9 @@ namespace Atomia.Store.PublicBillingApi
             this.resellerIdentifierProvider = resellerIdentifierProvider;
         }
 
+        /// <summary>
+        /// Get Atomia Billing account data for current reseller.
+        /// </summary>
         public AccountData GetResellerAccountData()
         {
             var resellerIdentifier = resellerIdentifierProvider.GetResellerIdentifier();
@@ -53,6 +65,9 @@ namespace Atomia.Store.PublicBillingApi
             return resellerData;
         }
 
+        /// <summary>
+        /// Get Atomia Billing account data for default reseller.
+        /// </summary>
         public AccountData GetDefaultResellerAccountData()
         {
             var resellerData = BillingApi.GetDefaultResellerData();

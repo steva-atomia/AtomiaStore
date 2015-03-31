@@ -7,6 +7,9 @@ using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// Provides product data from current reseller's shop in Atomia Billing.
+    /// </summary>
     public sealed class ProductProvider : IProductProvider
     {
         private readonly IProductsProvider productsProvider;
@@ -14,6 +17,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ILanguagePreferenceProvider languagePreferenceProvider;
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
 
+        /// <summary>
+        /// Create new instance tied to current reseller and current users's language and currency preferences.
+        /// </summary>
         public ProductProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IProductsProvider productsProvider)
         {
             if (resellerProvider == null)
@@ -42,6 +48,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.productsProvider = productsProvider;
         }
 
+        /// <summary>
+        /// Get data for product with specified article number from current reseller's shop in Atomia Billing
+        /// </summary>
         public CoreProduct GetProduct(string articleNumber)
         {
             var resellerId = resellerProvider.GetReseller().Id;

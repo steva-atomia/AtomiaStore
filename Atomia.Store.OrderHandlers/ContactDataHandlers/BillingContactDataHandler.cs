@@ -7,8 +7,14 @@ using System.Linq;
 
 namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
 {
+    /// <summary>
+    /// Handler to amend order with billing contact data collected from customer.
+    /// </summary>
     public class BillingContactDataHandler : OrderDataHandler
     {
+        /// <summary>
+        /// Amend order with billing contact data collected from customer, falling back to collected main contact data.
+        /// </summary>
         public override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
             var billingContact = orderContext.ContactData.OfType<BillingContactModel>().First();

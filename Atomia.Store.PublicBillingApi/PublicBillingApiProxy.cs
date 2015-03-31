@@ -5,7 +5,8 @@ using System.Linq;
 namespace Atomia.Store.PublicBillingApi
 {
     /// <summary>
-    /// Proxy AtomiaBillingPublicService to be able to override for unit tests and such.
+    /// Proxy for AtomiaBillingPublicService to be able to override for unit tests and such, 
+    /// and for allowing use of more collection types.
     /// </summary>
     public class PublicBillingApiProxy
     {

@@ -6,13 +6,22 @@ using System.Linq;
 
 namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 {
+    /// <summary>
+    /// Handler to add setup fees to order
+    /// </summary>
     public class SetupFeesHandler : OrderDataHandler
     {
+        /// <summary>
+        /// Handle items with category "SeupFee"
+        /// </summary>
         public virtual IEnumerable<string> HandledCategories
         {
             get { return new[] { "SetupFee" }; }
         }
 
+        /// <summary>
+        /// Add any setup fees to order
+        /// </summary>
         public override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
             var setupFeeItems = orderContext.ItemData.Where(i => this.HandledCategories.Contains(i.Category));

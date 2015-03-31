@@ -7,6 +7,9 @@ using CoreProduct = Atomia.Store.Core.Product;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// <see cref="Atomia.Store.Core.IProductListProvider"/> to get products ín specific category from current reseller's shop in Atomia Billing.
+    /// </summary>
     public sealed class CategoryProductsProvider : IProductListProvider
     {
         private readonly IResellerProvider resellerProvider;
@@ -14,6 +17,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly IProductsProvider productsProvider;
 
+        /// <summary>
+        /// Construct a new instance
+        /// </summary>
         public CategoryProductsProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IProductsProvider productsProvider)
         {
             if (resellerProvider == null)
@@ -42,11 +48,19 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.productsProvider = productsProvider;
         }
 
+        /// <summary>
+        /// The unique name of the <see cref="Atomia.Store.Core.IProductListProvider"/>
+        /// </summary>
         public string Name
         {
             get { return "Category"; }
         }
 
+        /// <summary>
+        /// Get products by category. The value of the first <see cref="Atomia.Store.Core.SearchTerm"/> will be used as the category name to list products from.
+        /// </summary>
+        /// <param name="terms">Search terms, the first of which should have the value of category to find products from</param>
+        /// <returns>Any found products for the category, ordered by price.</returns>
         public IEnumerable<CoreProduct> GetProducts(ICollection<SearchTerm> terms)
         {
             var category = terms.First().Value;
@@ -54,7 +68,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             var currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
             var language = languagePreferenceProvider.GetCurrentLanguage();
             var products = new List<CoreProduct>();
-
+            
             var apiProducts = productsProvider.GetShopProductsByCategories(resellerId, null, new List<string>() { category });
 
             foreach(var apiProduct in apiProducts)

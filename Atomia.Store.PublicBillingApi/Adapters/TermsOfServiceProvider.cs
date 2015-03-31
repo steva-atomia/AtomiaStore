@@ -5,6 +5,9 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// Provide terms of service for products in cart.
+    /// </summary>
     public sealed class TermsOfServiceProvider : ITermsOfServiceProvider
     {
         private readonly ICartProvider cartProvider;
@@ -12,6 +15,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly IResourceProvider resourceProvider;
         private readonly IResellerProvider resellerProvider;
 
+        /// <summary>
+        /// Create new instance tied to current cart and reseller.
+        /// </summary>
         public TermsOfServiceProvider(ICartProvider cartProvider, IProductProvider productProvider, IResourceProvider resourceProvider, IResellerProvider resellerProvider)
         {
             if (cartProvider == null)
@@ -40,6 +46,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.resellerProvider = resellerProvider;
         }
 
+        /// <summary>
+        /// Get terms of service for products in current cart from resource provider.
+        /// Terms of service name should have key "{id}_Name", and description should have key "{id}_Description".
+        /// </summary>
+        /// <returns>The terms of service applicable to products in current cart.</returns>
         public IEnumerable<TermsOfService> GetTermsOfService()
         {
             var termsOfService = new HashSet<TermsOfService>();
@@ -86,6 +97,10 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         }
 
 
+        /// <summary>
+        /// Get terms of service for specified terms of service id from resource provider.
+        /// Terms of service name should have key "{id}_Name", and description should have key "{id}_Description".
+        /// </summary>
         public TermsOfService GetTermsOfService(string id)
         {
             var name = resourceProvider.GetResource(id + "_Name");

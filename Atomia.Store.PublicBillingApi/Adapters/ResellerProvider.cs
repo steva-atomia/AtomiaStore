@@ -3,10 +3,16 @@ using System;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
+    /// <summary>
+    /// Provide current active <see cref="Reseller"/> from Atomia Billing
+    /// </summary>
     public sealed class ResellerProvider : IResellerProvider
     {
         private readonly IResellerDataProvider resellerDataProvider;
 
+        /// <summary>
+        /// Create a new instance
+        /// </summary>
         public ResellerProvider(IResellerDataProvider resellerDataProvider)
         {
             if (resellerDataProvider == null)
@@ -17,6 +23,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.resellerDataProvider = resellerDataProvider;
         }
 
+        /// <summary>
+        /// Get current reseller from Atomia Billing.
+        /// </summary
         public Reseller GetReseller()
         {
             var resellerData =  resellerDataProvider.GetResellerAccountData();

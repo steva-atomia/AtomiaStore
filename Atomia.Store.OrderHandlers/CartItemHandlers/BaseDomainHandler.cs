@@ -6,13 +6,26 @@ using System.Linq;
 
 namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 {
+    /// <summary>
+    /// Base for domain related <see cref="Atomia.Store.PublicBillingApi.Handlers.OrderDataHandler">OrderDataHandlers</see>.
+    /// Provides virtual and abstract members that can be overridden as needed by subclasses.
+    /// </summary>
     public abstract class BaseDomainHandler : OrderDataHandler
     {
+        /// <summary>
+        /// The service type to use for provisioning packages connected to the domain item handled by the subclassing handler
+        /// </summary>
         public abstract string DefaultAtomiaService { get; }
 
+        /// <summary>
+        /// The Atomia Billing product categories handled by the subclassing handler.
+        /// </summary>
         public abstract IEnumerable<string> HandledCategories { get; }
 
-        public override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
+        /// <summary>
+        /// Amends order based on how subclass overrides virtual methods
+        /// </summary>
+        public sealed override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
             var domainItems = orderContext.ItemData.Where(i => this.HandledCategories.Contains(i.Category));
 
@@ -65,6 +78,9 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return order;
         }
 
+        /// <summary>
+        /// Get domain name to add as custom attribute on the order item.
+        /// </summary>
         protected virtual string GetDomainName(ItemData domainItem)
         {
             var domainNameAttr = domainItem.CartItem.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainName");
@@ -79,6 +95,9 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return domainName;
         }
 
+        /// <summary>
+        /// Get any other items, like packages, that are connected to the domain item's domain name.
+        /// </summary>
         protected virtual ItemData GetConnectedItem(IEnumerable<ItemData> allItems, ItemData domainItem, string domainName)
         {
             var connectedItem = allItems.FirstOrDefault(other =>
@@ -88,12 +107,19 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return connectedItem;
         }
 
-
+        /// <summary>
+        /// Get the service that should be used to provision any items connected to the domain item's domain name.
+        /// </summary>
+        /// <remarks>Added as custom attribute on domain order item</remarks>
         protected virtual string GetAtomiaService(ItemData connectedItem)
         {
             return DefaultAtomiaService;
         }
 
+        /// <summary>
+        /// Get any AtomiaServiceExtraProperties needed to provision connected item.
+        /// </summary>
+        /// <remarks>Added as custom attribute on domain order item</remarks>
         protected virtual string GetAtomiaServiceExtraProperties(ItemData connectedItem)
         {
             var extraProperties = String.Empty;
@@ -110,11 +136,19 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             return extraProperties;
         }
 
+        /// <summary>
+        /// Get any custom attributes needed on the domain order item apart from AtomiaService and AtomiaServiceExtraProperties
+        /// </summary>
+        /// <param name="domainItem"></param>
+        /// <returns></returns>
         protected virtual IEnumerable<PublicOrderItemProperty> GetExtraCustomData(ItemData domainItem)
         {
             return new List<PublicOrderItemProperty>();
         }
 
+        /// <summary>
+        /// Helper method to check if HostingPackage product is allowed to have website provisioned by default.
+        /// </summary>
         protected bool IsHostingPackageWithWebsitesAllowed(ItemData connectedItem)
         {
             return (connectedItem.Category == "HostingPackage" &&

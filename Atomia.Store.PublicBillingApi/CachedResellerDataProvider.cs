@@ -5,11 +5,17 @@ using System.Web;
 
 namespace Atomia.Store.PublicBillingApi
 {
+    /// <summary>
+    /// Caching decorator to be used with the base <see cref="ResellerDataProvider"/>
+    /// </summary>
     public sealed class CachedResellerDataProvider : IResellerDataProvider
     {
         private readonly IResellerDataProvider backingProvider;
         private readonly IResellerIdentifierProvider resellerIdentifierProvider;
 
+        /// <summary>
+        /// Create new instance that wraps base provider
+        /// </summary>
         public CachedResellerDataProvider(IResellerDataProvider resellerDataProvider, IResellerIdentifierProvider resellerIdentifierProvider)
         {
             if (resellerDataProvider == null)
@@ -26,6 +32,9 @@ namespace Atomia.Store.PublicBillingApi
             this.resellerIdentifierProvider = resellerIdentifierProvider;
         }
 
+        /// <summary>
+        /// Get current reseller account data from cache or get and cache data form base provider.
+        /// </summary>
         public AccountData GetResellerAccountData()
         {
             AccountData resellerData = null;
@@ -50,6 +59,9 @@ namespace Atomia.Store.PublicBillingApi
             return resellerData;
         }
 
+        /// <summary>
+        /// Get default reseller account data from cache or get and cache data form base provider.
+        /// </summary>
         public AccountData GetDefaultResellerAccountData()
         {
             AccountData resellerData = null;

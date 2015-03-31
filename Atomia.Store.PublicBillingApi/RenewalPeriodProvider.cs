@@ -6,11 +6,17 @@ using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi
 {
+    /// <summary>
+    /// Provide Atomia Billing renewal period id for <see cref="Atomia.Store.Core.CartItem">CartItems</see>
+    /// </summary>
     public sealed class RenewalPeriodProvider
     {
         private readonly IProductsProvider productsProvider;
         private readonly IResellerProvider resellerProvider;
 
+        /// <summary>
+        /// Create new instance 
+        /// </summary>
         public RenewalPeriodProvider(IProductsProvider productsProvider, IResellerProvider resellerProvider)
         {
             if (productsProvider == null)
@@ -27,6 +33,9 @@ namespace Atomia.Store.PublicBillingApi
             this.resellerProvider = resellerProvider;
         }
 
+        /// <summary>
+        /// Get Atomia Billing renewal period id for <see cref="CartItem"/>
+        /// </summary
         public Guid GetRenewalPeriodId(CartItem cartItem)
         {
             if (cartItem.RenewalPeriod == null)
