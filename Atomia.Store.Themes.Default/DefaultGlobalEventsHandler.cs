@@ -16,13 +16,23 @@ using Unity.Mvc5;
 
 namespace Atomia.Store.Themes.Default
 {
+    /// <summary>
+    /// A <see cref="Atomia.Store.AspNetMvc.Infrastructure.GlobalEventsHandler"/> for bootstrapping Default theme.
+    /// </summary>
     public class DefaultGlobalEventsHandler : GlobalEventsHandler
     {
+        /// <summary>
+        /// Place for subclasses to override Unity configuration.
+        /// </summary>
+        /// <param name="container">The Unity container that will be set as Asp.Net MVC dependency resolver</param>
         protected virtual void RegisterConfiguration(UnityContainer container)
         {
             
         }
 
+        /// <summary>
+        /// Register configuration for Unity, filters, routes, bundles, order flow and model validation. Add legacy global settings configuration.
+        /// </summary>
         public override void  Application_Start(object sender, EventArgs e)
         {
             AreaRegistration.RegisterAllAreas();
@@ -58,6 +68,9 @@ namespace Atomia.Store.Themes.Default
             }
         }
 
+        /// <summary>
+        /// Register "theme" key in session, which is required by legacy resource string handling in Atomia.Web.Base
+        /// </summary>
         public override void Session_Start(object sender, EventArgs e)
         {
             if (HttpContext.Current != null)
@@ -73,6 +86,9 @@ namespace Atomia.Store.Themes.Default
             }
         }
 
+        /// <summary>
+        /// Set up error handling to log exceptions and defer to error controller or as last resort static HTML error page.
+        /// </summary>
         public override void Application_Error(object sender, EventArgs e)
         {
             if (!HttpContext.Current.IsCustomErrorEnabled)

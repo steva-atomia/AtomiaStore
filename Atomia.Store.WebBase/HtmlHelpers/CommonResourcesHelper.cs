@@ -5,10 +5,17 @@ using Atomia.Store.Core;
 
 namespace Atomia.Store.WebBase.HtmlHelpers
 {
+    /// <summary>
+    /// HTML helper extensions that get resource strings only from Common.resx in App_GlobalResources 
+    /// using  localization extensions from Atomia.Web.Base
+    /// </summary>
     public static class CommonResourcesHelper
     {
         private static IThemeNamesProvider themeNamesProvider = DependencyResolver.Current.GetService<IThemeNamesProvider>();
 
+        /// <summary>
+        /// Get escaped resource string from App_GlobalResources/Common.resx
+        /// </summary>
         public static string CommonResource(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
             var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
@@ -19,6 +26,9 @@ namespace Atomia.Store.WebBase.HtmlHelpers
                 : resource;
         }
 
+        /// <summary>
+        /// Get un-escaped resource string from App_GlobalResources/Common.resx
+        /// </summary>
         public static IHtmlString CommonResourceRaw(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
             var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
@@ -32,6 +42,9 @@ namespace Atomia.Store.WebBase.HtmlHelpers
             return htmlhelper.Raw(resource);
         }
 
+        /// <summary>
+        /// Get JavaScript escaped resource string from App_GlobalResources/Common.resx
+        /// </summary>
         public static string CommonResourceJs(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
             var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";

@@ -8,12 +8,12 @@ using Atomia.Store.AspNetMvc.Infrastructure;
 namespace Atomia.Store.Themes.Default
 {
     /// <summary>
-    /// The MvcApplication class
+    /// Wrapper application around <see cref="Atomia.Store.AspNetMvc.Infrastructure.GlobalEventsHandler"/>
     /// </summary>
     public class MvcApplication : HttpApplication
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="MvcApplication"/> class.
+        /// Initialize a new instance around <see cref="Atomia.Store.AspNetMvc.Infrastructure.GlobalEventsHandler"/> specified in app settings.
         /// </summary>
         public MvcApplication()
         {

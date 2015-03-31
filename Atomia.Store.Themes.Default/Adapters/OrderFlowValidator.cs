@@ -6,6 +6,9 @@ using System.Web.Mvc;
 
 namespace Atomia.Store.Themes.Default.Adapters
 {
+    /// <summary>
+    /// A simple <see cref="Atomia.Store.AspNetMvc.Ports.IOrderFlowValidator"/> that checks there are things in cart and contact data is added.
+    /// </summary>
     public class OrderFlowValidator : IOrderFlowValidator
     {
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
@@ -13,6 +16,9 @@ namespace Atomia.Store.Themes.Default.Adapters
         private readonly IResourceProvider resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
         private List<string> validationErrors = new List<string>();
 
+        /// <summary>
+        /// Check that there are things in cart before adding account data, and that there are things in cart and account data before checkout.
+        /// </summary>
         public IEnumerable<string> ValidateOrderFlowStep(AspNetMvc.Infrastructure.OrderFlow orderFlow, AspNetMvc.Infrastructure.OrderFlowStep currentOrderFlowStep)
         {
             if (currentOrderFlowStep.Name == "Account")
