@@ -62,8 +62,8 @@
         Atomia.VM.Cart = Atomia.ViewModels.CreateCartModel();
         Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
 
-        Atomia.VM.Notification = Atomia.ViewModels.CreateNotificationModel();
-        Atomia.VM.Notification.NotifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
+        Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
+        Atomia.VM.notification.notifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
     </script>
 
     

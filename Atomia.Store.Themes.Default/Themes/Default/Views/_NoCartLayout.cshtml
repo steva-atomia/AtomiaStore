@@ -51,8 +51,8 @@
         Atomia.VM.languageSelector = new Atomia.ViewModels.LanguageSelectorModel();
         Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
-        Atomia.VM.Notification = Atomia.ViewModels.CreateNotificationModel();
-        Atomia.VM.Notification.NotifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
+        Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
+        Atomia.VM.notification.notifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
     </script>
 
     @RenderSection("scripts", required: false)
