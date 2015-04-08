@@ -2,10 +2,12 @@
     ko.components.register('domain-connection', {
         template: { element: 'domain-connection-tmpl' },
         viewModel: {
-            createViewModel: function(params) {
-                return Atomia.ViewModels.CreateDomainConnectionModel(params.cart, params.selectedItem, {
-                    StatusNotifier: params.statusNotifier
-                });
+            createViewModel: function (params) {
+                var viewModel = new Atomia.ViewModels.DomainConnectionModel(params.cart, params.selectedItem);
+                viewModel.statusNotifier = params.statusNotifier;
+                viewModel.updateDomainNameOptions();
+
+                return viewModel;
             }
         }
     });
@@ -15,13 +17,13 @@
     <label class="select">
         <select data-bind="
             attr: {
-                id: UniqueId,
-                name: UniqueId
+                id: uniqueId,
+                name: uniqueId
             },
-            options: DomainNameOptions,
+            options: domainNameOptions,
             optionsCaption: '---',
-            optionsAfterRender: SetInitialDomainName,
-            value: SelectedDomainName
+            optionsAfterRender: setInitialDomainName,
+            value: selectedDomainName
             "></select>
     </label>
 </script>
