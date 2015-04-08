@@ -369,7 +369,6 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainmove.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.domainconnection.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.languageselector.js" />
-    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.progress.js" />
     <Content Include="Themes\Default\Scripts\underscore.js" />
     <Content Include="Themes\Default\Views\_OrderFlowLayout.cshtml" />
     <Content Include="Themes\Default\Views\Domains\_DomainRegistration.cshtml" />
