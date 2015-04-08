@@ -1,13 +1,15 @@
-﻿<h4>@Html.CommonResource("AddCampaignCode")</h4>
+﻿<!-- ko with: Atomia.VM.campaignCode -->
+<h4>@Html.CommonResource("AddCampaignCode")</h4>
 <div class="formrow">
     <h5><label for="campaign_code">@Html.CommonResource("CampaignCode"):</label></h5>
     <div class="col2row">
-        <input id="campaign_code" type="text" data-bind="value: Campaign.Code">
-        <a class="button small green" href="javascript:void(0);" data-bind="click: Campaign.AddToCart">@Html.CommonResource("Add")</a>
+        <input id="campaign_code" type="text" data-bind="value: code">
+        <a class="button small green" href="javascript:void(0);" data-bind="click: addToCart">@Html.CommonResource("Add")</a>
     </div>
     <br class="clear">
 </div>
 
-<div id="redeem_box" class="success" style="display: none;" data-bind="slideVisible: Campaign.Added">
+<div id="redeem_box" class="success" style="display: none;" data-bind="slideVisible: added">
     <h4>@Html.CommonResource("CampaignCodeSuccess")</h4>
 </div>
+<!-- /ko -->
