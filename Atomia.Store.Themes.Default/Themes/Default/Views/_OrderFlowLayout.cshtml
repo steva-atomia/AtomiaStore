@@ -19,7 +19,7 @@
 
             </nav>
             <ul class="addons">
-                <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: LanguageSelector.ToggleDropdown, text: LanguageSelector.SelectedLanguage().ShortName"></a></li>
+                <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: languageSelector.toggleDropdown, text: languageSelector.selectedLanguage().shortName"></a></li>
                 <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: Cart.ToggleDropdown"><span class="empty" data-bind="text: Cart.NumberOfItems"></span></a></li>
             </ul>
         </div>
@@ -56,8 +56,8 @@
         var Atomia = Atomia || {};
         Atomia.VM = Atomia.VM || {};
 
-        Atomia.VM.LanguageSelector = Atomia.ViewModels.CreateLanguageSelectorModel();
-        Atomia.VM.LanguageSelector.Load(@Html.JsonAction("GetLanguages", "Language"));
+        Atomia.VM.languageSelector = new Atomia.ViewModels.LanguageSelectorModel();
+        Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
         Atomia.VM.Cart = Atomia.ViewModels.CreateCartModel();
         Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));

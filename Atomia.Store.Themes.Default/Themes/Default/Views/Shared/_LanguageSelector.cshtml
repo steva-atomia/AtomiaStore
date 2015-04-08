@@ -1,10 +1,10 @@
-﻿<div id="language_selector" class="head_tray" data-bind="slideVisible: LanguageSelector.IsOpen, css: { opened: LanguageSelector.IsOpen }, event: { mouseleave: LanguageSelector.CloseDropdown }">
+﻿<div id="language_selector" class="head_tray" data-bind="slideVisible: languageSelector.isOpen, css: { opened: languageSelector.isOpen }, event: { mouseleave: languageSelector.closeDropdown }">
     <div class="margins">
         <div class="lngbox">
             <h3>@Html.CommonResource("LanguageSelectorTitle")</h3>
-            <ul data-bind="foreach: LanguageSelector.Languages">
+            <ul data-bind="foreach: languageSelector.languages">
                 <li>
-                    <a data-bind="attr: { href: ChangeLanguageUrl }"><span data-bind="text: ShortName"></span> <!-- ko text: Name --><!-- /ko --></a>
+                    <a data-bind="attr: { href: changeLanguageUrl }"><span data-bind="text: shortName"></span> <!-- ko text: name --><!-- /ko --></a>
                 </li>
             </ul>
         </div>
