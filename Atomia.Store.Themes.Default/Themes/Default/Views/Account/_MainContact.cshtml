@@ -1,5 +1,7 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.MainContactModel
 
+@* Assumed to be under a knockout 'with' binding for an AccountModel object *@
+
 <h4>@Html.CommonResource("AccountTitle")</h4>
 
 <div class="formrow">
@@ -9,7 +11,7 @@
     </h5>
     <div class="col2row">
         <label class="select">
-            @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: Account.MainContactCustomerType" })
+            @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: mainContactCustomerType" })
         </label>
         @Html.ValidationMessageFor(m => m.CustomerType)
 </div>
@@ -20,14 +22,14 @@
 @Html.FormRowFor(m => m.FirstName, Html.CommonResource("FirstName") + ":", true)
 @Html.FormRowFor(m => m.LastName, Html.CommonResource("LastName") + ":", true)
 
-<div data-bind="slideVisible: Account.MainContactIsCompany, slideDuration: 300">
-    @Html.FormRowFor(m => m.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: Account.MainContactIsCompany")
-    @Html.FormRowFor(m => m.CompanyInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: Account.MainContactIsCompany")
-    @Html.FormRowFor(m => m.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: Account.MainContactIsCompany")
+<div data-bind="slideVisible: mainContactIsCompany, slideDuration: 300">
+    @Html.FormRowFor(m => m.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: mainContactIsCompany")
+    @Html.FormRowFor(m => m.CompanyInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: mainContactIsCompany")
+    @Html.FormRowFor(m => m.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: mainContactIsCompany")
 </div>
 
-<div data-bind="slideVisible: !Account.MainContactIsCompany(), slideDuration: 300">
-    @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", false, "if: !Account.MainContactIsCompany()")
+<div data-bind="slideVisible: !mainContactIsCompany(), slideDuration: 300">
+    @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", false, "if: !mainContactIsCompany()")
 </div>
 
 @Html.FormRowFor(m => m.Address, Html.CommonResource("Address") + ":", true)

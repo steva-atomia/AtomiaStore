@@ -6,7 +6,7 @@
 
 <div class="settingsboxinner">
 
-    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form", data_bind="with: Atomia.VM.account" }))
     {
         @Html.AntiForgeryToken();
 
@@ -20,7 +20,7 @@
             TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.BillingContact.Id }
         });
 
-        Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: Account.OtherBillingContact" });
+        Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: otherBillingContact" });
 
         Html.RenderPartial("_ExtraForms", Model);
 

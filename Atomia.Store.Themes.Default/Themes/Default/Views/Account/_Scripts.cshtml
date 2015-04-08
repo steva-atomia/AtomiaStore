@@ -22,12 +22,12 @@
 }
 
 <script type="text/javascript">
-    Atomia.VM.Account = Atomia.ViewModels.CreateAccountModel();
-    Atomia.VM.Account.OtherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
+    Atomia.VM.account = new Atomia.ViewModels.AccountModel();
+    Atomia.VM.account.otherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
     @{
         var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;
         var initialBillingCustomerType = string.IsNullOrEmpty(Model.BillingContact.CustomerType) ? "individual" : Model.BillingContact.CustomerType;
     }
-    Atomia.VM.Account.MainContactCustomerType('@initialMainContactCustomerType');
-    Atomia.VM.Account.BillingContactCustomerType('@initialBillingCustomerType');
+    Atomia.VM.account.mainContactCustomerType('@initialMainContactCustomerType');
+    Atomia.VM.account.billingContactCustomerType('@initialBillingCustomerType');
 </script>
