@@ -4,12 +4,12 @@
     Layout = "~/Themes/Default/Views/_OrderFlowLayout.cshtml";
 }
 
-<div class="settingsboxinner">
+<div class="settingsboxinner" data-bind="with: Atomia.VM.domains">
     <p>@Html.CommonResourceRaw("DomainRegistrationDescription")</p>
 
     @{ Html.RenderPartial("_QueryType", Model); }
 
-    <div data-bind="visible: Domains.DomainRegistrationActive, with: Atomia.VM.domainRegistration">
+    <div data-bind="visible: domainRegistrationActive, with: Atomia.VM.domainRegistration">
         @{ Html.RenderPartial("_DomainRegistration", Model); }
     </div>
 
