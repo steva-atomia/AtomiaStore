@@ -1,25 +1,27 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DomainsViewModel
 
+@* Assumed to be under a knockout 'with' binding for a DomainRegistrationModel object *@
+
 <div class="domainreg-query big_search">
-    @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: DomainRegistration.Submit" }))
+    @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: submit" }))
     {
-        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: DomainRegistration.Query", id = "register_box", placeholder = "mydomain.com" })
+        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: query", id = "register_box", placeholder = "mydomain.com" })
         <button type="submit" class="button green" style="vertical-align:top;">Find domain</button>
         <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
     }
 </div>
 <br class="clear">
 
-<div class="domainreg-results" data-bind="visible: DomainRegistration.HasResults" style="display: none;">
-    <h4 class="fancy">@Html.CommonResource("DomainRegistrationResultsHeading") <strong data-bind="text: DomainRegistration.SubmittedQuery"></strong></h4>
+<div class="domainreg-results" data-bind="visible: hasResults" style="display: none;">
+    <h4 class="fancy">@Html.CommonResource("DomainRegistrationResultsHeading") <strong data-bind="text: submittedQuery"></strong></h4>
 
     <ul class="domains" data-bind="
         template: { 
-            name: DomainRegistration.GetTemplateName, 
-            foreach: DomainRegistration.PrimaryResults() 
+            name: getTemplateName, 
+            foreach: primaryResults() 
         }"></ul>
 
-    <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: DomainRegistration.ShowMoreResults">
+    <table class="list display strong" id="domainlist" style="display: table;" data-bind="visible: showMoreResults">
         <thead>
             <tr>
                 <th class="left">@Html.CommonResource("Domain")</th>
@@ -29,51 +31,51 @@
         </thead>
         <tbody data-bind="
             template: { 
-                name: DomainRegistration.GetTemplateName, 
-                foreach: DomainRegistration.SecondaryResults() 
+                name: getTemplateName, 
+                foreach: secondaryResults() 
             }"></tbody>
     </table>
 
-    <p data-bind="ifnot: DomainRegistration.ShowMoreResults">
-        <a id="more" class="button small green" data-bind="click: DomainRegistration.SetShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
+    <p data-bind="ifnot: showMoreResults">
+        <a id="more" class="button small green" data-bind="click: setShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
     </p>
 </div>
 
-<div class="domainreg-results" data-bind="visible: !DomainRegistration.HasResults() && DomainRegistration.NoResults()" style="display: none;">
-    <h4 class="fancy">@Html.CommonResource("DomainRegistrationNoResultsHeading") <strong data-bind="text: DomainRegistration.SubmittedQuery"></strong></h4>
+<div class="domainreg-results" data-bind="visible: !hasResults() && noResults()" style="display: none;">
+    <h4 class="fancy">@Html.CommonResource("DomainRegistrationNoResultsHeading") <strong data-bind="text: submittedQuery"></strong></h4>
 </div>
 
-<div data-bind="visible: DomainRegistration.IsLoadingResults" style="display: none;">
+<div data-bind="visible: isLoadingResults" style="display: none;">
     <div id="global_processing" class="global_processing"></div>
     <div id="global_processing_overlay" class="blocker"></div>
 </div>
 
 <script type="text/html" id="domainregistration-primary-available">
     <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
-        <span class="domain">.<!-- ko text: DomainNameTld --><!-- /ko --></span>
+        <span class="domain">.<!-- ko text: domainNameTld --><!-- /ko --></span>
         <label class="price">
-            <input type="checkbox" data-bind="attr: { id: UniqueId }, click: ToggleInCart, checked: IsInCart" />
-            <label data-bind="attr: { for: UniqueId }"></label>
-            <label data-bind="attr: { for: UniqueId }"></label>
-            <span data-bind="text: Price"></span>
+            <input type="checkbox" data-bind="attr: { id: uniqueId }, click: ToggleInCart, checked: IsInCart" />
+            <label data-bind="attr: { for: uniqueId }"></label>
+            <label data-bind="attr: { for: uniqueId }"></label>
+            <span data-bind="text: price"></span>
         </label>
     </li>
 </script>
 
 <script type="text/html" id="domainregistration-primary-taken">
     <li class="not_available" title="@Html.CommonResource("DomainNotAvailableHoverTitle")">
-        <span class="domain">.<!-- ko text: DomainNameTld --><!-- /ko --></span>
+        <span class="domain">.<!-- ko text: domainNameTld --><!-- /ko --></span>
         <span class="price">
             <em>@Html.CommonResource("Taken")</em>
-            <span data-bind="text: Price"></span>
+            <span data-bind="text: price"></span>
         </span>
     </li>
 </script>
 
 <script type="text/html" id="domainregistration-secondary-available">
     <tr>
-        <td><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></td>
-        <td class="right nowrap" data-bind="text: Price"></td>
+        <td><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></td>
+        <td class="right nowrap" data-bind="text: price"></td>
         <td>
             <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: AddToCart, visible: !IsInCart()">@Html.CommonResource("AddToCart")</a>
             <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: RemoveFromCart, visible: IsInCart">@Html.CommonResource("Remove")</a>
@@ -83,24 +85,24 @@
 
 <script type="text/html" id="domainregistration-secondary-unavailable">
     <tr>
-        <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
-        <td class="right nowrap"><span class="fade" data-bind="text: Price"></span></td>
+        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td class="right nowrap"><span class="fade" data-bind="text: price"></span></td>
         <td><span class="taken">@Html.CommonResource("Taken")</span></td>
     </tr>
 </script>
 
 <script type="text/html" id="domainregistration-secondary-loading">
     <tr>
-        <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
-        <td class="right nowrap" data-bind="text: Price"></td>
+        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td class="right nowrap" data-bind="text: price"></td>
         <td><span class="processing"></span></td>
     </tr>
 </script>
 
 <script type="text/html" id="domainregistration-secondary-unknown">
     <tr>
-        <td><span class="fade"><!-- ko text: DomainNameSld --><!-- /ko --><strong>.<!-- ko text: DomainNameTld --><!-- /ko --></strong></span></td>
-        <td class="right nowrap" data-bind="text: Price"></td>
+        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td class="right nowrap" data-bind="text: price"></td>
         <td><span class="warning"></span></td>
     </tr>
 </script>
