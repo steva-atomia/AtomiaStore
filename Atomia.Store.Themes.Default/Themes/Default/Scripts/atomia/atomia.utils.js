@@ -18,18 +18,6 @@ Atomia.Utils = Atomia.Utils || {};
         return amplify.request(options);
     }
 
-    /** Capture ajax error message and publish a notification message. */
-    function warnAjaxErrors(title, message) {
-
-        subscribe('request.error', function () {
-            publish('uiSetNotification', {
-                title: title,
-                message: message,
-                messageType: 'warning'
-            });
-        });
-    }
-
     /**
      * Publish 'item' to 'topic' for broadcast to subscribers.
      * @param {string} topic - The topic to broadcast on.
@@ -56,7 +44,6 @@ Atomia.Utils = Atomia.Utils || {};
 
     _.extend(exports, {
         request: request,
-        warnAjaxErrors: warnAjaxErrors,
         publish: publish,
         subscribe: subscribe
     });

@@ -53,25 +53,25 @@
     @Scripts.Render("~/bundles/scripts")
 
     <script type="text/javascript">
-    var Atomia = Atomia || {};
-    Atomia.VM = Atomia.VM || {};
+        var Atomia = Atomia || {};
+        Atomia.VM = Atomia.VM || {};
 
-    Atomia.VM.languageSelector = _.extend(
-        new Atomia.ViewModels.LanguageSelectorModel(),
-        new Atomia.ViewModels.ModalMixin());
+        Atomia.VM.languageSelector = _.extend(
+            new Atomia.ViewModels.LanguageSelectorModel(),
+            new Atomia.ViewModels.ModalMixin());
 
-    Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
+        Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
-    Atomia.VM.cart = _.extend(
-        new Atomia.ViewModels.CartModel(),
-        new Atomia.ViewModels.ModalMixin());
-    Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
+        Atomia.VM.cart = _.extend(
+            new Atomia.ViewModels.CartModel(),
+            new Atomia.ViewModels.ModalMixin());
+        Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
 
-    Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
+        Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
 
-    Atomia.Utils.warnAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")');
+        Atomia.Utils.warnAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")');
+        Atomia.Utils.relayCartUpdateToValidation();
     </script>
-
     
     @RenderSection("scripts", required: false)
 

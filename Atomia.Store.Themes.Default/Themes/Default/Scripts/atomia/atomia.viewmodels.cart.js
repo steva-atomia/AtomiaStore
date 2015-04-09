@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, $, utils, cartApi) {
+(function (exports, _, ko, utils, cartApi) {
     'use strict';
 
     /**
@@ -73,9 +73,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.createCartItem = function createCartItem(cartItemData) {
             return new CartItem(cartItemData);
         };
-
-        /** Event used to notify Atomia customer validation that cart has been updated. */
-        self.validationUpdateEvent = 'cart:update';
 
         /** Items in cart that are domain items, like registration or transfer */
         self.domainItems = function domainItems() {
@@ -291,9 +288,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.campaignCode(cartData.CampaignCode);
 
             utils.publish('cart:update');
-
-            // Customer validation plugin expects an event on 
-            $('body').trigger(self.validationUpdateEvent);
         };
     }
 
@@ -366,7 +360,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     }
 
     
-
     /* Module exports */
     _.extend(exports, {
         CartItem: CartItem,
@@ -374,4 +367,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         addCartItemExtensions: addCartItemExtensions
     });
 
-})(Atomia.ViewModels, _, ko, jQuery, Atomia.Utils, Atomia.Api.Cart);
+})(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.Api.Cart);

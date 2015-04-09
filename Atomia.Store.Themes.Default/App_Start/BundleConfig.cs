@@ -20,6 +20,7 @@ namespace Atomia.Store.Themes.Default
                 .Include(
                     "~/Themes/Default/Scripts/atomia/AtomiaValidation.js",
                     "~/Themes/Default/Scripts/atomia/atomia.utils.js",
+                    "~/Themes/Default/Scripts/atomia/atomia.utils.eventhandlers.js",
                     "~/Themes/Default/Scripts/atomia/atomia.api.definitions.js",
                     "~/Themes/Default/Scripts/atomia/atomia.api.cart.js",
                     "~/Themes/Default/Scripts/atomia/atomia.api.domains.js",
