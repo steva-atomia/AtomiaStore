@@ -6,7 +6,7 @@
 
     Atomia.VM.connectedDomainStatus = new Atomia.ViewModels.DomainStatusModel();
 
-    Atomia.VM.products = new Atomia.ViewModels.ProductListingModel(Atomia.VM.Cart);
+    Atomia.VM.products = new Atomia.ViewModels.ProductListingModel(Atomia.VM.cart);
     Atomia.VM.products.singleSelection = true;
 
     Atomia.VM.products.load(@Html.JsonAction("GetData", "ProductListing", new { query = Model.Query }));

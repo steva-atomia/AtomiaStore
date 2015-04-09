@@ -8,9 +8,9 @@
         Atomia.VM.payment = new Atomia.ViewModels.PaymentSelectorModel();
         Atomia.VM.payment.selectedPaymentMethod('@Model.SelectedPaymentMethodId');
 
-        Atomia.VM.payWithInvoice = new Atomia.ViewModels.PayWithInvoiceModel(Atomia.VM.Cart);
+        Atomia.VM.payWithInvoice = new Atomia.ViewModels.PayWithInvoiceModel(Atomia.VM.cart);
         Atomia.VM.payWithInvoice.loadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
         Atomia.VM.payWithInvoice.invoiceType('email');
 
-        Atomia.VM.campaignCode = new Atomia.ViewModels.CampaignCodeModel(Atomia.VM.Cart);
+        Atomia.VM.campaignCode = new Atomia.ViewModels.CampaignCodeModel(Atomia.VM.cart);
 </script>

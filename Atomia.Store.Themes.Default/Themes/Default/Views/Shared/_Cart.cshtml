@@ -1,7 +1,7 @@
-﻿<div id="head_cart" class="head_tray" data-bind="slideVisible: Cart.isOpen, css: { opened: Cart.isOpen }, event: { mouseleave: Cart.closeDropdown }">
+﻿<div id="head_cart" class="head_tray" data-bind="slideVisible: cart.isOpen, css: { opened: cart.isOpen }, event: { mouseleave: cart.closeDropdown }">
     <div class="margins">
         <h3>@Html.CommonResource("ShoppingCart")</h3>
-        <div data-bind="visible: !Cart.isEmpty()">
+        <div data-bind="visible: !cart.isEmpty()">
             <p>@Html.CommonResource("ShoppingCartDescription")</p>
             <table class="strong">
                 <thead>
@@ -14,22 +14,22 @@
                 <tfoot>
                     <tr>
                         <td class="right">@Html.CommonResource("Subtotal")</td>
-                        <td class="right nowrap" data-bind="text: Cart.subTotal"></td>
+                        <td class="right nowrap" data-bind="text: cart.subTotal"></td>
                         <td></td>
                     </tr>
                     <tr>
                         <td class="right">@Html.CommonResource("Tax")</td>
-                        <td class="right nowrap" data-bind="text: Cart.tax"></td>
+                        <td class="right nowrap" data-bind="text: cart.tax"></td>
                         <td></td>
                     </tr>
                     <tr class="strong">
                         <td class="right">@Html.CommonResource("Total")</td>
-                        <td class="right nowrap" data-bind="text: Cart.total"></td>
+                        <td class="right nowrap" data-bind="text: cart.total"></td>
                         <td></td>
                     </tr>
                 </tfoot>
                 <tbody>
-                    <!-- ko foreach: Cart.cartItems -->
+                    <!-- ko foreach: cart.cartItems -->
                     <tr>
                         <td>
                             <span data-bind="text: Name"></span>
@@ -45,19 +45,19 @@
                         </td>
                     </tr>
                     <!-- /ko -->
-                    <tr data-bind="visible: Cart.campaignCode">
+                    <tr data-bind="visible: cart.campaignCode">
                         <td>
-                            <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: Cart.campaignCode"></span>
+                            <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: cart.campaignCode"></span>
                         </td>
                         <td class="right nowrap"></td>
                         <td>
-                            <a class="button small orange" href="javascript:void(0);" data-bind="click: Cart.removeCampaignCode">@Html.CommonResource("Remove")</a>
+                            <a class="button small orange" href="javascript:void(0);" data-bind="click: cart.removeCampaignCode">@Html.CommonResource("Remove")</a>
                         </td>
                     </tr>
                 </tbody>
             </table>
         </div>
-        <div data-bind="visible: Cart.isEmpty">
+        <div data-bind="visible: cart.isEmpty">
             <p>@Html.CommonResource("ShoppingCartEmpty")</p>
         </div>
     </div>

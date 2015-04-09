@@ -20,7 +20,7 @@
             </nav>
             <ul class="addons">
                 <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: languageSelector.toggleDropdown, text: languageSelector.selectedLanguage().shortName"></a></li>
-                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: Cart.toggleDropdown"><span class="empty" data-bind="text: Cart.numberOfItems"></span></a></li>
+                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: cart.toggleDropdown"><span class="empty" data-bind="text: cart.numberOfItems"></span></a></li>
             </ul>
         </div>
 
@@ -59,8 +59,8 @@
         Atomia.VM.languageSelector = new Atomia.ViewModels.LanguageSelectorModel();
         Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
-        Atomia.VM.Cart = new Atomia.ViewModels.CartModel();
-        Atomia.VM.Cart.load(@Html.JsonAction("GetCart", "Cart"));
+        Atomia.VM.cart = new Atomia.ViewModels.CartModel();
+        Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
 
         Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
         Atomia.VM.notification.notifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
