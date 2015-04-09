@@ -1,6 +1,6 @@
-﻿<div id="notification" class="notification" style="display: none;" data-bind="visible: notification.isOpen, css: notification.messageType">
+﻿<div id="notification" class="notification" style="display: none;" data-bind="visible: notification.modalIsOpen, css: notification.messageType">
     <div class="margins">
-        <a class="close-btn" id="notification-close" href="javascript:void(0);" title="@Html.CommonResource("Dismiss")" data-bind="click: notification.close">
+        <a class="close-btn" id="notification-close" href="javascript:void(0);" title="@Html.CommonResource("Dismiss")" data-bind="click: notification.closeModal">
             <span class="icn_close"></span>
         </a>
         <h4 data-bind="text: notification.title"></h4>

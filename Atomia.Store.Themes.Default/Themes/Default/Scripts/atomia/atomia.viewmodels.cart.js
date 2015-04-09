@@ -61,7 +61,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.total = ko.observable(0);
         self.tax = ko.observable(0);
         self.campaignCode = ko.observable('');
-        self.isOpen = ko.observable(false);
         
         self.numberOfItems = ko.pureComputed(function numberOfItems() {
             return self.cartItems().length;
@@ -97,22 +96,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return _.uniq(_.map(self.cartItems(), function (item) {
                 return item.Category;
             }));
-        };
-
-        /** Open or close cart display. */
-        self.toggleDropdown = function toggleDropdown() {
-            if (self.isOpen()) {
-                self.isOpen(false);
-            }
-            else {
-                utils.publish('dropdown:open');
-                self.isOpen(true);
-            }
-        };
-
-        /** Close cart display */
-        self.closeDropdown = function closeDropdown() {
-            self.isOpen(false);
         };
 
         /** Check if cart contains item that 'equals' 'item'. */
@@ -312,11 +295,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             // Customer validation plugin expects an event on 
             $('body').trigger(self.validationUpdateEvent);
         };
-
-        
-        utils.subscribe('dropdown:open', function () {
-            self.isOpen(false);
-        });
     }
 
 

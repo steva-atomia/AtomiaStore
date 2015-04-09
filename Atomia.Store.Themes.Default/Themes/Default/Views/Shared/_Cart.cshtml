@@ -1,4 +1,4 @@
-﻿<div id="head_cart" class="head_tray" data-bind="slideVisible: cart.isOpen, css: { opened: cart.isOpen }, event: { mouseleave: cart.closeDropdown }">
+﻿<div id="head_cart" class="head_tray" data-bind="slideVisible: cart.modalIsOpen, css: { opened: cart.modalIsOpen }, event: { mouseleave: cart.closeModal }">
     <div class="margins">
         <h3>@Html.CommonResource("ShoppingCart")</h3>
         <div data-bind="visible: !cart.isEmpty()">
@@ -40,7 +40,7 @@
                         <td class="right nowrap" data-bind="text: Price"></td>
                         <td>
                             <!-- ko if: isRemovable() -->
-                                <a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a>
+                            <a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a>
                             <!-- /ko -->
                         </td>
                     </tr>

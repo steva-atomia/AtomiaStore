@@ -3,54 +3,28 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko, utils, viewModels) {
     'use strict';
 
     /** Create notification model. */
     function NotificationModel() {
-        var self = this;
+        var self = _.extend(this, new viewModels.ModalMixin());
      
-        self.messageType = ko.observable('');
         self.title = ko.observable('');
         self.message = ko.observable('');
-        self.isOpen = ko.observable(false);
+        self.messageType = ko.observable('');
 
-        /**
-         * Open notification.
-         * @param {string} title - Notification title
-         * @param {string} message - Notification message
-         * @param {string} messageType - Notification message type
-         */
-        self.open = function open(title, message, messageType) {
-            if (self.isOpen()) {
-                self.close();
-            }
+        utils.subscribe('uiSetNotification', function (notification) {
+            self.title(notification.title || 'Notification');
+            self.message(notification.message);
+            self.messageType(notification.messageType || 'info');
 
-            self.title(title);
-            self.message(message);
-            self.messageType(messageType);
-            self.isOpen(true);
-        };
-
-        /** Close notification */
-        self.close = function close() {
-            self.isOpen(false);
-            self.title('');
-            self.message('');
-            self.messageType('');
-        };
-
-        /** Register subscription on ajax errors and notify */
-        self.notifyAjaxErrors = function notifyAjaxErrors(title, message, messageType) {
-            utils.subscribe('request.error', function () {
-                self.open(title, message, messageType);
-            });
-        };
+            self.openModal();
+        });
     }
-
 
     _.extend(exports, {
         NotificationModel: NotificationModel
     });
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.ViewModels);

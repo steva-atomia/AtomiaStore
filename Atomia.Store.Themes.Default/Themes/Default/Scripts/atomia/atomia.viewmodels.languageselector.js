@@ -44,7 +44,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function LanguageSelectorModel() {
         var self = this;
 
-        self.isOpen = ko.observable(false);
         self.languages = ko.observableArray();
         self.selectedLanguage = ko.observable();
 
@@ -54,22 +53,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return new LanguageItem(languageData, currentLanguageData);
         };
 
-
-        /** Open or close language selector based on current state. */
-        self.toggleDropdown = function toggleDropdown() {
-            if (self.isOpen()) {
-                self.isOpen(false);
-            }
-            else {
-                utils.publish('dropdown:open');
-                self.isOpen(true);
-            }
-        };
-
-        /** Close language selector. */
-        self.closeDropdown = function closeDropdown() {
-            self.isOpen(false);
-        };
 
         /** Load language data generated on server. */
         self.load = function load(response) {
@@ -85,10 +68,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             self.languages(tmpLanguages);
         };
-
-        utils.subscribe('dropdown:open', function () {
-            self.isOpen(false);
-        });
     }
 
 

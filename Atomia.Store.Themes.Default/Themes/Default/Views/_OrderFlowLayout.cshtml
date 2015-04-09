@@ -19,8 +19,8 @@
 
             </nav>
             <ul class="addons">
-                <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: languageSelector.toggleDropdown, text: languageSelector.selectedLanguage().shortName"></a></li>
-                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: cart.toggleDropdown"><span class="empty" data-bind="text: cart.numberOfItems"></span></a></li>
+                <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: languageSelector.toggleModal, text: languageSelector.selectedLanguage().shortName"></a></li>
+                <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: cart.toggleModal"><span class="empty" data-bind="text: cart.numberOfItems"></span></a></li>
             </ul>
         </div>
 
@@ -53,17 +53,23 @@
     @Scripts.Render("~/bundles/scripts")
 
     <script type="text/javascript">
-        var Atomia = Atomia || {};
-        Atomia.VM = Atomia.VM || {};
+    var Atomia = Atomia || {};
+    Atomia.VM = Atomia.VM || {};
 
-        Atomia.VM.languageSelector = new Atomia.ViewModels.LanguageSelectorModel();
-        Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
+    Atomia.VM.languageSelector = _.extend(
+        new Atomia.ViewModels.LanguageSelectorModel(),
+        new Atomia.ViewModels.ModalMixin());
 
-        Atomia.VM.cart = new Atomia.ViewModels.CartModel();
-        Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
+    Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
-        Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
-        Atomia.VM.notification.notifyAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")', 'warning');
+    Atomia.VM.cart = _.extend(
+        new Atomia.ViewModels.CartModel(),
+        new Atomia.ViewModels.ModalMixin());
+    Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
+
+    Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
+
+    Atomia.Utils.warnAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")');
     </script>
 
     
