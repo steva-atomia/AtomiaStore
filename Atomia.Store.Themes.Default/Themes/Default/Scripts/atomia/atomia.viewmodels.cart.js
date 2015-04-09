@@ -1,10 +1,4 @@
-﻿/// <reference path="../../../../Scripts/jquery-2.1.3.intellisense.js" />
-/// <reference path="../../../../Scripts/underscore.js" />
-/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
-/// <reference path="atomia.utils.js" />
-/// <reference path="atomia.api.cart.js" />
-
-/* jshint -W079 */
+﻿/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -12,37 +6,38 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, $, utils, cartApi) {
     'use strict';
 
-    var CartModelPrototype,
-        CartItemPrototype,
-        CreateCartModel,
-        CreateCartItem,
-        AddCartItemExtensions;
-    
-    /* Cart item prototype and factory */
-    CartItemPrototype = {
+    /**
+     * Create a cart item view model.
+     * @param {Object} instance   - The item to create cart item from.
+     * @returns The created cart item.
+     */
+    function CartItem(instance) {
+        var self = this;
 
+        self.Id = _.uniqueId('tmp-cartitem-');
+        
         /** 
          * Equality comparer between this item and 'other'. Defaults to comparing 'Id' properties. 
          * @param {Object} other - The item to compare to.
          */
-        Equals: function Equals(other) {
-            return this.Id === other.Id;
-        },
+        self.Equals = function Equals(other) {
+            return self.Id === other.Id;
+        };
 
         /** 
          * Collects custom options (renewal period and domain name) of item.
          * @returns {string[]} Array of custom options.
          */
-        CustomOptions: function CustomOptions() {
+        self.CustomOptions = function CustomOptions() {
             var options = [],
                 domainName;
 
-            if (this.RenewalPeriod) {
-                options.push(this.RenewalPeriod.Display);
+            if (self.RenewalPeriod) {
+                options.push(self.RenewalPeriod.Display);
             }
 
-            if (!this.IsDomainItem()) {
-                domainName = this.GetDomainName();
+            if (!self.IsDomainItem()) {
+                domainName = self.GetDomainName();
 
                 if (domainName !== undefined) {
                     options.push(domainName);
@@ -50,150 +45,155 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             return options;
-        }
+        };
+
+        _.extend(self, instance);
     };
 
-    /**
-     * Create a cart item view model.
-     * @param {Object|Function} extensions - Extensions to the cart item
-     * @param {Object} instance   - The item to create cart item from.
-     * @returns The created cart item.
-     */
-    CreateCartItem = function CreateCartItem(extensions, instance) {
-        var defaults = {
-                Id: _.uniqueId('tmp-cartitem-')
-            };
+    
+    /** Create view model for cart. */
+    function CartModel() {
+        var self = this;
+        
+        self.DomainCategories = [];
+        self.CartItems = ko.observableArray();
+        self.SubTotal = ko.observable(0);
+        self.Total = ko.observable(0);
+        self.Tax = ko.observable(0);
+        self.CampaignCode = ko.observable('');
+        self.IsOpen = ko.observable(false);
+        
+        self.NumberOfItems = ko.pureComputed(function NumberOfItems() {
+            return self.CartItems().length;
+        });
+        
+        self.IsEmpty = ko.pureComputed(function IsEmpty() {
+            return self.NumberOfItems() <= 0;
+        });
 
-        return utils.createViewModel(CartItemPrototype, defaults, instance, extensions);
-    };
+        self.CreateCartItem = function(cartItemData) {
+            return new CartItem(cartItemData);
+        };
 
-    /**Cart prototype and factory */
-    CartModelPrototype = {
         /** Event used to notify Atomia customer validation that cart has been updated. */
-        ValidationUpdateEvent: 'cart:update',
+        self.ValidationUpdateEvent = 'cart:update';
 
         /** Items in cart that are domain items, like registration or transfer */
-        DomainItems: function DomainItems() {
-            return _.filter(this.CartItems(), function (item) {
-                return _.contains(this.DomainCategories, item.Category);
-            }.bind(this));
-        },
+        self.DomainItems = function DomainItems() {
+            return _.filter(self.CartItems(), function (item) {
+                return _.contains(self.DomainCategories, item.Category);
+            });
+        };
 
         /** Distinct article numbers of items in cart. */
-        ArticleNumbers: function ArticleNumbers() {
-            return _.uniq(_.map(this.CartItems(), function (item) {
+        self.ArticleNumbers = function ArticleNumbers() {
+            return _.uniq(_.map(self.CartItems(), function (item) {
                 return item.ArticleNumber;
-            }.bind(this)));
-        },
+            }));
+        };
 
         /** Distinct categories of items in cart. */
-        Categories: function Categories() {
-            return _.uniq(_.map(this.CartItems(), function (item) {
+        self.Categories = function Categories() {
+            return _.uniq(_.map(self.CartItems(), function (item) {
                 return item.Category;
-            }.bind(this)));
-        },
+            }));
+        };
 
         /** Open or close cart display. */
-        ToggleDropdown: function ToggleDropdown() {
-            if (this.IsOpen()) {
-                this.IsOpen(false);
+        self.ToggleDropdown = function ToggleDropdown() {
+            if (self.IsOpen()) {
+                self.IsOpen(false);
             }
             else {
                 utils.publish('dropdown:open');
-                this.IsOpen(true);
+                self.IsOpen(true);
             }
-        },
+        };
 
         /** Close cart display */
-        CloseDropdown: function CloseDropdown() {
-            this.IsOpen(false);
-        },
+        self.CloseDropdown = function CloseDropdown() {
+            self.IsOpen(false);
+        };
 
         /** Check if cart contains item that 'Equals' 'item'. */
-        Contains: function Contains(item) {
-            var isInCart = _.any(this.CartItems(), function (cartItem) {
+        self.Contains = function Contains(item) {
+            var isInCart = _.any(self.CartItems(), function (cartItem) {
                 return item.Equals(cartItem);
             });
 
             return isInCart;
-        },
+        };
 
         /** Get first item in cart that 'Equals' 'item'. */
-        GetExisting: function GetExisting(item) {
-            var itemInCart = _.find(this.CartItems(), function (cartItem) {
+        self.GetExisting = function GetExisting(item) {
+            var itemInCart = _.find(self.CartItems(), function (cartItem) {
                 return item.Equals(cartItem);
             });
 
             return itemInCart;
-        },
+        };
 
         /** Add 'item' to cart and recalculate. Optionally set 'recalculate' to false. */
-        Add: function Add(item, recalculate) {
+        self.Add = function Add(item, recalculate) {
             var cartItem;
 
             if (recalculate === undefined) {
                 recalculate = true;
             }
 
-            if (!this.Contains(item)) {
-                cartItem = this.CreateCartItem(item);
-                this.CartItems.push(cartItem);
+            if (!self.Contains(item)) {
+                cartItem = self.CreateCartItem(item);
+                self.CartItems.push(cartItem);
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(
-                        this,
-                        function (result) {
-                            this._UpdateCart(result.Cart);
+                    cartApi.RecalculateCart(self, function (result) {
+                        self._UpdateCart(result.Cart);
 
-                            utils.publish('cart:add', cartItem);
-                        }.bind(this)
-                    );
+                        utils.publish('cart:add', cartItem);
+                    });
                 }
             }
-        },
+        };
 
         /** Remove 'item' from cart and recalculate. Optionally set 'recalculate' to false. */
-        Remove: function Remove(item, recalculate) {
+        self.Remove = function Remove(item, recalculate) {
             var itemInCart;
 
             if (recalculate === undefined) {
                 recalculate = true;
             }
 
-            if (this.Contains(item)) {
-                itemInCart = _.find(this.CartItems(), function (cartItem) {
+            if (self.Contains(item)) {
+                itemInCart = _.find(self.CartItems(), function (cartItem) {
                     return item.Equals(cartItem);
                 });
 
                 if (itemInCart !== undefined) {
-                    this.CartItems.remove(itemInCart);
-                    
+                    self.CartItems.remove(itemInCart);
+
                     if (recalculate === true) {
-                        cartApi.RecalculateCart(
-                            this,
-                            function (result) {
-                                this._UpdateCart(result.Cart);
+                        cartApi.RecalculateCart(self, function (result) {
+                            self._UpdateCart(result.Cart);
 
-                                utils.publish('cart:remove', itemInCart);
+                            utils.publish('cart:remove', itemInCart);
 
-                                if (itemInCart.IsDomainItem()) {
-                                    this.ClearDomainItem(itemInCart);
-                                }
-                            }.bind(this)
-                        );
+                            if (itemInCart.IsDomainItem()) {
+                                self.ClearDomainItem(itemInCart);
+                            }
+                        });
                     }
                 }
             }
-        },
+        };
 
         /** Add 'item' to or remove 'item' from cart and recalculate. Optionally set 'recalculate' to false. */
-        AddOrRemove: function AddOrRemove(item, recalculate) {
-            this.Contains(item) ? this.Remove(item, recalculate) : this.Add(item, recalculate);
-        },
+        self.AddOrRemove = function AddOrRemove(item, recalculate) {
+            self.Contains(item) ? self.Remove(item, recalculate) : self.Add(item, recalculate);
+        };
 
         /** Associate 'domainName' to 'mainItem'. Optionally set 'recalculate' to false. */
-        AddDomainName: function AddDomainName(mainItem, domainName, recalculate) {
-            var mainInCart = this.GetExisting(mainItem),
+        self.AddDomainName = function AddDomainName(mainItem, domainName, recalculate) {
+            var mainInCart = self.GetExisting(mainItem),
                 existingDomainName;
 
             if (recalculate === undefined) {
@@ -213,20 +213,16 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(
-                        this,
-                        function (result) {
-                            this._UpdateCart(result.Cart);
-                        }.bind(this)
-                    );
+                    cartApi.RecalculateCart(self, function (result) {
+                        self._UpdateCart(result.Cart);
+                    });
                 }
             }
-        },
-
+        };
 
         /** Remove any domain name associations from 'mainItem'. Optionally set 'recalculate' to false.*/
-        RemoveDomainName: function RemoveDomainName(mainItem, recalculate) {
-            var mainInCart = this.GetExisting(mainItem);
+        self.RemoveDomainName = function RemoveDomainName(mainItem, recalculate) {
+            var mainInCart = self.GetExisting(mainItem);
 
             if (recalculate === undefined) {
                 recalculate = true;
@@ -242,129 +238,86 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(
-                        this,
-                        function (result) {
-                            this._UpdateCart(result.Cart);
-                        }.bind(this)
-                    );
+                    cartApi.RecalculateCart(self, function (result) {
+                        self._UpdateCart(result.Cart);
+                    });
                 }
             }
-        },
+        };
 
         /** Remove any associations to domain name tied to 'domainItem' from any other items in cart. */
-        ClearDomainItem: function ClearDomainItem(domainItem) {
+        self.ClearDomainItem = function ClearDomainItem(domainItem) {
             var domainNameToRemove = domainItem.GetDomainName();
 
-            _.each(this.CartItems(), function (item) {
+            _.each(self.CartItems(), function (item) {
                 if (!domainItem.Equals(item) && item.GetDomainName() === domainNameToRemove) {
-                    this.RemoveDomainName(item);
+                    self.RemoveDomainName(item);
                 }
-            }.bind(this));
-        },
+            });
+        };
 
         /** Load cart with JSON data from 'getCartResponse'. */
-        Load: function Load(getCartResponse) {
-            this._UpdateCart(getCartResponse.data.Cart);
+        self.Load = function Load(getCartResponse) {
+            self._UpdateCart(getCartResponse.data.Cart);
 
             if (getCartResponse.data.DomainCategories !== undefined) {
-                this.DomainCategories = getCartResponse.data.DomainCategories;
+                self.DomainCategories = getCartResponse.data.DomainCategories;
             }
-        },
+        };
 
         /** Add 'campaignCode' to cart. Replaces any existing campaign code and recalculates cart. */
-        AddCampaignCode: function AddCampaignCode(campaignCode) {
+        self.AddCampaignCode = function AddCampaignCode(campaignCode) {
             if (!_.isString(campaignCode) || campaignCode === '') {
                 throw new Error('campaignCode must be a non-empty string.');
             }
 
-            this.CampaignCode(campaignCode);
+            self.CampaignCode(campaignCode);
 
-            cartApi.RecalculateCart(
-                this,
-                function (result) {
-                    this._UpdateCart(result.Cart);
+            cartApi.RecalculateCart(self, function (result) {
+                self._UpdateCart(result.Cart);
 
-                    utils.publish('cart:addCampaignCode', campaignCode);
-                }.bind(this)
-            );
-        },
+                utils.publish('cart:addCampaignCode', campaignCode);
+            });
+        };
 
         /** Remove campaign code from cart and recalculate. */
-        RemoveCampaignCode: function RemoveCampaignCode() {
-            this.CampaignCode('');
+        self.RemoveCampaignCode = function RemoveCampaignCode() {
+            self.CampaignCode('');
 
-            cartApi.RecalculateCart(
-                this,
-                function (result) {
-                    this._UpdateCart(result.Cart);
+            cartApi.RecalculateCart(self, function (result) {
+                self._UpdateCart(result.Cart);
 
-                    utils.publish('cart:removeCampaignCode');
-                }.bind(this)
-            );
-        },
+                utils.publish('cart:removeCampaignCode');
+            });
+        };
 
         /** Update cart with 'cartData'. */
-        _UpdateCart: function _UpdateCart(cartData) {
-            this.CartItems.removeAll();
+        self._UpdateCart = function _UpdateCart(cartData) {
+            self.CartItems.removeAll();
 
             _.each(cartData.CartItems, function (cartItemData) {
-                var item = this.CreateCartItem(cartItemData),
-                    cartItem = AddCartItemExtensions(this, item);
+                var item = self.CreateCartItem(cartItemData);
+                var cartItem = AddCartItemExtensions(self, item);
 
-                this.CartItems.push(cartItem);
-            }.bind(this));
+                self.CartItems.push(cartItem);
+            });
 
-            this.SubTotal(cartData.SubTotal);
-            this.Total(cartData.Total);
-            this.Tax(cartData.Tax);
-            this.CampaignCode(cartData.CampaignCode);
+            self.SubTotal(cartData.SubTotal);
+            self.Total(cartData.Total);
+            self.Tax(cartData.Tax);
+            self.CampaignCode(cartData.CampaignCode);
 
             utils.publish('cart:update');
 
             // Customer validation plugin expects an event on 
-            $('body').trigger(this.ValidationUpdateEvent);
-        }
-    };
-
-    /**
-     * Create view model for cart.
-     * @param {Object|Function} extensions       - Extensions to the default cart view model.
-     * @param {Object|Function} itemExtensions   - Extensions to the default cart item view model.
-     * @returns {Object} The created view model.
-     */
-    CreateCartModel = function CreateCartModel(extensions, itemExtensions) {
-        var defaults, cart;
-        
-        defaults = function (self) {
-            return {
-                CreateCartItem: _.partial(CreateCartItem, itemExtensions || {}),
-                DomainCategories: [],
-                CartItems: ko.observableArray(),
-                SubTotal: ko.observable(0),
-                Total: ko.observable(0),
-                Tax: ko.observable(0),
-                CampaignCode: ko.observable(''),
-                IsOpen: ko.observable(false),
-
-                NumberOfItems: ko.pureComputed(function NumberOfItems() {
-                    return self.CartItems().length;
-                }),
-
-                IsEmpty: ko.pureComputed(function IsEmpty() {
-                    return self.NumberOfItems() <= 0;
-                })
-            };
+            $('body').trigger(self.ValidationUpdateEvent);
         };
 
-        cart = utils.createViewModel(CartModelPrototype, defaults, extensions);
-
+        
         utils.subscribe('dropdown:open', function () {
-            cart.IsOpen(false);
+            self.IsOpen(false);
         });
-
-        return cart;
-    };
+    }
 
 
 
@@ -374,7 +327,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * @param {Object} item - The item to extend with helper methods.
      * @returns {Object} The extended item.
      */
-    AddCartItemExtensions = function AddCartItemExtensions(cart, item) {
+    function AddCartItemExtensions(cart, item) {
         var cartExtensions;
 
         if (item.Equals === undefined) {
@@ -407,7 +360,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             GetDomainName: function GetDomainName() {
                 var domainAttr, domainName;
 
-                if (this.CustomAttributes !== undefined) {
+                if (item.CustomAttributes !== undefined) {
                     domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
                 }
 
@@ -432,13 +385,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         };
 
         return _.extend(item, cartExtensions);
-    };
+    }
 
     
 
     /* Module exports */
     _.extend(exports, {
-        CreateCartModel: CreateCartModel,
+        CartModel: CartModel,
         AddCartItemExtensions: AddCartItemExtensions
     });
 

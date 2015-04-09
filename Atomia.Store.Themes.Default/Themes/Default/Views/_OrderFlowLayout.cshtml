@@ -59,7 +59,7 @@
         Atomia.VM.languageSelector = new Atomia.ViewModels.LanguageSelectorModel();
         Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
 
-        Atomia.VM.Cart = Atomia.ViewModels.CreateCartModel();
+        Atomia.VM.Cart = new Atomia.ViewModels.CartModel();
         Atomia.VM.Cart.Load(@Html.JsonAction("GetCart", "Cart"));
 
         Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
