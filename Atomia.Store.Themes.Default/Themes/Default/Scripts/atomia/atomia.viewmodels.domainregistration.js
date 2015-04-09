@@ -79,7 +79,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.submittedQuery(self.query());
             self.noResults(false);
             
-            domainsApi.FindDomains(self.query(), function (data) {
+            domainsApi.findDomains(self.query(), function (data) {
                 var domainSearchId = data.DomainSearchId;
 
                 if (data.Results.length === 0 && data.FinishSearch) {
@@ -90,7 +90,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.updateResults(data.Result);
                 }
                 else {
-                    domainsApi.CheckStatus(domainSearchId,
+                    domainsApi.checkStatus(domainSearchId,
                         function (data) {
                             if (data.Results.length === 0 && data.FinishSearch) {
                                 self.noResults(true);

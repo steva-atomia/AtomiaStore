@@ -1,8 +1,4 @@
-﻿/// <reference path="../../../../Scripts/underscore.js" />
-/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
-/// <reference path="atomia.utils.js" />
-
-/* jshint -W079 */
+﻿/* jshint -W079 */
 /** @namespace */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
@@ -20,7 +16,7 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
      * @param {Function} success - Callback on successful recalculation of cart
      * @param {Function} error - Callback on failed recalculation of cart
      */
-    function RecalculateCart(cart, success, error) {
+    function recalculateCart(cart, success, error) {
 
         var request, requestData;
 
@@ -77,7 +73,7 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
 
 
     _.extend(exports, {
-        RecalculateCart: RecalculateCart
+        recalculateCart: recalculateCart
     });
     
 })(Atomia.Api.Cart, _, ko, Atomia.Utils);

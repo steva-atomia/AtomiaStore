@@ -27,7 +27,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
      * @param {Function} success - Callback for handling results
      * @param {Function} error - Callback on error.
      */
-    function FindDomains(searchTerm, success, error) {
+    function findDomains(searchTerm, success, error) {
 
         var requestData = {
             'searchQuery.Query': searchTerm
@@ -50,7 +50,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
     }
     
 
-    function _CheckStatus(domainSearchId, success, error, interval) {
+    function _checkStatus(domainSearchId, success, error, interval) {
         var requestData = {
             'domainSearchId': domainSearchId
         },
@@ -94,7 +94,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
                         }
 
                         if (checkAgain) {
-                            setTimeout(_CheckStatus, interval, domainSearchId, success, error, nextInterval);
+                            setTimeout(_checkStatus, interval, domainSearchId, success, error, nextInterval);
                         }
                     }
 
@@ -121,13 +121,13 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
 
     /**
      * Check status for search with id 'domainSearchId'.
-     * @param {string} domainSearchId - Id for search to check, received in results of 'FindDomains'.
+     * @param {string} domainSearchId - Id for search to check, received in results of 'findDomains'.
      * @param {Function} success - Callback on successful check.
      * @param {Function} error - Callback on error
      */
-    function CheckStatus(domainSearchId, success, error) {
-        // Seed _CheckStatus with a start interval.
-        _CheckStatus(domainSearchId, success, error, startInterval);
+    function checkStatus(domainSearchId, success, error) {
+        // Seed with a start interval.
+        _checkStatus(domainSearchId, success, error, startInterval);
     }
 
 
@@ -139,7 +139,7 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
      * @param {number} options.finalInterval        - Time in ms for final interval between checks.
      * @param {number} options.statusCheckMaxCount  - How many times to check status before stopping.
      */
-    function SetStatusCheckTiming(options) {
+    function setStatusCheckTiming(options) {
         if (options.startInterval !== undefined) {
             startInterval = options.startInterval;
         }
@@ -158,9 +158,9 @@ Atomia.Api.Domains = Atomia.Api.Domains || {};
     }
 
     _.extend(exports, {
-        FindDomains: FindDomains,
-        CheckStatus: CheckStatus,
-        SetStatusCheckTiming: SetStatusCheckTiming
+        findDomains: findDomains,
+        checkStatus: checkStatus,
+        setStatusCheckTiming: setStatusCheckTiming
     });
 
 })(Atomia.Api.Domains, _, Atomia.Utils);

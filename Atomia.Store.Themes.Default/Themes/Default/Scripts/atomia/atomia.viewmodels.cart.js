@@ -146,7 +146,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.cartItems.push(cartItem);
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(self, function (result) {
+                    cartApi.recalculateCart(self, function (result) {
                         self._updateCart(result.Cart);
 
                         utils.publish('cart:add', cartItem);
@@ -172,7 +172,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.cartItems.remove(itemInCart);
 
                     if (recalculate === true) {
-                        cartApi.RecalculateCart(self, function (result) {
+                        cartApi.recalculateCart(self, function (result) {
                             self._updateCart(result.Cart);
 
                             utils.publish('cart:remove', itemInCart);
@@ -213,7 +213,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(self, function (result) {
+                    cartApi.recalculateCart(self, function (result) {
                         self._updateCart(result.Cart);
                     });
                 }
@@ -238,7 +238,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.RecalculateCart(self, function (result) {
+                    cartApi.recalculateCart(self, function (result) {
                         self._updateCart(result.Cart);
                     });
                 }
@@ -273,7 +273,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             self.campaignCode(campaignCode);
 
-            cartApi.RecalculateCart(self, function (result) {
+            cartApi.recalculateCart(self, function (result) {
                 self._updateCart(result.Cart);
 
                 utils.publish('cart:addCampaignCode', campaignCode);
@@ -284,7 +284,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.removeCampaignCode = function removeCampaignCode() {
             self.campaignCode('');
 
-            cartApi.RecalculateCart(self, function (result) {
+            cartApi.recalculateCart(self, function (result) {
                 self._updateCart(result.Cart);
 
                 utils.publish('cart:removeCampaignCode');
