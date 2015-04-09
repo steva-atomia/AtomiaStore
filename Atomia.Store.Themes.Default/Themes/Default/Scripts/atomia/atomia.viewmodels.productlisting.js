@@ -1,9 +1,4 @@
-﻿/// <reference path="../../../../Scripts/underscore.js" />
-/// <reference path="../../../../Scripts/knockout-3.2.0.debug.js" />
-/// <reference path="atomia.utils.js" />
-/// <reference path="atomia.viewmodels.cart.js" />
-
-/* jshint -W079 */
+﻿/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
@@ -11,18 +6,49 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, viewModelsApi) {
     'use strict';
 
-    var ProductListingItemPrototype,
-        CreateProductListingItem,
-        ProductListingModelPrototype,
-        CreateProductListingModel;
-    
+    /**
+     * Creates product listing item
+     * @param {Object} productData - The instance to create product listing item from.
+     */
+    function ProductListingItem(productData) {
+        var self = this;
 
-    /* Products listing item prototype and factory */
-    ProductListingItemPrototype = {
+        self._selectedPricingVariantInitialized = false;
+        
+        self.uniqueId = _.uniqueId('productitem-');
+        self.selectedPricingVariant = ko.observable();
+        
+        /** Shortcut to price of pricing variant. */
+        self.price = ko.pureComputed(function() {
+            if (self.hasVariants()) {
+                return self.selectedPricingVariant().Price;
+            }
+
+            return self.PricingVariants[0].Price;
+        });
+
+        /** Shortcut to renewal period of pricing variant */
+        self.renewalPeriod = ko.pureComputed(function() {
+            if (self.hasVariants()) {
+                return self.selectedPricingVariant().RenewalPeriod;
+            }
+
+            return self.PricingVariants[0].RenewalPeriod;
+        });
+
+        // TODO: Remove this when change to using all lower case is done.
+        self.Price = self.price;
+        self.RenewalPeriod = self.renewalPeriod;
+
+        /** Check if there is more than one pricing variant for the product. */
+        self.hasVariants = ko.pureComputed(function () {
+            return self.PricingVariants.length > 1;
+        });
+            
         /** Pre-select pricing variant to match the one added to cart. */
-        _InitPricingVariant: function _InitPricingVariant() {
+        self.initPricingVariant = function _InitPricingVariant() {
             var itemInCart = this.GetItemInCart(),
-                selectedPricingVariant = _.find(this.PricingVariants, function (pv) {
+                selectedPricingVariant = _.find(self.PricingVariants, function (pv) {
                     if (pv.RenewalPeriod === null || itemInCart.RenewalPeriod === null) {
                         return false;
                     }
@@ -32,166 +58,106 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
             if (selectedPricingVariant !== undefined) {
-                this.SelectedPricingVariant(selectedPricingVariant);
+                self.selectedPricingVariant(selectedPricingVariant);
             }
-        },
-
-        /** Shortcut to price of pricing variant. */
-        _Price: function _Price() {
-            if (this.HasVariants()) {
-                return this.SelectedPricingVariant().Price;
-            }
-
-            return this.PricingVariants[0].Price;
-        },
-
-        /** Shortcut to renewal period of pricing variant */
-        _RenewalPeriod: function _RenewalPeriod() {
-            if (this.HasVariants()) {
-                return this.SelectedPricingVariant().RenewalPeriod;
-            }
-
-            return this.PricingVariants[0].RenewalPeriod;
-        }, 
-
-        /** Check if there is more than one pricing variant for the product. */
-        _HasVariants: function _HasVariants() {
-            return this.PricingVariants.length > 1;
-        },
-
-        /** Select pricing variant for product and sync with cart. */
-        _SelectPricingVariant: function _SelectPricingVariant() {
-            if (this._selectedPricingVariantInitialized && this.IsInCart()) {
-                this.RemoveFromCart();
-            }
-
-            this._selectedPricingVariantInitialized = true;
-        }
-    };
-
-
-    /**
-     * Creates product listing item
-     * @param {Object|Function} extensions - Extensions to the default product listing item.
-     * @param {Object} instance - The instance to create product listing item from.
-     */
-    CreateProductListingItem = function CreateProductListingItem(extensions, instance) {
-        var item, defaults;
-
-        defaults = function (self) {
-            return {
-                _selectedPricingVariantInitialized: false,
-
-                UniqueId: _.uniqueId('productitem-'),
-                SelectedPricingVariant: ko.observable(),
-
-                Price: ko.pureComputed(self._Price, self),
-                RenewalPeriod: ko.pureComputed(self._RenewalPeriod, self),
-                HasVariants: ko.pureComputed(self._HasVariants, self)
-            };
         };
-
-        item = utils.createViewModel(ProductListingItemPrototype, defaults, instance, extensions);
-        item.SelectedPricingVariant.subscribe(item._SelectPricingVariant, item);
-
-        return item;
-    };
-
-
-
-    /* Products listing prototype and factory */
-    ProductListingModelPrototype = {
-        /** Load view model with product listing data generated on server. */
-        Load: function Load(listProductsDataResponse) {
-            this._UpdateProducts(listProductsDataResponse.data.CategoryData.Products);
-        },
-
-        /** Select product and update cart. */
-        SelectProduct: function SelectProduct(item) {
-            if (this.SingleSelection) {
-                this.SelectedProduct(item);
-
-                _.each(this.Products(), function (product) {
-                    if (this._Cart.Contains(product)) {
-                        this._Cart.Remove(product, false);
-                    }
-                }.bind(this));
+        
+        /** Select pricing variant for product and sync with cart. */
+        self.selectedPricingVariant.subscribe(function _SelectPricingVariant() {
+            if (self._selectedPricingVariantInitialized && self.IsInCart()) {
+                self.RemoveFromCart();
             }
 
-            this._Cart.Add(item);
-        },
+            self._selectedPricingVariantInitialized = true;
+        });
 
-        /** Remove product from cart. */
-        RemoveProduct: function RemoveProduct(item) {
-            this._Cart.Remove(item);
-        },
+        /** Add properties from productData to object */
+        _.extend(self, productData);
+    }
 
-        /** Create and add product listing items from products data. */
-        _UpdateProducts: function _UpdateProducts(products) {
-            _.each(products, function (product) {
-                var item = this.CreateProductListingItem(product);
-
-                item = viewModelsApi.AddCartItemExtensions(this._Cart, item);
-
-                if (this._Cart.Contains(item)) {
-                    item._InitPricingVariant();
-                    
-                    if (this.SingleSelection) {
-                        this.SelectProduct(item);
-                    }
-                }
-
-                this.Products.push(item);
-            }, this);
-        },
-
-        /** Check if product is in cart. */
-        _ProductIsSelected: function _ProductIsSelected() {
-            return _.any(this.Products(), function (product) {
-                return this._Cart.Contains(product);
-            }, this);
-        },
-
-        /** Check if order flow is allowed to continue to next step. */
-        _AllowContinue: function _AllowContinue() {
-            var conditions = [];
-
-            if (this.ProductIsRequired) {
-                conditions.push(this.ProductIsSelected());
-            }
-
-            return _.every(conditions);
-        }
-    };
 
     /**
      * Create product listing.
      * @param {Object} cart - An instance of cart view model.
-     * @param {Object|Function} extensions - Extensions to the default product listing view model
-     * @param {Object|Function} itemExtensions - Extensions to the default product listing item view model
      */
-    CreateProductListingModel = function CreateProductListingModel(cart, extensions, itemExtensions) {
-        var defaults = function (self) {
-            return {
-                _Cart: cart,
-                CreateProductListingItem: _.partial(CreateProductListingItem, itemExtensions || {}),
+    function ProductListingModel(cart) {
+        var self = this;
 
-                ProductIsRequired: true,
-                SingleSelection: false,
-                Products: ko.observableArray(),
-                SelectedProduct: ko.observable(),
+        self._cart = cart;
+                
+        self.productIsRequired = true;
+        self.singleSelection = false;
+        self.products = ko.observableArray();
+        self.selectedProduct = ko.observable();
+        
+        /** Check if product is in cart. */
+        self.productIsSelected = ko.pureComputed(function() {
+            return _.any(self.products(), function (product) {
+                return self._cart.Contains(product);
+            });
+        });
 
-                ProductIsSelected: ko.pureComputed(self._ProductIsSelected, self),
-                AllowContinue: ko.pureComputed(self._AllowContinue, self)
-            };
+        /** Check if order flow is allowed to continue to next step. */
+        self.allowContinue = ko.pureComputed(function() {
+            var conditions = [];
+
+            if (self.productIsRequired) {
+                conditions.push(self.productIsSelected());
+            }
+
+            return _.every(conditions);
+        });
+          
+        /** Create ProductListingItem object. */
+        self.createProductListingItem = function CreateProductListingItem(productData){
+            return new ProductListingItem(productData);
         };
 
-        return utils.createViewModel(ProductListingModelPrototype, defaults, extensions);
-    };
+        /** Select product and update cart. */
+        self.selectProduct = function SelectProduct(item) {
+            if (self.singleSelection) {
+                self.selectedProduct(item);
+
+                _.each(self.products(), function (product) {
+                    if (self._cart.Contains(product)) {
+                        self._cart.Remove(product, false);
+                    }
+                });
+            }
+
+            self._cart.Add(item);
+        };
+
+        /** Remove product from cart. */
+        self.removeProduct = function RemoveProduct(item) {
+            self._cart.Remove(item);
+        };
+
+        /** Load view model with product listing data generated on server. */
+        self.load = function Load(response) {
+            var products = response.data.CategoryData.Products;
+
+            _.each(products, function (product) {
+                var item = self.createProductListingItem(product);
+
+                item = viewModelsApi.AddCartItemExtensions(self._cart, item);
+
+                if (self._cart.Contains(item)) {
+                    item.initPricingVariant();
+                    
+                    if (self.singleSelection) {
+                        self.selectProduct(item);
+                    }
+                }
+
+                self.products.push(item);
+            });
+        };
+    }
     
 
     _.extend(exports, {
-        CreateProductListingModel: CreateProductListingModel
+        ProductListingModel: ProductListingModel
     });
 
 })(Atomia.ViewModels, _, ko, Atomia.Utils, Atomia.ViewModels);
