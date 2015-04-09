@@ -1,7 +1,4 @@
-﻿/// <reference path="../../../../Scripts/amplify-vsdoc.js" />
-/// <reference path="../../../../Scripts/underscore.js" />
-
-/* jshint -W079 */
+﻿/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.Utils = Atomia.Utils || {};
 /* jshint +W079 */
@@ -45,64 +42,10 @@ Atomia.Utils = Atomia.Utils || {};
         }
     }
 
-    /**
-     * Create a view model from prototype object with optional extensions.
-     * @param {Object}             proto       - Prototype for the object to create
-     * @param {Object|Function}    arguments   - Remaining arguments extend the created view model, see extendViewModel
-     * @returns {Object} The created view model
-     */
-    function createViewModel(proto) {
-        var viewModel, extensions, protoFuncs;
-        
-        if (!_.isObject(proto)) {
-            return proto;
-        }
-
-        // Create the view model instance.
-        viewModel = Object.create(proto);
-
-        // Bind all functions on the prototype to the instance (sets "this" inside the functions.)
-        protoFuncs = _.functions(proto);
-        if (protoFuncs.length > 0) {
-            _.bindAll.apply(_, [viewModel].concat(protoFuncs));
-        }
-
-        // Any other arguments are treated as extensions.
-        extensions = [].slice.call(arguments, 1);
-        _.each(extensions, function(extension) {
-            viewModel = extendViewModel(viewModel, extension);
-        });
-
-        return viewModel;
-    }
-
-    /** 
-     * Extend the 'viewModel' with and object or function 'extension'.
-     * @param {Object} viewModel - The view model object to extend.
-     * @param {Object|Function} extension - If object properties get copied, if function it is called with the 'viewModel' as argument.
-     */
-    function extendViewModel(viewModel, extension) {
-        if (!_.isObject(viewModel)) {
-            return viewModel;
-        }
-
-        if (_.isFunction(extension)) {
-            // extension is a function so call it with the viewModel
-            return _.extend(viewModel, extension(viewModel));
-        }
-        else if (_.isObject(extension)) {
-            return _.extend(viewModel, extension);
-        }
-
-        return viewModel;
-    }
-
     _.extend(exports, {
         request: request,
         publish: publish,
-        subscribe: subscribe,
-        createViewModel: createViewModel,
-        extendViewModel: extendViewModel
+        subscribe: subscribe
     });
 
 })(Atomia.Utils, _, amplify);
