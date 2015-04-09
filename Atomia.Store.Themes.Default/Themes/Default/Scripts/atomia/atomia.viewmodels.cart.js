@@ -391,6 +391,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
+        CartItem: CartItem,
         CartModel: CartModel,
         addCartItemExtensions: addCartItemExtensions
     });

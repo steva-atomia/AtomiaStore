@@ -157,6 +157,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     
 
     _.extend(exports, {
+        ProductListingItem: ProductListingItem,
         ProductListingModel: ProductListingModel
     });
 

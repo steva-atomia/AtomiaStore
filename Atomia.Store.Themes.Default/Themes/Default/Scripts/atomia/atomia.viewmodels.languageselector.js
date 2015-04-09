@@ -93,6 +93,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 
     _.extend(exports, {
+        getNewLanguageURL: getNewLanguageURL,
+        LanguageItem: LanguageItem,
         LanguageSelectorModel: LanguageSelectorModel
     });
 

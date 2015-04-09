@@ -171,6 +171,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /* Module exports */
     _.extend(exports, {
+        DomainRegistrationItem: DomainRegistrationItem,
         DomainRegistrationModel: DomainRegistrationModel
     });
 
