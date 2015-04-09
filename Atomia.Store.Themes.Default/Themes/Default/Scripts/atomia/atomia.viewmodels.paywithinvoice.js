@@ -11,9 +11,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * @param {Object} cart - A cart view model instance.
      */
 	function PayWithInvoiceModel(cart) {
-		var self = this;
+	    var self = this;
 
-		self._cart = cart;
 		self.invoiceType = ko.observable();
 		self.postalFeeItem = ko.observable(null);
 
@@ -30,7 +29,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	            Value: 'true'
 	        });
 
-	        cartItem = viewModelsApi.addCartItemExtensions(self._cart, postalFeeItem);
+	        cartItem = viewModelsApi.addCartItemExtensions(cart, postalFeeItem);
 
 	        return cartItem;
 	    };
@@ -63,10 +62,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        var cartItem = self.createPostalFeeItem();
 
 	        if (cartItem !== null && newInvoiceType === 'email') {
-	            self._cart.remove(cartItem);
+	            cart.remove(cartItem);
 	        }
 	        else if (cartItem !== null && newInvoiceType === 'post') {
-	            self._cart.add(cartItem);
+	            cart.add(cartItem);
 	        }
 	    });
 		
@@ -78,7 +77,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        var cartItem = self.createPostalFeeItem();
 
 	        if (cartItem !== null && paymentMethod !== 'PayWithInvoice') {
-	            self._cart.remove(cartItem);
+	            cart.remove(cartItem);
 	        }
 
 	        self.invoiceType('email');

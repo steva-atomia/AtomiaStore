@@ -13,8 +13,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function DomainConnectionModel(cart, selectedItem) {
         var self = this;
 
-        self._cart = cart;
-
         self.selectedItem = _.isFunction(selectedItem) ? selectedItem : function () { return selectedItem; };
         self.uniqueId = _.uniqueId('domain-connection-');
         self.domainNameOptions = ko.observableArray();
@@ -41,7 +39,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Handler for updating domain name options when cart is updated. */
         self.updateDomainNameOptions = function updateDomainNameOptions() {
-            var domainItems = self._cart.domainItems(),
+            var domainItems = cart.domainItems(),
                 domainNames = [];
 
             if (domainItems !== undefined) {
@@ -71,10 +69,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             if (selectedDomainName !== undefined) {
-                self._cart.addDomainName(selectedItem, selectedDomainName);
+                cart.addDomainName(selectedItem, selectedDomainName);
             }
             else {
-                self._cart.removeDomainName(selectedItem);
+                cart.removeDomainName(selectedItem);
             }
         };
 

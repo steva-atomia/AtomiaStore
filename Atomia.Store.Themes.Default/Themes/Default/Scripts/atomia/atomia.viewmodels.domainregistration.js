@@ -52,8 +52,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function DomainRegistrationModel(cart) {
         var self = this;
 
-        self._cart = cart;
-
         self.submittedQuery = ko.observable();
         self.query = ko.observable();
         self.isLoadingResults = ko.observable(false);
@@ -124,7 +122,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 secondaryResults = [];
 
             _.each(results, function (result) {
-                var item = viewModelsApi.addCartItemExtensions(self._cart, self.createDomainRegistrationItem(result));
+                var item = viewModelsApi.addCartItemExtensions(cart, self.createDomainRegistrationItem(result));
 
                 if (item.isPrimary) {
                     primaryResults.push(item);

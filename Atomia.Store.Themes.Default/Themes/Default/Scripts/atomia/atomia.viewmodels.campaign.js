@@ -14,8 +14,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function CampaignCodeModel(cart) {
         var self = this;
 
-        self._cart = cart;
-
         self.code = ko.observable('');
         self.added = ko.observable(false);
 
@@ -24,7 +22,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             var code = self.code();
 
             if (_.isString(code) && code !== '') {
-                self._cart.addCampaignCode(code);
+                cart.addCampaignCode(code);
                 self.added(true);
                 self.code('');
             }

@@ -82,8 +82,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      */
     function ProductListingModel(cart) {
         var self = this;
-
-        self._cart = cart;
                 
         self.productIsRequired = true;
         self.singleSelection = false;
@@ -93,7 +91,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         /** Check if product is in cart. */
         self.productIsSelected = ko.pureComputed(function() {
             return _.any(self.products(), function (product) {
-                return self._cart.contains(product);
+                return cart.contains(product);
             });
         });
 
@@ -119,18 +117,18 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.selectedProduct(item);
 
                 _.each(self.products(), function (product) {
-                    if (self._cart.contains(product)) {
-                        self._cart.remove(product, false);
+                    if (cart.contains(product)) {
+                        cart.remove(product, false);
                     }
                 });
             }
 
-            self._cart.add(item);
+            cart.add(item);
         };
 
         /** Remove product from cart. */
         self.removeProduct = function RemoveProduct(item) {
-            self._cart.remove(item);
+            cart.remove(item);
         };
 
         /** Load view model with product listing data generated on server. */
@@ -140,9 +138,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             _.each(products, function (product) {
                 var item = self.createProductListingItem(product);
 
-                item = viewModelsApi.addCartItemExtensions(self._cart, item);
+                item = viewModelsApi.addCartItemExtensions(cart, item);
 
-                if (self._cart.contains(item)) {
+                if (cart.contains(item)) {
                     item.initPricingVariant();
                     
                     if (self.singleSelection) {
