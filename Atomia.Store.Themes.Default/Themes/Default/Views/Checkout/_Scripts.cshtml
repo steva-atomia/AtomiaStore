@@ -5,12 +5,12 @@
 }
 
 <script type="text/javascript">
-        Atomia.VM.Payment = Atomia.ViewModels.CreatePaymentSelectorModel();
-        Atomia.VM.Payment.SelectedPaymentMethod('@Model.SelectedPaymentMethodId');
+        Atomia.VM.payment = new Atomia.ViewModels.PaymentSelectorModel();
+        Atomia.VM.payment.selectedPaymentMethod('@Model.SelectedPaymentMethodId');
 
-        Atomia.VM.PayWithInvoice = Atomia.ViewModels.CreatePayWithInvoiceModel(Atomia.VM.Cart, Atomia.VM.Payment);
-        Atomia.VM.PayWithInvoice.LoadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
-        Atomia.VM.PayWithInvoice.InvoiceType('email');
+        Atomia.VM.payWithInvoice = new Atomia.ViewModels.PayWithInvoiceModel(Atomia.VM.Cart);
+        Atomia.VM.payWithInvoice.loadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
+        Atomia.VM.payWithInvoice.invoiceType('email');
 
         Atomia.VM.campaignCode = new Atomia.ViewModels.CampaignCodeModel(Atomia.VM.Cart);
 </script>

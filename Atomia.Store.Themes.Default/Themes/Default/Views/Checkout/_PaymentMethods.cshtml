@@ -8,7 +8,7 @@
         @foreach (var paymentMethod in Model)
         {
             <label>
-                <input id="@paymentMethod.Id" type="radio" name="SelectedPaymentMethodId" value="@paymentMethod.Id" data-bind="checked: Payment.SelectedPaymentMethod">
+                <input id="@paymentMethod.Id" type="radio" name="SelectedPaymentMethodId" value="@paymentMethod.Id" data-bind="checked: payment.selectedPaymentMethod">
                 <label for="@paymentMethod.Id"></label>
                 <label for="@paymentMethod.Id"></label>
                 @paymentMethod.Name
@@ -20,7 +20,7 @@
 
 @foreach (var paymentMethod in Model)
 {
-    <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: Payment.SelectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
+    <div id="@(paymentMethod.Id + "-box")" class="formrow" data-bind="slideVisible: payment.selectedPaymentMethod() === '@paymentMethod.Id', slideDuration: 400">
 
         @if (!string.IsNullOrEmpty(paymentMethod.Description))
         {
