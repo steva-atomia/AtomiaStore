@@ -5,7 +5,7 @@
 }
 
 <div class="settingsboxinner">
-    <div data-bind="visible: Cart.IsEmpty()">
+    <div data-bind="visible: Cart.isEmpty()">
         @{ Html.RenderPartial("_EmptyCart", Model); }
     </div>
 
@@ -13,7 +13,7 @@
     {
         @Html.AntiForgeryToken()
 
-        <div data-bind="visible: !Cart.IsEmpty()">
+        <div data-bind="visible: !Cart.isEmpty()">
             @{ Html.RenderPartial("_BeforePaymentMethods", Model); }
 
             @{ Html.RenderPartial("_PaymentMethods", Model.PaymentMethodGuiPlugins); }

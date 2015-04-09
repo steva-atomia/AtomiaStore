@@ -30,7 +30,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	            Value: 'true'
 	        });
 
-	        cartItem = viewModelsApi.AddCartItemExtensions(self._cart, postalFeeItem);
+	        cartItem = viewModelsApi.addCartItemExtensions(self._cart, postalFeeItem);
 
 	        return cartItem;
 	    };
@@ -63,10 +63,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        var cartItem = self.createPostalFeeItem();
 
 	        if (cartItem !== null && newInvoiceType === 'email') {
-	            self._cart.Remove(cartItem);
+	            self._cart.remove(cartItem);
 	        }
 	        else if (cartItem !== null && newInvoiceType === 'post') {
-	            self._cart.Add(cartItem);
+	            self._cart.add(cartItem);
 	        }
 	    });
 		
@@ -78,7 +78,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        var cartItem = self.createPostalFeeItem();
 
 	        if (cartItem !== null && paymentMethod !== 'PayWithInvoice') {
-	            self._cart.Remove(cartItem);
+	            self._cart.remove(cartItem);
 	        }
 
 	        self.invoiceType('email');

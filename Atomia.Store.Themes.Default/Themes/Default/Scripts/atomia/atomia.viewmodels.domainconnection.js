@@ -41,7 +41,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Handler for updating domain name options when cart is updated. */
         self.updateDomainNameOptions = function updateDomainNameOptions() {
-            var domainItems = self._cart.DomainItems(),
+            var domainItems = self._cart.domainItems(),
                 domainNames = [];
 
             if (domainItems !== undefined) {
@@ -71,10 +71,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             if (selectedDomainName !== undefined) {
-                self._cart.AddDomainName(selectedItem, selectedDomainName);
+                self._cart.addDomainName(selectedItem, selectedDomainName);
             }
             else {
-                self._cart.RemoveDomainName(selectedItem);
+                self._cart.removeDomainName(selectedItem);
             }
         };
 

@@ -26,10 +26,10 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
 
         requestData = {
             CartItems: [],
-            CampaignCode: ko.unwrap(cart.CampaignCode)
+            CampaignCode: ko.unwrap(cart.campaignCode)
         };
 
-        _.each(cart.CartItems(), function (item) {
+        _.each(cart.cartItems(), function (item) {
             var cartItem = {
                 ArticleNumber: ko.unwrap(item.ArticleNumber),
                 RenewalPeriod: ko.unwrap(item.RenewalPeriod),

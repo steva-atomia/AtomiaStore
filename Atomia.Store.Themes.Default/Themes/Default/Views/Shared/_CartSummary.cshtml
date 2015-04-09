@@ -13,19 +13,19 @@
     <tfoot>
         <tr>
             <td class="right" colspan="4">@Html.CommonResource("Subtotal"):</td>
-            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.SubTotal"></td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.subTotal"></td>
         </tr>
         <tr>
             <td class="right" colspan="4">VAT:</td>
-            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.Tax"></td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.tax"></td>
         </tr>
         <tr class="strong">
             <td class="right" colspan="4">@Html.CommonResource("AmountToPay"):</td>
-            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.Total"></td>
+            <td class="right nowrap" colspan="1" data-bind="text: Atomia.VM.Cart.total"></td>
         </tr>
     </tfoot>
     <tbody>
-        <!-- ko foreach: Cart.CartItems() -->
+        <!-- ko foreach: Cart.cartItems() -->
         <tr style="display: table-row;">
             <td>
                 <strong data-bind="text: Name"></strong>
@@ -48,9 +48,9 @@
             <td class="right nowrap" data-bind="text: Total"></td>
         </tr>
         <!-- /ko -->
-        <tr style="display: table-row;" data-bind="visible: Cart.CampaignCode">
+        <tr style="display: table-row;" data-bind="visible: Cart.campaignCode">
             <td>
-                <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: Cart.CampaignCode"></span>
+                <strong>@Html.CommonResource("CampaignCode"):</strong> <span data-bind="text: Cart.campaignCode"></span>
             </td>
             <td class="right"></td>
             <td class="right nowrap"></td>

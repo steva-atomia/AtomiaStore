@@ -124,7 +124,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 secondaryResults = [];
 
             _.each(results, function (result) {
-                var item = viewModelsApi.AddCartItemExtensions(self._cart, self.createDomainRegistrationItem(result));
+                var item = viewModelsApi.addCartItemExtensions(self._cart, self.createDomainRegistrationItem(result));
 
                 if (item.isPrimary) {
                     primaryResults.push(item);

@@ -93,7 +93,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         /** Check if product is in cart. */
         self.productIsSelected = ko.pureComputed(function() {
             return _.any(self.products(), function (product) {
-                return self._cart.Contains(product);
+                return self._cart.contains(product);
             });
         });
 
@@ -119,30 +119,30 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.selectedProduct(item);
 
                 _.each(self.products(), function (product) {
-                    if (self._cart.Contains(product)) {
-                        self._cart.Remove(product, false);
+                    if (self._cart.contains(product)) {
+                        self._cart.remove(product, false);
                     }
                 });
             }
 
-            self._cart.Add(item);
+            self._cart.add(item);
         };
 
         /** Remove product from cart. */
         self.removeProduct = function RemoveProduct(item) {
-            self._cart.Remove(item);
+            self._cart.remove(item);
         };
 
         /** Load view model with product listing data generated on server. */
-        self.load = function Load(response) {
+        self.load = function load(response) {
             var products = response.data.CategoryData.Products;
 
             _.each(products, function (product) {
                 var item = self.createProductListingItem(product);
 
-                item = viewModelsApi.AddCartItemExtensions(self._cart, item);
+                item = viewModelsApi.addCartItemExtensions(self._cart, item);
 
-                if (self._cart.Contains(item)) {
+                if (self._cart.contains(item)) {
                     item.initPricingVariant();
                     
                     if (self.singleSelection) {

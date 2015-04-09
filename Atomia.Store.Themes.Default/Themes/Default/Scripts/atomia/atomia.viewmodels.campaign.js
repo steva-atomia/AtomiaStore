@@ -24,7 +24,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             var code = self.code();
 
             if (_.isString(code) && code !== '') {
-                self._cart.AddCampaignCode(code);
+                self._cart.addCampaignCode(code);
                 self.added(true);
                 self.code('');
             }
