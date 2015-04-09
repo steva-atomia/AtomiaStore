@@ -6,6 +6,25 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, cartApi) {
     'use strict';
 
+    /** Update 'cart' with 'cartData'. */
+    function updateCart(cart, cartData) {
+        cart.cartItems.removeAll();
+
+        _.each(cartData.CartItems, function (cartItemData) {
+            var item = cart.createCartItem(cartItemData);
+            var cartItem = addCartItemExtensions(cart, item);
+
+            cart.cartItems.push(cartItem);
+        });
+
+        cart.subTotal(cartData.SubTotal);
+        cart.total(cartData.Total);
+        cart.tax(cartData.Tax);
+        cart.campaignCode(cartData.CampaignCode);
+
+        utils.publish('cart:update');
+    }
+
     /**
      * Create a cart item view model.
      * @param {Object} instance - The item to create cart item from.
@@ -127,7 +146,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 if (recalculate === true) {
                     cartApi.recalculateCart(self, function (result) {
-                        self._updateCart(result.Cart);
+                        updateCart(self, result.Cart);
 
                         utils.publish('cart:add', cartItem);
                     });
@@ -153,7 +172,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                     if (recalculate === true) {
                         cartApi.recalculateCart(self, function (result) {
-                            self._updateCart(result.Cart);
+                            updateCart(self, result.Cart);
 
                             utils.publish('cart:remove', itemInCart);
 
@@ -194,7 +213,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 if (recalculate === true) {
                     cartApi.recalculateCart(self, function (result) {
-                        self._updateCart(result.Cart);
+                        updateCart(self, result.Cart);
                     });
                 }
             }
@@ -219,7 +238,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 if (recalculate === true) {
                     cartApi.recalculateCart(self, function (result) {
-                        self._updateCart(result.Cart);
+                        updateCart(self, result.Cart);
                     });
                 }
             }
@@ -238,7 +257,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Load cart with JSON data from 'getCartResponse'. */
         self.load = function load(getCartResponse) {
-            self._updateCart(getCartResponse.data.Cart);
+            updateCart(self, getCartResponse.data.Cart);
 
             if (getCartResponse.data.DomainCategories !== undefined) {
                 self.domainCategories = getCartResponse.data.DomainCategories;
@@ -254,7 +273,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.campaignCode(campaignCode);
 
             cartApi.recalculateCart(self, function (result) {
-                self._updateCart(result.Cart);
+                updateCart(self, result.Cart);
 
                 utils.publish('cart:addCampaignCode', campaignCode);
             });
@@ -265,29 +284,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.campaignCode('');
 
             cartApi.recalculateCart(self, function (result) {
-                self._updateCart(result.Cart);
+                updateCart(self, result.Cart);
 
                 utils.publish('cart:removeCampaignCode');
             });
-        };
-
-        /** Update cart with 'cartData'. */
-        self._updateCart = function _updateCart(cartData) {
-            self.cartItems.removeAll();
-
-            _.each(cartData.CartItems, function (cartItemData) {
-                var item = self.createCartItem(cartItemData);
-                var cartItem = addCartItemExtensions(self, item);
-
-                self.cartItems.push(cartItem);
-            });
-
-            self.subTotal(cartData.SubTotal);
-            self.total(cartData.Total);
-            self.tax(cartData.Tax);
-            self.campaignCode(cartData.CampaignCode);
-
-            utils.publish('cart:update');
         };
     }
 
