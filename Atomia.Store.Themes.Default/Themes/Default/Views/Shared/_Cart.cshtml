@@ -33,14 +33,14 @@
                     <tr>
                         <td>
                             <span data-bind="text: Name"></span>
-                            <span data-bind="visible: CustomOptions().length > 0">
-                                (<!-- ko text: CustomOptions().join(', ') --><!-- /ko-->)
+                            <span data-bind="visible: customOptions().length > 0">
+                                (<!-- ko text: customOptions().join(', ') --><!-- /ko-->)
                             </span>
                         </td>
                         <td class="right nowrap" data-bind="text: Price"></td>
                         <td>
-                            <!-- ko if: IsRemovable() -->
-                                <a class="button small orange" href="javascript:void(0);" data-bind="click: RemoveFromCart">@Html.CommonResource("Remove")</a>
+                            <!-- ko if: isRemovable() -->
+                                <a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a>
                             <!-- /ko -->
                         </td>
                     </tr>

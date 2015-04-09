@@ -32,7 +32,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          * @param {Object} other - The item to compare to
          * @returns {boolean} whether the items are equal or not.
          */
-        self.Equals = function Equals(other) {
+        self.equals = function equals(other) {
             var otherDomainNameAttr = _.find(other.CustomAttributes, function (ca) {
                 return ca.Name === 'DomainName';
             });

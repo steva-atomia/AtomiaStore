@@ -46,8 +46,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         });
             
         /** Pre-select pricing variant to match the one added to cart. */
-        self.initPricingVariant = function _InitPricingVariant() {
-            var itemInCart = this.GetItemInCart(),
+        self.initPricingVariant = function initPricingVariant() {
+            var itemInCart = self.getItemInCart(),
                 selectedPricingVariant = _.find(self.PricingVariants, function (pv) {
                     if (pv.RenewalPeriod === null || itemInCart.RenewalPeriod === null) {
                         return false;
@@ -64,8 +64,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         
         /** Select pricing variant for product and sync with cart. */
         self.selectedPricingVariant.subscribe(function _SelectPricingVariant() {
-            if (self._selectedPricingVariantInitialized && self.IsInCart()) {
-                self.RemoveFromCart();
+            if (self._selectedPricingVariantInitialized && self.isInCart()) {
+                self.removeFromCart();
             }
 
             self._selectedPricingVariantInitialized = true;

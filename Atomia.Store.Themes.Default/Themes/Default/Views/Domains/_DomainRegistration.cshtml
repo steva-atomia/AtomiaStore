@@ -54,7 +54,7 @@
     <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
         <span class="domain">.<!-- ko text: domainNameTld --><!-- /ko --></span>
         <label class="price">
-            <input type="checkbox" data-bind="attr: { id: uniqueId }, click: ToggleInCart, checked: IsInCart" />
+            <input type="checkbox" data-bind="attr: { id: uniqueId }, click: toggleInCart, checked: isInCart" />
             <label data-bind="attr: { for: uniqueId }"></label>
             <label data-bind="attr: { for: uniqueId }"></label>
             <span data-bind="text: price"></span>
@@ -77,8 +77,8 @@
         <td><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></td>
         <td class="right nowrap" data-bind="text: price"></td>
         <td>
-            <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: AddToCart, visible: !IsInCart()">@Html.CommonResource("AddToCart")</a>
-            <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: RemoveFromCart, visible: IsInCart">@Html.CommonResource("Remove")</a>
+            <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: addToCart, visible: !isInCart()">@Html.CommonResource("AddToCart")</a>
+            <a title="Remove from cart" href="javascript:void(0);" class="button orange" data-bind="click: removeFromCart, visible: isInCart">@Html.CommonResource("Remove")</a>
         </td>
     </tr>
 </script>

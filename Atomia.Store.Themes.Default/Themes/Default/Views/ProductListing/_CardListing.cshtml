@@ -2,7 +2,7 @@
 
 <div class="col_set no_gutter" data-bind="foreach: products">
     <div class="col_3">
-        <div class="card full-width stickers selectable" data-bind="css: { selected: IsInCart } ">
+        <div class="card full-width stickers selectable" data-bind="css: { selected: isInCart } ">
             <div class="card_content">
                 <h4 class="card_content_title" data-bind="text: Name"></h4>
                 <p class="card_content_description" data-bind="html: Description"></p>
@@ -28,7 +28,7 @@
                     <!-- /ko-->
                 </p>
             </div>
-            <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green" data-bind="click: $parent.selectProduct, css: { disabled: IsInCart }">@Html.CommonResource("Select")</a></p>
+            <p class="card_buttons"><a id="app_01" href="javascript:void(0);" class="button green" data-bind="click: $parent.selectProduct, css: { disabled: isInCart }">@Html.CommonResource("Select")</a></p>
         </div>
     </div>
 </div>

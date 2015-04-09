@@ -8,27 +8,27 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /**
      * Create a cart item view model.
-     * @param {Object} instance   - The item to create cart item from.
+     * @param {Object} instance - The item to create cart item from.
      * @returns The created cart item.
      */
-    function CartItem(instance) {
+    function CartItem(cartItemData) {
         var self = this;
 
-        self.Id = _.uniqueId('tmp-cartitem-');
+        self.id = _.uniqueId('tmp-cartitem-');
         
         /** 
          * Equality comparer between this item and 'other'. Defaults to comparing 'Id' properties. 
          * @param {Object} other - The item to compare to.
          */
-        self.Equals = function Equals(other) {
-            return self.Id === other.Id;
+        self.equals = function equals(other) {
+            return self.id === other.id;
         };
 
         /** 
          * Collects custom options (renewal period and domain name) of item.
          * @returns {string[]} Array of custom options.
          */
-        self.CustomOptions = function CustomOptions() {
+        self.customOptions = function customOptions() {
             var options = [],
                 domainName;
 
@@ -36,8 +36,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 options.push(self.RenewalPeriod.Display);
             }
 
-            if (!self.IsDomainItem()) {
-                domainName = self.GetDomainName();
+            if (!self.isDomainItem()) {
+                domainName = self.getDomainName();
 
                 if (domainName !== undefined) {
                     options.push(domainName);
@@ -47,7 +47,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return options;
         };
 
-        _.extend(self, instance);
+        _.extend(self, cartItemData);
     };
 
     
@@ -115,19 +115,19 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.IsOpen(false);
         };
 
-        /** Check if cart contains item that 'Equals' 'item'. */
+        /** Check if cart contains item that 'equals' 'item'. */
         self.Contains = function Contains(item) {
             var isInCart = _.any(self.CartItems(), function (cartItem) {
-                return item.Equals(cartItem);
+                return item.equals(cartItem);
             });
 
             return isInCart;
         };
 
-        /** Get first item in cart that 'Equals' 'item'. */
+        /** Get first item in cart that 'equals' 'item'. */
         self.GetExisting = function GetExisting(item) {
             var itemInCart = _.find(self.CartItems(), function (cartItem) {
-                return item.Equals(cartItem);
+                return item.equals(cartItem);
             });
 
             return itemInCart;
@@ -165,7 +165,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             if (self.Contains(item)) {
                 itemInCart = _.find(self.CartItems(), function (cartItem) {
-                    return item.Equals(cartItem);
+                    return item.equals(cartItem);
                 });
 
                 if (itemInCart !== undefined) {
@@ -177,7 +177,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                             utils.publish('cart:remove', itemInCart);
 
-                            if (itemInCart.IsDomainItem()) {
+                            if (itemInCart.isDomainItem()) {
                                 self.ClearDomainItem(itemInCart);
                             }
                         });
@@ -204,7 +204,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 throw new Error('mainItem is not in cart.');
             }
 
-            existingDomainName = mainInCart.GetDomainName();
+            existingDomainName = mainInCart.getDomainName();
 
             if (existingDomainName !== domainName) {
                 mainInCart.CustomAttributes.push({
@@ -232,7 +232,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 throw new Error('mainItem is not in cart.');
             }
 
-            if (mainInCart.GetDomainName() !== undefined) {
+            if (mainInCart.getDomainName() !== undefined) {
                 mainInCart.CustomAttributes = _.reject(mainInCart.CustomAttributes, function (item) {
                     return item.Name === 'DomainName';
                 });
@@ -247,10 +247,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Remove any associations to domain name tied to 'domainItem' from any other items in cart. */
         self.ClearDomainItem = function ClearDomainItem(domainItem) {
-            var domainNameToRemove = domainItem.GetDomainName();
+            var domainNameToRemove = domainItem.getDomainName();
 
             _.each(self.CartItems(), function (item) {
-                if (!domainItem.Equals(item) && item.GetDomainName() === domainNameToRemove) {
+                if (!domainItem.equals(item) && item.getDomainName() === domainNameToRemove) {
                     self.RemoveDomainName(item);
                 }
             });
@@ -330,34 +330,34 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function AddCartItemExtensions(cart, item) {
         var cartExtensions;
 
-        if (item.Equals === undefined) {
-            item.Equals = function Equals(other) {
+        if (item.equals === undefined) {
+            item.equals = function equals(other) {
                 return item.ArticleNumber === other.ArticleNumber;
             };
         }
 
         cartExtensions = {
-            IsInCart: ko.computed(function IsInCart() {
+            isInCart: ko.computed(function isInCart() {
                 return cart.Contains(item);
             }).extend({ notify: 'always' }),
             
-            GetItemInCart: function GetItemInCart() {
+            getItemInCart: function getItemInCart() {
                 return cart.GetExisting(item);
             },
 
-            AddToCart: function AddToCart() {
+            addToCart: function addToCart() {
                 return cart.Add(item);
             },
 
-            RemoveFromCart: function RemoveFromCart() {
+            removeFromCart: function removeFromCart() {
                 return cart.Remove(item);
             },
 
-            ToggleInCart: function ToggleInCart() {
+            toggleInCart: function toggleInCart() {
                 cart.AddOrRemove(item);
             },
 
-            GetDomainName: function GetDomainName() {
+            getDomainName: function getDomainName() {
                 var domainAttr, domainName;
 
                 if (item.CustomAttributes !== undefined) {
@@ -371,11 +371,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 return domainName;
             },
 
-            IsDomainItem: function IsDomainItem() {
+            isDomainItem: function isDomainItem() {
                 return _.contains(cart.DomainCategories, item.Category);
             },
 
-            IsRemovable: function IsRemovable() {
+            isRemovable: function isRemovable() {
                 var notRemovable = _.any(item.CustomAttributes, function (ca) {
                     return ca.Name === 'NotRemovable' && ca.Value !== 'false';
                 });

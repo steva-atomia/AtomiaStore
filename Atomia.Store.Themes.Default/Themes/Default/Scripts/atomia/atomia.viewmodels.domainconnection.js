@@ -27,11 +27,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 domainName;
 
             if (selectedItem !== undefined) {
-                itemInCart = selectedItem.GetItemInCart();
+                itemInCart = selectedItem.getItemInCart();
             }
 
             if (itemInCart !== undefined) {
-                domainName = itemInCart.GetDomainName();
+                domainName = itemInCart.getDomainName();
             }
 
             if (domainName !== undefined) {
@@ -66,7 +66,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.statusNotifier.domainNameHasBeenSelected(selectedDomainName !== undefined);
             }
 
-            if (selectedItem === undefined || !selectedItem.IsInCart()) {
+            if (selectedItem === undefined || !selectedItem.isInCart()) {
                 return;
             }
 
@@ -82,17 +82,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         utils.subscribe('cart:add', function(addedItem) {
             var selectedItem = self.selectedItem();
 
-            if (addedItem.IsDomainItem()) {
+            if (addedItem.isDomainItem()) {
                 self.updateDomainNameOptions();
             }
-            else if (selectedItem.Equals(addedItem)) {
+            else if (selectedItem.equals(addedItem)) {
                 self._handleSelectedDomainName(self.selectedDomainName());
             }
         });
 
         /** Update domain connection when an item ('removedItem') is removed from cart. */
         utils.subscribe('cart:remove', function (removedItem) {
-            if (removedItem.IsDomainItem()) {
+            if (removedItem.isDomainItem()) {
                 self.updateDomainNameOptions();
             }
         });
