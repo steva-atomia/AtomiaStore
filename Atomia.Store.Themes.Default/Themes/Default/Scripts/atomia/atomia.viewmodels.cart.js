@@ -6,11 +6,53 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, cartApi) {
     'use strict';
 
+    function toCartApiData(cart) {
+        var apiCart = {
+            CampaignCode: cart.campaignCode(),
+            CartItems: []
+        };
+
+        _.each(cart.cartItems(), function (cartItem) {
+            var apiItem = {
+                ArticleNumber: ko.unwrap(cartItem.ArticleNumber),
+                Quantity: ko.unwrap(cartItem.Quantity) || 1,
+                CustomAttributes: []
+            };
+
+            var renewalPeriod = ko.unwrap(cartItem.renewalPeriod);
+
+            if (renewalPeriod) {
+                apiItem.RenewalPeriod = {
+                    Period: renewalPeriod.Period,
+                    Unit: renewalPeriod.Unit
+                };
+            }
+            else {
+                apiItem.RenewalPeriod = null;
+            }
+
+            _.each(cartItem.CustomAttributes, function (attr) {
+                apiItem.CustomAttributes.push({
+                    Name: attr.Name,
+                    Value: attr.Value
+                });
+            });
+
+            apiCart.CartItems.push(apiItem);
+        });
+
+        return apiCart;
+    }
+
     /** Update 'cart' with 'cartData'. */
     function updateCart(cart, cartData) {
         cart.cartItems.removeAll();
 
         _.each(cartData.CartItems, function (cartItemData) {
+
+            
+            cartItemData.renewalPeriod = cartItemData.RenewalPeriod;
+
             var item = cart.createCartItem(cartItemData);
             var cartItem = addCartItemExtensions(cart, item);
 
@@ -145,7 +187,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.cartItems.push(cartItem);
 
                 if (recalculate === true) {
-                    cartApi.recalculateCart(self, function (result) {
+                    cartApi.recalculateCart(toCartApiData(self), function (result) {
                         updateCart(self, result.Cart);
 
                         utils.publish('cart:add', cartItem);
@@ -171,7 +213,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.cartItems.remove(itemInCart);
 
                     if (recalculate === true) {
-                        cartApi.recalculateCart(self, function (result) {
+                        cartApi.recalculateCart(toCartApiData(self), function (result) {
                             updateCart(self, result.Cart);
 
                             utils.publish('cart:remove', itemInCart);
@@ -212,7 +254,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.recalculateCart(self, function (result) {
+                    cartApi.recalculateCart(toCartApiData(self), function (result) {
                         updateCart(self, result.Cart);
                     });
                 }
@@ -237,7 +279,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 });
 
                 if (recalculate === true) {
-                    cartApi.recalculateCart(self, function (result) {
+                    cartApi.recalculateCart(toCartApiData(self), function (result) {
                         updateCart(self, result.Cart);
                     });
                 }
@@ -272,7 +314,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             self.campaignCode(campaignCode);
 
-            cartApi.recalculateCart(self, function (result) {
+            cartApi.recalculateCart(toCartApiData(self), function (result) {
                 updateCart(self, result.Cart);
 
                 utils.publish('cart:addCampaignCode', campaignCode);
@@ -283,15 +325,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.removeCampaignCode = function removeCampaignCode() {
             self.campaignCode('');
 
-            cartApi.recalculateCart(self, function (result) {
+            cartApi.recalculateCart(toCartApiData(self), function (result) {
                 updateCart(self, result.Cart);
 
                 utils.publish('cart:removeCampaignCode');
             });
         };
     }
-
-
 
     /** 
      * Extends 'item' with cart helper methods.
