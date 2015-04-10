@@ -27,8 +27,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 itemInCart = selectedItem.getItemInCart();
             }
 
-            if (itemInCart && itemInCart.attrs.DomainName) {
-                self.selectedDomainName(itemInCart.attrs.DomainName);
+            if (itemInCart && itemInCart.attrs.domainName) {
+                self.selectedDomainName(itemInCart.attrs.domainName);
             }
         };
 
@@ -39,7 +39,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             if (domainItems !== undefined) {
                 _.each(domainItems, function (item) {
-                    domainNames.push(item.attrs.DomainName);
+                    domainNames.push(item.attrs.domainName);
                 });
             }
             

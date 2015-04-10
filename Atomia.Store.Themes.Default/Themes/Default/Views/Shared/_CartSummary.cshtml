@@ -28,24 +28,24 @@
         <!-- ko foreach: cart.cartItems() -->
         <tr style="display: table-row;">
             <td>
-                <strong data-bind="text: Name"></strong>
+                <strong data-bind="text: name"></strong>
                 <br />
                 <span class="fine-print">
-                    <span data-bind="text: Category"></span>
-                    <span data-bind="visible: !isDomainItem() && attrs.DomainName !== undefined, text: ', ' + attrs.DomainName"></span>
+                    <span data-bind="text: category"></span>
+                    <span data-bind="visible: !isDomainItem() && attrs.domainName, text: ', ' + attrs.domainName"></span>
                 </span>
             </td>
             <td class="right">
-                <!-- ko if: RenewalPeriod === undefined || RenewalPeriod === null -->
+                <!-- ko if: renewalPeriod == null -->
                 <span>-</span>
                 <!-- /ko -->
-                <!-- ko if: RenewalPeriod !== undefined && RenewalPeriod !== null -->
-                <span data-bind="text: RenewalPeriod.Display"></span>
+                <!-- ko if: renewalPeriod != null -->
+                <span data-bind="text: renewalPeriod"></span>
                 <!-- /ko -->
             </td>
-            <td class="right nowrap" data-bind="text: Price"></td>
-            <td class="right nowrap" data-bind="text: Discount"></td>
-            <td class="right nowrap" data-bind="text: Total"></td>
+            <td class="right nowrap" data-bind="text: price"></td>
+            <td class="right nowrap" data-bind="text: discount"></td>
+            <td class="right nowrap" data-bind="text: total"></td>
         </tr>
         <!-- /ko -->
         <tr style="display: table-row;" data-bind="visible: cart.campaignCode">

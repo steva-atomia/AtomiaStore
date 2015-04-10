@@ -4,13 +4,12 @@
     <div class="col_3">
         <div class="card full-width stickers selectable" data-bind="css: { selected: isInCart } ">
             <div class="card_content">
-                <h4 class="card_content_title" data-bind="text: Name"></h4>
-                <p class="card_content_description" data-bind="html: Description"></p>
+                <h4 class="card_content_title" data-bind="text: name"></h4>
+                <p class="card_content_description" data-bind="html: description"></p>
                 <p class="card_sticker" data-bind="visible: hasVariants">
                     <label class="select" data-bind="attr: { for: uniqueId }">
                         <select data-bind="
-                            options: PricingVariants,
-                            optionsText: 'Display',
+                            options: pricingVariants,
                             value: selectedPricingVariant,
                             attr: {
                                 name: uniqueId,
@@ -21,7 +20,7 @@
                 <p class="card_sticker" data-bind="visible: !hasVariants()">
                     <span class="card_sticker_big" data-bind="text: price"></span>
                     <!-- ko if: renewalPeriod -->
-                    <span class="card_sticker_small" data-bind="text: renewalPeriod().Display"></span>
+                    <span class="card_sticker_small" data-bind="text: renewalPeriod"></span>
                     <!-- /ko-->
                     <!-- ko ifnot: renewalPeriod -->
                     <span class="card_sticker_small">&nbsp;</span>

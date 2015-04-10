@@ -6,6 +6,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, viewModelsApi) {
 	'use strict';
 
+	function PostalFeeItem(itemData, cart) {
+	    var self = this;
+
+	    _.extend(self, new viewModelsApi.ProductMixin(itemData, cart));
+	    viewModelsApi.addCartItemExtensions(cart, self);
+
+	    self.attrs.notRemovable = 'true';
+    }
+
     /** 
      * Create pay with invoice model.
      * @param {Object} cart - A cart view model instance.
@@ -14,78 +23,39 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	    var self = this;
 
 		self.invoiceType = ko.observable();
-		self.postalFeeItem = ko.observable(null);
+		self.postalFeeItem = null;
 
-	    /** Make cartable item out of postal fee item.*/
-	    self.createPostalFeeItem = function createPostalFeeItem() {
-	        var cartItem, postalFeeItem = self.postalFeeItem();
-
-	        if (postalFeeItem === null) {
-	            return null;
-	        }
-
-	        postalFeeItem.attrs.NotRemovable = 'true';
-
-	        cartItem = viewModelsApi.addCartItemExtensions(cart, postalFeeItem);
-
-	        return cartItem;
+	    /** Create postal fee item.*/
+	    self.createPostalFeeItem = function createPostalFeeItem(itemData) {
+	        return new PostalFeeItem(itemData, cart);
 	    };
 
 	    /** Load postal fee item data generated on server. */
 	    self.loadPostalFeeItem = function loadPostalFeeItem(response) {
-	        var item;
-
 	        if (response.status === 'success') {
-	            item = response.data.Item;
-
-	            // Extend with some fake values that are needed in cart summary before recalc.	
-	            _.extend(item, {
-	                Price: item.PricingVariants[0].Price,
-	                RenewalPeriod: null,
-	                Category: '',
-	                Discount: 0,
-	                Total: item.PricingVariants[0].Price
-	            });
-
-	            item.attrs = {};
-	            _.each(item.CustomAttributes, function (attr) {
-	                item.attrs[attr.Name] = attr.Value;
-	            });
-
-	            self.postalFeeItem(item);
-	        }
-	        else {
-	            self.postalFeeItem(null);
+	            self.postalFeeItem = self.createPostalFeeItem(response.data.Item);
 	        }
 	    }
 
-	    /** Callback handler for when invoice type is selected. Adds or removes postal fee from cart. */
+	    /** Callback handler for when invoice type is selected.*/
 	    self.invoiceType.subscribe(function (newInvoiceType) {
-	        var cartItem = self.createPostalFeeItem();
-
-	        if (cartItem !== null && newInvoiceType === 'email') {
-	            cart.remove(cartItem);
+	        if (self.postalFeeItem != null && newInvoiceType === 'email') {
+	            cart.remove(self.postalFeeItem);
 	        }
-	        else if (cartItem !== null && newInvoiceType === 'post') {
-	            cart.add(cartItem);
+	        else if (self.postalFeeItem != null && newInvoiceType === 'post') {
+	            cart.add(self.postalFeeItem);
 	        }
 	    });
 		
-	    /** 
-         * Callback handler for when payment method is selected. 
-	     * Removes postal fee from cart if payment method is not invoice.
-	     */
+	    /** Callback handler for when payment method is selected. */
 	    utils.subscribe('uiSelectedPaymentMethod', function(paymentMethod){
-	        var cartItem = self.createPostalFeeItem();
-
-	        if (cartItem !== null && paymentMethod !== 'PayWithInvoice') {
-	            cart.remove(cartItem);
+	        if (self.postalFeeItem != null && paymentMethod !== 'PayWithInvoice') {
+	            cart.remove(self.postalFeeItem);
 	        }
 
 	        self.invoiceType('email');
 	    });
 	};
-
 
 	_.extend(exports, {
 	    PayWithInvoiceModel: PayWithInvoiceModel

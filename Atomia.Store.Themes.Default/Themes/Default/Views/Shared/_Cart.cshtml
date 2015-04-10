@@ -32,14 +32,14 @@
                     <!-- ko foreach: cart.cartItems -->
                     <tr>
                         <td>
-                            <span data-bind="text: Name"></span>
+                            <span data-bind="text: name"></span>
                             <span data-bind="visible: customOptions().length > 0">
                                 (<!-- ko text: customOptions().join(', ') --><!-- /ko-->)
                             </span>
                         </td>
-                        <td class="right nowrap" data-bind="text: Price"></td>
+                        <td class="right nowrap" data-bind="text: price"></td>
                         <td>
-                            <!-- ko if: attrs.NotRemovable !== 'true' -->
+                            <!-- ko if: attrs.notRemovable !== 'true' -->
                             <a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a>
                             <!-- /ko -->
                         </td>

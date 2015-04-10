@@ -10,74 +10,12 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * Creates product listing item
      * @param {Object} productData - The instance to create product listing item from.
      */
-    function ProductListingItem(productData) {
+    function ProductListingItem(productData, cart) {
         var self = this;
 
-        self.attrs = {};
-        _.each(productData.CustomAttributes, function (attr) {
-            self.attrs[attr.Name] = attr.Value;
-        });
-
-        self._selectedPricingVariantInitialized = false;
+        _.extend(self, new viewModelsApi.ProductMixin(productData, cart));
         
         self.uniqueId = _.uniqueId('productitem-');
-        self.selectedPricingVariant = ko.observable();
-        
-        /** Shortcut to price of pricing variant. */
-        self.price = ko.pureComputed(function() {
-            if (self.hasVariants()) {
-                return self.selectedPricingVariant().Price;
-            }
-
-            return self.PricingVariants[0].Price;
-        });
-
-        /** Shortcut to renewal period of pricing variant */
-        self.renewalPeriod = ko.pureComputed(function() {
-            if (self.hasVariants()) {
-                return self.selectedPricingVariant().RenewalPeriod;
-            }
-
-            return self.PricingVariants[0].RenewalPeriod;
-        });
-
-        // TODO: Remove this when change to using all lower case is done.
-        self.Price = self.price;
-        self.RenewalPeriod = self.renewalPeriod;
-
-        /** Check if there is more than one pricing variant for the product. */
-        self.hasVariants = ko.pureComputed(function () {
-            return self.PricingVariants.length > 1;
-        });
-            
-        /** Pre-select pricing variant to match the one added to cart. */
-        self.initPricingVariant = function initPricingVariant() {
-            var itemInCart = self.getItemInCart(),
-                selectedPricingVariant = _.find(self.PricingVariants, function (pv) {
-                    if (pv.RenewalPeriod === null || itemInCart.RenewalPeriod === null) {
-                        return false;
-                    }
-
-                    return pv.RenewalPeriod.Unit === itemInCart.RenewalPeriod.Unit &&
-                            pv.RenewalPeriod.Period === itemInCart.RenewalPeriod.Period;
-                });
-
-            if (selectedPricingVariant !== undefined) {
-                self.selectedPricingVariant(selectedPricingVariant);
-            }
-        };
-        
-        /** Select pricing variant for product and sync with cart. */
-        self.selectedPricingVariant.subscribe(function _SelectPricingVariant() {
-            if (self._selectedPricingVariantInitialized && self.isInCart()) {
-                self.removeFromCart();
-            }
-
-            self._selectedPricingVariantInitialized = true;
-        });
-
-        /** Add properties from productData to object */
-        _.extend(self, productData);
     }
 
 
@@ -113,7 +51,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
           
         /** Create ProductListingItem object. */
         self.createProductListingItem = function CreateProductListingItem(productData){
-            return new ProductListingItem(productData);
+            return new ProductListingItem(productData, cart);
         };
 
         /** Select product and update cart. */

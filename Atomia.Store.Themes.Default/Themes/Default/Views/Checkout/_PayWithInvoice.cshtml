@@ -13,8 +13,8 @@
             @Html.RadioButtonFor(m => m.SelectedInvoiceType, "post", new { id = "inv-send-post", data_bind = "checked: payWithInvoice.invoiceType" })
             <label for="inv-send-post"></label>
             <label for="inv-send-post"></label> @Html.CommonResource("InvoiceByPostName")
-            <!-- ko if: payWithInvoice.postalFeeItem() !== null -->
-                (+<span data-bind="text: payWithInvoice.postalFeeItem().Price"></span>)
+            <!-- ko if: payWithInvoice.postalFeeItem != null -->
+                (+<span data-bind="text: payWithInvoice.postalFeeItem.price"></span>)
             <!-- /ko -->
         </label><br />
     </div>

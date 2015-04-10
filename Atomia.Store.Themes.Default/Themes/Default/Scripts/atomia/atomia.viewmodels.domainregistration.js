@@ -10,24 +10,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * Create domain registration item view model
      * @param {Object} instance - the object to create a domain registration item from.
      */
-    function DomainRegistrationItem(instance) {
+    function DomainRegistrationItem(domainItemData, cart) {
         var self = this;
-        var domainParts = instance.DomainName.split('.');
+        var domainParts = domainItemData.DomainName.split('.');
 
-        self.attrs = {};
-        _.each(instance.CustomAttributes, function (attr) {
-            self.attrs[attr.Name] = attr.Value;
-        });
+        _.extend(self, new viewModelsApi.ProductMixin(domainItemData, cart));
 
-        self.isPrimary = self.attrs.Premium === 'true';
+        self.isPrimary = self.attrs.premium === 'true';
         self.uniqueId = _.uniqueId('dmn');
         self.domainNameSld = domainParts[0];
         self.domainNameTld = domainParts[1];
-        self.price = instance.PricingVariants[0].Price;
-        self.renewalPeriod = instance.PricingVariants[0].RenewalPeriod
-
-        // TODO: Remove this when change to using all lower case is done.
-        self.Price = self.price;
+        self.status = domainItemData.Status;
 
         /** 
          * Checks if domain registration item is equal to other item based on article number and domain name.
@@ -35,10 +28,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          * @returns {boolean} whether the items are equal or not.
          */
         self.equals = function equals(other) {
-            return self.ArticleNumber === other.ArticleNumber && self.DomainName === other.attrs.DomainName;
+            return self.articleNumber === other.articleNumber && self.attrs.domainName === other.attrs.domainName;
         };
-
-        _.extend(self, instance);
     }
 
 
@@ -61,8 +52,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return self.primaryResults().length > 0 || self.secondaryResults().length > 0;
         });
 
-        self.createDomainRegistrationItem = function(instance) {
-            return new DomainRegistrationItem(instance);
+        self.createDomainRegistrationItem = function(domainItemData) {
+            return new DomainRegistrationItem(domainItemData, cart);
         }
 
         /** Submit a domain search query. */
@@ -106,7 +97,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             return !_.any(self.primaryResults(), function (r) {
-                return r.Status === 'loading';
+                return r.status === 'loading';
             });
         };
 
@@ -150,14 +141,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          */
         self.getTemplateName = function getTemplateName(item) {
             
-            if (item.isPrimary && item.Status === 'available') {
+            if (item.isPrimary && item.status === 'available') {
                 return 'domainregistration-primary-available';
             }
             else if (item.isPrimary) {
                 return 'domainregistration-primary-taken';
             }
             else {
-                return 'domainregistration-secondary-' + item.Status;
+                return 'domainregistration-secondary-' + item.status;
             }
         };
     };
