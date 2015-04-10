@@ -1,7 +1,4 @@
-﻿/// <reference path="../../../../Scripts/underscore.js" />
-/// <reference path="atomia.utils.js" />
-
-/* jshint -W079 */
+﻿/* jshint -W079 */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
 Atomia.Api.Domains = Atomia.Api.Domains || {};

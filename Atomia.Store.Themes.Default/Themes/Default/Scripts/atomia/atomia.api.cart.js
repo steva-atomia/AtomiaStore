@@ -1,5 +1,4 @@
 ﻿/* jshint -W079 */
-/** @namespace */
 var Atomia = Atomia || {};
 Atomia.Api = Atomia.Api || {};
 Atomia.Api.Cart = Atomia.Api.Cart || {};

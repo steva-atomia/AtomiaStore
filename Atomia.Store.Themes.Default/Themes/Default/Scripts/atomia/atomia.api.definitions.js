@@ -1,5 +1,4 @@
-﻿/// <reference path="../../../../Scripts/amplify-vsdoc.js" />
-
+﻿
 // Setup resourceIds to use with Atomia.utils.request
 ; (function (amplify) {
     'use strict';
