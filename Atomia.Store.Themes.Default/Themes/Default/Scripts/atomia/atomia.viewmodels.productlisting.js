@@ -3,19 +3,22 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils, viewModelsApi) {
+(function (exports, _, ko, utils, viewModels) {
     'use strict';
 
     /**
      * Creates product listing item
      * @param {Object} productData - The instance to create product listing item from.
+     * @param {Object} cart - Instance of cart.
      */
     function ProductListingItem(productData, cart) {
         var self = this;
 
-        _.extend(self, new viewModelsApi.ProductMixin(productData, cart));
+        _.extend(self, new viewModels.ProductMixin(productData, cart));
         
         self.uniqueId = _.uniqueId('productitem-');
+
+        viewModels.addCartItemExtensions(cart, self);
     }
 
 
@@ -80,8 +83,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             _.each(products, function (product) {
                 var item = self.createProductListingItem(product);
-
-                item = viewModelsApi.addCartItemExtensions(cart, item);
 
                 if (cart.contains(item)) {
                     item.initPricingVariant();

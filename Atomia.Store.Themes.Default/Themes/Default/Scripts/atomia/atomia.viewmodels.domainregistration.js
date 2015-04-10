@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils, domainsApi, viewModelsApi) {
+(function (exports, _, ko, utils, domainsApi, viewModels) {
     'use strict';
 
     /**
@@ -14,7 +14,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         var self = this;
         var domainParts = domainItemData.DomainName.split('.');
 
-        _.extend(self, new viewModelsApi.ProductMixin(domainItemData, cart));
+        _.extend(self, new viewModels.ProductMixin(domainItemData, cart));
 
         self.isPrimary = self.attrs.premium === 'true';
         self.uniqueId = _.uniqueId('dmn');
@@ -31,6 +31,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.equals = function equals(other) {
             return self.articleNumber === other.articleNumber && self.attrs.domainName === other.attrs.domainName;
         };
+
+        viewModels.addCartItemExtensions(cart, self);
     }
 
 
@@ -111,7 +113,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 secondaryResults = [];
 
             _.each(results, function (result) {
-                var item = viewModelsApi.addCartItemExtensions(cart, self.createDomainRegistrationItem(result));
+                var item = self.createDomainRegistrationItem(result);
 
                 if (item.isPrimary) {
                     primaryResults.push(item);
