@@ -13,6 +13,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function ProductListingItem(productData) {
         var self = this;
 
+        self.attrs = {};
+        _.each(productData.CustomAttributes, function (attr) {
+            self.attrs[attr.Name] = attr.Value;
+        });
+
         self._selectedPricingVariantInitialized = false;
         
         self.uniqueId = _.uniqueId('productitem-');

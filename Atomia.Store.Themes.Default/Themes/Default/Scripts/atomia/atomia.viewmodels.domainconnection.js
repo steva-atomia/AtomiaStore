@@ -44,8 +44,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             if (domainItems !== undefined) {
                 _.each(domainItems, function (item) {
-                    var domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
-                    domainNames.push(domainAttr.Value);
+                    domainNames.push(item.attrs.DomainName);
                 });
             }
             

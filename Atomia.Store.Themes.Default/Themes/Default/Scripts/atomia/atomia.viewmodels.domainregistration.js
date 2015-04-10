@@ -13,11 +13,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function DomainRegistrationItem(instance) {
         var self = this;
         var domainParts = instance.DomainName.split('.');
-        var primaryAttr = _.find(instance.CustomAttributes, function (ca) {
-            return ca.Name === 'Premium';
+
+        self.attrs = {};
+        _.each(instance.CustomAttributes, function (attr) {
+            self.attrs[attr.Name] = attr.Value;
         });
 
-        self.isPrimary = primaryAttr !== undefined && primaryAttr.Value === 'true';
+        self.isPrimary = self.attrs.Premium === 'true';
         self.uniqueId = _.uniqueId('dmn');
         self.domainNameSld = domainParts[0];
         self.domainNameTld = domainParts[1];
@@ -33,12 +35,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          * @returns {boolean} whether the items are equal or not.
          */
         self.equals = function equals(other) {
-            var otherDomainNameAttr = _.find(other.CustomAttributes, function (ca) {
-                return ca.Name === 'DomainName';
-            });
-            var otherDomainName = otherDomainNameAttr !== undefined ? otherDomainNameAttr.Value : undefined;
-
-            return self.ArticleNumber === other.ArticleNumber && self.DomainName === otherDomainName;
+            return self.ArticleNumber === other.ArticleNumber && self.DomainName === other.attrs.DomainName;
         };
 
         _.extend(self, instance);

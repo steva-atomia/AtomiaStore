@@ -24,10 +24,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	            return null;
 	        }
 
-	        postalFeeItem.CustomAttributes.push({
-	            Name: 'NotRemovable',
-	            Value: 'true'
-	        });
+	        postalFeeItem.attrs.NotRemovable = 'true';
 
 	        cartItem = viewModelsApi.addCartItemExtensions(cart, postalFeeItem);
 
@@ -48,6 +45,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	                Category: '',
 	                Discount: 0,
 	                Total: item.PricingVariants[0].Price
+	            });
+
+	            item.attrs = {};
+	            _.each(item.CustomAttributes, function (attr) {
+	                item.attrs[attr.Name] = attr.Value;
 	            });
 
 	            self.postalFeeItem(item);

@@ -31,11 +31,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 apiItem.RenewalPeriod = null;
             }
 
-            _.each(cartItem.CustomAttributes, function (attr) {
-                apiItem.CustomAttributes.push({
-                    Name: attr.Name,
-                    Value: attr.Value
-                });
+            _.each(cartItem.attrs, function (value, key) {
+                if (value != null) {
+                    apiItem.CustomAttributes.push({
+                        Name: key,
+                        Value: value
+                    });
+                }
             });
 
             apiCart.CartItems.push(apiItem);
@@ -50,7 +52,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         _.each(cartData.CartItems, function (cartItemData) {
 
-            
+            cartItemData.attrs = {};
+            _.each(cartItemData.CustomAttributes, function (attr) {
+                cartItemData.attrs[attr.Name] = attr.Value;
+            });
             cartItemData.renewalPeriod = cartItemData.RenewalPeriod;
 
             var item = cart.createCartItem(cartItemData);
@@ -248,10 +253,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             existingDomainName = mainInCart.getDomainName();
 
             if (existingDomainName !== domainName) {
-                mainInCart.CustomAttributes.push({
-                    Name: 'DomainName',
-                    Value: domainName
-                });
+                mainInCart.attrs.DomainName = domainName;
 
                 if (recalculate === true) {
                     cartApi.recalculateCart(toCartApiData(self), function (result) {
@@ -274,9 +276,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             if (mainInCart.getDomainName() !== undefined) {
-                mainInCart.CustomAttributes = _.reject(mainInCart.CustomAttributes, function (item) {
-                    return item.Name === 'DomainName';
-                });
+                mainInCart.attrs.DomainName = undefined;
 
                 if (recalculate === true) {
                     cartApi.recalculateCart(toCartApiData(self), function (result) {
@@ -370,17 +370,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             },
 
             getDomainName: function getDomainName() {
-                var domainAttr, domainName;
-
-                if (item.CustomAttributes !== undefined) {
-                    domainAttr = _.findWhere(item.CustomAttributes, { Name: 'DomainName' });
-                }
-
-                if (domainAttr !== undefined) {
-                    domainName = domainAttr.Value;
-                }
-
-                return domainName;
+                return item.attrs.DomainName;
             },
 
             isDomainItem: function isDomainItem() {
@@ -388,11 +378,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             },
 
             isRemovable: function isRemovable() {
-                var notRemovable = _.any(item.CustomAttributes, function (ca) {
-                    return ca.Name === 'NotRemovable' && ca.Value !== 'false';
-                });
-
-                return !notRemovable;
+                return item.attrs.NotRemovable !== 'true';
             }
         };
 
