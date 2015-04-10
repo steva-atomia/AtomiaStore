@@ -366,15 +366,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * @returns {Object} The extended item.
      */
     function addCartItemExtensions(cart, item) {
-        var cartExtensions;
-
-        if (item.equals === undefined) {
-            item.equals = function equals(other) {
-                return item.articleNumber === other.articleNumber;
-            };
-        }
-
-        cartExtensions = {
+        var cartExtensions = {
             isInCart: ko.computed(function isInCart() {
                 return cart.contains(item);
             }).extend({ notify: 'always' }),

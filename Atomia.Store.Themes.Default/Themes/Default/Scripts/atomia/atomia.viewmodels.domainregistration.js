@@ -23,6 +23,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.status = domainItemData.Status;
 
         /** 
+         * Overrides ProductMixin property.
          * Checks if domain registration item is equal to other item based on article number and domain name.
          * @param {Object} other - The item to compare to
          * @returns {boolean} whether the items are equal or not.

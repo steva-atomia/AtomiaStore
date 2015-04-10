@@ -51,6 +51,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 			self._origAttrNames[name] = attributeData.Name;
 		});
 
+	    /** 
+         * Checks if item is equal to other item based on article number.
+         * @param {Object} other - The item to compare to
+         * @returns {boolean} whether the items are equal or not.
+         */
+		self.equals = function equals(other) {
+		    return self.articleNumber === other.articleNumber;
+		};
+
 		/** Shortcut to price of pricing variant. */
 		self.price = ko.pureComputed(function () {
 			if (self.hasVariants()) {
