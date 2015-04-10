@@ -72,11 +72,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             cart.add(item);
         };
 
-        /** Remove product from cart. */
-        self.removeProduct = function RemoveProduct(item) {
-            cart.remove(item);
-        };
-
         /** Load view model with product listing data generated on server. */
         self.load = function load(response) {
             var products = response.data.CategoryData.Products;
