@@ -15,8 +15,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// <summary>
         /// Account form page.
         /// </summary>
-        [HttpGet]
         [OrderFlowFilter]
+        [HttpGet]
         public ActionResult Index()
         {
             var model = DependencyResolver.Current.GetService<AccountViewModel>();
@@ -27,6 +27,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// <summary>
         /// Account form handler. Redirects to checkout.
         /// </summary>
+        [OrderFlowFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(AccountViewModel model)

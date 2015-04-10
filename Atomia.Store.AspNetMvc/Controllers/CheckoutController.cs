@@ -39,6 +39,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// <summary>
         /// Checkout form handler.
         /// </summary>
+        [OrderFlowFilter]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Index(CheckoutViewModel model)
