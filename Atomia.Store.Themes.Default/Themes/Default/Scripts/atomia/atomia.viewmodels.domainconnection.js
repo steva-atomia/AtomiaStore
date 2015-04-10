@@ -21,19 +21,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         /** Set domain name if 'SelectedItem' already has domain name associated. */
         self.setInitialDomainName = function setInitialDomainName() {
             var selectedItem = self.selectedItem(),
-                itemInCart,
-                domainName;
+                itemInCart;
 
             if (selectedItem !== undefined) {
                 itemInCart = selectedItem.getItemInCart();
             }
 
-            if (itemInCart !== undefined) {
-                domainName = itemInCart.getDomainName();
-            }
-
-            if (domainName !== undefined) {
-                self.selectedDomainName(domainName);
+            if (itemInCart && itemInCart.attrs.DomainName) {
+                self.selectedDomainName(itemInCart.attrs.DomainName);
             }
         };
 

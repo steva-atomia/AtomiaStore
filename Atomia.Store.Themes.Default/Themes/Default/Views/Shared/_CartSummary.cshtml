@@ -32,7 +32,7 @@
                 <br />
                 <span class="fine-print">
                     <span data-bind="text: Category"></span>
-                    <span data-bind="visible: !isDomainItem() && getDomainName() !== undefined, text: ', ' + getDomainName()"></span>
+                    <span data-bind="visible: !isDomainItem() && attrs.DomainName !== undefined, text: ', ' + attrs.DomainName"></span>
                 </span>
             </td>
             <td class="right">

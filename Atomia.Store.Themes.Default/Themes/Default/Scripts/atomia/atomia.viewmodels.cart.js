@@ -102,12 +102,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 options.push(self.RenewalPeriod.Display);
             }
 
-            if (!self.isDomainItem()) {
-                domainName = self.getDomainName();
-
-                if (domainName !== undefined) {
-                    options.push(domainName);
-                }
+            if (!self.isDomainItem() && self.attrs.DomainName !== undefined) {
+                options.push(self.attrs.DomainName);
             }
 
             return options;
@@ -239,8 +235,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Associate 'domainName' to 'mainItem'. Optionally set 'recalculate' to false. */
         self.addDomainName = function addDomainName(mainItem, domainName, recalculate) {
-            var mainInCart = self.getExisting(mainItem),
-                existingDomainName;
+            var mainInCart = self.getExisting(mainItem);
 
             if (recalculate === undefined) {
                 recalculate = true;
@@ -250,9 +245,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 throw new Error('mainItem is not in cart.');
             }
 
-            existingDomainName = mainInCart.getDomainName();
-
-            if (existingDomainName !== domainName) {
+            if (mainInCart.attrs.DomainName !== domainName) {
                 mainInCart.attrs.DomainName = domainName;
 
                 if (recalculate === true) {
@@ -275,7 +268,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 throw new Error('mainItem is not in cart.');
             }
 
-            if (mainInCart.getDomainName() !== undefined) {
+            if (mainInCart.attrs.DomainName !== undefined) {
                 mainInCart.attrs.DomainName = undefined;
 
                 if (recalculate === true) {
@@ -288,10 +281,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Remove any associations to domain name tied to 'domainItem' from any other items in cart. */
         self.clearDomainItem = function ClearDomainItem(domainItem) {
-            var domainNameToRemove = domainItem.getDomainName();
+            var domainNameToRemove = domainItem.attrs.DomainName;
 
             _.each(self.cartItems(), function (item) {
-                if (!domainItem.equals(item) && item.getDomainName() === domainNameToRemove) {
+                if (!domainItem.equals(item) && item.attrs.DomainName === domainNameToRemove) {
                     self.removeDomainName(item);
                 }
             });
@@ -369,16 +362,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 cart.addOrRemove(item);
             },
 
-            getDomainName: function getDomainName() {
-                return item.attrs.DomainName;
-            },
-
             isDomainItem: function isDomainItem() {
                 return _.contains(cart.domainCategories, item.Category);
-            },
-
-            isRemovable: function isRemovable() {
-                return item.attrs.NotRemovable !== 'true';
             }
         };
 
