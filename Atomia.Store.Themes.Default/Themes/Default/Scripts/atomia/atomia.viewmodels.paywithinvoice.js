@@ -6,6 +6,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko, utils, viewModelsApi) {
 	'use strict';
 
+    /**
+     * Creates postal fee item
+     * @param {Object} item - The item data to create postal fee item from.
+     * @param {Object} cart - Instance of cart.
+     */
 	function PostalFeeItem(itemData, cart) {
 	    var self = this;
 
