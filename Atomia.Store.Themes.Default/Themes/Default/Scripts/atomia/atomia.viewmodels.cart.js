@@ -385,6 +385,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             toggleInCart: function toggleInCart() {
                 cart.addOrRemove(item);
+
+                // Since this is expected to be used with checkboxes, 
+                // returning true allows the click to continue and check the checkbox
+                return true;
             },
 
             isDomainItem: function isDomainItem() {
