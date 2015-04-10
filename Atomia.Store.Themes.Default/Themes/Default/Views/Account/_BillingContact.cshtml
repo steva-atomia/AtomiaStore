@@ -63,5 +63,7 @@
         </div>
         <br class="clear">
     </div>
+
+    @Html.FormRowFor(m => m.Phone, Html.CommonResource("Phone") + ":", true, "if: otherBillingContact")
 </div>
 <!-- /ko -->
