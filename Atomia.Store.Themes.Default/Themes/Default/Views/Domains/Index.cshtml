@@ -9,7 +9,7 @@
 
     @{ Html.RenderPartial("_QueryType", Model); }
 
-    <div data-bind="visible: domainRegistrationActive, with: Atomia.VM.domainRegistration">
+    <div data-bind="visible: domainRegistrationActive">
         @{ Html.RenderPartial("_DomainRegistration", Model); }
     </div>
 

@@ -6,7 +6,7 @@
 
 <div class="settingsboxinner">
 
-    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form", data_bind="with: Atomia.VM.account" }))
+    @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
     {
         @Html.AntiForgeryToken();
 

@@ -1,7 +1,6 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.BillingContactModel
 
-@* Assumed to be under a knockout 'with' binding for an AccountModel object *@
-
+<!-- ko with: Atomia.VM.account -->
 <h4>
     @Html.CommonResource("BillingAddressTitle")
     <span id="billing-text-open" data-bind="visible: !otherBillingContact()">
@@ -65,3 +64,4 @@
         <br class="clear">
     </div>
 </div>
+<!-- /ko -->

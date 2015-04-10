@@ -1,7 +1,6 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.MainContactModel
 
-@* Assumed to be under a knockout 'with' binding for an AccountModel object *@
-
+<!-- ko with: Atomia.VM.account -->
 <h4>@Html.CommonResource("AccountTitle")</h4>
 
 <div class="formrow">
@@ -52,3 +51,4 @@
 </div>
 
 @Html.FormRowFor(m => m.Phone, Html.CommonResource("Phone") + ":", true)
+<!-- /ko -->

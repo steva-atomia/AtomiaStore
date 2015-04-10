@@ -1,7 +1,6 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DomainsViewModel
 
-@* Assumed to be under a knockout 'with' binding for a DomainRegistrationModel object *@
-
+<!-- ko with: Atomia.VM.domainRegistration -->
 <div class="domainreg-query big_search">
     @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: submit" }))
     {
@@ -49,6 +48,7 @@
     <div id="global_processing" class="global_processing"></div>
     <div id="global_processing_overlay" class="blocker"></div>
 </div>
+<!-- /ko -->
 
 <script type="text/html" id="domainregistration-primary-available">
     <li class="available" title="@Html.CommonResource("DomainAvailableHoverTitle")">
