@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace Atomia.Store.Core.Test
@@ -55,13 +57,13 @@ namespace Atomia.Store.Core.Test
         public void SetPricingTest()
         {
             Assert.AreEqual(0m, cart.SubTotal, "Expected SubTotal to be 0 in new cart.");
-            Assert.AreEqual(0m, cart.Tax, "Expected Tax to be 0 in new cart.");
+            Assert.AreEqual(0, cart.Taxes.Count, "Expected no taxes in new cart.");
             Assert.AreEqual(0m, cart.Total, "Expected Total to be 0 in new cart.");
 
-            cart.SetPricing(1m, 1m, 1m);
+            cart.SetPricing(1m, 1m, new List<Tax> { new Tax("tax", 1, 1) });
 
             Assert.AreEqual(1m, cart.SubTotal, "Expected SubTotal to be 1.");
-            Assert.AreEqual(1m, cart.Tax, "Expected Tax to be 1.");
+            Assert.AreEqual(1m, cart.Taxes.First().Amount, "Expected Tax to be 1.");
             Assert.AreEqual(1m, cart.Total, "Expected Total to be 1.");
 
             Assert.AreEqual(0, cartRepository.SaveCartCount, "Did not expect cart to be saved.");
@@ -72,21 +74,21 @@ namespace Atomia.Store.Core.Test
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative subTotal.")]
         public void SetPricingSubTotalNegativeFailsTest()
         {
-            cart.SetPricing(-1m, 1m, 1m);
+            cart.SetPricing(-1m, 1m, new List<Tax> { new Tax("tax", 1, 1) });
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative tax.")]
         public void SetPricingTaxNegativeFailsTest()
         {
-            cart.SetPricing(1m, -1m, 1m);
+            cart.SetPricing(1m, 1m, new List<Tax> { new Tax("tax", -1, 100) });
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException), "Did not expect to be able to add negative total.")]
         public void SetPricingTotalNegativeFailsTest()
         {
-            cart.SetPricing(1m, 1m, -1m);
+            cart.SetPricing(1m, -1m, new List<Tax> { new Tax("tax", 1, 1) });
         }
 
         [TestMethod]

@@ -84,7 +84,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
             var calculatedPublicOrder = BillingApi.CalculateOrder(publicOrder);
 
-            cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Taxes.Sum(t => t.Total), calculatedPublicOrder.Total);
+            IEnumerable<Tax> taxes = new List<Tax>();
+
+            if (calculatedPublicOrder.Taxes != null && calculatedPublicOrder.Taxes.Count() > 0)
+            {
+                taxes = calculatedPublicOrder.Taxes.Select(t => new Tax(t.Name, t.Total, t.Percent));
+            }
+
+            cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Total, taxes);
 
             foreach(var cartItem in cart.CartItems)
             {
@@ -105,7 +112,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                        && x.RenewalPeriodUnit.ToUpper() == cartItem.RenewalPeriod.Unit);
                 }
 
-                cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, calculatedItem.TaxAmount);
+                IEnumerable<Tax> itemTaxes = new List<Tax>();
+
+                if (calculatedItem.Taxes != null && calculatedItem.Taxes.Count() > 0)
+                {
+                    itemTaxes = calculatedItem.Taxes.Select(t => new Tax(t.Name, calculatedItem.TaxAmount, t.Percent));
+                }
+
+                cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, itemTaxes);
                 cartItem.Quantity = calculatedItem.Quantity;
             }
 

@@ -545,4 +545,11 @@
   <data name="Dismiss" xml:space="preserve">
     <value>Dismiss</value>
   </data>
+  <data name="TaxNameDisplay" xml:space="preserve">
+    <value>VAT {0}</value>
+    <comment>0 = formatted percentage, e.g. "25 %"</comment>
+  </data>
+  <data name="NoTax" xml:space="preserve">
+    <value>No VAT</value>
+  </data>
 </root>

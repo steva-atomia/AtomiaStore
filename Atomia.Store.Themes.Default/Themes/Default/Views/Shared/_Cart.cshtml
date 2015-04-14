@@ -17,11 +17,20 @@
                         <td class="right nowrap" data-bind="text: cart.subTotal"></td>
                         <td></td>
                     </tr>
+                    <!-- ko foreach: cart.taxes -->
                     <tr>
-                        <td class="right">@Html.CommonResource("Tax")</td>
-                        <td class="right nowrap" data-bind="text: cart.tax"></td>
+                        <td class="right" data-bind="text: name"></td>
+                        <td class="right nowrap" data-bind="text: amount"></td>
                         <td></td>
                     </tr>
+                    <!-- /ko -->
+                    <!-- ko if: cart.taxes().length === 0 -->
+                    <tr>
+                        <td class="right">@Html.CommonResource("NoTax")</td>
+                        <td class="right nowrap">-</td>
+                        <td></td>
+                    </tr>
+                    <!-- /ko -->
                     <tr class="strong">
                         <td class="right">@Html.CommonResource("Total")</td>
                         <td class="right nowrap" data-bind="text: cart.total"></td>

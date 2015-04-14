@@ -15,8 +15,8 @@ namespace Atomia.Store.Core
         private List<CartItem> cartItems = new List<CartItem>();
         private string campaignCode = String.Empty;
         private decimal subTotal;
-        private decimal tax;
         private decimal total;
+        private List<Tax> taxes = new List<Tax>();
 
         /// <summary>
         /// Cart constructor
@@ -75,11 +75,11 @@ namespace Atomia.Store.Core
         /// <summary>
         /// Cart tax.
         /// </summary>
-        public decimal Tax 
+        public ICollection<Tax> Taxes
         { 
             get 
             { 
-                return tax; 
+                return taxes; 
             } 
         }
 
@@ -98,18 +98,13 @@ namespace Atomia.Store.Core
         /// Set cart pricing totals.
         /// </summary>
         /// <param name="subTotal">Cart subtotal</param>
-        /// <param name="tax">Cart tax</param>
         /// <param name="total">Cart total</param>
-        public void SetPricing(decimal subTotal, decimal tax, decimal total)
+        /// <param name="taxes">Cart taxes</param>
+        public void SetPricing(decimal subTotal, decimal total, IEnumerable<Tax> taxes)
         {
             if (subTotal < 0)
             {
                 throw new ArgumentOutOfRangeException("subTotal");
-            }
-
-            if (tax < 0)
-            {
-                throw new ArgumentOutOfRangeException("tax");
             }
 
             if (total < 0)
@@ -117,9 +112,13 @@ namespace Atomia.Store.Core
                 throw new ArgumentOutOfRangeException("total");
             }
 
+            if (taxes == null) {
+                throw new ArgumentNullException("taxes");
+            }
+
             this.subTotal = subTotal;
-            this.tax = tax;
             this.total = total;
+            this.taxes = taxes.ToList();
         }
 
         /// <summary>
@@ -316,7 +315,7 @@ namespace Atomia.Store.Core
         {
             this.cartItems.Clear();
             this.campaignCode = string.Empty;
-            this.SetPricing(0m, 0m, 0m);
+            this.SetPricing(0m, 0m, new List<Tax>());
             cartProvider.SaveCart(this);
         }
 

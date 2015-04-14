@@ -53,7 +53,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /** Update 'cart' with 'cartData'. */
     function updateCart(cart, cartData) {
-        cart.cartItems.removeAll();
+        var cartItems = [], cartTaxes = [];
 
         _.each(cartData.CartItems, function (cartItemData) {
             var item, cartItem;
@@ -64,7 +64,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 category: cartItemData.Category,
                 quantity: cartItemData.Quantity,
                 price: cartItemData.Price,
-                tax: cartItemData.TaxAmount,
+                taxes: [],
                 discount: cartItemData.Discount,
                 total: cartItemData.Total,
                 renewalPeriod: null,
@@ -82,6 +82,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 };
             }
 
+            _.each(cartItemData.Taxes, function (tax) {
+                itemData.taxes.push({
+                    name: tax.Name,
+                    amount: tax.Amount,
+                    percentage: tax.Percentage
+                });
+            });
+
             _.each(cartItemData.CustomAttributes, function (attr) {
                 var name = attr.Name[0].toLowerCase() + attr.Name.slice(1);
 
@@ -94,12 +102,21 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             item = cart.createCartItem(itemData);
             cartItem = addCartItemExtensions(cart, item);
 
-            cart.cartItems.push(cartItem);
+            cartItems.push(cartItem);
         });
 
+        _.each(cartData.Taxes, function (tax) {
+            cartTaxes.push({
+                name: tax.Name,
+                amount: tax.Amount,
+                percentage: tax.Percentage
+            })
+        });
+
+        cart.cartItems(cartItems);
         cart.subTotal(cartData.SubTotal);
         cart.total(cartData.Total);
-        cart.tax(cartData.Tax);
+        cart.taxes(cartTaxes);
         cart.campaignCode(cartData.CampaignCode);
 
         utils.publish('cart:update');
@@ -154,7 +171,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.cartItems = ko.observableArray();
         self.subTotal = ko.observable(0);
         self.total = ko.observable(0);
-        self.tax = ko.observable(0);
+        self.taxes = ko.observableArray();
         self.campaignCode = ko.observable('');
         
         self.numberOfItems = ko.pureComputed(function numberOfItems() {

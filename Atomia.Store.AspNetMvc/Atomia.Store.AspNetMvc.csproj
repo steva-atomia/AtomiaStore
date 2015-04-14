@@ -110,6 +110,7 @@
     <Compile Include="Infrastructure\OrderFlowStep.cs" />
     <Compile Include="Infrastructure\RouteCollectionExtension.cs" />
     <Compile Include="Models\OrderFlowModel.cs" />
+    <Compile Include="Models\TaxModel.cs" />
     <Compile Include="Ports\IOrderFlowValidator.cs" />
     <Compile Include="Adapters\ItemPresenter.cs" />
     <Compile Include="Adapters\LanguagePreferenceProvider.cs" />

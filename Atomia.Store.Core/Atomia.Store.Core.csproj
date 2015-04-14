@@ -83,6 +83,7 @@
     <Compile Include="Models\Reseller.cs" />
     <Compile Include="Models\ResellerIdentifier.cs" />
     <Compile Include="Models\SearchTerm.cs" />
+    <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\TermsOfService.cs" />
     <Compile Include="Ports\IContactDataCollection.cs" />
     <Compile Include="Ports\IContactDataProvider.cs" />

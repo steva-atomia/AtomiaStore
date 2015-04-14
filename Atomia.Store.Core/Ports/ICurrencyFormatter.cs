@@ -15,5 +15,12 @@ namespace Atomia.Store.Core
         /// <param name="amount">The amount to format</param>
         /// <returns>A string representing the amount in a currency</returns>
         string FormatAmount(decimal amount);
+
+        /// <summary>
+        /// Format the percentage rate to string,
+        /// </summary>
+        /// <param name="percentage">The percentage rate to format, e.g. 10 for 10%</param>
+        /// <returns>A string representing the percentage rate</returns>
+        string FormatPercentageRate(decimal percentage);
     }
 }

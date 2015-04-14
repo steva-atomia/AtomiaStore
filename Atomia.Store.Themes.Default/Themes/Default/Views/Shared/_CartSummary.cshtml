@@ -15,10 +15,18 @@
             <td class="right" colspan="4">@Html.CommonResource("Subtotal"):</td>
             <td class="right nowrap" colspan="1" data-bind="text: cart.subTotal"></td>
         </tr>
+        <!-- ko foreach: cart.taxes -->
         <tr>
-            <td class="right" colspan="4">VAT:</td>
-            <td class="right nowrap" colspan="1" data-bind="text: cart.tax"></td>
+            <td class="right" colspan="4"><span data-bind="text: name"></span>:</td>
+            <td class="right nowrap" colspan="1" data-bind="text: amount"></td>
         </tr>
+        <!-- /ko -->
+        <!-- ko if: cart.taxes().length === 0 -->
+        <tr>
+            <td class="right" colspan="4">@Html.CommonResource("NoTax")</td>
+            <td class="right nowrap" colspan="1">-</td>
+        </tr>
+        <!-- /ko -->
         <tr class="strong">
             <td class="right" colspan="4">@Html.CommonResource("AmountToPay"):</td>
             <td class="right nowrap" colspan="1" data-bind="text: cart.total"></td>

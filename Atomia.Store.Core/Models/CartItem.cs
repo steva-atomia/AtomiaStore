@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atomia.Store.Core
 {
@@ -13,7 +14,7 @@ namespace Atomia.Store.Core
         private decimal quantity;
         private decimal price;
         private decimal discount;
-        private decimal taxAmount;
+        private List<Tax> taxes = new List<Tax>();
 
         /// <summary>
         /// The article number of the item
@@ -95,13 +96,13 @@ namespace Atomia.Store.Core
         }
 
         /// <summary>
-        /// Item tax, set via <see cref="SetPricing"/>
+        /// Taxes, set via <see cref="SetPricing"/>
         /// </summary>
-        public decimal TaxAmount
+        public ICollection<Tax> Taxes
         {
-            get 
+            get
             {
-                return taxAmount;
+                return taxes;
             }
         }
 
@@ -121,8 +122,8 @@ namespace Atomia.Store.Core
         /// </summary>
         /// <param name="price">The price to set</param>
         /// <param name="discount">The discount to set</param>
-        /// <param name="taxAmount">The tax to set.</param>
-        public void SetPricing(decimal price, decimal discount, decimal taxAmount)
+        /// <param name="taxes">The taxes to set.</param>
+        public void SetPricing(decimal price, decimal discount, IEnumerable<Tax> taxes)
         {
             if (price < 0)
             {
@@ -134,14 +135,14 @@ namespace Atomia.Store.Core
                 throw new ArgumentOutOfRangeException("discount");
             }
 
-            if (taxAmount < 0)
+            if (taxes == null)
             {
-                throw new ArgumentOutOfRangeException("taxAmount");
+                throw new ArgumentNullException("taxes");
             }
 
             this.price = price;
             this.discount = discount;
-            this.taxAmount = taxAmount;
+            this.taxes = taxes.ToList();
         }
     }
 }

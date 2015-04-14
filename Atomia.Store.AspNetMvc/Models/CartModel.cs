@@ -43,11 +43,11 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        public string Tax
+        public IReadOnlyCollection<TaxModel> Taxes
         {
             get
             {
-                return currencyFormatter.FormatAmount(cart.Tax);
+                return cart.Taxes.Select(t => new TaxModel(t)).ToList();
             }
         }
 

@@ -799,6 +799,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No VAT.
+        /// </summary>
+        internal static string NoTax {
+            get {
+                return ResourceManager.GetString("NoTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Order.
         /// </summary>
         internal static string Order {
@@ -1119,6 +1128,15 @@ namespace Resources {
         internal static string Tax {
             get {
                 return ResourceManager.GetString("Tax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT {0}.
+        /// </summary>
+        internal static string TaxNameDisplay {
+            get {
+                return ResourceManager.GetString("TaxNameDisplay", resourceCulture);
             }
         }
         

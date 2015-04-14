@@ -1,5 +1,6 @@
 ﻿using Atomia.Store.Core;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Atomia.Store.Fakes.Adapters
 {
@@ -9,10 +10,10 @@ namespace Atomia.Store.Fakes.Adapters
         {
             foreach(var cartItem in cart.CartItems)
             {
-                cartItem.SetPricing(10, 0, 2);
+                cartItem.SetPricing(10, 2, new List<Tax>());
             }
 
-            cart.SetPricing(cart.CartItems.Sum(ci => ci.Price), cart.CartItems.Sum(ci => ci.TaxAmount), cart.CartItems.Sum(ci => ci.Total));
+            cart.SetPricing(cart.CartItems.Sum(ci => ci.Price), cart.CartItems.Sum(ci => ci.Total), new List<Tax>());
 
             return cart;
         }

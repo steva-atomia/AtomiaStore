@@ -1,6 +1,7 @@
 ﻿using Atomia.Store.Core;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Models
@@ -138,11 +139,11 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        public string TaxAmount
+        public IReadOnlyCollection<TaxModel> Taxes
         {
             get
             {
-                return currencyFormatter.FormatAmount(cartItem.TaxAmount);
+                return cartItem.Taxes.Select(t => new TaxModel(t)).ToList();
             }
         }
 
