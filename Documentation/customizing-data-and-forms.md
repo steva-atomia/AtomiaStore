@@ -4,16 +4,16 @@
 The AtomiaStore makes data available to the views in a few different forms. This the division between different data types used in views:
 
 * **Static text**: Resource strings. See [Resource Strings and Localization](resource-strings-and-localization.md)
-* **Forms and static data**: Asp.NET MVC view models. See below.
-* **Cross-cutting static data**: Added to `ViewBag`. See [Customizing the Order Flow](customizing-the-orderflow.md) for an example.
-* **Interactive data**: Knockout.js view models populated via JSON rendered on page load, e.g. the cart. See below.
+* **Forms and server-rendered data**: Asp.NET MVC view models. See below.
+* **Cross-cutting data**: Added to `ViewBag`. See [Customizing the Order Flow](customizing-the-orderflow.md) for an example.
+* **Client-side data**: Knockout.js view models populated via JSON rendered on page load, e.g. the cart. See below.
 
 The above division should not be viewed as a set of definite rules, but more as a guide for where to start looking when you want to customize something.
 
-Forms and Static Data
----------------------
+Forms and Server-rendered Data
+------------------------------
 
-The standard Asp.NET MVC view models are used mostly for handling forms; they lets us leverage the built-in functionality for form validation and model binding.
+Standard ASP.NET MVC view models are used mostly for handling forms; they let us leverage the built-in functionality for form validation and model binding.
 
 The view models of each order flow step type can be extended or replaced:
 
@@ -114,9 +114,12 @@ We can override this registration either programmatically in `App_Start\UnityCon
 * Overriding `_ExtraForms.cshtml`
 
 
-Interactive Data
+Client-side Data
 ----------------
 
 * Overriding `_ExtraScripts.cshtml`
+* Extending view model
+* Changing view model
+
 
 @Html.JsonAction

@@ -13,7 +13,7 @@ Adding a Stylesheet to the Default Bundle
 
 The Default `StyleBundle` virtual path can be retrieved by using `Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE`.
  
-This how the generated `theme.css` is added, and can be done like this:
+This is how the generated `theme.css` is added, and can be done like this:
 
     var styleBundle = bundles.GetBundleFor(Atomia.Store.Themes.Default.BundleConfig.DEFAULT_STYLES_BUNDLE);
     styleBundle.Include("~/Themes/MyTheme/Content/css/theme.css");

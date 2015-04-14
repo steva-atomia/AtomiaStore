@@ -40,7 +40,7 @@ The views are structured in a standard ASP.NET MVC layout with *Layout => View =
         ...
         Shared Partial
 
-All views use strongly typed view models, and use of `ViewBag` and `ViewData` is limited to some data injected in several different views, like `ViewBag.OrderFlow`.
+All views use strongly typed view models, and use of `ViewBag` and `ViewData` is limited to data that must be injected into several different views, like `ViewBag.OrderFlow`.
 
 The naming of page views are as customary mapped to action names in ASP.NET MVC. One exception to this rule is *ProductListing* pages, where the view name can be customized depending on the type of products to show.
 
@@ -71,7 +71,18 @@ Data bindings in the views are then used with a prefix of the KO view model that
 
     data-bind="visible: Notification.IsOpen, css: Notification.MessageType"
 
-The default KO view model are defined in `Themes\Default\Scripts\atomia\atomia.viewmodels.*.js`. Each view model file is a JavaScript module with a factory function for making instances of a view model.
+In some cases a new knockout.js binding context is defined with the `with` binding to simplify subsequent bindings, e.g.:
+
+    <!-- ko with: Atomia.VM.account -->
+    ...
+    <span id="billing-text-close" style="display: none;" data-bind="visible: otherBillingContact">
+        ...
+    </span>
+    ...
+    <!-- /ko -->
+    
+
+The default KO view models are defined in `Themes\Default\Scripts\atomia\atomia.viewmodels.*.js`. Each view model file is a JavaScript module that exposes view model constructors and helper functions in some cases.
 
 There are also some custom KO bindings defined in  `Themes\Default\Scripts\atomia\atomia.ko.*-binding.js`:
 
