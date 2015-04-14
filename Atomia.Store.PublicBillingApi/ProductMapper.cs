@@ -69,11 +69,11 @@ namespace Atomia.Store.PublicBillingApi
                 
                 if (regionalDescription != null)
                 {
-                    product.Name = regionalDescription.Value;
+                    product.Description = regionalDescription.Value;
                 }
                 else if (standardDescription != null)
                 {
-                    product.Name = standardDescription.Value;
+                    product.Description = standardDescription.Value;
                 }
             }
         }
