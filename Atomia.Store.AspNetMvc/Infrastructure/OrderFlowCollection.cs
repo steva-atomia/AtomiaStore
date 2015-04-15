@@ -86,10 +86,17 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
         /// Get an <see cref="OrderFlow"/> from the collection.
         /// </summary>
         /// <param name="orderFlowName">The name of the <see cref="OrderFlow"/> to get.</param>
-        /// <returns>The <see cref="OrderFlow"/></returns>
+        /// <returns>The <see cref="OrderFlow"/> or null if order flow with name is not found</returns>
         public OrderFlow GetOrderFlow(string orderFlowName)
         {
-            return orderFlows[orderFlowName];
+            OrderFlow orderFlow = null;
+
+            if (orderFlows.ContainsKey(orderFlowName))
+            {
+                orderFlow = orderFlows[orderFlowName];
+            }
+            
+            return orderFlow;
         }
     }
 }
