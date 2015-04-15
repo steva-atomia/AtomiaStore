@@ -18,9 +18,9 @@ namespace Atomia.Store.AspNetMvc.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// If the order flow is the default one or not.
+        /// If the order flow is query string based
         /// </summary>
-        public bool IsDefault { get; set; }
+        public bool IsQueryStringBased { get; set; }
 
         /// <summary>
         /// The current order flow step

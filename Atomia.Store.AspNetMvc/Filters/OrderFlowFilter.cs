@@ -12,7 +12,7 @@ namespace Atomia.Store.AspNetMvc.Filters
 {
     /// <summary>
     /// Filter for getting data for and validating order flow steps.
-    /// Selects order flow to use based on "?flow={flowName}" querystring, or uses default order flow.
+    /// Selects order flow to use based on "?flow={flowName}" querystring, application host name, or uses default order flow.
     /// Populates ViewBag with <see cref="Atomia.Store.AspNetMvc.Models.OrderFlowModel"/> and validates current step.
     /// <seealso cref="Atomia.Store.AspNetMvc.Infrastructure.GlobalOrderFlow"/>
     /// </summary>
@@ -22,39 +22,72 @@ namespace Atomia.Store.AspNetMvc.Filters
         {
             var request = filterContext.HttpContext.Request;
             var routeName = (string)filterContext.RouteData.DataTokens["Name"];
-            var orderFlowName = request.QueryString["flow"] as string;
-            var useDefaultOrderFlow = String.IsNullOrEmpty(orderFlowName);
-
-            var orderFlow = useDefaultOrderFlow
-                ? GlobalOrderFlows.OrderFlows.Default
-                : GlobalOrderFlows.OrderFlows.GetOrderFlow(orderFlowName);
-
-            if (orderFlow == null && !String.IsNullOrEmpty(orderFlowName))
+            
+            var isQueryStringBased = true;
+            var orderFlow = GetOrderFlowFromQueryString(request);
+            
+            if (orderFlow == null)
             {
-                throw new InvalidOperationException(String.Format("No order flow named {0} and no default order flow configured.", orderFlowName));
+                isQueryStringBased = false;
+                orderFlow = GetOrderFlowFromHostname(request);
             }
-            else if (orderFlow == null)
+            
+            if (orderFlow == null)
+            {
+                isQueryStringBased = false;
+                orderFlow = GlobalOrderFlows.OrderFlows.Default;
+            }
+            
+            if (orderFlow == null)
             {   
-                throw new InvalidOperationException("Missing order flow configuration");
+                throw new InvalidOperationException("Could not find a matching order flow for 'flow' query string or host name, and no default order flow configured.");
             }
 
             var currentStep = orderFlow.GetOrderFlowStep(routeName);
 
-            PopulateViewBag(filterContext, orderFlow, currentStep, useDefaultOrderFlow);
+            PopulateViewBag(filterContext, orderFlow, currentStep, isQueryStringBased);
 
             ValidateOrderFlowStep(filterContext, orderFlow, currentStep);
         }
 
         /// <summary>
+        /// Get <see cref="OrderFlow"/> with name from query string.
+        /// </summary>
+        private OrderFlow GetOrderFlowFromQueryString(System.Web.HttpRequestBase request)
+        {
+            var orderFlowName = request.QueryString["flow"] as string;
+            OrderFlow orderFlow = null;
+
+            if (!String.IsNullOrEmpty(orderFlowName))
+            {
+                orderFlow = GlobalOrderFlows.OrderFlows.GetOrderFlow(orderFlowName);
+            }
+
+            return orderFlow;
+        }
+
+        /// <summary>
+        /// Get <see cref="OrderFlow"/> with same name as application host name.
+        /// </summary>
+        private OrderFlow GetOrderFlowFromHostname(System.Web.HttpRequestBase request)
+        {
+            var hostname = request.Url.Authority;
+
+            var orderFlow = GlobalOrderFlows.OrderFlows.GetOrderFlow(hostname);
+
+            return orderFlow;
+        }
+
+        /// <summary>
         /// Adds <see cref="Atomia.Store.AspNetMvc.Models.OrderFlowModel"/> to ViewBag.
         /// </summary>
-        private void PopulateViewBag(ActionExecutingContext filterContext, OrderFlow orderFlow, OrderFlowStep currentStep, bool isDefaultOrderFlow)
+        private void PopulateViewBag(ActionExecutingContext filterContext, OrderFlow orderFlow, OrderFlowStep currentStep, bool isQueryStringBased)
         {
             var resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
 
             var orderFlowModel = new OrderFlowModel
             {
-                IsDefault = isDefaultOrderFlow,
+                IsQueryStringBased = isQueryStringBased,
                 Name = orderFlow.Name,
                 Steps = orderFlow.Steps.Select(s => new OrderFlowStepModel
                 {

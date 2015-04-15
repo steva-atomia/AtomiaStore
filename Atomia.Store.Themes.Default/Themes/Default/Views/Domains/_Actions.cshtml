@@ -1,7 +1,7 @@
 ﻿@using Atomia.Store.AspNetMvc.Models
 @{
     var orderFlow = (OrderFlowModel)ViewBag.OrderFlow;
-    var routeValues = orderFlow.IsDefault ? null : new { flow = orderFlow.Name };
+    var routeValues = orderFlow.IsQueryStringBased ? new { flow = orderFlow.Name } : null;
 }
 
 <p class="actions">

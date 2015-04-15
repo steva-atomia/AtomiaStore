@@ -16,8 +16,11 @@ The following controller/action pairs are currently possible to use as part of a
 
 All routes that should be part of an order flow must be mapped with the `RouteCollection` extension method `MapOrderFlowRoute`.
 
-You can specify one order flow as the default order flow. All order flows except the default one must be identified in the URL by the query string `?flow=<OrderFlowName>`. The default order flow can be used with or without the query string.
+All order flows must have a name. This name is used when deciding what order flow is currently applicable. You can also specify one order flow as the default order flow. The resolution order of what order flow to use is the following:
 
+1. If there is a query string ?flow={orderFlowName} and there exists an order flow with that name, use that order flow
+2. Use any existing order flow with the same name as the application hostname, e.g. store.example.com
+3. Use the default order flow.
 
 Re-ordering Existing Order Flow Steps
 -------------------------------------
@@ -46,7 +49,7 @@ To start we configure the new  order flow in `MyTheme\App_Start\OrderFlowConfig.
 1. Since we want to re-order the one order flow we have, we completely remove it from the existing order flows.
 2. The new order flow *MyOrderFlow* is defined with *HostingPackage* placed before *Domains*.
 3. Since we want to have the first step in the order flow be accessible at the root path of the application an alias from the *OrderFlowStart* route to *HostingPackage* is added (see more below).
-4. Finally we add *MyOrderFlow* to the order flows used by the application.
+4. Finally we add *MyOrderFlow* to the order flows used by the application, and set it as default.
 
 In step 3 above, we added an alias from the *OrderFlowStart* route to *HostingPackage*. However, in the default route config the *OrderFlowStart* route is set to resolve to *Domains*, so we must also add a change to `MyTheme\App_Start\RouteConfig.cs`:
 
@@ -105,19 +108,19 @@ We can now add the new page to the order flow:
     var orderFlow = new OrderFlow("MyOrderFlow", new [] {"HostingPackage", "Domains", "ExtraService", "Account", "Checkout"});
 
 
-Creating Multiple Order Flows
------------------------------
+Creating Multiple Domain Based Order Flows
+------------------------------------------
 
-It is possible to create multiple order flows in AtomiaStore. E.g. you might want to have two different order flows for selling *shared hosting* and *VPS*. Assuming Atomia Billing had been set up for this and that the routes had been added you could configure the order flows something like this:
+It is possible to create multiple order flows in AtomiaStore, and also to connect them to the hostname of the application. E.g. you might want to have two different order flows for selling *shared hosting* and *VPS* located at hosting.store.example.com and vps.store.example.com respectively. Assuming Atomia Billing has been set up for this and that the routes has been added you could configure the order flows something like this:
 
     public static void RegisterOrderFlows(OrderFlowCollection orderFlows)
     {
         orderFlows.Clear();
 
-        var sharedHostingFlow = new OrderFlow("Hosting", new[] { "Domains", "HostingPackage", "Account", "Checkout" });
+        var sharedHostingFlow = new OrderFlow("hosting.store.example.com", new[] { "Domains", "HostingPackage", "Account", "Checkout" });
         sharedHostingFlow.AddRouteNameAlias("OrderFlowStart", "Domains");
 
-        var vpsFlow = new OrderFlow("VPS", new[] { "Domains", "VPS", "Account", "Checkout" });
+        var vpsFlow = new OrderFlow("vps.store.example.com", new[] { "Domains", "VPS", "Account", "Checkout" });
         vpsFlow.AddRouteNameAlias("OrderFlowStart", "Domains");
 
         orderFlows.Add(sharedHostingFlow, true);
@@ -126,9 +129,11 @@ It is possible to create multiple order flows in AtomiaStore. E.g. you might wan
 
 Things to note:
 
-* If you want to have a single entry point for the two order flows, e.g. the *Domains* page, you must your self manually set up the links to the next step in respective order flow (see *Changing the Order Flow Presentation* below.)
-* The *shared hosting* flow is set as default so will be used without adding a query string and with the added query string `?flow=Hosting`.
-* The *vps* flow will only be used with the added query string `?flow=VPS`
+* If you want to have a single entry point for the two order flows, e.g. the *Domains* page, and then let the customer chose what flow to continue with, you must yourself manually set up the links to the next step in respective order flow (see *Changing the Order Flow Presentation* below.)
+* The *hosting.store.example.com* flow is set as default so if you for example also have store.example.com available, customers that enter from there will get the shared hosting flow. You can also chose to not have a default order flow.
+* If you for some reason want to switch order flow but keep the customer at the same domain you could do it by adding the ?flow={orderFlowName} query string with the name of the other order flow as *orderFlowName*.
+
+**Tip**: Hostname based order flows go well together with hostname named shops in Atomia Billing. You can use the them in AtomiaStore by using the `IShopNameProvider` implementation  `Atomia.Store.PublicBillingApi.DomainShopNameProvider`. Naturally, this also requires you to have the correctly named shops in Atomia Billing, e.g. *vps.store.example.com* and *hosting.store.example.com* in the example above.
 
 
 Changing the Order Flow Presentation
@@ -146,7 +151,9 @@ The `Previous` and `Next` properties match named routes so can be used e.g. with
 
     @Html.RouteLink(Html.CommonResource("Back"), orderFlow.CurrentStep.Previous, new { flow = orderFlow.Name }, new { id = "back_step" })
 
-The above example renders a link to the previous step, and also sets the `flow` query string to the value from `orderFlow.Name`.
+The above example renders a link to the previous step and also sets the `flow` query string to the value from `orderFlow.Name`. 
+
+**Note**: There is a property `IsQueryStringBased` on the `OrderFlowModel` which flags that the current order flow has been selected by query string, and that any links to other steps in the order flow should have the `flow` query string added as well.
 
 
 Validating the Order Flow Steps
