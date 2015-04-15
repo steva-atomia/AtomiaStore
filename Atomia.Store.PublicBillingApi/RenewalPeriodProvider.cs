@@ -11,26 +11,19 @@ namespace Atomia.Store.PublicBillingApi
     /// </summary>
     public sealed class RenewalPeriodProvider
     {
-        private readonly IProductsProvider productsProvider;
-        private readonly IResellerProvider resellerProvider;
+        private readonly ApiProductsProvider apiProductsProvider;
 
         /// <summary>
         /// Create new instance 
         /// </summary>
-        public RenewalPeriodProvider(IProductsProvider productsProvider, IResellerProvider resellerProvider)
+        public RenewalPeriodProvider(ApiProductsProvider apiProductsProvider)
         {
-            if (productsProvider == null)
+            if (apiProductsProvider == null)
             {
-                throw new ArgumentNullException("productsProvider");
+                throw new ArgumentNullException("apiProductsProvider");
             }
 
-            if (resellerProvider == null)
-            {
-                throw new ArgumentNullException("resellerProvider");
-            }
-
-            this.productsProvider = productsProvider;
-            this.resellerProvider = resellerProvider;
+            this.apiProductsProvider = apiProductsProvider;
         }
 
         /// <summary>
@@ -45,12 +38,7 @@ namespace Atomia.Store.PublicBillingApi
 
             var period = cartItem.RenewalPeriod.Period;
             var unit = cartItem.RenewalPeriod.Unit;
-            var product = productsProvider.GetShopProductsByArticleNumbers(resellerProvider.GetReseller().Id, "", new List<string> { cartItem.ArticleNumber }).FirstOrDefault();
-
-            if (product == null)
-            {
-                throw new InvalidOperationException(String.Format("No product with articlenumber {0} found", cartItem.ArticleNumber));
-            }
+            var product = apiProductsProvider.GetProduct(cartItem.ArticleNumber);
 
             var apiRenewalPeriod = product.RenewalPeriods
                 .FirstOrDefault(r => r.RenewalPeriodUnit.ToUpper() == unit && r.RenewalPeriodValue == period);

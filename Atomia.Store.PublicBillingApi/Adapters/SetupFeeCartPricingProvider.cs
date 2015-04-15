@@ -14,8 +14,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     public class SetupFeeCartPricingService : ICartPricingService
     {
         private readonly ICartPricingService baseCartPricingService;
-        private readonly IResellerProvider resellerProvider;
-        private readonly IProductsProvider productsProvider;
+        private readonly ApiProductsProvider apiProductsProvider;
 
         /// <summary>
         /// The product category of the setup fee.
@@ -36,26 +35,20 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         /// <summary>
         /// Create new instance wrapping the base service.
         /// </summary>
-        public SetupFeeCartPricingService(ICartPricingService baseCartPricingService, IResellerProvider resellerProvider, IProductsProvider productsProvider)
+        public SetupFeeCartPricingService(ICartPricingService baseCartPricingService, ApiProductsProvider apiProductsProvider)
         {
             if (baseCartPricingService == null)
             {
                 throw new ArgumentNullException("baseCartPricingService");
             }
 
-            if (resellerProvider == null)
+            if (apiProductsProvider == null)
             {
-                throw new ArgumentNullException("resellerProvider");
-            }
-
-            if (productsProvider == null)
-            {
-                throw new ArgumentNullException("productsProvider");
+                throw new ArgumentNullException("apiProductsProvider");
             }
 
             this.baseCartPricingService = baseCartPricingService;
-            this.resellerProvider = resellerProvider;
-            this.productsProvider = productsProvider;
+            this.apiProductsProvider = apiProductsProvider;
         }
 
         /// <summary>
@@ -64,12 +57,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         /// </summary>
         public Cart CalculatePricing(Cart cart)
         {
-            var resellerId = resellerProvider.GetReseller().Id;
-            var setupFee = productsProvider.GetShopProductsByCategories(resellerId, null, new List<string>() { SetupFeeCategory }).FirstOrDefault();
+            var setupFee = apiProductsProvider.GetProductsByCategories(new List<string>() { SetupFeeCategory }).FirstOrDefault();
             
             if (setupFee != null)
             {
-                var setupFeeProducts = productsProvider.GetShopProductsByCategories(resellerId, null, ProductCategoriesWithSetupFee.ToList());
+                var setupFeeProducts = apiProductsProvider.GetProductsByCategories(ProductCategoriesWithSetupFee.ToList());
 
                 var shouldHaveSetupFee = setupFeeProducts.Any(p => cart.CartItems.Any(ci => ci.ArticleNumber == p.ArticleNumber));
                 var hasSetupFee = cart.CartItems.Any(ci => ci.ArticleNumber == setupFee.ArticleNumber);

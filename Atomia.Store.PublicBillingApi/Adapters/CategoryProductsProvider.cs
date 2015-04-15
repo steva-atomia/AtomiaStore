@@ -12,20 +12,16 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     /// </summary>
     public sealed class CategoryProductsProvider : IProductListProvider
     {
-        private readonly IResellerProvider resellerProvider;
         private readonly ILanguagePreferenceProvider languagePreferenceProvider;
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
-        private readonly IProductsProvider productsProvider;
+        private readonly ApiProductsProvider apiProductsProvider;
 
         /// <summary>
         /// Construct a new instance
         /// </summary>
-        public CategoryProductsProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IProductsProvider productsProvider)
+        public CategoryProductsProvider(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ApiProductsProvider apiProductsProvider)
         {
-            if (resellerProvider == null)
-            {
-                throw new ArgumentNullException("resellerProvider");
-            }
+            
 
             if (languagePreferenceProvider == null)
             {
@@ -37,15 +33,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("currencyPreferenceProvider");
             }
 
-            if (productsProvider == null)
+            if (apiProductsProvider == null)
             {
-                throw new ArgumentNullException("productsProvider");
+                throw new ArgumentNullException("apiProductsProvider");
             }
 
-            this.resellerProvider = resellerProvider;
             this.languagePreferenceProvider = languagePreferenceProvider;
             this.currencyPreferenceProvider = currencyPreferenceProvider;
-            this.productsProvider = productsProvider;
+            this.apiProductsProvider = apiProductsProvider;   
         }
 
         /// <summary>
@@ -64,12 +59,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         public IEnumerable<CoreProduct> GetProducts(ICollection<SearchTerm> terms)
         {
             var category = terms.First().Value;
-            var resellerId = resellerProvider.GetReseller().Id;
             var currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
             var language = languagePreferenceProvider.GetCurrentLanguage();
             var products = new List<CoreProduct>();
-            
-            var apiProducts = productsProvider.GetShopProductsByCategories(resellerId, null, new List<string>() { category });
+
+            var apiProducts = apiProductsProvider.GetProductsByCategories(new List<string>() { category });
 
             foreach(var apiProduct in apiProducts)
             {

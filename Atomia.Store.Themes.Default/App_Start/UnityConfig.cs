@@ -60,8 +60,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.SetupFeeCartPricingService>(
                 new InjectionConstructor(
                     new ResolvedParameter<ICartPricingService>("apiPricingService"),
-                    new ResolvedParameter<IResellerProvider>(),
-                    new ResolvedParameter<Atomia.Web.Plugin.ProductsProvider.IProductsProvider>()));
+                    new ResolvedParameter<ApiProductsProvider>()));
             container.RegisterType<IOrderFlowValidator, Atomia.Store.Themes.Default.Adapters.OrderFlowValidator>();
 
             // Public billing api helpers
@@ -73,6 +72,8 @@ namespace Atomia.Store.Themes.Default
                 new InjectionConstructor(
                     new ResolvedParameter<IResellerDataProvider>("apiProvider"),
                     new ResolvedParameter<IResellerIdentifierProvider>()));
+            container.RegisterType<ApiProductsProvider, ApiProductsProvider>();
+            container.RegisterType<IShopNameProvider, DefaultShopNameProvider>();
         }
 
         /// <summary>

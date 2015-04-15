@@ -12,21 +12,15 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     /// </summary>
     public sealed class ProductProvider : IProductProvider
     {
-        private readonly IProductsProvider productsProvider;
-        private readonly IResellerProvider resellerProvider;
+        private readonly ApiProductsProvider apiProductsProvider;
         private readonly ILanguagePreferenceProvider languagePreferenceProvider;
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
 
         /// <summary>
         /// Create new instance tied to current reseller and current users's language and currency preferences.
         /// </summary>
-        public ProductProvider(IResellerProvider resellerProvider, ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IProductsProvider productsProvider)
+        public ProductProvider(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ApiProductsProvider apiProductsProvider)
         {
-            if (resellerProvider == null)
-            {
-                throw new ArgumentNullException("resellerProvider");
-            }
-
             if (languagePreferenceProvider == null)
             {
                 throw new ArgumentNullException("languagePreferenceProvider");
@@ -37,15 +31,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("currencyProvider");
             }
 
-            if (productsProvider == null)
+            if (apiProductsProvider == null)
             {
-                throw new ArgumentNullException("productsProvider");
+                throw new ArgumentNullException("apiProductsProvider");
             }
 
-            this.resellerProvider = resellerProvider;
             this.languagePreferenceProvider = languagePreferenceProvider;
             this.currencyPreferenceProvider = currencyPreferenceProvider;
-            this.productsProvider = productsProvider;
+            this.apiProductsProvider = apiProductsProvider;
         }
 
         /// <summary>
@@ -53,15 +46,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         /// </summary>
         public CoreProduct GetProduct(string articleNumber)
         {
-            var resellerId = resellerProvider.GetReseller().Id;
-
-            var apiProduct = productsProvider.GetShopProductsByArticleNumbers(resellerId, "", new List<string> { articleNumber }).FirstOrDefault();
-            
-            if (apiProduct == null)
-            {
-                throw new ArgumentException(String.Format("Could not find product with article number {0} for current reseller.", articleNumber));
-            }
-            
+            var apiProduct = apiProductsProvider.GetProduct(articleNumber);
             var language = languagePreferenceProvider.GetCurrentLanguage();
             var currency = currencyPreferenceProvider.GetCurrentCurrency();
 

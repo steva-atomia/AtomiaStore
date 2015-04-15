@@ -82,11 +82,13 @@
     <Compile Include="Adapters\ResellerProvider.cs" />
     <Compile Include="Adapters\SetupFeeCartPricingProvider.cs" />
     <Compile Include="Adapters\TermsOfServiceProvider.cs" />
+    <Compile Include="ApiProductsProvider.cs" />
     <Compile Include="CachedResellerDataProvider.cs" />
     <Compile Include="Handlers\TransactionDataHandler.cs" />
     <Compile Include="Handlers\ItemData.cs" />
     <Compile Include="Handlers\OrderDataHandler.cs" />
     <Compile Include="Handlers\PaymentDataHandler.cs" />
+    <Compile Include="ShopNameProvider.cs" />
     <Compile Include="ProductMapper.cs" />
     <Compile Include="PublicBillingApiClient.cs" />
     <Compile Include="PublicBillingApiProxy.cs" />
