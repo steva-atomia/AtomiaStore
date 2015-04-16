@@ -18,7 +18,7 @@ namespace Atomia.Store.WebBase.HtmlHelpers
         /// </summary>
         public static string CommonResource(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
-            var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
+            var themeClass = themeNamesProvider.GetCurrentThemeName() + "Common,";
             var resource = LocalizationHelpers.Resource(htmlhelper, themeClass + expression, args);
 
             return String.IsNullOrEmpty(resource)
@@ -31,7 +31,7 @@ namespace Atomia.Store.WebBase.HtmlHelpers
         /// </summary>
         public static IHtmlString CommonResourceRaw(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
-            var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
+            var themeClass = themeNamesProvider.GetCurrentThemeName() + "Common,";
             var resource = LocalizationHelpers.Resource(htmlhelper, themeClass + expression, args);
 
             if (String.IsNullOrEmpty(resource))
@@ -47,7 +47,7 @@ namespace Atomia.Store.WebBase.HtmlHelpers
         /// </summary>
         public static string CommonResourceJs(this HtmlHelper htmlhelper, string expression, params object[] args)
         {
-            var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
+            var themeClass = themeNamesProvider.GetCurrentThemeName() + "Common,";
             var resource = LocalizationHelpers.ResourceJavascript(htmlhelper, themeClass + expression, args);
 
             return String.IsNullOrEmpty(resource)

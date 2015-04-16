@@ -15,7 +15,7 @@ namespace Atomia.Store.WebBase.Adapters
         /// <inheritdoc />
         public string GetResource(string resourceName)
         {
-            var themeClass = themeNamesProvider.GetMainThemeName() + "Common,";
+            var themeClass = themeNamesProvider.GetCurrentThemeName() + "Common,";
             var resource = LocalizationHelpers.GlobalResource(themeClass + resourceName);
 
             return String.IsNullOrEmpty(resource)

@@ -9,6 +9,7 @@ namespace Atomia.Store.Themes.Default
         {
             filters.Add(new ResellerFilter(), 1);
             filters.Add(new LanguageFilter(), 2);
+            filters.Add(new ThemeFilter(), 3);
         }
     }
 }

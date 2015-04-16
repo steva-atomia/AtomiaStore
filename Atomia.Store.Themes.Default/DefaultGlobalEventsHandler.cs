@@ -52,6 +52,14 @@ namespace Atomia.Store.Themes.Default
 
             DependencyResolver.SetResolver(new UnityDependencyResolver(container));
 
+            // RazorThemeViewEngine works with one instance per theme and lets the view engine selection 
+            // algorithm do its work to find a view.
+            var themeNamesProvider = container.Resolve<IThemeNamesProvider>();
+            foreach (var theme in themeNamesProvider.GetActiveThemeNames())
+            {
+                ViewEngines.Engines.Add(new RazorThemeViewEngine(theme));
+            }
+
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CustomerValidationAttribute), typeof(CustomerValidationAttribute.CustomerValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRegularExpressionAttribute), typeof(AtomiaRegularExpressionValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRequiredAttribute), typeof(AtomiaRequiredValidator));
@@ -68,21 +76,17 @@ namespace Atomia.Store.Themes.Default
             }
         }
 
-        /// <summary>
-        /// Register "theme" key in session, which is required by legacy resource string handling in Atomia.Web.Base
-        /// </summary>
         public override void Session_Start(object sender, EventArgs e)
         {
-            if (HttpContext.Current != null)
+            if (HttpContext.Current != null && HttpContext.Current.Session != null)
             {
-                if (HttpContext.Current.Session != null)
-                {
-                    /* We are making an exception to using DI / service location of adapters here, since they have not yet
-                       been registered with the Unity container. */
-                    var themeNamesProvider = new Atomia.Store.AspNetMvc.Adapters.ThemeNamesProvider();
+                // We are making an exception to using DI/service location of adapters here, since they have not yet
+                // been registered with the Unity container. Meaning this needs to be changed manually if you change the
+                // IThemeNamesProvider implementation.
+                var themeNamesProvider = new Atomia.Store.AspNetMvc.Adapters.ThemeNamesProvider();
 
-                    HttpContext.Current.Session["theme"] = themeNamesProvider.GetMainThemeName();
-                }
+                // Register "theme" key in session, which is required by legacy resource string handling in Atomia.Web.Base
+                HttpContext.Current.Session["theme"] = themeNamesProvider.GetCurrentThemeName();
             }
         }
 

@@ -104,6 +104,7 @@
     <Compile Include="Adapters\CurrencyFormatter.cs" />
     <Compile Include="Adapters\CurrencyPreferenceProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
+    <Compile Include="Filters\ThemeFilter.cs" />
     <Compile Include="Infrastructure\GlobalOrderFlows.cs" />
     <Compile Include="Infrastructure\OrderFlow.cs" />
     <Compile Include="Infrastructure\OrderFlowCollection.cs" />

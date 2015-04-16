@@ -15,10 +15,14 @@ namespace Atomia.Store.Core
         IEnumerable<string> GetActiveThemeNames();
 
         /// <summary>
-        /// Get the name for the theme that is considered the "main" theme.
+        /// Get the theme name that should be used currently.
         /// </summary>
-        /// <remarks>Used mainly by legacy components that only support one theme + the "Default" theme.</remarks>
-        /// <returns>The name of the "main" theme.</returns>
-        string GetMainThemeName();
+        /// <returns>The name of the current theme.</returns>
+        string GetCurrentThemeName();
+
+        /// <summary>
+        /// Set the theme name that should be used.
+        /// </summary>
+        void SetCurrentThemeName(string themeName);
     }
 }

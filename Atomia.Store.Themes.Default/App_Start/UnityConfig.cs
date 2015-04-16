@@ -35,7 +35,6 @@ namespace Atomia.Store.Themes.Default
         /// </summary>
         private static void RegisterCoreAdapters(UnityContainer container)
         {
-            container.RegisterType<IViewEngine, Atomia.Store.AspNetMvc.Infrastructure.RazorThemeViewEngine>("RazorThemeViewEngine");
             container.RegisterType<IModelBinderProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelBinderProvider>();
             container.RegisterType<ILogger, Atomia.Store.ActionTrail.Adapters.Logger>();
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Adapters.CartProvider>();

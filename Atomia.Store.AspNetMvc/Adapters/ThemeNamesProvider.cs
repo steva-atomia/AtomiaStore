@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using System.Web;
 
 namespace Atomia.Store.AspNetMvc.Adapters
 {
@@ -17,7 +18,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
         public IEnumerable<string> GetActiveThemeNames()
         {
             var themes = new List<string>();
-            var themeSettings = ConfigurationManager.AppSettings["Themes"];
+            var themeSettings = ConfigurationManager.AppSettings["ActiveThemes"];
 
             if (!String.IsNullOrEmpty(themeSettings))
             {
@@ -31,20 +32,45 @@ namespace Atomia.Store.AspNetMvc.Adapters
         }
 
         /// <summary>
-        /// Get first name from list of names in app setting "Themes", or "Default"
+        /// Get user's preferred theme, theme from "StartTheme" setting, or "Default" theme
         /// </summary>
-        public string GetMainThemeName()
+        public string GetCurrentThemeName()
         {
-            var themeNames = GetActiveThemeNames();
+            string currentTheme = null;
 
-            var mainThemeName = themeNames.FirstOrDefault();
-
-            if (String.IsNullOrEmpty(mainThemeName))
+            var selectedTheme = (string)HttpContext.Current.Session["SelectedTheme"];
+            var activeThemes = GetActiveThemeNames();
+            if (!String.IsNullOrEmpty(selectedTheme) && activeThemes.Contains(selectedTheme))
             {
-                mainThemeName = "Default";
+                currentTheme = selectedTheme;
             }
 
-            return mainThemeName;
+            if (String.IsNullOrEmpty(currentTheme))
+            {
+                var startTheme = ConfigurationManager.AppSettings["StartTheme"];
+
+                if (!String.IsNullOrEmpty(startTheme) && activeThemes.Contains(startTheme))
+                {
+                    currentTheme = startTheme;
+                }
+            }
+
+            if (String.IsNullOrEmpty(currentTheme))
+            {
+                currentTheme = "Default";
+            }
+
+            SetCurrentThemeName(currentTheme);
+
+            return currentTheme;
+        }
+
+        /// <summary>
+        /// Save user's current theme in session.
+        /// </summary>
+        public void SetCurrentThemeName(string themeName)
+        {
+            HttpContext.Current.Session["SelectedTheme"] = String.IsNullOrEmpty(themeName) ? "" : themeName;
         }
     }
 }

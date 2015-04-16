@@ -1,81 +1,74 @@
 ﻿using Atomia.Store.Core;
-using System.Collections.Generic;
+using System;
 using System.Linq;
 using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Infrastructure
 {
     /// <summary>
-    /// An implementation of the standard RazorViewEngine that adds views from the Themes folder based on active theme names.
+    /// An implementation of the standard RazorViewEngine that uses views from the Themes folder based on current theme name.
     /// </summary>
+    /// <remarks>Stores with multiple themes should register an instance for each theme.</remarks>
     public sealed class RazorThemeViewEngine : RazorViewEngine
     {
+        private readonly string themeName;
         private readonly IThemeNamesProvider themeNamesProvider = DependencyResolver.Current.GetService<IThemeNamesProvider>();
 
-        public RazorThemeViewEngine()
+        public RazorThemeViewEngine(string themeName)
         {
-            var themes = themeNamesProvider.GetActiveThemeNames();
-
-            var areaViewLocations = new List<string>();
-            var areaMasterLocations = new List<string>();
-            var areaPartialViewLocations = new List<string>();
-            var viewLocations = new List<string>();
-            var masterLocations = new List<string>();
-            var partialViewLocations = new List<string>();
-
-            foreach (var theme in themes)
+            if (string.IsNullOrEmpty(themeName))
             {
-                var themeAreaLocations = new[]
-                {
-                    "~/Themes/" + theme + "/Areas/{2}/Views/{1}/{0}.cshtml",
-                    "~/Themes/" + theme + "/Areas/{2}/Views/{1}/{0}.vbhtml",
-                    "~/Themes/" + theme + "/Areas/{2}/Views/Shared/{0}.cshtml",
-                    "~/Themes/" + theme + "/Areas/{2}/Views/Shared/{0}.vbhtml",
-                };
-                areaViewLocations.AddRange(themeAreaLocations);
-                areaMasterLocations.AddRange(themeAreaLocations);
-                areaPartialViewLocations.AddRange(themeAreaLocations);
-
-                var themeViewLocations = new[]
-                {
-                    "~/Themes/" + theme + "/Views/{1}/{0}.cshtml",
-                    "~/Themes/" + theme + "/Views/{1}/{0}.vbhtml",
-                    "~/Themes/" + theme + "/Views/Shared/{0}.cshtml",
-                    "~/Themes/" + theme + "/Views/Shared/{0}.vbhtml",
-                };
-                viewLocations.AddRange(themeViewLocations);
-                masterLocations.AddRange(themeViewLocations);
-                partialViewLocations.AddRange(themeViewLocations);
+                throw new ArgumentException("themeName is required.", "themeName");
             }
 
-            var standardAreaLocations = new List<string>
-            {
-                "~/Areas/{2}/Views/{1}/{0}.cshtml",
-                "~/Areas/{2}/Views/{1}/{0}.vbhtml",
-                "~/Areas/{2}/Views/Shared/{0}.cshtml",
-                "~/Areas/{2}/Views/Shared/{0}.vbhtml"
-            };
-            AreaViewLocationFormats = areaViewLocations.Concat(standardAreaLocations).ToArray();
-            AreaMasterLocationFormats = areaMasterLocations.Concat(standardAreaLocations).ToArray();
-            AreaPartialViewLocationFormats = areaPartialViewLocations.Concat(standardAreaLocations).ToArray();
+            this.themeName = themeName;
 
-            var standardLocations = new List<string>
+            var themeAreaLocations = new[]
             {
-                // Standard
-                "~/Views/{1}/{0}.cshtml",
-                "~/Views/{1}/{0}.vbhtml",
-                "~/Views/Shared/{0}.cshtml",
-                "~/Views/Shared/{0}.vbhtml"
+                "~/Themes/" + themeName + "/Areas/{2}/Views/{1}/{0}.cshtml",
+                "~/Themes/" + themeName + "/Areas/{2}/Views/{1}/{0}.vbhtml",
+                "~/Themes/" + themeName + "/Areas/{2}/Views/Shared/{0}.cshtml",
+                "~/Themes/" + themeName + "/Areas/{2}/Views/Shared/{0}.vbhtml",
             };
-            ViewLocationFormats = viewLocations.Concat(standardLocations).ToArray();
-            MasterLocationFormats = masterLocations.Concat(standardLocations).ToArray();
-            PartialViewLocationFormats = partialViewLocations.Concat(standardLocations).ToArray();
+            
+            var themeViewLocations = new[]
+            {
+                "~/Themes/" + themeName + "/Views/{1}/{0}.cshtml",
+                "~/Themes/" + themeName + "/Views/{1}/{0}.vbhtml",
+                "~/Themes/" + themeName + "/Views/Shared/{0}.cshtml",
+                "~/Themes/" + themeName + "/Views/Shared/{0}.vbhtml",
+            };
 
-            FileExtensions = new[]
+            AreaViewLocationFormats = themeAreaLocations.ToArray();
+            AreaMasterLocationFormats = themeAreaLocations.ToArray();
+            AreaPartialViewLocationFormats = themeAreaLocations.ToArray();
+            ViewLocationFormats = themeViewLocations.ToArray();
+            MasterLocationFormats = themeViewLocations.ToArray();
+            PartialViewLocationFormats = themeViewLocations.ToArray();
+
+            FileExtensions = new[] { "cshtml", "vbhtml" };
+        }
+
+        public override ViewEngineResult FindView(ControllerContext controllerContext, string viewName, string masterName, bool useCache)
+        {
+            if (this.themeName != themeNamesProvider.GetCurrentThemeName() && this.themeName != "Default")
             {
-                "cshtml",
-                "vbhtml",
-            };
+                // Just skip this theme, we didn't search any view locations.
+                return new ViewEngineResult(new string[0]);
+            }
+
+            return base.FindView(controllerContext, viewName, masterName, useCache);
+        }
+
+        public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
+        {
+            if (this.themeName != themeNamesProvider.GetCurrentThemeName() && this.themeName != "Default")
+            {
+                // Just skip this theme, we didn't search any view locations.
+                return new ViewEngineResult(new string[0]);
+            }
+
+            return base.FindPartialView(controllerContext, partialViewName, useCache);
         }
     }
 }
