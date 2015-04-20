@@ -43,9 +43,13 @@ Copy-Item "$($defaultThemeDir)\App_GlobalResources\*.resx" "$($themeDir)\App_Glo
 
 
 # Change project and solution names
-Rename-Item "$($themeDir)\MyTheme.csproj" "$($themeName).csproj"
-Rename-Item "$($themeDir)\Themes\MyTheme" $themeName
-Rename-Item "$($themeDir)\App_GlobalResources\MyTheme" $themeName
+if ("$themeName" -ne "MyTheme")
+{
+	Rename-Item "$($themeDir)\MyTheme.csproj" "$($themeName).csproj"
+	Rename-Item "$($themeDir)\Themes\MyTheme" $themeName
+	Rename-Item "$($themeDir)\App_GlobalResources\MyTheme" $themeName
+}
+
 Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewName {$_.name -replace 'MyTheme', $themeName }
 
 (gc "$($themeDir)\$($themeName).csproj").replace('MyTheme', $themeName)|sc "$($themeDir)\$($themeName).csproj"
