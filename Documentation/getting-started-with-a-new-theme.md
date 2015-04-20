@@ -27,7 +27,7 @@ The quickest way to get started with a new custom theme is to use the theme star
 Next Steps
 ----------
 
-Continue reading below for some more information about how the custom theme and supporting files are organized, or check the TOC in [README](README.md) for specific customization task documentation.
+Continue reading below for some more information about how the custom theme and supporting files are organized, or check the TOC in [README](../README.md) for specific customization task documentation.
 
 
 
