@@ -27,7 +27,6 @@ If you want to completely customize the styles, you might do something like this
     var styleBundle = new StyleBundle("~/Themes/MyTheme/Content/css");
     styleBundle.Include("~/Themes/MyTheme/Content/css/theme.css");
     
-    // The 
     bundles.Clear();
     bundles.Add(styleBundle);
 
