@@ -548,7 +548,7 @@ p.errorinfo:before {
 #cc-box {
 	margin-left: 4em
 }
-#ccv {
+#ccv, #SelectedPaymentMethod_Form_CardSecurityCode {
 	width: 9em
 }
 

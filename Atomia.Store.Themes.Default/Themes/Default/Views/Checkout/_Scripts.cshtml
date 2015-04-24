@@ -12,5 +12,7 @@
         Atomia.VM.payWithInvoice.loadPostalFeeItem(@Html.JsonAction("GetItem", "ProductListing", new { articleNumber = "BIL-IF" }));
         Atomia.VM.payWithInvoice.invoiceType('email');
 
+        Atomia.VM.ccPayment = new Atomia.ViewModels.CCPaymentModel();
+
         Atomia.VM.campaignCode = new Atomia.ViewModels.CampaignCodeModel(Atomia.VM.cart);
 </script>

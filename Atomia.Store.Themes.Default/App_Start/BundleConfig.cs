@@ -40,7 +40,8 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productlisting.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.account.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js",
-                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js");
+                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js",
+                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.ccpayment.js");
 
             var styleBundle = new StyleBundle(DEFAULT_STYLES_BUNDLE)
                 .Include(

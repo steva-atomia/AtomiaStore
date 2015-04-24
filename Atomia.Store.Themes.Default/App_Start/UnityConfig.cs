@@ -117,8 +117,10 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.PayPal.PayPalGuiPlugin>("PayPal");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.WorldPay.WorldPayGuiPlugin>("WorldPay");
             container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.WorldPayXml.WorldPayXmlGuiPlugin>("WorldPayXml");
+            container.RegisterType<PaymentMethodGuiPlugin, Atomia.Store.Payment.CCPayment.CCPaymentGuiPlugin>("CCPayment");
 
             container.RegisterType<PaymentMethodForm, Atomia.Store.Payment.Invoice.PayWithInvoiceForm>("PayWithInvoice");
+            container.RegisterType<PaymentMethodForm, Atomia.Store.Payment.CCPayment.CCPaymentForm>("CCPayment");
 
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.AdyenHpp.AdyenHppHandler>("AdyenHpp");
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.DibsFlexwin.DibsFlexwinHandler>("DibsFlexwin");
@@ -127,6 +129,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.PayPal.PayPalHandler>("PayPal");
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPay.WorldPayHandler>("WorldPay");
             container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.WorldPayXml.WorldPayXmlHandler>("WorldPayXml");
+            container.RegisterType<PaymentDataHandler, Atomia.Store.Payment.CCPayment.CCPaymentHandler>("CCPayment");
         }
 
         /// <summary>

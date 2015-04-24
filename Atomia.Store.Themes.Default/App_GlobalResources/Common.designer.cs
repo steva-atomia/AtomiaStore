@@ -232,6 +232,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Card Number.
+        /// </summary>
+        internal static string CardNumber {
+            get {
+                return ResourceManager.GetString("CardNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Card Owner.
+        /// </summary>
+        internal static string CardOwner {
+            get {
+                return ResourceManager.GetString("CardOwner", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CVC/CVV.
+        /// </summary>
+        internal static string CardSecurityCode {
+            get {
+                return ResourceManager.GetString("CardSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Credit Card.
+        /// </summary>
+        internal static string CCPaymentName {
+            get {
+                return ResourceManager.GetString("CCPaymentName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Change.
         /// </summary>
         internal static string Change {
@@ -381,6 +417,15 @@ namespace Resources {
         internal static string Country {
             get {
                 return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Pay invoices on expiration day automatically.
+        /// </summary>
+        internal static string CreditCardAutoPay {
+            get {
+                return ResourceManager.GetString("CreditCardAutoPay", resourceCulture);
             }
         }
         
@@ -556,6 +601,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not a valid credit card number.
+        /// </summary>
+        internal static string ErrorCreditCard {
+            get {
+                return ResourceManager.GetString("ErrorCreditCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, you do not have enough privileges to view the page..
         /// </summary>
         internal static string Error_ForbiddenDescription {
@@ -606,6 +660,15 @@ namespace Resources {
         internal static string Error_NotFoundTitle {
             get {
                 return ResourceManager.GetString("Error_NotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expires.
+        /// </summary>
+        internal static string Expires {
+            get {
+                return ResourceManager.GetString("Expires", resourceCulture);
             }
         }
         
@@ -853,6 +916,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Payment profile options.
+        /// </summary>
+        internal static string PaymentProfileOptions {
+            get {
+                return ResourceManager.GetString("PaymentProfileOptions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to We are ready to take your order now. Please review your order and click on Order button to confirm the transaction. Your order will be securely processed by PayPal..
         /// </summary>
         internal static string PayPalConfirmDescription {
@@ -970,11 +1042,38 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Save my credit card information.
+        /// </summary>
+        internal static string SaveCreditCardInfo {
+            get {
+                return ResourceManager.GetString("SaveCreditCardInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select.
         /// </summary>
         internal static string Select {
             get {
                 return ResourceManager.GetString("Select", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SelectMonth {
+            get {
+                return ResourceManager.GetString("SelectMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SelectYear {
+            get {
+                return ResourceManager.GetString("SelectYear", resourceCulture);
             }
         }
         

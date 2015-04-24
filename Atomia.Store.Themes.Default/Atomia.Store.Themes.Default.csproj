@@ -238,6 +238,7 @@
     </Content>
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.ccpayment.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.modalmixin.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.notification.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productmixin.js" />
@@ -280,6 +281,7 @@
     <Content Include="Themes\Default\Views\ProductListing\_Scripts.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_ExtraScripts.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_DomainConnectionScripts.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_CCPayment.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
@@ -289,6 +291,10 @@
     <ProjectReference Include="..\Atomia.Store.Payment.AdyenHpp\Atomia.Store.Payment.AdyenHpp.csproj">
       <Project>{0818e4f0-582e-4180-a6d4-8b98ed2da529}</Project>
       <Name>Atomia.Store.Payment.AdyenHpp</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Atomia.Store.Payment.CCPayment\Atomia.Store.Payment.CCPayment.csproj">
+      <Project>{524a1ec5-4679-461d-a4dd-cfd31baedda6}</Project>
+      <Name>Atomia.Store.Payment.CCPayment</Name>
     </ProjectReference>
     <ProjectReference Include="..\Atomia.Store.Payment.DibsFlexwin\Atomia.Store.Payment.DibsFlexwin.csproj">
       <Project>{6549c7cb-56ac-45ee-b039-1a76fa90ce2a}</Project>

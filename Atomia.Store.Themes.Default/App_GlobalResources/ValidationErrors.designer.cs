@@ -61,7 +61,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The domain name allready exists in the system.
+        ///   Looks up a localized string similar to The domain name already exists in the system.
         /// </summary>
         internal static string DomainExists {
             get {
@@ -93,6 +93,33 @@ namespace Resources {
         internal static string ErrorEmptyField {
             get {
                 return ResourceManager.GetString("ErrorEmptyField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire month must be selected.
+        /// </summary>
+        internal static string ErrorExpiresMonthRequired {
+            get {
+                return ResourceManager.GetString("ErrorExpiresMonthRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire year must be selected.
+        /// </summary>
+        internal static string ErrorExpiresYearRequired {
+            get {
+                return ResourceManager.GetString("ErrorExpiresYearRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CVC/CVV must be three or four digits.
+        /// </summary>
+        internal static string ErrorInvalidCardSecurityCode {
+            get {
+                return ResourceManager.GetString("ErrorInvalidCardSecurityCode", resourceCulture);
             }
         }
         

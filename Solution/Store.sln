@@ -56,6 +56,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documentation", "..\Documen
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyTheme", "..\ThemeStarter\MyTheme\MyTheme.csproj", "{29430314-CAEB-490A-86F6-31CAFBE80E1C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Payment.CCPayment", "..\Atomia.Store.Payment.CCPayment\Atomia.Store.Payment.CCPayment.csproj", "{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -216,6 +218,12 @@ Global
 		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Debug|x64.ActiveCfg = Debug|Any CPU
 		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{29430314-CAEB-490A-86F6-31CAFBE80E1C}.Release|x64.ActiveCfg = Release|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6}.Release|x64.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -231,6 +239,7 @@ Global
 		{6549C7CB-56AC-45EE-B039-1A76FA90CE2A} = {0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}
 		{34CA3FB6-290F-4367-9933-5763C631B2CC} = {0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}
 		{0818E4F0-582E-4180-A6D4-8B98ED2DA529} = {0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}
+		{524A1EC5-4679-461D-A4DD-CFD31BAEDDA6} = {0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		EnterpriseLibraryConfigurationToolBinariesPath = ..\packages\Unity.2.1.505.0\lib\NET35;packages\Unity.2.1.505.2\lib\NET35

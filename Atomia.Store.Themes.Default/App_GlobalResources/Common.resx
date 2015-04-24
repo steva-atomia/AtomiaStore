@@ -552,4 +552,45 @@
   <data name="NoTax" xml:space="preserve">
     <value>No VAT</value>
   </data>
+  <data name="CCPaymentName" xml:space="preserve">
+    <value>Credit Card</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Card Number</value>
+    <comment>Credit card number label</comment>
+  </data>
+  <data name="CardOwner" xml:space="preserve">
+    <value>Card Owner</value>
+    <comment>Credit card owner label</comment>
+  </data>
+  <data name="CardSecurityCode" xml:space="preserve">
+    <value>CVC/CVV</value>
+    <comment>Credit card security code label</comment>
+  </data>
+  <data name="CreditCardAutoPay" xml:space="preserve">
+    <value>Pay invoices on expiration day automatically</value>
+    <comment>Credit card auto pay label</comment>
+  </data>
+  <data name="ErrorCreditCard" xml:space="preserve">
+    <value>Not a valid credit card number</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Expires</value>
+    <comment>Credit card expiration label</comment>
+  </data>
+  <data name="PaymentProfileOptions" xml:space="preserve">
+    <value>Payment profile options</value>
+  </data>
+  <data name="SaveCreditCardInfo" xml:space="preserve">
+    <value>Save my credit card information</value>
+    <comment>Credit card save info label</comment>
+  </data>
+  <data name="SelectMonth" xml:space="preserve">
+    <value />
+    <comment>Credit card month expiration options label</comment>
+  </data>
+  <data name="SelectYear" xml:space="preserve">
+    <value />
+    <comment>Credit card year expiration options label</comment>
+  </data>
 </root>
