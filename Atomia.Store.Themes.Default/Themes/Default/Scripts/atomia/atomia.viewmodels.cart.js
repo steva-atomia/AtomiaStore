@@ -110,7 +110,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 name: tax.Name,
                 amount: tax.Amount,
                 percentage: tax.Percentage
-            })
+            });
         });
 
         cart.cartItems(cartItems);
@@ -124,7 +124,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /**
      * Create a cart item view model.
-     * @param {Object} instance - The item to create cart item from.
+     * @param {Object} item - The item to create cart item from.
      * @returns The created cart item.
      */
     function CartItem(item) {
@@ -145,8 +145,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          * @returns {string[]} Array of custom options.
          */
         self.customOptions = function customOptions() {
-            var options = [],
-                domainName;
+            var options = [];
 
             if (self.renewalPeriod) {
                 options.push(self.renewalPeriod);
@@ -160,7 +159,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         };
 
         _.extend(self, item);
-    };
+    }
 
     
     /** Create view model for cart. */

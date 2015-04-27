@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
     'use strict';
 
     /**
@@ -29,7 +29,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /**
      * Create a language item.
-     * @param {Object} instance - The object to create language item from
+     * @param {Object} languageData - The object to create language item from
+     * @param {Object} currentLanguageData - Instance of current selected language
      */
     function LanguageItem(languageData, currentLanguageData) {
         var self = this;
@@ -77,4 +78,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         LanguageSelectorModel: LanguageSelectorModel
     });
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);

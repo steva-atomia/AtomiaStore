@@ -3,11 +3,11 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
     'use strict';
 
     /** Create domains view model. */
-    function DomainsModel(extensions) {
+    function DomainsModel() {
         var self = this;
 
         self.queryType = ko.observable('domainreg');
@@ -29,4 +29,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         DomainsModel: DomainsModel
     });
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);

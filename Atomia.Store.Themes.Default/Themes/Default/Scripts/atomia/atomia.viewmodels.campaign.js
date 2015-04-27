@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
     'use strict';
 
     /** 
@@ -27,7 +27,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.code('');
             }
         };
-    };
+    }
 
 
     /* Module exports */
@@ -35,4 +35,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         CampaignCodeModel: CampaignCodeModel
     });
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);

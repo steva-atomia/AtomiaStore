@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
 	'use strict';
 
 	function ProductMixin(productData, cart) {
@@ -114,4 +114,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		ProductMixin: ProductMixin
 	});
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);

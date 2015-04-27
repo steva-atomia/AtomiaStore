@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
 	'use strict';
 
     /** Create a Knockout view model for coordinating main and billing contact data. */
@@ -31,7 +31,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.useMainAsBillingContact = function useMainAsBillingContact() {
             self.otherBillingContact(false);
         };
-	};
+	}
 
 
 	/* Module exports */
@@ -39,4 +39,4 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	    AccountModel: AccountModel
 	});
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);

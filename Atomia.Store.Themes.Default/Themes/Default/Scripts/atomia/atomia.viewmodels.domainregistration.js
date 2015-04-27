@@ -8,7 +8,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /**
      * Create domain registration item view model
-     * @param {Object} instance - the object to create a domain registration item from.
+     * @param {Object} domainItemData - the object to create a domain registration item from.
      */
     function DomainRegistrationItem(domainItemData, cart) {
         var self = this;
@@ -55,9 +55,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             return self.primaryResults().length > 0 || self.secondaryResults().length > 0;
         });
 
-        self.createDomainRegistrationItem = function(domainItemData) {
+        self.createDomainRegistrationItem = function (domainItemData) {
             return new DomainRegistrationItem(domainItemData, cart);
-        }
+        };
 
         /** Submit a domain search query. */
         self.submit = function submit() {
@@ -154,7 +154,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 return 'domainregistration-secondary-' + item.status;
             }
         };
-    };
+    }
 
 
 

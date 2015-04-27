@@ -8,7 +8,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /**
      * Creates postal fee item
-     * @param {Object} item - The item data to create postal fee item from.
+     * @param {Object} itemData - The item data to create postal fee item from.
      * @param {Object} cart - Instance of cart.
      */
 	function PostalFeeItem(itemData, cart) {
@@ -40,7 +40,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	        if (response.status === 'success') {
 	            self.postalFeeItem = self.createPostalFeeItem(response.data.Item);
 	        }
-	    }
+	    };
 
 	    /** Callback handler for when invoice type is selected.*/
 	    self.invoiceType.subscribe(function (newInvoiceType) {
@@ -60,7 +60,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 	        self.invoiceType('email');
 	    });
-	};
+	}
 
 	_.extend(exports, {
 	    PayWithInvoiceModel: PayWithInvoiceModel

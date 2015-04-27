@@ -3,7 +3,7 @@ var Atomia = Atomia || {};
 Atomia.ViewModels = Atomia.ViewModels || {};
 /* jshint +W079 */
 
-(function (exports, _, ko, utils) {
+(function (exports, _, ko) {
     'use strict';
 
     /** Create model for CCPayment payment method. */
@@ -24,10 +24,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 self.saveccinfo(true);
             }
         });
-    };
+    }
 
     _.extend(exports, {
         CCPaymentModel: CCPaymentModel
     });
 
-})(Atomia.ViewModels, _, ko, Atomia.Utils);
+})(Atomia.ViewModels, _, ko);
