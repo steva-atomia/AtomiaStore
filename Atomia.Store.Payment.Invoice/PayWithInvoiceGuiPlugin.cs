@@ -42,11 +42,6 @@ namespace Atomia.Store.Payment.Invoice
             }
         }
 
-        public override bool HasForm
-        {
-            get { return true; }
-        }
-
         public override PaymentMethodForm Form
         {
             get

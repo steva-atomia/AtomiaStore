@@ -27,7 +27,7 @@
             <p class="notice">@paymentMethod.Description</p>
         }
 
-        @if (paymentMethod.HasForm)
+        @if (paymentMethod.Form != null)
         {
             @Html.Partial(paymentMethod.Form.PartialViewName, paymentMethod.Form, new ViewDataDictionary
             {

@@ -24,15 +24,6 @@ namespace Atomia.Store.AspNetMvc.Ports
         }
 
         /// <summary>
-        /// If the payment method has an accompanying form. Defaults to false.
-        /// </summary>
-        /// <remarks>If this is true, the Form property should return a <see cref="PaymenMethodForm"/> implementation</remarks>
-        public virtual bool HasForm
-        {
-            get { return false; }
-        }
-
-        /// <summary>
         /// A <see cref="PaymentMethodForm"/> implementation for collecting any needed extra payment method data from the customer.
         /// </summary>
         public virtual PaymentMethodForm Form { get; set; }

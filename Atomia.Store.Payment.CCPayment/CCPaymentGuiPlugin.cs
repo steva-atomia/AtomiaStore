@@ -33,11 +33,6 @@ namespace Atomia.Store.Payment.CCPayment
             }
         }
 
-        public override bool HasForm
-        {
-            get { return true; }
-        }
-
         public override PaymentMethodForm Form
         {
             get
