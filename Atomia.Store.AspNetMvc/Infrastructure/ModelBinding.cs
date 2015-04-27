@@ -45,11 +45,13 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
             {
                 var metaData = ModelMetadataProviders.Current.GetMetadataForType(null, model.GetType());
                 bindingContext.ModelMetadata = metaData;
+
+                var boundModel = base.BindModel(controllerContext, bindingContext);
+
+                return boundModel;
             }
 
-            var boundModel = base.BindModel(controllerContext, bindingContext);
-
-            return boundModel;
+            return null;
         }
     }
 
