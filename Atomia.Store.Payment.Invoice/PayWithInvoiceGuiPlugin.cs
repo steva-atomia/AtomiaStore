@@ -58,18 +58,5 @@ namespace Atomia.Store.Payment.Invoice
                 form = value as PayWithInvoiceForm;
             }
         }
-
-        public string SelectedInvoiceType
-        {
-            get
-            {
-                if (form != null)
-                {
-                    return form.SelectedInvoiceType;
-                }
-
-                return String.Empty;
-            }
-        }
     }
 }

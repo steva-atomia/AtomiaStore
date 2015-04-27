@@ -19,10 +19,11 @@ namespace Atomia.Store.Payment.Invoice
         public override PublicOrder AmendOrder(PublicOrder order, PaymentData paymentMethodData)
         {
             var data = paymentMethodData as PayWithInvoiceGuiPlugin;
+            var form = data.Form as PayWithInvoiceForm;
             
             Add(order, new PublicOrderCustomData { Name = "PayByInvoice", Value = "true" });
 
-            if (data.SelectedInvoiceType == "post")
+            if (form.SelectedInvoiceType == "post")
             {
                 Add(order, new PublicOrderCustomData { Name = "SendInvoiceByPost", Value = "true" });
             }
