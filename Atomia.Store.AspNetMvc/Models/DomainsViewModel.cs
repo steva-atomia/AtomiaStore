@@ -8,8 +8,8 @@ namespace Atomia.Store.AspNetMvc.Models
     public class DomainsViewModel
     {
 
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
-        [AtomiaRegularExpression("DomainSearch", "ValidationErrors,Invalid domain name", true)]
+        [AtomiaRequired("Common,ErrorEmptyField")]
+        [AtomiaRegularExpression("DomainSearch", "Common,ErrorInvalidDomain", true)]
         public string SearchQuery { get; set; }
     }
 }

@@ -10,7 +10,7 @@ namespace Atomia.Store.Payment.Invoice
             get { return "PayWithInvoice"; }
         }
 
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         public string SelectedInvoiceType { get; set; }
     }
 }

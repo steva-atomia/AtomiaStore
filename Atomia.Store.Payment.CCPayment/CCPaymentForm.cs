@@ -75,33 +75,33 @@ namespace Atomia.Store.Payment.CCPayment
         /// <summary>
         /// The credit card number
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CCPaymentCreditCard(DataType.CreditCard)]
         public string CardNumber { get; set; }
 
         /// <summary>
         /// The security code, aka CSC/CVV/CVC/CID.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
-        [AtomiaRegularExpression("[0-9]{3,4}", "ValidationErrors,ErrorInvalidCardSecurityCode", false)]
+        [AtomiaRequired("Common,ErrorEmptyField")]
+        [AtomiaRegularExpression("[0-9]{3,4}", "Common,ErrorInvalidCardSecurityCode", false)]
         public string CardSecurityCode { get; set; }
 
         /// <summary>
         /// Month part of card expiration date.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorExpiresMonthRequired")]
+        [AtomiaRequired("Common,ErrorExpiresMonthRequired")]
         public int? ExpiresMonth { get; set; }
 
         /// <summary>
         /// Year part of card expiration date.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorExpiresYearRequired")]
+        [AtomiaRequired("Common,ErrorExpiresYearRequired")]
         public int? ExpiresYear { get; set; }
 
         /// <summary>
         /// Card owner
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         public string CardOwner { get; set; }
 
         /// <summary>

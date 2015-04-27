@@ -19,9 +19,9 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Override the default from <see cref="ContactModel"/> to add AtomiaUsername validation.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Email, "CustomerValidation,Email")]
-        [AtomiaUsername("ValidationErrors,ErrorUsernameNotAvailable")]
+        [AtomiaUsername("Common,ErrorUsernameNotAvailable")]
         public override string Email { get; set; }
     }
 }

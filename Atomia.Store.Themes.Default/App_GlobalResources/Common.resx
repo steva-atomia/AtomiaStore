@@ -593,4 +593,25 @@
     <value />
     <comment>Credit card year expiration options label</comment>
   </data>
+  <data name="ErrorEmptyField" xml:space="preserve">
+    <value>This field cannot be empty</value>
+  </data>
+  <data name="ErrorExpiresMonthRequired" xml:space="preserve">
+    <value>Expire month must be selected</value>
+  </data>
+  <data name="ErrorExpiresYearRequired" xml:space="preserve">
+    <value>Expire year must be selected</value>
+  </data>
+  <data name="ErrorInvalidCardSecurityCode" xml:space="preserve">
+    <value>CVC/CVV must be three or four digits</value>
+  </data>
+  <data name="ErrorInvalidDomain" xml:space="preserve">
+    <value>Invalid domain name</value>
+  </data>
+  <data name="ErrorTermNotChecked" xml:space="preserve">
+    <value>ErrorTermNotChecked</value>
+  </data>
+  <data name="ErrorUsernameNotAvailable" xml:space="preserve">
+    <value>The username is not available</value>
+  </data>
 </root>

@@ -51,7 +51,7 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Payment method id selected by customer.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         public string SelectedPaymentMethodId { get; set; }
 
         /// <summary>

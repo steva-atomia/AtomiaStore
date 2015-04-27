@@ -610,6 +610,69 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This field cannot be empty.
+        /// </summary>
+        internal static string ErrorEmptyField {
+            get {
+                return ResourceManager.GetString("ErrorEmptyField", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire month must be selected.
+        /// </summary>
+        internal static string ErrorExpiresMonthRequired {
+            get {
+                return ResourceManager.GetString("ErrorExpiresMonthRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expire year must be selected.
+        /// </summary>
+        internal static string ErrorExpiresYearRequired {
+            get {
+                return ResourceManager.GetString("ErrorExpiresYearRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to CVC/CVV must be three or four digits.
+        /// </summary>
+        internal static string ErrorInvalidCardSecurityCode {
+            get {
+                return ResourceManager.GetString("ErrorInvalidCardSecurityCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Invalid domain name.
+        /// </summary>
+        internal static string ErrorInvalidDomain {
+            get {
+                return ResourceManager.GetString("ErrorInvalidDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ErrorTermNotChecked.
+        /// </summary>
+        internal static string ErrorTermNotChecked {
+            get {
+                return ResourceManager.GetString("ErrorTermNotChecked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The username is not available.
+        /// </summary>
+        internal static string ErrorUsernameNotAvailable {
+            get {
+                return ResourceManager.GetString("ErrorUsernameNotAvailable", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sorry, you do not have enough privileges to view the page..
         /// </summary>
         internal static string Error_ForbiddenDescription {

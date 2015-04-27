@@ -46,10 +46,10 @@ If you used the `startnewtheme.ps1` script to bootstrap your theme, you should a
         {
             public override string Id { get { return "Occupation"; } } // 3.
 
-            [AtomiaRequired("ValidationErrors, ErrorEmptyField")] // 4.
+            [AtomiaRequired("Common,ErrorEmptyField")] // 4.
             public string JobTitle { get; set; }
 
-            [AtomiaRange(0, 100, "ValidationErrors, ErrorYearsExperience")] // 5.
+            [AtomiaRange(0, 100, "Common,ErrorYearsExperience")] // 5.
             public int YearsExperience { get; set; }
         }
 

@@ -170,11 +170,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerValidation.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\ValidationErrors.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ValidationErrors.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\OrderFlowConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -406,10 +401,6 @@
     <Content Include="App_GlobalResources\CustomerValidation.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>CustomerValidation.designer.cs</LastGenOutput>
-    </Content>
-    <Content Include="App_GlobalResources\ValidationErrors.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>ValidationErrors.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

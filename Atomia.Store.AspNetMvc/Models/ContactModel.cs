@@ -86,34 +86,34 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Customer selected customer type.
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         public virtual string CustomerType { get; set; }
 
         /// <summary>
         /// Customer provided email address
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Email, "CustomerValidation,Email")]
         public virtual string Email { get; set; }
 
         /// <summary>
         /// Customer provided first name
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.FirstName, "CustomerValidation,FirstName")]
         public virtual string FirstName { get; set; }
 
         /// <summary>
         /// Customer provided last name
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.LastName, "CustomerValidation,LastName")]
         public virtual string LastName { get; set; }
 
         /// <summary>
         /// Customer provided address
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Address, "CustomerValidation,Address")]
         public virtual string Address { get; set; }
 
@@ -126,14 +126,14 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Customer provided city
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.City, "CustomerValidation,City")]
         public virtual string City { get; set; }
 
         /// <summary>
         /// Customer provided zip code
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Zip, "CustomerValidation,Zip", CountryField = "Country")]
         public virtual string Zip { get; set; }
 
@@ -153,7 +153,7 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Customer provided phone number
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.Phone, "CustomerValidation,Phone", CountryField = "Country")]
         public virtual string Phone { get; set; }
 
@@ -273,14 +273,14 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Customer provided company name
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.CompanyName, "CustomerValidation,CompanyName")]
         public virtual string CompanyName { get; set; }
 
         /// <summary>
         /// Customer provided national corporate identification / registration number for the company
         /// </summary>
-        [AtomiaRequired("ValidationErrors,ErrorEmptyField")]
+        [AtomiaRequired("Common,ErrorEmptyField")]
         [CustomerValidation(CustomerValidationType.IdentityNumber, "CustomerValidation,CompanyIdentityNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string IdentityNumber { get; set; }
 
