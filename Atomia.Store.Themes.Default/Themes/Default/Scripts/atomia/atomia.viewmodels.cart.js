@@ -232,6 +232,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 recalculate = true;
             }
 
+            // Placeholder values if item is added in view where template of cart use bindings on any
+            // of these properties. They will be quickly replaced when the real CartItem from recalculate
+            // replaces the temporary local value.
+            item.category = item.category || '';
+            item.discount = item.discount || '';
+            item.total = item.total || '';
+            item.quantity = item.quantity || 1;
+            item.taxes = item.taxes || [];
+
             if (!self.contains(item)) {
                 cartItem = self.createCartItem(item);
                 self.cartItems.push(cartItem);
