@@ -39,5 +39,10 @@ namespace Atomia.Store.Payment.AdyenHpp
                 return resourceProvider.GetResource("AdyenHppDescription");
             }
         }
+
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
     }
 }

@@ -139,6 +139,7 @@ namespace Atomia.Store.Themes.Default
         {
             // Transaction data handler
             container.RegisterType<TransactionDataHandler, Atomia.Store.PublicOrderHandlers.TransactionDataHandlers.RequestParamsHandler>("RequestParamsHandler");
+            container.RegisterType<TransactionDataHandler, Atomia.Store.PublicOrderHandlers.TransactionDataHandlers.PaymentProfileHandler>("PaymentProfilesHandler");
 
             // Order data handlers and order placement service
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ResellerHandler>("Reseller");

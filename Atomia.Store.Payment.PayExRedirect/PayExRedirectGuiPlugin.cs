@@ -38,5 +38,10 @@ namespace Atomia.Store.Payment.PayExRedirect
                 return resourceProvider.GetResource("PayExRedirectDescription");
             }
         }
+
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
     }
 }

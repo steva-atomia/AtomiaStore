@@ -2,6 +2,7 @@
 using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using Atomia.Web.Plugin.Validation.ValidationAttributes;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
@@ -22,6 +23,16 @@ namespace Atomia.Store.AspNetMvc.Models
         /// Terms of service confirmations needed by products in customer's cart
         /// </summary>
         public abstract IList<TermsOfServiceConfirmationModel> TermsOfService { get; set; }
+
+        /// <summary>
+        /// If card profile should be saved to billing system or not.
+        /// </summary>
+        public bool SaveCcInfo { get; set; }
+
+        /// <summary>
+        /// Saved card profile should be used to automatically pay invoices on expiration
+        /// </summary>
+        public bool AutoPay { get; set; }
     }
 
     /// <summary>
@@ -93,6 +104,15 @@ namespace Atomia.Store.AspNetMvc.Models
 
                 termsOfServiceConfirmationModels = value;
             }
+        }
+
+        public string PaymentMethodsWithPaymentProfileToJson()
+        {
+            var methods = this.PaymentMethodGuiPlugins
+                .Where(p => p.SupportsPaymentProfile)
+                .Select(p => p.Id);
+
+            return JsonConvert.SerializeObject(methods);
         }
     }
 }

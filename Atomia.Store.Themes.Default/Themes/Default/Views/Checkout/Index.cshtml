@@ -18,6 +18,8 @@
 
             @{ Html.RenderPartial("_PaymentMethods", Model.PaymentMethodGuiPlugins); }
 
+            @{ Html.RenderPartial("_PaymentProfile", Model); }
+
             @{ Html.RenderPartial("_Campaign"); }
 
             @{ Html.RenderPartial("_BeforeCartSummary", Model); }

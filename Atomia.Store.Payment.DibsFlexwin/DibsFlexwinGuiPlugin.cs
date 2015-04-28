@@ -38,5 +38,10 @@ namespace Atomia.Store.Payment.DibsFlexwin
                 return resourceProvider.GetResource("DibsFlexwinDescription");
             }
         }
+
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
     }
 }

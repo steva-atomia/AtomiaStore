@@ -105,16 +105,6 @@ namespace Atomia.Store.Payment.CCPayment
         public string CardOwner { get; set; }
 
         /// <summary>
-        /// If card profile should be save in billing system.
-        /// </summary>
-        public bool SaveCcInfo { get; set; }
-
-        /// <summary>
-        /// Saved card profile should be used to automatically pay invoices on expiration
-        /// </summary>
-        public bool AutoPay { get; set; }
-
-        /// <summary>
         /// Options for expires month dropdown
         /// </summary>
         public IEnumerable<SelectListItem> MonthOptions { get { return monthOptions; } }

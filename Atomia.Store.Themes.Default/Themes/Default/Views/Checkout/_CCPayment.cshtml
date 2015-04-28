@@ -23,23 +23,4 @@
     </div>
 
     @Html.FormRowFor(m => m.CardOwner, Html.CommonResource("CardOwner") + ":", true)
-
-    <div class="formrow">
-        <h5><label>@Html.CommonResource("PaymentProfileOptions"):</label></h5>
-        <div class="col2row">
-            <label>
-                @Html.CheckBoxFor(m => m.SaveCcInfo, new { data_bind="checked: ccPayment.saveccinfo" })
-                @Html.LabelFor(m => m.SaveCcInfo, " ")
-                @Html.LabelFor(m => m.SaveCcInfo, " ")
-                @Html.CommonResource("SaveCreditCardInfo")
-            </label><br>
-            <label>
-                @Html.CheckBoxFor(m => m.AutoPay, new { data_bind = "checked: ccPayment.autopay" })
-                @Html.LabelFor(m => m.AutoPay, " ")
-                @Html.LabelFor(m => m.AutoPay, " ")
-                @Html.CommonResource("CreditCardAutoPay")
-            </label>
-        </div>
-        <br class="clear">
-    </div>
 </div>

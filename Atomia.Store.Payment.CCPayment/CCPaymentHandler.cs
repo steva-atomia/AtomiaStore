@@ -32,8 +32,7 @@ namespace Atomia.Store.Payment.CCPayment
 
         public override PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction transaction, PaymentData paymentData)
         {
-            var data = paymentData as CCPaymentGuiPlugin;
-            var form = data.Form as CCPaymentForm;
+            var form = paymentData.PaymentForm as CCPaymentForm;
 
             var attributes = new List<AttributeData>(transaction.Attributes);
 
@@ -42,8 +41,6 @@ namespace Atomia.Store.Payment.CCPayment
             attributes.Add(new AttributeData { Name = "ccv", Value = form.CardSecurityCode }); // wrong abbreviation "ccv" is expected.
             attributes.Add(new AttributeData { Name = "expires_month", Value = form.ExpiresMonth.ToString() });
             attributes.Add(new AttributeData { Name = "expires_year", Value = form.ExpiresYear.ToString() });
-            attributes.Add(new AttributeData { Name = "cc_saveccinfo", Value = form.SaveCcInfo ? "true" : "false" });
-            attributes.Add(new AttributeData { Name = "cc_autopay", Value = form.AutoPay ? "true" : "false" });
 
             transaction.Attributes = attributes.ToArray();
 

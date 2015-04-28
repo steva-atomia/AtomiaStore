@@ -79,6 +79,7 @@
     <Compile Include="ContactDataHandlers\BillingContactDataHandler.cs" />
     <Compile Include="ContactDataHandlers\MainContactDataHandler.cs" />
     <Compile Include="CurrencyHandler.cs" />
+    <Compile Include="TransactionDataHandlers\PaymentProfileHandler.cs" />
     <Compile Include="TransactionDataHandlers\RequestParamsHandler.cs" />
     <Compile Include="IpAddressHandler.cs" />
     <Compile Include="LanguageHandler.cs" />

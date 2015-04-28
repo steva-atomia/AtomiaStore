@@ -233,7 +233,7 @@
     </Content>
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
-    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.ccpayment.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paymentprofile.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.modalmixin.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.notification.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productmixin.js" />
@@ -277,6 +277,7 @@
     <Content Include="Themes\Default\Views\ProductListing\_ExtraScripts.cshtml" />
     <Content Include="Themes\Default\Views\ProductListing\_DomainConnectionScripts.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_CCPayment.cshtml" />
+    <Content Include="Themes\Default\Views\Checkout\_PaymentProfile.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

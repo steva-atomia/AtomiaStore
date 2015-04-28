@@ -41,7 +41,7 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.account.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentselector.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paywithinvoice.js",
-                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.ccpayment.js");
+                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.paymentprofile.js");
 
             var styleBundle = new StyleBundle(DEFAULT_STYLES_BUNDLE)
                 .Include(

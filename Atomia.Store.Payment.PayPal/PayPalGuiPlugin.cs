@@ -38,5 +38,10 @@ namespace Atomia.Store.Payment.PayPal
                 return resourceProvider.GetResource("PayPalDescription");
             }
         }
+
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
     }
 }

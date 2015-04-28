@@ -33,6 +33,11 @@ namespace Atomia.Store.Payment.CCPayment
             }
         }
 
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
+
         public override PaymentMethodForm Form
         {
             get

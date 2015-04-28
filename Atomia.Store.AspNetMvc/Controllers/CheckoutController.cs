@@ -1,11 +1,7 @@
-﻿using Atomia.Store.AspNetMvc.Models;
-using Atomia.Store.AspNetMvc.Ports;
+﻿using Atomia.Store.AspNetMvc.Filters;
+using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
-using System.Collections.Generic;
 using System.Web.Mvc;
-using Atomia.Store.AspNetMvc.Filters;
-using System.Linq;
-using System;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -61,7 +57,15 @@ namespace Atomia.Store.AspNetMvc.Controllers
                 // Recalculate cart one last time, to make sure e.g. setup fees are still there.
                 cartPricingService.CalculatePricing(cart);
 
-                var orderContext = new OrderContext(cart, contactDataCollection, model.SelectedPaymentMethod, new object[] { Request });
+                var paymentData = new PaymentData
+                {
+                    Id = model.SelectedPaymentMethod.Id,
+                    PaymentForm = model.SelectedPaymentMethod.Form,
+                    SaveCcInfo = model.SelectedPaymentMethod.SupportsPaymentProfile && model.SaveCcInfo,
+                    AutoPay = model.SelectedPaymentMethod.SupportsPaymentProfile && model.AutoPay
+                };
+
+                var orderContext = new OrderContext(cart, contactDataCollection, paymentData, new object[] { Request });
                 var result = orderPlacementService.PlaceOrder(orderContext);
 
                 return Redirect(result.RedirectUrl);

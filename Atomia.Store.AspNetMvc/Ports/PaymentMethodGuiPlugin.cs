@@ -5,8 +5,13 @@ namespace Atomia.Store.AspNetMvc.Ports
     /// <summary>
     /// Abstract representation of payment method that can be rendered by GUI.
     /// </summary>
-    public abstract class PaymentMethodGuiPlugin : PaymentData
+    public abstract class PaymentMethodGuiPlugin
     {
+        /// <summary>
+        /// <see cref="PaymentMethod"/> identifier
+        /// </summary>
+        public abstract string Id { get; }
+
         /// <summary>
         /// Localized name of the payment method
         /// </summary>
@@ -17,10 +22,15 @@ namespace Atomia.Store.AspNetMvc.Ports
         /// </summary>
         public virtual string Description
         {
-            get
-            {
-                return "";
-            }
+            get { return ""; }
+        }
+
+        /// <summary>
+        /// Whether payment method supports saving payment info and autopay or not.
+        /// </summary>
+        public virtual bool SupportsPaymentProfile
+        {
+            get { return false; }
         }
 
         /// <summary>

@@ -16,10 +16,9 @@ namespace Atomia.Store.Payment.Invoice
             get { return PaymentMethodEnum.PayByInvoice; }
         }
 
-        public override PublicOrder AmendOrder(PublicOrder order, PaymentData paymentMethodData)
+        public override PublicOrder AmendOrder(PublicOrder order, PaymentData paymentData)
         {
-            var data = paymentMethodData as PayWithInvoiceGuiPlugin;
-            var form = data.Form as PayWithInvoiceForm;
+            var form = paymentData.PaymentForm as PayWithInvoiceForm;
             
             Add(order, new PublicOrderCustomData { Name = "PayByInvoice", Value = "true" });
 

@@ -2,13 +2,19 @@
 namespace Atomia.Store.Core
 {
     /// <summary>
-    /// Base class for payment data input
+    /// Payment data collected from customer choice.
     /// </summary>
-    public abstract class PaymentData
+    public class PaymentData
     {
         /// <summary>
         /// <see cref="PaymentMethod"/> identifier
         /// </summary>
-        public abstract string Id { get; }
+        public string Id { get; set; }
+
+        public object PaymentForm { get; set; }
+
+        public bool SaveCcInfo { get; set; }
+
+        public bool AutoPay { get; set; }
     }
 }

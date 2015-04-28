@@ -38,5 +38,10 @@ namespace Atomia.Store.Payment.WorldPayXml
                 return resourceProvider.GetResource("WorldPayXmlRedirectDescription");
             }
         }
+
+        public override bool SupportsPaymentProfile
+        {
+            get { return true; }
+        }
     }
 }
