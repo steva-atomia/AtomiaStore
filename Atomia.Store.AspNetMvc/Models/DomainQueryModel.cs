@@ -1,4 +1,5 @@
-﻿
+﻿using Atomia.Web.Plugin.Validation.ValidationAttributes;
+
 namespace Atomia.Store.AspNetMvc.Models
 {
     /// <summary>
@@ -9,6 +10,8 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// The actual domain search query string.
         /// </summary>
+        [AtomiaRequired("Common,ErrorEmptyField")]
+        [AtomiaRegularExpression("DomainSearch", "Common,ErrorInvalidDomain", true)]
         public string Query { get; set; }
     }
 }
