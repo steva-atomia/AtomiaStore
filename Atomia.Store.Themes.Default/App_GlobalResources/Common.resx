@@ -614,4 +614,13 @@
   <data name="ErrorUsernameNotAvailable" xml:space="preserve">
     <value>The username is not available</value>
   </data>
+  <data name="ExpiresMonth" xml:space="preserve">
+    <value>Expires, month</value>
+  </data>
+  <data name="ExpiresYear" xml:space="preserve">
+    <value>Expires, year</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Confirm</value>
+  </data>
 </root>

@@ -14,6 +14,8 @@
         @Html.AntiForgeryToken()
 
         <div data-bind="visible: !cart.isEmpty()">
+            @{ Html.RenderPartial("_ValidationSummary", ViewData.ModelState); }
+
             @{ Html.RenderPartial("_BeforePaymentMethods", Model); }
 
             @{ Html.RenderPartial("_PaymentMethods", Model.PaymentMethodGuiPlugins); }

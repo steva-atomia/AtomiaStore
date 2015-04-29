@@ -385,6 +385,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Confirm.
+        /// </summary>
+        internal static string Confirm {
+            get {
+                return ResourceManager.GetString("Confirm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Confirmation.
         /// </summary>
         internal static string Confirmation {
@@ -732,6 +741,24 @@ namespace Resources {
         internal static string Expires {
             get {
                 return ResourceManager.GetString("Expires", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expires, month.
+        /// </summary>
+        internal static string ExpiresMonth {
+            get {
+                return ResourceManager.GetString("ExpiresMonth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expires, year.
+        /// </summary>
+        internal static string ExpiresYear {
+            get {
+                return ResourceManager.GetString("ExpiresYear", resourceCulture);
             }
         }
         

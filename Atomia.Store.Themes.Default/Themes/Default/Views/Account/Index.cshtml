@@ -8,6 +8,8 @@
 
     @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
     {
+        Html.RenderPartial("_ValidationSummary", ViewData.ModelState);
+        
         @Html.AntiForgeryToken();
 
         Html.RenderPartial(Model.MainContact.PartialViewName, Model.MainContact, new ViewDataDictionary

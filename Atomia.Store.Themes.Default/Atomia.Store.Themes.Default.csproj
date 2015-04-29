@@ -278,6 +278,7 @@
     <Content Include="Themes\Default\Views\ProductListing\_DomainConnectionScripts.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_CCPayment.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_PaymentProfile.cshtml" />
+    <Content Include="Themes\Default\Views\Shared\_ValidationSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

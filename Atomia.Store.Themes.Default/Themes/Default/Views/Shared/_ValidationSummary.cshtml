@@ -1,0 +1,19 @@
+﻿@* This is a fallback if for some reason an error has not been caught by client-side validation. *@
+
+@model System.Web.Mvc.ModelStateDictionary
+
+@{
+    var formHasErrors = Model.Any(x => x.Value.Errors.Count > 0);
+}
+
+@if (formHasErrors)
+{
+    <div class="warning">
+        <ul>
+            @foreach (var kv in Model.Where(x => x.Value.Errors.Count > 0))
+            {
+                <li><strong>@Html.CommonResource(kv.Key.Split('.').Last()):</strong> @String.Join(", ", kv.Value.Errors.Select(e => e.ErrorMessage))</li>
+            }
+        </ul>
+    </div>
+}
