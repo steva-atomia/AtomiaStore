@@ -19,5 +19,6 @@ Getting Started With a Custom Theme
     * [Customizing Data and Forms](Documentation/customizing-data-and-forms.md)
     * [Resource Strings and Localization](Documentation/resource-strings-and-localization.md)
     * [Customizing the Order Flow](Documentation/customizing-the-orderflow.md)
+    * [Adding a Payment Method](Documentation/adding-a-payment-method.md)
     * More to come
 
