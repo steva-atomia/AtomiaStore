@@ -36,6 +36,8 @@
     <StartupObject />
   </PropertyGroup>
   <ItemGroup>
+    <None Include="adding-a-payment-method.md" />
+    <None Include="customizing-order-handling.md" />
     <None Include="customizing-the-orderflow.md" />
     <None Include="customizing-data-and-forms.md" />
     <None Include="customizing-views-and-layout.md" />
