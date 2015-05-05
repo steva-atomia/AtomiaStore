@@ -13,9 +13,6 @@ namespace Atomia.Store.PublicBillingApi.Handlers
         /// <param name="paymentTransaction">The payment transaction to amend</param>
         /// <param name="orderContext">The order data</param>
         /// <returns>The amended transaction</returns>
-        public virtual PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction paymentTransaction, PublicOrderContext orderContext)
-        {
-            return paymentTransaction;
-        }
+        public abstract PublicPaymentTransaction AmendPaymentTransaction(PublicPaymentTransaction paymentTransaction, PublicOrderContext orderContext);
     }
 }
