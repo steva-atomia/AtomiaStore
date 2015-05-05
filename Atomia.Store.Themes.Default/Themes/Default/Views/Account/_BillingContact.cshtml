@@ -38,7 +38,7 @@
             TODO: VAT can currently only be saved once per account in Atomia Billing, so don't show this for BillingContact until fixed
             @Html.FormRowFor(m => m.BillingContact.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: otherBillingContact() && billingContactIsCompany()")
         *@
-        @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: otherBillingContact() && billingContactIsCompany()")
+        @Html.FormRowFor(m => m.CompanyInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: otherBillingContact() && billingContactIsCompany()")
     </div>
 
     <div data-bind="slideVisible: !billingContactIsCompany(), slideDuration: 300">
