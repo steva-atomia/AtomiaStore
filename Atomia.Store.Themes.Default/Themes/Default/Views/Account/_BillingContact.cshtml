@@ -9,7 +9,7 @@
     </span>
     <span id="billing-text-close" style="display: none;" data-bind="visible: otherBillingContact">
         (@Html.CommonResource("BillingDifferentThanMain") -
-        <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: useMainAsBillingContact">Make it same as contact info</a>)
+        <a id="billing-trigger-close" href="javascript:void(0);" data-bind="click: useMainAsBillingContact">@Html.CommonResource("SameAsContactInfo")</a>)
     </span>
 </h4>
 

@@ -1132,6 +1132,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Make it same as contact info.
+        /// </summary>
+        internal static string SameAsContactInfo {
+            get {
+                return ResourceManager.GetString("SameAsContactInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Save my credit card information.
         /// </summary>
         internal static string SaveCreditCardInfo {

@@ -623,4 +623,7 @@
   <data name="Confirm" xml:space="preserve">
     <value>Confirm</value>
   </data>
+  <data name="SameAsContactInfo" xml:space="preserve">
+    <value>Make it same as contact info</value>
+  </data>
 </root>
