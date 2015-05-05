@@ -87,11 +87,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>MyThemeCustomerValidation.resx</DependentUpon>
     </Compile>
-    <Compile Include="App_GlobalResources\MyTheme\MyThemeValidationErrors.designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>MyThemeValidationErrors.resx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\OrderFlowConfig.cs" />
@@ -125,12 +120,6 @@
     <Content Include="App_GlobalResources\MyTheme\MyThemeCustomerValidation.resx">
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>MyThemeCustomerValidation.designer.cs</LastGenOutput>
-    </Content>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="App_GlobalResources\MyTheme\MyThemeValidationErrors.resx">
-      <Generator>GlobalResourceProxyGenerator</Generator>
-      <LastGenOutput>MyThemeValidationErrors.designer.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>
