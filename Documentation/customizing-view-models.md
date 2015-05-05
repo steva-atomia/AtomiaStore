@@ -1,5 +1,5 @@
-﻿Customizing Data and Forms
-==========================
+﻿Customizing View Models
+=======================
 
 AtomiaStore makes data available to views in a few different forms:
 

@@ -5,7 +5,7 @@ AtomiaStore views are written in **Razor**, make heavy use of partial views and 
 
 The recommended way of customizing the markup of pages in AtomiaStore is to override just the views or partial views that need to be changed.
 
-Data is accessible in the views via strongly typed ASP.NET MVC view models, and Knockout.js view models. See [Customizing Data and Forms](customizing-data-and-forms.md) for more on this topic.
+Data is accessible in the views via strongly typed ASP.NET MVC view models, and Knockout.js view models. See [Customizing View Models](customizing-view-models.md) for more on this topic.
 
 Organization
 ------------
@@ -89,4 +89,4 @@ There are also some custom KO bindings defined in  `Themes\Default\Scripts\atomi
 * **slideVisible**: wraps the default *visible* binding in a slide animation.
 * **submitValid**: triggers jQuery validation on forms before submitting, and should be used when submitting AJAX POSTs.
 
-For more on working with the Knockout.js view models see [Customizing Data and Forms](customizing-data-and-forms.md).
+For more on working with the Knockout.js view models see [Customizing View Models](customizing-view-models.md).
