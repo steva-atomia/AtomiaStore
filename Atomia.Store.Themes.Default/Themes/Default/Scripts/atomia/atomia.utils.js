@@ -42,10 +42,22 @@ Atomia.Utils = Atomia.Utils || {};
         }
     }
 
+    /** Creates a single object by mixing constructors. */
+    function mix(/* constructors */) {
+        var i, obj = {};
+
+        for (i = 0; i < arguments.length; i += 1) {
+            arguments[i].call(obj);
+        }
+
+        return obj;
+    }
+
     _.extend(exports, {
         request: request,
         publish: publish,
-        subscribe: subscribe
+        subscribe: subscribe,
+        mix: mix
     });
 
 })(Atomia.Utils, _, amplify);
