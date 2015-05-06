@@ -88,6 +88,8 @@
     <Compile Include="Handlers\ItemData.cs" />
     <Compile Include="Handlers\OrderDataHandler.cs" />
     <Compile Include="Handlers\PaymentDataHandler.cs" />
+    <Compile Include="OrderCreator.cs" />
+    <Compile Include="PaymentTransactionCreator.cs" />
     <Compile Include="ShopNameProvider.cs" />
     <Compile Include="ProductMapper.cs" />
     <Compile Include="PublicBillingApiClient.cs" />

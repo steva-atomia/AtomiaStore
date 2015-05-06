@@ -4,22 +4,20 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Services.Protocols;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
     /// <summary>
     /// Place an order to Atomia Billing via Atomia Billing Public Service.
     /// </summary>
-    public sealed class OrderPlacementService : PublicBillingApiClient, IOrderPlacementService
+    public sealed class OrderPlacementService : IOrderPlacementService
     {
         private readonly PaymentUrlProvider urlProvider;
         private readonly IProductProvider productProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
-        private readonly IEnumerable<OrderDataHandler> orderDataHandlers;
         private readonly IEnumerable<PaymentDataHandler> paymentDataHandlers;
-        private readonly IEnumerable<TransactionDataHandler> transactionDataHandlers;
-        private readonly ILogger logger;
+        private readonly OrderCreator orderCreator;
+        private readonly PaymentTransactionCreator paymentTransactionCreator;
         
         /// <summary>
         /// Create a new instance of the service.
@@ -28,12 +26,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             PaymentUrlProvider urlProvider,
             IProductProvider productProvider,
             RenewalPeriodProvider renewalPeriodProvider,
-            IEnumerable<OrderDataHandler> orderDataHandlers,
             IEnumerable<PaymentDataHandler> paymentDataHandlers,
-            IEnumerable<TransactionDataHandler> transactionDataHandlers,
-            ILogger logger,
-            PublicBillingApiProxy billingApi) 
-            : base(billingApi)
+            OrderCreator orderCreator,
+            PaymentTransactionCreator paymentTransactionCreator)
         {
             if (urlProvider == null)
             {
@@ -50,33 +45,27 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("renewalPeriodProvider");
             }
 
-            if (orderDataHandlers == null)
-            {
-                throw new ArgumentNullException("orderDataHandlers");
-            }
-
             if (paymentDataHandlers == null)
             {
                 throw new ArgumentNullException("paymentDataHandlers");
             }
 
-            if (transactionDataHandlers == null)
+            if (orderCreator == null)
             {
-                throw new ArgumentNullException("transactionDataHandlers");
+                throw new ArgumentNullException("orderCreator");
             }
 
-            if (logger == null)
+            if (paymentTransactionCreator == null)
             {
-                throw new ArgumentNullException("logger");
+                throw new ArgumentNullException("paymentTransactionCreator");
             }
 
             this.urlProvider = urlProvider;
             this.productProvider = productProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
-            this.orderDataHandlers = orderDataHandlers;
             this.paymentDataHandlers = paymentDataHandlers;
-            this.transactionDataHandlers = transactionDataHandlers;
-            this.logger = logger;
+            this.orderCreator = orderCreator;
+            this.paymentTransactionCreator = paymentTransactionCreator;
         }
 
         /// <summary>
@@ -103,131 +92,19 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new InvalidOperationException(String.Format("Payment data handler is not available for {0}.", orderContext.PaymentData.Id));
             }
 
-            var createdOrder = CreateOrder(publicOrderContext, paymentHandler);
+            var createdOrder = orderCreator.CreateOrder(publicOrderContext, paymentHandler);
 
             var redirectUrl = urlProvider.SuccessUrl;
 
             if (paymentHandler.PaymentMethodType == PaymentMethodEnum.PayByCard && createdOrder.Total > Decimal.Zero)
             {
-                redirectUrl = CreatePaymentTransaction(publicOrderContext, createdOrder, paymentHandler);
+                redirectUrl = paymentTransactionCreator.CreatePaymentTransaction(publicOrderContext, createdOrder, paymentHandler);
             }
             
             return new OrderResult
             {
                 RedirectUrl = redirectUrl
             };
-        }
-
-        /// <summary>
-        /// Create PublicOrder and call CreateOrder in Atomia Billing Public Service.
-        /// </summary>
-        /// <param name="publicOrderContext">Order data</param>
-        /// <param name="paymentHandler">Handler for customer's selected payment method</param>
-        /// <returns>The order object returned from Atomia Billing Public Service</returns>
-        private PublicOrder CreateOrder(PublicOrderContext publicOrderContext, PaymentDataHandler paymentHandler)
-        {
-            var newOrder = new PublicOrder()
-            {
-                OrderItems = new PublicOrderItem[0],
-                CustomData = new PublicOrderCustomData[0]
-            };
-
-            foreach (var handler in orderDataHandlers)
-            {
-                newOrder = handler.AmendOrder(newOrder, publicOrderContext);
-
-                if (newOrder == null)
-                {
-                    throw new InvalidOperationException("OrderDataHandler must return a non-null order from AmendOrder.");
-                }
-            }
-
-            newOrder.PaymentMethod = paymentHandler.PaymentMethodType;
-
-            // Only run the selected payment handler.
-            newOrder = paymentHandler.AmendOrder(newOrder, publicOrderContext.PaymentData);
-
-            if (newOrder == null)
-            {
-                throw new InvalidOperationException("PaymentDataHandler must return a non-null order from AmendOrder.");
-            }
-
-            var createdOrder = BillingApi.CreateOrder(newOrder);
-
-            if (createdOrder == null)
-            {
-                throw new InvalidOperationException("Order could not be created.");
-            }
-
-            return createdOrder;
-        }
-
-
-        /// <summary>
-        /// Create PublicPaymentTransaction and call MakePayment in Atomia Billing Public Service.
-        /// </summary>
-        /// <param name="publicOrderContext">Order data</param>
-        /// <param name="order">The order object returned from CreateOrder call in Atomia Billing Public Service</param>
-        /// <param name="paymentHandler">Handler for customer's selected payment method</param>
-        /// <returns>URL to redirect to for finishing or seeing result of payment transaction.</returns>
-        private string CreatePaymentTransaction(PublicOrderContext publicOrderContext, PublicOrder order, PaymentDataHandler paymentHandler)
-        {
-            var paymentTransaction = new PublicPaymentTransaction
-            {
-                GuiPluginName = paymentHandler.Id,
-                Attributes = new AttributeData[0],
-                CurrencyCode = order.Currency,
-                TransactionReference = order.Number,
-                Amount = order.Total
-            };
-            
-            paymentTransaction = paymentHandler.AmendPaymentTransaction(paymentTransaction, publicOrderContext.PaymentData);
-
-            if (paymentTransaction == null)
-            {
-                throw new InvalidOperationException("PaymentDataHandler must return a non-null payment transaction from AmendTransaction.");
-            }
-
-            foreach (var handler in transactionDataHandlers)
-            {
-                paymentTransaction = handler.AmendPaymentTransaction(paymentTransaction, publicOrderContext);
-
-                if (paymentTransaction == null)
-                {
-                    throw new InvalidOperationException("ExtraTransactionDataHandlers must return a non-null payment transaction from AmendTransaction.");
-                }
-            }
-
-            PublicPaymentTransaction createdTransaction;
-            
-            try
-            {
-                createdTransaction = BillingApi.MakePayment(paymentTransaction);
-            }
-            catch(SoapException ex)
-            {
-                logger.LogException(ex, "MakePayment failed.");
-
-                return urlProvider.FailureUrl;
-            }
-
-
-            if (createdTransaction.Status.ToUpper() == "IN_PROGRESS" && !string.IsNullOrEmpty(createdTransaction.RedirectUrl))
-            {
-                return createdTransaction.RedirectUrl;
-            }
-            else if (createdTransaction.Status.ToUpper() == "OK")
-            {
-                return urlProvider.SuccessUrl;
-            }
-            else if (createdTransaction.Status.ToUpper() == "FRAUD_DETECTED" || createdTransaction.Status.ToUpper() == "FAILED")
-            {
-                return urlProvider.FailureUrl;
-            }
-            else
-            {
-                return createdTransaction.ReturnUrl;
-            }
         }
     }
 }
