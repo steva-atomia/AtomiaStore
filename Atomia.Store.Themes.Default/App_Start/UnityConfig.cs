@@ -156,12 +156,11 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.SetupFeesHandler>("SetupFees");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.RemovePostOrderHandler>("RemovePostOrder");
 
+            container.RegisterType<IOrderPlacementService, Atomia.Store.PublicBillingApi.Adapters.OrderPlacementService>();
+
             // We resolve the OrderPlacementService parameters manually to control the order the OrderHandlers are applied.
-            container.RegisterType<IOrderPlacementService, Atomia.Store.PublicBillingApi.Adapters.OrderPlacementService>(
+            container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.SimpleOrderCreator>(
                 new InjectionConstructor(
-                    new ResolvedParameter<PaymentUrlProvider>(),
-                    new ResolvedParameter<IProductProvider>(),
-                    new ResolvedParameter<RenewalPeriodProvider>(),
                     new ResolvedArrayParameter<OrderDataHandler>(
                         new ResolvedParameter<OrderDataHandler>("Reseller"),
                         new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
@@ -185,12 +184,31 @@ namespace Atomia.Store.Themes.Default
                         // RemovePostOrder should be placed last to make sure any added postal fees are removed, since they will be added by Atomia Billing.
                         new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
                     ),
-                    new ResolvedParameter<IEnumerable<PaymentDataHandler>>(),
-                    new ResolvedParameter<IEnumerable<TransactionDataHandler>>(),
-                    new ResolvedParameter<ILogger>(),
-                    new ResolvedParameter<PublicBillingApiProxy>()
-                )
-            );
+                    new ResolvedParameter<PublicBillingApiProxy>()));
+
+            // For customers to get logged in directly to control panel after order, use this OrderCreator instead of SimpleOrderCreator.
+            /*container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.TokenLoginOrderCreator>(
+                new InjectionConstructor(
+                    new ResolvedParameter<PaymentUrlProvider>(),
+                    new ResolvedArrayParameter<OrderDataHandler>(
+                        new ResolvedParameter<OrderDataHandler>("Reseller"),
+                        new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
+                        new ResolvedParameter<OrderDataHandler>("Currency"),
+                        new ResolvedParameter<OrderDataHandler>("MainContact"),
+                        new ResolvedParameter<OrderDataHandler>("BillingContact"),
+                        new ResolvedParameter<OrderDataHandler>("CampaignCode"),
+                        new ResolvedParameter<OrderDataHandler>("IpAddress"),
+                        new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
+                        new ResolvedParameter<OrderDataHandler>("TransferDomain"),
+                        new ResolvedParameter<OrderDataHandler>("OwnDomain"),
+                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
+                        new ResolvedParameter<OrderDataHandler>("Default"),
+                        new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
+                    ),
+                    new ResolvedParameter<PublicBillingApiProxy>()));
+            */
+
+            container.RegisterType<PaymentTransactionCreator, Atomia.Store.PublicBillingApi.PaymentTransactionCreator>();
 
             // These are required since Unity does not handle IEnumerable<T> automatically.
             container.RegisterType<IEnumerable<PaymentDataHandler>, PaymentDataHandler[]>();

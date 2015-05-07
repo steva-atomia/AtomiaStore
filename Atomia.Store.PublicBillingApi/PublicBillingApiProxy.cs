@@ -66,5 +66,10 @@ namespace Atomia.Store.PublicBillingApi
         {
             return service.MakePayment(paymentTransaction);
         }
+
+        public virtual PublicOrder CreateOrderWithLoginToken(PublicOrder order, string resellerRootDomain, out string token)
+        {
+            return service.CreateOrderWithLoginToken(order, resellerRootDomain, out token);
+        }
     }
 }

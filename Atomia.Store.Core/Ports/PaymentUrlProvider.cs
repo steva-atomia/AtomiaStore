@@ -9,7 +9,7 @@ namespace Atomia.Store.Core
         /// <summary>
         /// URL to go to after successful payment.
         /// </summary>
-        public abstract string SuccessUrl { get; }
+        public abstract string SuccessUrl { get; set; }
 
         /// <summary>
         /// URL to go to after failed payment.

@@ -15,6 +15,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly IOrderPlacementService orderPlacementService = DependencyResolver.Current.GetService<IOrderPlacementService>();
         private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
         private readonly ITermsOfServiceProvider tosProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
+        private readonly PaymentUrlProvider urlProvider = DependencyResolver.Current.GetService<PaymentUrlProvider>();
 
         /// <summary>
         /// Checkout page, part of order flow
@@ -101,22 +102,22 @@ namespace Atomia.Store.AspNetMvc.Controllers
         [AcceptVerbs(HttpVerbs.Get)]
         public ActionResult Payment(string amount, string transactionReference, int transactionReferenceType, string status)
         {
-            var action = "Failure";
+            var redirectUrl = urlProvider.FailureUrl;
 
             switch (status.ToUpper())
 	        {
                 case PaymentTransaction.Ok:
                 case PaymentTransaction.InProgress:
-                    action = "Success";
+                    redirectUrl = urlProvider.SuccessUrl;
                     break;
 
                 case PaymentTransaction.Failed:
 		        default:
-                    action = "Failure";
+                    redirectUrl = urlProvider.FailureUrl;
                     break;
 	        }
 
-            return RedirectToAction(action);
+            return Redirect(redirectUrl);
         }
 
         /// <summary>

@@ -16,7 +16,24 @@ namespace Atomia.Store.AspNetMvc.Adapters
         {
             get
             {
-                return QualifiedUrl("Success", "Checkout");
+                var url = HttpContext.Current.Session["CheckoutSuccessUrl"] as string;
+
+                if (string.IsNullOrEmpty(url))
+                {
+                    url = QualifiedUrl("Success", "Checkout");
+                }
+
+                return url;
+            }
+
+            set
+            {
+                if (string.IsNullOrEmpty(value))
+                {
+                    throw new ArgumentException("value must not be empty or null");
+                }
+
+                HttpContext.Current.Session["CheckoutSuccessUrl"] = value;
             }
         }
 
