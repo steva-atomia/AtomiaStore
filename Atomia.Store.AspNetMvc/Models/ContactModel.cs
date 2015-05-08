@@ -33,8 +33,6 @@ namespace Atomia.Store.AspNetMvc.Models
 
             this.ResellerId = resellerId;
             this.CartItems = cart.CartItems.ToList();
-            this.CompanyInfo = new CompanyExtraInfo();
-            this.IndividualInfo = new IndividualExtraInfo();
         }
 
         /// <summary>
@@ -170,19 +168,20 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
+                if (individualInfo == null)
+                {
+                    individualInfo = new IndividualExtraInfo();
+                }
+
+                if (individualInfo.Parent == null)
+                {
+                    individualInfo.Parent = this;
+                }
+
                 return individualInfo;
             }
 
-            set
-            {
-                if (value.Parent == null)
-                {
-                    value.Parent = this;
-
-                }
-
-                individualInfo = value;
-            }
+            set { individualInfo = value;  }
         }
 
         /// <summary>
@@ -192,31 +191,33 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
+                if (companyInfo == null)
+                {
+                    companyInfo = new CompanyExtraInfo();
+                }
+
+                if (companyInfo.Parent == null)
+                {
+                    companyInfo.Parent = this;
+                }
+
                 return companyInfo;
             }
 
-            set
-            {
-                if (value.Parent == null)
-                {
-                    value.Parent = this;
-                }
-
-                companyInfo = value;
-            }
+            set { companyInfo = value;  }
         }
 
         /// <summary>
         /// Reseller id.
         /// </summary>
         /// <remarks>Property is required by some types of CustomerValidation.</remarks>
-        public virtual Guid ResellerId { get; set; }
+        public Guid ResellerId { get; set; }
 
         /// <summary>
         /// List of <see cref="CartItem"/> from current <see cref="Cart"/>.
         /// </summary>
         /// <remarks>Property is required by some types of CustomerValidation.</remarks>
-        public virtual List<CartItem> CartItems { get; set; }
+        public List<CartItem> CartItems { get; set; }
     }
 
     /// <summary>

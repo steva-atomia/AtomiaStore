@@ -57,7 +57,7 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Available payment methods as <see cref="PaymentMethodGuiPlugin">PaymentMethodGuiPlugins</see>
         /// </summary>
-        public virtual IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set; }
+        public IEnumerable<PaymentMethodGuiPlugin> PaymentMethodGuiPlugins { get; set; }
 
         /// <summary>
         /// Payment method id selected by customer.
