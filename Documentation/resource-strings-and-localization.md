@@ -1,7 +1,7 @@
 ﻿Resource Strings and Localization
 =================================
 
-By convention, AtomiaStore uses the `App_GlobalResources\Common.resx` file and derived theme files and translations for all changable resource strings and translations except validation messages, which are located in `CustomerValidation.resx` and `ValidationErrors.resx`.
+By convention, AtomiaStore uses the `App_GlobalResources\Common.resx` file and derived theme files and translations for all changable resource strings and translations except some validation messages, which are located in `CustomerValidation.resx`.
 
 File Structure
 --------------
@@ -14,14 +14,10 @@ An example file structure with themes and translations:
             MyThemeCommon.de-DE.resx
             MyThemeCustomerValidation.resx
             MyThemeCustomerValidation.de-DE.resx
-            MyThemeValidationErrors.resx
-            MyThemeValidationErrors.de-DE.resx
         Common.resx
         Common.de-DE.resx
         CustomerValidation.resx
         CustomerValidation.de-DE.resx
-        ValidationErrors.resx
-        ValidationErrors.de-DE.resx
         
 
 The example above has the default English resource strings in the `resx` files without language code, and default German localization in the `*.de-DE.resx` files.
