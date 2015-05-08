@@ -283,7 +283,7 @@
     <Content Include="Themes\Default\Views\Account\_WhoisContact.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
+    <ProjectReference Include="..\Atomia.Store.PublicOrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">
       <Project>{552f114f-55f2-4126-98ec-21f98896ba0a}</Project>
       <Name>Atomia.Store.PublicOrderHandlers</Name>
     </ProjectReference>

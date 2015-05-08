@@ -1,4 +1,4 @@
-﻿
+
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
@@ -50,7 +50,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.Payment.AdyenH
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PaymentPlugins", "PaymentPlugins", "{0DCFE9B3-97D8-4CBF-B30F-49CE92E795DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.PublicOrderHandlers", "..\Atomia.Store.OrderHandlers\Atomia.Store.PublicOrderHandlers.csproj", "{552F114F-55F2-4126-98EC-21F98896BA0A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Atomia.Store.PublicOrderHandlers", "..\Atomia.Store.PublicOrderHandlers\Atomia.Store.PublicOrderHandlers.csproj", "{552F114F-55F2-4126-98EC-21F98896BA0A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Documentation", "..\Documentation\Documentation.csproj", "{901B546B-2E5D-4E24-A5CC-1A38A0D42347}"
 EndProject
