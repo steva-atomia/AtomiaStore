@@ -77,7 +77,7 @@ namespace Atomia.Store.AspNetMvc.Models
                     Text = x.Name,
                     Value = x.Code,
                     Selected = (x.Code == defaultCountry.Code)
-                });
+                }).OrderBy(x => x.Text);
             }
         }
 
