@@ -22,7 +22,14 @@
             TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.BillingContact.Id }
         });
 
+        Html.RenderPartial(Model.WhoisContact.PartialViewName, Model.WhoisContact, new ViewDataDictionary
+        {
+            TemplateInfo = new TemplateInfo { HtmlFieldPrefix = Model.WhoisContact.Id }
+        });
+
         Html.HiddenFor(m => m.OtherBillingContact, new { data_bind = "value: otherBillingContact" });
+
+        Html.HiddenFor(m => m.OtherWhoisContact, new { data_bind = "value: otherWhoisContact" });
 
         Html.RenderPartial("_ExtraForms", Model);
 

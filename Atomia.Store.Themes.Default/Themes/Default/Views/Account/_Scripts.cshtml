@@ -13,7 +13,10 @@
                 new Form(formName: "MainContact.CompanyInfo", countryFormName:"MainContact"),
                 new Form(formName: "BillingContact", countryFormName:"BillingContact"),
                 new Form(formName: "BillingContact.IndividualInfo", countryFormName:"BillingContact"),
-                new Form(formName: "BillingContact.CompanyInfo", countryFormName:"BillingContact")
+                new Form(formName: "BillingContact.CompanyInfo", countryFormName:"BillingContact"),
+                new Form(formName: "WhoisContact", countryFormName:"WhoisContact"),
+                new Form(formName: "WhoisContact.IndividualInfo", countryFormName:"WhoisContact"),
+                new Form(formName: "WhoisContact.CompanyInfo", countryFormName:"WhoisContact")
             },
         ProductsChangedEvent = "Atomia.VM.cart.ValidationUpdateEvent",
         ArticleNumberList = "Atomia.VM.cart.articleNumbers()",
@@ -22,12 +25,15 @@
 }
 
 <script type="text/javascript">
-    Atomia.VM.account = new Atomia.ViewModels.AccountModel();
+    Atomia.VM.account = Atomia.Utils.mix(Atomia.ViewModels.AccountModel, Atomia.ViewModels.WhoisModel);
     Atomia.VM.account.otherBillingContact(@Model.OtherBillingContact.ToString().ToLower());
+    Atomia.VM.account.otherWhoisContact(@Model.OtherWhoisContact.ToString().ToLower());
     @{
         var initialMainContactCustomerType = string.IsNullOrEmpty(Model.MainContact.CustomerType) ? "individual" : Model.MainContact.CustomerType;
         var initialBillingCustomerType = string.IsNullOrEmpty(Model.BillingContact.CustomerType) ? "individual" : Model.BillingContact.CustomerType;
+        var initialWhoisCustomerType = string.IsNullOrEmpty(Model.WhoisContact.CustomerType) ? "individual" : Model.WhoisContact.CustomerType;
     }
     Atomia.VM.account.mainContactCustomerType('@initialMainContactCustomerType');
     Atomia.VM.account.billingContactCustomerType('@initialBillingCustomerType');
+    Atomia.VM.account.whoisContactCustomerType('@initialWhoisCustomerType');
 </script>

@@ -17,7 +17,7 @@ namespace Atomia.Store.AspNetMvc.Models
 
     /// <summary>
     /// The default implementation of <see cref="AccountViewModel"/>. 
-    /// Collectes a main contact and optionally a separate billing contact.
+    /// Collects a main contact and optionally separate billing and WHOIS contacts
     /// </summary>
     public class DefaultAccountViewModel : AccountViewModel
     {
@@ -28,6 +28,7 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             MainContact = new MainContactModel();
             BillingContact = new BillingContactModel();
+            WhoisContact = new WhoisContactModel();
         }
 
         /// <summary>
@@ -41,9 +42,19 @@ namespace Atomia.Store.AspNetMvc.Models
         public BillingContactModel BillingContact { get; set; }
 
         /// <summary>
+        /// WHOIS contact data collected from the customer.
+        /// </summary>
+        public WhoisContactModel WhoisContact { get; set; }
+
+        /// <summary>
         /// If other billing contact than main contact should be used or not.
         /// </summary>
         public bool OtherBillingContact { get; set; }
+
+        /// <summary>
+        /// If other WHOIS contact than main contact should be used or not.
+        /// </summary>
+        public bool OtherWhoisContact { get; set; }
 
         /// <summary>
         /// Get the collected contact data.
@@ -52,7 +63,8 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             return new ContactData[] {
                 MainContact,
-                BillingContact
+                BillingContact,
+                WhoisContact
             };
         }
     }

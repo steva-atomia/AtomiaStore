@@ -1411,6 +1411,33 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to WHOIS contact.
+        /// </summary>
+        internal static string WhoisAddressTitle {
+            get {
+                return ResourceManager.GetString("WhoisAddressTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Different WHOIS contact.
+        /// </summary>
+        internal static string WhoisDifferentThanMain {
+            get {
+                return ResourceManager.GetString("WhoisDifferentThanMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Same as contact info.
+        /// </summary>
+        internal static string WhoisSameAsMain {
+            get {
+                return ResourceManager.GetString("WhoisSameAsMain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to By clicking Checkout you will be redirected to Worldpay to enter your credit card details and will then be returned here..
         /// </summary>
         internal static string WorldPayRedirectDescription {

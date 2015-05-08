@@ -1,0 +1,66 @@
+﻿@model Atomia.Store.AspNetMvc.Models.WhoisContactModel
+<!-- ko with: Atomia.VM.account -->
+<h4>
+    @Html.CommonResource("WhoisAddressTitle")
+    <span data-bind="visible: !otherWhoisContact()">
+        (@Html.CommonResource("WhoisSameAsMain") -
+        <a href="javascript:void(0);" data-bind="click: useOtherWhoisContact">@Html.CommonResource("Change")</a>)
+    </span>
+    <span style="display: none;" data-bind="visible: otherWhoisContact">
+        (@Html.CommonResource("WhoisDifferentThanMain") -
+        <a href="javascript:void(0);" data-bind="click: useMainAsWhoisContact">@Html.CommonResource("SameAsContactInfo")</a>)
+    </span>
+</h4>
+
+<div id="whois" style="display: none;" data-bind="slideVisible: otherWhoisContact">
+    <div class="formrow">
+        <h5>
+            <span class="required">*</span>
+            @Html.LabelFor(m => m.CustomerType, Html.CommonResource("CustomerType") + ":", new { @class = "required" })
+        </h5>
+        <div class="col2row">
+            <label class="select">
+                @Html.DropDownListFor(m => m.CustomerType, Model.CustomerTypeOptions, new { data_bind = "value: whoisContactCustomerType, if: otherWhoisContact" })
+            </label>
+            @Html.ValidationMessageFor(m => m.CustomerType)
+        </div>
+        <br class="clear" />
+    </div>
+
+    @Html.FormRowFor(m => m.Email, Html.CommonResource("Email") + ":", true, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.FirstName, Html.CommonResource("FirstName") + ":", true, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.LastName, Html.CommonResource("LastName") + ":", true, "if: otherWhoisContact")
+
+    <div data-bind="slideVisible: whoisContactIsCompany, slideDuration: 300">
+        @Html.FormRowFor(m => m.CompanyInfo.CompanyName, Html.CommonResource("CompanyName") + ":", true, "if: otherWhoisContact() && whoisContactIsCompany()")
+        @Html.FormRowFor(m => m.CompanyInfo.VatNumber, Html.CommonResource("VatNumber") + ":", false, "if: otherWhoisContact() && whoisContactIsCompany()")
+        @Html.FormRowFor(m => m.CompanyInfo.IdentityNumber, Html.CommonResource("CompanyIdentityNumber") + ":", true, "if: otherWhoisContact() && whoisContactIsCompany()")
+    </div>
+
+    <div data-bind="slideVisible: !whoisContactIsCompany(), slideDuration: 300">
+        @Html.FormRowFor(m => m.IndividualInfo.IdentityNumber, Html.CommonResource("IndividualIdentityNumber") + ":", true, "if: otherWhoisContact() && !whoisContactIsCompany()")
+    </div>
+
+    @Html.FormRowFor(m => m.Address, Html.CommonResource("Address") + ":", true, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.Address2, Html.CommonResource("Address2") + ":", false, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.City, Html.CommonResource("City") + ":", true, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.Zip, Html.CommonResource("Zip") + ":", true, "if: otherWhoisContact")
+
+    <div class="formrow">
+        <h5>
+            <span class="required">*</span>
+            @Html.LabelFor(m => m.Country, Html.CommonResource("Country") + ":", new { @class = "required" })
+        </h5>
+        <div class="col2row">
+            <label class="select">
+                @Html.DropDownListFor(m => m.Country, Model.CountryOptions, new { data_bind = "if: otherWhoisContact" })
+            </label>
+            @Html.ValidationMessageFor(m => m.Country)
+        </div>
+        <br class="clear">
+    </div>
+
+    @Html.FormRowFor(m => m.Phone, Html.CommonResource("Phone") + ":", true, "if: otherWhoisContact")
+    @Html.FormRowFor(m => m.Fax, Html.CommonResource("Fax") + ":", false, "if: otherWhoisContact")
+</div>
+<!-- /ko -->

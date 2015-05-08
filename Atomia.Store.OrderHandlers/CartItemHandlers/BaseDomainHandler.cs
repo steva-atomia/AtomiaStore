@@ -58,6 +58,12 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
                     customData.Add(new PublicOrderItemProperty { Name = "AtomiaService", Value = DefaultAtomiaService });
                 }
 
+                var domainRegContactProvider = new DomainRegContactProvider(orderContext);
+                if (!string.IsNullOrEmpty(domainRegContactProvider.DomainRegContactData))
+                {
+                    customData.Add(new PublicOrderItemProperty { Name = "DomainRegContact", Value = domainRegContactProvider.DomainRegContactData });
+                }
+
                 foreach(var extraData in GetExtraCustomData(domainItem))
                 {
                     customData.Add(extraData);

@@ -11,19 +11,11 @@ namespace Atomia.Store.PublicBillingApi.Handlers
     public abstract class OrderDataHandler
     {
         /// <summary>
-        /// Amend order with data from context
-        /// </summary>
-        /// <param name="order">The order to amend</param>
-        /// <param name="orderContext">The order data</param>
-        /// <returns>The amended order</returns>
-        public abstract PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext);
-
-        /// <summary>
         /// Helper for normalizing field string data before adding to order. Converts various "null" strings to empty string, trims whitespace.
         /// </summary>
         /// <param name="orderDataField">The string to normalize</param>
         /// <returns>The normalized string.</returns>
-        protected string Normalize(string orderDataField)
+        public static string NormalizeData(string orderDataField)
         {
             if (String.IsNullOrEmpty(orderDataField))
             {
@@ -36,6 +28,22 @@ namespace Atomia.Store.PublicBillingApi.Handlers
             }
 
             return orderDataField.Trim();
+        }
+
+        /// <summary>
+        /// Amend order with data from context
+        /// </summary>
+        /// <param name="order">The order to amend</param>
+        /// <param name="orderContext">The order data</param>
+        /// <returns>The amended order</returns>
+        public abstract PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext);
+
+        /// <summary>
+        /// Instance wrapper for <see cref="NormalizeData"/>.
+        /// </summary>
+        protected string Normalize(string orderDataField)
+        {
+            return NormalizeData(orderDataField);
         }
 
         /// <summary>

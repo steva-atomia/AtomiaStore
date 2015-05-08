@@ -116,6 +116,7 @@
     <Compile Include="Infrastructure\RouteCollectionExtension.cs" />
     <Compile Include="Models\OrderFlowModel.cs" />
     <Compile Include="Models\TaxModel.cs" />
+    <Compile Include="Models\WhoisContactModel.cs" />
     <Compile Include="Ports\IOrderFlowValidator.cs" />
     <Compile Include="Adapters\ItemPresenter.cs" />
     <Compile Include="Adapters\LanguagePreferenceProvider.cs" />

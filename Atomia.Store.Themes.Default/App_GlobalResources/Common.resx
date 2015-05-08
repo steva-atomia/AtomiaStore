@@ -626,4 +626,13 @@
   <data name="SameAsContactInfo" xml:space="preserve">
     <value>Make it same as contact info</value>
   </data>
+  <data name="WhoisAddressTitle" xml:space="preserve">
+    <value>WHOIS contact</value>
+  </data>
+  <data name="WhoisDifferentThanMain" xml:space="preserve">
+    <value>Different WHOIS contact</value>
+  </data>
+  <data name="WhoisSameAsMain" xml:space="preserve">
+    <value>Same as contact info</value>
+  </data>
 </root>

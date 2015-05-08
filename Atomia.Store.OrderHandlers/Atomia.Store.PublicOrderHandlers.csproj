@@ -61,6 +61,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -79,6 +80,7 @@
     <Compile Include="ContactDataHandlers\BillingContactDataHandler.cs" />
     <Compile Include="ContactDataHandlers\MainContactDataHandler.cs" />
     <Compile Include="CurrencyHandler.cs" />
+    <Compile Include="DomainRegContactProvider.cs" />
     <Compile Include="TransactionDataHandlers\PaymentProfileHandler.cs" />
     <Compile Include="TransactionDataHandlers\RequestParamsHandler.cs" />
     <Compile Include="IpAddressHandler.cs" />
