@@ -48,6 +48,7 @@ if ("$themeName" -ne "MyTheme")
 	Rename-Item "$($themeDir)\MyTheme.csproj" "$($themeName).csproj"
 	Rename-Item "$($themeDir)\Themes\MyTheme" $themeName
 	Rename-Item "$($themeDir)\App_GlobalResources\MyTheme" $themeName
+	Rename-Item "$($themeDir)\Transformation Files\Web.MyTheme.config" "Web.$($themeName).config"
 }
 
 Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewName {$_.name -replace 'MyTheme', $themeName }
@@ -55,6 +56,7 @@ Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewN
 (gc "$($themeDir)\$($themeName).csproj").replace('MyTheme', $themeName)|sc "$($themeDir)\$($themeName).csproj"
 (gc "$($createDir)\$($themeName).sln").replace('MyTheme', $themeName)|sc "$($createDir)\$($themeName).sln"
 (gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
+(gc "$($themeDir)\Transformation Files\Web.$($themeName).config").replace('MyTheme', $themeName)|sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
 
 (gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
 (gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
