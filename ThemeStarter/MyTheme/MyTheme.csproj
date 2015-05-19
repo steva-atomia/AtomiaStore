@@ -126,6 +126,7 @@
     <Content Include="Themes\MyTheme\Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Transformation Files\Web.MyTheme.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
