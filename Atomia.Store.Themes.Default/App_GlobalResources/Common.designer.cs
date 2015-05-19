@@ -97,7 +97,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Address2.
+        ///   Looks up a localized string similar to Address 2.
         /// </summary>
         internal static string Address2 {
             get {
