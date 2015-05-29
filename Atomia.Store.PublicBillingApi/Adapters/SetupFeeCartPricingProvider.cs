@@ -24,6 +24,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             get { return "SetupFee"; }
         }
 
+        protected virtual string FreePackageCategory
+        {
+            get { return "FreePackage"; }
+        }
+
         /// <summary>
         /// The product categories that should have setup fee added.
         /// </summary>
@@ -61,7 +66,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             
             if (setupFee != null)
             {
-                var setupFeeProducts = apiProductsProvider.GetProductsByCategories(ProductCategoriesWithSetupFee.ToList());
+                var allSetupFeeProducts = apiProductsProvider.GetProductsByCategories(ProductCategoriesWithSetupFee.ToList());
+                var freePackageProducts = apiProductsProvider.GetProductsByCategories(new List<string> { FreePackageCategory });
+                var setupFeeProducts = allSetupFeeProducts.Where(s => !freePackageProducts.Any(f => s.ArticleNumber == f.ArticleNumber));
 
                 var shouldHaveSetupFee = setupFeeProducts.Any(p => cart.CartItems.Any(ci => ci.ArticleNumber == p.ArticleNumber));
                 var hasSetupFee = cart.CartItems.Any(ci => ci.ArticleNumber == setupFee.ArticleNumber);
