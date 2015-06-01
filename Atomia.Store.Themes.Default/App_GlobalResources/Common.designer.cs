@@ -547,7 +547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
+        ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package..
         /// </summary>
         internal static string DomainRegistrationDescription {
             get {
@@ -817,7 +817,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select desired Web hosting package. Please note that all fields marked with an asterisk (&lt;span class=&quot;required&quot;&gt;*&lt;/span&gt;) are required..
+        ///   Looks up a localized string similar to Select desired Web hosting package..
         /// </summary>
         internal static string HostingPackageDescription {
             get {

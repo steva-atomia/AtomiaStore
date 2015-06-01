@@ -133,7 +133,7 @@
     <value>is not available.</value>
   </data>
   <data name="DomainRegistrationDescription" xml:space="preserve">
-    <value>Fill out the form below to order Domain name and Web hosting package. Please note that all fields marked with an asterisk (&lt;span class="required"&gt;*&lt;/span&gt;) are required.</value>
+    <value>Fill out the form below to order Domain name and Web hosting package.</value>
   </data>
   <data name="DomainRegistrationResultsHeading" xml:space="preserve">
     <value>Results for</value>
@@ -145,7 +145,7 @@
     <value>From</value>
   </data>
   <data name="HostingPackageDescription" xml:space="preserve">
-    <value>Select desired Web hosting package. Please note that all fields marked with an asterisk (&lt;span class="required"&gt;*&lt;/span&gt;) are required.</value>
+    <value>Select desired Web hosting package.</value>
   </data>
   <data name="HostingPackageTitle" xml:space="preserve">
     <value>Web hosting package</value>
