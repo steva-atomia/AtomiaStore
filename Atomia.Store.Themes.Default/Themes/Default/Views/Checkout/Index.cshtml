@@ -22,10 +22,12 @@
 
             @{ Html.RenderPartial("_PaymentProfile", Model); }
 
+            @{ Html.RenderPartial("_BeforeCampaign", Model); }
+            
             @{ Html.RenderPartial("_Campaign"); }
 
             @{ Html.RenderPartial("_BeforeCartSummary", Model); }
-                
+
             @{ Html.RenderPartial("_CartSummary"); }
 
             @{ Html.RenderPartial("_TermsOfServiceConfirmation", Model); }
@@ -34,7 +36,7 @@
 
         </div>
 
-        Html.RenderPartial("_Actions", Model);
+             Html.RenderPartial("_Actions", Model);
     }
 </div>
 
