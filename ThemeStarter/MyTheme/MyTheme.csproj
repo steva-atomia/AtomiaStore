@@ -92,10 +92,6 @@
     <Compile Include="App_Start\OrderFlowConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="GlobalEventsHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -111,7 +107,6 @@
       <Generator>GlobalResourceProxyGenerator</Generator>
       <LastGenOutput>MyThemeCommon.designer.cs</LastGenOutput>
     </Content>
-    <Content Include="Global.asax" />
     <Content Include="README.txt" />
     <Content Include="Themes\MyTheme\Content\css\theme.css" />
     <Content Include="Web.config" />

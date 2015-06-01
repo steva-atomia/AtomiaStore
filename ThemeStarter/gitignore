@@ -1,0 +1,11 @@
+bin
+obj
+*.suo
+*.user
+publish/
+Lib/
+!MyTheme/Transformation Files/bin
+MyTheme/Themes/Default/
+MyTheme/App_Data/atomiaRegularExpressionConfig.config
+MyTheme/App_GlobalResources/*.resx
+MyTheme/Global.asax*

@@ -7,9 +7,11 @@ $createDir = Join-Path (Join-Path (pwd) (Split-Path $themeDir -Parent)) $ThemeNa
 $themeDir = Join-Path $createDir $themeName
 $themeSolution = "$($createDir)\$($themeName).sln"
 $themeLibDir = "$($createDir)\Lib"
+$themeGitIgnore = "$($createDir)\.gitignore"
 
 $templateDir = "$($PSScriptRoot)\MyTheme\"
 $templateSolution = "$($PSScriptRoot)\MyTheme.sln"
+$templateGitIgnore = "$($PSScriptRoot)\gitignore"
 
 $defaultThemeDir = "$($PSScriptRoot)\..\Atomia.Store.Themes.Default\"
 $storeSolution = "$($PSScriptRoot)\..\Solution\Store.sln"
@@ -20,9 +22,10 @@ if (Test-Path $themeDir)
 	Exit
 }
 
-# Copy theme project and solution templates
+# Copy theme project, solution template and gitignore
 robocopy $templateDir $themeDir /e /xf MyTheme.csproj.user packages.config /xd bin obj
 Copy-Item $templateSolution $themeSolution
+Copy-Item $templateGitIgnore $themeGitIgnore
 
 
 # Compile Atomia Store solution if not done yet
@@ -58,6 +61,7 @@ Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewN
 (gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
 (gc "$($themeDir)\Transformation Files\Web.$($themeName).config").replace('MyTheme', $themeName)|sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
 (gc "$($themeDir)\publishtheme.ps1").replace('MyTheme', $themeName)|sc "$($themeDir)\publishtheme.ps1"
+(gc "$($createDir)\.gitignore").replace('MyTheme', $themeName)|sc "$($createDir)\.gitignore"
 
 (gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
 (gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
