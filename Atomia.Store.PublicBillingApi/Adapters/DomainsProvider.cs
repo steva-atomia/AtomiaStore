@@ -212,6 +212,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         /// </summary>
         private IEnumerable<DomainDataFromXml> StartSearch(IEnumerable<string> domainNamesToCheck)
         {
+            if (domainNamesToCheck == null || domainNamesToCheck.Count() <= 0)
+            {
+                return new List<DomainDataFromXml>();
+            }
+
             var result = DomainSearchHelper.StartSearch(
                 domainNamesToCheck.ToArray(),
                 BillingApi.Service,
