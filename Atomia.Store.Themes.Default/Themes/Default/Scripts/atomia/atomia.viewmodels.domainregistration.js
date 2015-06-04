@@ -76,7 +76,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.isLoadingResults(false);
                 }
                 else if (data.FinishSearch) {
-                    self.updateResults(data.Result);
+                    self.updateResults(data.Results);
                 }
                 else {
                     domainsApi.checkStatus(domainSearchId,
