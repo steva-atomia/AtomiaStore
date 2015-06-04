@@ -18,7 +18,7 @@ namespace Atomia.Store.ActionTrail.Adapters
         /// <param name="ex">The exception.</param>
         public void LogException(Exception ex)
         {
-            var shortMessage = string.Format("Atomia Order Page v2 threw an exception.\r\n {0}", ex.Message + "\r\n" + ex.StackTrace);
+            var shortMessage = string.Format("Atomia Store threw an exception.\r\n {0}", ex.Message + "\r\n" + ex.StackTrace);
 
             this.LogException(ex, shortMessage);
         }
@@ -46,25 +46,9 @@ namespace Atomia.Store.ActionTrail.Adapters
 
                         var user = Thread.CurrentPrincipal.Identity.IsAuthenticated ? Thread.CurrentPrincipal.Identity.Name : null;
 
-                        WebBaseLogger.CreateActionTrailExceptionLog(ex, "Atomia Order Page v2", accountId, user, shortMessage, new List<string> { "Atomia Order Page v2 Exceptions" });
+                        WebBaseLogger.CreateActionTrailExceptionLog(ex, "Atomia Store", accountId, user, shortMessage, new List<string> { "Atomia Store Exceptions" });
                     }
                 }
-            }
-
-            if (HttpContext.Current.Application["ElmahPowerSwitch"] == null)
-            {
-                return;
-            }
-
-            bool elmahPowerSwitch;
-            if (!Boolean.TryParse(HttpContext.Current.Application["ElmahPowerSwitch"].ToString().ToLower(), out elmahPowerSwitch))
-            {
-                return;
-            }
-
-            if (elmahPowerSwitch)
-            {
-                WebBaseLogger.CreateElmahExceptionLog(ex);
             }
         }
     }

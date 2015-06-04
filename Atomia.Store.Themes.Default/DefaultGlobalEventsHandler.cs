@@ -106,7 +106,7 @@ namespace Atomia.Store.Themes.Default
                 var httpException = ex as HttpException;
 
                 var logger = DependencyResolver.Current.GetService<ILogger>();
-                logger.LogException(ex, string.Format("Caught unhandled exception in Order Page v2.\r\n {0}", ex.Message + "\r\n" + ex.StackTrace));
+                logger.LogException(ex, string.Format("Caught unhandled exception in Store.\r\n {0}", ex.Message + "\r\n" + ex.StackTrace));
 
                 var routeData = new System.Web.Routing.RouteData();
                 routeData.Values.Add("controller", "Error");
