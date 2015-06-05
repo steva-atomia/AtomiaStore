@@ -35,7 +35,7 @@
             }"></tbody>
     </table>
 
-    <p data-bind="ifnot: showMoreResults">
+    <p data-bind="if: !showMoreResults() && secondaryResults().length > 0">
         <a id="more" class="button small green" data-bind="click: setShowMoreResults" href="javascript:void(0);">@Html.CommonResource("MoreResults")</a>
     </p>
 </div>
