@@ -57,6 +57,7 @@ Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewN
 (gc "$($createDir)\$($themeName).sln").replace('MyTheme', $themeName)|sc "$($createDir)\$($themeName).sln"
 (gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
 (gc "$($themeDir)\Transformation Files\Web.$($themeName).config").replace('MyTheme', $themeName)|sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
+(gc "$($themeDir)\publishtheme.ps1").replace('MyTheme', $themeName)|sc "$($themeDir)\publishtheme.ps1"
 
 (gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
 (gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
