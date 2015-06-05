@@ -47,8 +47,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.query = ko.observable();
         self.isLoadingResults = ko.observable(false);
         self.showMoreResults = ko.observable(false);
-        self.primaryResults = ko.observableArray();
-        self.secondaryResults = ko.observableArray();
+        self.primaryResults = ko.observableArray().extend({ rateLimit: 50 });
+        self.secondaryResults = ko.observableArray().extend({ rateLimit: 50 });
         self.noResults = ko.observable(false);
 
         self.hasResults = ko.pureComputed(function () {
@@ -109,23 +109,16 @@ Atomia.ViewModels = Atomia.ViewModels || {};
          * @param {Array} results - The domain search results.
          */
         self.updateResults = function updateResults(results) {
-            var primaryResults = [],
-                secondaryResults = [];
-
             _.each(results, function (result) {
                 var item = self.createDomainRegistrationItem(result);
 
                 if (item.isPrimary) {
-                    primaryResults.push(item);
+                    self.primaryResults.push(item);
                 }
                 else {
-                    secondaryResults.push(item);
+                    self.secondaryResults.push(item);
                 }
             });
-
-            // Set all at once to avoid triggering bindings on each push.
-            self.primaryResults(primaryResults);
-            self.secondaryResults(secondaryResults);
 
             if (self.primaryResultsAreFinished()) {
                 self.isLoadingResults(false);
