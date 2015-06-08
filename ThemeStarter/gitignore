@@ -3,6 +3,9 @@ obj
 *.suo
 *.user
 Lib/
+!publish/bin
+!publish/bin/MyTheme.dll
+!publish/bin/MyTheme.pdb
 !MyTheme/Transformation Files/bin
 MyTheme/Themes/Default/
 MyTheme/App_Data/atomiaRegularExpressionConfig.config
