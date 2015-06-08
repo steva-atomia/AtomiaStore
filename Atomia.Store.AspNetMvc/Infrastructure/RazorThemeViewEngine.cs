@@ -57,7 +57,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
                 return new ViewEngineResult(new string[0]);
             }
 
-            return base.FindView(controllerContext, viewName, masterName, useCache);
+            // Cache is disabled or running multiple themes on the same installation won't work
+            // FIXME: Should use our own implementation of DefaultViewLocationCache
+            return base.FindView(controllerContext, viewName, masterName, false);
         }
 
         public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
@@ -68,7 +70,9 @@ namespace Atomia.Store.AspNetMvc.Infrastructure
                 return new ViewEngineResult(new string[0]);
             }
 
-            return base.FindPartialView(controllerContext, partialViewName, useCache);
+            // Cache is disabled or running multiple themes on the same installation won't work
+            // FIXME: Should use our own implementation of DefaultViewLocationCache
+            return base.FindPartialView(controllerContext, partialViewName, false);
         }
     }
 }
