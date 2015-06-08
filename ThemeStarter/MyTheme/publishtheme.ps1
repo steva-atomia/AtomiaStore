@@ -8,6 +8,10 @@ if ( Test-Path $publishDir ) {
 	Exit
 }
 
+$themeSolution = "$($PSScriptRoot)\..\MyTheme.sln"
+$msbuild = "$($Env:SystemRoot)\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
+Invoke-Expression "$($msbuild) $($themeSolution) /p:Configuration=Debug /t:rebuild"
+
 New-Item $publishDir -Type directory
 
 # Global resources
