@@ -2,7 +2,6 @@ bin
 obj
 *.suo
 *.user
-publish/
 Lib/
 !MyTheme/Transformation Files/bin
 MyTheme/Themes/Default/
