@@ -77,7 +77,10 @@ namespace Atomia.Store.AspNetMvc.Models
         {
             get
             {
-                return product.PricingVariants.Select(p => new PricingVariantModel(p)).ToList();
+                return product.PricingVariants
+                    .OrderBy(p => p.Price)
+                    .Select(p => new PricingVariantModel(p))
+                    .ToList();
             }
         }
     }
