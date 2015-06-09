@@ -1213,6 +1213,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Continue without adding a domain name.
+        /// </summary>
+        internal static string SkipDomain {
+            get {
+                return ResourceManager.GetString("SkipDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Set up account info.
         /// </summary>
         internal static string StepDescriptionAccount {

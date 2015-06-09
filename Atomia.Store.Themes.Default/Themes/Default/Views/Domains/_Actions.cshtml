@@ -9,5 +9,8 @@
         @Html.RouteLink(Html.CommonResource("Back"), orderFlow.CurrentStep.Previous, routeValues, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
     }
     
-    @Html.RouteLink(Html.CommonResource("Next"), orderFlow.CurrentStep.Next, routeValues, new { id = "next_step", @class = "button large green" })
+    <!-- ko with: Atomia.VM.cart -->
+    @Html.RouteLink(Html.CommonResource("Next"), orderFlow.CurrentStep.Next, routeValues, new { id = "next_step", @class = "button large green", data_bind = "visible: domainItems().length > 0" })
+    @Html.RouteLink(Html.CommonResource("SkipDomain"), orderFlow.CurrentStep.Next, routeValues, new { id = "next_step_skip", @class = "button small orange", data_bind = "visible: domainItems().length === 0" })
+    <!-- /ko -->
 </p>

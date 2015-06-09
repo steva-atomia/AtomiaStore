@@ -635,4 +635,7 @@
   <data name="WhoisSameAsMain" xml:space="preserve">
     <value>Same as contact info</value>
   </data>
+  <data name="SkipDomain" xml:space="preserve">
+    <value>Continue without adding a domain name</value>
+  </data>
 </root>
