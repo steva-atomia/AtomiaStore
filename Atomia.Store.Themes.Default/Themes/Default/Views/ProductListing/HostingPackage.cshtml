@@ -8,7 +8,6 @@
 <h4>@Html.CommonResource("HostingPackageTitle")</h4>
 <p>@Html.CommonResourceRaw("HostingPackageDescription")</p>
 <div class="formrow">
-    <h5><label class="required"><span>*</span> @Html.CommonResource("AvailablePackages"):</label></h5>
     <!-- ko with: products -->
     @Html.Partial("_CardListing")
     <!-- /ko -->

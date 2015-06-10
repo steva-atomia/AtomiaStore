@@ -133,7 +133,7 @@
     <value>is not available.</value>
   </data>
   <data name="DomainRegistrationDescription" xml:space="preserve">
-    <value>Fill out the form below to order Domain name and Web hosting package.</value>
+    <value>Start by picking a domain name for your web hosting package.</value>
   </data>
   <data name="DomainRegistrationResultsHeading" xml:space="preserve">
     <value>Results for</value>
@@ -145,10 +145,10 @@
     <value>From</value>
   </data>
   <data name="HostingPackageDescription" xml:space="preserve">
-    <value>Select desired Web hosting package.</value>
+    <value />
   </data>
   <data name="HostingPackageTitle" xml:space="preserve">
-    <value>Web hosting package</value>
+    <value>Select your web hosting package</value>
   </data>
   <data name="Item" xml:space="preserve">
     <value>Item</value>
@@ -220,7 +220,7 @@
     <value>Back</value>
   </data>
   <data name="ConnectedDomainDescription" xml:space="preserve">
-    <value>We will setup the services in your package to be connected with the selected domain name.</value>
+    <value>We will set up the services in your package to be connected with the selected domain name.</value>
   </data>
   <data name="StepDescriptionAccount" xml:space="preserve">
     <value>Set up account info</value>
@@ -637,5 +637,8 @@
   </data>
   <data name="SkipDomain" xml:space="preserve">
     <value>Continue without adding a domain name</value>
+  </data>
+  <data name="DoNotConnectDomain" xml:space="preserve">
+    <value>Do not connect a domain</value>
   </data>
 </root>

@@ -412,7 +412,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We will setup the services in your package to be connected with the selected domain name..
+        ///   Looks up a localized string similar to We will set up the services in your package to be connected with the selected domain name..
         /// </summary>
         internal static string ConnectedDomainDescription {
             get {
@@ -547,7 +547,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Fill out the form below to order Domain name and Web hosting package..
+        ///   Looks up a localized string similar to Start by picking a domain name for your web hosting package..
         /// </summary>
         internal static string DomainRegistrationDescription {
             get {
@@ -570,6 +570,15 @@ namespace Resources {
         internal static string DomainRegistrationResultsHeading {
             get {
                 return ResourceManager.GetString("DomainRegistrationResultsHeading", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Do not connect a domain.
+        /// </summary>
+        internal static string DoNotConnectDomain {
+            get {
+                return ResourceManager.GetString("DoNotConnectDomain", resourceCulture);
             }
         }
         
@@ -817,7 +826,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Select desired Web hosting package..
+        ///   Looks up a localized string similar to .
         /// </summary>
         internal static string HostingPackageDescription {
             get {
@@ -826,7 +835,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Web hosting package.
+        ///   Looks up a localized string similar to Select your web hosting package.
         /// </summary>
         internal static string HostingPackageTitle {
             get {
