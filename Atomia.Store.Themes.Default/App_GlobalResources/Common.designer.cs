@@ -313,7 +313,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Please try using a different payment method. Domain names will be registered after the payment has been verified..
+        ///   Looks up a localized string similar to &lt;p&gt;Please try using a different payment method. &lt;/p&gt;
+        ///&lt;p&gt;Domain names will be registered after the payment has been verified.&lt;/p&gt;.
         /// </summary>
         internal static string CheckoutFailureDescription {
             get {
@@ -331,7 +332,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We hope that you will have great use of the service!.
+        ///   Looks up a localized string similar to &lt;p&gt;Your account will be created immediately.&lt;/p&gt;
+        ///        	&lt;p&gt;Please check your email for login instructions.&lt;/p&gt;.
         /// </summary>
         internal static string CheckoutSuccessDescription {
             get {
@@ -340,7 +342,7 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Thank you for your order!.
+        ///   Looks up a localized string similar to Thank you, and welcome!.
         /// </summary>
         internal static string CheckoutSuccessTitle {
             get {
@@ -1024,7 +1026,8 @@ namespace Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to We are ready to take your order now. Please review your order and click on Order button to confirm the transaction. Your order will be securely processed by PayPal..
+        ///   Looks up a localized string similar to &lt;p&gt;We are ready to take your order now. Please review your order and click on Order button to confirm the transaction. &lt;/p&gt;
+        ///&lt;p&gt;Your order will be securely processed by PayPal.&lt;/p&gt;.
         /// </summary>
         internal static string PayPalConfirmDescription {
             get {

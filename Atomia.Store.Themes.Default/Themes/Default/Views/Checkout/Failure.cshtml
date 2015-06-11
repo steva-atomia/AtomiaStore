@@ -2,11 +2,12 @@
     Layout = "~/Themes/Default/Views/_NoCartLayout.cshtml";
 }
 
+<h3 class="center important_heading">@Html.CommonResource("CheckoutFailureTitle")</h3>
 <div class="settingsboxinner">
-    <h4>@Html.CommonResource("CheckoutFailureTitle")</h4>
-    <p>@Html.CommonResource("CheckoutFailureDescription")</p>
-
-    <p class="actions" style="display: block;">
+    <div class="center important_msg">
+        @Html.CommonResourceRaw("CheckoutFailureDescription")
+    </div>
+    <p class="actions center" style="display: block;">
         @Html.ActionLink(Html.CommonResource("TryAgain"), "Index", "Checkout", null, new { @class = "button large", style = "display: inline-block;" })
     </p>
 </div>

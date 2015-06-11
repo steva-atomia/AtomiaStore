@@ -866,11 +866,12 @@ footer {
 #logo {
     display: inline-block;
     overflow: hidden;
-    height: 4.1667em;
+    height: 4.1667rem;
+    font-size: 0;
     float: left
 }
 header .icn_atomia:before {
-	font-size: 9.111em;
+	font-size: 9.111rem;
 	line-height: .46em;
 	display: inline-block;
 	color: #fff
@@ -3271,6 +3272,31 @@ button, input[type=submit] {
 .presets a {
 	width: 100%
 }
+
+
+/*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
+
+/*!|                                                                                                                            MESSAGE PAGES                        */
+
+.thank_you_pg {
+	background: url(../../img/atomia_2/mail.svg) no-repeat;
+	width: 20em;
+	height: 20em;
+	margin: 5em auto 2em
+}
+
+.important_msg {
+    font-size: 1.3em;
+    color: #423c31;
+}
+
+h3.important_heading {
+	font-size: 3.8em;
+	margin-top: 2em;
+	text-shadow: 0 0 3px rgba(225, 237, 230, 0.79);
+	color: #423c31
+}
+
 
 /*\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\*/
 

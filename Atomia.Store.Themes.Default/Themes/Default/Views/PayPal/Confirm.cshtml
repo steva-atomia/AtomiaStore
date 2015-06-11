@@ -5,9 +5,12 @@
     Layout = "~/Themes/Default/Views/_NoCartLayout.cshtml";
 }
 
+<h3 class="important_heading">@Html.CommonResource("PayPalConfirmTitle")</h3>
 <div class="settingsboxinner">
-    <h4>@Html.CommonResource("PayPalConfirmTitle")</h4>
-    <p>@Html.CommonResource("PayPalConfirmDescription")</p>
+    <div class="important_msg">
+        @Html.CommonResourceRaw("PayPalConfirmDescription")
+    </div>
+    <br />
     <p class="data-row">
         <strong>@Html.CommonResource("ChargedAmount")</strong>
         <span>@Model.PayAmount <span class="currency">@Model.Currency</span></span>

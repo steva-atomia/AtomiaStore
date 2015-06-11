@@ -2,9 +2,14 @@
     Layout = "~/Themes/Default/Views/_NoCartLayout.cshtml";
 }
 
+<h3 class="center important_heading">@Html.CommonResource("CheckoutSuccessTitle")</h3>
 <div class="settingsboxinner">
-    <h4>@Html.CommonResource("CheckoutSuccessTitle")</h4>
-    <p>@Html.CommonResource("CheckoutSuccessDescription")</p>
+    <div id="thank_you">
+        <div class="thank_you_pg"></div>
+        <div class="important_msg center">
+            @Html.CommonResourceRaw("CheckoutSuccessDescription")
+        </div>
+    </div>
 </div>
 
 @section scripts {
