@@ -7,7 +7,7 @@
                 <thead>
                     <tr>
                         <th class="left">@Html.CommonResource("Item")</th>
-                        <th class="right" style="width: 12em">@Html.CommonResource("Fee")</th>
+                        <th class="right" style="width: 12em">@Html.CommonResource("Amount")</th>
                         <th style="width: 12em"></th>
                     </tr>
                 </thead>
@@ -46,7 +46,7 @@
                                 (<!-- ko text: customOptions().join(', ') --><!-- /ko-->)
                             </span>
                         </td>
-                        <td class="right nowrap" data-bind="text: price"></td>
+                        <td class="right nowrap" data-bind="text: total"></td>
                         <td>
                             <!-- ko if: attrs.notRemovable !== 'true' -->
                             <a class="button small orange" href="javascript:void(0);" data-bind="click: removeFromCart">@Html.CommonResource("Remove")</a>

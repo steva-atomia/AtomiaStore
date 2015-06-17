@@ -644,4 +644,7 @@
   <data name="DoNotConnectDomain" xml:space="preserve">
     <value>Do not connect a domain</value>
   </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Amount</value>
+  </data>
 </root>
