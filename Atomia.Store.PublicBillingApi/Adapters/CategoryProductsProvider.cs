@@ -1,5 +1,4 @@
 ﻿using Atomia.Store.Core;
-using Atomia.Web.Plugin.ProductsProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,35 +11,26 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     /// </summary>
     public sealed class CategoryProductsProvider : IProductListProvider
     {
-        private readonly ILanguagePreferenceProvider languagePreferenceProvider;
-        private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly ApiProductsProvider apiProductsProvider;
+        private readonly ProductMapper productMapper;
 
         /// <summary>
         /// Construct a new instance
         /// </summary>
-        public CategoryProductsProvider(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ApiProductsProvider apiProductsProvider)
+        public CategoryProductsProvider(ApiProductsProvider apiProductsProvider, ProductMapper productMapper)
         {
-            
-
-            if (languagePreferenceProvider == null)
-            {
-                throw new ArgumentNullException("languagePreferenceProvider");
-            }
-
-            if (currencyPreferenceProvider == null)
-            {
-                throw new ArgumentNullException("currencyPreferenceProvider");
-            }
-
             if (apiProductsProvider == null)
             {
                 throw new ArgumentNullException("apiProductsProvider");
             }
 
-            this.languagePreferenceProvider = languagePreferenceProvider;
-            this.currencyPreferenceProvider = currencyPreferenceProvider;
-            this.apiProductsProvider = apiProductsProvider;   
+            if (productMapper == null)
+            {
+                throw new ArgumentNullException("productMapper");
+            }
+
+            this.apiProductsProvider = apiProductsProvider;
+            this.productMapper = productMapper;
         }
 
         /// <summary>
@@ -59,15 +49,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         public IEnumerable<CoreProduct> GetProducts(ICollection<SearchTerm> terms)
         {
             var category = terms.First().Value;
-            var currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
-            var language = languagePreferenceProvider.GetCurrentLanguage();
             var products = new List<CoreProduct>();
 
             var apiProducts = apiProductsProvider.GetProductsByCategories(new List<string>() { category });
 
             foreach(var apiProduct in apiProducts)
             {
-                var product = ProductMapper.Map(apiProduct, language, currencyCode);
+                var product = this.productMapper.Map(apiProduct);
                 
                 products.Add(product);
             }

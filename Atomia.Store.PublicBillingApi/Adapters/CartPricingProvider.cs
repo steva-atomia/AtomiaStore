@@ -15,11 +15,18 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly ICountryProvider countryProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
+        private readonly bool pricesIncludeVat;
 
         /// <summary>
         /// Construct a new instance of CartPricingProvider
         /// </summary>
-        public CartPricingProvider(IResellerProvider resellerProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, ICountryProvider countryProvider, RenewalPeriodProvider renewalPeriodProvider, PublicBillingApiProxy billingApi)
+        public CartPricingProvider(
+            IResellerProvider resellerProvider, 
+            ICurrencyPreferenceProvider currencyPreferenceProvider, 
+            ICountryProvider countryProvider, 
+            RenewalPeriodProvider renewalPeriodProvider, 
+            IVatDisplayPreferenceProvider vatDisplayPreferenceProvider, 
+            PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
             if (resellerProvider == null)
@@ -42,10 +49,16 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("renewalPeriodProvider");
             }
 
+            if (vatDisplayPreferenceProvider == null)
+            {
+                throw new ArgumentNullException("vatDisplayPreferenceProvider");
+            }
+
             this.resellerProvider = resellerProvider;
             this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.countryProvider = countryProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
+            this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();    
         }
 
         /// <inheritdoc />
@@ -91,7 +104,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 taxes = calculatedPublicOrder.Taxes.Select(t => new Tax(t.Name, t.Total, t.Percent));
             }
 
-            cart.SetPricing(calculatedPublicOrder.Subtotal, calculatedPublicOrder.Total, taxes);
+            var subtotal = this.pricesIncludeVat 
+                ? calculatedPublicOrder.Total 
+                : calculatedPublicOrder.Subtotal;
+
+            cart.SetPricing(subtotal, calculatedPublicOrder.Total, taxes);
+
+            var priceCalculator = new PriceCalculator(this.pricesIncludeVat);
 
             foreach(var cartItem in cart.CartItems)
             {
@@ -119,7 +138,10 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     itemTaxes = calculatedItem.Taxes.Select(t => new Tax(t.Name, calculatedItem.TaxAmount, t.Percent));
                 }
 
-                cartItem.SetPricing(calculatedItem.Price, calculatedItem.Discount, itemTaxes);
+                var price = priceCalculator.CalculatePrice(calculatedItem.Price, calculatedItem.Taxes);
+                var discount = priceCalculator.CalculatePrice(calculatedItem.Discount, calculatedItem.Taxes);
+
+                cartItem.SetPricing(price, discount, itemTaxes);
                 cartItem.Quantity = calculatedItem.Quantity;
             }
 

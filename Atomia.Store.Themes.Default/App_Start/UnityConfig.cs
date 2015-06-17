@@ -61,6 +61,7 @@ namespace Atomia.Store.Themes.Default
                     new ResolvedParameter<ICartPricingService>("apiPricingService"),
                     new ResolvedParameter<ApiProductsProvider>()));
             container.RegisterType<IOrderFlowValidator, Atomia.Store.Themes.Default.Adapters.OrderFlowValidator>();
+            container.RegisterType<IVatDisplayPreferenceProvider, Atomia.Store.PublicBillingApi.Adapters.VatDisplayPreferenceProvider>();
 
             // Public billing api helpers
             container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
@@ -72,6 +73,7 @@ namespace Atomia.Store.Themes.Default
                     new ResolvedParameter<IResellerDataProvider>("apiProvider"),
                     new ResolvedParameter<IResellerIdentifierProvider>()));
             container.RegisterType<ApiProductsProvider, ApiProductsProvider>();
+            container.RegisterType<ProductMapper, ProductMapper>();
             container.RegisterType<IShopNameProvider, DefaultShopNameProvider>();
         }
 

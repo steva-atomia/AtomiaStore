@@ -11,12 +11,38 @@ namespace Atomia.Store.PublicBillingApi
     /// <summary>
     /// Helpers for mapping between products from Atomia Billing Product Service and AtomiaStore products
     /// </summary>
-    internal sealed class ProductMapper
+    public sealed class ProductMapper
     {
+        private readonly bool pricesIncludeVat;
+        private readonly Language language;
+        private readonly string currencyCode;
+
+        public ProductMapper(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IVatDisplayPreferenceProvider vatDisplayPreferenceProvider)
+        {
+            if (languagePreferenceProvider == null)
+            {
+                throw new ArgumentNullException("languagePreferenceProvider");
+            }
+
+            if (currencyPreferenceProvider == null)
+            {
+                throw new ArgumentNullException("currencyPreferenceProvider");
+            }
+
+            if (vatDisplayPreferenceProvider == null)
+            {
+                throw new ArgumentNullException("vatDisplayPreferenceProvider");
+            }
+
+            this.language = languagePreferenceProvider.GetCurrentLanguage();
+            this.currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
+            this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
+        }
+
         /// <summary>
         /// Map product from Atomia Billing Product Service to AtomiaStore product
         /// </summary>
-        public static CoreProduct Map(ApiProduct apiProduct, Language language, string currencyCode)
+        public CoreProduct Map(ApiProduct apiProduct)
         {
             var product = new CoreProduct()
             {
@@ -24,9 +50,9 @@ namespace Atomia.Store.PublicBillingApi
                 Category = apiProduct.Category
             };
 
-            SetNameAndDescription(product, apiProduct, language);
+            SetNameAndDescription(product, apiProduct);
 
-            SetPricingVariants(product, apiProduct, currencyCode);
+            SetPricingVariants(product, apiProduct);
 
             SetCustomAttributes(product, apiProduct);
 
@@ -38,8 +64,7 @@ namespace Atomia.Store.PublicBillingApi
         /// </summary>
         /// <param name="product">The product to set name and description on</param>
         /// <param name="apiProduct">The Atomia Billing product to get localized values from</param>
-        /// <param name="language">The localization langugage to use</param>
-        private static void SetNameAndDescription(CoreProduct product, ApiProduct apiProduct, Language language)
+        private void SetNameAndDescription(CoreProduct product, ApiProduct apiProduct)
         {
             // Set defaults before checking if translations are available.
             product.Name = apiProduct.Name;
@@ -47,8 +72,8 @@ namespace Atomia.Store.PublicBillingApi
 
             if (apiProduct.MultilanguageNames != null)
             {
-                var names = apiProduct.MultilanguageNames.Where(l => l.LanguageIso639Name.ToUpper() == language.PrimaryTag);
-                var regionalName = names.FirstOrDefault(l => l.LanguageCulture.ToUpper() == language.RegionTag);
+                var names = apiProduct.MultilanguageNames.Where(l => l.LanguageIso639Name.ToUpper() == this.language.PrimaryTag);
+                var regionalName = names.FirstOrDefault(l => l.LanguageCulture.ToUpper() == this.language.RegionTag);
                 var standardName = names.FirstOrDefault();
                 
                 if (regionalName != null)
@@ -63,8 +88,8 @@ namespace Atomia.Store.PublicBillingApi
 
             if (apiProduct.MultilanguageDescriptions != null)
             {
-                var descriptions = apiProduct.MultilanguageDescriptions.Where(l => l.LanguageIso639Name.ToUpper() == language.PrimaryTag);
-                var regionalDescription = descriptions.FirstOrDefault(l => l.LanguageCulture.ToUpper() == language.RegionTag);
+                var descriptions = apiProduct.MultilanguageDescriptions.Where(l => l.LanguageIso639Name.ToUpper() == this.language.PrimaryTag);
+                var regionalDescription = descriptions.FirstOrDefault(l => l.LanguageCulture.ToUpper() == this.language.RegionTag);
                 var standardDescription = descriptions.FirstOrDefault();
                 
                 if (regionalDescription != null)
@@ -83,8 +108,7 @@ namespace Atomia.Store.PublicBillingApi
         /// </summary>
         /// <param name="product">The product to set price on</param>
         /// <param name="apiProduct">The Atomia Billing product to select prices from</param>
-        /// <param name="language">The currency to use</param>
-        private static void SetPricingVariants(CoreProduct product, ApiProduct apiProduct, string currencyCode)
+        private void SetPricingVariants(CoreProduct product, ApiProduct apiProduct)
         {
             product.PricingVariants = new List<PricingVariant>();
 
@@ -92,8 +116,8 @@ namespace Atomia.Store.PublicBillingApi
             {
                 foreach (var renewalPeriod in apiProduct.RenewalPeriods)
                 {
-                    var price = FindPriceValue(renewalPeriod.Prices, currencyCode);
-                    
+                    var price = GetPrice(renewalPeriod.Prices, apiProduct.Taxes);
+
                     product.PricingVariants.Add(new PricingVariant
                     {
                         Price = price,
@@ -103,7 +127,7 @@ namespace Atomia.Store.PublicBillingApi
             }
             else
             {
-                var price = FindPriceValue(apiProduct.Prices, currencyCode);
+                var price = GetPrice(apiProduct.Prices, apiProduct.Taxes);
 
                 product.PricingVariants.Add(new PricingVariant
                 {
@@ -116,7 +140,7 @@ namespace Atomia.Store.PublicBillingApi
         /// <summary>
         /// Copy custom attributes from Atomia Billing product to AtomiaStore product
         /// </summary>
-        private static void SetCustomAttributes(CoreProduct product, ApiProduct apiProduct)
+        private void SetCustomAttributes(CoreProduct product, ApiProduct apiProduct)
         {
             product.CustomAttributes = new List<CustomAttribute>();
 
@@ -131,18 +155,18 @@ namespace Atomia.Store.PublicBillingApi
         }
 
         /// <summary>
-        /// Find price value for currency among prices.
+        /// Get correct price for currency and calculate with or without taxes applied.
         /// </summary>
-        private static decimal FindPriceValue(IList<ProductPrice> prices, string currencyCode)
+        private decimal GetPrice(IList<ProductPrice> prices, IList<ProductTax> taxes)
         {
-            var price = prices.FirstOrDefault(p => p.CurrencyCode == currencyCode);
-
+            var price = prices.FirstOrDefault(p => p.CurrencyCode == this.currencyCode);
             if (price == null)
             {
-                throw new ArgumentException(String.Format("No prices available for currency code {0}", currencyCode));
+                throw new ArgumentException(String.Format("No prices available for currency code {0}", this.currencyCode));
             }
 
-            return price.Value;
+            var priceCalculator = new PriceCalculator(this.pricesIncludeVat);
+            return priceCalculator.CalculatePrice(price.Value, taxes);
         }
     }
 }
