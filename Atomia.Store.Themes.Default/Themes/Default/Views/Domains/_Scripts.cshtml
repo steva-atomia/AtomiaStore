@@ -1,7 +1,16 @@
-﻿<script type="text/javascript">
+﻿@model Atomia.Store.AspNetMvc.Models.DomainsViewModel
+
+<script type="text/javascript">
     var Atomia = Atomia || {};
     Atomia.VM = Atomia.VM || {};
 
     Atomia.VM.domains = new Atomia.ViewModels.DomainsModel();
     Atomia.VM.domainRegistration = new Atomia.ViewModels.DomainRegistrationModel(Atomia.VM.cart);
+
+    @* Pre-populate and submit search query coming from query string. *@
+    @if (!String.IsNullOrEmpty(Model.SearchQuery))
+    {
+        @: Atomia.VM.domainRegistration.query('@Model.SearchQuery');
+        @: $(function () { Atomia.VM.domainRegistration.submit();});
+    }
 </script>

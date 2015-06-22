@@ -20,9 +20,16 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// </summary>
         [OrderFlowFilter]
         [HttpGet]
-        public ActionResult Index()
+        public ActionResult Index(DomainQueryModel prefilled)
         {
             var model = DependencyResolver.Current.GetService<DomainsViewModel>();
+
+            if (ModelState.IsValid) 
+            {
+                // If query string 'query' is a valid domain search, prefill the search box, 
+                // otherwise we silently ignore and let user continue searching manually.
+                model.SearchQuery = prefilled.Query;
+            }
 
             return View(model);
         }
