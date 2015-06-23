@@ -684,6 +684,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Renewal period format is N-MONTH or N-YEAR.
+        /// </summary>
+        internal static string ErrorPreselectRenewalPeriod {
+            get {
+                return ResourceManager.GetString("ErrorPreselectRenewalPeriod", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ErrorTermNotChecked.
         /// </summary>
         internal static string ErrorTermNotChecked {

@@ -20,6 +20,7 @@ Getting Started With a Custom Theme
     * [Resource Strings and Localization](Documentation/resource-strings-and-localization.md)
     * [Customizing the Order Flow](Documentation/customizing-the-orderflow.md)
     * [Adding a Payment Method](Documentation/adding-a-payment-method.md)
+    * [Pre-selecting Products and Domain Search](preselecting-products-and-domain-search.md)
     * More to come
 
 Other topics:

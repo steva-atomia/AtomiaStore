@@ -647,4 +647,7 @@
   <data name="Amount" xml:space="preserve">
     <value>Amount</value>
   </data>
+  <data name="ErrorPreselectRenewalPeriod" xml:space="preserve">
+    <value>Renewal period format is N-MONTH or N-YEAR</value>
+  </data>
 </root>

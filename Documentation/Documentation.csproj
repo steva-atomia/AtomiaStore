@@ -42,6 +42,7 @@
     <None Include="customizing-view-models.md" />
     <None Include="customizing-views-and-layout.md" />
     <None Include="getting-started-with-a-new-theme.md" />
+    <None Include="preselecting-products-and-domain-search.md" />
     <None Include="resource-strings-and-localization.md" />
   </ItemGroup>
   <ItemGroup>

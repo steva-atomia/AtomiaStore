@@ -63,8 +63,22 @@ namespace Atomia.Store.Themes.Default
             );
 
             routes.MapRoute(
+                name: "Campaign",
+                url: "Campaign/{campaign}",
+                defaults: new
+                {
+                    controller = "Select",
+                    action = "Campaign"
+                }
+            );
+
+            routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}"
+                url: "{controller}/{action}",
+                defaults: new 
+                {
+                    action = "Index"
+                }
             );
         }
     }
