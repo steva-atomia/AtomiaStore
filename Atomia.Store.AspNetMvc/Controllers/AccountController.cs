@@ -20,6 +20,12 @@ namespace Atomia.Store.AspNetMvc.Controllers
         public ActionResult Index()
         {
             var model = DependencyResolver.Current.GetService<AccountViewModel>();
+            var previousContactData = contactDataProvider.GetContactData();
+
+            if (previousContactData != null)
+            {
+                model.SetContactData(previousContactData);
+            }
 
             return View(model);
         }

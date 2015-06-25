@@ -1,5 +1,6 @@
 ﻿using Atomia.Store.Core;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -12,6 +13,8 @@ namespace Atomia.Store.AspNetMvc.Models
         /// Get <see cref="Atomia.Store.Core.ContactData"/> with collected information from customer.
         /// </summary>
         public abstract IEnumerable<ContactData> GetContactData();
+
+        public abstract void SetContactData(IContactDataCollection previousContactData);
     }
 
 
@@ -66,6 +69,33 @@ namespace Atomia.Store.AspNetMvc.Models
                 BillingContact,
                 WhoisContact
             };
+        }
+
+        public override void SetContactData(IContactDataCollection previousContactData)
+        {
+            var allContacts = previousContactData.GetContactData();
+            var main = allContacts.FirstOrDefault(c => c.Id == "MainContact") as MainContactModel;
+            var billing = allContacts.FirstOrDefault(c => c.Id == "BillingContact") as BillingContactModel;
+            var whois = allContacts.FirstOrDefault(c => c.Id == "WhoisContact") as WhoisContactModel;
+
+            // Email is required so if it is present the form has been filled in.
+
+            if (main != null && !string.IsNullOrEmpty(main.Email))
+            {
+                this.MainContact = main;
+            }
+
+            if (billing != null && !string.IsNullOrEmpty(billing.Email))
+            {
+                this.BillingContact = billing;
+                this.OtherBillingContact = true;
+            }
+
+            if (whois != null && !string.IsNullOrEmpty(whois.Email))
+            {
+                this.WhoisContact = whois;
+                this.OtherWhoisContact = true;
+            }
         }
     }
 }
