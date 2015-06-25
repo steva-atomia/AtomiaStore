@@ -19,7 +19,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.isPrimary = self.attrs.premium === 'true';
         self.uniqueId = _.uniqueId('dmn');
         self.domainNameSld = domainParts[0];
-        self.domainNameTld = domainParts[1];
+        self.domainNameTld = domainParts.slice(1).join('.');
         self.status = domainItemData.Status;
 
         /** 
