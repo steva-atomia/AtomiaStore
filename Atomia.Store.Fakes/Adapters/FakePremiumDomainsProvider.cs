@@ -23,7 +23,10 @@ namespace Atomia.Store.Fakes.Adapters
                         {
                             ArticleNumber = "DMN-COM",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "Premium", Value = "true"} ,
+                                new CustomAttribute { Name = "productvalue", Value = ".com"} ,
+                            }
                         },
                         "com",
                         searchTerm + ".com",
@@ -38,7 +41,10 @@ namespace Atomia.Store.Fakes.Adapters
                         {
                             ArticleNumber = "DMN-SE",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true" } }
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "Premium", Value = "true" },
+                                new CustomAttribute { Name = "productvalue", Value = ".se"} ,
+                            }
                         },
                         "se",
                         searchTerm + ".se",
@@ -53,7 +59,10 @@ namespace Atomia.Store.Fakes.Adapters
                         {
                             ArticleNumber = "DMN-EU",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { new CustomAttribute { Name = "Premium", Value = "true"} }
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "Premium", Value = "true"},
+                                new CustomAttribute { Name = "productvalue", Value = ".eu"} ,
+                            }
                         },
                         "eu",
                         searchTerm + ".eu",
@@ -68,6 +77,9 @@ namespace Atomia.Store.Fakes.Adapters
                         {
                             ArticleNumber = "DMN-NET",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "productvalue", Value = ".net"} ,
+                            }
                         },
                         "net",
                         searchTerm + ".net",
@@ -82,6 +94,9 @@ namespace Atomia.Store.Fakes.Adapters
                         {
                             ArticleNumber = "DMN-INFO",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "productvalue", Value = ".info"} ,
+                            }
                         },
                         "info",
                         searchTerm + ".info",
@@ -94,11 +109,14 @@ namespace Atomia.Store.Fakes.Adapters
                     new DomainResult(
                         new Product
                         {
-                            ArticleNumber = "DMN-BIZ",
+                            ArticleNumber = "DMN-COUK",
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                            CustomAttributes = new List<CustomAttribute> { 
+                                new CustomAttribute { Name = "productvalue", Value = ".co.uk"} ,
+                            }
                         },
-                        "biz",
-                        searchTerm + ".biz",
+                        "co.uk",
+                        searchTerm + ".co.uk",
                         DomainResult.AVAILABLE,
                         1
                     )
@@ -118,7 +136,7 @@ namespace Atomia.Store.Fakes.Adapters
         public DomainSearchData CheckStatus(int domainSearchId)
         {
             var data = FindDomains(new List<string>{ lastSearchTerm });
-            data.Results = data.Results.Select(r => SetAvailable(r));
+            data.FinishSearch = true;
 
             return data;
         }

@@ -166,6 +166,10 @@ namespace Atomia.Store.Fakes.Adapters
                         new CustomAttribute {
                             Name = "tos",
                             Value = "TOS_core"
+                        },
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = ".com"
                         }
                     }
                 },
@@ -177,6 +181,12 @@ namespace Atomia.Store.Fakes.Adapters
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
+                    {
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = ".se"
+                        }
+                    }
                 },
 
                 new Product
@@ -187,6 +197,12 @@ namespace Atomia.Store.Fakes.Adapters
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
+                    {
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = ".eu"
+                        }
+                    }
                 },
 
                 new Product
@@ -207,16 +223,28 @@ namespace Atomia.Store.Fakes.Adapters
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     Category = "TLD",
                     CustomAttributes = new List<CustomAttribute>()
+                    {
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = ".info"
+                        }
+                    }
                 },
 
                 new Product
                 {
-                    Name = ".biz",
-                    ArticleNumber = "DMN-BIZ",
-                    Description = "Domain registration .biz",
+                    Name = ".co.uk",
+                    ArticleNumber = "DMN-COUK",
+                    Description = "Domain registration .co.uk",
                     Category = "TLD",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     CustomAttributes = new List<CustomAttribute>()
+                    {
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = ".co.uk"
+                        }
+                    }
                 }
             };
 
