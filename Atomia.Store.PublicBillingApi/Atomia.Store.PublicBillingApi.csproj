@@ -76,6 +76,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\CachedCountryProvider.cs" />
     <Compile Include="Adapters\CartPricingProvider.cs" />
     <Compile Include="Adapters\CategoryProductsProvider.cs" />
     <Compile Include="Adapters\CountryProvider.cs" />
