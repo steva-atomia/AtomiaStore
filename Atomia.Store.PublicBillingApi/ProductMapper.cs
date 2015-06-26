@@ -47,7 +47,7 @@ namespace Atomia.Store.PublicBillingApi
             var product = new CoreProduct()
             {
                 ArticleNumber = apiProduct.ArticleNumber,
-                Category = apiProduct.Category
+                Categories = apiProduct.ShopCategories.Select(c => c.Name).ToList()
             };
 
             SetNameAndDescription(product, apiProduct);
