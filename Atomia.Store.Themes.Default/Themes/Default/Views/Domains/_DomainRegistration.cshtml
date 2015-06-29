@@ -72,6 +72,12 @@
     </li>
 </script>
 
+<script type="text/html" id="domainregistration-primary-loading">
+    <li class="not_available" title="@Html.CommonResource("DomainNotAvailableHoverTitle")">
+        <span class="domain">.<!-- ko text: domainNameTld --><!-- /ko --></span>
+    </li>
+</script>
+
 <script type="text/html" id="domainregistration-secondary-available">
     <tr>
         <td><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></td>

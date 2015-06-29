@@ -82,6 +82,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.updateResults(data.Results);
                 }
                 else {
+                    self.updateResults(data.Results);
+
                     domainsApi.checkStatus(domainSearchId,
                         function (data) {
                             self.searchFinished(data.FinishSearch);
@@ -118,9 +120,15 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 var item = self.createDomainRegistrationItem(result);
 
                 if (item.isPrimary) {
+                    self.primaryResults.remove(function (r) {
+                        return r.articleNumber === item.articleNumber;
+                    });
                     self.primaryResults.push(item);
                 }
                 else {
+                    self.secondaryResults.remove(function (r) {
+                        return r.articleNumber === item.articleNumber;
+                    });
                     self.secondaryResults.push(item);
                 }
             });
@@ -144,6 +152,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             
             if (item.isPrimary && item.status === 'available') {
                 return 'domainregistration-primary-available';
+            }
+            else if (item.isPrimary && item.status === 'loading') {
+                return 'domainregistration-primary-loading';
             }
             else if (item.isPrimary) {
                 return 'domainregistration-primary-taken';
