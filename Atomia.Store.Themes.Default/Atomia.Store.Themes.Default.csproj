@@ -158,6 +158,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\DefaultCampaignPricingProvider.cs" />
     <Compile Include="Adapters\OrderFlowValidator.cs" />
     <Compile Include="Adapters\PremiumDomainsProvider.cs" />
     <Compile Include="App_GlobalResources\Common.designer.cs">

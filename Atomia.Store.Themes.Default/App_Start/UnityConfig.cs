@@ -58,9 +58,11 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IResellerIdentifierProvider, Atomia.Store.AspNetMvc.Adapters.ResellerIdentifierProvider>();
             container.RegisterType<ITermsOfServiceProvider, Atomia.Store.PublicBillingApi.Adapters.TermsOfServiceProvider>();
             container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.CartPricingProvider>("apiPricingService");
+            container.RegisterType<ICartPricingService, Atomia.Store.Themes.Default.Adapters.DefaultCampaignPricingProvider>("defaultCampaignPricingService",
+                new InjectionConstructor(new ResolvedParameter<ICartPricingService>("apiPricingService")));
             container.RegisterType<ICartPricingService, Atomia.Store.PublicBillingApi.Adapters.SetupFeeCartPricingService>(
                 new InjectionConstructor(
-                    new ResolvedParameter<ICartPricingService>("apiPricingService"),
+                    new ResolvedParameter<ICartPricingService>("defaultCampaignPricingService"),
                     new ResolvedParameter<ApiProductsProvider>()));
             container.RegisterType<IOrderFlowValidator, Atomia.Store.Themes.Default.Adapters.OrderFlowValidator>();
             container.RegisterType<IVatDisplayPreferenceProvider, Atomia.Store.PublicBillingApi.Adapters.VatDisplayPreferenceProvider>();
