@@ -54,11 +54,11 @@ namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
             var phone = FormattingHelper.FormatPhoneNumber(billingContact.Phone, billingContact.Country);
             order.BillingPhone = Normalize(phone);
 
-            if (billingContact.IndividualInfo != null)
+            if (billingContact.CustomerType == "individual" && billingContact.IndividualInfo != null)
             {
                 order.BillingCompanyNumber = Normalize(billingContact.IndividualInfo.IdentityNumber);
             }
-            else if (billingContact.CompanyInfo != null)
+            else if (billingContact.CustomerType == "company" && billingContact.CompanyInfo != null)
             {
                 order.BillingCompany = Normalize(billingContact.CompanyInfo.CompanyName);
                 order.BillingCompanyNumber = Normalize(billingContact.CompanyInfo.IdentityNumber);

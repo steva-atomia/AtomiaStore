@@ -35,11 +35,11 @@ namespace Atomia.Store.PublicOrderHandlers.ContactDataHandlers
             var phone = FormattingHelper.FormatPhoneNumber(mainContact.Phone, mainContact.Country);
             order.Phone = Normalize(phone);
 
-            if (mainContact.IndividualInfo != null)
+            if (mainContact.CustomerType == "individual" && mainContact.IndividualInfo != null)
             {
                 order.CompanyNumber = Normalize(mainContact.IndividualInfo.IdentityNumber);
             }
-            else if (mainContact.CompanyInfo != null)
+            else if (mainContact.CustomerType == "company" && mainContact.CompanyInfo != null)
             {
                 order.Company = Normalize(mainContact.CompanyInfo.CompanyName);
                 order.CompanyNumber = Normalize(mainContact.CompanyInfo.IdentityNumber);
