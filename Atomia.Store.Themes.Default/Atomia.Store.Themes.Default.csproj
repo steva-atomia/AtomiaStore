@@ -85,6 +85,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.Web.Plugin.Validation.dll</HintPath>
     </Reference>
+    <Reference Include="MarkdownSharp, Version=0.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\Solution\packages\MarkdownSharp.1.13.0.0\lib\35\MarkdownSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Practices.ServiceLocation, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -159,6 +163,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Adapters\DefaultCampaignPricingProvider.cs" />
+    <Compile Include="Adapters\MarkdownItemPresenter.cs" />
     <Compile Include="Adapters\OrderFlowValidator.cs" />
     <Compile Include="Adapters\PremiumDomainsProvider.cs" />
     <Compile Include="App_GlobalResources\Common.designer.cs">
