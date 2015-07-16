@@ -10,6 +10,7 @@ namespace Atomia.Store.AspNetMvc.Models
         private readonly string domainName;
         private readonly string status;
         private readonly int domainSearchId;
+        private readonly int order;
         
         /// <summary>
         /// Construct the view model from the <see cref="DomainResult"/>
@@ -20,6 +21,7 @@ namespace Atomia.Store.AspNetMvc.Models
             domainName = domainResult.DomainName;
             status = domainResult.Status;
             domainSearchId = domainResult.DomainSearchId;
+            order = domainResult.Order;
         }
 
         /// <summary>
@@ -52,6 +54,14 @@ namespace Atomia.Store.AspNetMvc.Models
             get
             {
                 return domainSearchId;
+            }
+        }
+
+        public int Order
+        {
+            get
+            {
+                return order;
             }
         }
     }

@@ -21,6 +21,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.domainNameSld = domainParts[0];
         self.domainNameTld = domainParts.slice(1).join('.');
         self.status = domainItemData.Status;
+        self.order = domainItemData.Order;
 
         /** 
          * Overrides ProductMixin property.
@@ -119,6 +120,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             _.each(results, function (result) {
                 var item = self.createDomainRegistrationItem(result);
 
+                // Put any specifically searched tld on top.
+                if (item.attrs.domainName === self.query()) {
+                    item.order = -1;
+                }
+
                 if (item.isPrimary) {
                     self.primaryResults.remove(function (r) {
                         return r.articleNumber === item.articleNumber;
@@ -132,6 +138,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     self.secondaryResults.push(item);
                 }
             });
+
+            self.primaryResults.sort(self.domainSortOrder);
+            self.secondaryResults.sort(self.domainSortOrder);
 
             if (self.primaryResultsAreFinished()) {
                 self.isLoadingResults(false);
@@ -162,6 +171,17 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             else {
                 return 'domainregistration-secondary-' + item.status;
             }
+        };
+
+        self.domainSortOrder = function domainSortOrder(leftItem, rightItem) {
+            if (leftItem.order === rightItem.order) {
+                return 0
+            }
+            else if (leftItem.order < rightItem.order) {
+                return -1;
+            }
+
+            return 1;
         };
     }
 

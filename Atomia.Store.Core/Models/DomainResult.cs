@@ -90,6 +90,8 @@ namespace Atomia.Store.Core
             }
         }
 
+        public int Order { get; set; }
+
         /// <summary>
         /// The domain name, including TLD.
         /// </summary>
