@@ -13,114 +13,109 @@ namespace Atomia.Store.Fakes.Adapters
             var results = new List<DomainResult>();
             var searchTerm = searchTerms.First();
 
+            var premiumTlds = new Dictionary<string, string> 
+            {
+                {"com", DomainResult.AVAILABLE},
+                {"org", DomainResult.AVAILABLE},
+                {"net", DomainResult.AVAILABLE},
+            };
+
+            var secondaryTlds = new Dictionary<string, string> 
+            {
+                {"se", DomainResult.AVAILABLE},
+                {"eu", DomainResult.UNAVAILABLE},
+                {"info", DomainResult.UNKNOWN},
+                {"co.uk", DomainResult.AVAILABLE},
+                
+                // Uncomment if you need to test many tlds. Also see FakeCategoryProductsProvider
+                /*{"de", DomainResult.AVAILABLE},
+                {"fr", DomainResult.UNAVAILABLE},
+                {"dk", DomainResult.AVAILABLE},
+                {"fi", DomainResult.UNAVAILABLE},
+                {"es", DomainResult.AVAILABLE},
+                {"co", DomainResult.UNAVAILABLE},
+                {"it", DomainResult.AVAILABLE},
+                {"io", DomainResult.UNAVAILABLE},
+                {"cloud", DomainResult.AVAILABLE},
+                {"global", DomainResult.UNAVAILABLE},
+                {"be", DomainResult.AVAILABLE},
+                {"ca", DomainResult.UNAVAILABLE},
+                {"mx", DomainResult.AVAILABLE},
+                {"pro", DomainResult.UNAVAILABLE},
+                {"aero", DomainResult.AVAILABLE},
+                {"asia", DomainResult.UNAVAILABLE},
+                {"au", DomainResult.AVAILABLE},
+                {"cl", DomainResult.UNAVAILABLE},
+                {"coop", DomainResult.AVAILABLE},
+                {"my", DomainResult.UNAVAILABLE},
+                {"sg", DomainResult.AVAILABLE},
+                {"hk", DomainResult.UNAVAILABLE},
+                {"hu", DomainResult.AVAILABLE},
+                {"jobs", DomainResult.UNAVAILABLE},
+                {"lv", DomainResult.AVAILABLE},
+                {"no", DomainResult.UNAVAILABLE},
+                {"nyc", DomainResult.AVAILABLE},
+                {"pm", DomainResult.UNAVAILABLE},
+                {"re", DomainResult.AVAILABLE},
+                {"tf", DomainResult.UNAVAILABLE},
+                {"wf", DomainResult.AVAILABLE},
+                {"yt", DomainResult.UNAVAILABLE},
+                {"ro", DomainResult.AVAILABLE},
+                {"ru", DomainResult.UNAVAILABLE},
+                {"nu", DomainResult.AVAILABLE},
+                {"travel", DomainResult.UNAVAILABLE}*/
+            };
+
             if (!string.IsNullOrEmpty(searchTerm))
             {
                 lastSearchTerm = searchTerm;
                 var renewalPeriods = new List<RenewalPeriod> { new RenewalPeriod(1, RenewalPeriod.YEAR) };
-                results.Add(
-                    new DomainResult(
+
+                var i = 0;
+                foreach (var tld in premiumTlds)
+                {
+                    var domainResult = new DomainResult(
                         new Product
                         {
-                            ArticleNumber = "DMN-COM",
+                            ArticleNumber = "DMN-" + tld.Key.ToUpper(),
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                             CustomAttributes = new List<CustomAttribute> { 
                                 new CustomAttribute { Name = "Premium", Value = "true"} ,
-                                new CustomAttribute { Name = "productvalue", Value = ".com"} ,
+                                new CustomAttribute { Name = "productvalue", Value = "." + tld.Key} ,
                             }
                         },
-                        "com",
-                        searchTerm + ".com",
-                        DomainResult.AVAILABLE,
+                        tld.Key,
+                        searchTerm + "." + tld.Key,
+                        tld.Value,
                         1
-                    )
-                );
+                    );
 
-                results.Add(
-                    new DomainResult(
+                    domainResult.Order = i++;
+
+                    results.Add(domainResult);
+                }
+
+                foreach (var tld in secondaryTlds)
+                {
+                    var domainResult = new DomainResult(
                         new Product
                         {
-                            ArticleNumber = "DMN-SE",
+                            ArticleNumber = "DMN-" + tld.Key.ToUpper(),
                             PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                             CustomAttributes = new List<CustomAttribute> { 
-                                new CustomAttribute { Name = "Premium", Value = "true" },
-                                new CustomAttribute { Name = "productvalue", Value = ".se"} ,
-                            }
+                                    new CustomAttribute { Name = "productvalue", Value = "." + tld.Key} ,
+                                }
                         },
-                        "se",
-                        searchTerm + ".se",
-                        DomainResult.AVAILABLE,
+                        tld.Key,
+                        searchTerm + "." + tld.Key,
+                        tld.Value,
                         1
-                    )
-                );
+                    );
 
-                results.Add(
-                    new DomainResult(
-                        new Product
-                        {
-                            ArticleNumber = "DMN-EU",
-                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { 
-                                new CustomAttribute { Name = "Premium", Value = "true"},
-                                new CustomAttribute { Name = "productvalue", Value = ".eu"} ,
-                            }
-                        },
-                        "eu",
-                        searchTerm + ".eu",
-                        DomainResult.UNAVAILABLE,
-                        1
-                    )
-                );
+                    domainResult.Order = i++;
 
-                results.Add(
-                    new DomainResult(
-                        new Product
-                        {
-                            ArticleNumber = "DMN-NET",
-                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { 
-                                new CustomAttribute { Name = "productvalue", Value = ".net"} ,
-                            }
-                        },
-                        "net",
-                        searchTerm + ".net",
-                        DomainResult.LOADING,
-                        1
-                    )
-                );
-
-                results.Add(
-                    new DomainResult(
-                        new Product
-                        {
-                            ArticleNumber = "DMN-INFO",
-                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { 
-                                new CustomAttribute { Name = "productvalue", Value = ".info"} ,
-                            }
-                        },
-                        "info",
-                        searchTerm + ".info",
-                        DomainResult.UNKNOWN,
-                        1
-                    )
-                );
-
-                results.Add(
-                    new DomainResult(
-                        new Product
-                        {
-                            ArticleNumber = "DMN-COUK",
-                            PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                            CustomAttributes = new List<CustomAttribute> { 
-                                new CustomAttribute { Name = "productvalue", Value = ".co.uk"} ,
-                            }
-                        },
-                        "co.uk",
-                        searchTerm + ".co.uk",
-                        DomainResult.AVAILABLE,
-                        1
-                    )
-                );
+                    results.Add(domainResult);
+                }
             }
 
             var data = new DomainSearchData

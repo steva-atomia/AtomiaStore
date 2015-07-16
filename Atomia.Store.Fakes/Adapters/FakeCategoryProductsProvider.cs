@@ -172,81 +172,36 @@ namespace Atomia.Store.Fakes.Adapters
                             Value = ".com"
                         }
                     }
-                },
-                new Product
-                {
-                    Name = ".se",
-                    ArticleNumber = "DMN-SE",
-                    Description = "Domain registration .se",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "TLD",
-                    CustomAttributes = new List<CustomAttribute>()
-                    {
-                        new CustomAttribute {
-                            Name = "productvalue",
-                            Value = ".se"
-                        }
-                    }
-                },
-
-                new Product
-                {
-                    Name = ".eu",
-                    ArticleNumber = "DMN-EU",
-                    Description = "Domain registration .eu",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "TLD",
-                    CustomAttributes = new List<CustomAttribute>()
-                    {
-                        new CustomAttribute {
-                            Name = "productvalue",
-                            Value = ".eu"
-                        }
-                    }
-                },
-
-                new Product
-                {
-                    Name = ".net",
-                    ArticleNumber = "DMN-NET",
-                    Description = "Domain registration .net",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "TLD",
-                    CustomAttributes = new List<CustomAttribute>()
-                },
-
-                new Product
-                {
-                    Name = ".info",
-                    ArticleNumber = "DMN-INFO",
-                    Description = "Domain registration .info",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Category = "TLD",
-                    CustomAttributes = new List<CustomAttribute>()
-                    {
-                        new CustomAttribute {
-                            Name = "productvalue",
-                            Value = ".info"
-                        }
-                    }
-                },
-
-                new Product
-                {
-                    Name = ".co.uk",
-                    ArticleNumber = "DMN-COUK",
-                    Description = "Domain registration .co.uk",
-                    Category = "TLD",
-                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    CustomAttributes = new List<CustomAttribute>()
-                    {
-                        new CustomAttribute {
-                            Name = "productvalue",
-                            Value = ".co.uk"
-                        }
-                    }
                 }
             };
+
+
+            var tlds = new[] { "se", "org", "eu", "net", "info", "co.uk" };
+
+            // Uncomment if you need to test with many tlds. Also see FakePremiumDomainsProvider
+            /* tlds = new [] {"se", "org", "eu", "net", "info", "de", "co.uk", "fr", "dk", "fi", "es",
+            "co", "it", "io", "cloud",  "global", "be", "ca", "mx", "pro", "aero", "asia", "au", "cl", 
+            "coop", "my", "sg", "hk", "hu", "jobs", "lv",  "no", "nyc", "pm", "re", "tf", "wf", "yt", 
+            "ro", "ru", "nu", "travel" };*/
+
+            foreach(var tld in tlds)
+            {
+                products.Add(new Product
+                {
+                    Name = "." + tld,
+                    ArticleNumber = "DMN-" + tld.ToUpper(),
+                    Description = "Domain registration ." + tld,
+                    Category = "TLD",
+                    PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
+                    CustomAttributes = new List<CustomAttribute>()
+                    {
+                        new CustomAttribute {
+                            Name = "productvalue",
+                            Value = "." + tld
+                        }
+                    }
+                });
+            }
 
             return products.OrderBy(p => p.PricingVariants.Min(v => v.Price));
         }
