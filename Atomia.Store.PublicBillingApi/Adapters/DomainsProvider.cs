@@ -269,6 +269,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     status = DomainResult.LOADING;
                     break;
                 case ("taken"):
+                case ("unavailable"):
                 case ("special"):
                     status = DomainResult.UNAVAILABLE;
                     break;
