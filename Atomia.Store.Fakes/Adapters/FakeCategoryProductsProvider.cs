@@ -22,7 +22,7 @@ namespace Atomia.Store.Fakes.Adapters
             var allProducts = GetAllProducts();
             var category = terms.First().Value;
 
-            return allProducts.Where(p => p.Categories.Contains(category));
+            return allProducts.Where(p => p.Categories.Select(c => c.Name).Contains(category));
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -34,7 +34,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "DNS Package",
-                    Categories = new List<string> {"HostingPackage"},
+                    Categories = new List<Category> { new Category { Name = "HostingPackage", Description = "Hosting package" } },
                     ArticleNumber = "DNS-PK",
                     Description = "DNS Package<ul><li>Domain management</li><li>DNS</li></br></br></ul>",
                     PricingVariants = new List<PricingVariant>
@@ -56,7 +56,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "Gold Package",
-                    Categories = new List<string> {"HostingPackage"},
+                    Categories = new List<Category> { new Category { Name = "HostingPackage", Description = "Hosting package" } },
                     ArticleNumber = "HST-GLD",
                     Description = "Basic hosting package<ul><li>Web hosting</li><li>Email</li><li>Domain management</li><li>DNS</li></ul>",
                     PricingVariants = new List<PricingVariant>
@@ -86,7 +86,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "Platinum package",
-                    Categories = new List<string> {"HostingPackage"},
+                    Categories = new List<Category> { new Category { Name = "HostingPackage", Description = "Hosting package" } },
                     ArticleNumber = "HST-PLT",
                     Description = "Premium hosting package<ul><li>Web hosting</li><li>Email</li><li>Domain management</li><li>DNS</li></ul>",
                     PricingVariants = new List<PricingVariant>
@@ -117,7 +117,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "MySQL Database",
-                    Categories = new List<string> {"HostingPackage"},
+                    Categories = new List<Category> { new Category { Name = "HostingPackage", Description = "Hosting package" } },
                     ArticleNumber = "XSV-MYSQL",
                     Description = "MySQL Database addon.",
                     PricingVariants = new List<PricingVariant>
@@ -137,7 +137,7 @@ namespace Atomia.Store.Fakes.Adapters
                 new Product
                 {
                     Name = "MSSQL Database",
-                    Categories = new List<string> {"HostingPackage"},
+                    Categories = new List<Category> { new Category { Name = "HostingPackage", Description = "Hosting package" } },
                     ArticleNumber = "XSV-MSSQL",
                     Description = "MSSQL Database addon.",
                     PricingVariants = new List<PricingVariant>
@@ -160,7 +160,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-COM",
                     Description = "Domain registration .com",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     CustomAttributes = new List<CustomAttribute>
                     {
                         new CustomAttribute {
@@ -179,7 +179,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-SE",
                     Description = "Domain registration .se",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     CustomAttributes = new List<CustomAttribute>()
                     {
                         new CustomAttribute {
@@ -195,7 +195,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-EU",
                     Description = "Domain registration .eu",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     CustomAttributes = new List<CustomAttribute>()
                     {
                         new CustomAttribute {
@@ -211,7 +211,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-NET",
                     Description = "Domain registration .net",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     CustomAttributes = new List<CustomAttribute>()
                 },
 
@@ -221,7 +221,7 @@ namespace Atomia.Store.Fakes.Adapters
                     ArticleNumber = "DMN-INFO",
                     Description = "Domain registration .info",
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     CustomAttributes = new List<CustomAttribute>()
                     {
                         new CustomAttribute {
@@ -236,7 +236,7 @@ namespace Atomia.Store.Fakes.Adapters
                     Name = ".co.uk",
                     ArticleNumber = "DMN-COUK",
                     Description = "Domain registration .co.uk",
-                    Categories = new List<string> {"TLD"},
+                    Categories = new List<Category> { new Category { Name = "TLD", Description = "Domain name" } },
                     PricingVariants = renewalPeriods.Select(r => new PricingVariant { Price = 10m, RenewalPeriod = r }).ToList(),
                     CustomAttributes = new List<CustomAttribute>()
                     {

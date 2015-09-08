@@ -22,7 +22,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
             var product = productProvider.GetProduct(item.ArticleNumber);
             var domainCategories = domainsProvider.GetDomainCategories();
 
-            if (domainCategories.Any(dc => product.Categories.Contains(dc)))
+            if (domainCategories.Any(dc => product.Categories.Any(c => c.Name == dc)))
             {
                 var domainNameAttr = item.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainName");
                 
@@ -47,7 +47,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
         /// <summary>
         /// Get categories from <see cref="Atomia.Store.Core.IProductProvider"/>
         /// </summary>
-        public IEnumerable<string> GetCategories(IPresentableItem item)
+        public IEnumerable<Category> GetCategories(IPresentableItem item)
         {
             var product = productProvider.GetProduct(item.ArticleNumber);
 

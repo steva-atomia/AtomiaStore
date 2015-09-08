@@ -46,8 +46,7 @@ namespace Atomia.Store.PublicBillingApi
         {
             var product = new CoreProduct()
             {
-                ArticleNumber = apiProduct.ArticleNumber,
-                Categories = apiProduct.ShopCategories.Select(c => c.Name).ToList()
+                ArticleNumber = apiProduct.ArticleNumber
             };
 
             SetNameAndDescription(product, apiProduct);
@@ -55,6 +54,8 @@ namespace Atomia.Store.PublicBillingApi
             SetPricingVariants(product, apiProduct);
 
             SetCustomAttributes(product, apiProduct);
+
+            SetCategories(product, apiProduct);
 
             return product;
         }
@@ -151,6 +152,37 @@ namespace Atomia.Store.PublicBillingApi
                     Name = prop.Key,
                     Value = prop.Value
                 });
+            }
+        }
+
+        /// <summary>
+        /// Set categories with name and localized description on product
+        /// </summary>
+        private void SetCategories(CoreProduct product, ApiProduct apiProduct)
+        {
+            product.Categories = new List<Category>();
+
+            foreach (var shopCategory in apiProduct.ShopCategories)
+            {
+                var category = new Category { Name = shopCategory.Name, Description = shopCategory.Name };
+
+                if (shopCategory.MultilanguageDescriptions != null)
+                {
+                    var descriptions = shopCategory.MultilanguageDescriptions.Where(l => l.LanguageIso639Name.ToUpper() == this.language.PrimaryTag);
+                    var regionalDescription = descriptions.FirstOrDefault(l => l.LanguageCulture.ToUpper() == this.language.RegionTag);
+                    var standardDescription = descriptions.FirstOrDefault();
+
+                    if (regionalDescription != null)
+                    {
+                        category.Description = regionalDescription.Value;
+                    }
+                    else if (standardDescription != null)
+                    {
+                        category.Description = standardDescription.Value;
+                    }
+                }
+
+                product.Categories.Add(category);
             }
         }
 

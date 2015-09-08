@@ -123,7 +123,7 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        public IEnumerable<string> Categories
+        public IEnumerable<Category> Categories
         {
             get
             {

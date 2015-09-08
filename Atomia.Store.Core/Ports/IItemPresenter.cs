@@ -36,6 +36,6 @@ namespace Atomia.Store.Core
         /// <summary>
         /// Get categories
         /// </summary>
-        IEnumerable<string> GetCategories(IPresentableItem item);
+        IEnumerable<Category> GetCategories(IPresentableItem item);
     }
 }

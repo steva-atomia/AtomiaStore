@@ -2,9 +2,7 @@ AtomiaStore is a web application and framework for ordering products and service
 
 AtomiaStore is an ASP.NET MVC 5 application and some familiarity with Visual Studio and [Razor views](http://www.asp.net/mvc/overview/views) is assumed for most customization tasks. Most views also contain JavaScript in form of [knockout.js](http://www.knockoutjs.com).
 
-
-
-AtomiaStore is **currently in beta.**
+Requires Atomia Billing 15.9
 
 Getting Started With a Custom Theme
 ===================================

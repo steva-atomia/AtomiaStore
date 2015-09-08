@@ -69,7 +69,7 @@ namespace Atomia.Store.PublicBillingApi.Handlers
         /// <summary>
         /// Shortcut for category.
         /// </summary>
-        public IEnumerable<string> Categories
+        public IEnumerable<Category> Categories
         {
             get
             {

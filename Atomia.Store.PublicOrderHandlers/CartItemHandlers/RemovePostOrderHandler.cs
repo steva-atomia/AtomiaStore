@@ -24,7 +24,7 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         /// </summary>
         public override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
-            var postOrderItems = orderContext.ItemData.Where(i => this.HandledCategories.Intersect(i.Categories).Count() > 0);
+            var postOrderItems = orderContext.ItemData.Where(i => this.HandledCategories.Intersect(i.Categories.Select(c => c.Name)).Count() > 0);
             var orderItems = new List<PublicOrderItem>(order.OrderItems);
 
             foreach (var postOrderItem in postOrderItems)

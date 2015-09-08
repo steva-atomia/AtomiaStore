@@ -36,7 +36,7 @@ namespace Atomia.Store.Themes.Default.Adapters
             return transformedDescription;
         }
 
-        public IEnumerable<string> GetCategories(IPresentableItem item)
+        public IEnumerable<Category> GetCategories(IPresentableItem item)
         {
             return this.itemPresenter.GetCategories(item);
         }
