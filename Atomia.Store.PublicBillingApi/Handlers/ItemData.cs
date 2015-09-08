@@ -1,5 +1,6 @@
 ﻿using Atomia.Store.Core;
 using System;
+using System.Collections.Generic;
 
 namespace Atomia.Store.PublicBillingApi.Handlers
 {
@@ -68,11 +69,11 @@ namespace Atomia.Store.PublicBillingApi.Handlers
         /// <summary>
         /// Shortcut for category.
         /// </summary>
-        public string Category
+        public IEnumerable<Category> Categories
         {
             get
             {
-                return product.Category;
+                return product.Categories;
             }
         }
 

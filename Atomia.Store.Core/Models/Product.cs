@@ -23,9 +23,9 @@ namespace Atomia.Store.Core
         public string Description { get; set; }
 
         /// <summary>
-        /// Category the product belongs to.
+        /// All categories the product belongs to.
         /// </summary>
-        public string Category { get; set; }
+        public List<Category> Categories { get; set; }
 
         /// <summary>
         /// Custom data needed for the product

@@ -123,11 +123,11 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
-        public string Category
+        public IEnumerable<Category> Categories
         {
             get
             {
-                return itemPresenter.GetCategory(this);
+                return itemPresenter.GetCategories(this);
             }
         }
 

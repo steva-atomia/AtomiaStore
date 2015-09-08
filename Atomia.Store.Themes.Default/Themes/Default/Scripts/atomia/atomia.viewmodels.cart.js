@@ -61,7 +61,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 articleNumber: cartItemData.ArticleNumber,
                 name: cartItemData.Name,
                 description: cartItemData.Description,
-                category: cartItemData.Category,
+                categories: _.pluck(cartItemData.Categories, 'Name'),
+                categoryDescription: _.pluck(cartItemData.Categories, 'Description').join(', '),
                 quantity: cartItemData.Quantity,
                 price: cartItemData.Price,
                 taxes: [],
@@ -188,7 +189,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         /** Items in cart that are domain items, like registration or transfer */
         self.domainItems = function domainItems() {
             return _.filter(self.cartItems(), function (item) {
-                return _.contains(self.domainCategories, item.category);
+                var i = _.intersection(self.domainCategories, item.categories);
+
+                return i.length > 0;
             });
         };
 
@@ -201,9 +204,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
         /** Distinct categories of items in cart. */
         self.categories = function categories() {
-            return _.uniq(_.map(self.cartItems(), function (item) {
-                return item.category;
-            }));
+            return _.union.apply(_, _.pluck(self.cartItems(), 'categories'));
         };
 
         /** Check if cart contains item that 'equals' 'item'. */
@@ -235,7 +236,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             // Placeholder values if item is added in view where template of cart use bindings on any
             // of these properties. They will be quickly replaced when the real CartItem from recalculate
             // replaces the temporary local value.
-            item.category = item.category || '';
+            item.categories = item.categories || [];
             item.discount = item.discount || '';
             item.total = item.total || '';
             item.quantity = item.quantity || 1;
@@ -417,7 +418,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             },
 
             isDomainItem: function isDomainItem() {
-                return _.contains(cart.domainCategories, item.category);
+                return _.intersection(cart.domainCategories, item.categories).length > 0;
             }
         };
 

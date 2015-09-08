@@ -1,6 +1,7 @@
 ﻿using Atomia.Store.Core;
 using MarkdownSharp;
 using System;
+using System.Collections.Generic;
 
 namespace Atomia.Store.Themes.Default.Adapters
 {
@@ -35,9 +36,9 @@ namespace Atomia.Store.Themes.Default.Adapters
             return transformedDescription;
         }
 
-        public string GetCategory(IPresentableItem item)
+        public IEnumerable<Category> GetCategories(IPresentableItem item)
         {
-            return this.itemPresenter.GetCategory(item);
+            return this.itemPresenter.GetCategories(item);
         }
     }
 }

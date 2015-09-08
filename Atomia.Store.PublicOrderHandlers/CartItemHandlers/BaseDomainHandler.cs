@@ -27,7 +27,7 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         /// </summary>
         public sealed override PublicOrder AmendOrder(PublicOrder order, PublicOrderContext orderContext)
         {
-            var domainItems = orderContext.ItemData.Where(i => this.HandledCategories.Contains(i.Category));
+            var domainItems = orderContext.ItemData.Where(i => this.HandledCategories.Intersect(i.Categories.Select(c => c.Name)).Count() > 0);
 
             foreach (var domainItem in domainItems)
             {
@@ -157,7 +157,7 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         /// </summary>
         protected bool IsHostingPackageWithWebsitesAllowed(ItemData connectedItem)
         {
-            return (connectedItem.Category == "HostingPackage" &&
+            return (connectedItem.Categories.Select(c => c.Name).Contains("HostingPackage") &&
                     !connectedItem.Product.CustomAttributes.Any(ca => ca.Name == "nowebsites" && ca.Value.ToLowerInvariant() == "true"));
         }
     }
