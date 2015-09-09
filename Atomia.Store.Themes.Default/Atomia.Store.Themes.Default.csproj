@@ -206,6 +206,7 @@
     <Content Include="Original Files\App_Data\atomiaRegularExpressionConfig.config" />
     <Content Include="Original Files\Web.config" />
     <Content Include=".jshintrc" />
+    <Content Include="Original Files\bin\Atomia.Common.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.DomainSearch.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.OrderServiceReferences.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.Validation.dll.config" />
@@ -459,7 +460,8 @@
   <PropertyGroup>
     <PostBuildEvent>xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"
 xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.Validation.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"
-xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.DomainSearch.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"</PostBuildEvent>
+xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.DomainSearch.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"
+xcopy /y "$(SolutionDir)..\Lib\Atomia.Common.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"</PostBuildEvent>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" />
   <Target Condition="'$(Configuration)' == 'Release'" Name="AfterBuild">
