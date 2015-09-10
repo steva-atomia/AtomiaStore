@@ -6,5 +6,6 @@
 
 <p class="actions" style="display: block;">
     @Html.RouteLink(Html.CommonResource("Back"), orderFlow.CurrentStep.Previous, routeValues, new { id = "back_step", @class = "button large", style = "display: inline-block;" })
-    <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !cart.isEmpty()">@Html.CommonResource("Checkout")</button>
+    <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !cart.isEmpty() && !vatValidation.initialCheckDone(), click: vatValidation.enableRevalidation">@Html.CommonResource("Checkout")</button>
+    <button type="submit" class="button green" style="vertical-align:top;" data-bind="visible: !cart.isEmpty() && vatValidation.initialCheckDone()">@Html.CommonResource("Checkout")</button>
 </p>

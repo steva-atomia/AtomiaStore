@@ -650,4 +650,28 @@
   <data name="ErrorPreselectRenewalPeriod" xml:space="preserve">
     <value>Renewal period format is N-MONTH or N-YEAR</value>
   </data>
+  <data name="CouldNotValidateVatNumber" xml:space="preserve">
+    <value>Could not validate VAT number</value>
+  </data>
+  <data name="InvalidVatNumber" xml:space="preserve">
+    <value>Invalid VAT number</value>
+  </data>
+  <data name="NoVatNumber" xml:space="preserve">
+    <value>Customer has no VATnumber</value>
+  </data>
+  <data name="VatNumberWarning" xml:space="preserve">
+    <value>Your VAT number in not correct or the validation service is not available at the moment, therefore VAT will be applied to your invoice. You should check your VAT number and try to validate it again.</value>
+  </data>
+  <data name="VatValidationSuccessTitle" xml:space="preserve">
+    <value>VAT validation successful</value>
+  </data>
+  <data name="VatValidationSucessDescription" xml:space="preserve">
+    <value>Your VAT number is successfully validated and your invoice will be free of VAT.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Retry</value>
+  </data>
+  <data name="Validating" xml:space="preserve">
+    <value>Validating</value>
+  </data>
 </root>

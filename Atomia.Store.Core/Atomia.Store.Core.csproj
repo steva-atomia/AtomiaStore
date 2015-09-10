@@ -86,6 +86,7 @@
     <Compile Include="Models\SearchTerm.cs" />
     <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\TermsOfService.cs" />
+    <Compile Include="Models\VatValidationResult.cs" />
     <Compile Include="Ports\IContactDataCollection.cs" />
     <Compile Include="Ports\IContactDataProvider.cs" />
     <Compile Include="Ports\ICurrencyPreferenceProvider.cs" />
@@ -110,6 +111,8 @@
     <Compile Include="Ports\IResellerProvider.cs" />
     <Compile Include="Ports\IThemeNamesProvider.cs" />
     <Compile Include="Ports\IVatDisplayPreferenceProvider.cs" />
+    <Compile Include="Ports\IVatDataProvider.cs" />
+    <Compile Include="Ports\IVatNumberValidator.cs" />
     <Compile Include="Ports\PaymentUrlProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Ports\ICurrencyFormatter.cs" />

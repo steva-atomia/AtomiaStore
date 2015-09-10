@@ -432,6 +432,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Could not validate VAT number.
+        /// </summary>
+        internal static string CouldNotValidateVatNumber {
+            get {
+                return ResourceManager.GetString("CouldNotValidateVatNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Country.
         /// </summary>
         internal static string Country {
@@ -882,6 +891,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Invalid VAT number.
+        /// </summary>
+        internal static string InvalidVatNumber {
+            get {
+                return ResourceManager.GetString("InvalidVatNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Invoice.
         /// </summary>
         internal static string Invoice {
@@ -986,6 +1004,15 @@ namespace Resources {
         internal static string NoTax {
             get {
                 return ResourceManager.GetString("NoTax", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Customer has no VATnumber.
+        /// </summary>
+        internal static string NoVatNumber {
+            get {
+                return ResourceManager.GetString("NoVatNumber", resourceCulture);
             }
         }
         
@@ -1158,6 +1185,15 @@ namespace Resources {
         internal static string RenewalPeriodDisplay {
             get {
                 return ResourceManager.GetString("RenewalPeriodDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Retry.
+        /// </summary>
+        internal static string Retry {
+            get {
+                return ResourceManager.GetString("Retry", resourceCulture);
             }
         }
         
@@ -1441,11 +1477,47 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Validating.
+        /// </summary>
+        internal static string Validating {
+            get {
+                return ResourceManager.GetString("Validating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to VAT number.
         /// </summary>
         internal static string VatNumber {
             get {
                 return ResourceManager.GetString("VatNumber", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VAT number in not correct or the validation service is not available at the moment, therefore VAT will be applied to your invoice. You should check your VAT number and try to validate it again..
+        /// </summary>
+        internal static string VatNumberWarning {
+            get {
+                return ResourceManager.GetString("VatNumberWarning", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to VAT validation successful.
+        /// </summary>
+        internal static string VatValidationSuccessTitle {
+            get {
+                return ResourceManager.GetString("VatValidationSuccessTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Your VAT number is successfully validated and your invoice will be free of VAT..
+        /// </summary>
+        internal static string VatValidationSucessDescription {
+            get {
+                return ResourceManager.GetString("VatValidationSucessDescription", resourceCulture);
             }
         }
         

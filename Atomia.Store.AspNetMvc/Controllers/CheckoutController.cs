@@ -1,6 +1,8 @@
 ﻿using Atomia.Store.AspNetMvc.Filters;
+using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.Core;
+using System;
 using System.Web.Mvc;
 
 namespace Atomia.Store.AspNetMvc.Controllers
@@ -16,6 +18,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly ICartPricingService cartPricingService = DependencyResolver.Current.GetService<ICartPricingService>();
         private readonly ITermsOfServiceProvider tosProvider = DependencyResolver.Current.GetService<ITermsOfServiceProvider>();
         private readonly PaymentUrlProvider urlProvider = DependencyResolver.Current.GetService<PaymentUrlProvider>();
+        private readonly IVatNumberValidator vatValidator = DependencyResolver.Current.GetService<IVatNumberValidator>();
+        private readonly IVatDataProvider vatDataProvider = DependencyResolver.Current.GetService<IVatDataProvider>();
 
         /// <summary>
         /// Checkout page, part of order flow
@@ -28,6 +32,9 @@ namespace Atomia.Store.AspNetMvc.Controllers
             var cart = cartProvider.GetCart();
             cartPricingService.CalculatePricing(cart);
 
+            // If VAT number was submitted, indicate a VAT check should be made
+            ViewBag.CheckVAT = !String.IsNullOrEmpty(vatDataProvider.VatNumber);
+            
             var model = DependencyResolver.Current.GetService<CheckoutViewModel>();
 
             return View(model);
@@ -141,6 +148,22 @@ namespace Atomia.Store.AspNetMvc.Controllers
             };
 
             return View(model);
+        }
+
+        /// <summary>
+        /// Validate VAT number with backend service
+        /// </summary>
+        [HttpPost]
+        public ActionResult ValidateVatNumber(string vatNumber)
+        {
+            if (!string.IsNullOrEmpty(vatNumber))
+            {
+                vatDataProvider.VatNumber = vatNumber;
+            }
+
+            var result = vatValidator.ValidateCustomerVatNumber();
+
+            return JsonEnvelope.Success(result);
         }
     }
 }

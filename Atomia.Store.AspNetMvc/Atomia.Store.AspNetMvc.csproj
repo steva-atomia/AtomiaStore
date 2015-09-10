@@ -108,6 +108,7 @@
     <Compile Include="Adapters\CurrencyFormatter.cs" />
     <Compile Include="Adapters\CurrencyPreferenceProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
+    <Compile Include="Adapters\VatDataProvider.cs" />
     <Compile Include="Controllers\SelectController.cs" />
     <Compile Include="Filters\ThemeFilter.cs" />
     <Compile Include="Infrastructure\GlobalOrderFlows.cs" />

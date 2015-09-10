@@ -41,4 +41,11 @@
         type: 'POST',
         decoder: 'jsend'
     });
+
+    amplify.request.define('Checkout.ValidateVatNumber', 'ajax', {
+        url: '/Checkout/ValidateVatNumber',
+        dataType: 'json',
+        type: 'POST',
+        decoder: 'jsend'
+    });
 } (amplify));

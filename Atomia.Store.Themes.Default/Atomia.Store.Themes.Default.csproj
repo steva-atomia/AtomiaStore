@@ -239,12 +239,14 @@
       <SubType>Designer</SubType>
     </Content>
     <Content Include="Themes\Default\Content\img\atomia_2\mail.svg" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.api.checkout.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paymentprofile.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.modalmixin.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.notification.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productmixin.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.vatvalidation.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.whois.js" />
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />

@@ -2,6 +2,7 @@
 
 @{
     Html.EnableClientValidation();
+    var checkVAT = ViewBag.CheckVAT ? "true" : "false";
 }
 
 <script type="text/javascript">
@@ -15,4 +16,11 @@
     Atomia.VM.paymentProfile = new Atomia.ViewModels.PaymentProfileModel('@Model.SelectedPaymentMethodId', @Html.Raw(Model.PaymentMethodsWithPaymentProfileToJson()));
 
     Atomia.VM.campaignCode = new Atomia.ViewModels.CampaignCodeModel(Atomia.VM.cart);
+
+    Atomia.VM.vatValidation = new Atomia.ViewModels.VatValidationModel(Atomia.VM.cart, @checkVAT);
+
+    @if (ViewBag.CheckVAT)
+    {
+        @: Atomia.VM.vatValidation.validateVatNumber();
+    }
 </script>

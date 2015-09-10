@@ -90,6 +90,7 @@
     <Compile Include="Adapters\SetupFeeCartPricingProvider.cs" />
     <Compile Include="Adapters\TermsOfServiceProvider.cs" />
     <Compile Include="Adapters\VatDisplayPreferenceProvider.cs" />
+    <Compile Include="Adapters\VatNumberValidator.cs" />
     <Compile Include="ApiProductsProvider.cs" />
     <Compile Include="CachedResellerDataProvider.cs" />
     <Compile Include="Handlers\TransactionDataHandler.cs" />

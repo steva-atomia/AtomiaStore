@@ -68,6 +68,8 @@ namespace Atomia.Store.Themes.Default
                     new ResolvedParameter<ApiProductsProvider>()));
             container.RegisterType<IOrderFlowValidator, Atomia.Store.Themes.Default.Adapters.OrderFlowValidator>();
             container.RegisterType<IVatDisplayPreferenceProvider, Atomia.Store.PublicBillingApi.Adapters.VatDisplayPreferenceProvider>();
+            container.RegisterType<IVatDataProvider, Atomia.Store.AspNetMvc.Adapters.VatDataProvider>();
+            container.RegisterType<IVatNumberValidator, Atomia.Store.PublicBillingApi.Adapters.VatNumberValidator>();
 
             // Public billing api helpers
             container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
@@ -205,6 +207,7 @@ namespace Atomia.Store.Themes.Default
                         new ResolvedParameter<OrderDataHandler>("MainContact"),
                         new ResolvedParameter<OrderDataHandler>("BillingContact"),
                         new ResolvedParameter<OrderDataHandler>("CampaignCode"),
+                        new ResolvedParameter<OrderDataHandler>("VatValidation"),
                         new ResolvedParameter<OrderDataHandler>("IpAddress"),
                         new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
                         new ResolvedParameter<OrderDataHandler>("TransferDomain"),

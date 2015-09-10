@@ -383,6 +383,13 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 utils.publish('cart:removeCampaignCode');
             });
         };
+
+        /** Manually trigger recalculate */
+        self.recalculate = function recalculate() {
+            cartApi.recalculateCart(toCartApiData(self), function (result) {
+                updateCart(self, result.Cart);
+            });
+        };
     }
 
     /** 

@@ -1,12 +1,27 @@
-﻿<div id="vat_alert" class="warning">
-    <p>Your VAT number in not correct/validation service is not available atm, therefore VAT will be applied to your invoice. You should check your VAT number and try to validate it again.</p>
-    <div class="formrow">
-        <h5><label for="vat_again">VAT number:</label></h5>
-        <div class="col2row"><input id="vat_again" type="text" value="SE-804576985"> <a id="vat_trigger" class="button small green" href="javascript:void(0);">Retry</a></div>
-        <br class="clear">
+﻿<div data-bind="visible: vatValidation.revalidationEnabled">
+
+    <h4>@Html.CommonResource("VatNumber")</h4>
+
+    <div class="warning" data-bind="slideVisible: !vatValidation.valid()">
+        <p data-bind ="visible: !vatValidation.validating()">@Html.CommonResource("VatNumberWarning")</p>
+
+        <div class="formrow" data-bind="visible: !vatValidation.validating()">
+            <h5><label for="vat_again">@Html.CommonResource("VatNumber"):</label></h5>
+            <div class="col2row">
+                <input id="vat_again" type="text" data-bind="value: vatValidation.vatNumber">
+                <a class="button small green" href="javascript:void(0);" data-bind="click: vatValidation.validateVatNumber">@Html.CommonResource("Retry")</a>
+            </div>
+            <br class="clear">
+        </div>
+
+        <div class="formrow" data-bind="visible: vatValidation.validating">
+            <h5><span class="processing"></span>&nbsp;@Html.CommonResource("Validating") ...</h5>
+        </div>
     </div>
-</div>
-<div id="vat_box" class="success" style="display: none;">
-    <h4>VAT validation successful</h4>
-    <p>Your VAT number is successfully validated and your invoice will be free of VAT.</p>
+
+    <div class="success" style="display: none;" data-bind="slideVisible: vatValidation.valid">
+        <h4>@Html.CommonResource("VatValidationSuccessTitle")</h4>
+        <p>@Html.CommonResource("VatValidationSuccessDescription")</p>
+    </div>
+
 </div>
