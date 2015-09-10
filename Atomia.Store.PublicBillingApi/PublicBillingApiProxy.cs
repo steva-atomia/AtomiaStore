@@ -71,5 +71,10 @@ namespace Atomia.Store.PublicBillingApi
         {
             return service.CreateOrderWithLoginToken(order, resellerRootDomain, out token);
         }
+
+        public virtual VatNumberValidationResultType ValidateVatNumber(string countryCode, string vatNumber)
+        {
+            return service.ValidateVatNumber(countryCode, vatNumber);
+        }
     }
 }
