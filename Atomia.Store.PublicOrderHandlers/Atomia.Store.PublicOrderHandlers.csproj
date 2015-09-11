@@ -87,6 +87,7 @@
     <Compile Include="LanguageHandler.cs" />
     <Compile Include="ResellerHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VatNumberHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\Solution\SolutionInfo.cs">

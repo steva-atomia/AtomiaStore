@@ -69,7 +69,9 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IOrderFlowValidator, Atomia.Store.Themes.Default.Adapters.OrderFlowValidator>();
             container.RegisterType<IVatDisplayPreferenceProvider, Atomia.Store.PublicBillingApi.Adapters.VatDisplayPreferenceProvider>();
             container.RegisterType<IVatDataProvider, Atomia.Store.AspNetMvc.Adapters.VatDataProvider>();
-            container.RegisterType<IVatNumberValidator, Atomia.Store.PublicBillingApi.Adapters.VatNumberValidator>();
+            container.RegisterType<IVatNumberValidator, Atomia.Store.PublicBillingApi.Adapters.VatNumberValidator>("apiVatNumberValidator");
+            container.RegisterType<IVatNumberValidator, Atomia.Store.PublicBillingApi.Adapters.CachedVatNumberValidator>(
+                new InjectionConstructor(new ResolvedParameter<IVatNumberValidator>("apiVatNumberValidator"), new ResolvedParameter<IVatDataProvider>()));
 
             // Public billing api helpers
             container.RegisterType<PublicBillingApiClient, PublicBillingApiClient>();
@@ -158,6 +160,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.MainContactDataHandler>("MainContact");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.BillingContactDataHandler>("BillingContact");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CampaignCodeHandler>("CampaignCode");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.VatValidationHandler>("VatValidation");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.IpAddressHandler>("IpAddress");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.RegisterDomainHandler>("RegisterDomain");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CartItemHandlers.TransferDomainHandler>("TransferDomain");
@@ -178,6 +181,7 @@ namespace Atomia.Store.Themes.Default
                         new ResolvedParameter<OrderDataHandler>("MainContact"),
                         new ResolvedParameter<OrderDataHandler>("BillingContact"),
                         new ResolvedParameter<OrderDataHandler>("CampaignCode"),
+                        new ResolvedParameter<OrderDataHandler>("VatValidation"),
                         new ResolvedParameter<OrderDataHandler>("IpAddress"),
                         new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
                         new ResolvedParameter<OrderDataHandler>("TransferDomain"),

@@ -44,17 +44,20 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 
                 switch (validationResult)
                 {
-                    case VatNumberValidationResultType.Invalid:
-                        result.Valid = false;
-                        result.ValidationMessage = resourceProvider.GetResource("InvalidVatNumber");
-                        break;
                     case VatNumberValidationResultType.Valid:
                         result.Valid = true;
+                        result.ValidationDetail = VatValidationDetail.Valid;
                         result.ValidationMessage = String.Empty;
+                        break;
+                    case VatNumberValidationResultType.Invalid:
+                        result.Valid = false;
+                        result.ValidationDetail = VatValidationDetail.Invalid;
+                        result.ValidationMessage = resourceProvider.GetResource("InvalidVatNumber");
                         break;
                     case VatNumberValidationResultType.ValidationError:
                     default:
                         result.Valid = false;
+                        result.ValidationDetail = VatValidationDetail.ServiceError;
                         result.ValidationMessage = resourceProvider.GetResource("CouldNotValidateVatNumber");
                         break;
                 }
@@ -62,6 +65,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             else
             {
                 result.Valid = false;
+                result.ValidationDetail = VatValidationDetail.NoVatNumber;
                 result.ValidationMessage = resourceProvider.GetResource("NoVatNumber");
             }
             
