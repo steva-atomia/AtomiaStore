@@ -17,6 +17,7 @@ namespace Atomia.Store.Core
         private decimal subTotal;
         private decimal total;
         private List<Tax> taxes = new List<Tax>();
+        private List<CustomAttribute> customAttribues = new List<CustomAttribute>();
 
         /// <summary>
         /// Cart constructor
@@ -48,6 +49,17 @@ namespace Atomia.Store.Core
             { 
                 return this.cartItems; 
             } 
+        }
+
+        /// <summary>
+        /// Attributes on cart.
+        /// </summary>
+        public ICollection<CustomAttribute> CustomAttributes
+        {
+            get
+            {
+                return this.customAttribues;
+            }
         }
 
         /// <summary>
@@ -162,11 +174,21 @@ namespace Atomia.Store.Core
             {
                 throw new ArgumentNullException("cartItem");
             }
-
+            
             cartItem.Id = Guid.NewGuid();
             this.cartItems.Add(cartItem);
 
-            RecalculatePricingAndSave();
+
+            try
+            {
+                RecalculatePricingAndSave();
+            }
+            catch(Exception)
+            {
+                this.cartItems.Remove(cartItem);
+                throw;
+            }
+            
 
             return cartItem.Id;
         }
@@ -212,6 +234,26 @@ namespace Atomia.Store.Core
         {
             this.campaignCode = string.Empty;
             RecalculatePricingAndSave();
+        }
+
+        /// <summary>
+        /// Set custom attribute on cart.
+        /// </summary>
+        /// <param name="name">The name of the custom attribute to set</param>
+        /// <param name="value">The value of the custom attribute to set</param>
+        public void SetCustomAttribute(string name, string value)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                throw new ArgumentNullException("name");
+            }
+
+            if (string.IsNullOrEmpty(value))
+            {
+                throw new ArgumentNullException("value");
+            }
+
+            this.customAttribues.Add(new CustomAttribute { Name = name, Value = value });
         }
 
         /// <summary>
@@ -314,6 +356,7 @@ namespace Atomia.Store.Core
         public void Clear()
         {
             this.cartItems.Clear();
+            this.customAttribues.Clear();
             this.campaignCode = string.Empty;
             this.SetPricing(0m, 0m, new List<Tax>());
             cartProvider.SaveCart(this);

@@ -1,0 +1,82 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <title>Pre-select Test Forms</title>
+    <meta charset="UTF-8">
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <style>
+        body {
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            margin: 50px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pre-select Test Forms</h1>
+    <p>These hidden forms can be used to test the functionality of the /Select/ endpoints, as described in the documentation for <a href="https://github.com/atomia/AtomiaStore/blob/master/Documentation/preselecting-products-and-domain-search.md">Pre-selecting Products, Custom Attributes and Domain Search</a></p>
+
+    <h2>Single Product</h2>
+    <form action="http://localhost:51609/Select" method="post">
+
+        <input type="hidden" name="ArticleNumber" value="HST-GLDY" />
+        <input type="hidden" name="RenewalPeriod" value="1-YEAR" />    
+        <input type="hidden" name="CustomAttributes[0].Name" value="Foo" />
+        <input type="hidden" name="CustomAttributes[0].Value" value="Bar">
+        <input type="hidden" name="CustomAttributes[1].Name" value="Fizz" />
+        <input type="hidden" name="CustomAttributes[1].Value" value="Buzz">
+
+        <input type="hidden" name="CartCustomAttributes[0].Name" value="ReferralCode" />
+        <input type="hidden" name="CartCustomAttributes[0].Value" value="FooBar">
+        <input type="hidden" name="Campaign" value="SUMMER-2015" />
+        <input type="hidden" name="Next" value="/Account" />
+
+        <button type="submit">Gold Package</button>
+
+    </form>
+    
+    <h2>Multiple Products</h2>
+    <form action="http://localhost:51609/Select/Multi" method="post">
+
+        <input type="hidden" name="Items[0].ArticleNumber" value="HST-GLDY" />
+        <input type="hidden" name="Items[0].RenewalPeriod" value="1-YEAR" />    
+        <input type="hidden" name="Items[0].CustomAttributes[0].Name" value="Foo" />
+        <input type="hidden" name="Items[0].CustomAttributes[0].Value" value="Bar">
+
+        <input type="hidden" name="Items[1].ArticleNumber" value="XSV-MYADDON" />
+        <input type="hidden" name="Items[1].RenewalPeriod" value="1-YEAR" />    
+        <input type="hidden" name="Items[1].CustomAttributes[0].Name" value="Fizz" />
+        <input type="hidden" name="Items[1].CustomAttributes[0].Value" value="Buzz">
+
+        <input type="hidden" name="CartCustomAttributes[0].Name" value="ReferralCode" />
+        <input type="hidden" name="CartCustomAttributes[0].Value" value="FooBar">
+        <input type="hidden" name="Campaign" value="SUMMER-2015" />
+        <input type="hidden" name="Next" value="/Account" />
+
+        <button type="submit">Gold Package with MyAddon</button>
+
+    </form>
+
+    <h2>Campaign</h2>
+    <form action="http://localhost:51609/Select/Campaign" method="post">
+
+        <input type="hidden" name="Campaign" value="SUMMER-2015" />
+        <input type="hidden" name="Next" value="/Account" />
+
+        <button type="submit">Summer campaign</button>
+
+    </form>    
+
+    <h2>Custom Attributes</h2>
+    <form action="http://localhost:51609/Select/Attrs" method="post">
+
+        <input type="hidden" name="CartCustomAttributes[0].Name" value="ReferralCode" />
+        <input type="hidden" name="CartCustomAttributes[0].Value" value="FooBar">
+        <input type="hidden" name="Campaign" value="WINTER-2015" />
+        <input type="hidden" name="Next" value="/Account" />
+
+        <button type="submit">Order now!</button>
+
+    </form>
+</body>
+</html>

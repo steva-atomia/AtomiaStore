@@ -9,8 +9,24 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function toCartApiData(cart) {
         var apiCart = {
             CampaignCode: cart.campaignCode(),
-            CartItems: []
+            CartItems: [],
+            CustomAttributes: []
         };
+
+        _.each(cart.attrs(), function (attr) {
+            var name,
+                value = attr.value,
+                key = attr.name;
+
+            if (value != null) {
+                name = cart._origAttrNames[key] || key[0].toUpperCase() + key.slice(1);
+
+                apiCart.CustomAttributes.push({
+                    Name: name,
+                    Value: value
+                });
+            }
+        });
 
         _.each(cart.cartItems(), function (cartItem) {
             var apiItem = {
@@ -53,7 +69,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     /** Update 'cart' with 'cartData'. */
     function updateCart(cart, cartData) {
-        var cartItems = [], cartTaxes = [];
+        var cartItems = [], cartTaxes = [], cartAttrs = [];
 
         _.each(cartData.CartItems, function (cartItemData) {
             var item, cartItem;
@@ -114,6 +130,16 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             });
         });
 
+        _.each(cartData.CustomAttributes, function (attr) {
+            var name = attr.Name[0].toLowerCase() + attr.Name.slice(1);
+
+            cartAttrs.push({name: name, value: attr.Value});
+
+            // Save the attribute name with original casing, to be able to send it back to api that way.
+            cart._origAttrNames[name] = attr.Name;
+        });
+
+        cart.attrs(cartAttrs);
         cart.cartItems(cartItems);
         cart.subTotal(cartData.SubTotal);
         cart.total(cartData.Total);
@@ -173,6 +199,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.total = ko.observable(0);
         self.taxes = ko.observableArray();
         self.campaignCode = ko.observable('');
+        self.attrs = ko.observableArray();
+        self._origAttrNames = {};
         
         self.numberOfItems = ko.pureComputed(function numberOfItems() {
             return self.cartItems().length;
@@ -389,6 +417,56 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             cartApi.recalculateCart(toCartApiData(self), function (result) {
                 updateCart(self, result.Cart);
             });
+        };
+
+        self.addAttr = function addAttr(name, value, recalculate) {
+            if (!_.isString(name) || name === '') {
+                throw new Error('name must be a non-empty string.');
+            }
+
+            if (!_.isString(value) || value === '') {
+                throw new Error('value must be a non-empty string.');
+            }
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
+
+            self.attrs.push({ name: name, value: value });
+
+            if (recalculate === true) {
+                cartApi.recalculateCart(toCartApiData(self), function (result) {
+                    updateCart(self, result.Cart);
+
+                    utils.publish('cart:addAttr', { name: name, value: value });
+                });
+            }
+        };
+
+        self.removeAttr = function removeAttr(name, value, recalculate) {
+            if (!_.isString(name) || name === '') {
+                throw new Error('name must be a non-empty string.');
+            }
+
+            if (!_.isString(value) || value === '') {
+                throw new Error('value must be a non-empty string.');
+            }
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
+
+            self.attrs.remove(function (attr) {
+                return name === attr.name && value === attr.value;
+            });
+
+            if (recalculate === true) {
+                cartApi.recalculateCart(toCartApiData(self), function (result) {
+                    updateCart(self, result.Cart);
+
+                    utils.publish('cart:removeAttr', { name: name, value: value });
+                });
+            }
         };
     }
 

@@ -10,7 +10,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         private readonly ICartProvider cartProvider = DependencyResolver.Current.GetService<ICartProvider>();
 
         /// <summary>
-        /// Add a single item with optional campaign code to cart.
+        /// Add a single item with optional campaign code and custom attributes to cart.
         /// </summary>
         [HttpPost]
         public ActionResult Index(SelectSingleModel model)
@@ -28,6 +28,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
                     // Broadly catch and ignore exceptions to avoid interuption to user from faulty external forms.
                 }
 
+                if (model.CartCustomAttributes != null)
+                {
+                    foreach (var attr in model.CartCustomAttributes)
+                    {
+                        cart.SetCustomAttribute(attr.Name, attr.Value);
+                    }
+                }
+
                 if (!string.IsNullOrEmpty(model.Campaign))
                 {
                     cart.SetCampaignCode(model.Campaign);
@@ -43,7 +51,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         }
 
         /// <summary>
-        /// Add multiple items with optional campaign code to cart.
+        /// Add multiple items with optional campaign code and custom attributes to cart.
         /// </summary>
         [HttpPost]
         public ActionResult Multi(SelectMultiModel model)
@@ -64,6 +72,14 @@ namespace Atomia.Store.AspNetMvc.Controllers
                         {
                             // Broadly catch and ignore exceptions to avoid interuption to user from faulty external forms.
                         }
+                    }
+                }
+
+                if (model.CartCustomAttributes != null)
+                {
+                    foreach (var attr in model.CartCustomAttributes)
+                    {
+                        cart.SetCustomAttribute(attr.Name, attr.Value);
                     }
                 }
 
@@ -96,6 +112,44 @@ namespace Atomia.Store.AspNetMvc.Controllers
             if (!string.IsNullOrEmpty(next))
             {
                 return Redirect(next);
+            }
+
+            return RedirectToRoute("OrderFlowStart");
+        }
+
+        /// <summary>
+        /// Add custom attributes to cart.
+        /// </summary>
+        public ActionResult Attrs(SelectAttrsModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var cart = cartProvider.GetCart();
+
+                try
+                {
+                    if (model.CartCustomAttributes != null)
+                    {
+                        foreach (var attr in model.CartCustomAttributes)
+                        {
+                            cart.SetCustomAttribute(attr.Name, attr.Value);
+                        }
+                    }
+                }
+                catch (Exception)
+                {
+                    // Broadly catch and ignore exceptions to avoid interuption to user from faulty external forms.
+                }
+
+                if (!string.IsNullOrEmpty(model.Campaign))
+                {
+                    cart.SetCampaignCode(model.Campaign);
+                }
+
+                if (!string.IsNullOrEmpty(model.Next))
+                {
+                    return Redirect(model.Next);
+                }
             }
 
             return RedirectToRoute("OrderFlowStart");

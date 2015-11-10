@@ -21,7 +21,8 @@ Atomia.Api.Cart = Atomia.Api.Cart || {};
 
         requestData = {
             CartItems: cartData.CartItems,
-            CampaignCode: cartData.CampaignCode
+            CampaignCode: cartData.CampaignCode,
+            CustomAttributes: cartData.CustomAttributes
         };
 
         // Only keep the latest recalculate request open.

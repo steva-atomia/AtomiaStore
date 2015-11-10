@@ -159,6 +159,7 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CurrencyHandler>("Currency");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.MainContactDataHandler>("MainContact");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.ContactDataHandlers.BillingContactDataHandler>("BillingContact");
+            container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.OrderAttributesHandler>("OrderAttributes");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.CampaignCodeHandler>("CampaignCode");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.VatValidationHandler>("VatValidation");
             container.RegisterType<OrderDataHandler, Atomia.Store.PublicOrderHandlers.IpAddressHandler>("IpAddress");
@@ -180,6 +181,7 @@ namespace Atomia.Store.Themes.Default
                         new ResolvedParameter<OrderDataHandler>("Currency"),
                         new ResolvedParameter<OrderDataHandler>("MainContact"),
                         new ResolvedParameter<OrderDataHandler>("BillingContact"),
+                        new ResolvedParameter<OrderDataHandler>("OrderAttributes"),
                         new ResolvedParameter<OrderDataHandler>("CampaignCode"),
                         new ResolvedParameter<OrderDataHandler>("VatValidation"),
                         new ResolvedParameter<OrderDataHandler>("IpAddress"),
@@ -210,6 +212,7 @@ namespace Atomia.Store.Themes.Default
                         new ResolvedParameter<OrderDataHandler>("Currency"),
                         new ResolvedParameter<OrderDataHandler>("MainContact"),
                         new ResolvedParameter<OrderDataHandler>("BillingContact"),
+                        new ResolvedParameter<OrderDataHandler>("OrderAttributes"),
                         new ResolvedParameter<OrderDataHandler>("CampaignCode"),
                         new ResolvedParameter<OrderDataHandler>("VatValidation"),
                         new ResolvedParameter<OrderDataHandler>("IpAddress"),

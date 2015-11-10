@@ -27,6 +27,14 @@ namespace Atomia.Store.AspNetMvc.Models
             }
         }
 
+        public IReadOnlyCollection<CustomAttribute> CustomAttributes
+        {
+            get
+            {
+                return cart.CustomAttributes.ToList();
+            }
+        }
+
         public string CampaignCode
         {
             get

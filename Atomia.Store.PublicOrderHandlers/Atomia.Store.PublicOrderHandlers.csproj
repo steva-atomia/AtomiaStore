@@ -81,6 +81,7 @@
     <Compile Include="ContactDataHandlers\MainContactDataHandler.cs" />
     <Compile Include="CurrencyHandler.cs" />
     <Compile Include="DomainRegContactProvider.cs" />
+    <Compile Include="OrderAttributesHandler.cs" />
     <Compile Include="TransactionDataHandlers\PaymentProfileHandler.cs" />
     <Compile Include="TransactionDataHandlers\RequestParamsHandler.cs" />
     <Compile Include="IpAddressHandler.cs" />

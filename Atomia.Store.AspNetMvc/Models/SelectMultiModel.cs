@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Atomia.Store.Core;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
@@ -7,6 +8,7 @@ namespace Atomia.Store.AspNetMvc.Models
         public SelectMultiModel()
         {
             this.Items = new List<SelectItemModel>();
+            this.CartCustomAttributes = new List<CustomAttribute>();
         }
 
         public string Campaign { get; set; }
@@ -14,5 +16,7 @@ namespace Atomia.Store.AspNetMvc.Models
         public string Next { get; set; }
 
         public IEnumerable<SelectItemModel> Items { get; set; }
+
+        public IEnumerable<CustomAttribute> CartCustomAttributes { get; set; }
     }
 }

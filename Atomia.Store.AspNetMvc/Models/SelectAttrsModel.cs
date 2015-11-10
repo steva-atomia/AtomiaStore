@@ -3,18 +3,17 @@ using System.Collections.Generic;
 
 namespace Atomia.Store.AspNetMvc.Models
 {
-    public class SelectSingleModel : SelectItemModel
+    public class SelectAttrsModel
     {
-        public SelectSingleModel()
-            : base()
+        public SelectAttrsModel()
         {
             this.CartCustomAttributes = new List<CustomAttribute>();
         }
 
-        public IEnumerable<CustomAttribute> CartCustomAttributes { get; set; }
+        public string Next { get; set; }
 
         public string Campaign { get; set; }
 
-        public string Next { get; set; }
+        public IEnumerable<CustomAttribute> CartCustomAttributes { get; set; }
     }
 }

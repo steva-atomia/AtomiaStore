@@ -117,6 +117,7 @@
     <Compile Include="Infrastructure\OrderFlowStep.cs" />
     <Compile Include="Infrastructure\RouteCollectionExtension.cs" />
     <Compile Include="Models\OrderFlowModel.cs" />
+    <Compile Include="Models\SelectAttrsModel.cs" />
     <Compile Include="Models\SelectItemModel.cs" />
     <Compile Include="Models\SelectMultiModel.cs" />
     <Compile Include="Models\SelectSingleModel.cs" />
