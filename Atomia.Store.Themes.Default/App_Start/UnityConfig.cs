@@ -6,6 +6,8 @@ using Atomia.Store.PublicBillingApi.Handlers;
 using Microsoft.Practices.Unity;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using System.Configuration;
+using System;
 
 
 namespace Atomia.Store.Themes.Default
@@ -172,59 +174,51 @@ namespace Atomia.Store.Themes.Default
 
             container.RegisterType<IOrderPlacementService, Atomia.Store.PublicBillingApi.Adapters.OrderPlacementService>();
 
-            // We resolve the OrderPlacementService parameters manually to control the order the OrderHandlers are applied.
-            container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.SimpleOrderCreator>(
-                new InjectionConstructor(
-                    new ResolvedArrayParameter<OrderDataHandler>(
-                        new ResolvedParameter<OrderDataHandler>("Reseller"),
-                        new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
-                        new ResolvedParameter<OrderDataHandler>("Currency"),
-                        new ResolvedParameter<OrderDataHandler>("MainContact"),
-                        new ResolvedParameter<OrderDataHandler>("BillingContact"),
-                        new ResolvedParameter<OrderDataHandler>("OrderAttributes"),
-                        new ResolvedParameter<OrderDataHandler>("CampaignCode"),
-                        new ResolvedParameter<OrderDataHandler>("VatValidation"),
-                        new ResolvedParameter<OrderDataHandler>("IpAddress"),
-                        new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
-                        new ResolvedParameter<OrderDataHandler>("TransferDomain"),
-                        new ResolvedParameter<OrderDataHandler>("OwnDomain"),
-                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
+            // We resolve the parameters manually to control the order the OrderHandlers are applied.
+            var orderDataHandlerParams = new ResolvedArrayParameter<OrderDataHandler>(
+                new ResolvedParameter<OrderDataHandler>("Reseller"),
+                new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
+                new ResolvedParameter<OrderDataHandler>("Currency"),
+                new ResolvedParameter<OrderDataHandler>("MainContact"),
+                new ResolvedParameter<OrderDataHandler>("BillingContact"),
+                new ResolvedParameter<OrderDataHandler>("OrderAttributes"),
+                new ResolvedParameter<OrderDataHandler>("CampaignCode"),
+                new ResolvedParameter<OrderDataHandler>("VatValidation"),
+                new ResolvedParameter<OrderDataHandler>("IpAddress"),
+                new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
+                new ResolvedParameter<OrderDataHandler>("TransferDomain"),
+                new ResolvedParameter<OrderDataHandler>("OwnDomain"),
+                new ResolvedParameter<OrderDataHandler>("SetupFees"),
 
-                        // This is a good position for TLD specific handlers.
+                // This is a good position for TLD specific handlers.
 
-                        // Default should be placed after all other handlers that add items form the cart to the order, or there is risk of adding the same item twice.
-                        new ResolvedParameter<OrderDataHandler>("Default"),
+                // Default should be placed after all other handlers that add items form the cart to the order, or there is risk of adding the same item twice.
+                new ResolvedParameter<OrderDataHandler>("Default"),
 
-                        // This is a good position for handlers that add extra items depending on other items in cart, e.g. like HST-APPY in old order page.
+                // This is a good position for handlers that add extra items depending on other items in cart, e.g. like HST-APPY in old order page.
 
-                        // RemovePostOrder should be placed last to make sure any added postal fees are removed, since they will be added by Atomia Billing.
-                        new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
-                    ),
-                    new ResolvedParameter<PublicBillingApiProxy>()));
+                // RemovePostOrder should be placed last to make sure any added postal fees are removed, since they will be added by Atomia Billing.
+                new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
+            );
 
-            // For customers to get logged in directly to control panel after order, use this OrderCreator instead of SimpleOrderCreator.
-            /*container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.TokenLoginOrderCreator>(
-                new InjectionConstructor(
-                    new ResolvedParameter<PaymentUrlProvider>(),
-                    new ResolvedArrayParameter<OrderDataHandler>(
-                        new ResolvedParameter<OrderDataHandler>("Reseller"),
-                        new ResolvedParameter<OrderDataHandler>("LanguageHandler"),
-                        new ResolvedParameter<OrderDataHandler>("Currency"),
-                        new ResolvedParameter<OrderDataHandler>("MainContact"),
-                        new ResolvedParameter<OrderDataHandler>("BillingContact"),
-                        new ResolvedParameter<OrderDataHandler>("OrderAttributes"),
-                        new ResolvedParameter<OrderDataHandler>("CampaignCode"),
-                        new ResolvedParameter<OrderDataHandler>("VatValidation"),
-                        new ResolvedParameter<OrderDataHandler>("IpAddress"),
-                        new ResolvedParameter<OrderDataHandler>("RegisterDomain"),
-                        new ResolvedParameter<OrderDataHandler>("TransferDomain"),
-                        new ResolvedParameter<OrderDataHandler>("OwnDomain"),
-                        new ResolvedParameter<OrderDataHandler>("SetupFees"),
-                        new ResolvedParameter<OrderDataHandler>("Default"),
-                        new ResolvedParameter<OrderDataHandler>("RemovePostOrder")
-                    ),
-                    new ResolvedParameter<PublicBillingApiProxy>()));
-            */
+            bool loginAfterOrder;
+            var loginAfterOrderSetting = ConfigurationManager.AppSettings["LoginAfterOrder"] as String;
+
+            if (!Boolean.TryParse(loginAfterOrderSetting, out loginAfterOrder))
+            {
+                throw new ConfigurationErrorsException("Could not parse boolean from 'LoginAfterOrder' setting or it is missing.");
+            }
+
+            if (loginAfterOrder)
+            {
+                container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.TokenLoginOrderCreator>(
+                    new InjectionConstructor(new ResolvedParameter<PaymentUrlProvider>(), orderDataHandlerParams, new ResolvedParameter<PublicBillingApiProxy>()));
+            }
+            else
+            {
+                container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.SimpleOrderCreator>(
+                    new InjectionConstructor(orderDataHandlerParams, new ResolvedParameter<PublicBillingApiProxy>()));
+            }
 
             container.RegisterType<PaymentTransactionCreator, Atomia.Store.PublicBillingApi.PaymentTransactionCreator>();
 
