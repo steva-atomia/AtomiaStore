@@ -457,7 +457,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             }
 
             self.attrs.remove(function (attr) {
-                return name === attr.name && value === attr.value;
+                return name === self._origAttrNames[attr.name] && value === attr.value;
             });
 
             if (recalculate === true) {
@@ -465,6 +465,32 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                     updateCart(self, result.Cart);
 
                     utils.publish('cart:removeAttr', { name: name, value: value });
+                });
+            }
+        };
+
+        self.addUpdateAttr = function (name, value, recalculate) {
+            if (!_.isString(name) || name === '') {
+                throw new Error('name must be a non-empty string.');
+            }
+
+            if (!_.isString(value) || value === '') {
+                throw new Error('value must be a non-empty string.');
+            }
+
+            if (recalculate === undefined) {
+                recalculate = true;
+            }
+
+            self.attrs.remove(function (attr) {
+                return name === self._origAttrNames[attr.name];
+            });
+            self.attrs.push({ name: name, value: value });
+
+            if (recalculate === true) {
+                cartApi.recalculateCart(toCartApiData(self), function (result) {
+                    updateCart(self, result.Cart);
+                    utils.publish('cart:addUpdateAttr', { name: name, value: value });
                 });
             }
         };
