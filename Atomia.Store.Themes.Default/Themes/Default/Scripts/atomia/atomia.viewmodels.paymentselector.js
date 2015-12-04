@@ -7,13 +7,14 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 	'use strict';
 
     /** Create payment selector */
-	function PaymentSelectorModel() {
+	function PaymentSelectorModel(cart) {
 	    var self = this;
 
 	    self.selectedPaymentMethod = ko.observable();
 
 	    self.selectedPaymentMethod.subscribe(function (paymentMethod) {
 	        utils.publish('uiSelectedPaymentMethod', paymentMethod);
+	        cart.addUpdateAttr('PaymentMethod', paymentMethod, true);
 	    });
 	}
 

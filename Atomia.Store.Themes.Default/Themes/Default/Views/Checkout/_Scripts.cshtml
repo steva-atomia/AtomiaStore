@@ -6,7 +6,7 @@
 }
 
 <script type="text/javascript">
-    Atomia.VM.payment = new Atomia.ViewModels.PaymentSelectorModel();
+    Atomia.VM.payment = new Atomia.ViewModels.PaymentSelectorModel(Atomia.VM.cart);
     Atomia.VM.payment.selectedPaymentMethod('@Model.SelectedPaymentMethodId');
 
     Atomia.VM.payWithInvoice = new Atomia.ViewModels.PayWithInvoiceModel(Atomia.VM.cart);

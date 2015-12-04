@@ -93,6 +93,14 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     }
                 );
             }
+            if (cart.CustomAttributes != null)
+            {
+                foreach (Core.CustomAttribute attr in cart.CustomAttributes)
+                {
+                    publicOrderCustomData.Add(new PublicOrderCustomData { Name = attr.Name, Value = attr.Value });
+                }
+            }
+
             publicOrder.CustomData = publicOrderCustomData.ToArray();
 
             var calculatedPublicOrder = BillingApi.CalculateOrder(publicOrder);
