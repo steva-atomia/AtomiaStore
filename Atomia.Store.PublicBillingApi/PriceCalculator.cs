@@ -11,17 +11,19 @@ namespace Atomia.Store.PublicBillingApi
     public class PriceCalculator
     {
         private readonly bool pricesIncludeVat;
+        private readonly bool inclusiveTaxCalculationType;
 
-        public PriceCalculator(bool pricesIncludeVat)
+        public PriceCalculator(bool pricesIncludeVat, bool inclusiveTaxCalculationType)
         {
             this.pricesIncludeVat = pricesIncludeVat;
+            this.inclusiveTaxCalculationType = inclusiveTaxCalculationType;
         }
 
         public decimal CalculatePrice(decimal priceExcludingTax, IEnumerable<ProductTax> taxes)
         {
             decimal totalTax = 0;
 
-            if (taxes != null && this.pricesIncludeVat)
+            if (this.inclusiveTaxCalculationType == false && taxes != null && this.pricesIncludeVat)
             {
                 foreach (var tax in taxes)
                 {

@@ -34,7 +34,8 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             var reseller = new Reseller
             {
                 Id = resellerData.Id,
-                IsSubReseller = resellerData.Id != defaultResellerData.Id
+                IsSubReseller = resellerData.Id != defaultResellerData.Id,
+                InclusiveTaxCalculationType = resellerData.InclusiveTaxCalculationType
             };
 
             return reseller;
