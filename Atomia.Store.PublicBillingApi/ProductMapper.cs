@@ -14,10 +14,11 @@ namespace Atomia.Store.PublicBillingApi
     public sealed class ProductMapper
     {
         private readonly bool pricesIncludeVat;
+        private readonly bool inclusiveTaxCalculationType;
         private readonly Language language;
         private readonly string currencyCode;
 
-        public ProductMapper(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IVatDisplayPreferenceProvider vatDisplayPreferenceProvider)
+        public ProductMapper(ILanguagePreferenceProvider languagePreferenceProvider, ICurrencyPreferenceProvider currencyPreferenceProvider, IVatDisplayPreferenceProvider vatDisplayPreferenceProvider, IResellerProvider resellerProvider)
         {
             if (languagePreferenceProvider == null)
             {
@@ -37,6 +38,7 @@ namespace Atomia.Store.PublicBillingApi
             this.language = languagePreferenceProvider.GetCurrentLanguage();
             this.currencyCode = currencyPreferenceProvider.GetCurrentCurrency().Code;
             this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
+            this.inclusiveTaxCalculationType = resellerProvider.GetReseller().InclusiveTaxCalculationType;
         }
 
         /// <summary>
@@ -197,7 +199,7 @@ namespace Atomia.Store.PublicBillingApi
                 throw new ArgumentException(String.Format("No prices available for currency code {0}", this.currencyCode));
             }
 
-            var priceCalculator = new PriceCalculator(this.pricesIncludeVat);
+            var priceCalculator = new PriceCalculator(this.pricesIncludeVat, this.inclusiveTaxCalculationType);
             return priceCalculator.CalculatePrice(price.Value, taxes);
         }
     }

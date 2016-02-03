@@ -11,7 +11,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceExcludingVat()
         {
-            var calculator = new PriceCalculator(false);
+            var calculator = new PriceCalculator(false, false);
             var priceExcludingTax = 100m;
             var taxes = new List<PublicOrderTax> 
             {
@@ -26,7 +26,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceExcludingVatCumulative()
         {
-            var calculator = new PriceCalculator(false);
+            var calculator = new PriceCalculator(false, false);
             var priceExcludingTax = 100m;
             var taxes = new List<PublicOrderTax> 
             {
@@ -42,7 +42,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVat()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100;
             var taxes = new List<PublicOrderTax> 
             {
@@ -57,7 +57,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatMultipleTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100m;
             var taxes = new List<PublicOrderTax> 
             {
@@ -73,7 +73,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatCumulativeTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100m;
             var taxes = new List<PublicOrderTax> 
             {
@@ -89,7 +89,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatWithProductTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100;
             var taxes = new List<ProductTax> 
             {
@@ -104,7 +104,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatNoTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100;
             var taxes = new List<PublicOrderTax> {};
 
@@ -116,7 +116,7 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatNullPublicOrderTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100;
             List<PublicOrderTax> taxes = null;
 
@@ -128,9 +128,24 @@ namespace Atomia.Store.PublicBillingApi.Test
         [TestMethod]
         public void TestPriceIncludingVatNullProductTaxes()
         {
-            var calculator = new PriceCalculator(true);
+            var calculator = new PriceCalculator(true, false);
             var priceExcludingTax = 100;
             List<ProductTax> taxes = null;
+
+            var result = calculator.CalculatePrice(priceExcludingTax, taxes);
+
+            Assert.AreEqual(100, result);
+        }
+
+        [TestMethod]
+        public void TestPriceIncludingVatAndResellerHasInclusiveTaxCalculation()
+        {
+            var calculator = new PriceCalculator(true, true);
+            var priceExcludingTax = 100;
+            var taxes = new List<PublicOrderTax>
+            {
+                new PublicOrderTax(){Name = "Tax1", Percent = 25, ApplyToAmountOnly = true }
+            };
 
             var result = calculator.CalculatePrice(priceExcludingTax, taxes);
 

@@ -16,5 +16,10 @@ namespace Atomia.Store.Core
         /// If the reseller is a reseller of another reseller or not.
         /// </summary>
         public bool IsSubReseller { get; set; }
+
+        /// <summary>
+        /// If the reseller has the TaxCalculationType set to Inclusive or not.
+        /// </summary>
+        public bool InclusiveTaxCalculationType { get; set;  }
     }
 }

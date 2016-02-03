@@ -16,6 +16,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ICountryProvider countryProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
         private readonly bool pricesIncludeVat;
+        private readonly bool inclusiveTaxCalculationType;
 
         /// <summary>
         /// Construct a new instance of CartPricingProvider
@@ -58,7 +59,8 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.countryProvider = countryProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
-            this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();    
+            this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
+            this.inclusiveTaxCalculationType = resellerProvider.GetReseller().InclusiveTaxCalculationType;
         }
 
         /// <inheritdoc />
@@ -118,7 +120,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
             cart.SetPricing(subtotal, calculatedPublicOrder.Total, taxes);
 
-            var priceCalculator = new PriceCalculator(this.pricesIncludeVat);
+            var priceCalculator = new PriceCalculator(this.pricesIncludeVat, this.inclusiveTaxCalculationType);
 
             foreach(var cartItem in cart.CartItems)
             {
