@@ -40,6 +40,9 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
+  <PropertyGroup>
+    <DisableFastUpToDateCheck>true</DisableFastUpToDateCheck>
+  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -465,7 +468,7 @@ xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.Validation.dll.config" "$(Solut
 xcopy /y "$(SolutionDir)..\Lib\Atomia.Web.Plugin.DomainSearch.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"
 xcopy /y "$(SolutionDir)..\Lib\Atomia.Common.dll.config" "$(SolutionDir)..\Atomia.Store.Themes.Default\bin"</PostBuildEvent>
   </PropertyGroup>
-  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v12.0\WebApplications\Microsoft.WebApplication.targets" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" />
   <Target Condition="'$(Configuration)' == 'Release'" Name="AfterBuild">
     <Message Text="##############After build##################$(OutputFolder)" Importance="high" />
     <Exec Command="..\Setup\PostPublish.bat $(Configuration)" ContinueOnError="true" />
