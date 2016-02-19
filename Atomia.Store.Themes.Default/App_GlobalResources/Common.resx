@@ -674,4 +674,7 @@
   <data name="Validating" xml:space="preserve">
     <value>Validating</value>
   </data>
+  <data name="Username" xml:space="preserve">
+    <value>Username</value>
+  </data>
 </root>

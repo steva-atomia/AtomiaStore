@@ -23,5 +23,13 @@ namespace Atomia.Store.AspNetMvc.Models
         [CustomerValidation(CustomerValidationType.Email, "CustomerValidation,Email")]
         [AtomiaUsername("Common,ErrorUsernameNotAvailable")]
         public override string Email { get; set; }
+
+        /// <summary>
+        /// Gets or sets the username.
+        /// </summary>
+        /// <value>The username.</value>
+        [AtomiaUsernameRequired("Common,ErrorEmptyField")]
+        [AtomiaUsername("Common,ErrorUsernameNotAvailable", AtomiaUsernameAttributeType.Username)]
+        public string Username { get; set; }
     }
 }

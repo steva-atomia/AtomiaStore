@@ -18,6 +18,12 @@
 </div>
 
 @Html.FormRowFor(m => m.Email, Html.CommonResource("Email") + ":", true)
+
+@if (Atomia.Common.Configuration.AtomiaCommon.Instance.SeparateUsernameAndEmail)
+{
+    @Html.FormRowFor(m => m.Username, Html.CommonResource("Username") + ":", true)
+}
+
 @Html.FormRowFor(m => m.FirstName, Html.CommonResource("FirstName") + ":", true)
 @Html.FormRowFor(m => m.LastName, Html.CommonResource("LastName") + ":", true)
 
