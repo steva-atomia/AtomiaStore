@@ -69,7 +69,7 @@
 
         Atomia.VM.notification = new Atomia.ViewModels.NotificationModel();
 
-        Atomia.Utils.warnAjaxErrors('@Html.CommonResource("AjaxErrorTitle")', '@Html.CommonResource("AjaxErrorMessage")');
+        Atomia.Utils.warnAjaxErrors('@Html.Raw(@Html.CommonResource("AjaxErrorTitle"))', '@Html.Raw(@Html.CommonResource("AjaxErrorMessage"))');
         Atomia.Utils.relayCartUpdateToValidation();
     </script>
     
