@@ -819,6 +819,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Find domain.
+        /// </summary>
+        internal static string FindDomain {
+            get {
+                return ResourceManager.GetString("FindDomain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to First name.
         /// </summary>
         internal static string FirstName {
