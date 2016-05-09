@@ -5,7 +5,7 @@
     @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: submit" }))
     {
         @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: query", id = "register_box", placeholder = "mydomain.com" })
-        <button type="submit" class="button green" style="vertical-align:top;">Find domain</button>
+        <button type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("FindDomain")</button>
         <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
     }
 </div>
