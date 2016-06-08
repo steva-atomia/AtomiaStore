@@ -30,7 +30,7 @@ Copy-Item $templateGitIgnore $themeGitIgnore
 
 # Compile Atomia Store solution if not done yet
 if (-Not (Test-Path "$($defaultThemeDir)bin\Atomia.Store.Core.dll")) {
-	$msbuild = "$($Env:SystemRoot)\Microsoft.NET\Framework\v4.0.30319\MSBuild.exe"
+	$msbuild = "C:\Progra~2\MSBuild\14.0\bin\msbuild.exe"
 	Invoke-Expression "$($msbuild) $($storeSolution) /p:Configuration=Debug"
 }
 
