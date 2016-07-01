@@ -141,7 +141,7 @@ namespace Atomia.Store.AspNetMvc.Models
         /// <summary>
         /// Customer selected country
         /// </summary>
-        public virtual string Country { get; set; }
+        public override string Country { get; set; }
 
         /// <summary>
         /// Customer provided state
