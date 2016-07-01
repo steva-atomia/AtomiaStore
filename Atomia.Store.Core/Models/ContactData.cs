@@ -13,5 +13,10 @@ namespace Atomia.Store.Core
         /// Id of the contact data.
         /// </summary>
         public abstract string Id { get; }
+
+        /// <summary>
+        /// Gets or sets the country.
+        /// </summary>
+        public abstract string Country { get; set; }
     }
 }

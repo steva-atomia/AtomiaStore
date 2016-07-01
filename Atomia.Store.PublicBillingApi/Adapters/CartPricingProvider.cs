@@ -14,6 +14,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly IResellerProvider resellerProvider;
         private readonly ICurrencyPreferenceProvider currencyPreferenceProvider;
         private readonly ICountryProvider countryProvider;
+        private readonly IContactDataProvider contactDataProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
         private readonly bool pricesIncludeVat;
         private readonly bool inclusiveTaxCalculationType;
@@ -25,6 +26,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             IResellerProvider resellerProvider, 
             ICurrencyPreferenceProvider currencyPreferenceProvider, 
             ICountryProvider countryProvider, 
+            IContactDataProvider contactDataProvider,
             RenewalPeriodProvider renewalPeriodProvider, 
             IVatDisplayPreferenceProvider vatDisplayPreferenceProvider, 
             PublicBillingApiProxy billingApi)
@@ -45,6 +47,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("countryProvider");
             }
 
+            if (contactDataProvider == null)
+            {
+                throw new ArgumentNullException("contactDataProvider");
+            }
+
             if (renewalPeriodProvider == null)
             {
                 throw new ArgumentNullException("renewalPeriodProvider");
@@ -58,6 +65,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.resellerProvider = resellerProvider;
             this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.countryProvider = countryProvider;
+            this.contactDataProvider = contactDataProvider;
             this.renewalPeriodProvider = renewalPeriodProvider;
             this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
             this.inclusiveTaxCalculationType = resellerProvider.GetReseller().InclusiveTaxCalculationType;
@@ -92,8 +100,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     {
                         Name = "CampaignCode",
                         Value = cart.CampaignCode
-                    }
-                );
+                    });
             }
             if (cart.CustomAttributes != null)
             {
@@ -160,10 +167,27 @@ namespace Atomia.Store.PublicBillingApi.Adapters
 
         private PublicOrder CreateBasicOrder()
         {
+            string country = this.countryProvider.GetDefaultCountry().Code;
+
+            if (this.contactDataProvider != null)
+            {
+                var allContacts = this.contactDataProvider.GetContactData();
+                IEnumerable<ContactData> contacts = allContacts?.GetContactData();
+                if (contacts != null)
+                {
+                    ContactData contactData = contacts.FirstOrDefault(c => c.Id == "BillingContact" && !string.IsNullOrEmpty(c.Country))
+                                              ?? contacts.FirstOrDefault(c => c.Id == "MainContact" && !string.IsNullOrEmpty(c.Country));
+                    if (!string.IsNullOrEmpty(contactData?.Country))
+                    {
+                        country = contactData.Country;
+                    }
+                }
+            }
+
             return new PublicOrder
             {
                 ResellerId = resellerProvider.GetReseller().Id,
-                Country = countryProvider.GetDefaultCountry().Code,
+                Country = country,
                 Currency = currencyPreferenceProvider.GetCurrentCurrency().Code
             };
         }
