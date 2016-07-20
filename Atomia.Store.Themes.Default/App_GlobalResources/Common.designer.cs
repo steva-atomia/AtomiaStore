@@ -169,6 +169,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Argentine peso.
+        /// </summary>
+        internal static string ARS {
+            get {
+                return ResourceManager.GetString("ARS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Available packages.
         /// </summary>
         internal static string AvailablePackages {
@@ -455,6 +464,15 @@ namespace Resources {
         internal static string CreditCardAutoPay {
             get {
                 return ResourceManager.GetString("CreditCardAutoPay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Currency.
+        /// </summary>
+        internal static string CurrencySelectorTitle {
+            get {
+                return ResourceManager.GetString("CurrencySelectorTitle", resourceCulture);
             }
         }
         
@@ -770,6 +788,15 @@ namespace Resources {
         internal static string Error_NotFoundTitle {
             get {
                 return ResourceManager.GetString("Error_NotFoundTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Euro.
+        /// </summary>
+        internal static string EUR {
+            get {
+                return ResourceManager.GetString("EUR", resourceCulture);
             }
         }
         
@@ -1153,6 +1180,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Polish zloty.
+        /// </summary>
+        internal static string PLN {
+            get {
+                return ResourceManager.GetString("PLN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {1} {2} - {0}.
         /// </summary>
         internal static string PricingVariantDisplay {
@@ -1230,6 +1266,15 @@ namespace Resources {
         internal static string SaveCreditCardInfo {
             get {
                 return ResourceManager.GetString("SaveCreditCardInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Swedish krona.
+        /// </summary>
+        internal static string SEK {
+            get {
+                return ResourceManager.GetString("SEK", resourceCulture);
             }
         }
         
@@ -1491,6 +1536,15 @@ namespace Resources {
         internal static string TryAgain {
             get {
                 return ResourceManager.GetString("TryAgain", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to US dollar.
+        /// </summary>
+        internal static string USD {
+            get {
+                return ResourceManager.GetString("USD", resourceCulture);
             }
         }
         

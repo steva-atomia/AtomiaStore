@@ -4,6 +4,13 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public sealed class FakeCurrencyPreferenceProvider : ICurrencyPreferenceProvider
     {
+        private readonly IResourceProvider resourceProvider;
+
+        public FakeCurrencyPreferenceProvider(IResourceProvider resourceProvider)
+        {
+            this.resourceProvider = resourceProvider;
+        }
+
         public void SetPreferredCurrency(Currency currency)
         {
             
@@ -11,7 +18,7 @@ namespace Atomia.Store.Fakes.Adapters
 
         public Currency GetCurrentCurrency()
         {
-            return new Currency("USD");
+            return Currency.CreateCurrency(resourceProvider, "USD");
         }
     }
 }

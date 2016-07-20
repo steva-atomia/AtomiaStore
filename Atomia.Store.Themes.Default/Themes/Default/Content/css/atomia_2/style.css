@@ -1194,30 +1194,30 @@ header li > a:hover, header li > span:hover, header li .opened, .addons li a.ope
 .head_tray h3 {
 	margin-top: 0
 }
-#language_selector .margins {
+#language_selector .margins, #currency_selector .margins {
 	text-align: right
 }
-.lngbox {
+.lngbox, .ccybox {
 	display: inline-block;
 	text-align: left
 }
-#language_selector li {
+#language_selector li, #currency_selector li {
 	line-height: 2.6em
 }
-#language_selector a, #signed a {
+#language_selector a, #signed a, #currency_selector a {
 	color: #68635b;
 	padding: 0;
 	display: inline;
 	line-height: 2.6em;
 	text-transform: none;
 }
-#language_selector a:hover, #signed a:hover {
+#language_selector a:hover, #signed a:hover, #currency_selector a:hover {
 	color: #c22042;
 }
-#language_selector a:hover span {
-	background-color: #c22042
+#language_selector a:hover span, #currency_selector a:hover span {
+    background-color: #c22042;
 }
-#language_selector span {
+#language_selector span, #currency_selector span {
 	text-transform: uppercase;
 	background-color: #68635b;
 	color: #fff;

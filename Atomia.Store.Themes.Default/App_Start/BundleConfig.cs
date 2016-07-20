@@ -32,6 +32,7 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.productmixin.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.notification.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.languageselector.js",
+                    "~/Themes/Default/Scripts/atomia/atomia.viewmodels.currencyselector.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.cart.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.campaign.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.progress.js",

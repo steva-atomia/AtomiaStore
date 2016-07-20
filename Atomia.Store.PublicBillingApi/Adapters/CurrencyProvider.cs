@@ -2,6 +2,7 @@
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Atomia.Store.PublicBillingApi.Adapters
 {
@@ -11,8 +12,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
     public sealed class CurrencyProvider : PublicBillingApiClient, ICurrencyProvider
     {
         private readonly AccountData resellerData;
+        private readonly IResourceProvider resourceProvider;
 
-        public CurrencyProvider(IResellerDataProvider resellerDataProvider, PublicBillingApiProxy billingApi)
+        public CurrencyProvider(IResellerDataProvider resellerDataProvider, IResourceProvider resourceProvider, PublicBillingApiProxy billingApi)
             : base(billingApi)
         {
             if (resellerDataProvider == null)
@@ -20,7 +22,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("resellerDataProvider");
             }
 
+            if (resourceProvider == null)
+            {
+                throw new ArgumentNullException("resourceProvider");
+            }
+
             this.resellerData = resellerDataProvider.GetResellerAccountData();
+            this.resourceProvider = resourceProvider;
         }
 
 
@@ -29,8 +37,9 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         /// </summary>
         public IList<Currency> GetAvailableCurrencies()
         {
-            // FIXME (2015-03-31): Only resellers default currency is exposed in public billing api, update when public billing api has been fixed.
-            var currencies = new List<Currency> { GetDefaultCurrency() };
+            List<Currency> currencies = this.resellerData?.Currencies != null && this.resellerData.Currencies.Length > 0
+                                  ? this.resellerData.Currencies.Select(code => Currency.CreateCurrency(this.resourceProvider, code)).ToList()
+                                  : new List<Currency> { this.GetDefaultCurrency() };
 
             return currencies;
         }
@@ -46,7 +55,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new InvalidOperationException("Could not find currency code for reseller");
             }
             
-            return new Currency(resellerData.DefaultCurrencyCode);
+            return Currency.CreateCurrency(this.resourceProvider, resellerData.DefaultCurrencyCode);
         }
     }
 }

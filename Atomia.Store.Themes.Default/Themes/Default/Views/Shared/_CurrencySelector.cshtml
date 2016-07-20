@@ -1,0 +1,12 @@
+﻿<div id="currency_selector" class="head_tray" data-bind="slideVisible: currencySelector.modalIsOpen, css: { opened: currencySelector.modalIsOpen }, event: { mouseleave: currencySelector.closeModal }">
+    <div class="margins">
+        <div class="ccybox">
+            <h3>@Html.CommonResource("CurrencySelectorTitle")</h3>
+            <ul data-bind="foreach: currencySelector.currencies">
+                <li>
+                    <a data-bind="attr: { href: changeCurrencyUrl }"><span data-bind="text: code"></span> <!-- ko text: name --><!-- /ko --></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>

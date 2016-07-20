@@ -20,11 +20,14 @@
             </nav>
             <ul class="addons">
                 <li><a id="language_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: languageSelector.toggleModal, text: languageSelector.selectedLanguage().shortName"></a></li>
+                <li><a id="currency_selector_trigger" class="submenu" href="javascript:void(0);" data-bind="click: currencySelector.toggleModal, text: currencySelector.selectedCurrency().code"></a></li>
                 <li><a id="head_cart_trigger" class="icn_cart" href="javascript:void(0);" data-bind="click: cart.toggleModal"><span class="empty" data-bind="text: cart.numberOfItems"></span></a></li>
             </ul>
         </div>
 
         @Html.Partial("_LanguageSelector")
+
+        @Html.Partial("_CurrencySelector")
 
         @Html.Partial("_Cart")
 
@@ -61,6 +64,12 @@
             new Atomia.ViewModels.ModalMixin());
 
         Atomia.VM.languageSelector.load(@Html.JsonAction("GetLanguages", "Language"));
+
+        Atomia.VM.currencySelector = _.extend(
+            new Atomia.ViewModels.CurrencySelectorModel(),
+            new Atomia.ViewModels.ModalMixin());
+
+        Atomia.VM.currencySelector.load(@Html.JsonAction("GetCurrencies", "Currency"));
 
         Atomia.VM.cart = _.extend(
             new Atomia.ViewModels.CartModel(),
