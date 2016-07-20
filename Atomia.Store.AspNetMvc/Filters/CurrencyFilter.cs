@@ -1,6 +1,6 @@
 ﻿// --------------------------------------------------------------------------------------------------------------------
 // <copyright file="CurrencyFilter.cs" company="Atomia AB">
-//   Copyright (C) 2010 Atomia AB. All rights reserved
+//   Copyright (C) 2015/2016 Atomia AB. All rights reserved
 // </copyright>
 // <summary>
 //   Defines the CurrencyFilter type.
@@ -34,8 +34,6 @@ namespace Atomia.Store.AspNetMvc.Filters
 
             if (request.QueryString["ccy"] != null)
             {
-                var resourceProvider = DependencyResolver.Current.GetService<IResourceProvider>();
-
                 string currencyCode = request.QueryString["ccy"];
 
                 Currency currency = currencyProvider.GetAvailableCurrencies().FirstOrDefault(c => c.Code == currencyCode);
