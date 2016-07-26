@@ -5,14 +5,25 @@ namespace Atomia.Store.Fakes.Adapters
 {
     public sealed class FakeCurrencyProvider : ICurrencyProvider
     {
+        private readonly IResourceProvider resourceProvider;
+
+        public FakeCurrencyProvider(IResourceProvider resourceProvider)
+        {
+            this.resourceProvider = resourceProvider;
+        }
+
         public IList<Currency> GetAvailableCurrencies()
         {
-            return new List<Currency> { new Currency("USD"), new Currency("SEK") };
+            return new List<Currency>
+                       {
+                           Currency.CreateCurrency(resourceProvider, "USD"),
+                           Currency.CreateCurrency(resourceProvider, "SEK")
+                       };
         }
 
         public Currency GetDefaultCurrency()
         {
-            return new Currency("USD");
+            return Currency.CreateCurrency(resourceProvider, "USD");
         }
     }
 }

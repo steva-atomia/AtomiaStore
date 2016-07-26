@@ -684,4 +684,27 @@
   <data name="FindDomain" xml:space="preserve">
     <value>Sök domän</value>
   </data>
+  <data name="CurrencySelectorTitle" xml:space="preserve">
+    <value>Valuta</value>
+  </data>
+  <data name="ARS" xml:space="preserve">
+    <value>Argentine peso</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>Euro</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="PLN" xml:space="preserve">
+    <value>Polish zloty</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="SEK" xml:space="preserve">
+    <value>Swedish krona</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>US dollar</value>
+    <comment>Currency resource convention</comment>
+  </data>
 </root>

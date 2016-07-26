@@ -109,8 +109,10 @@
     <Compile Include="Adapters\CurrencyPreferenceProvider.cs" />
     <Compile Include="Adapters\CustomerTypeProvider.cs" />
     <Compile Include="Adapters\VatDataProvider.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\SelectController.cs" />
     <Compile Include="Controllers\VpsSliderController.cs" />
+    <Compile Include="Filters\CurrencyFilter.cs" />
     <Compile Include="Filters\ThemeFilter.cs" />
     <Compile Include="Infrastructure\GlobalOrderFlows.cs" />
     <Compile Include="Infrastructure\OrderFlow.cs" />
