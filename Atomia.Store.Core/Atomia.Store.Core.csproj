@@ -89,6 +89,7 @@
     <Compile Include="Models\Tax.cs" />
     <Compile Include="Models\TermsOfService.cs" />
     <Compile Include="Models\VatValidationResult.cs" />
+    <Compile Include="Ports\IAuditLogger.cs" />
     <Compile Include="Ports\IContactDataCollection.cs" />
     <Compile Include="Ports\IContactDataProvider.cs" />
     <Compile Include="Ports\ICurrencyPreferenceProvider.cs" />

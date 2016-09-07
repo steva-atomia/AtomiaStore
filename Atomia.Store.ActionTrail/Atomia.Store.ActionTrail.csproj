@@ -49,13 +49,16 @@
     <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Atomia.ActionTrail.Base">
+    <Reference Include="Atomia.ActionTrail.Base, Version=16.3.6076.31243, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.ActionTrail.Base.dll</HintPath>
     </Reference>
-    <Reference Include="Atomia.ActionTrail.Logging">
+    <Reference Include="Atomia.ActionTrail.Logging, Version=16.3.6076.31244, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.ActionTrail.Logging.dll</HintPath>
     </Reference>
-    <Reference Include="Atomia.ActionTrail.XmlSerializer">
+    <Reference Include="Atomia.ActionTrail.XmlSerializer, Version=16.3.6076.31244, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.ActionTrail.XmlSerializer.dll</HintPath>
     </Reference>
     <Reference Include="System" />
@@ -73,6 +76,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapters\AuditLogger.cs" />
     <Compile Include="Adapters\Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
