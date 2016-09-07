@@ -3,9 +3,12 @@ using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
 using System.Web;
+
+using Atomia.ActionTrail.Base;
+
+using ConfigurationManager = System.Configuration.ConfigurationManager;
 
 namespace Atomia.Store.PublicBillingApi
 {
@@ -13,15 +16,18 @@ namespace Atomia.Store.PublicBillingApi
     {
         private readonly IEnumerable<OrderDataHandler> orderDataHandlers;
 
-        public OrderCreator(IEnumerable<OrderDataHandler> orderDataHandlers, PublicBillingApiProxy billingApi)
+        protected readonly IAuditLogger auditLogger;
+
+        public OrderCreator(IEnumerable<OrderDataHandler> orderDataHandlers, PublicBillingApiProxy billingApi, IAuditLogger auditLogger = null)
             : base(billingApi)
         {
             if (orderDataHandlers == null)
             {
                 throw new ArgumentNullException("orderDataHandlers");
             }
-   
+
             this.orderDataHandlers = orderDataHandlers;
+            this.auditLogger = auditLogger;
         }
 
         protected PublicOrder PrepareOrder(PublicOrderContext publicOrderContext, PaymentDataHandler paymentHandler)
@@ -61,8 +67,7 @@ namespace Atomia.Store.PublicBillingApi
 
     public class SimpleOrderCreator : OrderCreator
     {
-        public SimpleOrderCreator(IEnumerable<OrderDataHandler> orderDataHandlers, 
-            PublicBillingApiProxy billingApi) : base(orderDataHandlers, billingApi) 
+        public SimpleOrderCreator(IEnumerable<OrderDataHandler> orderDataHandlers, PublicBillingApiProxy billingApi, IAuditLogger auditLogger = null) : base(orderDataHandlers, billingApi, auditLogger) 
         { }
 
         /// <summary>
@@ -80,6 +85,11 @@ namespace Atomia.Store.PublicBillingApi
             if (createdOrder == null)
             {
                 throw new InvalidOperationException("Order could not be created.");
+            }
+
+            if (this.auditLogger != null)
+            {
+                this.auditLogger.Log(AuditActionTypes.OrderCreated, string.Empty, createdOrder.CustomerId.ToString(), createdOrder.Email, createdOrder.Id.ToString(), null);    
             }
 
             return createdOrder;

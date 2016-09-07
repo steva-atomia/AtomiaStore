@@ -38,6 +38,7 @@ namespace Atomia.Store.Themes.Default
         private static void RegisterCoreAdapters(UnityContainer container)
         {
             container.RegisterType<IModelBinderProvider, Atomia.Store.AspNetMvc.Infrastructure.ModelBinderProvider>();
+            container.RegisterType<IAuditLogger, Atomia.Store.ActionTrail.Adapters.AuditLogger>();
             container.RegisterType<ILogger, Atomia.Store.ActionTrail.Adapters.Logger>();
             container.RegisterType<ICartProvider, Atomia.Store.AspNetMvc.Adapters.CartProvider>();
             container.RegisterType<IContactDataProvider, Atomia.Store.AspNetMvc.Adapters.ContactDataProvider>();
@@ -217,7 +218,7 @@ namespace Atomia.Store.Themes.Default
             else
             {
                 container.RegisterType<OrderCreator, Atomia.Store.PublicBillingApi.SimpleOrderCreator>(
-                    new InjectionConstructor(orderDataHandlerParams, new ResolvedParameter<PublicBillingApiProxy>()));
+                    new InjectionConstructor(orderDataHandlerParams, new ResolvedParameter<PublicBillingApiProxy>(), new ResolvedParameter<IAuditLogger>()));
             }
 
             container.RegisterType<PaymentTransactionCreator, Atomia.Store.PublicBillingApi.PaymentTransactionCreator>();
