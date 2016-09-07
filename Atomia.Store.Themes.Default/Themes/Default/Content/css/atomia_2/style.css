@@ -867,8 +867,11 @@ footer {
     display: inline-block;
     overflow: hidden;
     height: 4.1667rem;
+    width: 9.1667rem;
     font-size: 0;
-    float: left
+    float: left;
+    background: url(../../img/atomia_2/atomia_logo_white.svg) no-repeat;
+    background-position: 0 10px;
 }
 header .icn_atomia:before {
 	font-size: 9.111rem;
