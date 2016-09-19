@@ -15,7 +15,7 @@ The quickest way to get started with a new custom theme is to use the theme star
 
     `.\AtomiaStore\ThemeStarter\startnewtheme.ps1 MyTheme`
 
-4. Open `MyTheme\MyTheme.sln` in Visual Studio 2013.
+4. Open `MyTheme\MyTheme.sln` in Visual Studio 2013 or above.
 
 5. If you do not have a complete Atomia development environment installed, you can use fake backend services by uncommenting the relevant unity sections in Web.config.
 
