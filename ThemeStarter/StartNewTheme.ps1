@@ -2,6 +2,13 @@ Param(
     [string]$themeDir
 )
 
+# Set $PSScriptRoot on older versions of PowerShell
+$PSVersion = ((Get-Host).Version).Major
+
+if ($PSVersion -le 2) {
+	$PSScriptRoot = Split-Path $MyInvocation.MyCommand.Path -Parent
+}
+
 $themeName = Split-Path $themeDir -Leaf
 $createDir = Join-Path (Join-Path (pwd) (Split-Path $themeDir -Parent)) $ThemeName
 $themeDir = Join-Path $createDir $themeName
@@ -56,16 +63,32 @@ if ("$themeName" -ne "MyTheme")
 
 Get-ChildItem "$($themeDir)\App_GlobalResources\$($themeName)"|Rename-Item -NewName {$_.name -replace 'MyTheme', $themeName }
 
-(gc "$($themeDir)\$($themeName).csproj").replace('MyTheme', $themeName)|sc "$($themeDir)\$($themeName).csproj"
-(gc "$($createDir)\$($themeName).sln").replace('MyTheme', $themeName)|sc "$($createDir)\$($themeName).sln"
-(gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
-(gc "$($themeDir)\Transformation Files\Web.$($themeName).config").replace('MyTheme', $themeName)|sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
-(gc "$($themeDir)\publishtheme.ps1").replace('MyTheme', $themeName)|sc "$($themeDir)\publishtheme.ps1"
-(gc "$($createDir)\.gitignore").replace('MyTheme', $themeName)|sc "$($createDir)\.gitignore"
+if ($PSVersion -le 2) {
+	(gc "$($themeDir)\$($themeName).csproj") -replace 'MyTheme', $themeName | sc "$($themeDir)\$($themeName).csproj"
+	(gc "$($createDir)\$($themeName).sln") -replace 'MyTheme', $themeName | sc "$($createDir)\$($themeName).sln"
+	(gc "$($themeDir)\Web.config") -replace 'MyTheme', $themeName | sc "$($themeDir)\Web.config"
+	(gc "$($themeDir)\Transformation Files\Web.$($themeName).config") -replace 'MyTheme', $themeName | sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
+	(gc "$($themeDir)\publishtheme.ps1") -replace 'MyTheme', $themeName | sc "$($themeDir)\publishtheme.ps1"
+	(gc "$($createDir)\.gitignore") -replace 'MyTheme', $themeName | sc "$($createDir)\.gitignore"
 
-(gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
-(gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
-(gc "$($themeDir)\App_Start\RouteConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\RouteConfig.cs"
-(gc "$($themeDir)\App_Start\UnityConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\UnityConfig.cs"
-(gc "$($themeDir)\App_Start\OrderFlowConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\OrderFlowConfig.cs"
-(gc "$($themeDir)\GlobalEventsHandler.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\GlobalEventsHandler.cs"
+	(gc "$($themeDir)\App_Start\BundleConfig.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\App_Start\BundleConfig.cs"
+	(gc "$($themeDir)\App_Start\FilterConfig.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\App_Start\FilterConfig.cs"
+	(gc "$($themeDir)\App_Start\RouteConfig.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\App_Start\RouteConfig.cs"
+	(gc "$($themeDir)\App_Start\UnityConfig.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\App_Start\UnityConfig.cs"
+	(gc "$($themeDir)\App_Start\OrderFlowConfig.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\App_Start\OrderFlowConfig.cs"
+	(gc "$($themeDir)\GlobalEventsHandler.cs") -replace '\$MyTheme\$', $themeName | sc "$($themeDir)\GlobalEventsHandler.cs"
+} else {
+	(gc "$($themeDir)\$($themeName).csproj").replace('MyTheme', $themeName)|sc "$($themeDir)\$($themeName).csproj"
+	(gc "$($createDir)\$($themeName).sln").replace('MyTheme', $themeName)|sc "$($createDir)\$($themeName).sln"
+	(gc "$($themeDir)\Web.config").replace('MyTheme', $themeName)|sc "$($themeDir)\Web.config"
+	(gc "$($themeDir)\Transformation Files\Web.$($themeName).config").replace('MyTheme', $themeName)|sc "$($themeDir)\Transformation Files\Web.$($themeName).config"
+	(gc "$($themeDir)\publishtheme.ps1").replace('MyTheme', $themeName)|sc "$($themeDir)\publishtheme.ps1"
+	(gc "$($createDir)\.gitignore").replace('MyTheme', $themeName)|sc "$($createDir)\.gitignore"
+
+	(gc "$($themeDir)\App_Start\BundleConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\BundleConfig.cs"
+	(gc "$($themeDir)\App_Start\FilterConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\FilterConfig.cs"
+	(gc "$($themeDir)\App_Start\RouteConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\RouteConfig.cs"
+	(gc "$($themeDir)\App_Start\UnityConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\UnityConfig.cs"
+	(gc "$($themeDir)\App_Start\OrderFlowConfig.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\App_Start\OrderFlowConfig.cs"
+	(gc "$($themeDir)\GlobalEventsHandler.cs").replace('$MyTheme$', $themeName)|sc "$($themeDir)\GlobalEventsHandler.cs"
+}
