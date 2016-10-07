@@ -1,0 +1,707 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AddToCart" xml:space="preserve">
+    <value>Sepete ekle</value>
+  </data>
+  <data name="AvailablePackages" xml:space="preserve">
+    <value>Mevcut paketleri</value>
+  </data>
+  <data name="Domain" xml:space="preserve">
+    <value>Domain</value>
+  </data>
+  <data name="DomainAvailableHoverTitle" xml:space="preserve">
+    <value>Gecerli.</value>
+  </data>
+  <data name="DomainNotAvailableHoverTitle" xml:space="preserve">
+    <value>Mevcut değil.</value>
+  </data>
+  <data name="DomainRegistrationDescription" xml:space="preserve">
+    <value>Web hosting paketi için bir alan adı seçerek başlayın.</value>
+  </data>
+  <data name="DomainRegistrationResultsHeading" xml:space="preserve">
+    <value>Için sonuçlar</value>
+  </data>
+  <data name="Fee" xml:space="preserve">
+    <value>Ücret</value>
+  </data>
+  <data name="From" xml:space="preserve">
+    <value>Itibaren</value>
+  </data>
+  <data name="HostingPackageDescription" xml:space="preserve">
+    <value></value>
+  </data>
+  <data name="HostingPackageTitle" xml:space="preserve">
+    <value>Web hosting paketi seçin</value>
+  </data>
+  <data name="Item" xml:space="preserve">
+    <value>Madde</value>
+  </data>
+  <data name="ConnectedDomain" xml:space="preserve">
+    <value>Bağlı alanı</value>
+  </data>
+  <data name="MONTH" xml:space="preserve">
+    <value>Ay</value>
+    <comment>Renewal period unit convention</comment>
+  </data>
+  <data name="MONTHPlural" xml:space="preserve">
+    <value>Ay</value>
+    <comment>Renewal period unit convention</comment>
+  </data>
+  <data name="MoreResults" xml:space="preserve">
+    <value>Daha fazla sonuç</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Sonraki</value>
+  </data>
+  <data name="OrderPageTitle" xml:space="preserve">
+    <value>Sipariş web hosting ve DNS</value>
+  </data>
+  <data name="PricingVariantDisplay" xml:space="preserve">
+    <value>{1} {2} - {0}</value>
+    <comment>0 = price, 1 = period, 2 = unit</comment>
+  </data>
+  <data name="PricingVariantUBPDisplay" xml:space="preserve">
+    <value>{0} ({1} ile {2} {3}) - {4}</value>
+    <comment>0 = range name, 1 = counter from, 2 = counter to, 3 = unit name, 4 = price</comment>
+  </data>
+  <data name="Remove" xml:space="preserve">
+    <value>Kaldır</value>
+  </data>
+  <data name="Select" xml:space="preserve">
+    <value>Seçmek</value>
+  </data>
+  <data name="ShoppingCart" xml:space="preserve">
+    <value>Alışveriş kartı</value>
+  </data>
+  <data name="ShoppingCartDescription" xml:space="preserve">
+    <value>Sepetinizde ürün kaldırılabilir.</value>
+  </data>
+  <data name="ShoppingCartEmpty" xml:space="preserve">
+    <value>Sepetinizde hiçbir ürün bulunmamaktadır.</value>
+  </data>
+  <data name="Subtotal" xml:space="preserve">
+    <value>Ara toplam</value>
+  </data>
+  <data name="Taken" xml:space="preserve">
+    <value>Alınan</value>
+  </data>
+  <data name="Tax" xml:space="preserve">
+    <value>DKV</value>
+  </data>
+  <data name="Total" xml:space="preserve">
+    <value>Genel Toplam</value>
+  </data>
+  <data name="YEAR" xml:space="preserve">
+    <value>Yıl</value>
+    <comment>Renewal period unit convention</comment>
+  </data>
+  <data name="YEARPlural" xml:space="preserve">
+    <value>Yıl</value>
+    <comment>Renewal period unit convention</comment>
+  </data>
+  <data name="RenewalPeriodDisplay" xml:space="preserve">
+    <value>{0} {1}</value>
+    <comment>0 = period, 1 = unit</comment>
+  </data>
+  <data name="Back" xml:space="preserve">
+    <value>Arka</value>
+  </data>
+  <data name="ConnectedDomainDescription" xml:space="preserve">
+    <value>Biz Seçilen alan adı ile bağlı olması için pakette hizmet kuracak.</value>
+  </data>
+  <data name="StepDescriptionAccount" xml:space="preserve">
+    <value>Kurmak hesap bilgisi</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepTitleAccount" xml:space="preserve">
+    <value>Hesap</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepDescriptionCheckout" xml:space="preserve">
+    <value>Fatura ve ödeme seçenekleri</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepTitleCheckout" xml:space="preserve">
+    <value>Çıkış yapmak</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepDescriptionDomains" xml:space="preserve">
+    <value>Yeni satın almak veya mevcut hareket</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepTitleDomains" xml:space="preserve">
+    <value>Etki</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepDescriptionHostingPackage" xml:space="preserve">
+    <value>Hosting paketi seçin</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="StepTitleHostingPackage" xml:space="preserve">
+    <value>Hosting</value>
+    <comment>Order flow step resource convention</comment>
+  </data>
+  <data name="LanguageSelectorTitle" xml:space="preserve">
+    <value>Dil</value>
+  </data>
+  <data name="AccountTitle" xml:space="preserve">
+    <value>İletişim bilgileri</value>
+  </data>
+  <data name="Address" xml:space="preserve">
+    <value>Adres</value>
+  </data>
+  <data name="Address2" xml:space="preserve">
+    <value>Adres 2</value>
+  </data>
+  <data name="BillingAddressTitle" xml:space="preserve">
+    <value>Fatura Adresi</value>
+  </data>
+  <data name="BillingDifferentThanMain" xml:space="preserve">
+    <value>Farklı fatura adresi</value>
+  </data>
+  <data name="BillingSameAsMain" xml:space="preserve">
+    <value>Iletişim bilgileri ile aynı</value>
+  </data>
+  <data name="Change" xml:space="preserve">
+    <value>Değişiklik</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>Şehir</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Şirket Adı</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>ülke</value>
+  </data>
+  <data name="Email" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="EmailRequired" xml:space="preserve">
+    <value>E-posta gereklidir.</value>
+  </data>
+  <data name="Fax" xml:space="preserve">
+    <value>Faks</value>
+  </data>
+  <data name="FirstName" xml:space="preserve">
+    <value>İsim</value>
+  </data>
+  <data name="IndividualIdentityNumber" xml:space="preserve">
+    <value>Kişisel Kimlik no.</value>
+  </data>
+  <data name="LastName" xml:space="preserve">
+    <value>Soyadı</value>
+  </data>
+  <data name="Mobile" xml:space="preserve">
+    <value>Hareketli</value>
+  </data>
+  <data name="Phone" xml:space="preserve">
+    <value>Telefon</value>
+  </data>
+  <data name="Zip" xml:space="preserve">
+    <value>Zip</value>
+  </data>
+  <data name="VatNumber" xml:space="preserve">
+    <value>KDV numarası</value>
+  </data>
+  <data name="CompanyIdentityNumber" xml:space="preserve">
+    <value>Kurumsal Kimlik no.</value>
+  </data>
+  <data name="CustomerType" xml:space="preserve">
+    <value>Müşteri tipi</value>
+  </data>
+  <data name="Company" xml:space="preserve">
+    <value>şirket</value>
+  </data>
+  <data name="Individual" xml:space="preserve">
+    <value>Bireysel</value>
+  </data>
+  <data name="Checkout" xml:space="preserve">
+    <value>Çıkış yapmak</value>
+  </data>
+  <data name="PaymentOptions" xml:space="preserve">
+    <value>Ödeme seçenekleri</value>
+  </data>
+  <data name="AddCampaignCode" xml:space="preserve">
+    <value>Kampanya Kodu Ekle</value>
+  </data>
+  <data name="Terms" xml:space="preserve">
+    <value>şartlar</value>
+  </data>
+  <data name="ReadAndAgree" xml:space="preserve">
+    <value>Okudum ve kabul ediyorum var</value>
+    <comment>Used together with terms of service *_Name strings</comment>
+  </data>
+  <data name="PayUsing" xml:space="preserve">
+    <value>Kullanarak ödeme</value>
+  </data>
+  <data name="PayPalDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kimlik bilgilerinizi veya kredi kartı bilgilerinizi girmek için PayPal yönlendirileceksiniz ve daha sonra işlem bitirmek için burada iade edilecektir.</value>
+  </data>
+  <data name="PayPalName" xml:space="preserve">
+    <value>PayPal</value>
+  </data>
+  <data name="PayWithInvoiceName" xml:space="preserve">
+    <value>Fatura</value>
+  </data>
+  <data name="InvoiceByPostName" xml:space="preserve">
+    <value>Posta</value>
+  </data>
+  <data name="AmountToPay" xml:space="preserve">
+    <value>Ödenecek miktar</value>
+  </data>
+  <data name="Discount" xml:space="preserve">
+    <value>İndirim</value>
+  </data>
+  <data name="Period" xml:space="preserve">
+    <value>Dönem</value>
+  </data>
+  <data name="Product" xml:space="preserve">
+    <value>Ürün</value>
+  </data>
+  <data name="CheckoutCartIsEmptyDescription" xml:space="preserve">
+    <value>Geri dönüp kontrol önce sepetinize bazı öğeler ekleyin.</value>
+  </data>
+  <data name="CheckoutCartIsEmptyTitle" xml:space="preserve">
+    <value>Sepetiniz boş</value>
+  </data>
+  <data name="defaultTOS_Name" xml:space="preserve">
+    <value>Şartlar ve koşullar</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="defaultTOS_Terms" xml:space="preserve">
+    <value>Bu şirketin Şartlar ve Koşullar için bir yer tutucudur.</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="Invoice" xml:space="preserve">
+    <value>Fatura</value>
+  </data>
+  <data name="TOS_core_Name" xml:space="preserve">
+    <value>CORE Hüküm ve Şartları</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="TOS_core_Terms" xml:space="preserve">
+    <value>Bu şirketin Şartlar ve Koşullar için bir yer tutucudur.</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="TOS_se_Name" xml:space="preserve">
+    <value>.se Alan adları için Şartlar ve Koşullar</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="TOS_se_Terms" xml:space="preserve">
+    <value>Bu şirketin Şartlar ve Koşullar için bir yer tutucudur.</value>
+    <comment>Terms of service resource convention</comment>
+  </data>
+  <data name="CheckoutFailureDescription" xml:space="preserve">
+    <value>&lt;p&gt;Farklı bir ödeme yöntemi kullanarak deneyin. &lt;/p&gt; &lt;p&gt;Ödeme doğrulandıktan sonra Alan adları kayıtlı olacak.&lt;/p&gt;</value>
+  </data>
+  <data name="CheckoutFailureTitle" xml:space="preserve">
+    <value>Ödeme kabul edilmedi</value>
+  </data>
+  <data name="CheckoutSuccessDescription" xml:space="preserve">
+    <value>&lt;p&gt;Hesabınız hemen oluşturulacaktır.&lt;/p&gt; &lt;p&gt;Giriş talimatları için e-postanızı kontrol edin..&lt;/p&gt;</value>
+  </data>
+  <data name="CheckoutSuccessTitle" xml:space="preserve">
+    <value>Teşekkür ederim ve hoş geldiniz!</value>
+  </data>
+  <data name="TryAgain" xml:space="preserve">
+    <value>Tekrar dene</value>
+  </data>
+  <data name="DE_name" xml:space="preserve">
+    <value>Almanca</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="DE_shortname" xml:space="preserve">
+    <value>DE</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="EN_name" xml:space="preserve">
+    <value>İngilizce</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="EN_shortname" xml:space="preserve">
+    <value>TR</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="FR_name" xml:space="preserve">
+    <value>Fransızca</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="FR_shortname" xml:space="preserve">
+    <value>FR</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="SV_SE_name" xml:space="preserve">
+    <value>İsveççe</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="SV_SE_shortname" xml:space="preserve">
+    <value>SE</value>
+    <comment>Language resource convention</comment>
+  </data>
+  <data name="DomainRegistrationNoResultsHeading" xml:space="preserve">
+    <value>Için sonuç</value>
+  </data>
+  <data name="InvoiceByEmailName" xml:space="preserve">
+    <value>E-posta</value>
+  </data>
+  <data name="SendInvoiceVia" xml:space="preserve">
+    <value>Faturayı gönder</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>İptal etmek</value>
+  </data>
+  <data name="ChargedAmount" xml:space="preserve">
+    <value>Tahsil edilen tutar</value>
+  </data>
+  <data name="Order" xml:space="preserve">
+    <value>Sipariş</value>
+  </data>
+  <data name="PayPalConfirmDescription" xml:space="preserve">
+    <value>&lt;p&gt;Şimdi sipariş almaya hazırız. siparişinizi inceleyin ve işlemi onaylamak için sipariş butonuna tıklayınız.&lt;/p&gt; &lt;p&gt;Siparişiniz güvenli PayPal tarafından işlenecektir.&lt;/p&gt;</value>
+  </data>
+  <data name="PayPalConfirmTitle" xml:space="preserve">
+    <value>PayPal onay</value>
+  </data>
+  <data name="Error_ForbiddenDescription" xml:space="preserve">
+    <value>Maalesef sayfayı görüntülemek için yeterli ayrıcalıklara sahip değilsiniz.</value>
+  </data>
+  <data name="Error_ForbiddenTitle" xml:space="preserve">
+    <value>Yasak</value>
+  </data>
+  <data name="Error_InternalServerErrorDescription" xml:space="preserve">
+    <value>Bilinmeyen bir hata oluştu. Lütfen daha sonra tekrar deneyiniz.</value>
+  </data>
+  <data name="Error_InternalServerErrorTitle" xml:space="preserve">
+    <value>Bilinmeyen hata</value>
+  </data>
+  <data name="Error_NotFoundDescription" xml:space="preserve">
+    <value>Aradığınız kaynak burada değil.</value>
+  </data>
+  <data name="Error_NotFoundTitle" xml:space="preserve">
+    <value>Bulunamadı</value>
+  </data>
+  <data name="AdyenHppDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kredi kartı bilgilerinizi girmek için Adyen yönlendirileceksiniz ve daha sonra burada iade edilecektir.</value>
+  </data>
+  <data name="AdyenHppName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="DibsFlexwinDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kredi kartı bilgilerinizi girmek için DİBS yönlendirileceksiniz ve daha sonra burada iade edilecektir.</value>
+  </data>
+  <data name="DibsFlexwinName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="PayExRedirectDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kredi kartı bilgilerinizi girmek için PAYEX yönlendirileceksiniz ve daha sonra burada iade edilecektir.</value>
+  </data>
+  <data name="PayExRedirectName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="WorldPayRedirectDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kredi kartı bilgilerinizi girmek için WorldPay yönlendirileceksiniz ve daha sonra burada iade edilecektir.</value>
+  </data>
+  <data name="WorldPayRedirectName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="WorldPayXmlRedirectDescription" xml:space="preserve">
+    <value>Checkout tıklayarak kredi kartı bilgilerinizi girmek için WorldPay yönlendirileceksiniz ve daha sonra burada iade edilecektir.</value>
+  </data>
+  <data name="WorldPayXmlRedirectName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="Confirmation" xml:space="preserve">
+    <value>Onay</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Eklemek</value>
+  </data>
+  <data name="CampaignCode" xml:space="preserve">
+    <value>Kampanya kodu</value>
+  </data>
+  <data name="CampaignCodeSuccess" xml:space="preserve">
+    <value>Kampanya kodu başarıyla eklendi</value>
+  </data>
+  <data name="AjaxErrorMessage" xml:space="preserve">
+    <value>Sayfayı yeniden yükleyin ve tekrar deneyin.</value>
+  </data>
+  <data name="AjaxErrorTitle" xml:space="preserve">
+    <value>Bir şeyler yanlış gitti</value>
+  </data>
+  <data name="Dismiss" xml:space="preserve">
+    <value>Reddetmek</value>
+  </data>
+  <data name="TaxNameDisplay" xml:space="preserve">
+    <value>KDV {0}</value>
+    <comment>0 = formatted percentage, e.g. "25 %"</comment>
+  </data>
+  <data name="NoTax" xml:space="preserve">
+    <value>KDV</value>
+  </data>
+  <data name="CCPaymentName" xml:space="preserve">
+    <value>Kredi kartı</value>
+  </data>
+  <data name="CardNumber" xml:space="preserve">
+    <value>Kart numarası</value>
+    <comment>Credit card number label</comment>
+  </data>
+  <data name="CardOwner" xml:space="preserve">
+    <value>Kart sahibi</value>
+    <comment>Credit card owner label</comment>
+  </data>
+  <data name="CardSecurityCode" xml:space="preserve">
+    <value>CVC / CVV</value>
+    <comment>Credit card security code label</comment>
+  </data>
+  <data name="CreditCardAutoPay" xml:space="preserve">
+    <value>Otomatik olarak sona erme gününde fatura ödemek</value>
+    <comment>Credit card auto pay label</comment>
+  </data>
+  <data name="ErrorCreditCard" xml:space="preserve">
+    <value>Geçerli bir kredi kartı numarası</value>
+  </data>
+  <data name="Expires" xml:space="preserve">
+    <value>Sona eriyor</value>
+    <comment>Credit card expiration label</comment>
+  </data>
+  <data name="PaymentProfileOptions" xml:space="preserve">
+    <value>Ödeme profil seçenekleri</value>
+  </data>
+  <data name="SaveCreditCardInfo" xml:space="preserve">
+    <value>Benim kredi kartı bilgilerini kaydetme</value>
+    <comment>Credit card save info label</comment>
+  </data>
+  <data name="SelectMonth" xml:space="preserve">
+    <value></value>
+    <comment>Credit card month expiration options label</comment>
+  </data>
+  <data name="SelectYear" xml:space="preserve">
+    <value></value>
+    <comment>Credit card year expiration options label</comment>
+  </data>
+  <data name="ErrorEmptyField" xml:space="preserve">
+    <value>Bu alan boş olamaz</value>
+  </data>
+  <data name="ErrorExpiresMonthRequired" xml:space="preserve">
+    <value>Geçerlilik aylık seçilmelidir</value>
+  </data>
+  <data name="ErrorExpiresYearRequired" xml:space="preserve">
+    <value>Expire yıl seçilmelidir</value>
+  </data>
+  <data name="ErrorInvalidCardSecurityCode" xml:space="preserve">
+    <value>CVC / CVV üç veya dört basamaklı olmalı</value>
+  </data>
+  <data name="ErrorInvalidDomain" xml:space="preserve">
+    <value>Geçersiz alan adı</value>
+  </data>
+  <data name="ErrorTermNotChecked" xml:space="preserve">
+    <value>ErrorTermNotChecked</value>
+  </data>
+  <data name="ErrorUsernameNotAvailable" xml:space="preserve">
+    <value>Kullanıcı adı uygun değil</value>
+  </data>
+  <data name="ExpiresMonth" xml:space="preserve">
+    <value>Ay, sona eriyor</value>
+  </data>
+  <data name="ExpiresYear" xml:space="preserve">
+    <value>Yıl, sona eriyor</value>
+  </data>
+  <data name="Confirm" xml:space="preserve">
+    <value>Onaylamak</value>
+  </data>
+  <data name="SameAsContactInfo" xml:space="preserve">
+    <value>Iletişim bilgileri gibi aynı yapmak</value>
+  </data>
+  <data name="WhoisAddressTitle" xml:space="preserve">
+    <value>WHOIS temas</value>
+  </data>
+  <data name="WhoisDifferentThanMain" xml:space="preserve">
+    <value>Farklı WHOIS temas</value>
+  </data>
+  <data name="WhoisSameAsMain" xml:space="preserve">
+    <value>Iletişim bilgileri ile aynı</value>
+  </data>
+  <data name="SkipDomain" xml:space="preserve">
+    <value>Bir etki alanı adı eklemeden devam et</value>
+  </data>
+  <data name="DoNotConnectDomain" xml:space="preserve">
+    <value>Bir etki bağlamayın</value>
+  </data>
+  <data name="Amount" xml:space="preserve">
+    <value>Miktar</value>
+  </data>
+  <data name="ErrorPreselectRenewalPeriod" xml:space="preserve">
+    <value>Yenileme süresi biçimi N-AY veya N-YIL olduğunu</value>
+  </data>
+  <data name="CouldNotValidateVatNumber" xml:space="preserve">
+    <value>KDV numarasını doğrulamak olamazdı</value>
+  </data>
+  <data name="InvalidVatNumber" xml:space="preserve">
+    <value>Geçersiz KDV numarası</value>
+  </data>
+  <data name="NoVatNumber" xml:space="preserve">
+    <value>Müşteri hiçbir VATNUMBER vardır</value>
+  </data>
+  <data name="VatNumberWarning" xml:space="preserve">
+    <value>Doğru ya da doğrulama hizmeti değil KDV numarası, bu nedenle KDV faturanıza uygulanacaktır şu anda mevcut değil. Sen KDV numaranızı kontrol edip tekrar doğrulamak için çalışmalısınız.</value>
+  </data>
+  <data name="VatValidationSuccessTitle" xml:space="preserve">
+    <value>KDV doğrulama başarılı</value>
+  </data>
+  <data name="VatValidationSucessDescription" xml:space="preserve">
+    <value>KDV numarası başarıyla doğrulanır ve fatura KDV ücretsiz olacak.</value>
+  </data>
+  <data name="Retry" xml:space="preserve">
+    <value>Tekrar dene</value>
+  </data>
+  <data name="Validating" xml:space="preserve">
+    <value>Doğrulanırken</value>
+  </data>
+  <data name="Username" xml:space="preserve">
+    <value>Kullanıcı adı</value>
+  </data>
+  <data name="FindDomain" xml:space="preserve">
+    <value>Domain bul</value>
+  </data>
+  <data name="CurrencySelectorTitle" xml:space="preserve">
+    <value>Para birimi</value>
+  </data>
+  <data name="ARS" xml:space="preserve">
+    <value>Arjantinli pezosu</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="EUR" xml:space="preserve">
+    <value>Euro</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="PLN" xml:space="preserve">
+    <value>Polonya zlotisi</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="SEK" xml:space="preserve">
+    <value>İsveç kronu</value>
+    <comment>Currency resource convention</comment>
+  </data>
+  <data name="USD" xml:space="preserve">
+    <value>Amerikan Doları</value>
+    <comment>Currency resource convention</comment>
+  </data>
+</root>
