@@ -10,10 +10,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * @param {string} newCurrencyCode - Code of currency to switch to
      */
     function getNewCurrencyURL(currentCurrencyCode, newCurrencyCode) {
-        var currentURL = window.location.href,
+        var currentURL = window.location.search,
             newURL,
-            currentQueryString = '?ccy=' + currentCurrencyCode,
-            newQueryString = '?ccy=' + newCurrencyCode;
+            currentQueryString = (currentURL === '' || currentURL.startsWith('?ccy=') ? '?ccy=' : '&ccy=') + currentCurrencyCode,
+            newQueryString = (currentURL === '' || currentURL.startsWith('?ccy=') ? '?ccy=' : '&ccy=') + newCurrencyCode;
 
         if (currentURL.indexOf(currentQueryString) !== -1) {
             newURL = currentURL.replace(currentQueryString, newQueryString);
