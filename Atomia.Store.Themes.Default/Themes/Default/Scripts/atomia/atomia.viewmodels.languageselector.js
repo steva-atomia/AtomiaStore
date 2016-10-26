@@ -12,10 +12,10 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      * @param {string} newLanguageCode - Code of language to switch to
      */
     function getNewLanguageURL(currentLanguageCode, newLanguageCode) {
-        var currentURL = window.location.href,
+        var currentURL = window.location.search,
             newURL,
-            currentQueryString = '?lang=' + currentLanguageCode,
-            newQueryString = '?lang=' + newLanguageCode;
+            currentQueryString = (currentURL === '' || currentURL.startsWith('?lang=') ? '?lang=' : '&lang=') + currentLanguageCode,
+            newQueryString = (currentURL === '' || currentURL.startsWith('?lang=') ? '?lang=' : '&lang=') + newLanguageCode;
 
         if (currentURL.indexOf(currentQueryString) !== -1) {
             newURL = currentURL.replace(currentQueryString, newQueryString);
