@@ -1,0 +1,35 @@
+﻿@model Atomia.Store.ExistingCustomer.Models.CustomerLoginModel
+
+<!-- ko with: Atomia.VM.existingCustomer -->
+    <h4>@Html.CommonResource("ExistingCustomerTitle")</h4>
+
+    <form action="ExistingCustomer/ValidateLogin?flow=ExistingCustomerFlow" method="post" id="Login_Form">
+        @{Html.RenderPartial("_ValidationSummary", ViewData.ModelState);}
+
+        @Html.AntiForgeryToken()
+
+        <div class="formrow">
+            <h5>
+                <span class="required">*</span><label class="required" for="Username">@Html.CommonResource("Username"):</label>
+            </h5>
+            <div class="col2row">
+                <input id="Username" name="Username" type="text" value="" data-bind="value: username" />
+                @Html.ValidationMessageFor(m => m.Username)
+            </div>
+            <br class="clear">
+        </div>
+
+        <div class="formrow">
+            <h5>
+                <span class="required">*</span><label class="required" for="Password">@Html.CommonResource("Password"):</label>
+            </h5>
+            <div class="col2row">
+                <input id="Password" name="Password" type="password" value="" data-bind="value: password" />
+                @Html.ValidationMessageFor(m => m.Password)
+            </div>
+            <br class="clear">
+        </div>
+
+        @{Html.RenderPartial("_Actions", Model);}
+    </form>
+<!-- /ko -->

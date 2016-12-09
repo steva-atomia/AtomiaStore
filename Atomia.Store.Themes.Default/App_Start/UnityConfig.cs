@@ -3,6 +3,7 @@ using Atomia.Store.AspNetMvc.Ports;
 using Atomia.Store.Core;
 using Atomia.Store.PublicBillingApi;
 using Atomia.Store.PublicBillingApi.Handlers;
+using Atomia.Store.ExistingCustomer.Adapters;
 using Microsoft.Practices.Unity;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -27,6 +28,8 @@ namespace Atomia.Store.Themes.Default
             RegisterPaymentMethods(container);
 
             RegisterOrderHandling(container);
+
+            RegisterExistingCustomerOrdering(container);
 
             // Un-comment to use fake static data instead of public order api.
             // RegisterFakeAdapters(container);
@@ -245,6 +248,25 @@ namespace Atomia.Store.Themes.Default
             container.RegisterType<IDomainsProvider, Atomia.Store.Fakes.Adapters.FakePremiumDomainsProvider>();
             container.RegisterType<IOrderPlacementService, Atomia.Store.Fakes.Adapters.FakeOrderPlacementService>();
             container.RegisterType<ICurrencyProvider, Atomia.Store.Fakes.Adapters.FakeCurrencyProvider>();
+        }
+
+        private static void RegisterExistingCustomerOrdering(UnityContainer container)
+        {
+            bool allowExistingCustomerOrders;
+            var allowExistingCustomerOrdersSetting = ConfigurationManager.AppSettings["AllowExistingCustomerOrders"] as String;
+
+            if (!Boolean.TryParse(allowExistingCustomerOrdersSetting, out allowExistingCustomerOrders))
+            {
+                throw new ConfigurationErrorsException("Could not parse boolean from 'AllowExistingCustomerOrders' setting or it is missing.");
+            }
+
+            if (allowExistingCustomerOrders)
+            {
+                // Existing customer adapters
+                container.RegisterType<IContactDataProvider, Atomia.Store.ExistingCustomer.Adapters.CombinedContactProvider>();
+                container.RegisterType<CustomerLoginValidator, Atomia.Store.ExistingCustomer.Adapters.CustomerLoginValidator>();
+                container.RegisterType<OrderCreator, Atomia.Store.ExistingCustomer.Adapters.CombinedOrderCreator>();
+            }
         }
     }
 }

@@ -707,4 +707,10 @@
     <value>US dollar</value>
     <comment>Currency resource convention</comment>
   </data>
+  <data name="ExistingCustomerTitle" xml:space="preserve">
+    <value>Existing customer</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
 </root>

@@ -1,10 +1,13 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DefaultAccountViewModel
+@using Atomia.Store.ExistingCustomer.Models;
 
 @{
     Layout = "~/Themes/Default/Views/_OrderFlowLayout.cshtml";
 }
 
 <div class="settingsboxinner">
+
+    @{Html.RenderPartial("_ExistingCustomer", new CustomerLoginModel());}
 
     @using (Html.BeginForm("Index", "Account", FormMethod.Post, new { id = "Account_Form" }))
     {
