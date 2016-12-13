@@ -34,9 +34,15 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
                 var customData = new List<PublicOrderItemProperty>();
 
                 var domainName = GetDomainName(domainItem);
+                var domainRegSpecificAttrs = GetDomainRegistrySpecificAttributes(domainItem);
                 var connectedItem = GetConnectedItem(orderContext.ItemData, domainItem, domainName);
                 
                 customData.Add(new PublicOrderItemProperty { Name = "DomainName", Value = domainName });
+
+                if (!string.IsNullOrEmpty(domainRegSpecificAttrs))
+                {
+                    customData.Add(new PublicOrderItemProperty { Name = "DomainRegistrySpecificAttributes", Value = domainRegSpecificAttrs });
+                }
 
                 if (connectedItem != null)
                 {
@@ -99,6 +105,23 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
             var domainName = Normalize(domainNameAttr.Value);
 
             return domainName;
+        }
+
+        /// <summary>
+        /// Get domain registry specific attributes to add as custom attribute on the order item.
+        /// </summary>
+        protected virtual string GetDomainRegistrySpecificAttributes(ItemData domainItem)
+        {
+            var regAttr = domainItem.CartItem.CustomAttributes.FirstOrDefault(ca => ca.Name == "DomainRegistrySpecificAttributes");
+
+            if (regAttr == null)
+            {
+                return string.Empty;
+            }
+
+            var attrs = Normalize(regAttr.Value);
+
+            return attrs;
         }
 
         /// <summary>

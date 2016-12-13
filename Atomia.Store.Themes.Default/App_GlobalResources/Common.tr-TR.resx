@@ -704,4 +704,16 @@
     <value>Amerikan Doları</value>
     <comment>Currency resource convention</comment>
   </data>
+  <data name="NoridDeclaration" xml:space="preserve">
+    <value>Norid deklarasyonu</value>
+  </data>
+  <data name="NoridDeclarationInfo" xml:space="preserve">
+    <value>.no alanlar için beyanı okudum ve kabul ediyorum.</value>
+  </data>
+  <data name="NoridLink" xml:space="preserve">
+    <value>Bildirime bakın (yeni pencerede açılır)</value>
+  </data>
+  <data name="SignedName" xml:space="preserve">
+    <value>İmzalı isim</value>
+  </data>
 </root>

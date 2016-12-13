@@ -47,5 +47,19 @@ namespace Atomia.Store.AspNetMvc.Controllers
 
             return View(model);
         }
+
+        /// <summary>
+        /// Norid terms of service page.
+        /// </summary>
+        [HttpGet]
+        public ActionResult NoridTermsOfService(string domains, string companyName, string companyNumber, string name, string time)
+        {
+            ViewBag.domains = domains ?? "";
+            ViewBag.companyName = companyName ?? "";
+            ViewBag.companyNumber = companyNumber ?? "";
+            ViewBag.name = name ?? "";
+            ViewBag.time = time ?? "";
+            return View();
+        }
     }
 }

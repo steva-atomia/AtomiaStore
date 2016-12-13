@@ -1035,6 +1035,42 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Norid Declaration.
+        /// </summary>
+        internal static string NoridDeclaration {
+            get {
+                return ResourceManager.GetString("NoridDeclaration", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to I read and accept the declaration for .no domains..
+        /// </summary>
+        internal static string NoridDeclarationInfo {
+            get {
+                return ResourceManager.GetString("NoridDeclarationInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to See statement (opens in new window).
+        /// </summary>
+        internal static string NoridLink {
+            get {
+                return ResourceManager.GetString("NoridLink", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 2.0.
+        /// </summary>
+        internal static string NoridVersion {
+            get {
+                return ResourceManager.GetString("NoridVersion", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No VAT.
         /// </summary>
         internal static string NoTax {
@@ -1338,6 +1374,15 @@ namespace Resources {
         internal static string ShoppingCartEmpty {
             get {
                 return ResourceManager.GetString("ShoppingCartEmpty", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Signed Name.
+        /// </summary>
+        internal static string SignedName {
+            get {
+                return ResourceManager.GetString("SignedName", resourceCulture);
             }
         }
         
