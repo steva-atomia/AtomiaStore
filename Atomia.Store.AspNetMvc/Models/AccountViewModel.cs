@@ -32,6 +32,7 @@ namespace Atomia.Store.AspNetMvc.Models
             MainContact = new MainContactModel();
             BillingContact = new BillingContactModel();
             WhoisContact = new WhoisContactModel();
+            NoridDeclaration = new NoridDeclarationModel();
         }
 
         /// <summary>
@@ -48,6 +49,11 @@ namespace Atomia.Store.AspNetMvc.Models
         /// WHOIS contact data collected from the customer.
         /// </summary>
         public WhoisContactModel WhoisContact { get; set; }
+
+        /// <summary>
+        /// Data for NORID declaration when .no domain is added to cart.
+        /// </summary>
+        public NoridDeclarationModel NoridDeclaration { get; set; }
 
         /// <summary>
         /// If other billing contact than main contact should be used or not.

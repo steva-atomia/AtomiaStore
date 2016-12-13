@@ -269,6 +269,7 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.currencyselector.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.noriddeclaration.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.paymentprofile.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.modalmixin.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.notification.js" />
@@ -321,6 +322,8 @@
     <Content Include="Themes\Default\Views\Account\_WhoisContact.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\_BeforeCampaign.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CurrencySelector.cshtml" />
+    <Content Include="Themes\Default\Views\Account\_NoridDeclaration.cshtml" />
+    <Content Include="Themes\Default\Views\Account\NoridTermsOfService.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Atomia.Store.PublicOrderHandlers\Atomia.Store.PublicOrderHandlers.csproj">

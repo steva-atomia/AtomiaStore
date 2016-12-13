@@ -31,6 +31,8 @@
 
         Html.HiddenFor(m => m.OtherWhoisContact, new { data_bind = "value: otherWhoisContact" });
 
+        Html.RenderPartial("_NoridDeclaration", Model.NoridDeclaration);
+
         Html.RenderPartial("_ExtraForms", Model);
 
         Html.RenderPartial("_Actions", Model);
