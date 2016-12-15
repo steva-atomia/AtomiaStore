@@ -1,0 +1,31 @@
+﻿@model Atomia.Store.AspNetMvc.Models.NoridDeclarationModel
+
+<div data-bind="visible: norid.showNoridDeclaration">
+    <h4>@Html.CommonResource("NoridDeclaration")</h4>
+
+    @*@Html.FormRowFor(m => m.SignedName, Html.CommonResource("SignedName") + ":", true, "value: norid.noridSignedName")*@
+    <div class="formrow">
+        <h5><span class="required">*</span><label class="required">@Html.CommonResource("SignedName"):</label></h5>
+        <div class="col2row">
+            @Html.TextBoxFor(m => m.SignedName, new Dictionary<string, object> {{"data-bind", "value: norid.noridSignedName"}})
+            @Html.ValidationMessageFor(m => m.SignedName)
+        </div>
+        <br class="clear">
+    </div>
+
+    <div class="formrow">
+        <h5><span class="required">*</span><label class="required">@Html.CommonResource("Confirmation"):</label></h5>
+        <div class="col2row">
+            <label>
+                @*<input data-bind="checked: norid.acceptedDeclaration" id="AcceptedDeclaration" name="AcceptedDeclaration" value="true" type="checkbox" />*@                
+                @Html.CheckBoxFor(m => m.AcceptedDeclaration, new Dictionary<string, object> {{ "data-bind", "checked: norid.acceptedDeclaration, css: { validateThis: norid.showNoridDeclaration }" }})
+                @Html.LabelFor(m => m.AcceptedDeclaration, " ")
+                @Html.LabelFor(m => m.AcceptedDeclaration, " ")
+                @Html.CommonResource("NoridDeclarationInfo")
+                <a href="#" data-bind="click: norid.openDeclaration">@Html.CommonResource("NoridLink")</a>
+                @Html.ValidationMessageFor(m => m.AcceptedDeclaration)
+            </label>
+            
+        </div>
+    </div>
+</div>

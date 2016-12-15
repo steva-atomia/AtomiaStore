@@ -707,4 +707,19 @@
     <value>US dollar</value>
     <comment>Currency resource convention</comment>
   </data>
+  <data name="NoridDeclaration" xml:space="preserve">
+    <value>Norid Declaration</value>
+  </data>
+  <data name="NoridDeclarationInfo" xml:space="preserve">
+    <value>I read and accept the declaration for .no domains.</value>
+  </data>
+  <data name="NoridLink" xml:space="preserve">
+    <value>See statement (opens in new window)</value>
+  </data>
+  <data name="SignedName" xml:space="preserve">
+    <value>Signed Name</value>
+  </data>
+  <data name="NoridVersion" xml:space="preserve">
+    <value>2.0</value>
+  </data>
 </root>

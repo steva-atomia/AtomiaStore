@@ -36,4 +36,9 @@
     Atomia.VM.account.mainContactCustomerType('@initialMainContactCustomerType');
     Atomia.VM.account.billingContactCustomerType('@initialBillingCustomerType');
     Atomia.VM.account.whoisContactCustomerType('@initialWhoisCustomerType');
+    Atomia.VM.norid = new Atomia.ViewModels.NoridDeclarationModel(Atomia.VM.cart, Atomia.VM.account);
+
+    $.validator.setDefaults({
+        ignore: ":hidden:not(.validateThis)"
+    });
 </script>
