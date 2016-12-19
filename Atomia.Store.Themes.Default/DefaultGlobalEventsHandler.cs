@@ -1,4 +1,5 @@
-﻿using Atomia.Store.AspNetMvc.Controllers;
+﻿using Atomia.ActionTrail.Base;
+using Atomia.Store.AspNetMvc.Controllers;
 using Atomia.Store.AspNetMvc.Infrastructure;
 using Atomia.Store.Core;
 using Atomia.Web.Base.Configs;
@@ -6,6 +7,7 @@ using Atomia.Web.Plugin.Validation.ValidationAttributes;
 using Microsoft.Practices.Unity;
 using Microsoft.Practices.Unity.Configuration;
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
@@ -130,6 +132,38 @@ namespace Atomia.Store.Themes.Default
                 else
                 {
                     routeData.Values.Add("action", "InternalServerError");
+                }
+
+                if (ex != null && ex is HttpAntiForgeryException)
+                {
+                    var auditLogger = DependencyResolver.Current.GetService<IAuditLogger>();
+                    var url = HttpContext.Current.Request.Url.OriginalString;
+                    var details = new Dictionary<string, object>();
+                    details.Add("url", url);
+                    details.Add("ip", HttpContext.Current.Request.UserHostAddress);
+                    details.Add("referrer", HttpContext.Current.Request.UrlReferrer);
+                    details.Add("user agent", HttpContext.Current.Request.UserAgent);
+
+                    if (HttpContext.Current.Request.Form != null &&
+                        HttpContext.Current.Request.Form.Count > 0)
+                    {
+                        var formData = new Dictionary<string, string>();
+
+                        foreach (var key in HttpContext.Current.Request.Form.AllKeys)
+                        {
+                            formData.Add(key, HttpContext.Current.Request.Form[key].ToString());
+                        }
+
+                        details.Add("form data", formData);
+                    }
+
+                    auditLogger.Log(
+                        AuditActionTypes.SecurityCsrf,
+                        $"CSRF attempt prevented on url: {url}",
+                        string.Empty,
+                        string.Empty,
+                        string.Empty,
+                        details);
                 }
 
                 routeData.Values.Add("error", ex);

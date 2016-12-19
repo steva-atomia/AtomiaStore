@@ -19,6 +19,7 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/amplify.js")
                 .Include(
                     "~/Themes/Default/Scripts/atomia/AtomiaValidation.js",
+                    "~/Themes/Default/Scripts/atomia/AtomiaAntiForgery.js",
                     "~/Themes/Default/Scripts/atomia/atomia.utils.js",
                     "~/Themes/Default/Scripts/atomia/atomia.utils.eventhandlers.js",
                     "~/Themes/Default/Scripts/atomia/atomia.api.definitions.js",

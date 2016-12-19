@@ -277,6 +277,7 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.productmixin.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.vatvalidation.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.whois.js" />
+    <Content Include="Themes\Default\Scripts\atomia\AtomiaAntiForgery.js" />
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
