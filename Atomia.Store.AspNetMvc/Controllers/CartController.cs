@@ -32,6 +32,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// Update, recalculate and save current cart based on POST:ed data.
         /// </summary>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult RecalculateCart(CartUpdateModel updatedCart)
         {
             if (ModelState.IsValid)

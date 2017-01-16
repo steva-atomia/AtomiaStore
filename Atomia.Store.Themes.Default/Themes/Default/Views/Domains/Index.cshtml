@@ -5,6 +5,7 @@
 }
 
 <div class="settingsboxinner" data-bind="with: Atomia.VM.domains">
+    @Html.AntiForgeryToken();
     <p>@Html.CommonResourceRaw("DomainRegistrationDescription")</p>
 
     @{ Html.RenderPartial("_QueryType", Model); }

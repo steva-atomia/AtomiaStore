@@ -5,6 +5,8 @@
     ViewBag.Title = @Html.CommonResource("HostingPackageTitle");
 }
 
+@Html.AntiForgeryToken();
+
 <h4>@Html.CommonResource("HostingPackageTitle")</h4>
 <p>@Html.CommonResourceRaw("HostingPackageDescription")</p>
 <div class="formrow">

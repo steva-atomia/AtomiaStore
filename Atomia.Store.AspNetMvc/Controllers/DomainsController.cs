@@ -38,6 +38,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// Find domains based on search query.
         /// </summary>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult FindDomains(DomainQueryModel searchQuery)
         {
             if (ModelState.IsValid)
@@ -60,6 +61,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         /// Check status of domain search started from <see cref="FindDomains"/>
         /// </summary>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public JsonResult CheckStatus(int domainSearchId)
         {
             if (ModelState.IsValid)
