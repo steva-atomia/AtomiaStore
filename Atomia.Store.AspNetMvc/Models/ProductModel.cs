@@ -83,5 +83,16 @@ namespace Atomia.Store.AspNetMvc.Models
                     .ToList();
             }
         }
+
+        /// <summary>
+        /// Cateogires from the underlying product.
+        /// </summary>
+        public IEnumerable<Category> Categories
+        {
+            get
+            {
+                return product.Categories;
+            }
+        }
     }
 }
