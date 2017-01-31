@@ -20,6 +20,9 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		self.attrs = {};
 		self._origAttrNames = {};
 
+		self.categories = _.pluck(productData.Categories, 'Name');
+		self.categoryDescription = _.pluck(productData.Categories, 'Description').join(', ');
+
 		_.each(productData.PricingVariants, function (variantData) {
 			var pricingVariant = {
 				price: variantData.Price,
