@@ -30,9 +30,10 @@ if (Test-Path $themeDir)
 }
 
 # Copy theme project, solution template and gitignore
-robocopy $templateDir $themeDir /e /xf MyTheme.csproj.user packages.config /xd bin obj
-Copy-Item $templateSolution $themeSolution
-Copy-Item $templateGitIgnore $themeGitIgnore
+echo "$templateDir"
+robocopy "$templateDir " "$themeDir " /e /xf "MyTheme.csproj.user" "packages.config" /xd bin obj
+Copy-Item "$templateSolution" "$themeSolution"
+Copy-Item "$templateGitIgnore" "$themeGitIgnore"
 
 
 # Compile Atomia Store solution if not done yet
