@@ -265,6 +265,7 @@
     <Content Include="Themes\Default\Content\img\atomia_2\atomia_logo_white.svg" />
     <Content Include="Themes\Default\Content\img\atomia_2\mail.svg" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.checkout.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.ko.validatecustomfield.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.vpsslider-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
@@ -483,6 +484,64 @@
   <ItemGroup>
     <Content Include="App_GlobalResources\Common.tr-TR.resx" />
     <Content Include="App_GlobalResources\CustomerValidation.tr-TR.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_GlobalResources\CustomFields.da-DK.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.da-DK.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.de-DE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.de-DE.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.en-US.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.en-US.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.es-ES.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.es-ES.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.es.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.es.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.fr-FR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.fr-FR.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.nb-NO.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.nb-NO.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.nl-NL.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.nl-NL.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.pl-PL.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.pl-PL.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.pt-BR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.pt-BR.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.pt-PT.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.pt-PT.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.sv-SE.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.sv-SE.designer.cs</LastGenOutput>
+    </Content>
+    <Content Include="App_GlobalResources\CustomFields.tr-TR.resx">
+      <Generator>GlobalResourceProxyGenerator</Generator>
+      <LastGenOutput>CustomFields.tr-TR.designer.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>

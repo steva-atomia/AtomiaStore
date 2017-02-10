@@ -69,6 +69,7 @@ namespace Atomia.Store.Themes.Default
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaRangeAttribute), typeof(AtomiaRangeValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaUsernameAttribute), typeof(AtomiaUsernameAttribute.AtomiaUsernameValidator));
             DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(AtomiaUsernameRequiredAttribute), typeof(AtomiaUsernameRequiredValidator));
+            DataAnnotationsModelValidatorProvider.RegisterAdapter(typeof(CustomFieldsValidationAttribute), typeof(CustomFieldsValidationAttribute.CustomFieldsValidator));
 
             foreach (GlobalSetting globalSetting in AppConfig.Instance.GlobalSettingsList)
             {

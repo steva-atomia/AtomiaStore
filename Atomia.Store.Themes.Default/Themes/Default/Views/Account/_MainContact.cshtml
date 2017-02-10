@@ -49,7 +49,7 @@
     </h5>
     <div class="col2row">
         <label class="select">
-            @Html.DropDownListFor(m => m.Country, Model.CountryOptions)
+            @Html.DropDownListFor(m => m.Country, Model.CountryOptions, new { data_bind = "value: mainContactCountry" })
         </label>
         @Html.ValidationMessageFor(m => m.Country)
     </div>
@@ -57,4 +57,33 @@
 </div>
 
 @Html.FormRowFor(m => m.Phone, Html.CommonResource("Phone") + ":", true)
+
+<div id="CustomFields" data-bind="template: {name: 'js-custom-fields-template', foreach: customFields}"></div>
 <!-- /ko -->
+
+<script type="text/html" id="js-custom-fields-template">
+    <div class="formrow">
+        <h5><span data-bind="visible: $data.required" class="required" aria-required="true">*</span>
+            <label class="required" data-bind="attr: { for: 'CustomFieldsDict_' + $index() + '__Value' }" aria-required="true"><!-- ko text: Atomia.RESX.CustomFields[$data.name] --><!-- /ko --></label>
+        </h5>
+
+        <div class="col2row">
+            <input type="hidden" data-bind="attr: {id: 'MainContact_CustomFieldsInfo_CustomFieldsDict_' + $index() + '__Key', name: 'MainContact.CustomFieldsInfo.CustomFieldsDict[' + $index() + '].Key'}, value: $data.name">
+            <!-- ko if: !$data.dropdown -->
+            <input type="text" data-bind="attr: {id: 'MainContact_CustomFieldsInfo_CustomFieldsDict_' + $index() + '__Value', name: 'MainContact.CustomFieldsInfo.CustomFieldsDict[' + $index() + '].Value'}, value: $data.value, validateCustomField">
+            <!-- /ko -->
+            <!-- ko if: $data.dropdown -->
+            <label class="select">
+                <select data-bind="options: $data.dropdownEntries,
+                        optionsText: 'EntryName',
+                        optionsValue: 'EntryValue',
+                       optionsCaption: '...',
+                       attr: { id: 'MainContact_CustomFieldsInfo_CustomFieldsDict_' + $index() + '__Value', name: 'MainContact.CustomFieldsInfo.CustomFieldsDict[' + $index() + '].Value' }, value: $data.value, validateCustomField"></select>
+
+            </label>
+            <!-- /ko -->
+            <span class="input-validation-valid" data-bind="attr: {id: 'MainContact_CustomFieldsInfo_CustomFieldsDict_' + $index() + '__Value_validationMessage' }"></span>
+        </div>
+        <br class="clear">
+    </div>
+</script>

@@ -27,6 +27,7 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.api.checkout.js",
                     "~/Themes/Default/Scripts/atomia/atomia.api.domains.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.submitvalid-binding.js",
+                    "~/Themes/Default/Scripts/atomia/atomia.ko.validatecustomfield.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.slidevisible-binding.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.vpsslider-binding.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.modalmixin.js",

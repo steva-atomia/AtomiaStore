@@ -19,6 +19,7 @@ namespace Atomia.Store.AspNetMvc.Models
 
         private IndividualExtraInfo individualInfo;
         private CompanyExtraInfo companyInfo;
+        private CustomFieldsExtraInfo customFieldsInfo;
 
         /// <summary>
         /// Construct new instances with instantiated sub-forms.
@@ -218,6 +219,42 @@ namespace Atomia.Store.AspNetMvc.Models
         /// </summary>
         /// <remarks>Property is required by some types of CustomerValidation.</remarks>
         public List<CartItem> CartItems { get; set; }
+
+        /// <summary>
+        /// <see cref="CustomFieldsExtraInfo"/> sub-form.
+        /// </summary>
+        public virtual CustomFieldsExtraInfo CustomFieldsInfo
+        {
+            get
+            {
+                if (customFieldsInfo == null)
+                {
+                    customFieldsInfo = new CustomFieldsExtraInfo();
+                }
+
+                if (customFieldsInfo.Parent == null)
+                {
+                    customFieldsInfo.Parent = this;
+                }
+
+                return customFieldsInfo;
+            }
+
+            set { customFieldsInfo = value; }
+        }
+
+        /*/// <summary>
+        /// Gets or sets the serialized custom fields.
+        /// </summary>
+        /// <value>The custom fields.</value>
+        public string CustomFields { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom fields dictionary.
+        /// </summary>
+        /// <value>The custom fields dictionary.</value>
+        [CustomFieldsValidation("CustomFields", "CustomerValidation,CustomFields", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
+        public IDictionary<string, string> CustomFieldsDict { get; set; }*/
     }
 
     /// <summary>
@@ -303,5 +340,28 @@ namespace Atomia.Store.AspNetMvc.Models
         /// </summary>
         [CustomerValidation(CustomerValidationType.IdentityNumber, "CustomerValidation,IndividualIdentityNumber", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
         public virtual string IdentityNumber { get; set; }
+    }
+
+    /// <summary>
+    /// A <see cref="ContactSubmodel"/> form that collects data only for custom fields.
+    /// </summary>
+    public class CustomFieldsExtraInfo : ContactSubmodel
+    {
+        public CustomFieldsExtraInfo()
+        {
+            CustomFieldsDict = new Dictionary<string, string>();
+        }
+        /// <summary>
+        /// Gets or sets the serialized custom fields.
+        /// </summary>
+        /// <value>The custom fields.</value>
+        public string CustomFields { get; set; }
+
+        /// <summary>
+        /// Gets or sets the custom fields dictionary.
+        /// </summary>
+        /// <value>The custom fields dictionary.</value>
+        [CustomFieldsValidation("CustomFields", "CustomerValidation,CustomFields", CountryField = "Country", ProductField = "CartItems.ArticleNumber", ResellerIdField = "ResellerId")]
+        public IDictionary<string, string> CustomFieldsDict { get; set; }
     }
 }

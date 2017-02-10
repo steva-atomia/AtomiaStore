@@ -2,6 +2,8 @@
 using Atomia.Store.AspNetMvc.Models;
 using Atomia.Store.PublicBillingApi.Handlers;
 using System;
+using System.CodeDom;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Script.Serialization;
 
@@ -40,6 +42,10 @@ namespace Atomia.Store.PublicOrderHandlers
             public string Voice { get; set; }
 
             public string Zip { get; set; }
+
+            public string CustomFields { get; set; }
+
+            public IDictionary<string, string> CustomFieldsDict { get; set; }
         }
 
         private string _domainRegContactData;
@@ -52,14 +58,49 @@ namespace Atomia.Store.PublicOrderHandlers
             }
 
             var whoisContact = orderContext.ContactData.OfType<WhoisContactModel>().FirstOrDefault();
+            var mainContact = orderContext.ContactData.OfType<MainContactModel>().FirstOrDefault();
 
             // No separate WHOIS contact added by customer.
-            if (whoisContact == null || String.IsNullOrEmpty(whoisContact.Email))
+            if ((whoisContact == null || String.IsNullOrEmpty(whoisContact.Email))
+                &&
+                (mainContact == null || mainContact.CustomFieldsInfo == null ||
+                 mainContact.CustomFieldsInfo.CustomFieldsDict == null ||
+                 mainContact.CustomFieldsInfo.CustomFieldsDict.Count == 0))
             {
                 _domainRegContactData = "";
             }
             else
             {
+                if (whoisContact == null || String.IsNullOrEmpty(whoisContact.Email))
+                {
+                    //whoisContact not filled out but there are custom fields in mainContact. Copy rest of the properties.
+                    whoisContact = whoisContact ?? new WhoisContactModel();
+                    whoisContact.Address = mainContact.Address;
+                    whoisContact.Address2 = mainContact.Address2;
+                    whoisContact.CartItems = mainContact.CartItems;
+                    whoisContact.City = mainContact.City;
+                    whoisContact.Country = mainContact.Country;
+                    whoisContact.CustomerType = mainContact.CustomerType;
+                    whoisContact.Email = mainContact.Email;
+                    whoisContact.Fax = mainContact.Fax;
+                    whoisContact.FirstName = mainContact.FirstName;
+                    whoisContact.LastName = mainContact.LastName;
+                    whoisContact.Phone = mainContact.Phone;
+                    whoisContact.ResellerId = mainContact.ResellerId;
+                    whoisContact.State = mainContact.State;
+                    whoisContact.Zip = mainContact.Zip;
+                    whoisContact.IndividualInfo.IdentityNumber = mainContact.IndividualInfo.IdentityNumber;
+                    whoisContact.CompanyInfo.CompanyName = mainContact.CompanyInfo.CompanyName;
+                    whoisContact.CompanyInfo.IdentityNumber = mainContact.CompanyInfo.IdentityNumber;
+                    whoisContact.CompanyInfo.VatNumber = mainContact.CompanyInfo.VatNumber;
+                }
+
+                if (mainContact != null && mainContact.CustomFieldsInfo != null &&
+                    mainContact.CustomFieldsInfo.CustomFieldsDict != null &&
+                    mainContact.CustomFieldsInfo.CustomFieldsDict.Count > 0)
+                {
+                    whoisContact.CustomFieldsInfo.CustomFieldsDict = mainContact.CustomFieldsInfo.CustomFieldsDict;
+                }
                 var phone = FormattingHelper.FormatPhoneNumber(whoisContact.Phone, whoisContact.Country);
                 var fax = FormattingHelper.FormatPhoneNumber(whoisContact.Fax, whoisContact.Country);
 
@@ -84,14 +125,18 @@ namespace Atomia.Store.PublicOrderHandlers
                     Country = OrderDataHandler.NormalizeData(whoisContact.Country),
                     Email = OrderDataHandler.NormalizeData(whoisContact.Email),
                     Fax = OrderDataHandler.NormalizeData(fax),
-                    Name = OrderDataHandler.NormalizeData(whoisContact.FirstName) + " " + OrderDataHandler.NormalizeData(whoisContact.LastName),
+                    Name =
+                        OrderDataHandler.NormalizeData(whoisContact.FirstName) + " " +
+                        OrderDataHandler.NormalizeData(whoisContact.LastName),
                     Org = OrderDataHandler.NormalizeData(org),
                     OrgNo = OrderDataHandler.NormalizeData(orgNo),
                     Street1 = OrderDataHandler.NormalizeData(whoisContact.Address),
                     Street2 = OrderDataHandler.NormalizeData(whoisContact.Address2),
                     VatNo = OrderDataHandler.NormalizeData(vatNo),
                     Voice = OrderDataHandler.NormalizeData(phone),
-                    Zip = OrderDataHandler.NormalizeData(whoisContact.Zip)
+                    Zip = OrderDataHandler.NormalizeData(whoisContact.Zip),
+                    CustomFields = new JavaScriptSerializer().Serialize(whoisContact.CustomFieldsInfo.CustomFieldsDict),
+                    CustomFieldsDict = whoisContact.CustomFieldsInfo.CustomFieldsDict
                 };
 
                 _domainRegContactData = new JavaScriptSerializer().Serialize(domainRegContact);
