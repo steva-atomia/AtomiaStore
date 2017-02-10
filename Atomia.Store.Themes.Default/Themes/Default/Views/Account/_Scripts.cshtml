@@ -1,4 +1,7 @@
 ﻿@model Atomia.Store.AspNetMvc.Models.DefaultAccountViewModel
+@using System.Collections
+@using System.Globalization
+@using System.Resources
 @using Atomia.Store.AspNetMvc.Models;
 @using Atomia.Web.Plugin.Validation.HtmlHelpers;
 
@@ -11,6 +14,7 @@
                 new Form(formName: "MainContact", countryFormName:"MainContact"),
                 new Form(formName: "MainContact.IndividualInfo", countryFormName:"MainContact"),
                 new Form(formName: "MainContact.CompanyInfo", countryFormName:"MainContact"),
+                new Form(formName: "MainContact.CustomFieldsInfo", countryFormName:"MainContact"),
                 new Form(formName: "BillingContact", countryFormName:"BillingContact"),
                 new Form(formName: "BillingContact.IndividualInfo", countryFormName:"BillingContact"),
                 new Form(formName: "BillingContact.CompanyInfo", countryFormName:"BillingContact"),
@@ -22,6 +26,20 @@
         ArticleNumberList = "Atomia.VM.cart.articleNumbers()",
         ProductCategoryList = "Atomia.VM.cart.categories()"
     });
+
+    System.Web.Script.Serialization.JavaScriptSerializer jsSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+
+    var fields = "{";
+
+    ResourceManager CustomFields = new ResourceManager("Resources.CustomFields", System.Reflection.Assembly.Load("App_GlobalResources"));
+
+    ResourceSet resourceSet = CustomFields.GetResourceSet(CultureInfo.CurrentUICulture, true, true);
+    foreach (DictionaryEntry entry in resourceSet)
+    {
+        fields += jsSerializer.Serialize(entry.Key) + ":" + jsSerializer.Serialize(entry.Value) + ",";
+    }
+
+    fields = fields.TrimEnd(',') + "}";
 }
 
 <script type="text/javascript">
@@ -36,9 +54,21 @@
     Atomia.VM.account.mainContactCustomerType('@initialMainContactCustomerType');
     Atomia.VM.account.billingContactCustomerType('@initialBillingCustomerType');
     Atomia.VM.account.whoisContactCustomerType('@initialWhoisCustomerType');
+    Atomia.VM.account.resellerId('@Model.MainContact.ResellerId.ToString()');
+    Atomia.VM.account.modelFields = @Html.Raw(Json.Encode(Model.MainContact.CustomFieldsInfo.CustomFieldsDict)) || {};
     Atomia.VM.norid = new Atomia.ViewModels.NoridDeclarationModel(Atomia.VM.cart, Atomia.VM.account);
 
     $.validator.setDefaults({
         ignore: ":hidden:not(.validateThis)"
+    });
+
+    Atomia.RESX = Atomia.RESX || {};
+    Atomia.RESX.CustomFields = Atomia.RESX.CustomFields || {};
+
+    $.extend(Atomia.RESX.CustomFields, @Html.Raw(fields) );
+
+    Atomia.URLS = Atomia.URLS || {};
+    $.extend(Atomia.URLS, {
+        getApplicableCustomFields: '@Url.Action("GetApplicableCustomFields", new { controller = "Validation", area = "Validation" })'
     });
 </script>
