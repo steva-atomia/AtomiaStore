@@ -6,6 +6,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+
+using Atomia.Web.Plugin.ShopNameProvider;
+
 using ApiProduct = Atomia.Web.Plugin.ProductsProvider.Product;
 
 namespace Atomia.Store.PublicBillingApi.Adapters

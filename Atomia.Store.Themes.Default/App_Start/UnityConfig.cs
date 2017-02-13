@@ -9,6 +9,8 @@ using System.Web.Mvc;
 using System.Configuration;
 using System;
 
+using Atomia.Web.Plugin.ProductsProvider;
+using Atomia.Web.Plugin.ShopNameProvider;
 
 namespace Atomia.Store.Themes.Default
 {
