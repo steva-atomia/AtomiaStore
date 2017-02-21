@@ -3,8 +3,8 @@ using Atomia.Web.Plugin.ProductsProvider;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using CoreProduct = Atomia.Store.Core.Product;
 
+using Atomia.Web.Plugin.ShopNameProvider;
 
 namespace Atomia.Store.PublicBillingApi
 {
@@ -34,7 +34,6 @@ namespace Atomia.Store.PublicBillingApi
             this.productsProvider = productsProvider;
             this.resellerId = resellerProvider.GetReseller().Id;
             this.shopName = shopNameProvider.GetShopName();
-
         }
 
         public IList<Web.Plugin.ProductsProvider.Product> GetProductsByCategories(IList<string> categories)

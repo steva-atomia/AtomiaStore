@@ -94,6 +94,10 @@
     <Reference Include="Atomia.Web.Plugin.ServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.ServiceReferences.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.ShopNameProvider, Version=16.9.6242.26889, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Atomia.Web.Plugin.ShopNameProvider.dll</HintPath>
+    </Reference>
     <Reference Include="Atomia.Web.Plugin.Validation, Version=14.1.5504.31635, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Lib\Atomia.Web.Plugin.Validation.dll</HintPath>
@@ -431,7 +435,9 @@
     <Content Include="Themes\Default\Views\Error\InternalServerError.cshtml" />
     <Content Include="Themes\Default\Views\Error\NotFound.cshtml" />
     <Content Include="Themes\Default\Views\Web.config" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

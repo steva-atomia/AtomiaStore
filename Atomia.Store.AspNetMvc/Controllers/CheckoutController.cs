@@ -51,6 +51,8 @@ namespace Atomia.Store.AspNetMvc.Controllers
             var cart = cartProvider.GetCart();
             var contactDataCollection = contactDataProvider.GetContactData();
 
+            ViewBag.CheckVAT = !String.IsNullOrEmpty(vatDataProvider.VatNumber);
+
             if (cart.IsEmpty())
             {
                 ModelState.AddModelError("cart", "Cart is empty");
