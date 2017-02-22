@@ -55,6 +55,9 @@
     <Reference Include="Atomia.Common">
       <HintPath>..\Lib\Atomia.Common.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Base">
+      <HintPath>..\Lib\Atomia.Web.Base.dll</HintPath>
+    </Reference>
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
@@ -79,6 +82,7 @@
     <Compile Include="CartItemHandlers\SetupFeesHandler.cs" />
     <Compile Include="CartItemHandlers\OwnDomainHandler.cs" />
     <Compile Include="CartItemHandlers\RemovePostOrderHandler.cs" />
+    <Compile Include="Configuration\PublicOrderHandlersDataManager.cs" />
     <Compile Include="ContactDataHandlers\BillingContactDataHandler.cs" />
     <Compile Include="ContactDataHandlers\MainContactDataHandler.cs" />
     <Compile Include="CurrencyHandler.cs" />
@@ -114,6 +118,7 @@
       <Name>Atomia.Store.PublicBillingApi</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

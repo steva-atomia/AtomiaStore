@@ -3,6 +3,8 @@ using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Web.Script.Serialization;
+using Atomia.Store.PublicOrderHandlers.Configuration;
 
 namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 {
@@ -29,6 +31,9 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         {
             var domainItems = orderContext.ItemData.Where(i => this.HandledCategories.Intersect(i.Categories.Select(c => c.Name)).Count() > 0);
 
+            var jsemail = new JavaScriptSerializer();
+            var mailOnOrderSettings = LocalConfigurationHelper.GetMailOnOrderSettings();
+
             foreach (var domainItem in domainItems)
             {
                 var customData = new List<PublicOrderItemProperty>();
@@ -36,12 +41,28 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
                 var domainName = GetDomainName(domainItem);
                 var domainRegSpecificAttrs = GetDomainRegistrySpecificAttributes(domainItem);
                 var connectedItem = GetConnectedItem(orderContext.ItemData, domainItem, domainName);
-                
+
                 customData.Add(new PublicOrderItemProperty { Name = "DomainName", Value = domainName });
 
                 if (!string.IsNullOrEmpty(domainRegSpecificAttrs))
                 {
                     customData.Add(new PublicOrderItemProperty { Name = "DomainRegistrySpecificAttributes", Value = domainRegSpecificAttrs });
+
+                    var mailOnOrderElement = mailOnOrderSettings.FirstOrDefault(e => e.ProductId == domainItem.ArticleNumber);
+                    if (mailOnOrderElement != null)
+                    {
+                        Dictionary<string, string> emailProps = new Dictionary<string, string>();
+                        Dictionary<string, string> domainSpecific = jsemail.Deserialize<Dictionary<string, string>>(domainRegSpecificAttrs);
+                        emailProps.Add("Type", mailOnOrderElement.Email);
+                        emailProps.Add("Domain", domainName ?? "");
+                        emailProps.Add("Name", domainSpecific.FirstOrDefault(v => v.Key == "AcceptName").Value ?? "");
+                        emailProps.Add("Time", domainSpecific.FirstOrDefault(v => v.Key == "AcceptDate").Value ?? "");
+                        emailProps.Add("Orgnum", order.CompanyNumber);
+                        emailProps.Add("Company", order.Company);
+                        emailProps.Add("Version", domainSpecific.FirstOrDefault(v => v.Key == "AcceptVersion").Value ?? "");
+                        emailProps.Add("Ccc", mailOnOrderElement.CccEmail);
+                        customData.Add(new PublicOrderItemProperty { Name = "MailOnOrder", Value = jsemail.Serialize(emailProps) });
+                    }
                 }
 
                 if (connectedItem != null)
