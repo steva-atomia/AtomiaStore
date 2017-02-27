@@ -203,6 +203,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerValidation.sv-SE.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\CustomFields.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomFields.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\OrderFlowConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />

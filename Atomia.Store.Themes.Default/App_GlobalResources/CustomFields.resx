@@ -216,6 +216,27 @@
   <data name="entity_type.default.default.dmn-it" xml:space="preserve">
     <value>Values can be: 1(individual), 2(company), 3(freelancers), 4(Non-profit org.), 5(Public org.), 6(other), 7(Non-italian that match 2-6)</value>
   </data>
+  <data name="entity_type.default.default.dmn-it.1" xml:space="preserve">
+    <value>Individual</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.2" xml:space="preserve">
+    <value>Company</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.3" xml:space="preserve">
+    <value>Freelancers</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.4" xml:space="preserve">
+    <value>Non-profit organization</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.5" xml:space="preserve">
+    <value>Public organization</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.6" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="entity_type.default.default.dmn-it.7" xml:space="preserve">
+    <value>Non-italian that match 2-6</value>
+  </data>
   <data name="id_card_authority" xml:space="preserve">
     <value>ID card issuer</value>
   </data>
@@ -230,6 +251,21 @@
   </data>
   <data name="id_type.default.default.dmn-asia" xml:space="preserve">
     <value>Values can be: passport, certificate, legislation, societyRegistry or politicalPartyRegistry</value>
+  </data>
+  <data name="id_type.default.default.dmn-asia.certificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="id_type.default.default.dmn-asia.legislation" xml:space="preserve">
+    <value>Legislation</value>
+  </data>
+  <data name="id_type.default.default.dmn-asia.passport" xml:space="preserve">
+    <value>Passport</value>
+  </data>
+  <data name="id_type.default.default.dmn-asia.politicalPartyRegistry" xml:space="preserve">
+    <value>Political Party Registry</value>
+  </data>
+  <data name="id_type.default.default.dmn-asia.societyRegistry" xml:space="preserve">
+    <value>Society Registry</value>
   </data>
   <data name="jobs_association_member" xml:space="preserve">
     <value>Member of SHRM(Yes/No)</value>
@@ -248,6 +284,30 @@
   </data>
   <data name="legal_entity_type.default.default.dmn-asia" xml:space="preserve">
     <value>Values can be: naturalPerson, corporation, cooperative, partnership, government, politicalParty, society or institution</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.cooperative" xml:space="preserve">
+    <value>Cooperative</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.corporation" xml:space="preserve">
+    <value>Corporation</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.government" xml:space="preserve">
+    <value>Government</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.institution" xml:space="preserve">
+    <value>Institution</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.naturalPerson" xml:space="preserve">
+    <value>Natural Person</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.partnership" xml:space="preserve">
+    <value>Partnership</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.politicalParty" xml:space="preserve">
+    <value>Political Party</value>
+  </data>
+  <data name="legal_entity_type.default.default.dmn-asia.society" xml:space="preserve">
+    <value>Society</value>
   </data>
   <data name="nexus_app_purpose" xml:space="preserve">
     <value>Application purpose</value>
@@ -270,17 +330,47 @@
   <data name="policy_reason.default.default.dmn-asnau" xml:space="preserve">
     <value>Values can be: 1 (exact match) or 2 (closely connected). Default: 2</value>
   </data>
+  <data name="policy_reason.default.default.dmn-asnau.1" xml:space="preserve">
+    <value>Exact match</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-asnau.2" xml:space="preserve">
+    <value>Closely connected</value>
+  </data>
   <data name="policy_reason.default.default.dmn-comau" xml:space="preserve">
     <value>Values can be: 1 (exact match) or 2 (closely connected). Default: 2</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-comau.1" xml:space="preserve">
+    <value>Exact match</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-comau.2" xml:space="preserve">
+    <value>Closely connected</value>
   </data>
   <data name="policy_reason.default.default.dmn-idau" xml:space="preserve">
     <value>Values can be: 1 (exact match) or 2 (closely connected). Default: 2</value>
   </data>
+  <data name="policy_reason.default.default.dmn-idau.1" xml:space="preserve">
+    <value>Exact match</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-idau.2" xml:space="preserve">
+    <value>Closely connected</value>
+  </data>
   <data name="policy_reason.default.default.dmn-netau" xml:space="preserve">
     <value>Values can be: 1 (exact match) or 2 (closely connected). Default: 2</value>
   </data>
+  <data name="policy_reason.default.default.dmn-netau.1" xml:space="preserve">
+    <value>Exact match</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-netau.2" xml:space="preserve">
+    <value>Closely connected</value>
+  </data>
   <data name="policy_reason.default.default.dmn-orgau" xml:space="preserve">
     <value>Values can be: 1 (exact match) or 2 (closely connected). Default: 2</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-orgau.1" xml:space="preserve">
+    <value>Exact match</value>
+  </data>
+  <data name="policy_reason.default.default.dmn-orgau.2" xml:space="preserve">
+    <value>Closely connected</value>
   </data>
   <data name="postal_code_of_birth" xml:space="preserve">
     <value>Birth place postal code</value>
