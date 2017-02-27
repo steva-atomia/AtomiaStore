@@ -203,6 +203,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>CustomerValidation.sv-SE.resx</DependentUpon>
     </Compile>
+    <Compile Include="App_GlobalResources\CustomFields.designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>CustomFields.resx</DependentUpon>
+    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\OrderFlowConfig.cs" />
     <Compile Include="App_Start\UnityConfig.cs" />
@@ -234,6 +239,7 @@
     <Content Include="Original Files\Web.config" />
     <Content Include=".jshintrc" />
     <Content Include="Original Files\bin\Atomia.Common.dll.config" />
+    <Content Include="Original Files\bin\Atomia.Store.PublicOrderHandlers.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.DomainSearch.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.OrderServiceReferences.dll.config" />
     <None Include="Original Files\bin\Atomia.Web.Plugin.Validation.dll.config" />
