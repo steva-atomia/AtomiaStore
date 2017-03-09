@@ -909,6 +909,15 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Includes.
+        /// </summary>
+        internal static string Includes {
+            get {
+                return ResourceManager.GetString("Includes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Individual.
         /// </summary>
         internal static string Individual {

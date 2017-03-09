@@ -145,6 +145,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         cart.total(cartData.Total);
         cart.taxes(cartTaxes);
         cart.campaignCode(cartData.CampaignCode);
+        cart.pricesIncludeVat(cartData.PricesIncludeVat);
 
         utils.publish('cart:update');
     }
@@ -199,6 +200,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.total = ko.observable(0);
         self.taxes = ko.observableArray();
         self.campaignCode = ko.observable('');
+        self.pricesIncludeVat = ko.observable(false);
         self.attrs = ko.observableArray();
         self._origAttrNames = {};
         

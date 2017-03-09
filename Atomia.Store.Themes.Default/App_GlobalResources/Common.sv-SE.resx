@@ -719,4 +719,7 @@
   <data name="SignedName" xml:space="preserve">
     <value>Tecknat namn</value>
   </data>
+  <data name="Includes" xml:space="preserve">
+    <value>Inkluderar</value>
+  </data>
 </root>

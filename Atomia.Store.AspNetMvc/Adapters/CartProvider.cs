@@ -10,6 +10,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
     public sealed class CartProvider : ICartProvider
     {
         private readonly ICartPricingService cartPricingProvider = DependencyResolver.Current.GetService<ICartPricingService>();
+        private readonly IVatDisplayPreferenceProvider vatDisplayPreferenceProvider = DependencyResolver.Current.GetService<IVatDisplayPreferenceProvider>();
 
         /// <inheritdoc/>
         public Cart GetCart() 
@@ -18,7 +19,7 @@ namespace Atomia.Store.AspNetMvc.Adapters
 
             if (cart == null)
             {
-                cart = new Cart(this, cartPricingProvider);
+                cart = new Cart(this, cartPricingProvider, vatDisplayPreferenceProvider);
             }
 
             return cart;

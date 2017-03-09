@@ -722,4 +722,7 @@
   <data name="NoridVersion" xml:space="preserve">
     <value>2.0</value>
   </data>
+  <data name="Includes" xml:space="preserve">
+    <value>Includes</value>
+  </data>
 </root>

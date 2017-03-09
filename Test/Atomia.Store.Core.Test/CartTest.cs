@@ -36,13 +36,20 @@ namespace Atomia.Store.Core.Test
         }
     }
 
-
+    internal class FakeVatDisplayPreferenceProvider : IVatDisplayPreferenceProvider
+    {
+        public bool ShowPricesIncludingVat()
+        {
+            return true;
+        }
+    }
 
     [TestClass]
     public class CartTest
     {
         private FakeCartRepository cartRepository;
         private FakeCarPricingProvider cartPricingProvider;
+        private FakeVatDisplayPreferenceProvider vatDisplayPreferenceProvider;
         private Cart cart;
 
         [TestInitialize]
@@ -50,7 +57,8 @@ namespace Atomia.Store.Core.Test
         {
             cartRepository = new FakeCartRepository(); 
             cartPricingProvider = new FakeCarPricingProvider();
-            cart = new Cart(cartRepository, cartPricingProvider);
+            vatDisplayPreferenceProvider = new FakeVatDisplayPreferenceProvider();
+            cart = new Cart(cartRepository, cartPricingProvider, vatDisplayPreferenceProvider);
         }
 
         [TestMethod]

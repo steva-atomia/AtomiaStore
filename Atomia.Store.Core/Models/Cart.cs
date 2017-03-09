@@ -18,13 +18,14 @@ namespace Atomia.Store.Core
         private decimal total;
         private List<Tax> taxes = new List<Tax>();
         private List<CustomAttribute> customAttribues = new List<CustomAttribute>();
+        private readonly bool pricesIncludeVat;
 
         /// <summary>
         /// Cart constructor
         /// </summary>
         /// <param name="cartProvider">Provider to get current cart.</param>
         /// <param name="cartPricingService">Service to set price on cart and items.</param>
-        public Cart(ICartProvider cartProvider, ICartPricingService cartPricingService)
+        public Cart(ICartProvider cartProvider, ICartPricingService cartPricingService, IVatDisplayPreferenceProvider vatDisplayPreferenceProvider)
         {
             if (cartProvider == null)
             {
@@ -36,8 +37,14 @@ namespace Atomia.Store.Core
                 throw new ArgumentNullException("cartPricingService");
             }
 
+            if (vatDisplayPreferenceProvider == null)
+            {
+                throw new ArgumentNullException("vatDisplayPreferenceProvider");
+            }
+
             this.cartProvider = cartProvider;
             this.cartPricingService = cartPricingService;
+            this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
         }
 
         /// <summary>
@@ -104,6 +111,14 @@ namespace Atomia.Store.Core
             { 
                 return total; 
             } 
+        }
+
+        public bool PricesIncludeVat
+        {
+            get
+            {
+                return this.pricesIncludeVat;
+            }
         }
 
         /// <summary>

@@ -13,13 +13,13 @@
                 </thead>
                 <tfoot>
                     <tr>
-                        <td class="right">@Html.CommonResource("Subtotal")</td>
+                        <td class="right" data-bind="text: cart.pricesIncludeVat ? '@Html.CommonResource("Total"):' : '@Html.CommonResource("Subtotal"):'"></td>
                         <td class="right nowrap" data-bind="text: cart.subTotal"></td>
                         <td></td>
                     </tr>
                     <!-- ko foreach: cart.taxes -->
                     <tr>
-                        <td class="right" data-bind="text: name"></td>
+                        <td class="right"><span data-bind="visible: $root.cart.pricesIncludeVat">@Html.CommonResource("Includes")</span> <span data-bind="text: name"></span></td>
                         <td class="right nowrap" data-bind="text: amount"></td>
                         <td></td>
                     </tr>
@@ -32,7 +32,7 @@
                     </tr>
                     <!-- /ko -->
                     <tr class="strong">
-                        <td class="right">@Html.CommonResource("Total")</td>
+                        <td class="right">@Html.CommonResource("AmountToPay")</td>
                         <td class="right nowrap" data-bind="text: cart.total"></td>
                         <td></td>
                     </tr>

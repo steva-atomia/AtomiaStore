@@ -66,5 +66,13 @@ namespace Atomia.Store.AspNetMvc.Models
                 return currencyFormatter.FormatAmount(cart.Total);
             }
         }
+
+        public bool PricesIncludeVat
+        {
+            get
+            {
+                return cart.PricesIncludeVat;
+            }
+        }
     }
 }

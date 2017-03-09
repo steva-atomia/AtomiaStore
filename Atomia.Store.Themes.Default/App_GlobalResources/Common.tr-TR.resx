@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="AddToCart" xml:space="preserve">
     <value>Sepete ekle</value>
@@ -145,7 +145,7 @@
     <value>Itibaren</value>
   </data>
   <data name="HostingPackageDescription" xml:space="preserve">
-    <value></value>
+    <value />
   </data>
   <data name="HostingPackageTitle" xml:space="preserve">
     <value>Web hosting paketi seçin</value>
@@ -590,11 +590,11 @@
     <comment>Credit card save info label</comment>
   </data>
   <data name="SelectMonth" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Credit card month expiration options label</comment>
   </data>
   <data name="SelectYear" xml:space="preserve">
-    <value></value>
+    <value />
     <comment>Credit card year expiration options label</comment>
   </data>
   <data name="ErrorEmptyField" xml:space="preserve">
@@ -715,5 +715,8 @@
   </data>
   <data name="SignedName" xml:space="preserve">
     <value>İmzalı isim</value>
+  </data>
+  <data name="Includes" xml:space="preserve">
+    <value>İçerir</value>
   </data>
 </root>
