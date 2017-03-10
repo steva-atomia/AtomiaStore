@@ -22,6 +22,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
         self.domainNameTld = domainParts.slice(1).join('.');
         self.status = domainItemData.Status;
         self.order = domainItemData.Order;
+        self.domainNameSldDecoded = punycode.toUnicode(self.domainNameSld);
 
         /** 
          * Overrides ProductMixin property.
@@ -67,7 +68,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             self.primaryResults.removeAll();
             self.secondaryResults.removeAll();
             self.showMoreResults(false);
-            self.submittedQuery(self.query());
+            self.submittedQuery(punycode.toUnicode(self.query()));
             self.noResults(false);
             self.searchFinished(false);
             

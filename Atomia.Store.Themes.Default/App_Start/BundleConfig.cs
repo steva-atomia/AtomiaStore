@@ -16,7 +16,8 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/MicrosoftMvcJQueryValidation.js",
                     "~/Themes/Default/Scripts/knockout-{version}.js",
                     "~/Themes/Default/Scripts/underscore.js",
-                    "~/Themes/Default/Scripts/amplify.js")
+                    "~/Themes/Default/Scripts/amplify.js",
+                    "~/Themes/Default/Scripts/punycode.js")
                 .Include(
                     "~/Themes/Default/Scripts/atomia/AtomiaValidation.js",
                     "~/Themes/Default/Scripts/atomia/AtomiaAntiForgery.js",
@@ -28,6 +29,7 @@ namespace Atomia.Store.Themes.Default
                     "~/Themes/Default/Scripts/atomia/atomia.api.domains.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.submitvalid-binding.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.validatecustomfield.js",
+                    "~/Themes/Default/Scripts/atomia/atomia.ko.validatedomain.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.slidevisible-binding.js",
                     "~/Themes/Default/Scripts/atomia/atomia.ko.vpsslider-binding.js",
                     "~/Themes/Default/Scripts/atomia/atomia.viewmodels.modalmixin.js",

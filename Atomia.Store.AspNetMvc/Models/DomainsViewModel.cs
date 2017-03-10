@@ -9,7 +9,6 @@ namespace Atomia.Store.AspNetMvc.Models
     {
 
         [AtomiaRequired("Common,ErrorEmptyField")]
-        [AtomiaRegularExpression("DomainSearch", "Common,ErrorInvalidDomain", true)]
         public string SearchQuery { get; set; }
     }
 }

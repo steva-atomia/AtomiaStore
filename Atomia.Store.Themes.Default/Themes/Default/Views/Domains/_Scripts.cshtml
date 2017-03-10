@@ -7,10 +7,17 @@
     Atomia.VM.domains = new Atomia.ViewModels.DomainsModel();
     Atomia.VM.domainRegistration = new Atomia.ViewModels.DomainRegistrationModel(Atomia.VM.cart);
 
+    Atomia.RESX = Atomia.RESX || {};
+    Atomia.RESX.CustomFields = Atomia.RESX.CustomFields || {};
+    $.extend(Atomia.RESX, {
+        validateDomainMessage: '@Html.CommonResource("ErrorInvalidDomain")',
+        validateDomainRegex: '@Html.Raw(ViewBag.DomainSearchRegex)'
+    });
+
     @* Pre-populate and submit search query coming from query string. *@
     @if (!String.IsNullOrEmpty(Model.SearchQuery))
     {
         @: Atomia.VM.domainRegistration.query('@Model.SearchQuery');
-        @: $(function () { Atomia.VM.domainRegistration.submit();});
-    }
+            @: $(function () { Atomia.VM.domainRegistration.submit(); });
+        }
 </script>
