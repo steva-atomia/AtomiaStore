@@ -4,7 +4,7 @@
 <div class="domainreg-query big_search">
     @using (Html.BeginForm("FindDomains", "Domain", FormMethod.Post, new { data_bind = "submitValid: submit" }))
     {
-        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: query", id = "register_box", placeholder = "mydomain.com" })
+        @Html.TextBoxFor(m => m.SearchQuery, new { data_bind = "value: query, validateDomain", id = "register_box", placeholder = "mydomain.com" })
         <button type="submit" class="button green" style="vertical-align:top;">@Html.CommonResource("FindDomain")</button>
         <p>@Html.ValidationMessageFor(m => m.SearchQuery)</p>
     }
@@ -80,7 +80,7 @@
 
 <script type="text/html" id="domainregistration-secondary-available">
     <tr>
-        <td><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></td>
+        <td><!-- ko text: domainNameSldDecoded --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></td>
         <td class="right nowrap" data-bind="text: price"></td>
         <td>
             <a title="Add to cart" href="javascript:void(0);" class="button" data-bind="click: addToCart, visible: !isInCart()">@Html.CommonResource("AddToCart")</a>
@@ -91,7 +91,7 @@
 
 <script type="text/html" id="domainregistration-secondary-unavailable">
     <tr>
-        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td><span class="fade"><!-- ko text: domainNameSldDecoded --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
         <td class="right nowrap"><span class="fade" data-bind="text: price"></span></td>
         <td><span class="taken">@Html.CommonResource("Taken")</span></td>
     </tr>
@@ -99,7 +99,7 @@
 
 <script type="text/html" id="domainregistration-secondary-loading">
     <tr>
-        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td><span class="fade"><!-- ko text: domainNameSldDecoded --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
         <td class="right nowrap" data-bind="text: price"></td>
         <td><span class="processing"></span></td>
     </tr>
@@ -107,7 +107,7 @@
 
 <script type="text/html" id="domainregistration-secondary-unknown">
     <tr>
-        <td><span class="fade"><!-- ko text: domainNameSld --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
+        <td><span class="fade"><!-- ko text: domainNameSldDecoded --><!-- /ko --><strong>.<!-- ko text: domainNameTld --><!-- /ko --></strong></span></td>
         <td class="right nowrap" data-bind="text: price"></td>
         <td><span class="warning"></span></td>
     </tr>

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using Atomia.Store.AspNetMvc.Filters;
+using Atomia.Common;
 
 namespace Atomia.Store.AspNetMvc.Controllers
 {
@@ -23,6 +24,7 @@ namespace Atomia.Store.AspNetMvc.Controllers
         public ActionResult Index(DomainQueryModel prefilled)
         {
             var model = DependencyResolver.Current.GetService<DomainsViewModel>();
+            ViewBag.DomainSearchRegex = RegularExpression.GetRegularExpression("DomainSearch").Replace("\\", "\\\\");
 
             if (ModelState.IsValid) 
             {

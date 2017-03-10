@@ -75,7 +75,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             var item, cartItem;
             var itemData = {
                 articleNumber: cartItemData.ArticleNumber,
-                name: cartItemData.Name,
+                name: punycode.toUnicode(cartItemData.Name),
                 description: cartItemData.Description,
                 categories: _.pluck(cartItemData.Categories, 'Name'),
                 categoryDescription: _.pluck(cartItemData.Categories, 'Description').join(', '),

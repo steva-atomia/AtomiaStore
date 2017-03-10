@@ -262,6 +262,8 @@
     <Content Include="Scripts\knockout-3.2.0.debug.js" />
     <Content Include="Scripts\knockout-3.2.0.js" />
     <Content Include="Scripts\MIT-LICENSE.txt" />
+    <Content Include="Scripts\punycode.js" />
+    <Content Include="Scripts\punycode.min.js" />
     <Content Include="Scripts\README.txt" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
@@ -276,6 +278,7 @@
     <Content Include="Themes\Default\Content\img\atomia_2\mail.svg" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.api.checkout.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.validatecustomfield.js" />
+    <Content Include="Themes\Default\Scripts\atomia\atomia.ko.validatedomain.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.ko.vpsslider-binding.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.utils.eventhandlers.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.campaign.js" />
@@ -289,6 +292,7 @@
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.vatvalidation.js" />
     <Content Include="Themes\Default\Scripts\atomia\atomia.viewmodels.whois.js" />
     <Content Include="Themes\Default\Scripts\atomia\AtomiaAntiForgery.js" />
+    <Content Include="Themes\Default\Scripts\punycode.js" />
     <Content Include="Themes\Default\Views\Checkout\Success.cshtml" />
     <Content Include="Themes\Default\Views\Checkout\Failure.cshtml" />
     <Content Include="Themes\Default\Views\Shared\_CartSummary.cshtml" />
