@@ -77,7 +77,7 @@ namespace Atomia.Store.PublicOrderHandlers.Configuration
 
                 Directory.SetCurrentDirectory(currentDir);
             }
-            catch (Exception e)
+            catch (Exception)
             {
                 
             }
