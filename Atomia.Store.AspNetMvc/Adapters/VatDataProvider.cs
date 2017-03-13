@@ -55,7 +55,11 @@ namespace Atomia.Store.AspNetMvc.Adapters
                 if (this._mainContact == null)
                 {
                     var contactDataCollection = contactDataProvider.GetContactData();
-                    this._mainContact = contactDataCollection.GetContactData().OfType<MainContactModel>().FirstOrDefault();
+
+                    if (contactDataCollection != null)
+                    {
+                        this._mainContact = contactDataCollection.GetContactData().OfType<MainContactModel>().FirstOrDefault();
+                    }
                 }
 
                 return this._mainContact;

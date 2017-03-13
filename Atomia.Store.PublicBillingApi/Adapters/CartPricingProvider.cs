@@ -16,6 +16,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private readonly ICountryProvider countryProvider;
         private readonly IContactDataProvider contactDataProvider;
         private readonly RenewalPeriodProvider renewalPeriodProvider;
+        private readonly IVatNumberValidator vatNumberValidator;
         private readonly bool pricesIncludeVat;
         private readonly bool inclusiveTaxCalculationType;
 
@@ -29,7 +30,8 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             IContactDataProvider contactDataProvider,
             RenewalPeriodProvider renewalPeriodProvider, 
             IVatDisplayPreferenceProvider vatDisplayPreferenceProvider, 
-            PublicBillingApiProxy billingApi)
+            PublicBillingApiProxy billingApi,
+            IVatNumberValidator vatNumberValidator)
             : base(billingApi)
         {
             if (resellerProvider == null)
@@ -62,6 +64,11 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 throw new ArgumentNullException("vatDisplayPreferenceProvider");
             }
 
+            if (vatNumberValidator == null)
+            {
+                throw new ArgumentNullException("vatNumberValidator");
+            }
+
             this.resellerProvider = resellerProvider;
             this.currencyPreferenceProvider = currencyPreferenceProvider;
             this.countryProvider = countryProvider;
@@ -69,6 +76,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             this.renewalPeriodProvider = renewalPeriodProvider;
             this.pricesIncludeVat = vatDisplayPreferenceProvider.ShowPricesIncludingVat();
             this.inclusiveTaxCalculationType = resellerProvider.GetReseller().InclusiveTaxCalculationType;
+            this.vatNumberValidator = vatNumberValidator;
         }
 
         /// <inheritdoc />
@@ -168,8 +176,16 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         private PublicOrder CreateBasicOrder()
         {
             string country = this.countryProvider.GetDefaultCountry().Code;
+            var vatValidationResult = vatNumberValidator.ValidateCustomerVatNumber();
+            var vatNumber = string.Empty;
+            
 
-            if (this.contactDataProvider != null)
+            if (vatValidationResult != null && vatValidationResult.Valid)
+            {
+                vatNumber = vatValidationResult.VatNumber;
+                country = vatValidationResult.CountryCode;
+            }
+            else if (this.contactDataProvider != null)
             {
                 var allContacts = this.contactDataProvider.GetContactData();
                 IEnumerable<ContactData> contacts = allContacts?.GetContactData();
@@ -183,12 +199,13 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                     }
                 }
             }
-
+            
             return new PublicOrder
             {
                 ResellerId = resellerProvider.GetReseller().Id,
                 Country = country,
-                Currency = currencyPreferenceProvider.GetCurrentCurrency().Code
+                Currency = currencyPreferenceProvider.GetCurrentCurrency().Code,
+                LegalNumber = vatNumber
             };
         }
     }

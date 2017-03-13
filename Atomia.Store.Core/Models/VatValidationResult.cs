@@ -13,6 +13,8 @@ namespace Atomia.Store.Core
     {
         public string VatNumber { get; set; }
 
+        public string CountryCode { get; set; }
+
         public bool Valid { get; set; }
 
         public VatValidationDetail ValidationDetail { get; set; }

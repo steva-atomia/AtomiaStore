@@ -30,7 +30,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         {
             var vatNumber = this.vatDataProvider.VatNumber;
             var countryCode = this.vatDataProvider.CountryCode;
-            var result = new VatValidationResult { VatNumber = vatNumber };
+            var result = new VatValidationResult { VatNumber = vatNumber, CountryCode = countryCode };
 
             if (!String.IsNullOrEmpty(vatNumber))
             {
