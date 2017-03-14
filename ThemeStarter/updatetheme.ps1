@@ -7,7 +7,7 @@ $createDir = Join-Path (Join-Path (pwd) (Split-Path $themeDir -Parent)) $ThemeNa
 $themeDir = Join-Path $createDir $themeName
 $themeLibDir = "$($createDir)\Lib"
 
-$defaultThemeDir = "$($PSScriptRoot)\..\Atomia.Store.Themes.Default\"
+$defaultThemeDir = "$($PSScriptRoot)\..\Atomia.Store.Themes.Default"
 $storeSolution = "$($PSScriptRoot)\..\Solution\Store.sln"
 
 if (-Not (Test-Path $themeDir))
@@ -16,18 +16,16 @@ if (-Not (Test-Path $themeDir))
 	Exit
 }
 
-
 # Rebuild AtomiaStore solution 
 $msbuild = "C:\Progra~2\MSBuild\14.0\bin\msbuild.exe"
-Invoke-Expression "$($msbuild) $($storeSolution) /p:Configuration=Debug /t:rebuild"
-
+Invoke-Expression "$($msbuild) ""$($storeSolution)"" /p:Configuration=Debug /t:rebuild"
 
 # Create Lib and copy bin files needed to run project on dev server, and for adding references
 if (-Not (Test-Path $themeLibDir)) {
 	New-Item $themeLibDir -Type directory
 }
-Copy-Item "$($defaultThemeDir)bin\*.*" $themeLibDir
 
+Copy-Item "$($defaultThemeDir)\bin\*.*" $themeLibDir
 
 # Copy default theme files to have fallback when running dev server
 Copy-Item "$($defaultThemeDir)\Themes\Default" "$($themeDir)\Themes" -Recurse -Force
