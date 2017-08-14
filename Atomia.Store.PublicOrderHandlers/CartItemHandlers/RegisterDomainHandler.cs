@@ -21,7 +21,7 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         public override string DefaultAtomiaService
         {
             get {
-                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("DefaultDNSService",
+                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("DomainDefaultService",
                                         Assembly.GetExecutingAssembly().CodeBase);
                 return string.IsNullOrEmpty(atomiaService) ? "CsDomainParking" : atomiaService;
             }
@@ -32,9 +32,10 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         /// </summary>
         protected override string GetAtomiaService(ItemData connectedItem)
         {
+
             if (IsHostingPackageWithWebsitesAllowed(connectedItem))
             {
-                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("DefaultHostingService",
+                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("ConnectedDomainDefaultService",
                                         Assembly.GetExecutingAssembly().CodeBase);
                 return string.IsNullOrEmpty(atomiaService) ? "CsLinuxWebsite" : atomiaService;
             }
