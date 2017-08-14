@@ -1,6 +1,7 @@
 ﻿using Atomia.Store.PublicBillingApi.Handlers;
 using Atomia.Web.Plugin.OrderServiceReferences.AtomiaBillingPublicService;
 using System.Collections.Generic;
+using System.Reflection;
 
 namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
 {
@@ -19,7 +20,12 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         /// </summary>
         public override string DefaultAtomiaService
         {
-            get { return "CsDomainParking"; }
+            get
+            {
+                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("DefaultDNSService",
+                                     Assembly.GetExecutingAssembly().CodeBase);
+                return string.IsNullOrEmpty(atomiaService) ? "CsDomainParking" : atomiaService;
+            }
         }
 
         /// <summary>
@@ -42,7 +48,9 @@ namespace Atomia.Store.PublicOrderHandlers.CartItemHandlers
         {
             if (IsHostingPackageWithWebsitesAllowed(connectedItem))
             {
-                return "CsLinuxWebsite";
+                var atomiaService = Atomia.Web.Base.Helpers.General.PluginSettingsHelper.FetchSetting("DefaultHostingSrvice",
+                                        Assembly.GetExecutingAssembly().CodeBase);
+                return string.IsNullOrEmpty(atomiaService) ? "CsLinuxWebsite" : atomiaService;
             }
 
             return DefaultAtomiaService;
