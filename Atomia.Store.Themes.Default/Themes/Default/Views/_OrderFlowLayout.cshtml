@@ -1,6 +1,7 @@
 ﻿@{
     Layout = null;
     ViewBag.Title = Html.CommonResource("OrderPageTitle");
+    string bodyClass = "";
 }
 
 <!DOCTYPE html>
@@ -9,7 +10,8 @@
 
 @Html.Partial("_Head")
 
-<body>
+@if (PageData["BodyClass"] != null) { bodyClass = PageData["BodyClass"].ToString(); }
+<body class="@bodyClass">
     <header>
         <div class="margins">
             <a id="logo" href="/">Atomia</a>
