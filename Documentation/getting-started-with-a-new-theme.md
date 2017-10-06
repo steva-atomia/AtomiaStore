@@ -10,18 +10,20 @@ The quickest way to get started with a new custom theme is to use the theme star
 2. Open PowerShell and set execution policy 
 
     `Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
+	
+3. Open AtomiaStore\Solution\Store.sln with Visual Studio and rebuild project
 
-3. Run the theme starter script in PowerShell
+4. Run the theme starter script in PowerShell
 
     `.\AtomiaStore\ThemeStarter\startnewtheme.ps1 MyTheme`
 
-4. Open `MyTheme\MyTheme.sln` in Visual Studio 2013 or above.
+5. Open `MyTheme\MyTheme.sln` in Visual Studio 2013 or above.
 
-5. If you do not have a complete Atomia development environment installed, you can use fake backend services by uncommenting the relevant unity sections in Web.config.
+6. If you do not have a complete Atomia development environment installed, you can use fake backend services by uncommenting the relevant unity sections in Web.config.
 
-6. Run **DEBUG > Start Debugging** and an order page with the default theme will start.
+7. Run **DEBUG > Start Debugging** and an order page with the default theme will start.
 
-7. Start customizing!
+8. Start customizing!
 
 
 Next Steps
