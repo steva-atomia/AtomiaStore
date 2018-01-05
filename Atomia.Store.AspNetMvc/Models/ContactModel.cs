@@ -137,12 +137,11 @@ namespace Atomia.Store.AspNetMvc.Models
         [CustomerValidation(CustomerValidationType.Zip, "CustomerValidation,Zip", CountryField = "Country")]
         public virtual string Zip { get; set; }
 
-        //TODO: Fix validation
-        //[Required]
-        //[CustomerValidation(CustomerValidationType.Country, "CustomerValidation,Country")]
         /// <summary>
         /// Customer selected country
         /// </summary>
+        [AtomiaRequired("Common,ErrorEmptyField")]
+        [CustomerValidation(CustomerValidationType.Country, "CustomerValidation,Country", CountryField = "Country", ProductField = "CartItems.ArticleNumber" , ResellerIdField = "ResellerId")]
         public override string Country { get; set; }
 
         /// <summary>
