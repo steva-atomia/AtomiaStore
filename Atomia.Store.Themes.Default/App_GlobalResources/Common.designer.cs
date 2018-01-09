@@ -1657,6 +1657,24 @@ namespace Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must have hosting package in the shopping cart..
+        /// </summary>
+        internal static string WarningDescrition_HostingPackageMissing {
+            get {
+                return ResourceManager.GetString("WarningDescrition_HostingPackageMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hosting package missing.
+        /// </summary>
+        internal static string WarningTitle_HostingPackageMissing {
+            get {
+                return ResourceManager.GetString("WarningTitle_HostingPackageMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to WHOIS contact.
         /// </summary>
         internal static string WhoisAddressTitle {

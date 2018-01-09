@@ -719,4 +719,10 @@
   <data name="Includes" xml:space="preserve">
     <value>İçerir</value>
   </data>
+  <data name="WarningDescrition_HostingPackageMissing" xml:space="preserve">
+    <value>Barındırma paketini alışveriş sepetinde olmalısınız.</value>
+  </data>
+  <data name="WarningTitle_HostingPackageMissing" xml:space="preserve">
+    <value>Hosting paketi eksik</value>
+  </data>
 </root>

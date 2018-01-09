@@ -722,4 +722,10 @@
   <data name="Includes" xml:space="preserve">
     <value>Inkluderar</value>
   </data>
+  <data name="WarningDescrition_HostingPackageMissing" xml:space="preserve">
+    <value>Du måste ha värdpaket i kundvagnen.</value>
+  </data>
+  <data name="WarningTitle_HostingPackageMissing" xml:space="preserve">
+    <value>Värdpaket saknas</value>
+  </data>
 </root>

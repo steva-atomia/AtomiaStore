@@ -74,7 +74,7 @@
         Atomia.VM.currencySelector.load(@Html.JsonAction("GetCurrencies", "Currency"));
 
         Atomia.VM.cart = _.extend(
-            new Atomia.ViewModels.CartModel(),
+            new Atomia.ViewModels.CartModel({ 'title': '@Html.Raw(@Html.CommonResource("WarningTitle_HostingPackageMissing"))', 'message': '@Html.Raw(@Html.CommonResource("WarningDescrition_HostingPackageMissing"))' }),
             new Atomia.ViewModels.ModalMixin());
         Atomia.VM.cart.load(@Html.JsonAction("GetCart", "Cart"));
 

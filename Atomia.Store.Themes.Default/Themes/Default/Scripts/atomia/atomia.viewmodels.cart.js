@@ -191,7 +191,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
     
     /** Create view model for cart. */
-    function CartModel() {
+    function CartModel(notification) {
         var self = this;
         
         self.domainCategories = [];
@@ -344,6 +344,25 @@ Atomia.ViewModels = Atomia.ViewModels || {};
                 }
             }
         };
+
+
+        self.hasHostingPackage = function hasHostingPackage() {
+            var itemInCart = _.find(self.cartItems(), function (cartItem) {
+                return cartItem.categories.includes("HostingPackage");
+            });
+
+            if (itemInCart != undefined) {
+                return true;
+            }
+            else {
+                utils.publish("uiSetNotification", {
+                    title: notification.title,
+                    message: notification.message,
+                    messageType: 'warning'
+                });
+                return false;
+            }
+        }
 
         /** Remove any domain name associations from 'mainItem'. Optionally set 'recalculate' to false.*/
         self.removeDomainName = function removeDomainName(mainItem, recalculate) {
