@@ -6,7 +6,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 (function (exports, _, ko) {
 	'use strict';
 
-	function ProductMixin(productData, cart) {
+	function ProductMixin(productData, cart, viewModels) {
 	    var self = this;
 
 		self._selectedPricingVariantInitialized = false;
@@ -19,6 +19,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 		self.pricingVariants = [];
 		self.attrs = {};
 		self._origAttrNames = {};
+		self.reloadSubscripbers = ko.observable(true);
 
 		self.categories = _.pluck(productData.Categories, 'Name');
 		self.categoryDescription = _.pluck(productData.Categories, 'Description').join(', ');
@@ -65,6 +66,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 		/** Shortcut to price of pricing variant. */
 		self.price = ko.pureComputed(function () {
+		    self.reloadSubscripbers();
 			if (self.hasVariants()) {
 				return self.selectedPricingVariant().price;
 			}
@@ -74,6 +76,7 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
 		/** Shortcut to renewal period of pricing variant */
 		self.renewalPeriod = ko.pureComputed(function () {
+		    self.reloadSubscripbers();
 			if (self.hasVariants()) {
 				return self.selectedPricingVariant().renewalPeriod;
 			}
@@ -103,13 +106,29 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 			}
 		};
 
-		/** Select pricing variant for product and sync with cart. */
-		self.selectedPricingVariant.subscribe(function selectPricingVariant() {
-			if (self._selectedPricingVariantInitialized && cart.contains(self)) {
-				cart.remove(self);
-			}
+		if (viewModels != undefined) {
+		    self.uniqueId = _.uniqueId('productitem-');
 
-			self._selectedPricingVariantInitialized = true;
+		    viewModels.addCartItemExtensions(cart, self);
+		}
+
+	    /** Select pricing variant for product and sync with cart. */
+		self.selectedPricingVariant.subscribe(function selectPricingVariant() {
+		    var itemExisted = false;
+
+		    if (self._selectedPricingVariantInitialized && cart.contains(self)) {
+		        cart.remove(self);
+		        itemExisted = true;
+		    }
+
+		    /*** Update price and renewal.  */
+		    self.reloadSubscripbers.notifySubscribers();
+
+		    if (itemExisted) {
+		        cart.add(self)
+		    }
+
+		    self._selectedPricingVariantInitialized = true;
 		});
 	}
 
