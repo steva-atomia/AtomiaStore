@@ -14,11 +14,8 @@ Atomia.ViewModels = Atomia.ViewModels || {};
     function ProductListingItem(productData, cart) {
         var self = this;
 
-        _.extend(self, new viewModels.ProductMixin(productData, cart));
-        
-        self.uniqueId = _.uniqueId('productitem-');
+        _.extend(self, new viewModels.ProductMixin(productData, cart, viewModels));
 
-        viewModels.addCartItemExtensions(cart, self);
     }
 
 
@@ -28,12 +25,11 @@ Atomia.ViewModels = Atomia.ViewModels || {};
      */
     function ProductListingModel(cart) {
         var self = this;
-                
+
         self.productIsRequired = true;
         self.singleSelection = false;
         self.products = ko.observableArray();
         self.selectedProduct = ko.observable();
-        
         /** Check if product is in cart. */
         self.productIsSelected = ko.pureComputed(function() {
             return _.any(self.products(), function (product) {
@@ -51,7 +47,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
             return _.every(conditions);
         });
-          
         /** Create ProductListingItem object. */
         self.createProductListingItem = function CreateProductListingItem(productData){
             return new ProductListingItem(productData, cart);
@@ -81,7 +76,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
 
                 if (cart.contains(item)) {
                     item.initPricingVariant();
-                    
                     if (self.singleSelection) {
                         self.selectProduct(item);
                     }
@@ -91,7 +85,6 @@ Atomia.ViewModels = Atomia.ViewModels || {};
             });
         };
     }
-    
 
     _.extend(exports, {
         ProductListingItem: ProductListingItem,
