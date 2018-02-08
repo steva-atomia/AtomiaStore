@@ -9,6 +9,7 @@ using System.Web;
 using Atomia.ActionTrail.Base;
 
 using ConfigurationManager = System.Configuration.ConfigurationManager;
+using Atomia.Common.Configuration;
 
 namespace Atomia.Store.PublicBillingApi
 {
@@ -126,7 +127,20 @@ namespace Atomia.Store.PublicBillingApi
                 throw new InvalidOperationException("Order could not be created.");
             }
 
-            urlProvider.SuccessUrl = GetTokenLoginUrl(createdOrder.Email, token);
+            string username = createdOrder.Email;
+
+            if (AtomiaCommon.Instance.SeparateUsernameAndEmail)
+            {
+                // Check if the username should be different from the customers email address
+                if (createdOrder.CustomData != null &&
+                    createdOrder.CustomData.Any(c => c.Name.ToLowerInvariant() == "username") &&
+                    !string.IsNullOrEmpty(createdOrder.CustomData.FirstOrDefault(c => c.Name.ToLowerInvariant() == "username").Value))
+                {
+                    username = createdOrder.CustomData.FirstOrDefault(c => c.Name.ToLowerInvariant() == "username").Value;
+                }
+            }
+
+            urlProvider.SuccessUrl = GetTokenLoginUrl(username, token);
 
             return createdOrder;
         }

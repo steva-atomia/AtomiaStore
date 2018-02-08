@@ -52,6 +52,9 @@
     <Reference Include="Atomia.ActionTrail.Base">
       <HintPath>..\Lib\Atomia.ActionTrail.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Common">
+      <HintPath>..\Lib\Atomia.Common.dll</HintPath>
+    </Reference>
     <Reference Include="Atomia.Web.Plugin.DomainSearch">
       <HintPath>..\Lib\Atomia.Web.Plugin.DomainSearch.dll</HintPath>
     </Reference>
