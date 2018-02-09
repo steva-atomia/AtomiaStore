@@ -167,5 +167,16 @@ namespace Atomia.Store.AspNetMvc.Controllers
 
             return JsonEnvelope.Success(result);
         }
+
+        /// <summary>
+        /// Validate VAT number with backend service
+        /// </summary>
+        [HttpPost]
+        public ActionResult TermsOfService()
+        {
+            CheckoutViewModel checkoutModel = new DefaultCheckoutViewModel();
+
+            return JsonEnvelope.Success(checkoutModel.TermsOfService);
+        }
     }
 }

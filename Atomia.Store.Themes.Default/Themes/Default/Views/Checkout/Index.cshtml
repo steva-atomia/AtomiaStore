@@ -32,7 +32,9 @@
 
             @{ Html.RenderPartial("_CartSummary"); }
 
+            <!-- ko with: Atomia.VM.termsOfService -->
             @{ Html.RenderPartial("_TermsOfServiceConfirmation", Model); }
+            <!-- /ko -->
 
             @{ Html.RenderPartial("_BeforeActions", Model); }
 

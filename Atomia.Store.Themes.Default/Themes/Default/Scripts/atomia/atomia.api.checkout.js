@@ -8,6 +8,7 @@ Atomia.Api.Checkout = Atomia.Api.Checkout || {};
     'use strict';
 
     var onGoingValidationRequest = null;
+    var onGoingTermsOfServiceRequest = null;
 
     /**
     * Validate VAT number
@@ -49,9 +50,45 @@ Atomia.Api.Checkout = Atomia.Api.Checkout || {};
         onGoingValidationRequest = request;
     }
 
+    /**
+    * Get Terms Of Service
+    */
+    function getTermsOfService(success, error) {
+        var request, requestData;
+
+        requestData = {};
+
+        if (onGoingTermsOfServiceRequest !== null) {
+            onGoingTermsOfServiceRequest.abort();
+        }
+
+        request = utils.request({
+            resourceId: 'Checkout.TermsOfService',
+            data: requestData,
+            success: function (result) {
+                onGoingTermsOfServiceRequest = null;
+
+                if (success !== undefined) {
+                    success(result);
+                }
+            },
+            error: function (result) {
+                onGoingTermsOfServiceRequest = null;
+
+                if (error !== undefined) {
+                    error(result);
+                }
+            }
+        });
+
+        onGoingTermsOfServiceRequest = request;
+    }
+
+
 
     _.extend(exports, {
-        validateVatNumber: validateVatNumber
+        validateVatNumber: validateVatNumber,
+        getTermsOfService: getTermsOfService
     });
 
 })(Atomia.Api.Checkout, _, Atomia.Utils);

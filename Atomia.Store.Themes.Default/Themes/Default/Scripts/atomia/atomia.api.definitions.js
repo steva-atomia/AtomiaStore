@@ -48,4 +48,11 @@
         type: 'POST',
         decoder: 'jsend'
     });
+
+    amplify.request.define('Checkout.TermsOfService', 'ajax', {
+        url: '/Checkout/TermsOfService',
+        dataType: 'json',
+        type: 'POST',
+        decoder: 'jsend'
+    });
 } (amplify));
