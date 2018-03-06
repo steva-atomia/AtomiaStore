@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Linq;
+using Atomia.Web.Plugin.DomainSearch.Helpers;
 
 namespace Atomia.Store.Themes.Default.Adapters
 {
@@ -12,6 +13,7 @@ namespace Atomia.Store.Themes.Default.Adapters
     public sealed class PremiumDomainsProvider : IDomainsProvider
     {
         private readonly IDomainsProvider domainsProvider;
+        private readonly string sessionPrefix = "PremiumDomainsProvider";
 
         /// <summary>
         /// Constructor that takes the base <see cref="Atomia.Store.Core.IDomainsProvider"/> as dependency.
@@ -33,7 +35,11 @@ namespace Atomia.Store.Themes.Default.Adapters
         public DomainSearchData FindDomains(ICollection<string> searchTerms)
         {
             var data = domainsProvider.FindDomains(searchTerms);
-            data.Results = AddPremiumCustomAttribute(data.Results);
+
+            var tlds = DomainSearchHelper.StripProtocolFromDomainNames(searchTerms.ToArray());
+            data.Results = AddPremiumCustomAttribute(data.Results, tlds);
+
+            System.Web.HttpContext.Current.Session[sessionPrefix + data.DomainSearchId] = searchTerms;
 
             return data;
         }
@@ -44,7 +50,15 @@ namespace Atomia.Store.Themes.Default.Adapters
         public DomainSearchData CheckStatus(int domainSearchId)
         {
             var data = domainsProvider.CheckStatus(domainSearchId);
-            data.Results = AddPremiumCustomAttribute(data.Results);
+            var searchTerms = System.Web.HttpContext.Current.Session[sessionPrefix + data.DomainSearchId] as ICollection<string>;
+
+            var tlds = new List<string>();
+            if(searchTerms != null)
+            {
+                tlds = DomainSearchHelper.StripProtocolFromDomainNames(searchTerms.ToArray());
+            }
+
+            data.Results = AddPremiumCustomAttribute(data.Results, tlds);
 
             return data;
         }
@@ -60,7 +74,7 @@ namespace Atomia.Store.Themes.Default.Adapters
         /// <summary>
         /// Add "Premium" custom attribute to TLDs listed in the "PremiumTLDs" app setting.
         /// </summary>
-        private IEnumerable<DomainResult> AddPremiumCustomAttribute(IEnumerable<DomainResult> domains)
+        private IEnumerable<DomainResult> AddPremiumCustomAttribute(IEnumerable<DomainResult> domains, List<string> tlds)
         {
             var premiumTldsSetting = ConfigurationManager.AppSettings["PremiumTLDs"] as String;
             var premiumTlds = new List<string>();
@@ -72,6 +86,9 @@ namespace Atomia.Store.Themes.Default.Adapters
                     .Select(t => t.Trim())
                     .ToList();
             }
+
+            tlds = tlds.Where(t => !premiumTlds.Any(p => p == t)).ToList();
+            premiumTlds.AddRange(tlds);
 
             foreach (var domain in domains)
             {

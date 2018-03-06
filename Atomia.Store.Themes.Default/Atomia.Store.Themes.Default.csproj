@@ -84,6 +84,10 @@
     <Reference Include="Atomia.Web.Base">
       <HintPath>..\Lib\Atomia.Web.Base.dll</HintPath>
     </Reference>
+    <Reference Include="Atomia.Web.Plugin.DomainSearch, Version=16.9.6261.18545, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Lib\Atomia.Web.Plugin.DomainSearch.dll</HintPath>
+    </Reference>
     <Reference Include="Atomia.Web.Plugin.OrderServiceReferences">
       <HintPath>..\Lib\Atomia.Web.Plugin.OrderServiceReferences.dll</HintPath>
     </Reference>
