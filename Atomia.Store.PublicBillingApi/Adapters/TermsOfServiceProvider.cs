@@ -89,7 +89,8 @@ namespace Atomia.Store.PublicBillingApi.Adapters
                 {
                     Id = resource,
                     Name = resourceProvider.GetResource(resource + "_Name"),
-                    Terms = resourceProvider.GetResource(resource + "_Terms")
+                    Terms = resourceProvider.GetResource(resource + "_Terms"),
+                    Link = resourceProvider.GetResource(resource + "_Link")
                 });
             }
 
@@ -105,6 +106,7 @@ namespace Atomia.Store.PublicBillingApi.Adapters
         {
             var name = resourceProvider.GetResource(id + "_Name");
             var terms = resourceProvider.GetResource(id + "_Terms");
+            var link = resourceProvider.GetResource(id + "_Link");
 
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(terms))
             {
@@ -115,7 +117,8 @@ namespace Atomia.Store.PublicBillingApi.Adapters
             {
                 Id = id,
                 Name = name,
-                Terms = terms
+                Terms = terms,
+                Link = link
             };
         }
     }

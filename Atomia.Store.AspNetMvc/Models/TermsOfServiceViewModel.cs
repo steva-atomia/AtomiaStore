@@ -20,5 +20,10 @@ namespace Atomia.Store.AspNetMvc.Models
         /// The actual (localized) text of the terms of service.
         /// </summary>
         public string Terms { get; set; }
+
+        /// <summary>
+        /// Link to external terms of service.
+        /// </summary>
+        public string Link { get; set; }
     }
 }

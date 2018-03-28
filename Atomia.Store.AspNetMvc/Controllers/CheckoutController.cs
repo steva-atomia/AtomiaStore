@@ -154,10 +154,32 @@ namespace Atomia.Store.AspNetMvc.Controllers
             {
                 Id = tos.Id,
                 Name = tos.Name,
-                Terms = tos.Terms
+                Terms = tos.Terms,
+                Link = tos.Link
             };
 
             return View(model);
+        }
+
+        [HttpPost]
+        public ActionResult TermsOfServiceObject(string id)
+        {
+            var tos = tosProvider.GetTermsOfService(id);
+
+            if (tos == null)
+            {
+                return HttpNotFound();
+            }
+
+            var model = new TermsOfService
+            {
+                Id = tos.Id,
+                Name = tos.Name,
+                Terms = tos.Terms,
+                Link = tos.Link
+            };
+
+            return Json(model);
         }
 
         /// <summary>

@@ -20,5 +20,10 @@ namespace Atomia.Store.Core
         /// The actual text of the terms.
         /// </summary>
         public string Terms { get; set; }
+
+        /// <summary>
+        /// Link to external terms.
+        /// </summary>
+        public string Link { get; set; }
     }
 }
